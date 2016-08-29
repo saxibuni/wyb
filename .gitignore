@@ -1,0 +1,72 @@
+# OS X
+.DS_Store
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+
+# node modules folder
+node_modules/
+
+# Grunt .bin folder
+.bin/
+
+# build folder
+build/
+
+# dist folder
+dist/
+
+# private shell script
+run.sh
+
+# my own folder
+my/
+
+# local properties xml file
+local.properties
+
+# cordova files
+cordova/xtt/www/
+# cordova/xtt/plugins/
+# !cordova/xtt/plugins/*.json
+
+cordova/xtt/platforms/android/CordovaLib/
+cordova/xtt/platforms/android/ant-build/
+cordova/xtt/platforms/android/ant-gen/
+cordova/xtt/platforms/android/assets/
+
+# www/
+
+# *.xcodeproj/
+
+cordova/xtt/platforms/ios/www/
+
+# npm error log
+npm-debug.log
+
+ie/node_modules
+ie/build
+
+# android related folders
+bin/
+gen/
+*.apk
+
+# keystore files
+*.keystore
+
+ant.properties
+/gulpfile-build.bat
+/gulpfile-clean.bat
+/gulpfile-prepare.bat
