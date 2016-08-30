@@ -1,0 +1,29 @@
+$swithBallSize: 20px;
+
+.switch {
+	background-color: #CDA654;
+	border-radius: 2 * $swithBallSize;
+	cursor: pointer;
+	display: inline-block;
+	height: $swithBallSize;
+	width: 2 * $swithBallSize;
+	position: relative;
+
+	.switch-ball {
+		background-color: #FFF;
+		border-radius: 50%;
+		display: inline-block;
+		height: $swithBallSize;
+		width:  $swithBallSize;
+		transition: all .3s;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+}
+
+.switch-selected {
+	.switch-ball {
+		left: $swithBallSize;
+	}
+}

@@ -9,7 +9,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 	top: 0;
 	left: 0;
 	height: $headerHeight;
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
 	width: 100%;
 
@@ -37,7 +37,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				border-right: 1px solid #2E2D25;
 				display: inline-block;
 				float: right;
-				padding: 0 10px;
+				padding: 0 5px;
 			}
 
 			.money-actions {
@@ -52,7 +52,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					display: inline-block;
 					height: 24px;
 					line-height: 24px;
-					width: 130px;
+					width: 110px;
 				}
 
 				.action {
@@ -67,6 +67,80 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					&:last-child {
 						margin-right: 0;
 					}
+				}
+			}
+
+			.balance {
+				float: right;
+				font-size: 12px;
+				height: $headerRow1Height;
+				line-height: $headerRow1Height;
+
+				.balance-item {
+					display: inline-block;
+					padding: 0 5px;
+				}
+
+				.switch {
+					vertical-align: middle;
+				}
+			}
+
+			.grzx {
+				float: right;
+				height: $headerRow1Height;
+				line-height: $headerRow1Height;
+
+				.title {
+					display: inline-block;
+					margin-right: 5px;
+				}
+
+				.message {
+					display: inline-block;
+					height: $headerRow1Height;
+					line-height: $headerRow1Height;
+					position: relative;
+
+					.message-img {
+						width: 20px;
+						height: 20px;
+						vertical-align: middle;
+						margin-bottom: 2px;
+					}
+
+					.dot {
+						$dotSize: 12px;
+
+						background-color: #F00;
+						border: 0;
+						border-radius: 50%;
+						display: inline-block;
+						font-size: 10px;
+						height: $dotSize;
+						width: $dotSize;
+						line-height: $dotSize;
+						position: absolute;
+						left : 12px;
+						top: 4px;
+					}
+				}
+			}
+
+			.time {
+				display: inline-block;
+				float: left;
+				height: $headerRow1Height;
+				line-height: $headerRow1Height;
+
+				.time-zone {
+					display: inline-block;
+					color: #DCAD4B;
+					margin-right: 5px;
+				}
+
+				.time-value {
+					display: inline-block;
 				}
 			}
 		}
