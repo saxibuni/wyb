@@ -223,7 +223,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					height: 2px;
 					left: 0;
 					position: absolute;
-					top: 0;
+					top: $headerRow2Height - 3px;
 
 					transition: left 0.5s;
 					-moz-transition: left 0.5s; 
