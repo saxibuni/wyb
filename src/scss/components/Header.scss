@@ -1,5 +1,8 @@
 @import "../mixins.scss";
 
+$headerRow1Height: 30px;
+$headerRow2Height: $headerHeight - $headerRow1Height;
+
 .header {
 	background-color: $theme-background-color;
 	position: absolute;
@@ -11,16 +14,22 @@
 	width: 100%;
 
 	.wrapper {
-		background-color: red;
+		background-color: #201F1D;
 		position: relative;
 		height: 100%;
 		width: $contentWidth;
 		margin: 0 auto;
 
 		.row1 {
+			background-color: #201F1D;
+			color: #FFF;
+			height: $headerRow1Height;
+			line-height: $headerRow1Height;
+
 			.language {
 				display: inline-block;
 				float: right;
+				padding: 0 10px;
 				width: 30px;
 			}
 
@@ -30,10 +39,42 @@
 				float: right;
 				padding: 0 10px;
 			}
+
+			.money-actions {
+				border-right: 1px solid #2E2D25;
+				float: right;
+				height: $headerRow1Height;
+				line-height: $headerRow1Height;
+				padding: 0 5px;
+
+				.wrapper {
+					background-color: #333333;
+					display: inline-block;
+					height: 24px;
+					line-height: 24px;
+					width: 130px;
+				}
+
+				.action {
+					display: inline-block;
+
+					span {
+						border-right: 1px solid #2C2C2C;
+						display: inline-block;
+						padding: 0 5px;
+					}
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
 		}
 
 		.row2 {
-
+			background-color: #474539;
+			height: $headerRow2Height;
+			line-height: $headerRow2Height;
 		}
 	}
 }
