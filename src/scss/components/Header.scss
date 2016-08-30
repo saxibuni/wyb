@@ -1,0 +1,39 @@
+@import "../mixins.scss";
+
+.header {
+	background-color: $theme-background-color;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: $headerHeight;
+	font-size: 14px;
+	text-align: center;
+	width: 100%;
+
+	.wrapper {
+		background-color: red;
+		position: relative;
+		height: 100%;
+		width: $contentWidth;
+		margin: 0 auto;
+
+		.row1 {
+			.language {
+				display: inline-block;
+				float: right;
+				width: 30px;
+			}
+
+			.top-item {
+				border-right: 1px solid #2E2D25;
+				display: inline-block;
+				float: right;
+				padding: 0 10px;
+			}
+		}
+
+		.row2 {
+
+		}
+	}
+}

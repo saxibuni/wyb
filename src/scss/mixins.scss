@@ -1,0 +1,149 @@
+$contentWidth              :   1024px;
+$headerHeight              :   85px;
+$footerHeight              :   80px;
+
+$theme-background-color    :   #191919;
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes $animation-name {
+        @content;
+    }
+    @-moz-keyframes $animation-name {
+        @content;
+    }
+    @-o-keyframes $animation-name {
+        @content;
+    }
+    @keyframes $animation-name {
+        @content;
+    }
+}
+
+@mixin animation($animation) {
+    animation: $animation;
+    -o-animation: $animation;
+    -ms-animation: $animation;
+    -moz-animation: $animation;
+    -webkit-animation: $animation;
+}
+
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transform($transforms) {
+    transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -moz-transform: $transforms;
+    -webkit-transform: $transforms;
+}
+
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -ms-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+@mixin background-size($size) {
+    background-size: $size;
+    -o-background-size: $size;
+    -moz-background-size: $size;
+    -webkit-background-size: $size;
+}
+
+@mixin box-shadow($str) {
+    -moz-box-shadow: $str;
+    -webkit-box-shadow: $str;
+    box-shadow: $str;
+}
+
+@mixin box-sizing($sizing) {
+    box-sizing: $sizing;
+    -moz-box-sizing: $sizing;
+    -webkit-box-sizing: $sizing;
+}
+
+@mixin input-placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+
+    &:-moz-input-placeholder {
+        @content;
+    }
+}
+
+@mixin dialog-frame {
+    visibility: hidden;
+    opacity: 0;
+}
+
+@mixin dialog-wrapper($width, $height: auto) {
+    display: block;
+    perspective: 1300px;
+    transform: translateX(-50%) translateY(-50%);
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    width: $width;
+    height: $height;
+    z-index: 140;
+}
+
+@mixin dialog($width, $height) {
+    background-color: #FFF;
+    border-radius: 5px;
+    height: $height;
+    margin: 0 auto;
+    position: relative;
+    width: $width;
+    -webkit-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+}
+
+@mixin im-button($height) {
+    height: $height;
+
+    .im-button-wrapper {
+        top: (0 - $height*2);
+
+        .im-button-row1 {
+            height: $height;
+            line-height: $height;
+        }
+
+        .im-button-row2 {
+            height: $height;
+            line-height: $height;
+        }
+
+        .im-button-row3 {
+            height: $height;
+            line-height: $height;
+        }
+    }
+
+    &:hover {
+        .im-button-wrapper {
+            top: 0;
+        }
+    }
+}
+
+
+.clear {
+    clear:both; 
+    height: 0; 
+    line-height: 0; 
+    font-size: 0;
+}

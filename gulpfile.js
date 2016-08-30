@@ -54,7 +54,6 @@ gulp.task('prepare', ['clean'], function () {
 
     gulp.src([
             './bower_components/jquery/dist/jquery.min.js',
-            './bower_components/fastclick/lib/fastclick.js',
             './bower_components/jquery-i18next/jquery-i18next.min.js',
             './bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js',
             './bower_components/i18next/i18next.min.js',
@@ -67,42 +66,38 @@ gulp.task('prepare', ['clean'], function () {
 });
 
 gulp.task('build', function () {
+
     gulp.src([
             'src/lib/js/jquery.min.js',
-            'src/lib/js/fastclick.js',
-            'src/lib/js/jquery-i18next.min.js',
-            'src/lib/js/i18next.min.js',
-            'src/lib/js/i18nextXHRBackend.min.js',
-            'src/lib/js/Sortable.js',
-            'src/lib/js/draggabilly.pkgd.min.js',
-            'src/lib/js/jquery.datetimepicker.js',
-            'src/data/*.js',
             'src/js/plugins/IMDialog.js',
             'src/js/plugins/*.js',
             'src/js/components/*.js',
             'src/js/util/*.js',
-            'src/js/pages/Keno.js'
+            'src/js/pages/*.js',
+            'src/js/app.js'
         ])
-        .pipe(concat('keno.js'))
+        .pipe(concat('app.js'))
         .pipe(gulp.dest('build/js'));
 
     gulp.src([
-            'src/scss/*.scss',
+            'src/scss/mixins.scss',
+            'src/scss/reset.scss',
             'src/scss/plugins/*.scss',
             'src/scss/components/*.scss',
             'src/scss/util/*.scss',
-            'src/scss/pages/Keno.scss'
+            'src/scss/pages/*.scss',
+            'src/scss/app.scss'
         ])
         .pipe(sass())
         .pipe(flatten())
-        .pipe(addsrc.prepend(['src/lib/css/dragula.min.css', 'src/lib/css/jquery.datetimepicker.css']))
-        .pipe(concat('keno.css'))
+        .pipe(addsrc.prepend(['src/lib/css/jquery.datetimepicker.css']))
+        .pipe(concat('app.css'))
         .pipe(gulp.dest('build/css/'));
 
-    gulp.src('src/html/keno.html')
+    gulp.src('src/html/app.html')
         .pipe(htmlReplace({
-            'css': '../css/keno.css',
-            'js': '../js/keno.js'
+            'css': '../css/app.css',
+            'js': '../js/app.js'
         }))
         .pipe(gulp.dest(build_html_path));
 
