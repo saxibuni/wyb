@@ -67,6 +67,32 @@
 						'</div>' +
 
 						'<div class="row2">' +
+							'<div class="buttons-zone">' +
+								'<div class="header-button signup-button">' +
+									'登录' +
+								'</div>' +
+
+								'<div class="header-button signin-button">' +
+									'注册' +
+								'</div>' +
+
+								'<div class="header-button lxkf-button">' +
+									'联系客服' +
+								'</div>' +
+							'</div>' +
+
+							'<ul class="pages">' +
+								'<li>首页</li>' +
+								'<li>真人视讯</li>' +
+								'<li>电子游艺</li>' +
+								'<li>体育竞技</li>' +
+								'<li>彩票游戏</li>' +
+								'<li>优惠活动</li>' +
+								'<li>客户端</li>' +
+								'<div class="stick"></div>' +
+							'</ul>' +
+
+							'<div class="clear"></div>' +
 						'</div>' +
 					'</div>' +
 				'</div>';
@@ -85,7 +111,19 @@
 	};
 
 	Header.prototype.bindEvents = function () {
+		var index;
+		var pagesUl;
+		var stick;
+		var that = this;
+
 		this.zone = $('.header');
+		pagesUl   = this.zone.find('.pages');
+		stick     = pagesUl.children('.stick');
+
+		pagesUl.delegate('li', 'click', function () {
+			index = $(this).index();
+			stick.css('left', index*80 + 'px');
+		});
 
 		this.switch.bindEvents();
 	};

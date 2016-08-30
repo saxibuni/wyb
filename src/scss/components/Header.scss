@@ -5,6 +5,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 .header {
 	background-color: $theme-background-color;
+	border-bottom: 1px solid #BF1A20;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -27,6 +28,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			line-height: $headerRow1Height;
 
 			.language {
+				cursor: pointer;
 				display: inline-block;
 				float: right;
 				padding: 0 10px;
@@ -35,12 +37,14 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 			.top-item {
 				border-right: 1px solid #2E2D25;
+				cursor: pointer;
 				display: inline-block;
 				float: right;
 				padding: 0 5px;
 			}
 
 			.money-actions {
+				border-radius: 4px;
 				border-right: 1px solid #2E2D25;
 				float: right;
 				height: $headerRow1Height;
@@ -49,6 +53,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 				.wrapper {
 					background-color: #333333;
+					border-radius: 2px;
 					display: inline-block;
 					height: 24px;
 					line-height: 24px;
@@ -56,6 +61,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				}
 
 				.action {
+					cursor: pointer;
 					display: inline-block;
 
 					span {
@@ -92,11 +98,13 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				line-height: $headerRow1Height;
 
 				.title {
-					display: inline-block;
+					cursor: pointer;
+					display: inline-block;	
 					margin-right: 5px;
 				}
 
 				.message {
+					cursor: pointer;
 					display: inline-block;
 					height: $headerRow1Height;
 					line-height: $headerRow1Height;
@@ -149,6 +157,84 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			background-color: #474539;
 			height: $headerRow2Height;
 			line-height: $headerRow2Height;
+
+			.buttons-zone {
+				float: right;
+				height: $headerRow2Height;
+				line-height: $headerRow2Height;
+			}
+
+			.buttons-zone {
+				float: right;
+				display: inline-block;
+				height: $headerRow2Height;
+				line-height: $headerRow2Height;
+
+				.header-button {
+					border: 1px solid #DCAD4B;
+					color: #FFF;
+					cursor: pointer;
+					display: inline-block;
+					font-size: 12px;
+					padding: 0 10px;
+					height: 20px;
+					line-height: 20px;
+					text-align: center;
+					vertical-align: middle;
+					margin-right: 10px;
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+
+				.lxkf-button {
+					background-color: #DCAD4B;
+
+					&:hover {
+						color: #000;
+					}
+				}
+			}
+
+			.pages {
+				float: right;
+				display: inline-block;
+				height: $headerRow2Height;
+				line-height: $headerRow2Height;
+				position: relative;
+
+				li {
+					color: #FFF;
+					cursor: pointer;
+					font-size: 14px;
+					display: inline-block;
+					width: 80px;
+					text-align: center;
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+
+				.stick {
+					background-color: #DCAD4B;
+					width: 80px;
+					height: 2px;
+					left: 0;
+					position: absolute;
+					top: 0;
+
+					transition: left 0.5s;
+					-moz-transition: left 0.5s; 
+					-webkit-transition: left 0.5s;
+					-o-transition: left 0.5s;
+				}
+
+				.selected {
+					color: #DCAD4B;
+				}
+			}
 		}
 	}
 }
