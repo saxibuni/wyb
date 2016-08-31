@@ -26,6 +26,10 @@
 										this.createCheckItem() +
 										this.createCheckItem() +
 										this.createCheckItem() +
+										this.createCheckItem() +
+										this.createCheckItem() +
+										this.createCheckItem() +
+										this.createCheckItem() +
 									'</ul>' +
 								'</div>' +
 
