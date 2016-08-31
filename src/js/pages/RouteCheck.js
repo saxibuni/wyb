@@ -86,6 +86,25 @@
 										'<div class="title">' +
 											'推荐使用浏览器，享用更优质的服务体验' +
 										'</div>' +
+
+										'<ul>' +
+											'<li>' +
+												'<img src="../img/ie-gray.png">' +
+												'<span>IE9.0+</span>' +
+											'</li>' +
+											'<li>' +
+												'<img src="../img/chrome-gray.png">' +
+												'<span>Chrome</span>' +
+											'</li>' +
+											'<li>' +
+												'<img src="../img/safari-gray.png">' +
+												'<span>Safari</span>' +
+											'</li>' +
+											'<li>' +
+												'<img src="../img/firefox-gray.png">' +
+												'<span>Firefox</span>' +
+											'</li>' +
+										'</ul>' +
 									'</div>' +
 								'</div>' +
 							'</div>' +
