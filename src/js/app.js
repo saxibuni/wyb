@@ -17,12 +17,36 @@
 		this.homePage = new HomePage();
 
 		this.el  = 	this.header.getDom() +
-					this.homePage.getDom() +
+
+					'<div class="main">' +
+						this.homePage.getDom() +
+					'</div>' +
+
 					this.footer.getDom();
 
 		this.zone.append(this.el);
+
+		this.goTo('routeCheck');
 	};
 	
+	app.prototype.goTo = function (pageName, params) {
+		var className = pageName[0].toUpperCase() + pageName.substring(1);
+		var dict = {
+			'homePage': HomePage,
+			'routeCheck': RouteCheck
+		}
+
+		this.zone.find('.page').hide();
+
+		if (!this[pageName]) {
+			this[pageName] = new (dict[pageName])();
+			this[pageName].bindEvents();
+			this.zone.find('.main').append(this[pageName].getDom());
+		}
+
+		this[pageName].show();
+	};
+
 	app.prototype.bindEvents = function () {
 		this.header.bindEvents();
 		this.footer.bindEvents();

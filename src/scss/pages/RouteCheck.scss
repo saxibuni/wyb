@@ -1,0 +1,161 @@
+@import "../mixins.scss";
+
+.route-check {
+	background-color: #121211;
+	position: relative;
+	width: $contentWidth;
+	height: 100%;
+	margin: 0 auto;
+	margin-bottom: 1px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	.wrapper {
+		position: relative;
+		width: $contentWidth - 40px;
+		height: 100%;
+		margin: 0 20px;
+
+		.title {
+			background-color: #48463A;
+			height: 50px;
+			line-height: 50px;
+			text-align: left;
+			padding-left: 20px;
+
+			.trend-icon {
+				display: inline-block;
+				margin-right: 10px;
+
+				.trend-icon-img {
+					width: 20px;
+					height: 20px;
+				    vertical-align: middle;
+				    margin-bottom: 3px;
+				}
+			}
+
+			.text {
+				color: #D8CC82;
+				display: inline-block;
+			}
+		}
+
+		.content {
+			background-color: #171716;
+			border: 1px solid #636157;
+			border-top: 0;
+			display: inline-block;
+			width: $contentWidth - 42px;
+			padding-bottom: 20px;
+
+			.left-content {
+				display: inline-block;
+				float: left;
+				width: 60%;
+				text-align: left;
+				padding-left: 20px;
+				padding-top: 20px;
+
+				ul {
+					li {
+						height: 30px;
+						line-height: 30px;
+						margin-bottom: 10px;
+
+						.speed {
+							background-color: #2C2C2C;
+							color: #FFF;
+							display: inline-block;
+							text-align: center;
+							width: 80px;
+							margin-right: 20px;
+							text-align: center;
+						}
+
+						.arrow {
+							display: inline-block;
+							height: 30px;
+							line-height: 30px;
+							margin-right: 20px;
+							vertical-align: middle;
+
+							img {
+								height: 30px;
+								width: 20px;
+							}
+						}
+
+						.site {
+							background-color: #2C2C2C;
+							color: #FFF;
+							cursor: pointer;
+							display: inline-block;
+							width: 200px;
+							margin-right: 20px;
+							text-align: center;
+						}
+
+						.go-to-button {
+							background-color: #CDA654;
+							cursor: pointer;
+							color: #FFF;
+							display: inline-block;
+							text-align: center;
+							width: 100px;
+
+							&:hover {
+								color: #000;
+							}
+						}
+					}
+				}
+			}
+
+			.right-content {
+				display: inline-block;
+				float: right;
+				padding-right: 20px;
+				padding-top: 20px;
+				width: 35%;
+
+				.title {
+					background: none;
+					height: 25px;
+					line-height: 25px;
+					color: #BAB179;
+					text-align: left;
+					padding: 0;
+				}
+
+				.text {
+					height: 25px;
+					line-height: 25px;
+					color: #FFF;
+					text-align: left;
+				}
+
+				.row {
+					border: 1px solid #636157;
+					font-size: 13px;
+					width: 85%;
+					padding: 20px;
+				}
+
+				.row1 {
+					height: 100px;
+					margin-bottom: 20px;
+				}
+
+				.row2 {
+					height: 180px;
+					margin-bottom: 20px;
+				}
+
+				.row3 {
+					height: 100px;
+				}
+			}
+		}
+	}
+}

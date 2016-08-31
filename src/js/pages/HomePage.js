@@ -4,7 +4,7 @@
 	}
 	
 	HomePage.prototype.initDom = function () {
-		var temp =	'<div class="home-page">' +
+		var temp =	'<div class="page home-page">' +
 						'<div class="wrapper">' +
 							'我是Page内容' +
 						'</div>' +

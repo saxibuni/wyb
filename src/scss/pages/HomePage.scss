@@ -1,20 +1,9 @@
 @import "../mixins.scss";
 
 .home-page {
-	background-color: $theme-background-color;
-	position: absolute;
-	left: 0;
-	top: $headerHeight;
-	bottom: $footerHeight;
-	font-size: 14px;
-	text-align: center;
-	width: 100%;
-
-	.wrapper {
-		background-color: #FFF;
-		position: relative;
-		width: $contentWidth;
-		height: 100%;
-		margin: 0 auto;
-	}
+	background-color: #FFF;
+	position: relative;
+	width: $contentWidth;
+	height: 100%;
+	margin: 0 auto;
 }
