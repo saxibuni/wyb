@@ -6,7 +6,7 @@
 	'use strict';
 
 	function app () {
-		this.zone   = $('.app');		
+		this.zone   = $('.app');
 		this.init();
 		this.bindEvents();
 	}
@@ -30,8 +30,16 @@
 	};
 	
 	app.prototype.goTo = function (pageName, params) {
-		var className = pageName[0].toUpperCase() + pageName.substring(1);
-		var dict = {
+		var dict;
+		var className;
+
+		if (pageName === '403' || pageName === '404' || pageName === '500') {
+			window.location.href = '../html/' + pageName + '.html';
+			return;
+		}
+
+		className = pageName[0].toUpperCase() + pageName.substring(1);
+		dict = {
 			'homePage': HomePage,
 			'routeCheck': RouteCheck
 		}
