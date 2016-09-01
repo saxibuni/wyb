@@ -12,7 +12,16 @@
 					'<div class="wrapper">' +
 						'<div class="row1">' +
 							'<div class="language">' +
-								'语言' +
+								'<img class="message-img" src="../img/zh-lang.png">' +
+								'<span>CHN</span>' +
+
+								'<div class="language-float-window">' +
+									'<ul>' +
+										'<li><span>中文</span></li>' +
+										'<li><span>English</span></li>' +
+									'</ul>' +
+								'</div>' +
+
 							'</div>' +
 
 							'<div class="bzzx top-item">' +
@@ -50,6 +59,24 @@
 								'<div class="message">' +
 									'<img class="message-img" src="../img/message.png">' +
 									'<div class="dot">1</div>' +
+								'</div>' +
+
+								'<div class="grzx-float-window">' +
+									'<div class="title">' +
+										'<div class="username">LORENZO</div>' +
+										'<div class="userid">' +
+											'<span class="text">ID:</span>' +
+											'<span class="id-value">2678899511</span>' +
+										'</div>' +
+									'</div>' +
+
+									'<ul>' +
+										'<li><span>资金管理</span></li>' +
+										'<li><span>投注记录</span></li>' +
+										'<li><span>充值记录</span></li>' +
+										'<li><span>修改密码</span></li>' +
+										'<li><span>退出</span></li>' +
+									'</ul>' +
 								'</div>' +
 							'</div>' +
 
@@ -115,11 +142,13 @@
 		var pagesUl;
 		var stick;
 		var pageName;
+		var balance;
 		var that = this;
 
 		this.zone = $('.header');
 		pagesUl   = this.zone.find('.pages');
 		stick     = pagesUl.children('.stick');
+		balance   = this.zone.find('.balance-value');
 
 		pagesUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');
@@ -128,7 +157,9 @@
 			app.goTo(pageName);
 		});
 
-		this.switch.bindEvents();
+		this.switch.bindEvents(function () {
+			balance.toggle();
+		});
 	};
 
 	window.Header = Header;
