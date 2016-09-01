@@ -28,7 +28,7 @@
 								'设为首页' +
 							'</div>' +
 
-							'<div class="bzzx top-item">' +
+							'<div class="bzzx top-item nav-page" data-value="helpPage">' +
 								'帮助中心' +
 							'</div>' +
 
@@ -143,6 +143,7 @@
 	Header.prototype.bindEvents = function () {
 		var index;
 		var pagesUl;
+		var pagesUl2;
 		var stick;
 		var pageName;
 		var balance;
@@ -150,6 +151,8 @@
 
 		this.zone = $('.header');
 		pagesUl   = this.zone.find('.pages');
+		pagesUl2 = this.zone.find('.row1');
+		
 		stick     = pagesUl.children('.stick');
 		balance   = this.zone.find('.balance-value');
 
@@ -157,6 +160,11 @@
 			pageName = $(this).attr('data-value');
 			index    = $(this).index();
 			stick.css('left', index*80 + 'px');
+			app.goTo(pageName);
+		});
+
+		pagesUl2.delegate('.nav-page','click',function(){
+			pageName = $(this).attr('data-value');
 			app.goTo(pageName);
 		});
 
