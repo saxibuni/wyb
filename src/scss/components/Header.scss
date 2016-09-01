@@ -83,6 +83,10 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				display: inline-block;
 				float: right;
 				padding: 0 5px;
+
+				&:hover {
+					color: #DCAD4B;
+				}
 			}
 
 			.money-actions {
@@ -114,6 +118,10 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 					&:last-child {
 						margin-right: 0;
+					}
+
+					&:hover {
+						color: #DCAD4B;
 					}
 				}
 			}
