@@ -4,7 +4,7 @@
 	}
 	
 	LotteryGame.prototype.initDom = function () {
-		var temp =	'<div class="page home-page">' +
+		var temp =	'<div class="page lottery-game">' +
 						'<div class="wrapper">' +
 							'我是Page内容' +
 						'</div>' +

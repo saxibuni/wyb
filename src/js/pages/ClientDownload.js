@@ -4,7 +4,7 @@
 	}
 	
 	ClientDownload.prototype.initDom = function () {
-		var temp =	'<div class="page client-download-page">' +
+		var temp =	'<div class="page client-download">' +
 						'<div class="wrapper">' +
 							'我是Page内容' +
 						'</div>' +

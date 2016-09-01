@@ -82,13 +82,13 @@
 							'</div>' +
 
 							'<ul class="pages">' +
-								'<li>首页</li>' +
-								'<li>真人视讯</li>' +
-								'<li>电子游艺</li>' +
-								'<li>体育竞技</li>' +
-								'<li>彩票游戏</li>' +
-								'<li>优惠活动</li>' +
-								'<li>客户端</li>' +
+								'<li data-value="homePage">首页</li>' +
+								'<li data-value="liveVideo">真人视讯</li>' +
+								'<li data-value="eEntertainment">电子游艺</li>' +
+								'<li data-value="sportsCompetition">体育竞技</li>' +
+								'<li data-value="lotteryGame">彩票游戏</li>' +
+								'<li data-value="promoActivity">优惠活动</li>' +
+								'<li data-value="clientDownload">客户端</li>' +
 								'<div class="stick"></div>' +
 							'</ul>' +
 
@@ -114,6 +114,7 @@
 		var index;
 		var pagesUl;
 		var stick;
+		var pageName;
 		var that = this;
 
 		this.zone = $('.header');
@@ -121,8 +122,10 @@
 		stick     = pagesUl.children('.stick');
 
 		pagesUl.delegate('li', 'click', function () {
-			index = $(this).index();
+			pageName = $(this).attr('data-value');
+			index    = $(this).index();
 			stick.css('left', index*80 + 'px');
+			app.goTo(pageName);
 		});
 
 		this.switch.bindEvents();
