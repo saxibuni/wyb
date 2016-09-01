@@ -12,6 +12,7 @@
 							'<div class="dialog">' +
 								'<div class="row1">' +
 								'</div>' +
+
 								'<div class="row2">' +
 									'<div class="text">用户名</div>' +
 									'<div class="input-outer">' +
@@ -21,6 +22,7 @@
 										'<div class="clear"></div>' +
 									'</div>' +
 								'</div>' +
+
 								'<div class="row3">' +
 									'<div class="text">密码</div>' +
 									'<div class="input-outer">' +
@@ -30,6 +32,7 @@
 										'<div class="clear"></div>' +
 									'</div>' +
 								'</div>' +
+
 								'<div class="row4">' +
 									'<div class="input-outer">' +
 										'<input type="text" placeholder="再次输入密码">' +
@@ -38,6 +41,7 @@
 										'<div class="clear"></div>' +
 									'</div>' +
 								'</div>' +
+
 								'<div class="row5">' +
 									'<div class="text">推广码</div>' +
 									'<div class="input-outer">' +
@@ -47,7 +51,26 @@
 										'<div class="clear"></div>' +
 									'</div>' +
 								'</div>' +
+
 								'<div class="row6">' +
+									'<div class="input-outer verify-input-outer">' +
+										'<input type="text" placeholder="请输入验证码">' +
+									'</div>' +
+									'<img class="message-img" src="../img/zh-lang.png">' +
+									'<span>换一个</span>' +
+									'<div class="agree">' +
+										'<input type="checkbox" id="agree-checkbox">' +
+										'<label for="agree-checkbox">我已届满合法博彩年龄，且同意各项开户条约</label>' +
+									'</div>' +
+								'</div>' +
+
+								'<div class="row7">' +
+									'<div class="button">' +
+										'快速登录' +
+									'</div>' +
+									'<div class="button-info">' +
+										'已有账户？立即登录' +
+									'</div>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
