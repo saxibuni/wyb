@@ -6,7 +6,7 @@
 	PromoActivity.prototype.initDom = function () {
 		var temp =	'<div class="page promo-activity">' +
 						'<div class="wrapper">' +
-							'我是Page内容' +
+							'优惠活动' +
 						'</div>' +
 					'</div>';
 		
@@ -18,12 +18,15 @@
 	};
 
 	PromoActivity.prototype.show = function () {
+		this.zone.show();
 	};
 
 	PromoActivity.prototype.hide = function () {
+		this.zone.hide();
 	};
 
 	PromoActivity.prototype.bindEvents = function () {
+		this.zone = $('.promo-activity');
 	};
 
 	window.PromoActivity = PromoActivity;

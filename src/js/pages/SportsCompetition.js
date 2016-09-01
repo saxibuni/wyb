@@ -6,7 +6,7 @@
 	SportsCompetition.prototype.initDom = function () {
 		var temp =	'<div class="page sports-competition">' +
 						'<div class="wrapper">' +
-							'我是Page内容' +
+							'体育竞技' +
 						'</div>' +
 					'</div>';
 		
@@ -18,12 +18,15 @@
 	};
 
 	SportsCompetition.prototype.show = function () {
+		this.zone.show();
 	};
 
 	SportsCompetition.prototype.hide = function () {
+		this.zone.hide();
 	};
 
 	SportsCompetition.prototype.bindEvents = function () {
+		this.zone = $('.sports-competition');
 	};
 
 	window.SportsCompetition = SportsCompetition;

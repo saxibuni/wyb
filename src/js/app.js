@@ -25,8 +25,8 @@
 					this.footer.getDom();
 
 		this.zone.append(this.el);
-
-		this.goTo('routeCheck');
+		this.homePage.bindEvents();
+		this.goTo('homePage');
 	};
 	
 	app.prototype.goTo = function (pageName, params) {
@@ -40,16 +40,22 @@
 
 		className = pageName[0].toUpperCase() + pageName.substring(1);
 		dict = {
-			'homePage': HomePage,
-			'routeCheck': RouteCheck
+			'homePage'          : HomePage,
+			'liveVideo'         : LiveVideo,
+			'eEntertainment'    : EEntertainment,
+			'sportsCompetition' : SportsCompetition,
+			'lotteryGame'       : LotteryGame,
+			'promoActivity'     : PromoActivity,
+			'clientDownload'    : ClientDownload,
+			'routeCheck'        : RouteCheck
 		}
 
 		this.zone.find('.page').hide();
 
 		if (!this[pageName]) {
 			this[pageName] = new (dict[pageName])();
-			this[pageName].bindEvents();
 			this.zone.find('.main').append(this[pageName].getDom());
+			this[pageName].bindEvents();
 		}
 
 		this[pageName].show();

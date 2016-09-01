@@ -6,7 +6,7 @@
 	ClientDownload.prototype.initDom = function () {
 		var temp =	'<div class="page client-download">' +
 						'<div class="wrapper">' +
-							'我是Page内容' +
+							'客户端下载' +
 						'</div>' +
 					'</div>';
 		
@@ -18,12 +18,15 @@
 	};
 
 	ClientDownload.prototype.show = function () {
+		this.zone.show();
 	};
 
 	ClientDownload.prototype.hide = function () {
+		this.zone.hide();
 	};
 
 	ClientDownload.prototype.bindEvents = function () {
+		this.zone = $('.client-download');
 	};
 
 	window.ClientDownload = ClientDownload;

@@ -1,9 +1,5 @@
 @import "../mixins.scss";
 
 .home-page {
-	background-color: #FFF;
-	position: relative;
-	width: $contentWidth;
-	height: 100%;
-	margin: 0 auto;
+	@include page-property;
 }

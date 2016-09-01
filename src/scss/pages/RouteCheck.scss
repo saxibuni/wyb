@@ -1,12 +1,7 @@
 @import "../mixins.scss";
 
 .route-check {
-	background-color: #121211;
-	position: relative;
-	width: $contentWidth;
-	height: 100%;
-	margin: 0 auto;
-	margin-bottom: 1px;
+	@include page-property;
 	padding-top: 20px;
 	padding-bottom: 20px;
 

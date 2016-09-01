@@ -2,6 +2,7 @@
 
 .footer {
 	background-color: $theme-background-color;
+	border-top: 2px solid #CDA654;
 	position: relative;
 	height: $footerHeight;
 	font-size: 14px;
@@ -23,8 +24,8 @@
 
 			.row1 {
 				color: #FFF;
-				height: 20px;
-				line-height: 20px;
+				height: 30px;
+				line-height: 30px;
 				padding-left: 10px;
 
 				ul {
@@ -47,8 +48,8 @@
 			}
 
 			.row2 {
-				height: 20px;
-				line-height: 20px;
+				height: 30px;
+				line-height: 30px;
 				padding-left: 20px;
 
 				.span1 {
@@ -109,8 +110,8 @@
 			height: 100%;
 
 			.title {
-			    height: 20px;
-			    line-height: 20px;
+			    height: 25px;
+			    line-height: 25px;
 			}
 
 			.row1 {

@@ -1,5 +1,5 @@
 @import "../mixins.scss";
 
 .sports-competition {
-	
+	@include page-property;
 }

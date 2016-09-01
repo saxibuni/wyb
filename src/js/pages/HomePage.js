@@ -6,7 +6,7 @@
 	HomePage.prototype.initDom = function () {
 		var temp =	'<div class="page home-page">' +
 						'<div class="wrapper">' +
-							'我是Page内容' +
+							'首页' +
 						'</div>' +
 					'</div>';
 		
@@ -18,12 +18,15 @@
 	};
 
 	HomePage.prototype.show = function () {
+		this.zone.show();
 	};
 
 	HomePage.prototype.hide = function () {
+		this.zone.hide();
 	};
 
 	HomePage.prototype.bindEvents = function () {
+		this.zone = $('.home-page');
 	};
 
 	window.HomePage = HomePage;

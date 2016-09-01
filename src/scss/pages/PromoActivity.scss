@@ -1,3 +1,5 @@
+@import "../mixins.scss";
+
 .promo-activity {
-	
+	@include page-property;
 }

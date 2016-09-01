@@ -1,5 +1,5 @@
 @import "../mixins.scss";
 
 .e-entertainment {
-	
+	@include page-property;
 }

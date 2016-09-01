@@ -6,7 +6,7 @@
 	LiveVideo.prototype.initDom = function () {
 		var temp =	'<div class="page live-video">' +
 						'<div class="wrapper">' +
-							'我是Page内容' +
+							'真人视讯' +
 						'</div>' +
 					'</div>';
 		
@@ -18,12 +18,15 @@
 	};
 
 	LiveVideo.prototype.show = function () {
+		this.zone.show();
 	};
 
 	LiveVideo.prototype.hide = function () {
+		this.zone.hide();
 	};
 
 	LiveVideo.prototype.bindEvents = function () {
+		this.zone = $('.live-video');
 	};
 
 	window.LiveVideo = LiveVideo;

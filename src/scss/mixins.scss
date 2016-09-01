@@ -1,8 +1,19 @@
 $contentWidth              :   1024px;
 $headerHeight              :   85px;
-$footerHeight              :   80px;
-
+$footerHeight              :   100px;
 $theme-background-color    :   #191919;
+
+@mixin page-property {
+    background-color: #22221F;
+    color: #FFF;
+    display: none;
+    position: relative;
+    width: $contentWidth;
+    height: 100%;
+    min-height: 450px;
+    margin: 0 auto;
+    margin-bottom: 1px;    
+}
 
 @mixin keyframes($animation-name) {
     @-webkit-keyframes $animation-name {

@@ -6,7 +6,7 @@
 	LotteryGame.prototype.initDom = function () {
 		var temp =	'<div class="page lottery-game">' +
 						'<div class="wrapper">' +
-							'我是Page内容' +
+							'彩票游' +
 						'</div>' +
 					'</div>';
 		
@@ -18,12 +18,15 @@
 	};
 
 	LotteryGame.prototype.show = function () {
+		this.zone.show();
 	};
 
 	LotteryGame.prototype.hide = function () {
+		this.zone.hide();
 	};
 
 	LotteryGame.prototype.bindEvents = function () {
+		this.zone = $('.lottery-game');
 	};
 
 	window.LotteryGame = LotteryGame;

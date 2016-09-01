@@ -1,30 +1,33 @@
 (function () {
-	function EEntertainme () {
+	function EEntertainment () {
 		this.initDom();
 	}
 	
-	EEntertainme.prototype.initDom = function () {
+	EEntertainment.prototype.initDom = function () {
 		var temp =	'<div class="page e-entertainment">' +
 						'<div class="wrapper">' +
-							'我是Page内容' +
+							'电子游艺' +
 						'</div>' +
 					'</div>';
 		
 		this.el  = temp;
 	};
 
-	EEntertainme.prototype.getDom = function () {
+	EEntertainment.prototype.getDom = function () {
 		return this.el;
 	};
 
-	EEntertainme.prototype.show = function () {
+	EEntertainment.prototype.show = function () {
+		this.zone.show();
 	};
 
-	EEntertainme.prototype.hide = function () {
+	EEntertainment.prototype.hide = function () {
+		this.zone.hide();
 	};
 
-	EEntertainme.prototype.bindEvents = function () {
+	EEntertainment.prototype.bindEvents = function () {
+		this.zone = $('.e-entertainment');
 	};
 
-	window.EEntertainme = EEntertainme;
+	window.EEntertainment = EEntertainment;
 }());
