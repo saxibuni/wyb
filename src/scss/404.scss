@@ -1,4 +1,42 @@
 .page404 {
-	background-image: url("../img/404.jpg");
-	background-size: 100%;
+    background-color: #32322A;
+    background-image: url("../img/404.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+
+	.info {
+		position: absolute;
+		width: 300px;
+		left: 50%;
+		margin-left: -150px;
+		top: 450px;
+		text-align: center;
+
+		.notice {
+			color: #575548;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		.button-zone {
+			margin-top: 20px;
+			margin-left: 70px;
+
+			.button {
+				border: 1px solid #716F60;
+				cursor: pointer;
+				color: #716F60;
+				width: 150px;
+				font-size: 14px;
+				height: 35px;
+				line-height: 35px;
+				text-align: center;
+
+				&:hover {
+					color: #DCAD4B;
+				}
+			}
+		}
+	}
 }
