@@ -14,7 +14,7 @@
 										'<li><span>存取款帮助</span></li>' +
 										'<li><span>常见问题</span></li>' +
 										'<li><span>合作伙伴</span></li>' +
-										'<li><span>线路检测</span></li>' +
+										'<li data-value="routeCheck"><span>线路检测</span></li>' +
 									'</ul>' +
 								'</div>' +
 								'<div class="row2">' +
@@ -51,6 +51,9 @@
 								'</div>' +
 							'</div>' +
 
+							'<div class="footer-middle">' +
+							'</div>' +
+							
 							'<div class="footer-right">' +
 								'<div class="row1">' +
 									'<div class="title">' +
@@ -100,13 +103,20 @@
 		return this.el;
 	};
 
-	Footer.prototype.show = function () {
-	};
-
-	Footer.prototype.hide = function () {
-	};
-
 	Footer.prototype.bindEvents = function () {
+		var featureUl;
+		var pageName;
+		var that = this;
+
+		this.zone = $('.footer');
+
+		featureUl = this.zone.find('.footer-left .row1');
+
+		featureUl.delegate('li', 'click', function () {
+			pageName = $(this).attr('data-value');
+			app.goTo(pageName);
+		});
+
 	};
 
 	window.Footer = Footer;

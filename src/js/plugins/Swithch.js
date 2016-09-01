@@ -18,13 +18,17 @@
 		return this.el;
 	};
 
-	Switch.prototype.bindEvents = function () {
+	Switch.prototype.bindEvents = function (callback) {
 		var that = this;
 
 		this.zone = $('#' + this.id);
 
 		this.zone.click(function () {
 			that.zone.toggleClass('switch-selected');
+
+			if (typeof callback === 'function') {
+				callback();
+			}
 		});
 	};
 

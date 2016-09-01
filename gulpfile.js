@@ -69,10 +69,10 @@ gulp.task('build', function () {
 
     gulp.src([
             'src/lib/js/jquery.min.js',
+            'src/js/utils/*.js',
             'src/js/plugins/IMDialog.js',
             'src/js/plugins/*.js',
             'src/js/components/*.js',
-            'src/js/util/*.js',
             'src/js/pages/*.js',
             'src/js/app.js'
         ])

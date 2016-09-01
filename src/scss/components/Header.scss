@@ -31,8 +31,50 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				cursor: pointer;
 				display: inline-block;
 				float: right;
+				position: relative;
 				padding: 0 10px;
-				width: 30px;
+
+				img {
+					vertical-align: middle;
+					display: inline-block;
+					margin-right: 3px;
+				}
+
+				.language-float-window {
+					display: none;
+					width: 100px;
+					height:60px;
+					position: absolute;
+					top: 30px;
+					left: 0;
+					z-index: 2;
+					text-align: left;
+
+					ul {
+						background-color: #37352C;
+
+						li {
+							border-bottom: 1px solid #686868;
+							height: 30px;
+							line-height: 30px;
+
+							span {
+								display: inline-block;
+								margin-left: 20px;
+							}
+
+							&:hover {
+								color: #DCAD4B;
+							}
+						}
+					}
+				}
+
+				&:hover {
+					.language-float-window {
+						display: block;
+					}
+				}
 			}
 
 			.top-item {
@@ -41,6 +83,10 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				display: inline-block;
 				float: right;
 				padding: 0 5px;
+
+				&:hover {
+					color: #DCAD4B;
+				}
 			}
 
 			.money-actions {
@@ -73,6 +119,10 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					&:last-child {
 						margin-right: 0;
 					}
+
+					&:hover {
+						color: #DCAD4B;
+					}
 				}
 			}
 
@@ -96,6 +146,8 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				float: right;
 				height: $headerRow1Height;
 				line-height: $headerRow1Height;
+				position: relative;
+				margin-right: 10px;
 
 				.title {
 					cursor: pointer;
@@ -111,8 +163,6 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					position: relative;
 
 					.message-img {
-						width: 20px;
-						height: 20px;
 						vertical-align: middle;
 						margin-bottom: 2px;
 					}
@@ -131,6 +181,65 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 						position: absolute;
 						left : 12px;
 						top: 4px;
+					}
+				}
+
+				.grzx-float-window {
+					display: none;
+					height: 200px;
+					width: 150px; 	
+					position: absolute;
+					top: 30px;
+					left: 0;
+					z-index: 2;
+					text-align: left;
+
+					.title {
+						background-color: #37352C;
+						height: 50px;
+						width: 100%;
+
+						.username {
+							color: #DCAD48;
+							margin-left: 20px;
+							height: 25px;
+							line-height: 25px;
+						}
+
+						.userid {
+							color: #C6C4B9;
+							margin-left: 20px;
+							height: 25px;
+							line-height: 25px;
+						}
+					}
+
+					ul {
+						background-color: #48463A;
+						height: 150px;
+						width: 100%;
+
+						li {
+							border-bottom: 1px solid #37352C;
+							cursor: pointer;
+							height: 30px;
+							line-height: 30px;
+							
+							span {
+								display: inline-block;
+								margin-left: 20px;
+							}
+
+							&:hover {
+								color: #DCAD4B;
+							}
+						}
+					}
+				}
+
+				&:hover {
+					.grzx-float-window {
+						display: block;
 					}
 				}
 			}

@@ -12,10 +12,19 @@
 					'<div class="wrapper">' +
 						'<div class="row1">' +
 							'<div class="language">' +
-								'语言' +
+								'<img class="message-img" src="../img/zh-lang.png">' +
+								'<span>CHN</span>' +
+
+								'<div class="language-float-window">' +
+									'<ul>' +
+										'<li><span>中文</span></li>' +
+										'<li><span>English</span></li>' +
+									'</ul>' +
+								'</div>' +
+
 							'</div>' +
 
-							'<div class="bzzx top-item">' +
+							'<div class="swsy top-item">' +
 								'设为首页' +
 							'</div>' +
 
@@ -23,7 +32,7 @@
 								'帮助中心' +
 							'</div>' +
 
-							'<div class="bzzx top-item">' +
+							'<div class="wdsc top-item">' +
 								'我的收藏' +
 							'</div>' +
 
@@ -43,13 +52,31 @@
 							'</div>' +
 
 							'<div class="grzx">' +
-								'<div class="title nav-page" data-value="personalCenter">' +
+								'<div class="title">' +
 									'个人中心' +
 								'</div>' +
 
 								'<div class="message">' +
 									'<img class="message-img" src="../img/message.png">' +
 									'<div class="dot">1</div>' +
+								'</div>' +
+
+								'<div class="grzx-float-window">' +
+									'<div class="title">' +
+										'<div class="username">LORENZO</div>' +
+										'<div class="userid">' +
+											'<span class="text">ID:</span>' +
+											'<span class="id-value">2678899511</span>' +
+										'</div>' +
+									'</div>' +
+
+									'<ul>' +
+										'<li><span>资金管理</span></li>' +
+										'<li><span>投注记录</span></li>' +
+										'<li><span>充值记录</span></li>' +
+										'<li><span>修改密码</span></li>' +
+										'<li><span>退出</span></li>' +
+									'</ul>' +
 								'</div>' +
 							'</div>' +
 
@@ -68,11 +95,11 @@
 
 						'<div class="row2">' +
 							'<div class="buttons-zone">' +
-								'<div class="header-button signup-button">' +
+								'<div class="header-button signin-button">' +
 									'登录' +
 								'</div>' +
 
-								'<div class="header-button signin-button">' +
+								'<div class="header-button signup-button">' +
 									'注册' +
 								'</div>' +
 
@@ -104,10 +131,13 @@
 		return this.el;
 	};
 
-	Header.prototype.show = function () {
-	};
-
-	Header.prototype.hide = function () {
+	Header.prototype.setHome = function () {
+        if (document.all) {
+            document.body.style.behavior='url(#default#homepage)';
+            document.body.setHomePage(window.location);
+        } else {
+            alert("您好,您的浏览器不支持自动设置页面为首页功能,请您手动在浏览器里设置该页面为首页!");
+        }
 	};
 
 	Header.prototype.bindEvents = function () {
@@ -116,12 +146,15 @@
 		var pagesUl2;
 		var stick;
 		var pageName;
+		var balance;
 		var that = this;
 
 		this.zone = $('.header');
 		pagesUl   = this.zone.find('.pages');
-		pagesUl2  = this.zone.find('.row1');
+		pagesUl2 = this.zone.find('.row1');
+		
 		stick     = pagesUl.children('.stick');
+		balance   = this.zone.find('.balance-value');
 
 		pagesUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');
@@ -135,7 +168,38 @@
 			app.goTo(pageName);
 		});
 
-		this.switch.bindEvents();
+		this.zone.find('.top-item').click(function  () {
+			if($(this).hasClass('swsy')) {
+				that.setHome();
+			}
+		});
+
+		this.zone.find('.header-button').click(function () {
+			if ($(this).hasClass('signin-button')) {
+				if (!app.signInDialog) {
+					app.signInDialog = new SignIn();
+					$('.app').append(app.signInDialog.getDom());
+					app.signInDialog.bindEvents();
+				}
+
+				app.signInDialog.show();
+			} else if ($(this).hasClass('signup-button')) {
+				if (!app.signUpDialog) {
+					app.signUpDialog = new SignUp();
+					$('.app').append(app.signUpDialog.getDom());
+					app.signUpDialog.bindEvents();
+				}
+
+				app.signUpDialog.show();
+			} else {
+
+			}
+		});
+
+
+		this.switch.bindEvents(function () {
+			balance.toggle();
+		});
 	};
 
 	window.Header = Header;
