@@ -1,0 +1,102 @@
+@import "../mixins.scss";
+
+.sign-up {
+	@include dialog-frame;
+
+	.dialog-wrapper {	
+		@include dialog-wrapper(350px);
+		z-index: 150;
+		top: 50%;
+
+		.dialog {
+			@include dialog(350px, 500px);
+
+			background-color: #2F2F2C;
+			font-size: 14px;
+			padding: 0 20px;
+
+			.text {
+				color: #666666;
+				height: 25px;
+				line-height: 25px;
+			}
+
+			.input-outer {
+				border: 1px solid #555555;
+				height: 30px;
+				line-height: 30px;
+				padding: 2px 10px;
+				width: 300px;
+
+				input {
+					background-color: transparent;
+					border: 0;
+					color: #FFF;
+					display: inline-block;
+					float: left;
+					height: 28px;
+					line-height: 28px;
+					width: 90%;
+				}
+
+				.pass {
+					display: inline-block;
+					float: right;
+					position: relative;
+					height: 15px;
+					width: 15px;
+					top: 7px;
+					right: 0;
+				}
+
+				.warning {
+					display: none;
+					float: right;
+					position: relative;
+					height: 15px;
+					width: 15px;
+					top: 7px;
+					right: 0;
+				}
+			}
+
+			.row1 {
+				height: 100px;
+				width: 100%;
+			}
+
+			.row2 {
+				height: 50px;
+				width: 100%;
+			}
+
+			.row3 {
+				height: 50px;
+				margin-top: 20px;
+				width: 100%;
+			}
+
+			.row4 {
+				height: 30px;
+				margin-top: 40px;
+				width: 100%;
+			}
+
+			.row5 {
+				height: 50px;
+				margin-top: 20px;
+				width: 100%;
+			}
+
+			.row6 {
+				height: 80px;
+				width: 100%;
+			}
+
+			.row7 {
+				height: 60px;
+				width: 100%;
+			}
+		}
+	}
+}

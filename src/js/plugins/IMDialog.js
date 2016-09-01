@@ -42,7 +42,7 @@
 	IMDialog.prototype.bindOverlayEvents = function () {
 		var that = this;
 
-		this.isPC = !Util.isMobile.any();
+		this.isPC = !window.Util.isMobile.any();
 
 		if (this.isPC) {
 			this.zone.find('.dialog').css('transition', 'all .5s');

@@ -95,11 +95,11 @@
 
 						'<div class="row2">' +
 							'<div class="buttons-zone">' +
-								'<div class="header-button signup-button">' +
+								'<div class="header-button signin-button">' +
 									'登录' +
 								'</div>' +
 
-								'<div class="header-button signin-button">' +
+								'<div class="header-button signup-button">' +
 									'注册' +
 								'</div>' +
 
@@ -163,6 +163,28 @@
 		this.zone.find('.top-item').click(function  () {
 			if($(this).hasClass('swsy')) {
 				that.setHome();
+			}
+		});
+
+		this.zone.find('.header-button').click(function () {
+			if ($(this).hasClass('signin-button')) {
+				if (!app.signInDialog) {
+					app.signInDialog = new SignIn();
+					$('.app').append(app.signInDialog.getDom());
+					app.signInDialog.bindEvents();
+				}
+
+				app.signInDialog.show();
+			} else if ($(this).hasClass('signup-button')) {
+				if (!app.signUpDialog) {
+					app.signUpDialog = new SignUp();
+					$('.app').append(app.signUpDialog.getDom());
+					app.signUpDialog.bindEvents();
+				}
+
+				app.signUpDialog.show();
+			} else {
+
 			}
 		});
 
