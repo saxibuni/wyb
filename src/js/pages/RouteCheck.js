@@ -147,12 +147,15 @@
 	};
 
 	RouteCheck.prototype.show = function () {
+		this.zone.show();
 	};
 
 	RouteCheck.prototype.hide = function () {
+		this.zone.hide();
 	};
 
 	RouteCheck.prototype.bindEvents = function () {
+		this.zone = $('.route-check');
 	};
 
 	window.RouteCheck = RouteCheck;

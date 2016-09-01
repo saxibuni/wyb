@@ -131,12 +131,6 @@
 		return this.el;
 	};
 
-	Header.prototype.show = function () {
-	};
-
-	Header.prototype.hide = function () {
-	};
-
 	Header.prototype.bindEvents = function () {
 		var index;
 		var pagesUl;
