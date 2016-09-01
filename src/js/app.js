@@ -47,7 +47,8 @@
 			'lotteryGame'       : LotteryGame,
 			'promoActivity'     : PromoActivity,
 			'clientDownload'    : ClientDownload,
-			'routeCheck'        : RouteCheck
+			'routeCheck'        : RouteCheck,
+			'helpPage'			: HelpPage
 		}
 
 		this.zone.find('.page').hide();
