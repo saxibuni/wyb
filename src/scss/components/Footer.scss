@@ -101,6 +101,15 @@
 			}
 		}
 
+		.footer-middle {
+			position: absolute;
+			left: 600px;
+			width: 1px;
+			background-color: #686868;
+			height: 86px;
+			top: 7px;
+		}
+
 		.footer-right {
 			color: #FFF;
 			float: right;
@@ -131,6 +140,8 @@
 			}
 
 			.row2 {
+				margin-top: 8px;
+
 				.resolution {
 					img {
 						height: 15px;

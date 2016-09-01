@@ -51,6 +51,9 @@
 								'</div>' +
 							'</div>' +
 
+							'<div class="footer-middle">' +
+							'</div>' +
+							
 							'<div class="footer-right">' +
 								'<div class="row1">' +
 									'<div class="title">' +
