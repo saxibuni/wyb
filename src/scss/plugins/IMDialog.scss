@@ -1,0 +1,14 @@
+@import "../mixins.scss";
+
+.im-dialog {
+	@include dialog-frame;
+
+	.dialog-wrapper {
+		@include dialog-wrapper(450px, auto);
+		z-index: 150;
+
+		.dialog {
+			@include dialog(450px, 300px);
+		}
+	}
+}
