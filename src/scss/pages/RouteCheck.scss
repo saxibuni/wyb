@@ -154,6 +154,23 @@
 
 				.row3 {
 					height: 100px;
+					color: #FFF;
+
+					ul {
+						margin-top: 20px;
+						
+						li {
+							display: inline-block;
+							margin-right: 10px;
+
+							img {
+								height: 15px;
+								width: 15px;
+								vertical-align: bottom;
+								margin-right: 5px;
+							}
+						}
+					}
 				}
 			}
 		}
