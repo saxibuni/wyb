@@ -11,6 +11,7 @@
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
 								'<div class="row1">' +
+									'<img class="logo" src="../img/logo-sands-macao.png">' +
 									'<div class="close">×</div>' +
 								'</div>' +
 

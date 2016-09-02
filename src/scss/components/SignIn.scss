@@ -64,6 +64,13 @@
 				height: 100px;
 				width: 100%;
 				position: relative;
+				text-align: center;
+
+				.logo {
+				    width: 70px;
+				    position: relative;
+				    top: 30px;
+				}
 
 				.close {
 					cursor: pointer;
