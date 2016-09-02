@@ -26,7 +26,7 @@
 								'<div class="row3">' +
 									'<div class="text">密码</div>' +
 									'<div class="input-outer">' +
-										'<input type="text" placeholder="请输入您的密码">' +
+										'<input type="password" placeholder="请输入您的密码">' +
 										'<img class="pass" src="../img/pass.png">' +
 										'<img class="warning" src="../img/warning.png">' +
 										'<div class="clear"></div>' +
@@ -74,7 +74,52 @@
 	};
 
 	SignIn.prototype.bindEvents = function () {
+		var usernameInput;
+		var passwordInput;
+		var verifyInput;
+		var value;
+		var value2;
+		var usernameReg   = '^[A-Za-z0-9]{3,12}$';
+		var passwordReg   = '^[A-Za-z0-9]{6,12}$';
+		var verifyReg     = '';
+		var inputEvents   = 'input';
+		var that          = this;
+
+		this.usernamePass   = false;
+		this.passwordPass   = false;
+
 		this.zone = $('.sign-in');
+		usernameInput   = this.zone.find('.row2 input:text');
+		passwordInput   = this.zone.find('.row3 input:password');
+		verifyInput     = this.zone.find('.row6 input:text');
+
+		usernameInput.bind(inputEvents, function () {
+			value = $(this).val();
+
+			if (!value.match(usernameReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.usernamePass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.usernamePass = true;
+			}
+		});
+
+		passwordInput.bind(inputEvents, function () {
+			value = $(this).val();
+
+			if (!value.match(passwordReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.passwordPass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.passwordPass = true;
+			}
+		});
 
 		this.bindOverlayEvents();
 	};

@@ -26,7 +26,7 @@
 								'<div class="row3">' +
 									'<div class="text">密码</div>' +
 									'<div class="input-outer">' +
-										'<input type="text" placeholder="密码由6-12位数字和字母组成，不含字符">' +
+										'<input type="password" placeholder="密码由6-12位数字和字母组成，不含字符">' +
 										'<img class="pass" src="../img/pass.png">' +
 										'<img class="warning" src="../img/warning.png">' +
 										'<div class="clear"></div>' +
@@ -35,7 +35,7 @@
 
 								'<div class="row4">' +
 									'<div class="input-outer">' +
-										'<input type="text" placeholder="再次输入密码">' +
+										'<input type="password" placeholder="再次输入密码">' +
 										'<img class="pass" src="../img/pass.png">' +
 										'<img class="warning" src="../img/warning.png">' +
 										'<div class="clear"></div>' +
@@ -94,7 +94,103 @@
 	};
 
 	SignUp.prototype.bindEvents = function () {
+		var usernameInput;
+		var passwordInput;
+		var repeatInput;
+		var popularizeInput;
+		var verifyInput;
+		var value;
+		var value2;
+		var usernameReg   = '^[A-Za-z0-9]{3,12}$';
+		var passwordReg   = '^[A-Za-z0-9]{6,12}$';
+		var repeatReg     = '^[A-Za-z0-9]{6,12}$';
+		var popularizeReg = '^[A-Za-z0-9]{10}$';
+		var verifyReg     = '';
+		var inputEvents   = 'input';
+		var that          = this;
+
+		this.usernamePass   = false;
+		this.passwordPass   = false;
+		this.repeatPass     = false;
+		this.usernamePass   = false;
+		this.usernamePass   = false;
+		this.popularizePass = false;
+
 		this.zone = $('.sign-up');
+		usernameInput   = this.zone.find('.row2 input:text');
+		passwordInput   = this.zone.find('.row3 input:password');
+		repeatInput     = this.zone.find('.row4 input:password');
+		popularizeInput = this.zone.find('.row5 input:text');
+		verifyInput     = this.zone.find('.row6 input:text');
+
+		usernameInput.bind(inputEvents, function () {
+			value = $(this).val();
+
+			if (!value.match(usernameReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.usernamePass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.usernamePass = true;
+			}
+		});
+
+		passwordInput.bind(inputEvents, function () {
+			value = $(this).val();
+
+			if (!value.match(passwordReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.passwordPass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.passwordPass = true;
+			}
+		});
+
+		repeatInput.bind(inputEvents, function () {
+			value  = $(this).val();
+
+			if (!value.match(repeatReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.repeatPass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.repeatPass = true;
+			}
+		}).blur(function () {
+			value  = passwordInput.val();
+			value2 = repeatInput.val();
+
+			if (value !== value2) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.repeatPass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.repeatPass = true;
+			}
+		});
+
+		popularizeInput.bind(inputEvents, function () {
+			value  = $(this).val();
+
+			if (!value.match(popularizeReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.popularizePass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.popularizePass = true;
+			}
+		});
 
 		this.bindOverlayEvents();
 	};
