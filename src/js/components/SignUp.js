@@ -59,8 +59,8 @@
 									'<img class="message-img" src="../img/zh-lang.png">' +
 									'<span>换一个</span>' +
 									'<div class="agree">' +
-										'<input type="checkbox" id="agree-checkbox">' +
-										'<label for="agree-checkbox">我已届满合法博彩年龄，且同意各项开户条约</label>' +
+										'<input type="checkbox" id="remember-checkbox">' +
+										'<label for="remember-checkbox">我已届满合法博彩年龄，且同意各项开户条约</label>' +
 									'</div>' +
 								'</div>' +
 

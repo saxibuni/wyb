@@ -3,7 +3,7 @@
 .sign-up {
 	@include dialog-frame;
 
-	.dialog-wrapper {	
+	.dialog-wrapper {
 		@include dialog-wrapper(300px);
 		z-index: 150;
 		top: 50%;

@@ -4,11 +4,154 @@
 	@include dialog-frame;
 
 	.dialog-wrapper {	
-		@include dialog-wrapper(450px);
+		@include dialog-wrapper(300px);
 		z-index: 150;
+		top: 50%;
 
 		.dialog {
-			@include dialog(450px, 300px);
+			@include dialog(300px, 450px);
+
+			background-color: #2F2F2C;
+			font-size: 14px;
+			padding: 0 20px;
+
+			.text {
+				color: #666666;
+				height: 25px;
+				line-height: 25px;
+			}
+
+			.input-outer {
+				border: 1px solid #555555;
+				height: 30px;
+				line-height: 30px;
+				padding: 2px 10px;
+				width: 280px;
+
+				input {
+					background-color: transparent;
+					border: 0;
+					color: #FFF;
+					display: inline-block;
+					float: left;
+					height: 28px;
+					line-height: 28px;
+					width: 90%;
+				}
+
+				.pass {
+					display: inline-block;
+					float: right;
+					position: relative;
+					height: 15px;
+					width: 15px;
+					top: 7px;
+					right: 0;
+				}
+
+				.warning {
+					display: none;
+					float: right;
+					position: relative;
+					height: 15px;
+					width: 15px;
+					top: 7px;
+					right: 0;
+				}
+			}
+
+			.row1 {
+				height: 100px;
+				width: 100%;
+			}
+
+			.row2 {
+				height: 50px;
+				margin-top: 15px;
+				width: 100%;
+			}
+
+			.row3 {
+				height: 50px;
+				margin-top: 15px;
+				width: 100%;
+			}
+
+			.row4 {
+				height: 80px;
+				width: 100%;
+				margin-top: 30px;
+
+				.verify-input-outer {
+					display: inline-block;
+					width: 140px;
+				}
+
+				img {
+				    height: 35px;
+				    margin-left: 20px;
+				}
+
+				span {
+					cursor: pointer;
+					display: inline-block;
+				    height: 35px;
+				    line-height: 35px;
+				    margin-left: 20px;
+					vertical-align: top;
+					color: #555555;
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+			}
+
+			.row5 {
+				height: 60px;
+				width: 100%;
+
+				.button {
+					background-color: #4B4B42;
+					color: #222222;
+					cursor: pointer;
+					width: 300px;
+					height: 35px;
+					line-height: 35px;
+					text-align: center;
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+
+				.button-info {
+					color: #555555;
+					cursor: pointer;
+					font-size: 12px;
+					height: 20px;
+					line-height: 20px;
+					margin-top: 10px;
+					text-align: right;
+
+					input {
+						float: left;
+					}
+
+					label {
+						cursor: pointer;
+						float: left;
+					}
+
+					span {
+						float: right;
+					}
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+			}
 		}
 	}
 }
