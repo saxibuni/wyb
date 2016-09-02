@@ -63,6 +63,16 @@
 			.row1 {
 				height: 100px;
 				width: 100%;
+				position: relative;
+
+				.close {
+					cursor: pointer;
+					position: absolute;
+					right: -5px;
+					top: 0px;
+					font-size: 25px;
+					color: #999999;
+				}
 			}
 
 			.row2 {

@@ -11,6 +11,7 @@
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
 								'<div class="row1">' +
+									'<div class="close">×</div>' +
 								'</div>' +
 
 								'<div class="row2">' +
@@ -77,6 +78,7 @@
 		var usernameInput;
 		var passwordInput;
 		var verifyInput;
+		var close;
 		var value;
 		var value2;
 		var usernameReg   = '^[A-Za-z0-9]{3,12}$';
@@ -92,6 +94,7 @@
 		usernameInput   = this.zone.find('.row2 input:text');
 		passwordInput   = this.zone.find('.row3 input:password');
 		verifyInput     = this.zone.find('.row6 input:text');
+		close           = this.zone.find('.close');
 
 		usernameInput.bind(inputEvents, function () {
 			value = $(this).val();
@@ -120,6 +123,10 @@
 				that.passwordPass = true;
 			}
 		});
+
+		close.click(function () {
+			that.hide();
+		})
 
 		this.bindOverlayEvents();
 	};

@@ -11,6 +11,7 @@
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
 								'<div class="row1">' +
+									'<div class="close">×</div>' +
 								'</div>' +
 
 								'<div class="row2">' +
@@ -99,6 +100,7 @@
 		var repeatInput;
 		var popularizeInput;
 		var verifyInput;
+		var close;
 		var value;
 		var value2;
 		var usernameReg   = '^[A-Za-z0-9]{3,12}$';
@@ -122,6 +124,7 @@
 		repeatInput     = this.zone.find('.row4 input:password');
 		popularizeInput = this.zone.find('.row5 input:text');
 		verifyInput     = this.zone.find('.row6 input:text');
+		close           = this.zone.find('.close');
 
 		usernameInput.bind(inputEvents, function () {
 			value = $(this).val();
@@ -191,6 +194,10 @@
 				that.popularizePass = true;
 			}
 		});
+
+		close.click(function () {
+			that.hide();
+		})
 
 		this.bindOverlayEvents();
 	};
