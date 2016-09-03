@@ -89,19 +89,19 @@
 
 										'<ul>' +
 											'<li>' +
-												'<img src="../img/ie-gray.png">' +
+												'<img src="../img/ie-light.png">' +
 												'<span>IE9.0+</span>' +
 											'</li>' +
 											'<li>' +
-												'<img src="../img/chrome-gray.png">' +
+												'<img src="../img/chrome-light.png">' +
 												'<span>Chrome</span>' +
 											'</li>' +
 											'<li>' +
-												'<img src="../img/safari-gray.png">' +
+												'<img src="../img/safari-light.png">' +
 												'<span>Safari</span>' +
 											'</li>' +
 											'<li>' +
-												'<img src="../img/firefox-gray.png">' +
+												'<img src="../img/firefox-light.png">' +
 												'<span>Firefox</span>' +
 											'</li>' +
 										'</ul>' +
