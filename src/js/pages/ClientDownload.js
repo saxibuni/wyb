@@ -10,6 +10,7 @@
 								'<div class="img img1">' +
 									'<img class="normal" src="../img/pt-normal.png">' +
 									'<img class="down" src="../img/pt-down.png">' +
+									'<span>pt老虎机</span>' +
 								'</div>' +
 
 								'<div class="img img2">' +
@@ -21,11 +22,13 @@
 								'<div class="img img3">' +
 									'<img class="normal" src="../img/ag-normal.png">' +
 									'<img class="down" src="../img/ag-down.png">' +
+									'<span>AG老虎机</span>' +
 								'</div>' +
 
 								'<div class="img img4">' +
 									'<img class="normal" src="../img/mg-normal.png">' +
 									'<img class="down" src="../img/mg-down.png">' +
+									'<span>MG老虎机</span>' +
 								'</div>' +
 							'</div>' +
 
@@ -107,7 +110,16 @@
 	};
 
 	ClientDownload.prototype.bindEvents = function () {
+		var that = this;
+		var titleImgs;
+
 		this.zone = $('.client-download');
+		titleImgs = this.zone.find('.title .img');
+
+		titleImgs.click(function () {
+			titleImgs.removeClass('selected');
+			$(this).addClass('selected');
+		});
 	};
 
 	window.ClientDownload = ClientDownload;
