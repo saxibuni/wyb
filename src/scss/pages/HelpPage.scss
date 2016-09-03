@@ -68,10 +68,11 @@
 
 		.container{
 			width: 800px;
-			height: 500px;
+			height: auto;
 			background-color:#2B2A26;
 			float: right;
 			color: #757575;
+			padding-bottom: 30px;
 
 			.title{
 				height: 50px;
@@ -95,6 +96,10 @@
     			width: 80%;
 			}
 
+			a{
+				color: #cda654;
+			}
+			
 			.subtile{
 			    height: 25px;
 			    margin: 20px 10%;
