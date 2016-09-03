@@ -7,6 +7,7 @@
 		var temp =	'<div class="page home-page">' +
 						'<div class="wrapper">' +
 							'<div class="title">' +
+								
 							'</div>' +
 
 							'<div class="content">' +

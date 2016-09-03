@@ -48,7 +48,8 @@ gulp.task('clean', function () {
 
 gulp.task('prepare', ['clean'], function () {
     gulp.src([
-            './bower_components/datetimepicker/jquery.datetimepicker.css'
+            './bower_components/datetimepicker/jquery.datetimepicker.css',
+            './bower_components/Gallery/css/blueimp-gallery.min.css'
         ])
         .pipe(gulp.dest(src_css_lib_path));
 
@@ -57,7 +58,8 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/jquery-i18next/jquery-i18next.min.js',
             './bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js',
             './bower_components/i18next/i18next.min.js',
-            './bower_components/datetimepicker/jquery.datetimepicker.js'
+            './bower_components/datetimepicker/jquery.datetimepicker.js',
+             './bower_components/Gallery/js/blueimp-gallery.min.js'
         ])
         .pipe(gulp.dest(src_js_lib_path));
 
