@@ -200,13 +200,22 @@
                 width: 490px;
                 background: rgba(255,255,0,0.6);
                 float: left;
+                padding-left: 2px;
+                box-sizing: border-box;
 
                 .wallet-group{
                     height: 100%;
                     width: 120px;
-                    margin: 0 5px;
+                    margin: 0 1px;
                     float: left;
                 }
+            }
+
+            .tab-container{
+                margin-top: 10px;
+                width: 100%;
+                height: 600px;
+                border: 1px solid yellow;
             }
         }
     }

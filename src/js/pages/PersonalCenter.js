@@ -7,19 +7,43 @@ $(function(){
 				balance: '1,000.00'
 			},{
 				id: 1,
-				walletType: 'PT',
-				balance: '1,000.00'				
+				walletType: 'SG',
+				balance: '2,000.00'				
 			},{
 				id: 2,
-				walletType: 'PT',
-				balance: '1,000.00'				
+				walletType: 'LT',
+				balance: '3,000.00'				
 			},{
 				id: 3,
 				walletType: 'PT',
-				balance: '1,000.00'				
+				balance: '4,000.00'				
+			},{
+				id: 4,
+				walletType: 'PT',
+				balance: '4,000.00'				
+			},{
+				id: 5,
+				walletType: 'PT',
+				balance: '4,000.00'				
+			},{
+				id: 6,
+				walletType: 'PT',
+				balance: '4,000.00'				
+			},{
+				id: 7,
+				walletType: 'PT',
+				balance: '4,000.00'				
 			}
 		];
 		this.subWallets = [];
+
+		this.tabData = {
+		    'zjgl': ['充值','转账','提现'],
+		    'jyjl':['充值记录','转账记录','提款记录','投注记录','红利记录'],
+		   	'zhtx':['基本信息','安全中心'],
+		   	'zlx':['站内信','通知公告'],
+		}
+
 		this.initDom();
 	};
 
@@ -79,6 +103,10 @@ $(function(){
 									this.createSubWallet() +
 								'</div>' +
 								'<div class="nav-right"></div>' +
+								'<div class="clear"></div>' +
+
+								'<div class="tab-container">' +
+								'</div>' +
  							'</div>' +
 							'<div class="clear"></div>' +
 						'</div>' +
