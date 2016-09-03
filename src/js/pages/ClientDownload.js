@@ -64,7 +64,7 @@
 										'<div class="zone-wrapper">' +
 											'<img src="../img/qrcode.png">' +
 											'<div class="button">' +
-												'<img class="down" src="../img/windows.png">' +
+												'<img class="down" src="../img/android.png">' +
 												'<span>Android下载</span>' +
 											'</div>' +
 										'</div>' +
@@ -74,8 +74,8 @@
 										'<div class="zone-wrapper">' +
 											'<img src="../img/qrcode.png">' +
 											'<div class="button">' +
-												'<img class="down" src="../img/windows.png">' +
-												'<span>Android下载</span>' +
+												'<img class="down" src="../img/apple.png">' +
+												'<span>IOS下载</span>' +
 											'</div>' +
 										'</div>' +
 									'</div>' +
@@ -85,7 +85,7 @@
 											'<img src="../img/qrcode.png">' +
 											'<div class="button">' +
 												'<img class="down" src="../img/windows.png">' +
-												'<span>IOS下载</span>' +
+												'<span>windows下载</span>' +
 											'</div>' +
 										'</div>' +
 									'</div>' +

@@ -13,6 +13,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 	font-size: 12px;
 	text-align: center;
 	width: 100%;
+	transition: top .5s;
 
 	.wrapper {
 		background-color: #201F1D;
@@ -86,6 +87,47 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 				&:hover {
 					color: #DCAD4B;
+				}
+			}
+
+			.wdsc {
+				position: relative;
+
+				.wdsc-float-window {
+					color: #FFF;
+					display: none;
+					width: 100px;
+					height:60px;
+					position: absolute;
+					top: 30px;
+					left: 0;
+					z-index: 2;
+					text-align: left;
+
+					ul {
+						background-color: #37352C;
+
+						li {
+							border-bottom: 1px solid #686868;
+							height: 30px;
+							line-height: 30px;
+
+							span {
+								display: inline-block;
+								margin-left: 20px;
+							}
+
+							&:hover {
+								color: #DCAD4B;
+							}
+						}
+					}
+				}
+
+				&:hover {
+					.wdsc-float-window {
+						display: block;
+					}
 				}
 			}
 
@@ -346,4 +388,10 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			}
 		}
 	}
+}
+
+.fixed-header {
+	position: fixed;
+	height: 30px;
+	z-index: 10;
 }

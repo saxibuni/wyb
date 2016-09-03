@@ -29,7 +29,15 @@
 							'</div>' +
 
 							'<div class="wdsc top-item">' +
-								'我的收藏' +
+								'<span>我的收藏</span>' +
+
+								'<div class="wdsc-float-window">' +
+									'<ul>' +
+										'<li><span>重庆时时彩</span></li>' +
+										'<li><span>福彩3D</span></li>' +
+										'<li><span>山东1选5</span></li>' +
+									'</ul>' +
+								'</div>' +
 							'</div>' +
 
 							'<div class="money-actions">' +
@@ -127,6 +135,16 @@
 		return this.el;
 	};
 
+	Header.prototype.showSignedInHeader = function () {
+		this.zone.find('.money-actions, .balance, .grzx').show();
+		this.zone.find('.signin-button, .signup-button').hide();
+	};
+
+	Header.prototype.showSignedOutHeader = function () {
+		this.zone.find('.money-actions, .balance, .grzx').hide();
+		this.zone.find('.signin-button, .signup-button').show();
+	};
+
 	Header.prototype.bindEvents = function () {
 		var index;
 		var pagesUl;
@@ -134,11 +152,13 @@
 		var stick;
 		var pageName;
 		var balance;
+		var headRow2;
 		var that = this;
 
 		this.zone = $('.header');
 		pagesUl   = this.zone.find('.pages');
-		pagesUl2 = this.zone.find('.row1');
+		pagesUl2  = this.zone.find('.row1');
+		headRow2  = this.zone.find('.row2')
 		
 		stick     = pagesUl.children('.stick');
 		balance   = this.zone.find('.balance-value');
@@ -180,10 +200,23 @@
 			}
 		});
 
-
 		this.switch.bindEvents(function () {
 			balance.toggle();
 		});
+
+		$(document).scroll(function(e) {
+			if (document.body.scrollTop > 15) {
+				headRow2.hide();
+				that.zone.addClass('fixed-header');
+				$('.app .main').css('margin-top', '30px');
+			} else {
+				headRow2.show();
+				that.zone.removeClass('fixed-header');
+				$('.app .main').css('margin-top', '85px');
+			}
+		});
+
+		this.showSignedOutHeader();
 	};
 
 	window.Header = Header;

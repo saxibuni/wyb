@@ -135,6 +135,10 @@
 							    vertical-align: text-bottom;
 							    margin-left: 10px;
 						    }
+
+							&:hover {
+								color: #000;
+							}
 						}
 					}
 				}
@@ -168,6 +172,10 @@
 
 						img {
 							vertical-align: middle;
+						}
+
+						&:hover {
+							color: #000;
 						}
 					}
 				}
