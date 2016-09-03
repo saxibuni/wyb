@@ -29,7 +29,15 @@
 							'</div>' +
 
 							'<div class="wdsc top-item">' +
-								'我的收藏' +
+								'<span>我的收藏</span>' +
+
+								'<div class="wdsc-float-window">' +
+									'<ul>' +
+										'<li><span>重庆时时彩</span></li>' +
+										'<li><span>福彩3D</span></li>' +
+										'<li><span>山东1选5</span></li>' +
+									'</ul>' +
+								'</div>' +
 							'</div>' +
 
 							'<div class="money-actions">' +
