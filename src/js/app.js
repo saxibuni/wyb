@@ -48,7 +48,8 @@
 			'promoActivity'     : PromoActivity,
 			'clientDownload'    : ClientDownload,
 			'routeCheck'        : RouteCheck,
-			'helpPage'			: HelpPage
+			'helpPage'			: HelpPage,
+			'personalCenter'	: PersonalCenter
 		}
 
 		this.zone.find('.page').hide();

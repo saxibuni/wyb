@@ -1,0 +1,56 @@
+@import "../mixins.scss";
+
+.sub-wallet{
+    background-color:#ebe9e1;
+    width: 110px;
+    height: 60px;
+    position: relative;
+    padding: 4px;
+    color: #535353;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 11px;
+	.refresh{
+        position: absolute;
+        right: 3px;
+        top: 4px;
+        cursor: pointer;
+    }
+
+	hr{
+	    height: 1px;
+	    border: none;
+	    border-top: 1px solid #cda654;
+	    width: 90%;   	
+	}
+
+	.transfer-layer{
+		position:absolute;
+		top:0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		background: rgba(125,124,121,0.7);
+		display: none;
+
+        .button{
+	        width: 40px;
+	        height: 20px;
+	        line-height: 20px;
+	        font-size: 12px;
+	        border:1px solid #cda654;
+	        color: #cda654;
+	        display: inline-block;
+	        margin-top: 23px;
+	        &:hover{
+	            color:#fdfbf9;
+	            background-color:#cda654;
+	        }
+	    }
+
+	    .turn-out{
+	        margin-left: 20px;
+	    }
+	}
+
+}
