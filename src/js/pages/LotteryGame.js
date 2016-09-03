@@ -27,12 +27,13 @@
 								'</div>' +
 
 								'<div class="right">' +
-
+									this.createLotteryItem(1) +
 								'</div>' +
 							'</div>' +
 
 							'<div class="content2">' +
 								'<div class="left">' +
+									this.createLotteryItem(2) +
 								'</div>' +
 
 								'<div class="right">' +
@@ -71,6 +72,115 @@
 
 	LotteryGame.prototype.hide = function () {
 		this.zone.hide();
+	};
+
+	LotteryGame.prototype.createLotteryItem = function (type) {
+		var i;
+		var data;
+		var temp;
+		var dict = {
+			1: [
+				{
+					'subtitle': 'BBIN',
+					'title': '秒秒彩'
+				},
+				{
+					'subtitle': 'BBIN',
+					'title': '分分彩'
+				},
+				{
+					'subtitle': 'BBIN',
+					'title': '五分彩'
+				},
+				{
+					'subtitle': '江西',
+					'title': '11选5'
+				},
+				{
+					'subtitle': '北京',
+					'title': 'PK10'
+				},
+				{
+					'subtitle': '3D',
+					'title': '福彩'
+				}
+			],
+			
+			2: [
+				{
+					'subtitle': '新疆',
+					'title': '时时彩'
+				},
+				{
+					'subtitle': 'BBIN',
+					'title': '秒秒彩'
+				},
+				{
+					'subtitle': 'BBIN',
+					'title': '分分彩'
+				},
+				{
+					'subtitle': '广东',
+					'title': '11选5'
+				},
+				{
+					'subtitle': '江西',
+					'title': '11选5'
+				},
+				{
+					'subtitle': '北京',
+					'title': 'PK10'
+				}
+			]
+		}
+
+		data = dict[type];
+		temp =	'<table>' +
+					'<tbody>';
+
+		for (i = 0; i < data.length; i++) {
+			if (i === 0 || i === 3) {
+				temp +=	'<tr>' +
+							'<td>' +
+								'<div class="item">' +
+									'<i class="subtitle">' +
+										data[i].subtitle +
+									'</i>' +
+									'<i class="title">' +
+										data[i].title +
+									'</i>' +
+								'</div>' +
+							'</td>';
+			} else if (i === 2 || i === 5) {
+				temp +=	    '<td>' +
+								'<div class="item">' +
+									'<i class="subtitle">' +
+										data[i].subtitle +
+									'</i>' +
+									'<i class="title">' +
+										data[i].title +
+									'</i>' +
+								'</div>' +
+							'</td>' +
+						'</tr>';
+			} else {
+				temp +=	    '<td>' +
+								'<div class="item">' +
+									'<i class="subtitle">' +
+										data[i].subtitle +
+									'</i>' +
+									'<i class="title">' +
+										data[i].title +
+									'</i>' +
+								'</div>' +
+							'</td>';
+			}
+		}
+
+		temp +=		'</tbody>' +
+				'</table>';
+
+		return temp;
 	};
 
 	LotteryGame.prototype.bindEvents = function () {
