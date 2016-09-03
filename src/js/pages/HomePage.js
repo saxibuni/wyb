@@ -6,7 +6,11 @@
 	HomePage.prototype.initDom = function () {
 		var temp =	'<div class="page home-page">' +
 						'<div class="wrapper">' +
-							'首页' +
+							'<div class="title">' +
+							'</div>' +
+
+							'<div class="content">' +
+							'</div>' +
 						'</div>' +
 					'</div>';
 		
