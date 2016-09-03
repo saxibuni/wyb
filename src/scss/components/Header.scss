@@ -13,6 +13,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 	font-size: 12px;
 	text-align: center;
 	width: 100%;
+	transition: top .5s;
 
 	.wrapper {
 		background-color: #201F1D;

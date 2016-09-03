@@ -135,6 +135,16 @@
 		return this.el;
 	};
 
+	Header.prototype.showSignedInHeader = function () {
+		this.zone.find('.money-actions, .balance, .grzx').show();
+		this.zone.find('.signin-button, .signup-button').hide();
+	};
+
+	Header.prototype.showSignedOutHeader = function () {
+		this.zone.find('.money-actions, .balance, .grzx').hide();
+		this.zone.find('.signin-button, .signup-button').show();
+	};
+
 	Header.prototype.bindEvents = function () {
 		var index;
 		var pagesUl;
@@ -205,6 +215,8 @@
 				$('.app .main').css('margin-top', '85px');
 			}
 		});
+
+		this.showSignedOutHeader();
 	};
 
 	window.Header = Header;

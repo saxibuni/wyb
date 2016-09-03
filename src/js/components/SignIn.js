@@ -80,6 +80,7 @@
 		var passwordInput;
 		var verifyInput;
 		var close;
+		var button;
 		var value;
 		var value2;
 		var usernameReg   = '^[A-Za-z0-9]{3,12}$';
@@ -96,6 +97,7 @@
 		passwordInput   = this.zone.find('.row3 input:password');
 		verifyInput     = this.zone.find('.row6 input:text');
 		close           = this.zone.find('.close');
+		button          = this.zone.find('.row5 .button');
 
 		usernameInput.bind(inputEvents, function () {
 			value = $(this).val();
@@ -128,6 +130,11 @@
 		close.click(function () {
 			that.hide();
 		})
+
+		button.click(function () {
+			that.hide();
+			app.header.showSignedInHeader();
+		});
 
 		this.bindOverlayEvents();
 	};
