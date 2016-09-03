@@ -2,4 +2,85 @@
 
 .live-video {
 	@include page-property;
+
+	.wrapper {
+		position: relative;
+		width: $contentWidth;
+		height: 100%;
+		padding: 20px 0;
+
+		.title {
+			height: 300px;
+			width: 100%;
+		}
+
+		.content {
+			height: 700px;
+			width: 100%;
+
+			table {
+				width: 100%;
+				height: 100%;
+
+				tr {
+					&:first-child {
+						td {
+							&:first-child {
+								.item {
+									width: 400px;
+								}
+							}
+						}
+					}
+				}
+
+				.item {
+					border: 1px solid #474539;
+					cursor: pointer;
+					height: 100%;
+					width: 100%;
+					text-align: left;
+					width: 200px;
+
+					.zone1 {
+						height: 220px;
+						width: 100%;
+
+						.logo {
+							height: 100%;
+							overflow: hidden;
+
+							img {
+								heigh: 230px;
+							}
+						}
+					}
+
+					.zone2 {
+						color: #C8C9D4;
+						height: 70px;
+						width: 90%;
+						margin: 0 auto;
+						margin-top: 10px;
+
+						.title {
+							height: 40px;
+						}
+
+						.quantity {
+							height: 30px;
+							line-height: 30px;
+
+							span {
+								color: #999999;
+							    position: relative;
+							    bottom: 3px;
+							    left: 5px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
