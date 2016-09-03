@@ -61,7 +61,7 @@ gulp.task('prepare', ['clean'], function () {
         ])
         .pipe(gulp.dest(src_js_lib_path));
 
-    gulp.src(['src/img/*'])
+    gulp.src(['src/img/*', './bower_components/Gallery/img/*'])
         .pipe(gulp.dest('build/img/'));
 });
 
