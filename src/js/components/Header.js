@@ -24,10 +24,6 @@
 
 							'</div>' +
 
-							'<div class="swsy top-item">' +
-								'设为首页' +
-							'</div>' +
-
 							'<div class="bzzx top-item nav-page" data-value="helpPage">' +
 								'帮助中心' +
 							'</div>' +
@@ -131,15 +127,6 @@
 		return this.el;
 	};
 
-	Header.prototype.setHome = function () {
-        if (document.all) {
-            document.body.style.behavior='url(#default#homepage)';
-            document.body.setHomePage(window.location);
-        } else {
-            alert("您好,您的浏览器不支持自动设置页面为首页功能,请您手动在浏览器里设置该页面为首页!");
-        }
-	};
-
 	Header.prototype.bindEvents = function () {
 		var index;
 		var pagesUl;
@@ -169,9 +156,6 @@
 		});
 
 		this.zone.find('.top-item').click(function  () {
-			if($(this).hasClass('swsy')) {
-				that.setHome();
-			}
 		});
 
 		this.zone.find('.header-button').click(function () {
