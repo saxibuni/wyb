@@ -130,6 +130,8 @@
 						data.speed + 'ms' +
 					'</div>' +
 
+					'<img class="recommend" src="../img/recommend.png">' +
+
 					'<div class="arrow">' +
 						'<img class="trend-icon-img" src="../img/arrow-right.png">' +
 					'</div>' +
