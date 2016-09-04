@@ -1,0 +1,150 @@
+@import "../mixins.scss";
+
+.withdraw {
+	display: none;
+	height: 100%;
+	width: 92%;
+	padding: 20px 30px;
+
+	.title {
+		background-color: #E8E9E1;
+		height: 30px;
+		line-height: 30px;
+	    width: 95%;
+	    padding: 0 20px;
+
+		.text {
+			color: #494A5C;
+		}
+
+		.value {
+			color: #494A5C;
+		}
+
+		.left {
+			float: left;
+			display: inline-block;
+		}
+
+		.right {
+			float: right;
+			display: inline-block;
+		}
+	}
+
+	.content {
+		.row1 {
+			ul {
+				li {
+					border: 1px solid #DBDBDB;
+					cursor: pointer;
+					height: 40px;
+					line-height: 40px;
+					width: 330px;
+					margin-top: 20px;
+
+					.text {
+						color: #494A5C;
+					}
+
+					.value {
+						color: #494A5C;
+					}
+
+					.logo {
+						display: inline-block;
+						width: 150px;
+						text-align: center;
+					}
+				}
+			}
+		}
+
+		.row2 {
+			margin-top: 20px;
+
+			.text {
+				color: #333333;
+				display: inline-block;
+				height: 30px;
+				line-height: 30px;
+				bottom: 12px;
+				position: relative;
+				margin-right: 10px;
+
+				&:last-child {
+					margin-left: 10px;
+				}
+			}
+
+			.input-outer {
+				border: 1px solid #555555;
+				height: 30px;
+				line-height: 30px;
+				padding: 2px 10px;
+				display: inline-block;
+				width: 200px;
+
+				input {
+					background-color: transparent;
+					border: 0;
+					color: #999999;
+					display: inline-block;
+					float: left;
+					height: 28px;
+					line-height: 28px;
+					width: 90%;
+				}
+
+				.pass {
+					display: inline-block;
+					float: right;
+					position: relative;
+					height: 15px;
+					width: 15px;
+					top: 7px;
+					right: 0;
+				}
+
+				.warning {
+					display: none;
+					float: right;
+					position: relative;
+					height: 15px;
+					width: 15px;
+					top: 7px;
+					right: 0;
+				}
+			}
+
+			.notice {
+				color: #999999;
+				font-size: 12px;
+				height: 20px;
+				line-height: 20px;
+				margin-left: 70px;
+			}
+		}
+
+		.row3 {
+			margin-top: 28px;
+
+			.button {
+				background-color: #CDA654;
+				color: #FFF;
+				font-weight: bold;
+				cursor: pointer;
+				width: 128px;
+				height: 42px;
+				line-height: 42px;
+				text-align: center;
+				position: relative;
+				left: 68px;
+
+				&:hover {
+					color: #000;
+				}
+			}
+		}
+	}
+}

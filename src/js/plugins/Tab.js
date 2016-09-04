@@ -19,7 +19,12 @@ $(function(){
 		var temp = '';
 
 		for (i = 0; i < this.data.length; i++) {
-			temp += '<li><span>' + this.data[i] + '</span></li>';
+			if (i === 0) {
+				temp += '<li class="selected"><span>' + this.data[i] + '</span></li>';
+			} else {
+				temp += '<li><span>' + this.data[i] + '</span></li>';
+			}
+			
 		}
 
 		return temp;
@@ -30,7 +35,14 @@ $(function(){
 	}
 
 	Tab.prototype.bindEvents = function() {
+		var that = this;
+
 		this.zone = $('#' + this.id);
+
+		this.zone.find('li').click(function () {
+			that.zone.find('li').removeClass('selected');
+			$(this).addClass('selected');
+		});
 	}
 
 	window.Tab = Tab;

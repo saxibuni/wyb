@@ -208,7 +208,21 @@ $(function(){
 
         this.zjglTab.bindEvents();
         this.cz.bindEvents();
+        this.zz.bindEvents();
+        this.tx.bindEvents();
 
+        $('#zjgl-tab').delegate('li', 'click', function () {
+        	index = $(this).index();
+        	that.zone.find('.grzx-money-action').hide();
+
+        	if (index === 0) {
+        		that.cz.show();
+        	} else if (index === 1) {
+        		that.zz.show();
+        	} else if (index === 2) {
+        		that.tx.show();
+        	}
+        })
 	}
 
 	window.PersonalCenter = PersonalCenter;

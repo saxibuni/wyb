@@ -5,12 +5,27 @@
 	margin-left: 30px;
 
 	li {
+		border: 1px solid #CCCCCC;
+		border-bottom: none;
+		border-left: 0;
 		color: #494A5C;
+		cursor: pointer;
 		display: inline-block;
 		font-size: 14px;
 		height: 46px;
 		line-height: 46px;
 		width: 140px;
 		text-align: center;
+
+		&:first-child {
+			border-left: 1px solid #CCCCCC;
+		}
+	}
+
+	.selected {
+		background-color: #FFF;	
+		border: 1px solid #CDA654;
+		height: 47px;
+		border-bottom: 0;
 	}
 }

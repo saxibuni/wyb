@@ -5,7 +5,7 @@
 	}
 
 	TopUp.prototype.initDom = function() {
-		var temp = 	'<div class="top-up">' +
+		var temp = 	'<div class="top-up grzx-money-action">' +
 						'<div class="row1">' +
 							'<ul>' +
 								'<li class="selected">' +
@@ -86,6 +86,14 @@
 
 	TopUp.prototype.getDom = function() {
 		return this.el;
+	};
+
+	TopUp.prototype.show = function() {
+		this.zone.show();
+	};
+
+	TopUp.prototype.hide = function() {
+		this.zone.hide();
 	};
 
 	TopUp.prototype.bindEvents = function() {
