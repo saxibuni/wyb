@@ -71,6 +71,7 @@ gulp.task('prepare', ['clean'], function () {
 gulp.task('build', function () {
     gulp.src([
             'src/lib/js/jquery.min.js',
+            'src/lib/js/jquery.datetimepicker.js',
             'src/lib/js/jquery.history.js',
             'src/js/utils/*.js',
             'src/js/plugins/IMDialog.js',

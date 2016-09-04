@@ -1,21 +1,10 @@
 /**
- * @preserve jQuery DateTimePicker plugin v2.5.4
+ * @preserve jQuery DateTimePicker plugin v2.4.5
  * @homepage http://xdsoft.net/jqplugins/datetimepicker/
- * @author Chupurnov Valeriy (<chupurnov@gmail.com>)
+ * (c) 2014, Chupurnov Valeriy.
  */
-/*global DateFormatter, document,window,jQuery,setTimeout,clearTimeout,HighlightedDate,getCurrentValue*/
-;(function (factory) {
-	if ( typeof define === 'function' && define.amd ) {
-		// AMD. Register as an anonymous module.
-		define(['jquery', 'jquery-mousewheel'], factory);
-	} else if (typeof exports === 'object') {
-		// Node/CommonJS style for Browserify
-		module.exports = factory;
-	} else {
-		// Browser globals
-		factory(jQuery);
-	}
-}(function ($) {
+/*global document,window,jQuery,setTimeout,clearTimeout,HighlightedDate,getCurrentValue*/
+(function ($) {
 	'use strict';
 	var default_options  = {
 		i18n: {
@@ -23,169 +12,151 @@
 				months: [
 					"كانون الثاني", "شباط", "آذار", "نيسان", "مايو", "حزيران", "تموز", "آب", "أيلول", "تشرين الأول", "تشرين الثاني", "كانون الأول"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"ن", "ث", "ع", "خ", "ج", "س", "ح"
-				],
-				dayOfWeek: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت", "الأحد"]
+				]
 			},
 			ro: { // Romanian
 				months: [
-					"Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"
+					"ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"
 				],
-				dayOfWeekShort: [
-					"Du", "Lu", "Ma", "Mi", "Jo", "Vi", "Sâ"
-				],
-				dayOfWeek: ["Duminică", "Luni", "Marţi", "Miercuri", "Joi", "Vineri", "Sâmbătă"]
+				dayOfWeek: [
+					"l", "ma", "mi", "j", "v", "s", "d"
+				]
 			},
 			id: { // Indonesian
 				months: [
 					"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"
-				],
-				dayOfWeek: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+				]
 			},
 			is: { // Icelandic
 				months: [
 					"Janúar", "Febrúar", "Mars", "Apríl", "Maí", "Júní", "Júlí", "Ágúst", "September", "Október", "Nóvember", "Desember"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Sun", "Mán", "Þrið", "Mið", "Fim", "Fös", "Lau"
-				],
-				dayOfWeek: ["Sunnudagur", "Mánudagur", "Þriðjudagur", "Miðvikudagur", "Fimmtudagur", "Föstudagur", "Laugardagur"]
+				]
 			},
 			bg: { // Bulgarian
 				months: [
 					"Януари", "Февруари", "Март", "Април", "Май", "Юни", "Юли", "Август", "Септември", "Октомври", "Ноември", "Декември"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"
-				],
-				dayOfWeek: ["Неделя", "Понеделник", "Вторник", "Сряда", "Четвъртък", "Петък", "Събота"]
+				]
 			},
 			fa: { // Persian/Farsi
 				months: [
 					'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'
-				],
-				dayOfWeek: ["یک‌شنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه", "یک‌شنبه"]
+				]
 			},
 			ru: { // Russian
 				months: [
 					'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
 				],
-				dayOfWeekShort: [
-					"Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"
-				],
-				dayOfWeek: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
+				dayOfWeek: [
+					"Вск", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"
+				]
 			},
 			uk: { // Ukrainian
 				months: [
 					'Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Ндл", "Пнд", "Втр", "Срд", "Чтв", "Птн", "Сбт"
-				],
-				dayOfWeek: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"]
+				]
 			},
 			en: { // English
 				months: [
 					"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
-				],
-				dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+				]
 			},
 			el: { // Ελληνικά
 				months: [
 					"Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Μάιος", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Κυρ", "Δευ", "Τρι", "Τετ", "Πεμ", "Παρ", "Σαβ"
-				],
-				dayOfWeek: ["Κυριακή", "Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο"]
+				]
 			},
 			de: { // German
 				months: [
 					'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"
-				],
-				dayOfWeek: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
+				]
 			},
 			nl: { // Dutch
 				months: [
 					"januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"zo", "ma", "di", "wo", "do", "vr", "za"
-				],
-				dayOfWeek: ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"]
+				]
 			},
 			tr: { // Turkish
 				months: [
 					"Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Paz", "Pts", "Sal", "Çar", "Per", "Cum", "Cts"
-				],
-				dayOfWeek: ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"]
+				]
 			},
 			fr: { //French
 				months: [
 					"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
-				],
-				dayOfWeek: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
+				]
 			},
 			es: { // Spanish
 				months: [
 					"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
-				],
-				dayOfWeek: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
+				]
 			},
 			th: { // Thai
 				months: [
 					'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					'อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'
-				],
-				dayOfWeek: ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์", "อาทิตย์"]
+				]
 			},
 			pl: { // Polish
 				months: [
 					"styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"nd", "pn", "wt", "śr", "cz", "pt", "sb"
-				],
-				dayOfWeek: ["niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota"]
+				]
 			},
 			pt: { // Portuguese
 				months: [
 					"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"
-				],
-				dayOfWeek: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+				]
 			},
 			ch: { // Simplified Chinese
 				months: [
 					"一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"日", "一", "二", "三", "四", "五", "六"
 				]
 			},
@@ -193,7 +164,7 @@
 				months: [
 					"Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September",  "Oktober", "November", "December"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"
 				]
 			},
@@ -201,70 +172,63 @@
 				months: [
 					"1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"일", "월", "화", "수", "목", "금", "토"
-				],
-				dayOfWeek: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
+				]
 			},
 			it: { // Italian
 				months: [
 					"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"
-				],
-				dayOfWeek: ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"]
+				]
 			},
 			da: { // Dansk
 				months: [
 					"January", "Februar", "Marts", "April", "Maj", "Juni", "July", "August", "September", "Oktober", "November", "December"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Søn", "Man", "Tir", "Ons", "Tor", "Fre", "Lør"
-				],
-				dayOfWeek: ["søndag", "mandag", "tirsdag", "onsdag", "torsdag", "fredag", "lørdag"]
+				]
 			},
 			no: { // Norwegian
 				months: [
 					"Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Søn", "Man", "Tir", "Ons", "Tor", "Fre", "Lør"
-				],
-				dayOfWeek: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag']
+				]
 			},
 			ja: { // Japanese
 				months: [
 					"1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"日", "月", "火", "水", "木", "金", "土"
-				],
-				dayOfWeek: ["日曜", "月曜", "火曜", "水曜", "木曜", "金曜", "土曜"]
+				]
 			},
 			vi: { // Vietnamese
 				months: [
 					"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"CN", "T2", "T3", "T4", "T5", "T6", "T7"
-				],
-				dayOfWeek: ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"]
+				]
 			},
 			sl: { // Slovenščina
 				months: [
 					"Januar", "Februar", "Marec", "April", "Maj", "Junij", "Julij", "Avgust", "September", "Oktober", "November", "December"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Ned", "Pon", "Tor", "Sre", "Čet", "Pet", "Sob"
-				],
-				dayOfWeek: ["Nedelja", "Ponedeljek", "Torek", "Sreda", "Četrtek", "Petek", "Sobota"]
+				]
 			},
 			cs: { // Čeština
 				months: [
 					"Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Ne", "Po", "Út", "St", "Čt", "Pá", "So"
 				]
 			},
@@ -272,261 +236,213 @@
 				months: [
 					"Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Va", "Hé", "Ke", "Sze", "Cs", "Pé", "Szo"
-				],
-				dayOfWeek: ["vasárnap", "hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat"]
+				]
 			},
 			az: { //Azerbaijanian (Azeri)
 				months: [
 					"Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"B", "Be", "Ça", "Ç", "Ca", "C", "Ş"
-				],
-				dayOfWeek: ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"]
+				]
 			},
 			bs: { //Bosanski
 				months: [
 					"Januar", "Februar", "Mart", "April", "Maj", "Jun", "Jul", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Ned", "Pon", "Uto", "Sri", "Čet", "Pet", "Sub"
-				],
-				dayOfWeek: ["Nedjelja","Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"]
+				]
 			},
 			ca: { //Català
 				months: [
 					"Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Dg", "Dl", "Dt", "Dc", "Dj", "Dv", "Ds"
-				],
-				dayOfWeek: ["Diumenge", "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte"]
+				]
 			},
 			'en-GB': { //English (British)
 				months: [
 					"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
-				],
-				dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+				]
 			},
 			et: { //"Eesti"
 				months: [
 					"Jaanuar", "Veebruar", "Märts", "Aprill", "Mai", "Juuni", "Juuli", "August", "September", "Oktoober", "November", "Detsember"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"P", "E", "T", "K", "N", "R", "L"
-				],
-				dayOfWeek: ["Pühapäev", "Esmaspäev", "Teisipäev", "Kolmapäev", "Neljapäev", "Reede", "Laupäev"]
+				]
 			},
 			eu: { //Euskara
 				months: [
 					"Urtarrila", "Otsaila", "Martxoa", "Apirila", "Maiatza", "Ekaina", "Uztaila", "Abuztua", "Iraila", "Urria", "Azaroa", "Abendua"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Ig.", "Al.", "Ar.", "Az.", "Og.", "Or.", "La."
-				],
-				dayOfWeek: ['Igandea', 'Astelehena', 'Asteartea', 'Asteazkena', 'Osteguna', 'Ostirala', 'Larunbata']
+				]
 			},
 			fi: { //Finnish (Suomi)
 				months: [
 					"Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Su", "Ma", "Ti", "Ke", "To", "Pe", "La"
-				],
-				dayOfWeek: ["sunnuntai", "maanantai", "tiistai", "keskiviikko", "torstai", "perjantai", "lauantai"]
+				]
 			},
 			gl: { //Galego
 				months: [
 					"Xan", "Feb", "Maz", "Abr", "Mai", "Xun", "Xul", "Ago", "Set", "Out", "Nov", "Dec"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Dom", "Lun", "Mar", "Mer", "Xov", "Ven", "Sab"
-				],
-				dayOfWeek: ["Domingo", "Luns", "Martes", "Mércores", "Xoves", "Venres", "Sábado"]
+				]
 			},
 			hr: { //Hrvatski
 				months: [
 					"Siječanj", "Veljača", "Ožujak", "Travanj", "Svibanj", "Lipanj", "Srpanj", "Kolovoz", "Rujan", "Listopad", "Studeni", "Prosinac"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Ned", "Pon", "Uto", "Sri", "Čet", "Pet", "Sub"
-				],
-				dayOfWeek: ["Nedjelja", "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"]
+				]
 			},
 			ko: { //Korean (한국어)
 				months: [
 					"1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"일", "월", "화", "수", "목", "금", "토"
-				],
-				dayOfWeek: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
+				]
 			},
 			lt: { //Lithuanian (lietuvių)
 				months: [
 					"Sausio", "Vasario", "Kovo", "Balandžio", "Gegužės", "Birželio", "Liepos", "Rugpjūčio", "Rugsėjo", "Spalio", "Lapkričio", "Gruodžio"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Sek", "Pir", "Ant", "Tre", "Ket", "Pen", "Šeš"
-				],
-				dayOfWeek: ["Sekmadienis", "Pirmadienis", "Antradienis", "Trečiadienis", "Ketvirtadienis", "Penktadienis", "Šeštadienis"]
+				]
 			},
 			lv: { //Latvian (Latviešu)
 				months: [
 					"Janvāris", "Februāris", "Marts", "Aprīlis ", "Maijs", "Jūnijs", "Jūlijs", "Augusts", "Septembris", "Oktobris", "Novembris", "Decembris"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Sv", "Pr", "Ot", "Tr", "Ct", "Pk", "St"
-				],
-				dayOfWeek: ["Svētdiena", "Pirmdiena", "Otrdiena", "Trešdiena", "Ceturtdiena", "Piektdiena", "Sestdiena"]
+				]
 			},
 			mk: { //Macedonian (Македонски)
 				months: [
 					"јануари", "февруари", "март", "април", "мај", "јуни", "јули", "август", "септември", "октомври", "ноември", "декември"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"нед", "пон", "вто", "сре", "чет", "пет", "саб"
-				],
-				dayOfWeek: ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"]
+				]
 			},
 			mn: { //Mongolian (Монгол)
 				months: [
 					"1-р сар", "2-р сар", "3-р сар", "4-р сар", "5-р сар", "6-р сар", "7-р сар", "8-р сар", "9-р сар", "10-р сар", "11-р сар", "12-р сар"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Дав", "Мяг", "Лха", "Пүр", "Бсн", "Бям", "Ням"
-				],
-				dayOfWeek: ["Даваа", "Мягмар", "Лхагва", "Пүрэв", "Баасан", "Бямба", "Ням"]
+				]
 			},
 			'pt-BR': { //Português(Brasil)
 				months: [
 					"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"
-				],
-				dayOfWeek: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+				]
 			},
 			sk: { //Slovenčina
 				months: [
 					"Január", "Február", "Marec", "Apríl", "Máj", "Jún", "Júl", "August", "September", "Október", "November", "December"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Ne", "Po", "Ut", "St", "Št", "Pi", "So"
-				],
-				dayOfWeek: ["Nedeľa", "Pondelok", "Utorok", "Streda", "Štvrtok", "Piatok", "Sobota"]
+				]
 			},
 			sq: { //Albanian (Shqip)
 				months: [
-					"Janar", "Shkurt", "Mars", "Prill", "Maj", "Qershor", "Korrik", "Gusht", "Shtator", "Tetor", "Nëntor", "Dhjetor"
+					"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
 				],
-				dayOfWeekShort: [
-					"Die", "Hën", "Mar", "Mër", "Enj", "Pre", "Shtu"
-				],
-				dayOfWeek: ["E Diel", "E Hënë", "E Martē", "E Mërkurë", "E Enjte", "E Premte", "E Shtunë"]
+				dayOfWeek: [
+					"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
+				]
 			},
 			'sr-YU': { //Serbian (Srpski)
 				months: [
 					"Januar", "Februar", "Mart", "April", "Maj", "Jun", "Jul", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Ned", "Pon", "Uto", "Sre", "čet", "Pet", "Sub"
-				],
-				dayOfWeek: ["Nedelja","Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak", "Subota"]
+				]
 			},
 			sr: { //Serbian Cyrillic (Српски)
 				months: [
 					"јануар", "фебруар", "март", "април", "мај", "јун", "јул", "август", "септембар", "октобар", "новембар", "децембар"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"нед", "пон", "уто", "сре", "чет", "пет", "суб"
-				],
-				dayOfWeek: ["Недеља","Понедељак", "Уторак", "Среда", "Четвртак", "Петак", "Субота"]
+				]
 			},
 			sv: { //Svenska
 				months: [
 					"Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"
-				],
-				dayOfWeek: ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"]
+				]
 			},
 			'zh-TW': { //Traditional Chinese (繁體中文)
 				months: [
 					"一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"日", "一", "二", "三", "四", "五", "六"
-				],
-				dayOfWeek: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+				]
 			},
 			zh: { //Simplified Chinese (简体中文)
 				months: [
 					"一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"日", "一", "二", "三", "四", "五", "六"
-				],
-				dayOfWeek: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+				]
 			},
 			he: { //Hebrew (עברית)
 				months: [
 					'ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					'א\'', 'ב\'', 'ג\'', 'ד\'', 'ה\'', 'ו\'', 'שבת'
-				],
-				dayOfWeek: ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת", "ראשון"]
+				]
 			},
 			hy: { // Armenian
 				months: [
 					"Հունվար", "Փետրվար", "Մարտ", "Ապրիլ", "Մայիս", "Հունիս", "Հուլիս", "Օգոստոս", "Սեպտեմբեր", "Հոկտեմբեր", "Նոյեմբեր", "Դեկտեմբեր"
 				],
-				dayOfWeekShort: [
+				dayOfWeek: [
 					"Կի", "Երկ", "Երք", "Չոր", "Հնգ", "Ուրբ", "Շբթ"
-				],
-				dayOfWeek: ["Կիրակի", "Երկուշաբթի", "Երեքշաբթի", "Չորեքշաբթի", "Հինգշաբթի", "Ուրբաթ", "Շաբաթ"]
-			},
-			kg: { // Kyrgyz
-				months: [
-					'Үчтүн айы', 'Бирдин айы', 'Жалган Куран', 'Чын Куран', 'Бугу', 'Кулжа', 'Теке', 'Баш Оона', 'Аяк Оона', 'Тогуздун айы', 'Жетинин айы', 'Бештин айы'
-				],
-				dayOfWeekShort: [
-					"Жек", "Дүй", "Шей", "Шар", "Бей", "Жум", "Ише"
-				],
-				dayOfWeek: [
-					"Жекшемб", "Дүйшөмб", "Шейшемб", "Шаршемб", "Бейшемби", "Жума", "Ишенб"
 				]
 			},
-			rm: { // Romansh
-				months: [
-					"Schaner", "Favrer", "Mars", "Avrigl", "Matg", "Zercladur", "Fanadur", "Avust", "Settember", "October", "November", "December"
-				],
-				dayOfWeekShort: [
-					"Du", "Gli", "Ma", "Me", "Gie", "Ve", "So"
-				],
-				dayOfWeek: [
-					"Dumengia", "Glindesdi", "Mardi", "Mesemna", "Gievgia", "Venderdi", "Sonda"
-				]
-			},
-			ka: { // Georgian
-				months: [
-					'იანვარი', 'თებერვალი', 'მარტი', 'აპრილი', 'მაისი', 'ივნისი', 'ივლისი', 'აგვისტო', 'სექტემბერი', 'ოქტომბერი', 'ნოემბერი', 'დეკემბერი'
-				],
-				dayOfWeekShort: [
-					"კვ", "ორშ", "სამშ", "ოთხ", "ხუთ", "პარ", "შაბ"
-				],
-				dayOfWeek: ["კვირა", "ორშაბათი", "სამშაბათი", "ოთხშაბათი", "ხუთშაბათი", "პარასკევი", "შაბათი"]
-			},
+            kg: { // Kyrgyz
+                months: [
+                    'Үчтүн айы', 'Бирдин айы', 'Жалган Куран', 'Чын Куран', 'Бугу', 'Кулжа', 'Теке', 'Баш Оона', 'Аяк Оона', 'Тогуздун айы', 'Жетинин айы', 'Бештин айы'
+                ],
+                dayOfWeek: [
+                    "Жек", "Дүй", "Шей", "Шар", "Бей", "Жум", "Ише"
+                ]
+            }
 		},
 		value: '',
-		rtl: false,
+		lang: 'en',
 
 		format:	'Y/m/d H:i',
 		formatTime:	'H:i',
@@ -564,7 +480,6 @@
 		onSelectDate: function () {},
 		onSelectTime: function () {},
 		onChangeMonth: function () {},
-		onGetWeekOfYear: function () {},
 		onChangeYear: function () {},
 		onChangeDateTime: function () {},
 		onShow: function () {},
@@ -605,66 +520,14 @@
 		weekends: [],
 		highlightedDates: [],
 		highlightedPeriods: [],
-		allowDates : [],
-		allowDateRe : null,
 		disabledDates : [],
 		disabledWeekDays: [],
 		yearOffset: 0,
 		beforeShowDay: null,
 
 		enterLikeTab: true,
-		showApplyButton: false
+        showApplyButton: false
 	};
-
-	var dateHelper = null,
-		globalLocaleDefault = 'en',
-		globalLocale = 'en';
-
-	var dateFormatterOptionsDefault = {
-		meridiem: ['AM', 'PM']
-	};
-
-	var initDateFormatter = function(){
-		var locale = default_options.i18n[globalLocale],
-			opts = {
-				days: locale.dayOfWeek,
-				daysShort: locale.dayOfWeekShort,
-				months: locale.months,
-				monthsShort: $.map(locale.months, function(n){ return n.substring(0, 3) }),
-			};
-
-	 	dateHelper = new DateFormatter({
-			dateSettings: $.extend({}, dateFormatterOptionsDefault, opts)
-		});
-	};
-
-	// for locale settings
-	$.datetimepicker = {
-		setLocale: function(locale){
-			var newLocale = default_options.i18n[locale]?locale:globalLocaleDefault;
-			if(globalLocale != newLocale){
-				globalLocale = newLocale;
-				// reinit date formatter
-				initDateFormatter();
-			}
-		},
-		setDateFormatter: function(dateFormatter) {
-			dateHelper = dateFormatter;
-		},
-		RFC_2822: 'D, d M Y H:i:s O',
-		ATOM: 'Y-m-d\TH:i:sP',
-		ISO_8601: 'Y-m-d\TH:i:sO',
-		RFC_822: 'D, d M y H:i:s O',
-		RFC_850: 'l, d-M-y H:i:s T',
-		RFC_1036: 'D, d M y H:i:s O',
-		RFC_1123: 'D, d M Y H:i:s O',
-		RSS: 'D, d M Y H:i:s O',
-		W3C: 'Y-m-d\TH:i:sP'
-	};
-
-	// first init date formatter
-	initDateFormatter();
-
 	// fix for ie8
 	if (!window.getComputedStyle) {
 		window.getComputedStyle = function (el, pseudo) {
@@ -712,6 +575,7 @@
 					}
 					return out;
 				},
+				move = 0,
 				timebox,
 				parentHeight,
 				height,
@@ -759,12 +623,12 @@
 						startTopScroll = parseInt(scroller.css('margin-top'), 10);
 						h1 = scrollbar[0].offsetHeight;
 
-						if (event.type === 'mousedown' || event.type === 'touchstart') {
+						if (event.type === 'mousedown') {
 							if (document) {
 								$(document.body).addClass('xdsoft_noselect');
 							}
-							$([document.body, window]).on('touchend mouseup.xdsoft_scroller', function arguments_callee() {
-								$([document.body, window]).off('touchend mouseup.xdsoft_scroller', arguments_callee)
+							$([document.body, window]).on('mouseup.xdsoft_scroller', function arguments_callee() {
+								$([document.body, window]).off('mouseup.xdsoft_scroller', arguments_callee)
 									.off('mousemove.xdsoft_scroller', calcOffset)
 									.removeClass('xdsoft_noselect');
 							});
@@ -781,7 +645,7 @@
 							calcOffset(event);
 						}
 					})
-					.on('touchend touchcancel', function () {
+					.on('touchend touchcancel', function (event) {
 						touchStart =  false;
 						startTopScroll = 0;
 					});
@@ -843,7 +707,7 @@
 					}
 				});
 
-				timeboxparent.on('touchend touchcancel', function () {
+				timeboxparent.on('touchend touchcancel', function (event) {
 					start = false;
 					startTop = 0;
 				});
@@ -852,9 +716,8 @@
 		});
 	};
 
-	$.fn.datetimepicker = function (opt, opt2) {
-		var result = this,
-			KEY0 = 48,
+	$.fn.datetimepicker = function (opt) {
+		var KEY0 = 48,
 			KEY9 = 57,
 			_KEY0 = 96,
 			_KEY9 = 105,
@@ -883,7 +746,7 @@
 
 			lazyInit = function (input) {
 				input
-					.on('open.xdsoft focusin.xdsoft mousedown.xdsoft touchstart', function initOnActionCallback() {
+					.on('open.xdsoft focusin.xdsoft mousedown.xdsoft', function initOnActionCallback(event) {
 						if (input.is(':disabled') || input.data('xdsoft_datetimepicker')) {
 							return;
 						}
@@ -894,7 +757,7 @@
 								createDateTimePicker(input);
 							}
 							input
-								.off('open.xdsoft focusin.xdsoft mousedown.xdsoft touchstart', initOnActionCallback)
+								.off('open.xdsoft focusin.xdsoft mousedown.xdsoft', initOnActionCallback)
 								.trigger('open.xdsoft');
 						}, 100);
 					});
@@ -912,21 +775,21 @@
 				timepicker = $('<div class="xdsoft_timepicker active"><button type="button" class="xdsoft_prev"></button><div class="xdsoft_time_box"></div><button type="button" class="xdsoft_next"></button></div>'),
 				timeboxparent = timepicker.find('.xdsoft_time_box').eq(0),
 				timebox = $('<div class="xdsoft_time_variant"></div>'),
-				applyButton = $('<button type="button" class="xdsoft_save_selected blue-gradient-button">Save Selected</button>'),
-
+                applyButton = $('<button type="button" class="xdsoft_save_selected blue-gradient-button">Save Selected</button>'),
+				/*scrollbar = $('<div class="xdsoft_scrollbar"></div>'),
+				scroller = $('<div class="xdsoft_scroller"></div>'),*/
 				monthselect = $('<div class="xdsoft_select xdsoft_monthselect"><div></div></div>'),
 				yearselect = $('<div class="xdsoft_select xdsoft_yearselect"><div></div></div>'),
 				triggerAfterOpen = false,
 				XDSoft_datetime,
-
+				//scroll_element,
 				xchangeTimer,
 				timerclick,
 				current_time_index,
 				setPos,
 				timer = 0,
-				_xdsoft_datetime,
-				forEachAncestorOf,
-				throttle;
+				timer1 = 0,
+				_xdsoft_datetime;
 
 			if (options.id) {
 				datetimepicker.attr('id', options.id);
@@ -936,9 +799,6 @@
 			}
 			if (options.weeks) {
 				datetimepicker.addClass('xdsoft_showweeks');
-			}
-			if (options.rtl) {
-				datetimepicker.addClass('xdsoft_rtl');
 			}
 
 			datetimepicker.addClass('xdsoft_' + options.theme);
@@ -953,7 +813,7 @@
 
 			mounth_picker
 				.find('.xdsoft_month,.xdsoft_year')
-					.on('touchstart mousedown.xdsoft', function (event) {
+					.on('mousedown.xdsoft', function (event) {
 					var select = $(this).find('.xdsoft_select').eq(0),
 						val = 0,
 						top = 0,
@@ -985,11 +845,12 @@
 			mounth_picker
 				.find('.xdsoft_select')
 					.xdsoftScroller()
-				.on('touchstart mousedown.xdsoft', function (event) {
+				.on('mousedown.xdsoft', function (event) {
 					event.stopPropagation();
 					event.preventDefault();
 				})
-				.on('touchstart mousedown.xdsoft', '.xdsoft_option', function () {
+				.on('mousedown.xdsoft', '.xdsoft_option', function (event) {
+
 					if (_xdsoft_datetime.currentTime === undefined || _xdsoft_datetime.currentTime === null) {
 						_xdsoft_datetime.currentTime = _xdsoft_datetime.now();
 					}
@@ -1011,13 +872,49 @@
 					}
 				});
 
-			datetimepicker.getValue = function () {
-				return _xdsoft_datetime.getCurrentTime();
-			};
-
 			datetimepicker.setOptions = function (_options) {
-				var highlightedDates = {};
-
+				var highlightedDates = {},
+					getCaretPos = function (input) {
+						try {
+							if (document.selection && document.selection.createRange) {
+								var range = document.selection.createRange();
+								return range.getBookmark().charCodeAt(2) - 2;
+							}
+							if (input.setSelectionRange) {
+								return input.selectionStart;
+							}
+						} catch (e) {
+							return 0;
+						}
+					},
+					setCaretPos = function (node, pos) {
+						node = (typeof node === "string" || node instanceof String) ? document.getElementById(node) : node;
+						if (!node) {
+							return false;
+						}
+						if (node.createTextRange) {
+							var textRange = node.createTextRange();
+							textRange.collapse(true);
+							textRange.moveEnd('character', pos);
+							textRange.moveStart('character', pos);
+							textRange.select();
+							return true;
+						}
+						if (node.setSelectionRange) {
+							node.setSelectionRange(pos, pos);
+							return true;
+						}
+						return false;
+					},
+					isValidValue = function (mask, value) {
+						var reg = mask
+							.replace(/([\[\]\/\{\}\(\)\-\.\+]{1})/g, '\\$1')
+							.replace(/_/g, '{digit+}')
+							.replace(/([0-9]{1})/g, '{digit$1}')
+							.replace(/\{digit([0-9]{1})\}/g, '[0-$1_]{1}')
+							.replace(/\{digit[\+]\}/g, '[0-9_]{1}');
+						return (new RegExp(reg)).test(value);
+					};
 				options = $.extend(true, {}, options, _options);
 
 				if (_options.allowTimes && $.isArray(_options.allowTimes) && _options.allowTimes.length) {
@@ -1028,20 +925,12 @@
 					options.weekends = $.extend(true, [], _options.weekends);
 				}
 
-				if (_options.allowDates && $.isArray(_options.allowDates) && _options.allowDates.length) {
-					options.allowDates = $.extend(true, [], _options.allowDates);
-				}
-
-				if (_options.allowDateRe && Object.prototype.toString.call(_options.allowDateRe)==="[object String]") {
-					options.allowDateRe = new RegExp(_options.allowDateRe);
-				}
-
 				if (_options.highlightedDates && $.isArray(_options.highlightedDates) && _options.highlightedDates.length) {
 					$.each(_options.highlightedDates, function (index, value) {
 						var splitData = $.map(value.split(','), $.trim),
 							exDesc,
-							hDate = new HighlightedDate(dateHelper.parseDate(splitData[0], options.formatDate), splitData[1], splitData[2]), // date, desc, style
-							keyDate = dateHelper.formatDate(hDate.date, options.formatDate);
+							hDate = new HighlightedDate(Date.parseDate(splitData[0], options.formatDate), splitData[1], splitData[2]), // date, desc, style
+							keyDate = hDate.date.dateFormat(options.formatDate);
 						if (highlightedDates[keyDate] !== undefined) {
 							exDesc = highlightedDates[keyDate].desc;
 							if (exDesc && exDesc.length && hDate.desc && hDate.desc.length) {
@@ -1058,30 +947,18 @@
 				if (_options.highlightedPeriods && $.isArray(_options.highlightedPeriods) && _options.highlightedPeriods.length) {
 					highlightedDates = $.extend(true, [], options.highlightedDates);
 					$.each(_options.highlightedPeriods, function (index, value) {
-						var dateTest, // start date
-							dateEnd,
-							desc,
+						var splitData = $.map(value.split(','), $.trim),
+							dateTest = Date.parseDate(splitData[0], options.formatDate), // start date
+							dateEnd = Date.parseDate(splitData[1], options.formatDate),
+							desc = splitData[2],
 							hDate,
 							keyDate,
 							exDesc,
-							style;
-						if ($.isArray(value)) {
-							dateTest = value[0];
-							dateEnd = value[1];
-							desc = value[2];
-							style = value[3];
-						}
-						else {
-							var splitData = $.map(value.split(','), $.trim);
-							dateTest = dateHelper.parseDate(splitData[0], options.formatDate);
-							dateEnd = dateHelper.parseDate(splitData[1], options.formatDate);
-							desc = splitData[2];
 							style = splitData[3];
-						}
 
 						while (dateTest <= dateEnd) {
 							hDate = new HighlightedDate(dateTest, desc, style);
-							keyDate = dateHelper.formatDate(dateTest, options.formatDate);
+							keyDate = dateTest.dateFormat(options.formatDate);
 							dateTest.setDate(dateTest.getDate() + 1);
 							if (highlightedDates[keyDate] !== undefined) {
 								exDesc = highlightedDates[keyDate].desc;
@@ -1102,7 +979,7 @@
 				}
 
 				if (_options.disabledWeekDays && $.isArray(_options.disabledWeekDays) && _options.disabledWeekDays.length) {
-					options.disabledWeekDays = $.extend(true, [], _options.disabledWeekDays);
+				    options.disabledWeekDays = $.extend(true, [], _options.disabledWeekDays);
 				}
 
 				if ((options.open || options.opened) && (!options.inline)) {
@@ -1149,12 +1026,12 @@
 					timeboxparent.xdsoftScroller('hide');
 				}
 
-				if (options.minDate && /^[\+\-](.*)$/.test(options.minDate)) {
-					options.minDate = dateHelper.formatDate(_xdsoft_datetime.strToDateTime(options.minDate), options.formatDate);
+				if (options.minDate && /^-(.*)$/.test(options.minDate)) {
+					options.minDate = _xdsoft_datetime.strToDateTime(options.minDate).dateFormat(options.formatDate);
 				}
 
-				if (options.maxDate &&  /^[\+\-](.*)$/.test(options.maxDate)) {
-					options.maxDate = dateHelper.formatDate(_xdsoft_datetime.strToDateTime(options.maxDate), options.formatDate);
+				if (options.maxDate &&  /^\+(.*)$/.test(options.maxDate)) {
+					options.maxDate = _xdsoft_datetime.strToDateTime(options.maxDate).dateFormat(options.formatDate);
 				}
 
 				applyButton.toggle(options.showApplyButton);
@@ -1171,37 +1048,104 @@
 					.find('.' + options.next)
 						.css('visibility', !options.nextButton ? 'hidden' : 'visible');
 
-				setMask(options);
+				if (options.mask) {
+					input.off('keydown.xdsoft');
 
+					if (options.mask === true) {
+						options.mask = options.format
+							.replace(/Y/g, '9999')
+							.replace(/F/g, '9999')
+							.replace(/m/g, '19')
+							.replace(/d/g, '39')
+							.replace(/H/g, '29')
+							.replace(/i/g, '59')
+							.replace(/s/g, '59');
+					}
+
+					if ($.type(options.mask) === 'string') {
+						if (!isValidValue(options.mask, input.val())) {
+							input.val(options.mask.replace(/[0-9]/g, '_'));
+						}
+
+						input.on('keydown.xdsoft', function (event) {
+							var val = this.value,
+								key = event.which,
+								pos,
+								digit;
+
+							if (((key >= KEY0 && key <= KEY9) || (key >= _KEY0 && key <= _KEY9)) || (key === BACKSPACE || key === DEL)) {
+								pos = getCaretPos(this);
+								digit = (key !== BACKSPACE && key !== DEL) ? String.fromCharCode((_KEY0 <= key && key <= _KEY9) ? key - KEY0 : key) : '_';
+
+								if ((key === BACKSPACE || key === DEL) && pos) {
+									pos -= 1;
+									digit = '_';
+								}
+
+								while (/[^0-9_]/.test(options.mask.substr(pos, 1)) && pos < options.mask.length && pos > 0) {
+									pos += (key === BACKSPACE || key === DEL) ? -1 : 1;
+								}
+
+								val = val.substr(0, pos) + digit + val.substr(pos + 1);
+								if ($.trim(val) === '') {
+									val = options.mask.replace(/[0-9]/g, '_');
+								} else {
+									if (pos === options.mask.length) {
+										event.preventDefault();
+										return false;
+									}
+								}
+
+								pos += (key === BACKSPACE || key === DEL) ? 0 : 1;
+								while (/[^0-9_]/.test(options.mask.substr(pos, 1)) && pos < options.mask.length && pos > 0) {
+									pos += (key === BACKSPACE || key === DEL) ? -1 : 1;
+								}
+
+								if (isValidValue(options.mask, val)) {
+									this.value = val;
+									setCaretPos(this, pos);
+								} else if ($.trim(val) === '') {
+									this.value = options.mask.replace(/[0-9]/g, '_');
+								} else {
+									input.trigger('error_input.xdsoft');
+								}
+							} else {
+								if (([AKEY, CKEY, VKEY, ZKEY, YKEY].indexOf(key) !== -1 && ctrlDown) || [ESC, ARROWUP, ARROWDOWN, ARROWLEFT, ARROWRIGHT, F5, CTRLKEY, TAB, ENTER].indexOf(key) !== -1) {
+									return true;
+								}
+							}
+
+							event.preventDefault();
+							return false;
+						});
+					}
+				}
 				if (options.validateOnBlur) {
 					input
 						.off('blur.xdsoft')
 						.on('blur.xdsoft', function () {
-							if (options.allowBlank && (!$.trim($(this).val()).length || (typeof options.mask == "string" && $.trim($(this).val()) === options.mask.replace(/[0-9]/g, '_')))) {
+							if (options.allowBlank && !$.trim($(this).val()).length) {
 								$(this).val(null);
 								datetimepicker.data('xdsoft_datetime').empty();
-							} else {
-								var d = dateHelper.parseDate($(this).val(), options.format);
-								if (d) { // parseDate() may skip some invalid parts like date or time, so make it clear for user: show parsed date/time
-									$(this).val(dateHelper.formatDate(d, options.format));
+							} else if (!Date.parseDate($(this).val(), options.format)) {
+								var splittedHours   = +([$(this).val()[0], $(this).val()[1]].join('')),
+									splittedMinutes = +([$(this).val()[2], $(this).val()[3]].join(''));
+
+								// parse the numbers as 0312 => 03:12
+								if (!options.datepicker && options.timepicker && splittedHours >= 0 && splittedHours < 24 && splittedMinutes >= 0 && splittedMinutes < 60) {
+									$(this).val([splittedHours, splittedMinutes].map(function (item) {
+										return item > 9 ? item : '0' + item;
+									}).join(':'));
 								} else {
-									var splittedHours   = +([$(this).val()[0], $(this).val()[1]].join('')),
-										splittedMinutes = +([$(this).val()[2], $(this).val()[3]].join(''));
-	
-									// parse the numbers as 0312 => 03:12
-									if (!options.datepicker && options.timepicker && splittedHours >= 0 && splittedHours < 24 && splittedMinutes >= 0 && splittedMinutes < 60) {
-										$(this).val([splittedHours, splittedMinutes].map(function (item) {
-											return item > 9 ? item : '0' + item;
-										}).join(':'));
-									} else {
-										$(this).val(dateHelper.formatDate(_xdsoft_datetime.now(), options.format));
-									}
+									$(this).val((_xdsoft_datetime.now()).dateFormat(options.format));
 								}
+
+								datetimepicker.data('xdsoft_datetime').setCurrentTime($(this).val());
+							} else {
 								datetimepicker.data('xdsoft_datetime').setCurrentTime($(this).val());
 							}
 
 							datetimepicker.trigger('changedatetime.xdsoft');
-							datetimepicker.trigger('close.xdsoft');
 						});
 				}
 				options.dayOfWeekStartPrev = (options.dayOfWeekStart === 0) ? 6 : options.dayOfWeekStart - 1;
@@ -1213,7 +1157,7 @@
 
 			datetimepicker
 				.data('options', options)
-				.on('touchstart mousedown.xdsoft', function (event) {
+				.on('mousedown.xdsoft', function (event) {
 					event.stopPropagation();
 					event.preventDefault();
 					yearselect.hide();
@@ -1279,20 +1223,8 @@
 					return !isNaN(d.getTime());
 				};
 
-				_this.setCurrentTime = function (dTime, requireValidDate) {
-					if (typeof dTime === 'string') {
-						_this.currentTime = _this.strToDateTime(dTime);
-					}
-					else if (_this.isValidDate(dTime)) {
-						_this.currentTime = dTime;
-					}
-					else if (!dTime && !requireValidDate && options.allowBlank) {
-						_this.currentTime = null;
-					}
-					else {
-						_this.currentTime = _this.now();
-					}
-					
+				_this.setCurrentTime = function (dTime) {
+					_this.currentTime = (typeof dTime === 'string') ? _this.strToDateTime(dTime) : _this.isValidDate(dTime) ? dTime : _this.now();
 					datetimepicker.trigger('xchange.xdsoft');
 				};
 
@@ -1365,16 +1297,7 @@
 				};
 
 				_this.getWeekOfYear = function (datetime) {
-					if (options.onGetWeekOfYear && $.isFunction(options.onGetWeekOfYear)) {
-						var week = options.onGetWeekOfYear.call(datetimepicker, datetime);
-						if (typeof week !== 'undefined') {
-							return week;
-						}
-					}
 					var onejan = new Date(datetime.getFullYear(), 0, 1);
-					//First week of the year is th one with the first Thursday according to ISO8601
-					if(onejan.getDay()!=4)
-						onejan.setMonth(0, 1 + ((4 - onejan.getDay()+ 7) % 7));
 					return Math.ceil((((datetime - onejan) / 86400000) + onejan.getDay() + 1) / 7);
 				};
 
@@ -1387,13 +1310,13 @@
 
 					tmpDate = /^(\+|\-)(.*)$/.exec(sDateTime);
 					if (tmpDate) {
-						tmpDate[2] = dateHelper.parseDate(tmpDate[2], options.formatDate);
+						tmpDate[2] = Date.parseDate(tmpDate[2], options.formatDate);
 					}
 					if (tmpDate  && tmpDate[2]) {
 						timeOffset = tmpDate[2].getTime() - (tmpDate[2].getTimezoneOffset()) * 60000;
 						currentTime = new Date((_this.now(true)).getTime() + parseInt(tmpDate[1] + '1', 10) * timeOffset);
 					} else {
-						currentTime = sDateTime ? dateHelper.parseDate(sDateTime, options.format) : _this.now();
+						currentTime = sDateTime ? Date.parseDate(sDateTime, options.format) : _this.now();
 					}
 
 					if (!_this.isValidDate(currentTime)) {
@@ -1408,7 +1331,7 @@
 						return sDate;
 					}
 
-					var currentTime = sDate ? dateHelper.parseDate(sDate, options.formatDate) : _this.now(true);
+					var currentTime = sDate ? Date.parseDate(sDate, options.formatDate) : _this.now(true);
 					if (!_this.isValidDate(currentTime)) {
 						currentTime = _this.now(true);
 					}
@@ -1419,7 +1342,7 @@
 					if (sTime && sTime instanceof Date && _this.isValidDate(sTime)) {
 						return sTime;
 					}
-					var currentTime = sTime ? dateHelper.parseDate(sTime, options.formatTime) : _this.now(true);
+					var currentTime = sTime ? Date.parseDate(sTime, options.formatTime) : _this.now(true);
 					if (!_this.isValidDate(currentTime)) {
 						currentTime = _this.now(true);
 					}
@@ -1427,25 +1350,25 @@
 				};
 
 				_this.str = function () {
-					return dateHelper.formatDate(_this.currentTime, options.format);
+					return _this.currentTime.dateFormat(options.format);
 				};
 				_this.currentTime = this.now();
 			};
 
 			_xdsoft_datetime = new XDSoft_datetime();
 
-			applyButton.on('touchend click', function (e) {//pathbrite
-				e.preventDefault();
-				datetimepicker.data('changed', true);
-				_xdsoft_datetime.setCurrentTime(getCurrentValue());
-				input.val(_xdsoft_datetime.str());
-				datetimepicker.trigger('close.xdsoft');
-			});
+			applyButton.on('click', function (e) {//pathbrite
+                e.preventDefault();
+                datetimepicker.data('changed', true);
+                _xdsoft_datetime.setCurrentTime(getCurrentValue());
+                input.val(_xdsoft_datetime.str());
+                datetimepicker.trigger('close.xdsoft');
+            });
 			mounth_picker
 				.find('.xdsoft_today_button')
-				.on('touchend mousedown.xdsoft', function () {
+				.on('mousedown.xdsoft', function () {
 					datetimepicker.data('changed', true);
-					_xdsoft_datetime.setCurrentTime(0, true);
+					_xdsoft_datetime.setCurrentTime(0);
 					datetimepicker.trigger('afterOpen.xdsoft');
 				}).on('dblclick.xdsoft', function () {
 					var currentDate = _xdsoft_datetime.getCurrentTime(), minDate, maxDate;
@@ -1461,12 +1384,11 @@
 						return;
 					}
 					input.val(_xdsoft_datetime.str());
-					input.trigger('change');
 					datetimepicker.trigger('close.xdsoft');
 				});
 			mounth_picker
 				.find('.xdsoft_prev,.xdsoft_next')
-				.on('touchend mousedown.xdsoft', function () {
+				.on('mousedown.xdsoft', function () {
 					var $this = $(this),
 						timer = 0,
 						stop = false;
@@ -1484,16 +1406,16 @@
 						}
 					}(500));
 
-					$([document.body, window]).on('touchend mouseup.xdsoft', function arguments_callee2() {
+					$([document.body, window]).on('mouseup.xdsoft', function arguments_callee2() {
 						clearTimeout(timer);
 						stop = true;
-						$([document.body, window]).off('touchend mouseup.xdsoft', arguments_callee2);
+						$([document.body, window]).off('mouseup.xdsoft', arguments_callee2);
 					});
 				});
 
 			timepicker
 				.find('.xdsoft_prev,.xdsoft_next')
-				.on('touchend mousedown.xdsoft', function () {
+				.on('mousedown.xdsoft', function () {
 					var $this = $(this),
 						timer = 0,
 						stop = false,
@@ -1507,30 +1429,17 @@
 						} else if ($this.hasClass(options.prev) && top - options.timeHeightInTimePicker >= 0) {
 							timebox.css('marginTop', '-' + (top - options.timeHeightInTimePicker) + 'px');
 						}
-                        /**
-                         * Fixed bug:
-                         * When using css3 transition, it will cause a bug that you cannot scroll the timepicker list.
-                         * The reason is that the transition-duration time, if you set it to 0, all things fine, otherwise, this
-                         * would cause a bug when you use jquery.css method.
-                         * Let's say: * { transition: all .5s ease; }
-                         * jquery timebox.css('marginTop') will return the original value which is before you clicking the next/prev button,
-                         * meanwhile the timebox[0].style.marginTop will return the right value which is after you clicking the
-                         * next/prev button.
-                         * 
-                         * What we should do:
-                         * Replace timebox.css('marginTop') with timebox[0].style.marginTop.
-                         */
-                        timeboxparent.trigger('scroll_element.xdsoft_scroller', [Math.abs(parseInt(timebox[0].style.marginTop, 10) / (height - pheight))]);
+						timeboxparent.trigger('scroll_element.xdsoft_scroller', [Math.abs(parseInt(timebox.css('marginTop'), 10) / (height - pheight))]);
 						period = (period > 10) ? 10 : period - 10;
 						if (!stop) {
 							timer = setTimeout(arguments_callee4, v || period);
 						}
 					}(500));
-					$([document.body, window]).on('touchend mouseup.xdsoft', function arguments_callee5() {
+					$([document.body, window]).on('mouseup.xdsoft', function arguments_callee5() {
 						clearTimeout(timer);
 						stop = true;
 						$([document.body, window])
-							.off('touchend mouseup.xdsoft', arguments_callee5);
+							.off('mouseup.xdsoft', arguments_callee5);
 					});
 				});
 
@@ -1542,10 +1451,6 @@
 					xchangeTimer = setTimeout(function () {
 
 						if (_xdsoft_datetime.currentTime === undefined || _xdsoft_datetime.currentTime === null) {
-							//In case blanks are allowed, delay construction until we have a valid date 
-							if (options.allowBlank)
-								return;
-								
 							_xdsoft_datetime.currentTime = _xdsoft_datetime.now();
 						}
 
@@ -1581,7 +1486,7 @@
 						}
 
 						for (j = 0; j < 7; j += 1) {
-							table += '<th>' + options.i18n[globalLocale].dayOfWeekShort[(j + options.dayOfWeekStart) % 7] + '</th>';
+							table += '<th>' + options.i18n[options.lang].dayOfWeek[(j + options.dayOfWeekStart) % 7] + '</th>';
 						}
 
 						table += '</tr></thead>';
@@ -1616,22 +1521,12 @@
 								customDateSettings = null;
 							}
 
-							if(options.allowDateRe && Object.prototype.toString.call(options.allowDateRe) === "[object RegExp]"){
-								if(!options.allowDateRe.test(dateHelper.formatDate(start, options.formatDate))){
-									classes.push('xdsoft_disabled');
-								}
-							} else if(options.allowDates && options.allowDates.length>0){
-								if(options.allowDates.indexOf(dateHelper.formatDate(start, options.formatDate)) === -1){
-									classes.push('xdsoft_disabled');
-								}
-							} else if ((maxDate !== false && start > maxDate) || (minDate !== false && start < minDate) || (customDateSettings && customDateSettings[0] === false)) {
+							if ((maxDate !== false && start > maxDate) || (minDate !== false && start < minDate) || (customDateSettings && customDateSettings[0] === false)) {
 								classes.push('xdsoft_disabled');
-							} else if (options.disabledDates.indexOf(dateHelper.formatDate(start, options.formatDate)) !== -1) {
+							} else if (options.disabledDates.indexOf(start.dateFormat(options.formatDate)) !== -1) {
 								classes.push('xdsoft_disabled');
 							} else if (options.disabledWeekDays.indexOf(day) !== -1) {
-								classes.push('xdsoft_disabled');
-							}else if (input.is('[readonly]')) {
-								classes.push('xdsoft_disabled');
+							    classes.push('xdsoft_disabled');
 							}
 
 							if (customDateSettings && customDateSettings[1] !== "") {
@@ -1642,20 +1537,20 @@
 								classes.push('xdsoft_other_month');
 							}
 
-							if ((options.defaultSelect || datetimepicker.data('changed')) && dateHelper.formatDate(_xdsoft_datetime.currentTime, options.formatDate) === dateHelper.formatDate(start, options.formatDate)) {
+							if ((options.defaultSelect || datetimepicker.data('changed')) && _xdsoft_datetime.currentTime.dateFormat(options.formatDate) === start.dateFormat(options.formatDate)) {
 								classes.push('xdsoft_current');
 							}
 
-							if (dateHelper.formatDate(today, options.formatDate) === dateHelper.formatDate(start, options.formatDate)) {
+							if (today.dateFormat(options.formatDate) === start.dateFormat(options.formatDate)) {
 								classes.push('xdsoft_today');
 							}
 
-							if (start.getDay() === 0 || start.getDay() === 6 || options.weekends.indexOf(dateHelper.formatDate(start, options.formatDate)) !== -1) {
+							if (start.getDay() === 0 || start.getDay() === 6 || options.weekends.indexOf(start.dateFormat(options.formatDate)) !== -1) {
 								classes.push('xdsoft_weekend');
 							}
 
-							if (options.highlightedDates[dateHelper.formatDate(start, options.formatDate)] !== undefined) {
-								hDate = options.highlightedDates[dateHelper.formatDate(start, options.formatDate)];
+							if (options.highlightedDates[start.dateFormat(options.formatDate)] !== undefined) {
+								hDate = options.highlightedDates[start.dateFormat(options.formatDate)];
 								classes.push(hDate.style === undefined ? 'xdsoft_highlighted_default' : hDate.style);
 								description = hDate.desc === undefined ? '' : hDate.desc;
 							}
@@ -1687,17 +1582,15 @@
 
 						calendar.html(table);
 
-						mounth_picker.find('.xdsoft_label span').eq(0).text(options.i18n[globalLocale].months[_xdsoft_datetime.currentTime.getMonth()]);
+						mounth_picker.find('.xdsoft_label span').eq(0).text(options.i18n[options.lang].months[_xdsoft_datetime.currentTime.getMonth()]);
 						mounth_picker.find('.xdsoft_label span').eq(1).text(_xdsoft_datetime.currentTime.getFullYear());
 
 						// generate timebox
 						time = '';
 						h = '';
 						m = '';
-
 						line_time = function line_time(h, m) {
-							var now = _xdsoft_datetime.now(), optionDateTime, current_time,
-								isALlowTimesInit = options.allowTimes && $.isArray(options.allowTimes) && options.allowTimes.length;
+							var now = _xdsoft_datetime.now(), optionDateTime, current_time;
 							now.setHours(h);
 							h = parseInt(now.getHours(), 10);
 							now.setMinutes(m);
@@ -1705,23 +1598,19 @@
 							optionDateTime = new Date(_xdsoft_datetime.currentTime);
 							optionDateTime.setHours(h);
 							optionDateTime.setMinutes(m);
-							classes = [];			
+							classes = [];
 							if ((options.minDateTime !== false && options.minDateTime > optionDateTime) || (options.maxTime !== false && _xdsoft_datetime.strtotime(options.maxTime).getTime() < now.getTime()) || (options.minTime !== false && _xdsoft_datetime.strtotime(options.minTime).getTime() > now.getTime())) {
 								classes.push('xdsoft_disabled');
-							} else if ((options.minDateTime !== false && options.minDateTime > optionDateTime) || ((options.disabledMinTime !== false && now.getTime() > _xdsoft_datetime.strtotime(options.disabledMinTime).getTime()) && (options.disabledMaxTime !== false && now.getTime() < _xdsoft_datetime.strtotime(options.disabledMaxTime).getTime()))) {
-								classes.push('xdsoft_disabled');
-							} else if (input.is('[readonly]')) {
+							}
+							if ((options.minDateTime !== false && options.minDateTime > optionDateTime) || ((options.disabledMinTime !== false && now.getTime() > _xdsoft_datetime.strtotime(options.disabledMinTime).getTime()) && (options.disabledMaxTime !== false && now.getTime() < _xdsoft_datetime.strtotime(options.disabledMaxTime).getTime()))) {
 								classes.push('xdsoft_disabled');
 							}
 
 							current_time = new Date(_xdsoft_datetime.currentTime);
 							current_time.setHours(parseInt(_xdsoft_datetime.currentTime.getHours(), 10));
+							current_time.setMinutes(Math[options.roundTime](_xdsoft_datetime.currentTime.getMinutes() / options.step) * options.step);
 
-							if (!isALlowTimesInit) {
-								current_time.setMinutes(Math[options.roundTime](_xdsoft_datetime.currentTime.getMinutes() / options.step) * options.step);
-							}
-
-							if ((options.initTime || options.defaultSelect || datetimepicker.data('changed')) && current_time.getHours() === parseInt(h, 10) && ((!isALlowTimesInit && options.step > 59) || current_time.getMinutes() === parseInt(m, 10))) {
+							if ((options.initTime || options.defaultSelect || datetimepicker.data('changed')) && current_time.getHours() === parseInt(h, 10) && (options.step > 59 || current_time.getMinutes() === parseInt(m, 10))) {
 								if (options.defaultSelect || datetimepicker.data('changed')) {
 									classes.push('xdsoft_current');
 								} else if (options.initTime) {
@@ -1731,7 +1620,7 @@
 							if (parseInt(today.getHours(), 10) === parseInt(h, 10) && parseInt(today.getMinutes(), 10) === parseInt(m, 10)) {
 								classes.push('xdsoft_today');
 							}
-							time += '<div class="xdsoft_time ' + classes.join(' ') + '" data-hour="' + h + '" data-minute="' + m + '">' + dateHelper.formatDate(now, options.formatTime) + '</div>';
+							time += '<div class="xdsoft_time ' + classes.join(' ') + '" data-hour="' + h + '" data-minute="' + m + '">' + now.dateFormat(options.formatTime) + '</div>';
 						};
 
 						if (!options.allowTimes || !$.isArray(options.allowTimes) || !options.allowTimes.length) {
@@ -1762,7 +1651,7 @@
 												.html(opt);
 
 						for (i = parseInt(options.monthStart, 10), opt = ''; i <= parseInt(options.monthEnd, 10); i += 1) {
-							opt += '<div class="xdsoft_option ' + (_xdsoft_datetime.currentTime.getMonth() === i ? 'xdsoft_current' : '') + '" data-value="' + i + '">' + options.i18n[globalLocale].months[i] + '</div>';
+							opt += '<div class="xdsoft_option ' + (_xdsoft_datetime.currentTime.getMonth() === i ? 'xdsoft_current' : '') + '" data-value="' + i + '">' + options.i18n[options.lang].months[i] + '</div>';
 						}
 						monthselect.children().eq(0).html(opt);
 						$(datetimepicker)
@@ -1794,7 +1683,7 @@
 
 			timerclick = 0;
 			calendar
-				.on('touchend click.xdsoft', 'td', function (xdevent) {
+				.on('click.xdsoft', 'td', function (xdevent) {
 					xdevent.stopPropagation();  // Prevents closing of Pop-ups, Modals and Flyouts in Bootstrap
 					timerclick += 1;
 					var $this = $(this),
@@ -1817,6 +1706,9 @@
 					datetimepicker.trigger('select.xdsoft', [currentTime]);
 
 					input.val(_xdsoft_datetime.str());
+					if ((timerclick > 1 || (options.closeOnDateSelect === true || (options.closeOnDateSelect === false && !options.timepicker))) && !options.inline) {
+						datetimepicker.trigger('close.xdsoft');
+					}
 
 					if (options.onSelectDate &&	$.isFunction(options.onSelectDate)) {
 						options.onSelectDate.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'), xdevent);
@@ -1825,16 +1717,13 @@
 					datetimepicker.data('changed', true);
 					datetimepicker.trigger('xchange.xdsoft');
 					datetimepicker.trigger('changedatetime.xdsoft');
-					if ((timerclick > 1 || (options.closeOnDateSelect === true || (options.closeOnDateSelect === false && !options.timepicker))) && !options.inline) {
-						datetimepicker.trigger('close.xdsoft');
-					}
 					setTimeout(function () {
 						timerclick = 0;
 					}, 200);
 				});
 
 			timebox
-				.on('touchend click.xdsoft', 'div', function (xdevent) {
+				.on('click.xdsoft', 'div', function (xdevent) {
 					xdevent.stopPropagation();
 					var $this = $(this),
 						currentTime = _xdsoft_datetime.currentTime;
@@ -1853,16 +1742,18 @@
 
 					datetimepicker.data('input').val(_xdsoft_datetime.str());
 
+                    if (options.inline !== true && options.closeOnTimeSelect === true) {
+                        datetimepicker.trigger('close.xdsoft');
+                    }
+
 					if (options.onSelectTime && $.isFunction(options.onSelectTime)) {
 						options.onSelectTime.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'), xdevent);
 					}
 					datetimepicker.data('changed', true);
 					datetimepicker.trigger('xchange.xdsoft');
 					datetimepicker.trigger('changedatetime.xdsoft');
-					if (options.inline !== true && options.closeOnTimeSelect === true) {
-						datetimepicker.trigger('close.xdsoft');
-					}
 				});
+
 
 			datepicker
 				.on('mousewheel.xdsoft', function (event) {
@@ -1926,131 +1817,38 @@
 
 			current_time_index = 0;
 
-			/**
-			 * Runs the callback for each of the specified node's ancestors.
-			 *
-			 * Return FALSE from the callback to stop ascending.
-			 *
-			 * @param {DOMNode} node
-			 * @param {Function} callback
-			 * @returns {undefined}
-			 */
-			forEachAncestorOf = function (node, callback) {
-				do {
-					node = node.parentNode;
-
-					if (callback(node) === false) {
-						break;
-					}
-				} while (node.nodeName !== 'HTML');
-			};
-
-			/**
-			 * Sets the position of the picker.
-			 *
-			 * @returns {undefined}
-			 */
 			setPos = function () {
-				var dateInputOffset,
-					dateInputElem,
-					verticalPosition,
-					left,
-					position,
-					datetimepickerElem,
-					dateInputHasFixedAncestor,
-					$dateInput,
-					windowWidth,
-					verticalAnchorEdge,
-					datetimepickerCss,
-					windowHeight,
-					windowScrollTop;
-
-				$dateInput = datetimepicker.data('input');
-				dateInputOffset = $dateInput.offset();
-				dateInputElem = $dateInput[0];
-
-				verticalAnchorEdge = 'top';
-				verticalPosition = (dateInputOffset.top + dateInputElem.offsetHeight) - 1;
-				left = dateInputOffset.left;
-				position = "absolute";
-
-				windowWidth = $(window).width();
-				windowHeight = $(window).height();
-				windowScrollTop = $(window).scrollTop();
-
-				if ((document.documentElement.clientWidth - dateInputOffset.left) < datepicker.parent().outerWidth(true)) {
-					var diff = datepicker.parent().outerWidth(true) - dateInputElem.offsetWidth;
-					left = left - diff;
-				}
-
-				if ($dateInput.parent().css('direction') === 'rtl') {
-					left -= (datetimepicker.outerWidth() - $dateInput.outerWidth());
-				}
-
+				var offset = datetimepicker.data('input').offset(), top = offset.top + datetimepicker.data('input')[0].offsetHeight - 1, left = offset.left, position = "absolute", node;
 				if (options.fixed) {
-					verticalPosition -= windowScrollTop;
+					top -= $(window).scrollTop();
 					left -= $(window).scrollLeft();
 					position = "fixed";
 				} else {
-					dateInputHasFixedAncestor = false;
-
-					forEachAncestorOf(dateInputElem, function (ancestorNode) {
-						if (window.getComputedStyle(ancestorNode).getPropertyValue('position') === 'fixed') {
-							dateInputHasFixedAncestor = true;
-							return false;
-						}
-					});
-
-					if (dateInputHasFixedAncestor) {
-						position = 'fixed';
-
-						//If the picker won't fit entirely within the viewport then display it above the date input.
-						if (verticalPosition + datetimepicker.outerHeight() > windowHeight + windowScrollTop) {
-							verticalAnchorEdge = 'bottom';
-							verticalPosition = (windowHeight + windowScrollTop) - dateInputOffset.top;
-						} else {
-							verticalPosition -= windowScrollTop;
-						}
-					} else {
-						if (verticalPosition + dateInputElem.offsetHeight > windowHeight + windowScrollTop) {
-							verticalPosition = dateInputOffset.top - dateInputElem.offsetHeight + 1;
-						}
+					if (top + datetimepicker[0].offsetHeight > $(window).height() + $(window).scrollTop()) {
+						top = offset.top - datetimepicker[0].offsetHeight + 1;
 					}
-
-					if (verticalPosition < 0) {
-						verticalPosition = 0;
+					if (top < 0) {
+						top = 0;
 					}
-
-					if (left + dateInputElem.offsetWidth > windowWidth) {
-						left = windowWidth - dateInputElem.offsetWidth;
+					if (left + datetimepicker[0].offsetWidth > $(window).width()) {
+						left = $(window).width() - datetimepicker[0].offsetWidth;
 					}
 				}
 
-				datetimepickerElem = datetimepicker[0];
-
-				forEachAncestorOf(datetimepickerElem, function (ancestorNode) {
-					var ancestorNodePosition;
-
-					ancestorNodePosition = window.getComputedStyle(ancestorNode).getPropertyValue('position');
-
-					if (ancestorNodePosition === 'relative' && windowWidth >= ancestorNode.offsetWidth) {
-						left = left - ((windowWidth - ancestorNode.offsetWidth) / 2);
-						return false;
+				node = datetimepicker[0];
+				do {
+					node = node.parentNode;
+					if (window.getComputedStyle(node).getPropertyValue('position') === 'relative' && $(window).width() >= node.offsetWidth) {
+						left = left - (($(window).width() - node.offsetWidth) / 2);
+						break;
 					}
-				});
-
-				datetimepickerCss = {
-					position: position,
+				} while (node.nodeName !== 'HTML');
+				datetimepicker.css({
 					left: left,
-					top: '',  //Initialize to prevent previous values interfering with new ones.
-					bottom: ''  //Initialize to prevent previous values interfering with new ones.
-				};
-
-				datetimepickerCss[verticalAnchorEdge] = verticalPosition;
-
-				datetimepicker.css(datetimepickerCss);
+					top: top,
+					position: position
+				});
 			};
-
 			datetimepicker
 				.on('open.xdsoft', function (event) {
 					var onShow = true;
@@ -2065,9 +1863,9 @@
 							.on('resize.xdsoft', setPos);
 
 						if (options.closeOnWithoutClick) {
-							$([document.body, window]).on('touchstart mousedown.xdsoft', function arguments_callee6() {
+							$([document.body, window]).on('mousedown.xdsoft', function arguments_callee6() {
 								datetimepicker.trigger('close.xdsoft');
-								$([document.body, window]).off('touchstart mousedown.xdsoft', arguments_callee6);
+								$([document.body, window]).off('mousedown.xdsoft', arguments_callee6);
 							});
 						}
 					}
@@ -2086,7 +1884,7 @@
 					}
 					event.stopPropagation();
 				})
-				.on('toggle.xdsoft', function () {
+				.on('toggle.xdsoft', function (event) {
 					if (datetimepicker.is(':visible')) {
 						datetimepicker.trigger('close.xdsoft');
 					} else {
@@ -2096,6 +1894,7 @@
 				.data('input', input);
 
 			timer = 0;
+			timer1 = 0;
 
 			datetimepicker.data('xdsoft_datetime', _xdsoft_datetime);
 			datetimepicker.setOptions(options);
@@ -2128,139 +1927,11 @@
 				return ct || 0;
 			}
 
-			function setMask(options) {
-
-				var isValidValue = function (mask, value) {
-					var reg = mask
-						.replace(/([\[\]\/\{\}\(\)\-\.\+]{1})/g, '\\$1')
-						.replace(/_/g, '{digit+}')
-						.replace(/([0-9]{1})/g, '{digit$1}')
-						.replace(/\{digit([0-9]{1})\}/g, '[0-$1_]{1}')
-						.replace(/\{digit[\+]\}/g, '[0-9_]{1}');
-					return (new RegExp(reg)).test(value);
-				},
-				getCaretPos = function (input) {
-					try {
-						if (document.selection && document.selection.createRange) {
-							var range = document.selection.createRange();
-							return range.getBookmark().charCodeAt(2) - 2;
-						}
-						if (input.setSelectionRange) {
-							return input.selectionStart;
-						}
-					} catch (e) {
-						return 0;
-					}
-				},
-				setCaretPos = function (node, pos) {
-					node = (typeof node === "string" || node instanceof String) ? document.getElementById(node) : node;
-					if (!node) {
-						return false;
-					}
-					if (node.createTextRange) {
-						var textRange = node.createTextRange();
-						textRange.collapse(true);
-						textRange.moveEnd('character', pos);
-						textRange.moveStart('character', pos);
-						textRange.select();
-						return true;
-					}
-					if (node.setSelectionRange) {
-						node.setSelectionRange(pos, pos);
-						return true;
-					}
-					return false;
-				};
-				if(options.mask) {
-					input.off('keydown.xdsoft');
-				}
-				if (options.mask === true) {
-														if (typeof moment != 'undefined') {
-																	options.mask = options.format
-																			.replace(/Y{4}/g, '9999')
-																			.replace(/Y{2}/g, '99')
-																			.replace(/M{2}/g, '19')
-																			.replace(/D{2}/g, '39')
-																			.replace(/H{2}/g, '29')
-																			.replace(/m{2}/g, '59')
-																			.replace(/s{2}/g, '59');
-														} else {
-																	options.mask = options.format
-																			.replace(/Y/g, '9999')
-																			.replace(/F/g, '9999')
-																			.replace(/m/g, '19')
-																			.replace(/d/g, '39')
-																			.replace(/H/g, '29')
-																			.replace(/i/g, '59')
-																			.replace(/s/g, '59');
-														}
-				}
-
-				if ($.type(options.mask) === 'string') {
-					if (!isValidValue(options.mask, input.val())) {
-						input.val(options.mask.replace(/[0-9]/g, '_'));
-						setCaretPos(input[0], 0);
-					}
-
-					input.on('keydown.xdsoft', function (event) {
-						var val = this.value,
-							key = event.which,
-							pos,
-							digit;
-
-						if (((key >= KEY0 && key <= KEY9) || (key >= _KEY0 && key <= _KEY9)) || (key === BACKSPACE || key === DEL)) {
-							pos = getCaretPos(this);
-							digit = (key !== BACKSPACE && key !== DEL) ? String.fromCharCode((_KEY0 <= key && key <= _KEY9) ? key - KEY0 : key) : '_';
-
-							if ((key === BACKSPACE || key === DEL) && pos) {
-								pos -= 1;
-								digit = '_';
-							}
-
-							while (/[^0-9_]/.test(options.mask.substr(pos, 1)) && pos < options.mask.length && pos > 0) {
-								pos += (key === BACKSPACE || key === DEL) ? -1 : 1;
-							}
-
-							val = val.substr(0, pos) + digit + val.substr(pos + 1);
-							if ($.trim(val) === '') {
-								val = options.mask.replace(/[0-9]/g, '_');
-							} else {
-								if (pos === options.mask.length) {
-									event.preventDefault();
-									return false;
-								}
-							}
-
-							pos += (key === BACKSPACE || key === DEL) ? 0 : 1;
-							while (/[^0-9_]/.test(options.mask.substr(pos, 1)) && pos < options.mask.length && pos > 0) {
-								pos += (key === BACKSPACE || key === DEL) ? -1 : 1;
-							}
-
-							if (isValidValue(options.mask, val)) {
-								this.value = val;
-								setCaretPos(this, pos);
-							} else if ($.trim(val) === '') {
-								this.value = options.mask.replace(/[0-9]/g, '_');
-							} else {
-								input.trigger('error_input.xdsoft');
-							}
-						} else {
-							if (([AKEY, CKEY, VKEY, ZKEY, YKEY].indexOf(key) !== -1 && ctrlDown) || [ESC, ARROWUP, ARROWDOWN, ARROWLEFT, ARROWRIGHT, F5, CTRLKEY, TAB, ENTER].indexOf(key) !== -1) {
-								return true;
-							}
-						}
-
-						event.preventDefault();
-						return false;
-					});
-				}
-			}
-
 			_xdsoft_datetime.setCurrentTime(getCurrentValue());
 
 			input
 				.data('xdsoft_datetimepicker', datetimepicker)
-				.on('open.xdsoft focusin.xdsoft mousedown.xdsoft touchstart', function () {
+				.on('open.xdsoft focusin.xdsoft mousedown.xdsoft', function (event) {
 					if (input.is(':disabled') || (input.data('xdsoft_datetimepicker').is(':visible') && options.closeOnInputClick)) {
 						return;
 					}
@@ -2271,18 +1942,16 @@
 						}
 
 						triggerAfterOpen = true;
-						_xdsoft_datetime.setCurrentTime(getCurrentValue(), true);
-						if(options.mask) {
-							setMask(options);
-						}
+						_xdsoft_datetime.setCurrentTime(getCurrentValue());
+
 						datetimepicker.trigger('open.xdsoft');
 					}, 100);
 				})
 				.on('keydown.xdsoft', function (event) {
-					var elementSelector,
+					var val = this.value, elementSelector,
 						key = event.which;
 					if ([ENTER].indexOf(key) !== -1 && options.enterLikeTab) {
-						elementSelector = $("input:visible,textarea:visible,button:visible,a:visible");
+						elementSelector = $("input:visible,textarea:visible");
 						datetimepicker.trigger('close.xdsoft');
 						elementSelector.eq(elementSelector.index(this) + 1).focus();
 						return false;
@@ -2291,9 +1960,6 @@
 						datetimepicker.trigger('close.xdsoft');
 						return true;
 					}
-				})
-				.on('blur.xdsoft', function () {
-					datetimepicker.trigger('close.xdsoft');
 				});
 		};
 		destroyDateTimePicker = function (input) {
@@ -2305,7 +1971,7 @@
 					.data('xdsoft_datetimepicker', null)
 					.off('.xdsoft');
 				$(window).off('resize.xdsoft');
-				$([window, document.body]).off('mousedown.xdsoft touchstart');
+				$([window, document.body]).off('mousedown.xdsoft');
 				if (input.unmousewheel) {
 					input.unmousewheel();
 				}
@@ -2323,8 +1989,7 @@
 					ctrlDown = false;
 				}
 			});
-
-		this.each(function () {
+		return this.each(function () {
 			var datetimepicker = $(this).data('xdsoft_datetimepicker'), $input;
 			if (datetimepicker) {
 				if ($.type(opt) === 'string') {
@@ -2344,7 +2009,7 @@
 						break;
 					case 'reset':
 						this.value = this.defaultValue;
-						if (!this.value || !datetimepicker.data('xdsoft_datetime').isValidDate(dateHelper.parseDate(this.value, options.format))) {
+						if (!this.value || !datetimepicker.data('xdsoft_datetime').isValidDate(Date.parseDate(this.value, options.format))) {
 							datetimepicker.data('changed', false);
 						}
 						datetimepicker.data('xdsoft_datetime').setCurrentTime(this.value);
@@ -2353,10 +2018,6 @@
 						$input = datetimepicker.data('input');
 						$input.trigger('blur.xdsoft');
 						break;
-					default:
-						if (datetimepicker[opt] && $.isFunction(datetimepicker[opt])) {
-							result = datetimepicker[opt](opt2);
-						}
 					}
 				} else {
 					datetimepicker
@@ -2372,16 +2033,41 @@
 				}
 			}
 		});
-
-		return result;
 	};
-
 	$.fn.datetimepicker.defaults = default_options;
+}(jQuery));
 
-	function HighlightedDate(date, desc, style) {
-		"use strict";
-		this.date = date;
-		this.desc = desc;
-		this.style = style;
-	}
-}));
+function HighlightedDate(date, desc, style) {
+	"use strict";
+	this.date = date;
+	this.desc = desc;
+	this.style = style;
+}
+
+(function () {
+
+/*! Copyright (c) 2013 Brandon Aaron (http://brandon.aaron.sh)
+ * Licensed under the MIT License (LICENSE.txt).
+ *
+ * Version: 3.1.12
+ *
+ * Requires: jQuery 1.2.2+
+ */
+!function(a){"function"==typeof define&&define.amd?define(["jquery"],a):"object"==typeof exports?module.exports=a:a(jQuery)}(function(a){function b(b){var g=b||window.event,h=i.call(arguments,1),j=0,l=0,m=0,n=0,o=0,p=0;if(b=a.event.fix(g),b.type="mousewheel","detail"in g&&(m=-1*g.detail),"wheelDelta"in g&&(m=g.wheelDelta),"wheelDeltaY"in g&&(m=g.wheelDeltaY),"wheelDeltaX"in g&&(l=-1*g.wheelDeltaX),"axis"in g&&g.axis===g.HORIZONTAL_AXIS&&(l=-1*m,m=0),j=0===m?l:m,"deltaY"in g&&(m=-1*g.deltaY,j=m),"deltaX"in g&&(l=g.deltaX,0===m&&(j=-1*l)),0!==m||0!==l){if(1===g.deltaMode){var q=a.data(this,"mousewheel-line-height");j*=q,m*=q,l*=q}else if(2===g.deltaMode){var r=a.data(this,"mousewheel-page-height");j*=r,m*=r,l*=r}if(n=Math.max(Math.abs(m),Math.abs(l)),(!f||f>n)&&(f=n,d(g,n)&&(f/=40)),d(g,n)&&(j/=40,l/=40,m/=40),j=Math[j>=1?"floor":"ceil"](j/f),l=Math[l>=1?"floor":"ceil"](l/f),m=Math[m>=1?"floor":"ceil"](m/f),k.settings.normalizeOffset&&this.getBoundingClientRect){var s=this.getBoundingClientRect();o=b.clientX-s.left,p=b.clientY-s.top}return b.deltaX=l,b.deltaY=m,b.deltaFactor=f,b.offsetX=o,b.offsetY=p,b.deltaMode=0,h.unshift(b,j,l,m),e&&clearTimeout(e),e=setTimeout(c,200),(a.event.dispatch||a.event.handle).apply(this,h)}}function c(){f=null}function d(a,b){return k.settings.adjustOldDeltas&&"mousewheel"===a.type&&b%120===0}var e,f,g=["wheel","mousewheel","DOMMouseScroll","MozMousePixelScroll"],h="onwheel"in document||document.documentMode>=9?["wheel"]:["mousewheel","DomMouseScroll","MozMousePixelScroll"],i=Array.prototype.slice;if(a.event.fixHooks)for(var j=g.length;j;)a.event.fixHooks[g[--j]]=a.event.mouseHooks;var k=a.event.special.mousewheel={version:"3.1.12",setup:function(){if(this.addEventListener)for(var c=h.length;c;)this.addEventListener(h[--c],b,!1);else this.onmousewheel=b;a.data(this,"mousewheel-line-height",k.getLineHeight(this)),a.data(this,"mousewheel-page-height",k.getPageHeight(this))},teardown:function(){if(this.removeEventListener)for(var c=h.length;c;)this.removeEventListener(h[--c],b,!1);else this.onmousewheel=null;a.removeData(this,"mousewheel-line-height"),a.removeData(this,"mousewheel-page-height")},getLineHeight:function(b){var c=a(b),d=c["offsetParent"in a.fn?"offsetParent":"parent"]();return d.length||(d=a("body")),parseInt(d.css("fontSize"),10)||parseInt(c.css("fontSize"),10)||16},getPageHeight:function(b){return a(b).height()},settings:{adjustOldDeltas:!0,normalizeOffset:!0}};a.fn.extend({mousewheel:function(a){return a?this.bind("mousewheel",a):this.trigger("mousewheel")},unmousewheel:function(a){return this.unbind("mousewheel",a)}})});
+
+// Parse and Format Library
+//http://www.xaprb.com/blog/2005/12/12/javascript-closures-for-runtime-efficiency/
+/*
+ * Copyright (C) 2004 Baron Schwartz <baron at sequent dot org>
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 2.1.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+ * details.
+ */
+Date.parseFunctions={count:0};Date.parseRegexes=[];Date.formatFunctions={count:0};Date.prototype.dateFormat=function(b){if(b=="unixtime"){return parseInt(this.getTime()/1000);}if(Date.formatFunctions[b]==null){Date.createNewFormat(b);}var a=Date.formatFunctions[b];return this[a]();};Date.createNewFormat=function(format){var funcName="format"+Date.formatFunctions.count++;Date.formatFunctions[format]=funcName;var codePrefix="Date.prototype."+funcName+" = function() {return ";var code="";var special=false;var ch="";for(var i=0;i<format.length;++i){ch=format.charAt(i);if(!special&&ch=="\\"){special=true;}else{if(special){special=false;code+="'"+String.escape(ch)+"' + ";}else{code+=Date.getFormatCode(ch);}}}if(code.length==0){code="\"\"";}else{code=code.substring(0,code.length-3);}eval(codePrefix+code+";}");};Date.getFormatCode=function(a){switch(a){case"d":return"String.leftPad(this.getDate(), 2, '0') + ";case"D":return"Date.dayNames[this.getDay()].substring(0, 3) + ";case"j":return"this.getDate() + ";case"l":return"Date.dayNames[this.getDay()] + ";case"S":return"this.getSuffix() + ";case"w":return"this.getDay() + ";case"z":return"this.getDayOfYear() + ";case"W":return"this.getWeekOfYear() + ";case"F":return"Date.monthNames[this.getMonth()] + ";case"m":return"String.leftPad(this.getMonth() + 1, 2, '0') + ";case"M":return"Date.monthNames[this.getMonth()].substring(0, 3) + ";case"n":return"(this.getMonth() + 1) + ";case"t":return"this.getDaysInMonth() + ";case"L":return"(this.isLeapYear() ? 1 : 0) + ";case"Y":return"this.getFullYear() + ";case"y":return"('' + this.getFullYear()).substring(2, 4) + ";case"a":return"(this.getHours() < 12 ? 'am' : 'pm') + ";case"A":return"(this.getHours() < 12 ? 'AM' : 'PM') + ";case"g":return"((this.getHours() %12) ? this.getHours() % 12 : 12) + ";case"G":return"this.getHours() + ";case"h":return"String.leftPad((this.getHours() %12) ? this.getHours() % 12 : 12, 2, '0') + ";case"H":return"String.leftPad(this.getHours(), 2, '0') + ";case"i":return"String.leftPad(this.getMinutes(), 2, '0') + ";case"s":return"String.leftPad(this.getSeconds(), 2, '0') + ";case"O":return"this.getGMTOffset() + ";case"T":return"this.getTimezone() + ";case"Z":return"(this.getTimezoneOffset() * -60) + ";default:return"'"+String.escape(a)+"' + ";}};Date.parseDate=function(a,c){if(c=="unixtime"){return new Date(!isNaN(parseInt(a))?parseInt(a)*1000:0);}if(Date.parseFunctions[c]==null){Date.createParser(c);}var b=Date.parseFunctions[c];return Date[b](a);};Date.createParser=function(format){var funcName="parse"+Date.parseFunctions.count++;var regexNum=Date.parseRegexes.length;var currentGroup=1;Date.parseFunctions[format]=funcName;var code="Date."+funcName+" = function(input) {\nvar y = -1, m = -1, d = -1, h = -1, i = -1, s = -1, z = -1;\nvar d = new Date();\ny = d.getFullYear();\nm = d.getMonth();\nd = d.getDate();\nvar results = input.match(Date.parseRegexes["+regexNum+"]);\nif (results && results.length > 0) {";var regex="";var special=false;var ch="";for(var i=0;i<format.length;++i){ch=format.charAt(i);if(!special&&ch=="\\"){special=true;}else{if(special){special=false;regex+=String.escape(ch);}else{obj=Date.formatCodeToRegex(ch,currentGroup);currentGroup+=obj.g;regex+=obj.s;if(obj.g&&obj.c){code+=obj.c;}}}}code+="if (y > 0 && z > 0){\nvar doyDate = new Date(y,0);\ndoyDate.setDate(z);\nm = doyDate.getMonth();\nd = doyDate.getDate();\n}";code+="if (y > 0 && m >= 0 && d > 0 && h >= 0 && i >= 0 && s >= 0)\n{return new Date(y, m, d, h, i, s);}\nelse if (y > 0 && m >= 0 && d > 0 && h >= 0 && i >= 0)\n{return new Date(y, m, d, h, i);}\nelse if (y > 0 && m >= 0 && d > 0 && h >= 0)\n{return new Date(y, m, d, h);}\nelse if (y > 0 && m >= 0 && d > 0)\n{return new Date(y, m, d);}\nelse if (y > 0 && m >= 0)\n{return new Date(y, m);}\nelse if (y > 0)\n{return new Date(y);}\n}return null;}";Date.parseRegexes[regexNum]=new RegExp("^"+regex+"$",'i');eval(code);};Date.formatCodeToRegex=function(b,a){switch(b){case"D":return{g:0,c:null,s:"(?:Sun|Mon|Tue|Wed|Thu|Fri|Sat)"};case"j":case"d":return{g:1,c:"d = parseInt(results["+a+"], 10);\n",s:"(\\d{1,2})"};case"l":return{g:0,c:null,s:"(?:"+Date.dayNames.join("|")+")"};case"S":return{g:0,c:null,s:"(?:st|nd|rd|th)"};case"w":return{g:0,c:null,s:"\\d"};case"z":return{g:1,c:"z = parseInt(results["+a+"], 10);\n",s:"(\\d{1,3})"};case"W":return{g:0,c:null,s:"(?:\\d{2})"};case"F":return{g:1,c:"m = parseInt(Date.monthNumbers[results["+a+"].substring(0, 3)], 10);\n",s:"("+Date.monthNames.join("|")+")"};case"M":return{g:1,c:"m = parseInt(Date.monthNumbers[results["+a+"]], 10);\n",s:"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"};case"n":case"m":return{g:1,c:"m = parseInt(results["+a+"], 10) - 1;\n",s:"(\\d{1,2})"};case"t":return{g:0,c:null,s:"\\d{1,2}"};case"L":return{g:0,c:null,s:"(?:1|0)"};case"Y":return{g:1,c:"y = parseInt(results["+a+"], 10);\n",s:"(\\d{4})"};case"y":return{g:1,c:"var ty = parseInt(results["+a+"], 10);\ny = ty > Date.y2kYear ? 1900 + ty : 2000 + ty;\n",s:"(\\d{1,2})"};case"a":return{g:1,c:"if (results["+a+"] == 'am') {\nif (h == 12) { h = 0; }\n} else { if (h < 12) { h += 12; }}",s:"(am|pm)"};case"A":return{g:1,c:"if (results["+a+"] == 'AM') {\nif (h == 12) { h = 0; }\n} else { if (h < 12) { h += 12; }}",s:"(AM|PM)"};case"g":case"G":case"h":case"H":return{g:1,c:"h = parseInt(results["+a+"], 10);\n",s:"(\\d{1,2})"};case"i":return{g:1,c:"i = parseInt(results["+a+"], 10);\n",s:"(\\d{2})"};case"s":return{g:1,c:"s = parseInt(results["+a+"], 10);\n",s:"(\\d{2})"};case"O":return{g:0,c:null,s:"[+-]\\d{4}"};case"T":return{g:0,c:null,s:"[A-Z]{3}"};case"Z":return{g:0,c:null,s:"[+-]\\d{1,5}"};default:return{g:0,c:null,s:String.escape(b)};}};Date.prototype.getTimezone=function(){return this.toString().replace(/^.*? ([A-Z]{3}) [0-9]{4}.*$/,"$1").replace(/^.*?\(([A-Z])[a-z]+ ([A-Z])[a-z]+ ([A-Z])[a-z]+\)$/,"$1$2$3");};Date.prototype.getGMTOffset=function(){return(this.getTimezoneOffset()>0?"-":"+")+String.leftPad(Math.floor(Math.abs(this.getTimezoneOffset())/60),2,"0")+String.leftPad(Math.abs(this.getTimezoneOffset())%60,2,"0");};Date.prototype.getDayOfYear=function(){var a=0;Date.daysInMonth[1]=this.isLeapYear()?29:28;for(var b=0;b<this.getMonth();++b){a+=Date.daysInMonth[b];}return a+this.getDate();};Date.prototype.getWeekOfYear=function(){var b=this.getDayOfYear()+(4-this.getDay());var a=new Date(this.getFullYear(),0,1);var c=(7-a.getDay()+4);return String.leftPad(Math.ceil((b-c)/7)+1,2,"0");};Date.prototype.isLeapYear=function(){var a=this.getFullYear();return((a&3)==0&&(a%100||(a%400==0&&a)));};Date.prototype.getFirstDayOfMonth=function(){var a=(this.getDay()-(this.getDate()-1))%7;return(a<0)?(a+7):a;};Date.prototype.getLastDayOfMonth=function(){var a=(this.getDay()+(Date.daysInMonth[this.getMonth()]-this.getDate()))%7;return(a<0)?(a+7):a;};Date.prototype.getDaysInMonth=function(){Date.daysInMonth[1]=this.isLeapYear()?29:28;return Date.daysInMonth[this.getMonth()];};Date.prototype.getSuffix=function(){switch(this.getDate()){case 1:case 21:case 31:return"st";case 2:case 22:return"nd";case 3:case 23:return"rd";default:return"th";}};String.escape=function(a){return a.replace(/('|\\)/g,"\\$1");};String.leftPad=function(d,b,c){var a=new String(d);if(c==null){c=" ";}while(a.length<b){a=c+a;}return a;};Date.daysInMonth=[31,28,31,30,31,30,31,31,30,31,30,31];Date.monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"];Date.dayNames=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];Date.y2kYear=50;Date.monthNumbers={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};Date.patterns={ISO8601LongPattern:"Y-m-d H:i:s",ISO8601ShortPattern:"Y-m-d",ShortDatePattern:"n/j/Y",LongDatePattern:"l, F d, Y",FullDateTimePattern:"l, F d, Y g:i:s A",MonthDayPattern:"F d",ShortTimePattern:"g:i A",LongTimePattern:"g:i:s A",SortableDateTimePattern:"Y-m-d\\TH:i:s",UniversalSortableDateTimePattern:"Y-m-d H:i:sO",YearMonthPattern:"F, Y"};
+}());

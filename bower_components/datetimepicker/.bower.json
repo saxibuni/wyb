@@ -61,5 +61,6 @@
   },
   "_source": "https://github.com/xdan/datetimepicker.git",
   "_target": "^2.5.4",
-  "_originalSource": "datetimepicker"
+  "_originalSource": "datetimepicker",
+  "_direct": true
 }

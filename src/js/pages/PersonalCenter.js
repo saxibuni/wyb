@@ -106,8 +106,8 @@ $(function(){
 								'<div class="clear"></div>' +
 
 								'<div class="tab-container">' +
-									this.createZjgl() +
-									//this.createJyjl() +
+									//this.createZjgl() +
+									this.createJyjl() +
 								'</div>' +
  							'</div>' +
 							'<div class="clear"></div>' +
@@ -217,7 +217,7 @@ $(function(){
         });
 
         this.zjglTab.bindEvents();
-        this.cz.bindEvents();
+        //this.cz.bindEvents();
 
         $('#zjgl-tab').delegate('li', 'click', function () {
         	index = $(this).index();
