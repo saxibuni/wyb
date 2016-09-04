@@ -3,3 +3,270 @@
 .e-entertainment {
 	@include page-property;
 }
+.main-content{
+	width:1024px;
+	margin:0 auto;
+
+	.red{
+		color:#C6281E
+	}
+	.left{
+		float:left;
+	}
+	.top-left-module{
+		width:202px;
+		.left-list{
+			background:#424242;
+			padding:10px 0;
+		}
+		.head-img{
+			width:100%;
+			height:65px;
+			background-size: cover;
+			background:url("../img/test1.png");
+		}
+		.left-list li{
+      list-style: none;
+      height:30px;
+      line-height:30px;
+      border-bottom: 1px solid #515151;
+    }
+		.left-list li p{
+			display:inline-block;
+			width:50%;
+			text-align: center;
+			color:#ccc;
+		}
+		.left-list li:first-child{
+        border-top: 1px solid #515151;
+    }
+	}
+	.slider{
+		float:left;
+		width:600px;
+		height:295px;
+		margin:0 10px;
+		img{
+			width:100%;
+			height:295px;
+		}
+	}
+	.top-module{
+		width:100%;
+		height:295px;
+	}
+	.top-right-module{
+		background: #48463A;
+    float: left;
+    padding: 10px;
+    width: 182px;
+    border-top: 2px solid #FCE189;
+		.amount-info{
+			margin: 80px 0 10px;
+			background: #2B2A23;
+			border-radius: 5px;
+			padding: 20px;
+			color: #cda654;
+			font-size: 16px;
+			font-weight: 600;
+			text-align: center;
+		}
+		.user-info{
+			margin: 10px 0;
+			color: #fff;
+			text-align: center;
+			p {
+				width: 100%;
+				height: 20px;
+				line-height: 20px;
+				.userName{
+					color: #cda654;
+					margin-left: 5px;
+				}
+			}
+			h3{
+				margin: 10px 0;
+				font-size: 16px;
+				font-weight: 600;
+			}
+		}
+		button {
+			background: #C6281E;
+			font-size: 16px;
+			height: 30px;
+			line-height: 30px;
+			font-weight: 500;
+			color: #fff;
+			width: 100%;
+		}
+	}
+	.middle-module{
+		height:50px;
+		width:1024px;
+		margin:10px auto 0;
+		background:#48463A;
+		line-height:50px;
+		li{
+			float:left;;
+			list-style: none;
+			color:#fff;
+		}
+		li img{
+			height:100%;
+			vertical-align:middle;
+		}
+		.pt-li{
+			height:100%;
+			width:80px;
+			background: url("../img/pt-normal.png");
+		}
+		.pt-li:hover{
+			background: url("../img/pt-down.png");
+			background-color:#cda654;
+		}
+		.bbin-li:hover{
+			background: url("../img/bbin-down.png");
+			background-color:#cda654;
+		}
+		.bbin-li{
+			height:100%;
+			width:80px;
+			background: url("../img/bbin-normal.png");
+		}
+		.ag-li{
+			height:100%;
+			width:80px;
+			background: url("../img/ag-normal.png");
+		}
+		.ag-li:hover{
+			background: url("../img/ag-down.png");
+			background-color:#cda654;
+		}
+		.mg-li{
+			height:100%;
+			width:80px;
+			background: url("../img/mg-normal.png");
+		}
+		.mg-li:hover{
+			background: url("../img/mg-down.png");
+			background-color:#cda654;
+		}
+	}
+	.bottom-module{
+		 width:100%;
+		 height:770px;
+		 background: #2C2C2C;
+		.bottom-left{
+			width: 179px;
+			background-color: #2C2C2C;
+			float: left;
+			position: relative;
+			border-right: 1px solid #535250;
+			height:100%;
+			ul li{
+				height: 40px;
+				line-height: 40px;
+				display: inline-block;
+				width: 100%;
+				color: #b4b4b4;
+				border-bottom: 1px solid #535250;
+				text-align:center;
+			}
+			ul li:first-child{
+				border-top:1px solid #535250;
+			}
+			ul li:hover{
+				color: #63563c;
+				cursor: pointer;
+				background-color: #cda654;
+			}
+			.stick{
+				height: 40px;
+				width: 3px;
+				position: absolute;
+				background-color: #cda654;
+				top: 62px;
+				left: 0px;
+				transition: top 0.5s;
+				-moz-transition: top 0.5s;
+				-webkit-transition: top 0.5s;
+			}
+			.search-box{
+				border: 1px solid #cda654;
+				height: 30px;
+				line-height: 30px;
+				margin:20px 10px 10px;
+				width: 160px;
+				border-radius: 2px;
+				border-right: 1px solid #535250;
+				background-color: #000;
+			}
+			.search-box .search-btn{
+				position:relative;
+				left:5px;
+			}
+			.search-box input{
+				width:120px;
+				background-color: transparent;
+				border: 0;
+				color: #FFF;
+				display: inline-block;
+				float: left;
+				height: 24px;
+				line-height: 24px;
+				padding:2px 5px;
+			}
+		}
+		.bottom-right{
+			margin: 15px 0 15px 10px;
+			float:left;
+			color: #b4b4b4;
+			width:834px;
+			ul{
+				float:left;
+				height: 685px;
+	    	overflow: hidden;
+				li{
+					list-style:none;
+					float:left;
+					margin:0 10px 10px 0;
+					border:1px solid #535250;
+					img{
+						width:127px;
+						height:127px;
+					}
+					p{
+						height:30px;
+						line-height:30px;
+						padding:0 5px;
+						.game-name{
+							display:inline-block;
+							float:left;
+							width: 80px;
+    					text-align: left;
+						}
+						img{
+							width:10px;
+							height:10px;
+							margin-left:5px;
+						}
+					}
+				}
+				li:hover{
+					border:1px solid #cda654;
+				}
+			}
+
+			.more-game{
+				float: left;
+    		width: 824px;
+				text-align:center;
+				margin:15px 0 10px;
+				padding:10px 0;
+				border:1px solid #535250;
+				color:#535250;
+			}
+		}
+
+	}
+}
