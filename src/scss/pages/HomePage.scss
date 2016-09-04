@@ -8,5 +8,223 @@
 		width: $contentWidth;
 		height: 100%;
 		padding: 20px 0;
+		height: 100%;
+		.content1 {
+			width: 100%;
+			height: 436px;
+			.unslider-nav ol {
+				position: relative;
+				top: -125px;
+				left: 365px;
+			}
+			.unslider-nav ol li {
+				display: inline-block;
+				width: 6px;
+				height: 6px;
+				overflow: hidden;
+				text-indent: -100px;
+
+			}
+			.prev, .next {
+				width: 50px;
+				height: 70px;
+				display: inline-block;
+				position: relative;
+				overflow: hidden;
+				top: -250px;
+				opacity: 0.5;
+				text-indent: -100px;
+			}
+			.prev:hover, .next:hover {
+				opacity: 1;
+			}
+			.prev {
+				left: -496px;
+				background: url('../img/left-normal.png') no-repeat;
+			}
+			.next {
+				left: 496px;
+				background: url('../img/right-normal.png') no-repeat;
+			}
+			.banner {
+				height: 436px;
+				ul {
+					height: 100%;
+					position: relative;
+					li {
+						height: 100%;
+						float: left;
+						list-style: none;
+						img {
+							width: 100%;
+							height: 100%;
+						}
+					}
+
+				}
+
+			}
+		}
+
+		.content23 {
+			width: 100%;
+			background-color: #ccc;
+
+			.content2, .content3 {
+				width: 100%;
+				margin: auto;
+			}
+
+			.content2 {
+				height: 50px;
+				padding-top: 1px;
+				padding-bottom: 10px;
+			}
+
+			.content3 {
+				$content3-width: 664px;
+				.left {
+					width: $content3-width;
+					margin-right: 10px;
+					.row1 {
+						.row1-left {
+							width: 320px;
+							margin-right: 14px;
+							.kf, .xz {
+								display: block;
+								font-size: 24px;
+								font-weight: bold;
+								letter-spacing: 2px;
+								i {
+									width: 50px;
+									height: 50px;
+									position: absolute;
+									left: -58px;
+									top: -11px;
+									background-image: url("../img/kf-icon.png");
+								}
+							}
+							.kf {
+								margin-bottom: 12px;
+								height: 180px;
+								img {
+									width: 100%;
+								}
+								span {
+									position: relative;
+									top: -110px;
+									left: 20px;
+								}
+							}
+							.xz {
+								height: 125px;
+								img {
+									width: 100%;
+								}
+								span {
+									position: relative;
+									top: -83px;
+									left: 20px;
+									i {
+										width:52px;
+										background-image: url("../img/xz-icon.png");
+									}
+								}
+							}
+						}
+						.row1-right {
+							width: 330px;
+							height: 316px;
+							img {
+								width: 100%;
+								height: 100%;
+							}
+							span {
+								position: relative;
+								top: -55px;
+								left: 0;
+								width: 95%;
+								height: 40px;
+								line-height: 40px;
+								display: inline-block;
+								background-color: #000;
+								color: #FFF;
+								border: solid 1px;
+								background-color: rgba(0,0,0,0.5);
+								filter: alpha(opacity=50);
+
+							}
+						}
+
+					}
+
+					.row2 {
+						width: $content3-width;
+						img {
+							width:100%;
+						}
+						.jackpot {
+							position: relative;
+							left: 145px;
+							top: -65px;
+							color: #cda654;
+							font-size: 24px;
+						}
+					}
+				}
+
+				.right {
+					.row1 {
+						.sports {
+							margin-right: 10px;
+						}
+						.sports, .video {
+							width: 170px;
+							height: 210px;
+						}
+						img {
+							width: 100%;
+							height: 100%;
+						}
+						span {
+							position: relative;
+							top: -55px;
+							left: 0;
+							width: 95%;
+							height: 40px;
+							line-height: 40px;
+							display: inline-block;
+							background-color: #000;
+							color: #FFF;
+							border: solid 1px;
+							background-color: rgba(0,0,0,0.5);
+							filter: alpha(opacity=50);
+						}
+					}
+
+					.row2 {
+						margin-top: 10px;
+						.table {
+							.tr {
+								width: 260px;
+								margin: auto;
+								padding-bottom: 10px;
+								border-bottom: 1px dotted;
+								padding-top: 10px;
+
+								.td1 {
+									margin-right: 65px;
+								}
+							}
+						}
+
+					}
+				}
+
+
+			}
+		}
+
+
 	}
 }

@@ -60,7 +60,8 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js',
             './bower_components/i18next/i18next.min.js',
             './bower_components/datetimepicker/jquery.datetimepicker.js',
-            './bower_components/Gallery/js/blueimp-gallery.min.js'
+            './bower_components/Gallery/js/blueimp-gallery.min.js',
+            './bower_components/unsilde/unslider-min.js'
         ])
         .pipe(gulp.dest(src_js_lib_path));
 
@@ -73,6 +74,7 @@ gulp.task('build', function () {
             'src/lib/js/jquery.min.js',
             'src/lib/js/jquery.datetimepicker.js',
             'src/lib/js/jquery.history.js',
+            'src/lib/js/unslider-min.js',
             'src/js/utils/*.js',
             'src/js/plugins/IMDialog.js',
             'src/js/plugins/*.js',

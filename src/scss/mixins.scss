@@ -157,3 +157,14 @@ $theme-background-color    :   #191919;
     line-height: 0; 
     font-size: 0;
 }
+
+.fr {  float: right;}
+
+.fl {float: left}
+
+.clearAfter:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+}
