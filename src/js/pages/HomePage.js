@@ -110,13 +110,17 @@
 
 	HomePage.prototype.bindEvents = function () {
 		this.zone = $('.home-page');
+	};
 
+	$(function() {
 		$('.banner').unslider({
 			speed: 500,
 			delay: 3000,
 			dots: true
 		});
-	};
-
+	});
+	
 	window.HomePage = HomePage;
 }());
+
+
