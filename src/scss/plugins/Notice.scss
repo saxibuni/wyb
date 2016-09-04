@@ -1,0 +1,49 @@
+@import "../mixins.scss";
+$baseYellow:#cda654;
+.notice{
+    height:40px;
+    line-height:40px;
+    width:1024px;
+    margin:0 auto;
+    background:#2C2C2C;
+    .notice-right{
+      float: right;
+      display: flex;
+      color: #fff;
+      margin-right: 20px;
+      .notice-date{
+        margin-right:10px;
+      }
+      img{
+        width:20px;
+        height:20px;
+        margin:10px 0 10px 10px;
+      }
+    }
+    .notice-left{
+      display:flex;
+      img{
+        width:16px;
+        height:20px;
+        margin:10px 20px;
+      }
+      .notice-title{
+        color:#fff;
+        margin-right:10px;
+      }
+      .notice-content{
+        color:#cda654;
+      }
+    }
+}
+.title-black{
+  color:black!important;
+}
+.more-grey{
+  color:#ccc!important;
+}
+.back-white{
+  background:#fff;
+  margin-top: 10px;
+  margin-bottom:10px;
+}

@@ -2,15 +2,17 @@
 	function EEntertainment () {
 		this.initDom();
 	}
-	
+
 	EEntertainment.prototype.initDom = function () {
+		this.notice=new Notice({date:'1026-09-05',content:'这是一个测试公告',hasBtn:false});
+		var noticeDom=this.notice.getDom();
 		var temp =	'<div class="page e-entertainment">' +
 						'<div class="wrapper">' +
 							'电子游艺' +
 						'</div>' +
 					'</div>';
-		
-		this.el  = temp;
+
+		this.el  = noticeDom+temp;
 	};
 
 	EEntertainment.prototype.getDom = function () {
@@ -27,6 +29,7 @@
 
 	EEntertainment.prototype.bindEvents = function () {
 		this.zone = $('.e-entertainment');
+		this.notice.bindEvents();
 	};
 
 	window.EEntertainment = EEntertainment;
