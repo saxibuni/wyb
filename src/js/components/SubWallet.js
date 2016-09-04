@@ -12,8 +12,8 @@ $(function(){
 						'<hr class="line">' +
 						'<span class="balance">' + this.opt.balance + '</span>' +
 						'<div class="transfer-layer">' +
-							'<a href="javascript:void(0);" class="button turn-into">转出</a>' +
-							'<a href="javascript:void(0);" class="button turn-out">转入</a>' +									
+							'<a href="javascript:void(0);" class="btn turn-into">转出</a>' +
+							'<a href="javascript:void(0);" class="btn turn-out">转入</a>' +									
 						'</div>' +
 					'</div>';
 		this.el = temp;

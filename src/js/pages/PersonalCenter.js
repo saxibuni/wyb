@@ -94,8 +94,8 @@ $(function(){
 									'<span class="zxqb">中心钱包</span>' +
 									'<span class="money money-type">¥</span><span class="money balance">10,000.00</span><span class="money-unit">CNY</span>' +
 									'<hr class="line">' +
-									'<a href="javascript:void(0);" class="button turn-into">转出</a>' +
-									'<a href="javascript:void(0);" class="button turn-out">转入</a>' +									
+									'<a href="javascript:void(0);" class="btn turn-into">转出</a>' +
+									'<a href="javascript:void(0);" class="btn turn-out">转入</a>' +									
 								'</div>' +
 
 								'<div class="nav-left"></div>' +
@@ -106,7 +106,7 @@ $(function(){
 								'<div class="clear"></div>' +
 
 								'<div class="tab-container">' +
-									//this.createZjgl() +
+									// this.createZjgl() +
 									this.createJyjl() +
 								'</div>' +
  							'</div>' +

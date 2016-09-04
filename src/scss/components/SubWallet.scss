@@ -33,17 +33,16 @@
 		background: rgba(125,124,121,0.7);
 		display: none;
 
-        .button{
+        .btn{
 	        width: 40px;
 	        height: 20px;
 	        line-height: 20px;
 	        font-size: 12px;
 	        border:1px solid #cda654;
-	        color: #cda654;
+	        color:#fdfbf9;
 	        display: inline-block;
 	        margin-top: 23px;
 	        &:hover{
-	            color:#fdfbf9;
 	            background-color:#cda654;
 	        }
 	    }
