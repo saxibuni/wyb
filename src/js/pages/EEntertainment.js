@@ -205,7 +205,7 @@
 
 
 		var bottomModule='<div class="bottom-module">'+bottomLeftModule+bottomRightModule+'</div>';
-		var mainConent='<div class="main-content">'+topModule+
+		var mainConent='<div class="page main-content">'+topModule+
 						 		   middleNavModule+bottomModule+'</div>';
 
 		this.el  = noticeDom+mainConent;
