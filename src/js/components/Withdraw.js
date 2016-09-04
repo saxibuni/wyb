@@ -52,7 +52,7 @@
 								'<div class="text">提现金额</div>' +
 								this.withdrawInput.getDom() +
 								'<div class="text unit">元</div>' +
-								'<div class="notice">' +
+								'<div class="input-notice">' +
 									'充值额度限定： 最低100元，最高150000元' +
 								'</div>' +
 							'</div>' +

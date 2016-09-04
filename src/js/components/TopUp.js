@@ -79,7 +79,7 @@
 							'<div class="text">充值金额</div>' +
 							this.topupInput.getDom() +
 							'<div class="text unit">元</div>' +
-							'<div class="notice">' +
+							'<div class="input-notice">' +
 								'充值额度限定： 最低2.00元，最高45000.00元' +
 							'</div>' +
 						'</div>' +
