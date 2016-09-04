@@ -107,6 +107,7 @@ $(function(){
 
 								'<div class="tab-container">' +
 									this.createZjgl() +
+									//this.createJyjl() +
 								'</div>' +
  							'</div>' +
 							'<div class="clear"></div>' +
@@ -145,14 +146,10 @@ $(function(){
 		});
 
 		this.cz = new TopUp();
-		this.zz = new MoneyTransfer();
-		this.tx = new Withdraw();
 
 		temp +=	this.zjglTab.getDom() +
 				'<div class="zjgl-content">' +
 					this.cz.getDom() +
-					this.zz.getDom() +
-					this.tx.getDom() +
 				'</div>';
 
 		return temp;
@@ -160,6 +157,19 @@ $(function(){
 
 	PersonalCenter.prototype.createJyjl = function(){
 		var temp = '';
+
+		this.zjglTab = new Tab({
+			id: 'jyjl-tab',
+			titles: this.tabData['jyjl']
+		});
+
+		this.topupRecord = new TopupRecord();
+
+		temp +=	this.zjglTab.getDom() +
+				'<div class="zjgl-content">' +
+					this.topupRecord.getDom() +
+				'</div>';
+
 		return temp;
 	}
 
@@ -208,8 +218,6 @@ $(function(){
 
         this.zjglTab.bindEvents();
         this.cz.bindEvents();
-        this.zz.bindEvents();
-        this.tx.bindEvents();
 
         $('#zjgl-tab').delegate('li', 'click', function () {
         	index = $(this).index();
@@ -218,16 +226,65 @@ $(function(){
         	if (index === 0) {
         		that.cz.show();
         	} else if (index === 1) {
+        		if (!that.zz) {
+        			that.zz = new MoneyTransfer();
+        			that.zone.find('.zjgl-content').append(that.zz.getDom());
+        			that.zz.bindEvents();
+        		}
+
         		that.zz.show();
         	} else if (index === 2) {
+        		if (!that.tx) {
+        			that.tx = new Withdraw();
+        			that.zone.find('.zjgl-content').append(that.tx.getDom());
+        			that.tx.bindEvents();
+        		}
+
         		that.tx.show();
+        	}
+        })
+
+        $('#jyjl-tab').delegate('li', 'click', function () {
+        	index = $(this).index();
+        	that.zone.find('.grzx-money-action').hide();
+
+        	if (index === 0) {
+        		that.topupRecord.show();
+        	} else if (index === 1) {
+        		if (!that.moneyTransferRecord) {
+        			that.moneyTransferRecord = new MoneyTransferRecord();
+        			that.zone.find('.jygl-content').append(that.moneyTransferRecord.getDom());
+        			that.moneyTransferRecord.bindEvents();
+        		}
+
+        		that.moneyTransferRecord.show();
+        	} else if (index === 2) {
+        		if (!that.withDrawRecord) {
+        			that.withDrawRecord = new WithdrawRecord();
+        			that.zone.find('.jygl-content').append(that.withDrawRecord.getDom());
+        			that.withDrawRecord.bindEvents();
+        		}
+
+        		that.withDrawRecord.show();
+        	} else if (index === 3) {
+        		if (!that.bettingRecord) {
+        			that.bettingRecord = new BettingRecord();
+        			that.zone.find('.jygl-content').append(that.bettingRecord.getDom());
+        			that.bettingRecord.bindEvents();
+        		}
+
+        		that.bettingRecord.show();
+        	} else if (index === 4) {
+        		if (!that.dividendRecord) {
+        			that.dividendRecord = new DividendRecord();
+        			that.zone.find('.jygl-content').append(that.dividendRecord.getDom());
+        			that.dividendRecord.bindEvents();
+        		}
+
+        		that.dividendRecord.show();
         	}
         })
 	}
 
 	window.PersonalCenter = PersonalCenter;
-
-
-
-
 }());

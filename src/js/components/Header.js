@@ -7,6 +7,13 @@
 		var temp;
 
 		this.switch = new Switch({id: 'money-switch'});
+		this.lxkfButton = new Button({
+			id: 'header-lxkf',
+			className: 'header-button lxkf-button',
+			name: '联系客服',
+			width: 70,
+			height: 22
+		});
 
 		temp =	'<div class="header">' +
 					'<div class="wrapper">' +
@@ -107,9 +114,7 @@
 									'注册' +
 								'</div>' +
 
-								'<div class="header-button lxkf-button">' +
-									'联系客服' +
-								'</div>' +
+								this.lxkfButton.getDom() +
 							'</div>' +
 
 							'<ul class="pages">' +
@@ -216,8 +221,9 @@
 			}
 		});
 
-		//this.showSignedOutHeader();
-		this.showSignedInHeader();
+		this.showSignedOutHeader();
+		//this.showSignedInHeader();
+		this.lxkfButton.bindEvents();
 	};
 
 	window.Header = Header;

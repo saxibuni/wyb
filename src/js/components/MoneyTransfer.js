@@ -5,7 +5,22 @@
 	}
 
 	MoneyTransfer.prototype.initDom = function() {
-		var temp = 	'<div class="money-transfer grzx-money-action">' +
+		var temp;
+
+		this.button = new Button({
+			id: 'money-transfer-button',
+			name: '确认转账',
+			width: 128,
+			height: 42
+		});
+
+		this.moneyTransferInput = new Input({
+			id: 'money-transfer-input',
+			width: 178,
+			height: 30
+		});
+
+		temp = 		'<div class="money-transfer grzx-money-action">' +
 						'<div class="wrapper">' +
 							'<div class="row1">' +
 								'<div class="text">从</div>' +
@@ -25,18 +40,11 @@
 
 							'<div class="row3">' +
 								'<div class="text">转账金额</div>' +
-								'<div class="input-outer">' +
-									'<input type="text">' +
-									'<img class="pass" src="../img/pass.png">' +
-									'<img class="warning" src="../img/warning.png">' +
-									'<div class="clear"></div>' +
-								'</div>' +
+								this.moneyTransferInput.getDom() +
 							'</div>' +
 
 							'<div class="row4">' +
-								'<div class="button">' +
-									'确认转账' +
-								'</div>' +
+								this.button.getDom() +
 							'</div>' +
 						'</div>' +
 					'</div>';
@@ -59,6 +67,9 @@
 
 	MoneyTransfer.prototype.bindEvents = function() {
 		this.zone = $('.money-transfer');
+
+		this.button.bindEvents();
+		this.moneyTransferInput.bindEvents();
 	}
 
 	window.MoneyTransfer = MoneyTransfer;

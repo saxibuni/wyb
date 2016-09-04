@@ -5,7 +5,22 @@
 	}
 
 	TopUp.prototype.initDom = function() {
-		var temp = 	'<div class="top-up grzx-money-action">' +
+		var temp;
+
+		this.button = new Button({
+			id: 'topup-button',
+			name: '立即充值',
+			width: 128,
+			height: 42
+		});
+
+		this.topupInput = new Input({
+			id: 'topup-input',
+			width: 200,
+			height: 30
+		});
+
+		temp = 		'<div class="top-up grzx-money-action">' +
 						'<div class="row1">' +
 							'<ul>' +
 								'<li class="selected">' +
@@ -62,22 +77,15 @@
 
 						'<div class="row4">' +
 							'<div class="text">充值金额</div>' +
-							'<div class="input-outer">' +
-								'<input type="text">' +
-								'<img class="pass" src="../img/pass.png">' +
-								'<img class="warning" src="../img/warning.png">' +
-								'<div class="clear"></div>' +
-							'</div>' +
-							'<div class="text">元</div>' +
+							this.topupInput.getDom() +
+							'<div class="text unit">元</div>' +
 							'<div class="notice">' +
 								'充值额度限定： 最低2.00元，最高45000.00元' +
 							'</div>' +
 						'</div>' +
 
 						'<div class="row5">' +
-							'<div class="button">' +
-								'立即充值' +
-							'</div>' +
+							this.button.getDom() +
 						'</div>' +
 					'</div>';
 
@@ -106,6 +114,9 @@
 			row1Ul.find('li').removeClass('selected');
 			$(this).addClass('selected');
 		});
+
+		this.button.bindEvents();
+		this.topupInput.bindEvents();
 	};
 
 	window.TopUp = TopUp;

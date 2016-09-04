@@ -5,7 +5,22 @@
 	}
 
 	Withdraw.prototype.initDom = function() {
-		var temp = 	'<div class="withdraw grzx-money-action">' +
+		var temp;
+
+		this.button = new Button({
+			id: 'withdraw-button',
+			name: '立即提现',
+			width: 128,
+			height: 42
+		});
+
+		this.withdrawInput = new Input({
+			id: 'withdraw-input',
+			width: 200,
+			height: 30
+		});
+
+		temp 	= 	'<div class="withdraw grzx-money-action">' +
 						'<div class="title">' +
 							'<div class="left">' +
 								'<span class="text">尊敬的</span>' +
@@ -35,22 +50,15 @@
 
 							'<div class="row2">' +
 								'<div class="text">提现金额</div>' +
-								'<div class="input-outer">' +
-									'<input type="text">' +
-									'<img class="pass" src="../img/pass.png">' +
-									'<img class="warning" src="../img/warning.png">' +
-									'<div class="clear"></div>' +
-								'</div>' +
-								'<div class="text">元</div>' +
+								this.withdrawInput.getDom() +
+								'<div class="text unit">元</div>' +
 								'<div class="notice">' +
 									'充值额度限定： 最低100元，最高150000元' +
 								'</div>' +
 							'</div>' +
 
 							'<div class="row3">' +
-								'<div class="button">' +
-									'立即提现' +
-								'</div>' +
+								this.button.getDom() +
 							'</div>' +
 						'</div>' +
 					'</div>';
@@ -86,6 +94,8 @@
 
 	Withdraw.prototype.bindEvents = function() {
 		this.zone = $('.withdraw');
+		this.button.bindEvents();
+		this.withdrawInput.bindEvents();
 	}
 
 	window.Withdraw = Withdraw;

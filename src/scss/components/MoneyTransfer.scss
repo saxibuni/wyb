@@ -37,46 +37,6 @@
 			.text {
 				bottom: 12px;
 			}
-
-			.input-outer {
-				border: 1px solid #555555;
-				height: 30px;
-				line-height: 30px;
-				padding: 2px 10px;
-				display: inline-block;
-				width: 178px;
-
-				input {
-					background-color: transparent;
-					border: 0;
-					color: #999999;
-					display: inline-block;
-					float: left;
-					height: 28px;
-					line-height: 28px;
-					width: 90%;
-				}
-
-				.pass {
-					display: inline-block;
-					float: right;
-					position: relative;
-					height: 15px;
-					width: 15px;
-					top: 7px;
-					right: 0;
-				}
-
-				.warning {
-					display: none;
-					float: right;
-					position: relative;
-					height: 15px;
-					width: 15px;
-					top: 7px;
-					right: 0;
-				}
-			}
 		}
 
 		.row4 {
@@ -84,21 +44,8 @@
 			text-align: center;
 
 			.button {
-				background-color: #CDA654;
-				display: inline-block;
-				color: #FFF;
-				font-weight: bold;
-				cursor: pointer;
-				width: 128px;
-				height: 42px;
-				line-height: 42px;
-				text-align: center;
 			    position: relative;
-			    left: 15px;
-
-				&:hover {
-					color: #000;
-				}
+			    left: 100px;
 			}
 		}
 	}
