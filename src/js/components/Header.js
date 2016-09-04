@@ -56,7 +56,7 @@
 							'</div>' +
 
 							'<div class="grzx">' +
-								'<div class="title">' +
+								'<div class="title nav-page" data-value="personalCenter">' +
 									'个人中心' +
 								'</div>' +
 
@@ -216,7 +216,8 @@
 			}
 		});
 
-		this.showSignedOutHeader();
+		//this.showSignedOutHeader();
+		this.showSignedInHeader();
 	};
 
 	window.Header = Header;

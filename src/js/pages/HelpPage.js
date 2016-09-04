@@ -96,7 +96,7 @@ $(function() {
 
         pageUl.delegate('li','click',function(){
             index = $(this).index();
-            stick.css('top',(index * 40 + 50) + 'px');
+            stick.css('top',(index * 40 + 51) + 'px');
         });
 
     }

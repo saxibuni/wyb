@@ -55,11 +55,12 @@ gulp.task('prepare', ['clean'], function () {
 
     gulp.src([
             './bower_components/jquery/dist/jquery.min.js',
+            //'./bower_components/history.js/scripts/bundled/html4+html5/jquery.history.js',
             './bower_components/jquery-i18next/jquery-i18next.min.js',
             './bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js',
             './bower_components/i18next/i18next.min.js',
             './bower_components/datetimepicker/jquery.datetimepicker.js',
-             './bower_components/Gallery/js/blueimp-gallery.min.js'
+            './bower_components/Gallery/js/blueimp-gallery.min.js'
         ])
         .pipe(gulp.dest(src_js_lib_path));
 
@@ -68,9 +69,9 @@ gulp.task('prepare', ['clean'], function () {
 });
 
 gulp.task('build', function () {
-
     gulp.src([
             'src/lib/js/jquery.min.js',
+            'src/lib/js/jquery.history.js',
             'src/js/utils/*.js',
             'src/js/plugins/IMDialog.js',
             'src/js/plugins/*.js',

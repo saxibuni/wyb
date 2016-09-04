@@ -1,0 +1,151 @@
+.top-up {
+	height: 100%;
+	width: 100%;
+	padding: 20px 30px;
+
+	.row1 {
+		ul {
+			li {
+				border: 1px solid #CCCCCC;
+				cursor: pointer;
+				color: #999999;
+				display: inline-block;
+				height: 32px;
+				line-height: 32px;
+				width: 120px;
+				background-color: #F9FBFF;
+				text-align: center;
+
+				&:first-child {
+					border-right: none;
+				}
+
+				&:last-child {
+					border-left: none;	
+				}
+			}
+
+			.selected {
+				background-color: #0088CC;
+				color: #FFF;
+			}
+		}
+	}
+
+	.row2 {
+		margin-top: 20px;
+
+		.title {
+			color: #999999;
+			height: 30px;
+			line-height: 30px;
+		}
+
+		ul {
+			li {
+				color: #999999;
+				cursor: pointer;
+				border: 1px solid #DBDBDB;
+				display: inline-block;
+				height: 50px;
+				line-height: 50px;
+				width: 150px;
+				margin-right: 20px;
+				margin-top: 20px;
+				text-align: center;
+			}
+		}
+	}
+
+	.row3 {
+		color: #0088CC;
+		height: 30px;
+		line-height: 30px;
+		margin-top: 26px;
+	}
+
+	.row4 {
+		margin-top: 20px;
+
+		.text {
+			color: #333333;
+			display: inline-block;
+			height: 30px;
+			line-height: 30px;
+			bottom: 12px;
+			position: relative;
+			margin-right: 10px;
+
+			&:last-child {
+				margin-left: 10px;
+			}
+		}
+
+		.input-outer {
+			border: 1px solid #555555;
+			height: 30px;
+			line-height: 30px;
+			padding: 2px 10px;
+			display: inline-block;
+			width: 200px;
+
+			input {
+				background-color: transparent;
+				border: 0;
+				color: #999999;
+				display: inline-block;
+				float: left;
+				height: 28px;
+				line-height: 28px;
+				width: 90%;
+			}
+
+			.pass {
+				display: inline-block;
+				float: right;
+				position: relative;
+				height: 15px;
+				width: 15px;
+				top: 7px;
+				right: 0;
+			}
+
+			.warning {
+				display: none;
+				float: right;
+				position: relative;
+				height: 15px;
+				width: 15px;
+				top: 7px;
+				right: 0;
+			}
+		}
+
+		.notice {
+			color: #999999;
+			font-size: 12px;
+			height: 20px;
+			line-height: 20px;
+			margin-left: 70px;
+		}
+	}
+
+	.row5 {
+		margin-top: 28px;
+
+		.button {
+			background-color: #CDA654;
+			color: #FFF;
+			font-weight: bold;
+			cursor: pointer;
+			width: 128px;
+			height: 42px;
+			line-height: 42px;
+			text-align: center;
+
+			&:hover {
+				color: #000;
+			}
+		}
+	}
+}

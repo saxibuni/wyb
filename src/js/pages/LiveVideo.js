@@ -55,7 +55,7 @@
 		var temp =	'<div class="item">' +
 						'<div class="zone1">' +
 							'<div class="logo">' +
-								'<img src="../img/bg-eentertainment.jpg">' +
+								'<img src="../img/temp.svg">' +
 							'</div>' +
 						'</div>' +
 
