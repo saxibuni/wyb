@@ -98,16 +98,26 @@ $(function(){
 									'<a href="javascript:void(0);" class="btn turn-out">转入</a>' +									
 								'</div>' +
 
-								'<div class="nav-left"></div>' +
+								'<div class="nav-left"><span><img src="../img/left-n.png" /></span></div>' +
 								'<div class="wallet-zone">' +
 									this.createSubWallet() +
 								'</div>' +
-								'<div class="nav-right"></div>' +
+								'<div class="nav-right"><span><img src="../img/right-n.png" /></span></div>' +
 								'<div class="clear"></div>' +
 
 								'<div class="tab-container">' +
-									// this.createZjgl() +
-									this.createJyjl() +
+									'<div class="zjgl-zone" menu-index="0">' +
+										this.createZjgl() +	
+									'</div>' +
+									'<div class="jyjl-zone" menu-index="1">' +
+										// this.createJyjl() +
+									'</div>' +
+									'<div class="zhgl-zone" menu-index="2">' +
+										// this.createZhgl() +
+									'</div>' +
+									'<div class="znx-zone" menu-index="3">' +
+										// this.createZnx() +
+									'</div>' +
 								'</div>' +
  							'</div>' +
 							'<div class="clear"></div>' +
@@ -158,14 +168,14 @@ $(function(){
 	PersonalCenter.prototype.createJyjl = function(){
 		var temp = '';
 
-		this.zjglTab = new Tab({
+		this.jyjlTab = new Tab({
 			id: 'jyjl-tab',
 			titles: this.tabData['jyjl']
 		});
 
 		this.topupRecord = new TopupRecord();
 
-		temp +=	this.zjglTab.getDom() +
+		temp +=	this.jyjlTab.getDom() +
 				'<div class="zjgl-content">' +
 					this.topupRecord.getDom() +
 				'</div>';
@@ -196,7 +206,9 @@ $(function(){
 		var stick;
 		var index;
 		var walletzone;
+		var tabZone;
 		var that = this;
+
 
 		this.zone = $('.personal-center');
 		menuUl = this.zone.find('.tree > ul');
@@ -206,6 +218,23 @@ $(function(){
         menuUl.delegate('li','click',function(){
             index = $(this).index();
             stick.css('top',(index * 40) + 'px');
+            tabZone = that.zone.find('[menu-index="' + index +'"]');
+            if (tabZone.html() == '') {	
+	            if (index == 1){
+	        		tabZone.html(that.createJyjl());
+	        		that.jyjlTab.bindEvents();
+	        		that.topupRecord.bindEvents();
+	        	} 
+	        	if (index == 2) {
+
+	        	}
+	        	if (index == 3) {
+
+	        	}
+            }
+        	tabZone.siblings().hide();
+            tabZone.show();
+
         });
 
         walletzone.delegate('.sub-wallet','mouseover',function(){
@@ -216,8 +245,10 @@ $(function(){
         	$(this).find('.transfer-layer').hide();
         });
 
+
+
         this.zjglTab.bindEvents();
-        //this.cz.bindEvents();
+        this.cz.bindEvents();
 
         $('#zjgl-tab').delegate('li', 'click', function () {
         	index = $(this).index();
@@ -242,7 +273,7 @@ $(function(){
 
         		that.tx.show();
         	}
-        })
+        });
 
         $('#jyjl-tab').delegate('li', 'click', function () {
         	index = $(this).index();
@@ -283,7 +314,7 @@ $(function(){
 
         		that.dividendRecord.show();
         	}
-        })
+        });
 	}
 
 	window.PersonalCenter = PersonalCenter;

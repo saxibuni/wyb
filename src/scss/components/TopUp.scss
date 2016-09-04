@@ -1,7 +1,7 @@
+@import "../mixins.scss";
 .top-up {
-	height: 100%;
-	width: 100%;
-	padding: 20px 30px;
+	@include tab-page;
+	display:block;
 
 	.row1 {
 		ul {

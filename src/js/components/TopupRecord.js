@@ -71,7 +71,7 @@
 	};
 
 	TopupRecord.prototype.bindEvents = function () {
-		var today;
+		var today = new Date();
 		var that = this;
 
 		this.zone = $('.topup-record');

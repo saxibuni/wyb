@@ -1,12 +1,10 @@
+@import "../mixins.scss";
 .money-transfer {
-	display: none;
-	height: 100%;
-	widtj: 100%;
+	@include tab-page;
 
 	.wrapper {
 		width: 300px;
-		margin: 0 auto;
-		margin-top: 50px;
+    	margin: 20px auto 30px;
 
 		.text {
 			color: #333333;
@@ -45,7 +43,7 @@
 
 			.button {
 			    position: relative;
-			    left: 100px;
+			    left: 13px;
 			}
 		}
 	}

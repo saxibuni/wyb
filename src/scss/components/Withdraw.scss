@@ -1,10 +1,7 @@
 @import "../mixins.scss";
 
 .withdraw {
-	display: none;
-	height: 100%;
-	width: 92%;
-	padding: 20px 30px;
+	@include tab-page;
 
 	.title {
 		background-color: #E8E9E1;
