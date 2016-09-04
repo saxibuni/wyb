@@ -216,7 +216,8 @@
 			}
 		});
 
-		this.showSignedOutHeader();
+		//this.showSignedOutHeader();
+		this.showSignedInHeader();
 	};
 
 	window.Header = Header;

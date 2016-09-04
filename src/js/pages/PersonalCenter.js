@@ -106,6 +106,7 @@ $(function(){
 								'<div class="clear"></div>' +
 
 								'<div class="tab-container">' +
+									this.createZjgl() +
 								'</div>' +
  							'</div>' +
 							'<div class="clear"></div>' +
@@ -132,6 +133,43 @@ $(function(){
 				temp +='</div>';
 		}
 
+		return temp;
+	}
+
+	PersonalCenter.prototype.createZjgl = function(){
+		var temp = '';
+
+		this.zjglTab = new Tab({
+			id: 'zjgl-tab',
+			titles: this.tabData['zjgl']
+		});
+
+		this.cz = new TopUp();
+		this.zz = new MoneyTransfer();
+		this.tx = new Withdraw();
+
+		temp +=	this.zjglTab.getDom() +
+				'<div class="zjgl-content">' +
+					this.cz.getDom() +
+					this.zz.getDom() +
+					this.tx.getDom() +
+				'</div>';
+
+		return temp;
+	}
+
+	PersonalCenter.prototype.createJyjl = function(){
+		var temp = '';
+		return temp;
+	}
+
+	PersonalCenter.prototype.createZhsz = function(){
+		var temp = '';
+		return temp;
+	}
+
+	PersonalCenter.prototype.createZnx = function(){
+		var temp = '';
 		return temp;
 	}
 
@@ -163,9 +201,13 @@ $(function(){
         walletzone.delegate('.sub-wallet','mouseover',function(){
         	$(this).find('.transfer-layer').show();
         });
+
         walletzone.delegate('.sub-wallet','mouseout',function(){
         	$(this).find('.transfer-layer').hide();
         });
+
+        this.zjglTab.bindEvents();
+        this.cz.bindEvents();
 
 	}
 

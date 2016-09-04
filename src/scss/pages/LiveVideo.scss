@@ -22,18 +22,6 @@
 				width: 100%;
 				height: 100%;
 
-				tr {
-					&:first-child {
-						td {
-							&:first-child {
-								.item {
-									width: 400px;
-								}
-							}
-						}
-					}
-				}
-
 				.item {	
 					background-color: #48463A;
 					border: 1px solid #474539;
@@ -41,7 +29,6 @@
 					height: 100%;
 					width: 100%;
 					text-align: left;
-					width: 220px;
 
 					.zone1 {
 						height: 220px;
