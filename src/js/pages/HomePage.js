@@ -58,11 +58,11 @@
 									'<div class="right fl">' +
 										'<div class="row1 clearAfter">' +
 											'<div class="fl sports">' +
-												'<img src="../img/bg-sport.jpg">' +
+												'<img src="../img/bg-sports.jpg">' +
 												'<span>体育赛事</span>' +
 											'</div>' +
 											'<div class="fl video">' +
-												'<img src="../img/bg-sport.jpg">' +
+												'<img src="../img/bg-sports.jpg">' +
 												'<span>视讯直播</span>' +
 											'</div>' +
 										'</div>' +
