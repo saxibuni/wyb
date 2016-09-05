@@ -72,7 +72,7 @@
 
 						'<div class="row3">' +
 							'<span>更多网银</span>' +
-							'<img class="message-img" src="../img/zh-lang.png">' +
+							'<img class="message-img" src="../img/sxl.png">' +
 						'</div>' +
 
 						'<div class="row4">' +

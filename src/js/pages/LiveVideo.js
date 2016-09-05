@@ -68,7 +68,7 @@
 							'</p>' +
 
 							'<div class="quantity">' +
-								'<img class="message-img" src="../img/zh-lang.png">' +
+								'<img class="message-img" src="../img/eye.png">' +
 								'<span>2022</span>' +
 							'</div>' +
 						'</div>' +
