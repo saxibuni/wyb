@@ -33,11 +33,15 @@
 													'</ul>'+
 											  '</div>';
 	  var topBannerModule='<div class="slider">'+
-														'<img src="../img/test2.png"/>'+
+													'<ul>' +
+														'<li><img src="../img/test2.png"></li>' +
+														'<li><img src="../img/test2.png"></li>' +
+														'<li><img src="../img/test2.png"></li>' +
+													'</ul>' +
 												'</div>';
 
 		var topRightModule='<div class="left top-right-module">'+
-													'<div class="amount-info">4324432432432</div>'+
+													'<div class="amount-info"><p>4324432432432</p></div>'+
 													'<div class="user-info">'+
 														'<p><span class="red">恭喜</span><span class="userName">Wang **</span></p>'+
 														'<h3>于BBIN平台-连环夺宝</h3>'+
@@ -53,6 +57,11 @@
 													'<li class="ag-li"></li>'+
 													'<li class="mg-li"></li>'+
 												'</ul>'+
+												'<ul class="middle-right-module">'+
+													'<li class="li-item1"></li>'+
+													'<li class="li-item2"></li>'+
+													'<li class="li-item3"></li>'+
+												'</ul>'
 												'<div class="clear"></div>';
 		var bottomLeftModule='<div class="bottom-left">'+
 													'<div class="search-box">'+
@@ -61,13 +70,13 @@
 														'<div class="clear"></div>'+
 													'</div>'+
 													'<ul>'+
-														'<li><span>热门游戏</span><div></div></li>'+
-														'<li><span>全部游戏</span><div></div></li>'+
-														'<li><span>经典游戏</span><div></div></li>'+
-														'<li><span>奖金游戏</span><div></div></li>'+
-														'<li><span>视频扑克</span><div></div></li>'+
-														'<li><span>免费游戏</span><div></div></li>'+
-														'<li><span>我的收藏</span><div></div></li>'+
+														'<li><img src="../img/v01-n.png" /><span>热门游戏</span><div></div></li>'+
+														'<li><img src="../img/v02-n.png" /><span>全部游戏</span><div></div></li>'+
+														'<li><img src="../img/v03-n.png" /><span>经典游戏</span><div></div></li>'+
+														'<li><img src="../img/v04-n.png" /><span>奖金游戏</span><div></div></li>'+
+														'<li><img src="../img/v05-n.png" /><span>视频扑克</span><div></div></li>'+
+														'<li><img src="../img/v06-n.png" /><span>免费游戏</span><div></div></li>'+
+														'<li><img src="../img/v07-n.png" /><span>我的收藏</span><div></div></li>'+
 													'</ul>'+
 													'<div class="stick"></div>'+
 												'</div>';
@@ -190,7 +199,7 @@
 				var temp=testData[a];
 					html+='<li>'+
 						'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-						'<span class="red">'+temp.score+'</span><img src="../img/a02-h.png"></p>'+
+						'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
 					'</li>';
 			}
 			return html;
@@ -227,16 +236,36 @@
 		var pageUl;
 		var stick;
 		var index;
+		var imgIndex;
 		var that = this;
 		this.zone = $('.main-content');
 		this.notice.bindEvents();
 		pageUl = this.zone.find('.bottom-left ul');
 		stick = this.zone.find('.bottom-left .stick');
+		pageUl.delegate('li','mouseover',function(){
+			index = $(this).index();
+			imgIndex=index+1;
+			var path="../img/v0"+imgIndex+"-d.png";
+			$(this).find("img").attr("src",path);
+		});
+		pageUl.delegate('li','mouseout',function(){
+			index = $(this).index();
+			imgIndex=index+1;
+			var path="../img/v0"+imgIndex+"-n.png";
+			$(this).find("img").attr("src",path);
+		})
 		pageUl.delegate('li','click',function(){
 				index = $(this).index();
 				stick.css('top',(index * 40 + 62) + 'px');
 		});
 	};
-
+	
+	$(function() {
+		$('.slider').unslider({
+			speed: 500,
+			delay: 3000,
+			dots: true
+		});
+	});
 	window.EEntertainment = EEntertainment;
 }());

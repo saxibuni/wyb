@@ -28,6 +28,7 @@
 					cursor: pointer;
 					height: 100%;
 					width: 100%;
+					position: relative;
 					text-align: left;
 
 					.zone1 {
@@ -68,19 +69,26 @@
 							}
 						}
 					}
+
+					.item-overlay {
+						position: absolute;
+						left: 0;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						background: rgba(0, 0, 0, 0.5);
+					}
+
+					&:hover {
+						.item-overlay {
+							display: none;
+						}
+					}
 				}
 
 				.first-item {
-					.zone1 {
-						.logo {
-							width: 486px;
-							height: 220px;
-
-							img {
-								width: 486px;
-								height: 220px;
-							}
-						}
+					.item-overlay {
+						display: none;
 					}
 				}
 			}

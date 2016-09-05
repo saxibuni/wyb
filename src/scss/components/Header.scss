@@ -27,6 +27,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			color: #FFF;
 			height: $headerRow1Height;
 			line-height: $headerRow1Height;
+			z-index: 5;
 
 			.language {
 				cursor: pointer;
@@ -95,14 +96,15 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 				.wdsc-float-window {
 					color: #FFF;
-					display: none;
 					width: 100px;
-					height:60px;
+					height: 0;
 					position: absolute;
 					top: 30px;
 					left: 0;
 					z-index: 2;
 					text-align: left;
+					transition: height .3s;
+					overflow: hidden;
 
 					ul {
 						background-color: #37352C;
@@ -126,7 +128,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 				&:hover {
 					.wdsc-float-window {
-						display: block;
+						height: 60px;
 					}
 				}
 			}
@@ -227,14 +229,15 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				}
 
 				.grzx-float-window {
-					display: none;
-					height: 200px;
+					height: 0;
 					width: 150px; 	
 					position: absolute;
 					top: 30px;
 					left: 0;
 					z-index: 2;
 					text-align: left;
+					transition: height .3s;
+					overflow: hidden;
 
 					.title {
 						background-color: #37352C;
@@ -281,7 +284,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 				&:hover {
 					.grzx-float-window {
-						display: block;
+						height: 200px;
 					}
 				}
 			}

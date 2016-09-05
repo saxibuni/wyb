@@ -16,7 +16,8 @@
 											'<td colspan="2">' +
 												this.createItem({
 													width: '486px',
-													height: '220px'
+													height: '220px',
+													className: 'first-item'
 												}) +
 											'</td>' +
 											'<td>' +
@@ -55,7 +56,7 @@
 	};
 
 	LiveVideo.prototype.createItem = function (opt) {
-		var temp =	'<div class="item">' +
+		var temp =	'<div class="item' + ((opt&&opt.className)?' ' + opt.className: '') + '">' +
 						'<div class="zone1">' +
 							'<div class="logo"' + (opt?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
 								'<img src="../img/test1.png"' + (opt?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
@@ -71,6 +72,9 @@
 								'<img class="message-img" src="../img/eye.png">' +
 								'<span>2022</span>' +
 							'</div>' +
+						'</div>' +
+
+						'<div class="item-overlay">' +
 						'</div>' +
 					'</div>';
 

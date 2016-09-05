@@ -23,7 +23,7 @@
 			width:100%;
 			height:65px;
 			background-size: cover;
-			background:url("../img/test1.png");
+			background:url("../img/cj.jpg");
 		}
 		.left-list li{
       list-style: none;
@@ -46,10 +46,65 @@
 		width:600px;
 		height:295px;
 		margin:0 10px;
-		img{
-			width:100%;
-			height:295px;
+		ul {
+			height: 100%;
+			position: relative;
+			li {
+				height: 100%;
+				float: left;
+				list-style: none;
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+
 		}
+		.unslider-nav {
+				position: relative;
+				top: -125px;
+				ol {
+					width: 100px;
+					margin-right: 51px;
+					float: right;
+					li {
+						display: inline-block;
+						width: 18px;
+						height: 10px;
+						overflow: hidden;
+						text-indent: 50px;
+						background-color: #ccc;
+						margin: 0 5px;
+						border-radius: 3px;
+					}
+				}
+			}
+
+			.unslider-nav ol li.unslider-active {
+				background-color: #fff;
+			}
+			.prev, .next {
+				width: 50px;
+				height: 70px;
+				display: inline-block;
+				position: relative;
+				overflow: hidden;
+				top: -250px;
+				opacity: 0.5;
+				text-indent: 50px;
+			}
+			.prev:hover, .next:hover {
+				opacity: 1;
+			}
+			.prev {
+				left: -496px;
+				background: url('../img/left-normal.png') no-repeat;
+			}
+			.next {
+				left: 496px;
+				background: url('../img/right-normal.png') no-repeat;
+			}
+
 	}
 	.top-module{
 		width:100%;
@@ -58,18 +113,21 @@
 	.top-right-module{
 		background: #48463A;
     float: left;
-    padding: 10px;
-    width: 182px;
-    border-top: 2px solid #FCE189;
+    width: 202px;
 		.amount-info{
-			margin: 80px 0 10px;
-			background: #2B2A23;
-			border-radius: 5px;
-			padding: 20px;
+			margin: 0 0 10px;
+			background: url(../img/jp.jpg) no-repeat;
 			color: #cda654;
 			font-size: 16px;
 			font-weight: 600;
 			text-align: center;
+			background-size: contain;
+			height: 150px;
+			width: 100%;
+			p{
+				position:relative;
+				top:70px;
+			}
 		}
 		.user-info{
 			margin: 10px 0;
@@ -91,21 +149,23 @@
 			}
 		}
 		button {
-			background: #C6281E;
+			background: url(../img/ks.jpg);
 			font-size: 16px;
 			height: 30px;
 			line-height: 30px;
 			font-weight: 500;
 			color: #fff;
-			width: 100%;
+			width: 182px;
+			margin-bottom: 14px;
 		}
 	}
 	.middle-module{
 		height:50px;
-		width:1024px;
-		margin:10px auto 0;
+		width: 870px;
+		margin-top: 10px;
 		background:#48463A;
 		line-height:50px;
+		float:left;
 		li{
 			float:left;;
 			list-style: none;
@@ -152,12 +212,46 @@
 			background-color:#cda654;
 		}
 	}
+	.middle-right-module{
+		margin-top: 10px;
+		background:#48463A;
+		line-height:50px;
+		width:152px;
+		margin-left:2px;
+		border-left:1px solid #48463A;
+		height:50px;
+		float:left;
+		li{
+			float:left;
+			height:100%;
+			width:45px;
+			background-size:cover;
+		}
+		.li-item1{
+			background: url("../img/v08-n.png") no-repeat 10px;
+		}
+		.li-item1:hover{
+			background: url("../img/v08-d.png") no-repeat 10px;
+		}
+		.li-item2{
+			background: url("../img/v09-n.png") no-repeat 10px;
+		}
+		.li-item2:hover{
+			background: url("../img/v09-d.png") no-repeat 10px;
+		}
+		.li-item3{
+			background: url("../img/v10-n.png") no-repeat 10px;
+		}
+		.li-item3:hover{
+			background: url("../img/v10-d.png") no-repeat 10px;
+		}
+	}
 	.bottom-module{
 		 width:100%;
-		 height:770px;
+		 height: 826px;
 		 background: #2C2C2C;
 		.bottom-left{
-			width: 179px;
+			width: 176px;
 			background-color: #2C2C2C;
 			float: left;
 			position: relative;
@@ -171,6 +265,13 @@
 				color: #b4b4b4;
 				border-bottom: 1px solid #535250;
 				text-align:center;
+				img{
+					width: 24px;
+			    height: 24px;
+			    position: relative;
+			    top: 5px;
+			    right: 15px;
+				}
 			}
 			ul li:first-child{
 				border-top:1px solid #535250;
@@ -221,7 +322,7 @@
 			margin: 15px 0 15px 10px;
 			float:left;
 			color: #b4b4b4;
-			width:834px;
+			width:836px;
 			ul{
 				float:left;
 				height: 685px;
@@ -259,7 +360,7 @@
 
 			.more-game{
 				float: left;
-    		width: 824px;
+    		width: 820px;
 				text-align:center;
 				margin:15px 0 10px;
 				padding:10px 0;
