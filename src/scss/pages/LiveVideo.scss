@@ -35,11 +35,12 @@
 						width: 100%;
 
 						.logo {
-							height: 100%;
-							overflow: hidden;
+							width: 226px;
+							height: 220px;
 
 							img {
-								heigh: 230px;
+								width: 226px;
+								height: 220px;
 							}
 						}
 					}
@@ -64,6 +65,20 @@
 							    position: relative;
 							    bottom: 3px;
 							    left: 5px;
+							}
+						}
+					}
+				}
+
+				.first-item {
+					.zone1 {
+						.logo {
+							width: 486px;
+							height: 220px;
+
+							img {
+								width: 486px;
+								height: 220px;
 							}
 						}
 					}

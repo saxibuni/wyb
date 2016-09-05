@@ -14,7 +14,10 @@
 									'<tbody>' +
 										'<tr>' +
 											'<td colspan="2">' +
-												this.createItem() +
+												this.createItem({
+													width: '486px',
+													height: '220px'
+												}) +
 											'</td>' +
 											'<td>' +
 												this.createItem() +
@@ -51,11 +54,11 @@
 		return this.el;
 	};
 
-	LiveVideo.prototype.createItem = function () {
+	LiveVideo.prototype.createItem = function (opt) {
 		var temp =	'<div class="item">' +
 						'<div class="zone1">' +
-							'<div class="logo">' +
-								'<img src="../img/temp.svg">' +
+							'<div class="logo"' + (opt?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
+								'<img src="../img/test1.png"' + (opt?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
 							'</div>' +
 						'</div>' +
 
