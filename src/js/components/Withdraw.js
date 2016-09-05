@@ -40,7 +40,7 @@
 
 						'<div class="content">' +
 							'<div class="row1">' +
-								'<div class="text">请选择收款银行卡</div>' +
+								'<div class="title">请选择收款银行卡</div>' +
 
 								'<ul>' +
 									this.createCardItem() +

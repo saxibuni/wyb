@@ -31,7 +31,18 @@
 
 	.content {
 		.row1 {
+			.title {
+				background: none;
+			    height: 30px;
+			    line-height: 30px;
+			    color: #333333;
+			    margin-top: 20px;
+			    padding-left: 0;
+			}
+
 			ul {
+				margin-top: 10px;
+
 				li {
 					border: 1px solid #DBDBDB;
 					cursor: pointer;
@@ -52,6 +63,10 @@
 						display: inline-block;
 						width: 150px;
 						text-align: center;
+					}
+
+					&:first-child {
+						margin-top: 0px;
 					}
 				}
 			}
