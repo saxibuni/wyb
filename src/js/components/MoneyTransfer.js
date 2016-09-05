@@ -72,6 +72,13 @@
 							'<div class="row4">' +
 								this.button.getDom() +
 							'</div>' +
+
+							'<div class="img1">' +
+							'</div>' +
+
+							'<div class="img2">' +
+								'<img class="message-img" src="../img/exchange-h.png">' +
+							'</div>' +
 						'</div>' +
 					'</div>';
 
