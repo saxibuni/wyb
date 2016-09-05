@@ -8,8 +8,8 @@
 
 		this.select = new Select({
 			id: 'topup-record-select',
-			width: 150,
-			height: 30,
+			width: 100,
+			height: 25,
 			data: [
 				{
 					'text': '充值类型',
@@ -25,7 +25,7 @@
 			height: 30
 		});
 
-		temp = 		'<div class="topup-record">' +
+		temp = 		'<div class="topup-record jyjl-money-action">' +
 						'<div class="bar-zone">' +
 							'<div class="up">' +
 								this.select.getDom() +
@@ -47,7 +47,6 @@
 								'</ul>' +
 
 								'<div class="clear"></div>' +
-								'</div>' +
 							'</div>' +
 
 							'<div class="down">' +
@@ -56,11 +55,33 @@
 								'<span class="text">元，总计</span>' +
 								'<span class="value total">2000</span>' +
 								'<span class="text">元</span>' +
-							'</div>' +
+							'</div>' +				
 						'</div>' +
 
 						'<div class="table-zone">' +
+							'<table>' +
+								'<thead><tr>' + 
+									'<th>日期</th><th>订单号</th><th>充值类型</th><th>充值金额</th><th>状态</th>' +
+								'</tr></tobdy>' +
+								'<tbody>' +
+									'<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
+									'<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
+									'<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
+									'<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
+									'<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
+									'<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +									
+								'</tobdy>' +
+ 							'</table>' +
+ 							'<div class="page-content">' +
+ 								'<span>目前加载</span><span class="total-count">0</span><span>条,当前第</span><span>1</span><span>页</span>' +
+ 								 '<div class="pager">' +
+ 								 	'<span class="current-page">1</span>' +
+ 								 	'<span class="next-page"></span>' +
+ 								 	'<span>共</span><span class="page-count">1</span><span>页</span>' +
+ 								 '</div>' +
+ 							'</div>' +
 						'</div>' +
+
 					'</div>';
 
 		this.el  = temp;
@@ -69,6 +90,14 @@
 	TopupRecord.prototype.getDom = function () {
 		return this.el;
 	};
+
+	TopupRecord.prototype.show = function(){
+		this.zone.show();
+	}
+
+	TopupRecord.prototype.hide = function(){
+		this.zone.hide();
+	}
 
 	TopupRecord.prototype.bindEvents = function () {
 		var today = new Date();

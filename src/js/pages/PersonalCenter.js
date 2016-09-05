@@ -40,8 +40,8 @@ $(function(){
 		this.tabData = {
 		    'zjgl': ['充值','转账','提现'],
 		    'jyjl':['充值记录','转账记录','提款记录','投注记录','红利记录'],
-		   	'zhtx':['基本信息','安全中心'],
-		   	'zlx':['站内信','通知公告'],
+		   	'zhsz':['基本信息','安全中心'],
+		   	'znx':['站内信','通知公告'],
 		}
 
 		this.initDom();
@@ -112,8 +112,8 @@ $(function(){
 									'<div class="jyjl-zone" menu-index="1">' +
 										// this.createJyjl() +
 									'</div>' +
-									'<div class="zhgl-zone" menu-index="2">' +
-										// this.createZhgl() +
+									'<div class="zhsz-zone" menu-index="2">' +
+										// this.createZhsz() +
 									'</div>' +
 									'<div class="znx-zone" menu-index="3">' +
 										// this.createZnx() +
@@ -176,7 +176,7 @@ $(function(){
 		this.topupRecord = new TopupRecord();
 
 		temp +=	this.jyjlTab.getDom() +
-				'<div class="zjgl-content">' +
+				'<div class="jyjl-content">' +
 					this.topupRecord.getDom() +
 				'</div>';
 
@@ -185,11 +185,34 @@ $(function(){
 
 	PersonalCenter.prototype.createZhsz = function(){
 		var temp = '';
+		this.zhszTab = new Tab({
+			id: 'zhsz-tab',
+			titles: this.tabData['zhsz']
+		});
+
+		this.basicInfo = new BasicInfo();
+
+		temp += this.zhszTab.getDom() +
+				'<div class="zhsz-content">' +
+					this.basicInfo.getDom() +
+				'</div>';
+
 		return temp;
 	}
 
 	PersonalCenter.prototype.createZnx = function(){
 		var temp = '';
+		this.znxTab = new Tab({
+			id: 'znx-tab',
+			titles: this.tabData['znx']
+		});
+
+		this.stationLetter = new StationLetter();
+
+		temp += this.znxTab.getDom() +
+				'<div class="znx-content">' +
+					this.stationLetter.getDom() +
+				'</div>';	
 		return temp;
 	}
 
@@ -215,6 +238,15 @@ $(function(){
 		walletzone = this.zone.find('.wallet-zone');
 		stick = this.zone.find('.stick');
 
+
+        walletzone.delegate('.sub-wallet','mouseover',function(){
+        	$(this).find('.transfer-layer').show();
+        });
+
+        walletzone.delegate('.sub-wallet','mouseout',function(){
+        	$(this).find('.transfer-layer').hide();
+        });
+
         menuUl.delegate('li','click',function(){
             index = $(this).index();
             stick.css('top',(index * 40) + 'px');
@@ -226,10 +258,14 @@ $(function(){
 	        		that.topupRecord.bindEvents();
 	        	} 
 	        	if (index == 2) {
-
+	        		tabZone.html(that.createZhsz());
+	        		that.zhszTab.bindEvents();
+	        		that.basicInfo.bindEvents();
 	        	}
 	        	if (index == 3) {
-
+	        		tabZone.html(that.createZnx());
+	        		that.znxTab.bindEvents();
+	        		that.stationLetter.bindEvents();
 	        	}
             }
         	tabZone.siblings().hide();
@@ -237,20 +273,11 @@ $(function(){
 
         });
 
-        walletzone.delegate('.sub-wallet','mouseover',function(){
-        	$(this).find('.transfer-layer').show();
-        });
-
-        walletzone.delegate('.sub-wallet','mouseout',function(){
-        	$(this).find('.transfer-layer').hide();
-        });
-
-
 
         this.zjglTab.bindEvents();
         this.cz.bindEvents();
 
-        $('#zjgl-tab').delegate('li', 'click', function () {
+        $('.zjgl-zone').delegate('#zjgl-tab>li', 'click', function () {
         	index = $(this).index();
         	that.zone.find('.grzx-money-action').hide();
 
@@ -275,16 +302,16 @@ $(function(){
         	}
         });
 
-        $('#jyjl-tab').delegate('li', 'click', function () {
+        $('.jyjl-zone').delegate('#jyjl-tab>li', 'click', function () {
         	index = $(this).index();
-        	that.zone.find('.grzx-money-action').hide();
+        	that.zone.find('.jyjl-money-action').hide();
 
         	if (index === 0) {
         		that.topupRecord.show();
         	} else if (index === 1) {
         		if (!that.moneyTransferRecord) {
         			that.moneyTransferRecord = new MoneyTransferRecord();
-        			that.zone.find('.jygl-content').append(that.moneyTransferRecord.getDom());
+        			that.zone.find('.jyjl-content').append(that.moneyTransferRecord.getDom());
         			that.moneyTransferRecord.bindEvents();
         		}
 
@@ -292,7 +319,7 @@ $(function(){
         	} else if (index === 2) {
         		if (!that.withDrawRecord) {
         			that.withDrawRecord = new WithdrawRecord();
-        			that.zone.find('.jygl-content').append(that.withDrawRecord.getDom());
+        			that.zone.find('.jyjl-content').append(that.withDrawRecord.getDom());
         			that.withDrawRecord.bindEvents();
         		}
 
@@ -300,7 +327,7 @@ $(function(){
         	} else if (index === 3) {
         		if (!that.bettingRecord) {
         			that.bettingRecord = new BettingRecord();
-        			that.zone.find('.jygl-content').append(that.bettingRecord.getDom());
+        			that.zone.find('.jyjl-content').append(that.bettingRecord.getDom());
         			that.bettingRecord.bindEvents();
         		}
 
@@ -308,13 +335,47 @@ $(function(){
         	} else if (index === 4) {
         		if (!that.dividendRecord) {
         			that.dividendRecord = new DividendRecord();
-        			that.zone.find('.jygl-content').append(that.dividendRecord.getDom());
+        			that.zone.find('.jyjl-content').append(that.dividendRecord.getDom());
         			that.dividendRecord.bindEvents();
         		}
 
         		that.dividendRecord.show();
         	}
         });
+
+        $('.zhsz-zone').delegate('#zhsz-tab>li','click', function () {
+        	index = $(this).index();
+        	that.zone.find('.zhsz-info-action').hide();
+
+        	if (index === 0) {
+        		that.basicInfo.show();
+        	}else if(index === 1){
+        		if (!that.security) {
+        			that.security = new SecurityCenter();
+        			that.zone.find('.zhsz-content').append(that.security.getDom());
+        			that.security.bindEvents();
+        		}
+        		that.security.show();
+        	}
+        });
+
+        $('.znx-zone').delegate('#znx-tab>li','click', function() {
+        	index = $(this).index();
+        	that.zone.find('.znx-info-action').hide();
+
+        	if (index === 0) {
+        		that.stationLetter.show();
+        	}else if(index === 1){
+        		if (!that.announcement ) {
+	        		that.announcement = new Announcement();
+	        		that.zone.find('.znx-content').append(that.announcement.getDom());
+	        		that.announcement.bindEvents();       			
+        		}
+        		that.announcement.show();
+        	}
+        });
+
+
 	}
 
 	window.PersonalCenter = PersonalCenter;
