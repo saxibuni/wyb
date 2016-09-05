@@ -1,0 +1,77 @@
+@import "../mixins.scss";
+.basic-info{
+	@include tab-page;
+	display: block;
+
+	.wrapper{
+		width: 100%;
+		padding: 20px 30px;
+		position: relative;
+		box-sizing: border-box;
+
+		.text{
+			color: #333333;
+			display: inline-block;
+			width: 100px;
+			position: relative;
+			right: 5px;;
+			text-indent: 37px;
+		}
+
+		select {
+			height: 30px;
+			line-height: 30px;
+			width: 200px;
+			margin-right: 20px; 
+		}
+
+		.row1 {
+			margin-top: 20px;
+			.text{
+				bottom: 12px;
+			}
+		}
+
+		.row2 {
+			margin-top: 20px;
+			
+			label{
+				margin-right: 10px;
+				color: #333;
+			}
+
+		}
+
+		.row3 {
+			margin-top: 20px;
+
+			.birthday{
+				height: 30px;
+				line-height: 30px;
+			}
+		}
+
+		.row4{
+			margin-top: 20px;
+		}
+
+		.row5{
+			margin-top: 20px;
+			.text{
+				bottom: 4px;
+			}
+			textarea{
+				width: 500px;
+				height: 100px;
+			}
+		}
+
+		.row6{
+			margin-top: 20px;
+			margin-left: 100px;
+		}
+
+
+	}
+
+}
