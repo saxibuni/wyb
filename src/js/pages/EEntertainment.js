@@ -259,7 +259,6 @@
 				stick.css('top',(index * 40 + 62) + 'px');
 		});
 	};
-	
 	$(function() {
 		$('.slider').unslider({
 			speed: 500,
