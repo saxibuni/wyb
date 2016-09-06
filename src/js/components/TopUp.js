@@ -55,17 +55,17 @@
 								'<li data-value="zgyh">' +
 									'<img style="top: -98px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
-								'<li>' +
-									'中国农业银行' +
+								'<li data-value="zgnyyh">' +
+									'<img style="top: -67px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
-								'<li>' +
-									'招商银行' +
+								'<li data-value="zsyh">' +
+									'<img style="top: -428px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
-								'<li>' +
-									'浦发银行' +
+								'<li data-value="pfyh">' +
+									'<img style="top: -495px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
-								'<li>' +
-									'中国邮政储蓄银行' +
+								'<li data-value="zgyzcxyh">' +
+									'<img style="top: -195px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 							'</ul>' +
 						'</div>' +

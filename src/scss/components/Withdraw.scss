@@ -46,16 +46,27 @@
 				li {
 					border: 1px solid #DBDBDB;
 					cursor: pointer;
-					height: 40px;
-					line-height: 40px;
+					height: 35px;
+					line-height: 35px;
 					width: 330px;
 					margin-top: 20px;
+					overflow: hidden;
+
+					input {
+					    vertical-align: top;
+					    position: relative;
+					    top: 7px;
+					    left: 10px;
+					    cursor: pointer;
+					}
 
 					.text {
+						vertical-align: top;
 						color: #494A5C;
 					}
 
 					.value {
+						vertical-align: top;
 						color: #494A5C;
 					}
 
@@ -67,6 +78,10 @@
 
 					&:first-child {
 						margin-top: 0px;
+					}
+
+					img {
+						position: relative;
 					}
 				}
 			}
