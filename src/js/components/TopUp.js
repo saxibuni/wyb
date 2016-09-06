@@ -43,17 +43,17 @@
 							'</div>' +
 
 							'<ul>' +
-								'<li>' +
-									'中国工商银行' +
+								'<li data-value="zggsyh">' +
+									'<img style="top: -32px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
-								'<li>' +
-									'中国建设银行' +
+								'<li data-value="zgjsyh">' +
+									'<img style="top: -130px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
-								'<li>' +
-									'交通银行' +
+								'<li data-value="jtyh">' +
+									'<img style="top: -165px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
-								'<li>' +
-									'中国银行' +
+								'<li data-value="zgyh">' +
+									'<img style="top: -98px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 								'<li>' +
 									'中国农业银行' +
@@ -90,6 +90,10 @@
 					'</div>';
 
 		this.el = temp;
+	};
+
+	TopUp.prototype.getCardPosition = function(name) {
+
 	};
 
 	TopUp.prototype.getDom = function() {

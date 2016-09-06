@@ -66,10 +66,22 @@
 		this.el = temp;
 	}
 
-	Withdraw.prototype.createCardItem = function() {
+	Withdraw.prototype.createCardItem = function(index) {
+		var style = '';
+		var positions = {
+			1: {
+				left: '',
+				top: ''
+			}
+		};
+
+		style += 'background-position: ' + positions[index].left + ' ' + positions[index].top;
+
 		var temp =	'<li>' +
 						'<input type="radio">' +
-						'<div class="logo text">我是logo</div>' +
+						'<div class="logo text">' +
+							'<img class="message-img" src="../img/bankLogo.jpg" style="' + style + '">' +
+						'</div>' +
 						'<span class="text">尾号：****</span>' +
 						'<span class="value tailnumber">8410</span>' +
 						'<span class="text">[**</span>' +
