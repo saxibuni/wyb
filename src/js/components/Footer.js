@@ -114,7 +114,8 @@
 
 		featureUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');
-			page('/' + pageName);
+			//page('/' + pageName);
+			app.goTo(pageName);
 		});
 
 	};

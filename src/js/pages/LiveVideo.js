@@ -17,29 +17,42 @@
 												this.createItem({
 													width: '486px',
 													height: '220px',
-													className: 'first-item'
+													className: 'first-item',
+													img: 's00-h'
 												}) +
 											'</td>' +
 											'<td>' +
-												this.createItem() +
+												this.createItem({
+													img: 's01-h'
+												}) +
 											'</td>' +
 											'<td>' +
-												this.createItem() +
+												this.createItem({
+													img: 's02-h'
+												}) +
 											'</td>' +
 										'</tr>' +
 
 										'<tr>' +
 											'<td>' +
-												this.createItem() +
+												this.createItem({
+													img: 's03-h'
+												}) +
 											'</td>' +
 											'<td>' +
-												this.createItem() +
+												this.createItem({
+													img: 's04-h'
+												}) +
 											'</td>' +
 											'<td>' +
-												this.createItem() +
+												this.createItem({
+													img: 's04-h'
+												}) +
 											'</td>' +
 											'<td>' +
-												this.createItem() +
+												this.createItem({
+													img: 's04-h'
+												}) +
 											'</td>' +
 										'</tr>' +
 									'</tbody>' +
@@ -58,8 +71,8 @@
 	LiveVideo.prototype.createItem = function (opt) {
 		var temp =	'<div class="item' + ((opt&&opt.className)?' ' + opt.className: '') + '">' +
 						'<div class="zone1">' +
-							'<div class="logo"' + (opt?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
-								'<img src="../img/test1.png"' + (opt?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
+							'<div class="logo"' + (opt&&opt.width&&opt.height?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
+								'<img src="../img/' + opt.img + '.jpg"' + (opt?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
 							'</div>' +
 						'</div>' +
 

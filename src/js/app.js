@@ -26,9 +26,36 @@
 
 		this.zone.append(this.el);
 		this.homePage.bindEvents();
-		this.initRouter();
+		//this.initRouter();
+		this.goTo('homePage');
 	};
 	
+	app.prototype.goTo = function (pageName) {
+		var that = this;
+		var dict = {
+			'homePage'          : HomePage,
+			'liveVideo'         : LiveVideo,
+			'eEntertainment'    : EEntertainment,
+			'sportsCompetition' : SportsCompetition,
+			'lotteryGame'       : LotteryGame,
+			'promoActivity'     : PromoActivity,
+			'clientDownload'    : ClientDownload,
+			'routeCheck'        : RouteCheck,
+			'helpPage'			: HelpPage,
+			'personalCenter'	: PersonalCenter
+		};
+
+		that.zone.find('.page').hide();
+
+		if (!that[pageName]) {
+			that[pageName] = new (dict[pageName])();
+			that.zone.find('.main').append(that[pageName].getDom());
+			that[pageName].bindEvents();
+		}
+
+		that[pageName].show();
+	};
+
 	app.prototype.initRouter = function () {
 		var key;
 		var that = this;

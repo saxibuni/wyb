@@ -172,12 +172,14 @@
 			pageName = $(this).attr('data-value');
 			index    = $(this).index();
 			stick.css('left', index*80 + 'px');
-			page('/' + pageName);
+			//page('/' + pageName);
+			app.goTo(pageName);
 		});
 
 		pagesUl2.delegate('.nav-page','click',function(){
 			pageName = $(this).attr('data-value');
-			page('/' + pageName);
+			//page('/' + pageName);
+			app.goTo(pageName);
 		});
 
 		this.zone.find('.top-item').click(function  () {
