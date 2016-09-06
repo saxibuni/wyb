@@ -1,0 +1,148 @@
+.suspension {
+	width: 40px;
+
+	i, em {
+		display: inline-block;
+		font-style: normal;
+	}
+	a {
+		display: block;
+		width: 100%;
+		height: 40px;
+		position: relative;
+	}
+
+	.qrcode ,
+	.activity,
+	.qq-kf ,
+	.phone-kf,
+	.online-kf {
+		background-color: #48463a;
+		border-top: solid 1px #fff;
+	}
+
+	.arrow .tab-icon,
+	.qrcode .tab-icon,
+	.activity .tab-icon,
+	.qq-kf .tab-icon,
+	.phone-kf .tab-icon,
+	.online-kf .tab-icon {
+		width: 40px;
+		height: 40px;
+		position: relative;
+	}
+
+	.qrcode .tab-text,
+	.activity .tab-text,
+	.qq-kf .tab-text,
+	.phone-kf .tab-text,
+	.online-kf .tab-text {
+		display: none;
+		position: absolute;
+		height: 40px;
+		line-height: 40px;
+		background-color: #cda654;
+		top: 0;
+		color: #fff;
+	}
+
+	.arrow {
+		.tab-icon {
+			background: url('../img/up-normal.png') no-repeat center center;
+		}
+		a:hover {
+			.tab-icon {
+				background: url('../img/up-hover.png') no-repeat center center;
+			}
+		}
+	}
+
+	.qrcode {
+		.tab-icon {
+			background: url('../img/qrcode-icon.png') no-repeat center center;
+		}
+
+		.tab-text {
+			width: 60px;
+		 	left: -60px;
+		}
+		a:hover {
+			background-color: #cda654;
+			.tab-text {
+				display: block;
+			}
+		}
+	}
+
+	.activity {
+		.tab-icon {
+			background: url('../img/activity.png')  no-repeat center center;
+		}
+		.tab-text {
+			width: 60px;
+			left: -60px;
+		}
+		a:hover {
+			background-color: #cda654;
+			.tab-text {
+				display: block;
+			}
+		}
+	}
+
+	.qq-kf {
+		.tab-icon {
+			background: url('../img/qq-kf.png')  no-repeat center center;
+		}
+		.tab-text {
+			width: 90px;
+			left: -90px;
+		}
+		a:hover {
+			background-color: #cda654;
+			.tab-text {
+				display: block;
+			}
+		}
+	}
+
+	.phone-kf {
+		.tab-icon {
+			background: url('../img/phone-kf.png')  no-repeat center center;
+		}
+		.tab-text {
+			width: 70px;
+			left: -70px;
+		}
+		a:hover {
+			background-color: #cda654;
+			.tab-text {
+				display: block;
+			}
+		}
+	}
+
+	.online-kf {
+		.tab-icon {
+			background: url('../img/online-kf.png') no-repeat center center;
+		}
+		.tab-text {
+			width: 70px;
+			left: -70px;
+		}
+		a:hover {
+			background-color: #cda654;
+			.tab-text {
+				display: block;
+			}
+		}
+	}
+
+	/*.qrcode {
+		.tab-icon {
+			width: 50px;
+			height: 50px;
+			backgroung: '../img/qrcode-icon.png';
+		}
+	}*/
+}
