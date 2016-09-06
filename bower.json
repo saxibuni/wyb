@@ -19,6 +19,7 @@
     "jquery-i18next": "^0.2.0",
     "datetimepicker": "^2.5.4",
     "Gallery": "https://github.com/blueimp/Gallery.git#^2.21.3",
-    "history.js": "https://github.com/browserstate/history.js.git#^1.8.0"
+    "history.js": "https://github.com/browserstate/history.js.git#^1.8.0",
+    "page": "https://github.com/visionmedia/page.js.git#^1.7.1"
   }
 }
