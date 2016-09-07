@@ -233,7 +233,7 @@
 			that.zone.find('.step4').show()
 			titleUl.find('li').removeClass('active');
 			titleUl.find('li:eq(3)').addClass('active');
-		})
+		});
 
 		this.zone.find('#login-now').click(function () {
 			app.goTo('homePage');
