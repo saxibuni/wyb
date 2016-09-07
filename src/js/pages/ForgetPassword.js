@@ -237,12 +237,17 @@
 
 		this.zone.find('#login-now').click(function () {
 			app.goTo('homePage');
-			
+
 			if (!app.signInDialog) {
 				app.signInDialog = new SignIn();
 				$('.app').append(app.signInDialog.getDom());
 				app.signInDialog.bindEvents();
 			}
+
+			titleUl.find('li').removeClass('active');
+			titleUl.find('li:eq(0)').addClass('active');
+			that.zone.find('.step').hide();
+			that.zone.find('.step1').show()
 
 			app.signInDialog.show();
 		});
