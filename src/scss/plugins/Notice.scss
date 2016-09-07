@@ -3,7 +3,7 @@ $baseYellow:#cda654;
 .notice{
     height:40px;
     line-height:40px;
-    width:1024px;
+    width:$contentWidth;
     margin:0 auto;
     background:#2C2C2C;
     .notice-right{

@@ -7,7 +7,7 @@
 		var temp =	'<div class="page live-video">' +
 						'<div class="wrapper">' +
 							'<div class="title">' +
-								'<img class="message-img" width="1024" height="435" src="../img/banner1.png">' +
+								'<img class="message-img" width="1024" height="435" src="../img/homepage-banner.jpg">' +
 							'</div>' +
 
 							'<div class="content">' +

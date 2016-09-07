@@ -12,9 +12,9 @@
 								'<div class="row banner">' +
 									'<div class="banner">' +
 										'<ul class="clearAfter">' +
-											'<li><img src="../img/banner1.png"></li>' +
-											'<li><img src="../img/banner1.png"></li>' +
-											'<li><img src="../img/banner1.png"></li>' +
+											'<li><img src="../img/homepage-banner.jpg"></li>' +
+											'<li><img src="../img/homepage-banner.jpg"></li>' +
+											'<li><img src="../img/homepage-banner.jpg"></li>' +
 										'</ul>' +
 									'</div>' +
 								'</div>' +
