@@ -86,7 +86,7 @@
 										'<li><span>投注记录</span></li>' +
 										'<li><span>充值记录</span></li>' +
 										'<li><span>修改密码</span></li>' +
-										'<li><span>退出</span></li>' +
+										'<li class="signout"><span>退出</span></li>' +
 									'</ul>' +
 								'</div>' +
 							'</div>' +
@@ -158,12 +158,14 @@
 		var pageName;
 		var balance;
 		var headRow2;
+		var grzxUl;
 		var that = this;
 
 		this.zone = $('.header');
 		pagesUl   = this.zone.find('.pages');
 		pagesUl2  = this.zone.find('.row1');
-		headRow2  = this.zone.find('.row2')
+		headRow2  = this.zone.find('.row2');
+		grzxUl    = this.zone.find('.grzx-float-window ul');
 		
 		stick     = pagesUl.children('.stick');
 		balance   = this.zone.find('.balance-value');
@@ -180,6 +182,13 @@
 			pageName = $(this).attr('data-value');
 			//page('/' + pageName);
 			app.goTo(pageName);
+		});
+
+		grzxUl.delegate('li', 'click', function () {
+			if ($(this).hasClass('signout')) {
+				that.showSignedOutHeader();
+				app.goTo('homePage');
+			}
 		});
 
 		this.zone.find('.top-item').click(function  () {
