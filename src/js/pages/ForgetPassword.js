@@ -83,7 +83,7 @@
 			height: 30
 		});
 
-		temp =		'<div class="forget-password">' +
+		temp =		'<div class="page forget-password">' +
 						'<div class="wrapper">' +
 							'<ul class="title">' +
 								'<li class="active">' +
