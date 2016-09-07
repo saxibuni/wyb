@@ -41,72 +41,74 @@
         border-top: 1px solid #515151;
     }
 	}
-	.slider{
-		float:left;
-		width:600px;
-		height:295px;
+	.middle-banner{
+		width: 600px;
+    height: 100%;
+		float: left;
 		margin:0 10px;
-		ul {
-			height: 100%;
+		.unslider-nav {
 			position: relative;
-			width:600px;
-			overflow:hidden;
-			li {
-				height: 100%;
-				float: left;
-				list-style: none;
-				img {
-					width: 100%;
-					height: 100%;
+			top: -125px;
+			ol {
+				width: 100px;
+				margin-right: 51px;
+				float: right;
+				li {
+					display: inline-block;
+					width: 18px;
+					height: 10px;
+					overflow: hidden;
+					text-indent: 50px;
+					background-color: #ccc;
+					margin: 0 5px;
+					border-radius: 3px;
 				}
 			}
-
 		}
-		.unslider-nav {
+		.unslider-nav ol li.unslider-active {
+			background-color: #fff;
+		}
+		.prev, .next {
+			position: relative;
+			top: -164px;
+			width: 50px;
+			height: 70px;
+			overflow: hidden;
+			opacity: 0.5;
+			text-indent: 50px;
+			display: inline-block;
+		}
+		.prev:hover, .next:hover {
+			opacity: 1;
+		}
+		.prev {
+			left: -269px;
+			background: url('../img/left-normal.png') no-repeat;
+		}
+		.next {
+			left: 307px;
+			background: url('../img/right-normal.png') no-repeat;
+		}
+	}
+		.slider{
+			width:600px;
+			height:295px;
+			margin:0 10px;
+			ul {
+				height: 100%;
 				position: relative;
-				top: -125px;
-				ol {
-					width: 100px;
-					margin-right: 51px;
-					float: right;
-					li {
-						display: inline-block;
-						width: 18px;
-						height: 10px;
-						overflow: hidden;
-						text-indent: 50px;
-						background-color: #ccc;
-						margin: 0 5px;
-						border-radius: 3px;
+				width:600px;
+				overflow:hidden;
+				li {
+					height: 100%;
+					float: left;
+					list-style: none;
+					img {
+						width: 100%;
+						height: 100%;
 					}
 				}
 			}
-
-			.unslider-nav ol li.unslider-active {
-				background-color: #fff;
-			}
-			.prev, .next {
-				width: 50px;
-				height: 70px;
-				display: inline-block;
-				position: relative;
-				overflow: hidden;
-				top: -250px;
-				opacity: 0.5;
-				text-indent: 50px;
-			}
-			.prev:hover, .next:hover {
-				opacity: 1;
-			}
-			.prev {
-				left: -496px;
-				background: url('../img/left-normal.png') no-repeat;
-			}
-			.next {
-				left: 496px;
-				background: url('../img/right-normal.png') no-repeat;
-			}
-
 	}
 	.top-module{
 		width:100%;
@@ -255,6 +257,8 @@
 		 width:100%;
 		 height: 826px;
 		 background: #2C2C2C;
+		 display: inline-block;
+     vertical-align: top;
 		.bottom-left{
 			width: 176px;
 			background-color: #2C2C2C;
@@ -337,14 +341,32 @@
 					float:left;
 					margin:0 10px 10px 0;
 					border:1px solid #535250;
+					position:relative;
 					img{
 						width:127px;
 						height:127px;
+					}
+					.hover-layer-none{
+						display:none;
 					}
 					p{
 						height:30px;
 						line-height:30px;
 						padding:0 5px;
+						button{
+							top:60px;
+							width:60px;
+							height:25px;
+						}
+						button:first-child{
+							background:#cda654;
+							color:black;
+							margin-top:60px;
+						}
+						button:last-child{
+							background:black;
+							color:#cda654;
+						}
 						.game-name{
 							display:inline-block;
 							float:left;
@@ -358,8 +380,20 @@
 						}
 					}
 				}
-				li:hover{
+				li:hover {
 					border:1px solid #cda654;
+				}
+				.hover-layer{
+					z-index: 300;
+					position: absolute;
+					top: 60px;
+					left: 24px;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					left: 0;
+					top: 0;
+					background-color: rgba(0, 0, 0, 0.5);
 				}
 			}
 

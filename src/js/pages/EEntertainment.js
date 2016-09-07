@@ -32,12 +32,14 @@
 														'</li>'+
 													'</ul>'+
 											  '</div>';
-	  var topBannerModule='<div class="slider">'+
-													'<ul>' +
-														'<li><img src="../img/test2.png"></li>' +
-														'<li><img src="../img/test2.png"></li>' +
-														'<li><img src="../img/test2.png"></li>' +
-													'</ul>' +
+	  var topBannerModule='<div class="middle-banner">' +
+													'<div class="slider">'+
+														'<ul>' +
+															'<li><img src="../img/eGame-banner.jpg"></li>' +
+															'<li><img src="../img/eGame-banner.jpg"></li>' +
+															'<li><img src="../img/eGame-banner.jpg"></li>' +
+														'</ul>' +
+													'</div>' +
 												'</div>';
 
 		var topRightModule='<div class="left top-right-module">'+
@@ -58,9 +60,9 @@
 													'<li class="mg-li"></li>'+
 												'</ul>'+
 												'<ul class="middle-right-module">'+
-													'<li class="li-item1"></li>'+
-													'<li class="li-item2"></li>'+
-													'<li class="li-item3"></li>'+
+													'<li></li>'+
+													'<li></li>'+
+													'<li></li>'+
 												'</ul>'
 												'<div class="clear"></div>';
 		var bottomLeftModule='<div class="bottom-left">'+
@@ -85,7 +87,15 @@
 			score:4,
 			name:'古怪猴子'
 		},{
-			url:"../img/test1.png",
+			url:"../img/fnfrj.jpg",
+			score:4,
+			name:'古怪猴子'
+		},{
+			url:"../img/dw.jpg",
+			score:4,
+			name:'古怪猴子'
+		},{
+			url:"../img/dv2.jpg",
 			score:4,
 			name:'古怪猴子'
 		},{
@@ -93,15 +103,7 @@
 			score:4,
 			name:'古怪猴子'
 		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
+			url:"../img/frr.jpg",
 			score:4,
 			name:'古怪猴子'
 		},{
@@ -200,6 +202,7 @@
 					html+='<li>'+
 						'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
 						'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
+						'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
 					'</li>';
 			}
 			return html;
@@ -214,10 +217,18 @@
 
 
 		var bottomModule='<div class="bottom-module">'+bottomLeftModule+bottomRightModule+'</div>';
-		var mainConent='<div class="page main-content">'+topModule+
+		var mainConent='<div class="page main-content">'+noticeDom+topModule+
 						 		   middleNavModule+bottomModule+'</div>';
 
-		this.el  = noticeDom+mainConent;
+		this.el  = mainConent;
+		if(!$('.slider').data('run')) {
+			$('.slider').unslider({
+				speed: 500,
+				delay: 3000
+			});
+		}
+
+		$('.slider').data('run', true);
 	};
 
 	EEntertainment.prototype.getDom = function () {
@@ -226,6 +237,7 @@
 
 	EEntertainment.prototype.show = function () {
 		this.zone.show();
+
 	};
 
 	EEntertainment.prototype.hide = function () {
@@ -240,8 +252,13 @@
 		var that = this;
 		this.zone = $('.main-content');
 		this.notice.bindEvents();
+		$('.slider').unslider({
+			speed: 500,
+			delay: 3000
+		});
 		pageUl = this.zone.find('.bottom-left ul');
 		stick = this.zone.find('.bottom-left .stick');
+		imgUl=this.zone.find('.bottom-right ul');
 		pageUl.delegate('li','mouseover',function(){
 			index = $(this).index();
 			imgIndex=index+1;
@@ -258,13 +275,12 @@
 				index = $(this).index();
 				stick.css('top',(index * 40 + 62) + 'px');
 		});
-	};
-	$(function() {
-		$('.slider').unslider({
-			speed: 500,
-			delay: 3000,
-			dots: true
+		imgUl.delegate('li','mouseover',function(){
+			  $(this).find("#hover-layer").removeClass("hover-layer-none").addClass("hover-layer");
 		});
-	});
+		imgUl.delegate('li','mouseout',function(){
+			  $(this).find("#hover-layer").addClass("hover-layer-none").removeClass("hover-layer");
+		});
+	};
 	window.EEntertainment = EEntertainment;
 }());
