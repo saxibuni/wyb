@@ -158,14 +158,18 @@
 					label {
 						cursor: pointer;
 						float: left;
+
+						&:hover {
+							color: #DCAD4B;
+						}
 					}
 
-					span {
+					.find-password {
 						float: right;
-					}
 
-					&:hover {
-						color: #DCAD4B;
+						&:hover {
+							color: #DCAD4B;
+						}
 					}
 				}
 			}

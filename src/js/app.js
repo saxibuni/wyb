@@ -42,7 +42,8 @@
 			'clientDownload'    : ClientDownload,
 			'routeCheck'        : RouteCheck,
 			'helpPage'			: HelpPage,
-			'personalCenter'	: PersonalCenter
+			'personalCenter'	: PersonalCenter,
+			'forgetPassword'    : ForgetPassword
 		};
 
 		that.zone.find('.page').hide();

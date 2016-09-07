@@ -43,8 +43,8 @@
 								'<div class="title">请选择收款银行卡</div>' +
 
 								'<ul>' +
-									this.createCardItem() +
-									this.createCardItem() +
+									this.createCardItem(1) +
+									this.createCardItem(2) +
 								'</ul>' +
 							'</div>' +
 
@@ -67,20 +67,22 @@
 	}
 
 	Withdraw.prototype.createCardItem = function(index) {
-		var style = '';
+		var top;
 		var positions = {
 			1: {
-				left: '',
-				top: ''
+				top: '-32'
+			},
+			2: {
+				top: '-130'
 			}
 		};
 
-		style += 'background-position: ' + positions[index].left + ' ' + positions[index].top;
+		top = positions[index].top;
 
 		var temp =	'<li>' +
 						'<input type="radio">' +
 						'<div class="logo text">' +
-							'<img class="message-img" src="../img/bankLogo.jpg" style="' + style + '">' +
+							'<img style="top:' + top + 'px" src="../img/bankLogo.jpg">' +
 						'</div>' +
 						'<span class="text">尾号：****</span>' +
 						'<span class="value tailnumber">8410</span>' +

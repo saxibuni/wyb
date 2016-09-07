@@ -50,7 +50,7 @@
 									'<div class="button-info">' +
 										'<input type="checkbox" id="agree-checkbox">' +
 										'<label for="agree-checkbox">记住用户名</label>' +
-										'<span>找回密码</span>' +
+										'<span class="find-password">找回密码</span>' +
 										'<div class="clear"></div>' +
 									'</div>' +
 								'</div>' +
@@ -134,6 +134,11 @@
 		button.click(function () {
 			that.hide();
 			app.header.showSignedInHeader();
+		});
+
+		this.zone.find('.find-password').click(function () {
+			that.hide();
+			app.goTo('forgetPassword');
 		});
 
 		this.bindOverlayEvents();
