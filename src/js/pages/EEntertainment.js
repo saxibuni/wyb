@@ -7,7 +7,7 @@
 		this.notice=new Notice({date:'2016-09-05',content:'这是一个测试公告',hasBtn:true});
 		var noticeDom=this.notice.getDom();
 		var topLeftModule='<div class="left top-left-module">'+
-													'<p class="head-img"> </p>'+
+													'<p class="head-img"><img src="../img/cj.jpg"/></p>'+
 													'<ul class="left-list">'+
 														'<li>'+
 															'<p>百万幸运球</p><p>112321321321</p>'+

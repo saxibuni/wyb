@@ -43,8 +43,11 @@
 		var that = this;
 
 		this.closeBtn = $('#close-btn');
-		this.closeBtn.hover(function(){
+		this.closeBtn.mouseover(function(){
 			that.closeBtn.attr("src","../img/close-r-h.png")
+		})
+		this.closeBtn.mouseout(function(){
+			that.closeBtn.attr("src","../img/close-r.png")
 		})
 		this.closeBtn.click(function () {
 			$(".notice").hide();
