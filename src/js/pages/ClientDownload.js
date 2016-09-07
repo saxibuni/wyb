@@ -10,25 +10,25 @@
 								'<div class="img img1">' +
 									'<img class="normal" src="../img/pt-normal.png">' +
 									'<img class="down" src="../img/pt-down.png">' +
-									'<span>pt老虎机</span>' +
+									'<span>真人、老虎机</span>' +
 								'</div>' +
 
 								'<div class="img img2">' +
 									'<img class="normal" src="../img/bbin-normal.png">' +
 									'<img class="down" src="../img/bbin-down.png">' +
-									'<span>波音老虎机</span>' +
+									'<span>真人、老虎机</span>' +
 								'</div>' +
 
 								'<div class="img img3">' +
 									'<img class="normal" src="../img/ag-normal.png">' +
 									'<img class="down" src="../img/ag-down.png">' +
-									'<span>AG老虎机</span>' +
+									'<span>真人、老虎机</span>' +
 								'</div>' +
 
 								'<div class="img img4">' +
 									'<img class="normal" src="../img/mg-normal.png">' +
 									'<img class="down" src="../img/mg-down.png">' +
-									'<span>MG老虎机</span>' +
+									'<span>真人、老虎机</span>' +
 								'</div>' +
 							'</div>' +
 
