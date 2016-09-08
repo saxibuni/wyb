@@ -61,7 +61,7 @@
 									'<img class="message-img" src="../img/verify-code.png">' +
 									'<span>换一个</span>' +
 									'<div class="agree">' +
-										'<input type="checkbox" id="remember-checkbox">' +
+										'<input type="checkbox" id="remember-checkbox" checked="checked">' +
 										'<label for="remember-checkbox">我已届满合法博彩年龄，且同意各项开户条约</label>' +
 									'</div>' +
 								'</div>' +
@@ -105,9 +105,9 @@
 		var button;
 		var value;
 		var value2;
-		var usernameReg   = '^[A-Za-z0-9]{3,12}$';
-		var passwordReg   = '^[A-Za-z0-9]{6,12}$';
-		var repeatReg     = '^[A-Za-z0-9]{6,12}$';
+		var usernameReg   = '^[A-Za-z0-9]{6,12}$';
+		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
+		var repeatReg     = '^[A-Za-z0-9]{6,50}$';
 		var popularizeReg = '^[A-Za-z0-9]{10}$';
 		var verifyReg     = '';
 		var inputEvents   = 'input';

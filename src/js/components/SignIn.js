@@ -83,8 +83,8 @@
 		var button;
 		var value;
 		var value2;
-		var usernameReg   = '^[A-Za-z0-9]{3,12}$';
-		var passwordReg   = '^[A-Za-z0-9]{6,12}$';
+		var usernameReg   = '^[A-Za-z0-9]{6,12}$';
+		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
 		var verifyReg     = '';
 		var inputEvents   = 'input';
 		var that          = this;
