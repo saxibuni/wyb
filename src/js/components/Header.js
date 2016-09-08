@@ -105,6 +105,10 @@
 						'</div>' +
 
 						'<div class="row2">' +
+							'<div class="header-logo">' +
+								'<img class="message-img" src="../img/logo-sands-macao.png">' +
+							'</div>' +
+
 							'<div class="buttons-zone">' +
 								'<div class="header-button signin-button">' +
 									'登录' +

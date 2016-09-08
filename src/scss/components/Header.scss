@@ -311,6 +311,19 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			height: $headerRow2Height;
 			line-height: $headerRow2Height;
 
+			.header-logo {
+				float: left;
+				height: 55px;
+				width: 55px;
+				margin-left: 40px;
+
+				img {
+					height: 45px;
+					width: 55px;
+					vertical-align: bottom;
+				}
+			}
+
 			.buttons-zone {
 				float: right;
 				height: $headerRow2Height;
