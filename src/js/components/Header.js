@@ -21,14 +21,6 @@
 							'<div class="language">' +
 								'<img class="message-img" src="../img/zh-lang.png">' +
 								'<span>CHN</span>' +
-
-								'<div class="language-float-window">' +
-									'<ul>' +
-										'<li><span>中文</span></li>' +
-										'<li><span>English</span></li>' +
-									'</ul>' +
-								'</div>' +
-
 							'</div>' +
 
 							'<div class="bzzx top-item nav-page" data-value="helpPage">' +
@@ -37,13 +29,6 @@
 
 							'<div class="wdsc top-item">' +
 								'<span class="my-collection">我的收藏</span>' +
-
-								'<div class="wdsc-float-window">' +
-									'<ul>' +
-										'<li><span>古怪猴子</span></li>' +
-										'<li><span>古怪猴子</span></li>' +
-									'</ul>' +
-								'</div>' +
 							'</div>' +
 
 							'<div class="money-actions">' +
@@ -69,24 +54,6 @@
 								'<div class="message">' +
 									'<img class="message-img" src="../img/message.png">' +
 									'<div class="dot">1</div>' +
-								'</div>' +
-
-								'<div class="grzx-float-window">' +
-									'<div class="title">' +
-										'<div class="username">LORENZO</div>' +
-										'<div class="userid">' +
-											'<span class="text">ID:</span>' +
-											'<span class="id-value">2678899511</span>' +
-										'</div>' +
-									'</div>' +
-
-									'<ul>' +
-										'<li><span>资金管理</span></li>' +
-										'<li><span>投注记录</span></li>' +
-										'<li><span>充值记录</span></li>' +
-										'<li><span>修改密码</span></li>' +
-										'<li class="signout"><span>退出</span></li>' +
-									'</ul>' +
 								'</div>' +
 							'</div>' +
 
@@ -133,6 +100,38 @@
 
 							'<div class="clear"></div>' +
 						'</div>' +
+
+						'<div class="grzx-float-window">' +
+							'<div class="title">' +
+								'<div class="username">LORENZO</div>' +
+								'<div class="userid">' +
+									'<span class="text">ID:</span>' +
+									'<span class="id-value">2678899511</span>' +
+								'</div>' +
+							'</div>' +
+
+							'<ul>' +
+								'<li><span>资金管理</span></li>' +
+								'<li><span>投注记录</span></li>' +
+								'<li><span>充值记录</span></li>' +
+								'<li><span>修改密码</span></li>' +
+								'<li class="signout"><span>退出</span></li>' +
+							'</ul>' +
+						'</div>' +
+
+						'<div class="wdsc-float-window">' +
+							'<ul>' +
+								'<li><span>古怪猴子</span></li>' +
+								'<li><span>古怪猴子</span></li>' +
+							'</ul>' +
+						'</div>' +
+
+						'<div class="language-float-window">' +
+							'<ul>' +
+								'<li><span>中文</span></li>' +
+								'<li><span>English</span></li>' +
+							'</ul>' +
+						'</div>' +
 					'</div>' +
 				'</div>';
 		
@@ -163,17 +162,47 @@
 		var pageName;
 		var balance;
 		var headRow2;
+		var langHoverItem;
+		var grzxHoverItem;
+		var wdscHoverItem;
+		var grzxFloatWindow;
+		var wdscFloatWindow;
+		var langFloatWindow;
 		var grzxUl;
 		var that = this;
 
 		this.zone = $('.header');
-		pagesUl   = this.zone.find('.pages');
-		pagesUl2  = this.zone.find('.row1');
-		headRow2  = this.zone.find('.row2');
-		grzxUl    = this.zone.find('.grzx-float-window ul');
+		pagesUl         = this.zone.find('.pages');
+		pagesUl2        = this.zone.find('.row1');
+		headRow2        = this.zone.find('.row2');
+		langHoverItem   = this.zone.find('.language, .language-float-window');
+		grzxHoverItem   = this.zone.find('.grzx, .grzx-float-window');
+		wdscHoverItem   = this.zone.find('.wdsc, .wdsc-float-window');
+		grzxFloatWindow = this.zone.find('.grzx-float-window');
+		wdscFloatWindow = this.zone.find('.wdsc-float-window');
+		langFloatWindow = this.zone.find('.language-float-window');
+		grzxUl          = this.zone.find('.grzx-float-window ul');
 		
-		stick     = pagesUl.children('.stick');
-		balance   = this.zone.find('.balance-value');
+		stick           = pagesUl.children('.stick');
+		balance         = this.zone.find('.balance-value');
+
+		grzxHoverItem.mouseover(function () {
+			grzxFloatWindow.css('top', '30px');
+		}).mouseout(function () {
+			grzxFloatWindow.css('top', '-300px');
+		});
+
+		wdscHoverItem.mouseover(function () {
+			wdscFloatWindow.css('top', '30px');
+		}).mouseout(function () {
+			wdscFloatWindow.css('top', '-300px');
+		});
+
+		langHoverItem.mouseover(function () {
+			langFloatWindow.css('top', '30px');
+		}).mouseout(function () {
+			langFloatWindow.css('top', '-300px');
+		});
 
 		pagesUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');

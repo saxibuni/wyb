@@ -9,7 +9,7 @@ $(function(){
 		this.pageCount = Math.ceil(opt.recordCount / this.pageSize);
 	}
 
-	function initDom = function() {
+	Pager.prototype.initDom = function() {
 		var temp;
 			temp = '<div id="' + this.id +'" class="pager">' + 
 						'<div class="left">' +
@@ -35,7 +35,7 @@ $(function(){
 		this.el = temp;
 	}
 
-	function getDom = function(){
+	Pager.prototype.getDom = function(){
 		return this.el
 	}
 

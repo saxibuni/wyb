@@ -7,7 +7,7 @@
 		var temp =	'<div class="page client-download">' +
 						'<div class="wrapper">' +
 							'<div class="title">' +
-								'<div class="img img1">' +
+								'<div class="img img1 selected">' +
 									'<img class="normal" src="../img/pt-normal.png">' +
 									'<img class="down" src="../img/pt-down.png">' +
 									'<span>真人、老虎机</span>' +
