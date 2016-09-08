@@ -39,7 +39,7 @@
 									'<div class="input-outer verify-input-outer">' +
 										'<input type="text" placeholder="请输入验证码">' +
 									'</div>' +
-									'<img class="message-img" src="../img/zh-lang.png">' +
+									'<img class="message-img" src="../img/verify-code.png">' +
 									'<span>换一个</span>' +
 								'</div>' +
 

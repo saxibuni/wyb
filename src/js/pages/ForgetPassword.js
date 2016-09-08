@@ -125,7 +125,7 @@
 									'<div class="row2">' +
 										'<span class="text">验证码：</span>' +
 										this.verifyInput.getDom() +
-										'<img class="message-img" src="../img/zh-lang.png">' +
+										'<img class="message-img" src="../img/verify-code.png">' +
 									'</div>' +
 
 									'<div class="row3">' +
