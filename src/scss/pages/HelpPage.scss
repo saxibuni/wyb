@@ -69,7 +69,7 @@
 
 		.container{
 			width: 800px;
-			height: auto;
+			min-height: 600px;
 			background-color:#2B2A26;
 			float: right;
 			color: #757575;
@@ -114,6 +114,21 @@
 				    height: 25px;
 				    line-height: 25px;
 				    text-indent: 5px;
+				}
+			}
+
+			.aboutus {
+				display: none;
+				height: 100%;
+				width: 100%;
+			}
+
+			.contactus{
+				height: 100%;
+				width: 100%;
+
+				p {
+					min-height: 30px;
 				}
 			}
 		}

@@ -365,11 +365,12 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			}
 
 			.pages {
-				float: right;
+				float: left;
 				display: inline-block;
 				height: $headerRow2Height;
 				line-height: $headerRow2Height;
 				position: relative;
+				margin-left: 20px;
 
 				li {
 					color: #FFF;

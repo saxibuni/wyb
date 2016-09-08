@@ -15,7 +15,6 @@
 									'<li><span>彩票优惠</span></li>' +
 									'<li><span>VIP优惠</span></li>' +
 									'<li><span>往期回顾</span></li>' +
-									'<li><span>我的优惠</span></li>' +
 									'<div class="stick"></div>' +
 								'</ul>' +
 							'</div>' +
