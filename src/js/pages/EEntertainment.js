@@ -8,7 +8,19 @@
 		var noticeDom=this.notice.getDom();
 		var topLeftModule='<div class="left top-left-module">'+
 													'<p class="head-img"><img src="../img/cj.jpg"/></p>'+
-													'<ul class="left-list">'+
+													'<div class="left-list"><div class="marqueen"><ul>'+
+														'<li>'+
+															'<p>百万幸运球</p><p>112321321321</p>'+
+														'</li>'+
+														'<li>'+
+															'<p>百万幸运球</p><p>112321321321</p>'+
+														'</li>'+
+														'<li>'+
+															'<p>百万幸运球</p><p>112321321321</p>'+
+														'</li>'+
+														'<li>'+
+															'<p>百万幸运球</p><p>112321321321</p>'+
+														'</li>'+
 														'<li>'+
 															'<p>百万幸运球</p><p>112321321321</p>'+
 														'</li>'+
@@ -31,7 +43,7 @@
 															'<p>百万幸运球</p><p>112321321321</p>'+
 														'</li>'+
 													'</ul>'+
-											  '</div>';
+											  '</div></div></div>';
 	  var topBannerModule='<div class="middle-banner">' +
 													'<div class="slider">'+
 														'<ul>' +
@@ -72,7 +84,7 @@
 														'<div class="clear"></div>'+
 													'</div>'+
 													'<ul>'+
-														'<li><img src="../img/v01-n.png" /><span>热门游戏</span><div></div></li>'+
+														'<li class="selected"><img src="../img/v01-d.png" /><span>热门游戏</span><div></div></li>'+
 														'<li><img src="../img/v02-n.png" /><span>全部游戏</span><div></div></li>'+
 														'<li><img src="../img/v03-n.png" /><span>经典游戏</span><div></div></li>'+
 														'<li><img src="../img/v04-n.png" /><span>奖金游戏</span><div></div></li>'+
@@ -227,7 +239,10 @@
 				delay: 3000
 			});
 		}
-
+		$(".left-list").myScroll({
+			speed:40, //数值越大，速度越慢
+			rowHeight:30 //li的高度
+		});
 		$('.slider').data('run', true);
 	};
 
@@ -256,31 +271,95 @@
 			speed: 500,
 			delay: 3000
 		});
+
 		pageUl = this.zone.find('.bottom-left ul');
 		stick = this.zone.find('.bottom-left .stick');
 		imgUl=this.zone.find('.bottom-right ul');
+		marqueeList=this.zone.find('.top-left-module');
+
 		pageUl.delegate('li','mouseover',function(){
 			index = $(this).index();
 			imgIndex=index+1;
 			var path="../img/v0"+imgIndex+"-d.png";
 			$(this).find("img").attr("src",path);
 		});
+
 		pageUl.delegate('li','mouseout',function(){
 			index = $(this).index();
 			imgIndex=index+1;
 			var path="../img/v0"+imgIndex+"-n.png";
-			$(this).find("img").attr("src",path);
+			if(!$(this).hasClass("selected")){
+				$(this).find("img").attr("src",path);
+			}
 		})
+
 		pageUl.delegate('li','click',function(){
 				index = $(this).index();
+				imgIndex=index+1;
+				var path="../img/v0"+imgIndex+"-d.png";
+				var tt=$(".selected").find("img").attr("src").replace("-d","-n");
+				$(".selected").find("img").attr("src",tt);
+				$(".bottom-left").find("li").removeClass("selected");
+				$(this).addClass("selected");
+				$(this).find("img").attr("src",path);
 				stick.css('top',(index * 40 + 62) + 'px');
 		});
+
 		imgUl.delegate('li','mouseover',function(){
 			  $(this).find("#hover-layer").removeClass("hover-layer-none").addClass("hover-layer");
 		});
 		imgUl.delegate('li','mouseout',function(){
-			  $(this).find("#hover-layer").addClass("hover-layer-none").removeClass("hover-layer");
+			  $(this).find("#hover-layer").removeClass("hover-layer").addClass("hover-layer-none");
 		});
+
+		function marquee(obj, step){
+			 obj.find("ul").animate({
+				 marginTop: '-=1'
+			 },0,function(){
+				 var s = Math.abs(parseInt($(this).css("margin-top")));
+				 if(s >= step){
+					 $(this).find("li").slice(0, 1).appendTo($(this));
+					 $(this).css("margin-top", 0);
+				 }
+			 });
+		 }
+		var _scroll = setInterval(function(){
+			if($(".marqueen").find("ul").height()<=$(".marqueen").height()){
+				clearInterval(_scroll);
+			}else{
+				marquee($(".marqueen"), 30);
+			}
+		}, 100);
+		$(".marqueen").hover(function(){
+			clearInterval(_scroll);
+		},function(){
+			_scroll = setInterval(function(){
+				if($(".marqueen").find("ul").height()<=$(".marqueen").height()){
+					clearInterval(_scroll);
+				}else{
+					marquee($(".marqueen"), 30);
+				}
+			}, 100);
+		});
+
+
+
+
 	};
+	(function($){
+	$.fn.myScroll = function(options){
+	//榛樿閰嶇疆
+	var defaults = {
+		speed:40,  //婊氬姩閫熷害,鍊艰秺澶ч€熷害瓒婃參
+		rowHeight:24 //姣忚鐨勯珮搴�
+	};
+	var opts = $.extend({}, defaults, options),intId = [];
+
+
+
+
+	}
+
+})(jQuery);
 	window.EEntertainment = EEntertainment;
 }());
