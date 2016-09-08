@@ -52,6 +52,10 @@
 					margin-top: 20px;
 					overflow: hidden;
 
+					&:hover{
+						border: 1px solid red;
+					}
+
 					input {
 					    vertical-align: top;
 					    position: relative;
@@ -83,6 +87,10 @@
 					img {
 						position: relative;
 					}
+				}
+
+				.selected{
+					border: 1px solid red;
 				}
 			}
 		}

@@ -149,15 +149,20 @@
                     font-size:20px;
                     margin-top: 18px;
                     margin-bottom: 10px;
-                    display: inline-block;
+                    display: block;
                 }
 
-                .money{
-                    font-size:25px;
+                .money-type{
+                    font-size:17px;
+                }
+
+                .balance{
+                    font-size: 20px;
+                    margin-right: 6px;
                 }
 
                 .money-unit{
-                    font-size: 15px;
+                    font-size: 12px;
                 }
 
                 hr{
@@ -214,6 +219,12 @@
                 float: left;
                 padding-left: 2px;
                 box-sizing: border-box;
+                overflow: hidden;
+                
+                .swiper{
+                    height: 100%;
+                    @include transition(0.4s);
+                }
 
                 .wallet-group{
                     height: 100%;
@@ -221,6 +232,8 @@
                     margin: 0 1px;
                     float: left;
                 }
+
+
             }
 
             .tab-container{

@@ -1,5 +1,11 @@
 $(function(){
 	function PersonalCenter(){
+		this.mainWalletData  = {
+			moneyType: '¥',
+			balance: '100,000,000.00',
+			moneyUnit: 'CNY'
+		};
+
 		this.subWalletData = [
 			{
 				id: 0,
@@ -33,6 +39,26 @@ $(function(){
 				id: 7,
 				walletType: 'PT',
 				balance: '4,000.00'				
+			},{
+				id: 8,
+				walletType: 'PT',
+				balance: '4,000.00'				
+			},{
+				id: 9,
+				walletType: 'PT',
+				balance: '4,000.00'	
+			},{
+				id: 10,
+				walletType: 'PT',
+				balance: '4,000.00'	
+			},{
+				id: 11,
+				walletType: 'PT',
+				balance: '4,000.00'	
+			},{
+				id: 12,
+				walletType: 'PT',
+				balance: '4,000.00'	
 			}
 		];
 		this.subWallets = [];
@@ -92,7 +118,7 @@ $(function(){
 								'<div class="center-wallet">' +
 									'<img src="../img/refresh-h.png" class="refresh" />' +
 									'<span class="zxqb">中心钱包</span>' +
-									'<span class="money money-type">¥</span><span class="money balance">10,000.00</span><span class="money-unit">CNY</span>' +
+									'<span class="money money-type">¥  </span><span class="money balance">100,000,000.00</span><span class="money-unit">  CNY</span>' +
 									'<hr class="line">' +
 									'<a href="javascript:void(0);" class="btn turn-into">转出</a>' +
 									'<a href="javascript:void(0);" class="btn turn-out">转入</a>' +									
@@ -130,20 +156,34 @@ $(function(){
 		return this.el;
 	};
 
+	PersonalCenter.prototype.show = function(){
+		this.zone.show();
+	}
+
+	PersonalCenter.prototype.hide = function(){
+		this.zone.hide();
+	}
+
 	PersonalCenter.prototype.createSubWallet = function(){
 		var temp = '';
 		var subWallet;
+		var swipperWith;
 
 		for(var i = 0; i < this.subWalletData.length; i++){
 			subWallet = new SubWallet(this.subWalletData[i]);
 			this.subWallets.push(subWallet);
 			if (i % 2 == 0) 
 				temp += '<div class="wallet-group">';
-			temp += 	subWallet.el;
+			temp += subWallet.el;
 			if (i % 2 != 0) 
-				temp +='</div>';
+				temp += '</div>';
 		}
+		if (this.subWalletData.length % 2 != 0)  temp += '</div>';
 
+		swipperWith = 122 *  Math.round(this.subWalletData.length / 2);
+		temp = '<div class="swiper" style="width:' + swipperWith + 'px">' + temp;
+		temp += '</div>';
+		
 		return temp;
 	}
 
@@ -216,14 +256,6 @@ $(function(){
 		return temp;
 	}
 
-	PersonalCenter.prototype.show = function(){
-		this.zone.show();
-	}
-
-	PersonalCenter.prototype.hide = function(){
-		this.zone.hide();
-	}
-
 	PersonalCenter.prototype.bindEvents = function(){
 		var menuUl;
 		var stick;
@@ -231,13 +263,26 @@ $(function(){
 		var walletzone;
 		var tabZone;
 		var that = this;
-
+		var pageIndex = 0;
+		var pageCount = Math.round(this.subWalletData.length / 2) - 3;
 
 		this.zone = $('.personal-center');
 		menuUl = this.zone.find('.tree > ul');
 		walletzone = this.zone.find('.wallet-zone');
 		stick = this.zone.find('.stick');
+		swiper = this.zone.find('.swiper');
 
+		this.zone.delegate('.nav-left','click',function(){
+			if (pageIndex == 0) return;
+			pageIndex--;
+			swiper.css('transform', 'translateX(' + (0 - 122 * pageIndex) + 'px)');
+		});
+
+		this.zone.delegate('.nav-right','click',function(){
+			if (pageIndex == pageCount - 1) return;
+			pageIndex++;
+			swiper.css('transform', 'translateX(' + (0 - 122 * pageIndex) + 'px)')
+		});
 
         walletzone.delegate('.sub-wallet','mouseover',function(){
         	$(this).find('.transfer-layer').show();
@@ -374,7 +419,6 @@ $(function(){
         		that.announcement.show();
         	}
         });
-
 
 	}
 
