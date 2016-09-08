@@ -68,9 +68,9 @@
 
 								'<div class="row7">' +
 									'<div class="button">' +
-										'快速登录' +
+										'快速注册' +
 									'</div>' +
-									'<div class="button-info">' +
+									'<div class="button-info signin-now">' +
 										'已有账户？立即登录' +
 									'</div>' +
 								'</div>' +
@@ -205,6 +205,18 @@
 		button.click(function () {
 			that.hide();
 			app.header.showSignedInHeader();
+		});
+
+		this.zone.find('.signin-now').click(function () {
+			that.hide();
+
+			if (!app.signInDialog) {
+				app.signInDialog = new SignIn();
+				$('.app').append(app.signInDialog.getDom());
+				app.signInDialog.bindEvents();
+			}
+
+			app.signInDialog.show();
 		});
 
 		this.bindOverlayEvents();

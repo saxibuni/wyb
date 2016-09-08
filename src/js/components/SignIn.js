@@ -48,9 +48,10 @@
 										'快速登录' +
 									'</div>' +
 									'<div class="button-info">' +
-										'<input type="checkbox" id="agree-checkbox">' +
-										'<label for="agree-checkbox">记住用户名</label>' +
+										// '<input type="checkbox" id="agree-checkbox">' +
+										// '<label for="agree-checkbox">记住用户名</label>' +
 										'<span class="find-password">找回密码</span>' +
+										'<span class="signup-now">快速注册</span>' +
 										'<div class="clear"></div>' +
 									'</div>' +
 								'</div>' +
@@ -139,6 +140,18 @@
 		this.zone.find('.find-password').click(function () {
 			that.hide();
 			app.goTo('forgetPassword');
+		});
+
+		this.zone.find('.signup-now').click(function () {
+			that.hide();
+
+			if (!app.signUpDialog) {
+				app.signUpDialog = new SignUp();
+				$('.app').append(app.signUpDialog.getDom());
+				app.signUpDialog.bindEvents();
+			}
+
+			app.signUpDialog.show();
 		});
 
 		this.bindOverlayEvents();
