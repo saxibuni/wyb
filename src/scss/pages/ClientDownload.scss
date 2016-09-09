@@ -3,12 +3,10 @@
 .client-download {
 	@include page-property;
 	padding-top: 20px;
-	padding-bottom: 20px;
 
 	.wrapper {
 		position: relative;
 		width: $contentWidth - 40px;
-		height: 100%;
 		margin: 0 20px;
 
 		.title {

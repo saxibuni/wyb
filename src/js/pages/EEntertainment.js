@@ -229,8 +229,8 @@
 
 
 		var bottomModule='<div class="bottom-module">'+bottomLeftModule+bottomRightModule+'</div>';
-		var mainConent='<div class="page main-content">'+noticeDom+topModule+
-						 		   middleNavModule+bottomModule+'</div>';
+		var mainConent='<div class="page e-entertainment main-content"><div class="wrapper">'+noticeDom+topModule+
+						 		   middleNavModule+bottomModule+'</div></div>';
 
 		this.el  = mainConent;
 		if(!$('.slider').data('run')) {

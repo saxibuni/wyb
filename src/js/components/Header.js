@@ -204,7 +204,7 @@
 			wdscFloatWindow.css('top', '-300px');
 		});
 
-		langHoverItem.mouseover(function () {
+		langHoverItem.click(function () {
 			langFloatWindow.css('top', '30px');
 		}).mouseout(function () {
 			langFloatWindow.css('top', '-300px');

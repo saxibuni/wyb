@@ -4,7 +4,7 @@
 	background-color: #121211;
 	display: inline-block;
 	width: 100%;
-	min-height: 643px;
+	min-height: 543px;
 
 	.main {
 		background-color: $theme-background-color;
@@ -23,7 +23,7 @@
 			left: 0;
 			text-align: left;
 			min-height: 643px;
-			transition: all .5s;
+			transition: all .3s;
 			margin-top: 85px;
 
 			.page {

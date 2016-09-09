@@ -36,6 +36,7 @@
 		var wrapper = this.zone.find('.main-wrapper');
 		var index;
 		var tar;
+		var height;
 		var that = this;
 		var dict = {
 			'homePage'          : {'className': HomePage,          'cssClass': 'home-page'},
@@ -57,8 +58,14 @@
 			that[pageName].bindEvents();
 		}
 
-		index = $('.' + dict[pageName].cssClass).index();
-		wrapper.css('left', (0 - 1024 * index) + 'px');
+		tar = $('.' + dict[pageName].cssClass);
+		index = tar.index();
+		height = tar.children('.wrapper').height();
+
+		wrapper.css({
+			'left': (0 - 1024 * index) + 'px',
+			'height': height + 'px'
+		});
 	};
 
 	app.prototype.initRouter = function () {
