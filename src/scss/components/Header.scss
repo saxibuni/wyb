@@ -422,7 +422,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 		position: absolute;
 		opacity: 0;
 		transition: all .5s;
-		height: 100px;
+		height: 130px;
 		top: -200px;
 		width: $contentWidth + 1px;
 		z-index: 85;
@@ -430,14 +430,32 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 	    left: 50%;
 
 		ul {
+			display: none;
 			width: 100%;
-			height: 100px;
+			height: 130px;
 
 			li {
-				height: 100px;
-				line-height: 100px;
+				cursor: pointer;
+				height: 130px;
+				line-height: 130px;
 				display: inline-block;
-				width: 100px;
+				text-align: center;
+
+				img {
+					vertical-align: middle;
+				}
+			}
+		}
+
+		.dzyy {
+			li {
+				width: 33%;
+			}
+		}
+
+		.ty {
+			li {
+				width: 33%;
 			}
 		}
 	}

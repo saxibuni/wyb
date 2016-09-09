@@ -138,21 +138,31 @@
 						'</div>' +
 					'</div>' +
 					'<div class="header-float-window">' +
-						'<ul>' +
+						'<ul class="ul dzyy">' +
 							'<li>' +
-								'<img class="message-img" src="../img/zh-lang.png">' +
+								'<img class="message-img" src="../img/dzyy-float-img1.png">' +
 							'</li>' +
 
 							'<li>' +
-								'<img class="message-img" src="../img/zh-lang.png">' +
+								'<img class="message-img" src="../img/dzyy-float-img2.png">' +
 							'</li>' +
 
 							'<li>' +
-								'<img class="message-img" src="../img/zh-lang.png">' +
+								'<img class="message-img" src="../img/dzyy-float-img3.png">' +
+							'</li>' +
+						'</ul>' +
+
+						'<ul class="ul ty">' +
+							'<li>' +
+								'<img class="message-img" src="../img/ty-float-img1.png">' +
 							'</li>' +
 
 							'<li>' +
-								'<img class="message-img" src="../img/zh-lang.png">' +
+								'<img class="message-img" src="../img/ty-float-img2.png">' +
+							'</li>' +
+
+							'<li>' +
+								'<img class="message-img" src="../img/ty-float-img3.png">' +
 							'</li>' +
 						'</ul>' +
 					'</div>' +
@@ -240,10 +250,38 @@
 		});
 
 		headerFloatItem.mouseover(function () {
-			headerFloatWindow.css({
-				top: '85px',
-				opacity: '.8'
-			});
+			var parent = $(this).parent('ul');
+			
+			if (parent && parent.hasClass('pages') && $(this).attr('data-value') === 'eEntertainment') {
+				headerFloatWindow.children('ul').hide();
+				headerFloatWindow.children('.dzyy').show();
+
+				headerFloatWindow.css({
+					top: '85px',
+					opacity: '1'
+				});
+			} else if (parent && parent.hasClass('pages') && $(this).attr('data-value') === 'sportsCompetition') {
+				headerFloatWindow.children('ul').hide();
+				headerFloatWindow.children('.ty').show();
+
+				headerFloatWindow.css({
+					top: '85px',
+					opacity: '1'
+				});
+			} else if (parent && parent.hasClass('pages') 
+							  && $(this).attr('data-value') !== 'eEntertainment'
+							  && $(this).attr('data-value') !== 'sportsCompetition') {
+
+				headerFloatWindow.css({
+					top: '-200px',
+					opacity: '0'
+				});
+			} else {
+				headerFloatWindow.css({
+					top: '85px',
+					opacity: '1'
+				});
+			}
 		}).mouseout(function () {
 			headerFloatWindow.css({
 				top: '-200px',
