@@ -10,7 +10,7 @@
 		this.lxkfButton = new Button({
 			id: 'header-lxkf',
 			className: 'header-button lxkf-button',
-			name: '联系客服',
+			name: '在线客服',
 			width: 70,
 			height: 22
 		});

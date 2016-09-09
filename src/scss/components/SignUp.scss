@@ -117,7 +117,7 @@
 				}
 
 				img {
-				    height: 35px;
+				    height: 30px;
 				    margin-left: 20px;
 				}
 
@@ -127,7 +127,8 @@
 				    height: 35px;
 				    line-height: 35px;
 				    margin-left: 20px;
-					vertical-align: top;
+					position: relative;
+    				bottom: 11px;
 					color: #555555;
 
 					&:hover {
