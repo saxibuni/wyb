@@ -192,6 +192,8 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			position: relative;
 			z-index: 90;
 			overflow: hidden;
+			transition: all .3s;
+			opacity: 1;
 
 			.header-logo {
 				float: left;

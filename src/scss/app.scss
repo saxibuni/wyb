@@ -15,6 +15,7 @@
 		width: $contentWidth;
 		overflow: hidden;
     	display: inline-block;
+    	transition: top .3s;
 
 		.main-wrapper {
 			background-color: $theme-background-color;

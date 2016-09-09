@@ -233,10 +233,16 @@
 
 		menu.click(function () {
 			if (parseInt(headRow2.css('height')) !== 0) {
-				headRow2.css('height', '0');
+				headRow2.css({
+					'height': '0',
+					'opacity': '0'
+				});
 				$('.app .main').css('top', '30px');
 			} else {
-				headRow2.css('height', '55px');
+				headRow2.css({
+					'height': '55px',
+					'opacity':'1'
+				});
 				$('.app .main').css('top', '85px');
 			}
 		});
@@ -272,11 +278,17 @@
 
 		$(document).scroll(function(e) {
 			if (document.body.scrollTop > 15) {
-				headRow2.css('height', '0');
+				headRow2.css({
+					'height': '0',
+					'opacity':'0'
+				});
 				that.zone.addClass('fixed-header');
 				$('.app .main').css('top', '30px');
 			} else {
-				headRow2.css('height', '55px');
+				headRow2.css({
+					'height': '55px',
+					'opacity':'1'
+				});
 				that.zone.removeClass('fixed-header');
 				$('.app .main').css('top', '85px');
 			}
