@@ -187,6 +187,24 @@
 		this.zone.find('.signin-button, .signup-button').show();
 	};
 
+	Header.prototype.showHeaderFloatWindow = function () {
+		var headerFloatWindow = this.zone.find('.header-float-window');
+
+		headerFloatWindow.css({
+			top: '85px',
+			opacity: '1'
+		});
+	};
+
+	Header.prototype.hideHeaderFloatWindow = function () {
+		var headerFloatWindow = this.zone.find('.header-float-window');
+
+		headerFloatWindow.css({
+			top: '-200px',
+			opacity: '0'
+		});
+	};
+
 	Header.prototype.bindEvents = function () {
 		var index;
 		var pagesUl;
@@ -255,38 +273,21 @@
 			if (parent && parent.hasClass('pages') && $(this).attr('data-value') === 'eEntertainment') {
 				headerFloatWindow.children('ul').hide();
 				headerFloatWindow.children('.dzyy').show();
-
-				headerFloatWindow.css({
-					top: '85px',
-					opacity: '1'
-				});
+				that.showHeaderFloatWindow();
 			} else if (parent && parent.hasClass('pages') && $(this).attr('data-value') === 'sportsCompetition') {
 				headerFloatWindow.children('ul').hide();
 				headerFloatWindow.children('.ty').show();
-
-				headerFloatWindow.css({
-					top: '85px',
-					opacity: '1'
-				});
+				that.showHeaderFloatWindow();
 			} else if (parent && parent.hasClass('pages') 
 							  && $(this).attr('data-value') !== 'eEntertainment'
 							  && $(this).attr('data-value') !== 'sportsCompetition') {
 
-				headerFloatWindow.css({
-					top: '-200px',
-					opacity: '0'
-				});
+				that.hideHeaderFloatWindow();
 			} else {
-				headerFloatWindow.css({
-					top: '85px',
-					opacity: '1'
-				});
+				that.showHeaderFloatWindow();
 			}
 		}).mouseout(function () {
-			headerFloatWindow.css({
-				top: '-200px',
-				opacity: '0'
-			});
+			that.hideHeaderFloatWindow();
 		});
 
 		pagesUl2.delegate('.bzzx','click',function(){
@@ -348,6 +349,8 @@
 		});
 
 		$(document).scroll(function(e) {
+			that.hideHeaderFloatWindow();
+
 			if (document.body.scrollTop > 15) {
 				headRow2.css({
 					'height': '0',
