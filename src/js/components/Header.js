@@ -289,10 +289,9 @@
 			});
 		});
 
-		pagesUl2.delegate('.nav-page','click',function(){
+		pagesUl2.delegate('.bzzx','click',function(){
 			pageName = $(this).attr('data-value');
-			//page('/' + pageName);
-			app.goTo(pageName);
+			window.open('help.html');
 		});
 
 		grzxUl.delegate('li', 'click', function () {

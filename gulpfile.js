@@ -108,6 +108,42 @@ gulp.task('build', function () {
         }))
         .pipe(gulp.dest(build_html_path));
 
+    /*
+    ** ----------help center ------------------
+    */
+
+    gulp.src([
+            'src/lib/js/jquery.min.js',
+            'src/js/utils/*.js',
+            'src/js/plugins/IMDialog.js',
+            'src/js/plugins/*.js',
+            'src/js/components/*.js',
+            'src/js/help.js'
+        ])
+        .pipe(concat('help.js'))
+        .pipe(gulp.dest('build/js'));
+
+    gulp.src([
+            'src/scss/mixins.scss',
+            'src/scss/reset.scss',
+            'src/scss/plugins/*.scss',
+            'src/scss/components/*.scss',
+            'src/scss/util/*.scss',
+            'src/scss/help.scss'
+        ])
+        .pipe(sass())
+        .pipe(flatten())
+        .pipe(concat('help.css'))
+        .pipe(gulp.dest('build/css/'));
+
+    gulp.src('src/html/help.html')
+        .pipe(htmlReplace({
+            'css': '../css/help.css',
+            'js': '../js/help.js'
+        }))
+        .pipe(gulp.dest(build_html_path));
+
+
     gulp.src('src/html/403.html')
         .pipe(gulp.dest(build_html_path));
 

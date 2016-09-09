@@ -1,0 +1,172 @@
+@import "mixins.scss";
+
+.app {
+	background-color: $theme-background-color;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+
+	.header {
+		.row1 {
+			.menu {
+				display: none;
+			}
+		}
+
+		.row2 {
+			display: none;
+		}
+	}
+
+	.help-center {
+		@include page-property;
+		display: inline-block;
+		margin-top: 30px;
+
+		.wrapper{
+			padding: 10px 17px;
+
+			.tree{
+				width: 180px;
+				height: 500px;
+				background-color: #48463A;
+				float: left;
+				position: relative;
+
+				.title{
+					height: 50px;
+	    			line-height: 50px;
+	    			font-size: 20px;
+	    			font-weight: bold;
+	    			color: #cda654;
+				}
+
+				ul{
+					width: 100%;
+					border-top: 1px solid #535250;
+					
+					li{
+						height: 40px;
+						line-height: 40px;
+						display: inline-block;
+						width: 100%;
+						color: #b4b4b4;
+						border-bottom: 1px solid #535250;
+
+						span{
+							margin-left: -50px;
+						}
+
+						div{
+							width: 40px;
+							height: 40px;
+						}
+
+						&:hover{
+							color: #63563c;
+							cursor: pointer;
+							background-color:#cda654;
+						}
+					}
+
+				}
+
+				.stick{
+					height: 39px;
+					width: 3px;
+					position: absolute;
+					background-color: #cda654;
+					top: 50px;
+					left: 0px;
+
+					transition: top 0.5s;
+					-moz-transition: top 0.5s; 
+					-webkit-transition: top 0.5s;
+					-o-transition: top 0.5s;
+				}
+
+			}
+
+			.container{
+				width: 800px;
+				min-height: 600px;
+				background-color:#2B2A26;
+				float: right;
+				color: #757575;
+				padding-bottom: 30px;
+
+				.title{
+					height: 50px;
+	    			line-height: 50px;
+	    			font-size: 20px;
+	    			font-weight: bold;
+	    			color: #cda654;
+				}
+
+				hr{
+					height: 2px;
+					border: none;
+					border-top: 2px solid #cda654;
+					width: 80%;
+				}
+
+				p{
+					margin: 0 auto;
+	    			text-align: left;
+	    			text-indent: 28px;
+	    			width: 80%;
+				}
+
+				a{
+					color: #cda654;
+				}
+				
+				.subtile{
+				    height: 25px;
+				    margin: 20px 10%;
+				    text-align: left;
+				    border-bottom: 1px solid #48463a;
+					
+					span{
+						display: inline-block;
+					    background: #48463A;
+					    width: 90px;
+					    height: 25px;
+					    line-height: 25px;
+					    text-indent: 5px;
+					}
+				}
+
+				.aboutus {
+					display: none;
+					height: 100%;
+					width: 100%;
+				}
+
+				.contactus{
+					height: 100%;
+					width: 100%;
+
+					p {
+						min-height: 30px;
+					}
+				}
+			}
+		}
+	}
+
+	.footer {
+		.footer-left {
+			.row1 {
+				display: none;
+			}
+
+			.row2 {
+			    height: 50px;
+			    line-height: 50px;
+			}
+		}
+	}
+}
+
