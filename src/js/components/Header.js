@@ -296,6 +296,7 @@
 
 		grzxUl.delegate('li', 'click', function () {
 			if ($(this).hasClass('signout')) {
+				grzxFloatWindow.css('top', '-300px');
 				that.showSignedOutHeader();
 				app.goTo('homePage');
 			}
