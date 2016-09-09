@@ -58,13 +58,13 @@
 			that[pageName].bindEvents();
 		}
 
-		tar = $('.' + dict[pageName].cssClass);
-		index = tar.index();
-		height = tar.height();
+		tar    = $('.' + dict[pageName].cssClass);
+		index  = tar.index();
+		height = tar.css('height');
 
 		wrapper.css({
 			'left': (0 - 1024 * index) + 'px',
-			'height': height + 'px'
+			'height': height
 		});
 	};
 

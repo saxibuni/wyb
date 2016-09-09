@@ -97,7 +97,7 @@
 								'<li data-value="eEntertainment">电子游艺</li>' +
 								'<li data-value="sportsCompetition">体育竞技</li>' +
 								'<li data-value="lotteryGame">彩票游戏</li>' +
-								'<li data-value="promoActivity">优惠活动</li>' +
+								// '<li data-value="promoActivity">优惠活动</li>' +
 								'<li data-value="clientDownload">客户端</li>' +
 								'<div class="stick"></div>' +
 							'</ul>' +
