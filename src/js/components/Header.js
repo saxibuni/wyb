@@ -213,9 +213,9 @@
 		pagesUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');
 			index    = $(this).index();
-			stick.css('left', index*80 + 'px');
+			stick.css('left', index * 80 + 'px');
 			//page('/' + pageName);
-			app.goTo(pageName);
+			app.goTo(pageName, index);
 		});
 
 		pagesUl2.delegate('.nav-page','click',function(){
@@ -234,10 +234,10 @@
 		menu.click(function () {
 			if (parseInt(headRow2.css('height')) !== 0) {
 				headRow2.css('height', '0');
-				$('.app .main').css('margin-top', '30px');
+				$('.app .main-wrapper').css('margin-top', '30px');
 			} else {
 				headRow2.css('height', '55px');
-				$('.app .main').css('margin-top', '85px');
+				$('.app .main-wrapper').css('margin-top', '85px');
 			}
 		});
 
@@ -274,11 +274,11 @@
 			if (document.body.scrollTop > 15) {
 				headRow2.css('height', '0');
 				that.zone.addClass('fixed-header');
-				$('.app .main').css('margin-top', '30px');
+				$('.app .main-wrapper').css('margin-top', '30px');
 			} else {
 				headRow2.css('height', '55px');
 				that.zone.removeClass('fixed-header');
-				$('.app .main').css('margin-top', '85px');
+				$('.app .main-wrapper').css('margin-top', '85px');
 			}
 		});
 

@@ -19,7 +19,9 @@
 		this.el  = 	this.header.getDom() +
 
 					'<div class="main">' +
-						this.homePage.getDom() +
+						'<div class="main-wrapper">' +
+							this.homePage.getDom() +
+						'</div>' +
 					'</div>' +
 
 					this.footer.getDom();
@@ -30,7 +32,8 @@
 		this.goTo('homePage');
 	};
 	
-	app.prototype.goTo = function (pageName) {
+	app.prototype.goTo = function (pageName, index) {
+		var wrapper = this.zone.find('.main-wrapper');
 		var that = this;
 		var dict = {
 			'homePage'          : HomePage,
@@ -46,19 +49,23 @@
 			'forgetPassword'    : ForgetPassword
 		};
 
-		that.zone.find('.page').hide();
+		//that.zone.find('.page').hide();
 
 		if (!that[pageName]) {
 			that[pageName] = new (dict[pageName])();
-			that.zone.find('.main').append(that[pageName].getDom());
+			that.zone.find('.main-wrapper').append(that[pageName].getDom());
 			that[pageName].bindEvents();
 		}
 
-		that[pageName].show();
+		//that[pageName].show();
+
+		wrapper.css('left', (0 - 1024 * index) + 'px');
 	};
 
 	app.prototype.initRouter = function () {
 		var key;
+		var index;
+		var wrapper = that.zone.find('.main-wrapper');
 		var that = this;
 		var dict = {
 			'homePage'          : HomePage,
