@@ -15,6 +15,10 @@
 	}
 	.top-left-module{
 		width:202px;
+		.marqueen{
+			height:210px;
+			overflow: hidden;
+		}
 		.left-list{
 			background:#424242;
 			padding:10px 0;
@@ -262,6 +266,7 @@
 		 background: #2C2C2C;
 		 display: inline-block;
      vertical-align: top;
+
 		.bottom-left{
 			width: 176px;
 			background-color: #2C2C2C;
@@ -269,6 +274,10 @@
 			position: relative;
 			border-right: 1px solid #535250;
 			height:100%;
+			.selected{
+ 			 color: #63563c;
+ 			 background-color: #cda654;
+ 		 	}
 			ul li{
 				height: 40px;
 				line-height: 40px;

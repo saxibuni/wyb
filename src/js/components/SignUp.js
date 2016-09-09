@@ -61,16 +61,16 @@
 									'<img class="message-img" src="../img/verify-code.png">' +
 									'<span>换一个</span>' +
 									'<div class="agree">' +
-										'<input type="checkbox" id="remember-checkbox">' +
+										'<input type="checkbox" id="remember-checkbox" checked="checked">' +
 										'<label for="remember-checkbox">我已届满合法博彩年龄，且同意各项开户条约</label>' +
 									'</div>' +
 								'</div>' +
 
 								'<div class="row7">' +
 									'<div class="button">' +
-										'快速登录' +
+										'快速注册' +
 									'</div>' +
-									'<div class="button-info">' +
+									'<div class="button-info signin-now">' +
 										'已有账户？立即登录' +
 									'</div>' +
 								'</div>' +
@@ -105,9 +105,9 @@
 		var button;
 		var value;
 		var value2;
-		var usernameReg   = '^[A-Za-z0-9]{3,12}$';
-		var passwordReg   = '^[A-Za-z0-9]{6,12}$';
-		var repeatReg     = '^[A-Za-z0-9]{6,12}$';
+		var usernameReg   = '^[A-Za-z0-9]{6,12}$';
+		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
+		var repeatReg     = '^[A-Za-z0-9]{6,50}$';
 		var popularizeReg = '^[A-Za-z0-9]{10}$';
 		var verifyReg     = '';
 		var inputEvents   = 'input';
@@ -205,6 +205,18 @@
 		button.click(function () {
 			that.hide();
 			app.header.showSignedInHeader();
+		});
+
+		this.zone.find('.signin-now').click(function () {
+			that.hide();
+
+			if (!app.signInDialog) {
+				app.signInDialog = new SignIn();
+				$('.app').append(app.signInDialog.getDom());
+				app.signInDialog.bindEvents();
+			}
+
+			app.signInDialog.show();
 		});
 
 		this.bindOverlayEvents();

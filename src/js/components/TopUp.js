@@ -44,27 +44,35 @@
 
 							'<ul>' +
 								'<li data-value="zggsyh">' +
+									'<input type="radio" name="bank" />' +
 									'<img style="top: -32px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 								'<li data-value="zgjsyh">' +
+									'<input type="radio" name="bank" />' +								
 									'<img style="top: -130px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 								'<li data-value="jtyh">' +
+									'<input type="radio" name="bank" />' +
 									'<img style="top: -165px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 								'<li data-value="zgyh">' +
+									'<input type="radio" name="bank" />' +
 									'<img style="top: -98px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 								'<li data-value="zgnyyh">' +
+									'<input type="radio" name="bank" />' +
 									'<img style="top: -67px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 								'<li data-value="zsyh">' +
+									'<input type="radio" name="bank" />' +
 									'<img style="top: -428px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 								'<li data-value="pfyh">' +
+									'<input type="radio" name="bank" />' +
 									'<img style="top: -495px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 								'<li data-value="zgyzcxyh">' +
+									'<input type="radio" name="bank" />' +
 									'<img style="top: -195px;" src="../img/bankLogo.jpg">' +
 								'</li>' +
 							'</ul>' +
@@ -113,10 +121,18 @@
 		this.zone = $('.top-up');
 
 		row1Ul = this.zone.find('.row1 ul');
+		row2Ul = this.zone.find('.row2 ul');
 
 		row1Ul.delegate('li', 'click', function () {
 			row1Ul.find('li').removeClass('selected');
 			$(this).addClass('selected');
+		});
+
+		row2Ul.delegate('li','click',function(){
+			row2Ul.find('li').removeClass('selected');
+			$(this).addClass('selected');
+			row2Ul.find('input[type="radio"]').attr('checked',false);
+			$(this).find('input[type="radio"]').attr('checked',true);
 		});
 
 		this.button.bindEvents();

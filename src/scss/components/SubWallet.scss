@@ -8,15 +8,14 @@
     padding: 4px;
     color: #535353;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 12px;
     margin-top: 11px;
-	.refresh{
-        position: absolute;
-        right: 3px;
-        top: 4px;
-        cursor: pointer;
-    }
 
+	& > span{
+		margin-top: 5px;
+    	display: inline-block;
+	}
+	
 	hr{
 	    height: 1px;
 	    border: none;
@@ -33,6 +32,14 @@
 		background: rgba(125,124,121,0.7);
 		display: none;
 
+		.refresh{
+	        position: absolute;
+	        right: 3px;
+	        top: 2px;
+	        cursor: pointer;
+	        opacity: 0.7;
+	    }
+
         .btn{
 	        width: 40px;
 	        height: 20px;
@@ -41,7 +48,7 @@
 	        border:1px solid #cda654;
 	        color:#fdfbf9;
 	        display: inline-block;
-	        margin-top: 23px;
+	        margin-top: 25px;
 	        &:hover{
 	            background-color:#cda654;
 	        }

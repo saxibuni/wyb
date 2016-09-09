@@ -7,7 +7,7 @@
 
 		.content1 {
 			width: 100%;
-			height: 436px;
+			height: 236px;
 			.row {
 				height: 100%;
 				.unslider-nav {
@@ -35,12 +35,13 @@
 					background-color: #fff;
 				}
 				.prev, .next {
+					cursor: pointer;
 					width: 50px;
 					height: 70px;
 					display: inline-block;
 					position: relative;
 					overflow: hidden;
-					top: -250px;
+					top: -150px;
 					opacity: 0.5;
 					text-indent: 50px;
 				}
@@ -58,7 +59,7 @@
 			}
 
 			.banner {
-				height: 436px;
+				height: 236px;
 				ul {
 					height: 100%;
 					position: relative;
@@ -118,6 +119,7 @@
 								}
 							}
 							.kf {
+								cursor: pointer;
 								margin-bottom: 12px;
 								height: 180px;
 								img {
@@ -128,9 +130,17 @@
 									top: -110px;
 									left: 20px;
 								}
+
+								&:hover {
+									span {
+										color: #DCAD4B;
+									}
+								}
 							}
 							.xz {
+								cursor: pointer;
 								height: 125px;
+
 								img {
 									width: 100%;
 								}
@@ -143,9 +153,16 @@
 										background-image: url("../img/xz-icon.png");
 									}
 								}
+
+								&:hover {
+									span {
+										color: #DCAD4B;
+									}
+								}
 							}
 						}
 						.row1-right {
+							cursor: pointer;
 							width: 330px;
 							height: 316px;
 							img {
@@ -166,7 +183,13 @@
 								border: solid 1px;
 								background-color: rgba(0,0,0,0.5);
 								filter: alpha(opacity=50);
+							}
 
+							&:hover {
+								span{
+								    border: 1px solid #DCAD4B;
+								    color: #DCAD4B;
+								}
 							}
 						}
 
@@ -193,8 +216,16 @@
 							margin-right: 10px;
 						}
 						.sports, .video {
+							cursor: pointer;
 							width: 170px;
 							height: 210px;
+
+							&:hover {
+								span{
+								    border: 1px solid #DCAD4B;
+								    color: #DCAD4B;
+								}
+							}
 						}
 						img {
 							width: 100%;

@@ -21,14 +21,6 @@
 							'<div class="language">' +
 								'<img class="message-img" src="../img/zh-lang.png">' +
 								'<span>CHN</span>' +
-
-								'<div class="language-float-window">' +
-									'<ul>' +
-										'<li><span>中文</span></li>' +
-										'<li><span>English</span></li>' +
-									'</ul>' +
-								'</div>' +
-
 							'</div>' +
 
 							'<div class="bzzx top-item nav-page" data-value="helpPage">' +
@@ -36,15 +28,7 @@
 							'</div>' +
 
 							'<div class="wdsc top-item">' +
-								'<span>我的收藏</span>' +
-
-								'<div class="wdsc-float-window">' +
-									'<ul>' +
-										'<li><span>重庆时时彩</span></li>' +
-										'<li><span>福彩3D</span></li>' +
-										'<li><span>山东1选5</span></li>' +
-									'</ul>' +
-								'</div>' +
+								'<span class="my-collection">我的收藏</span>' +
 							'</div>' +
 
 							'<div class="money-actions">' +
@@ -71,24 +55,6 @@
 									'<img class="message-img" src="../img/message.png">' +
 									'<div class="dot">1</div>' +
 								'</div>' +
-
-								'<div class="grzx-float-window">' +
-									'<div class="title">' +
-										'<div class="username">LORENZO</div>' +
-										'<div class="userid">' +
-											'<span class="text">ID:</span>' +
-											'<span class="id-value">2678899511</span>' +
-										'</div>' +
-									'</div>' +
-
-									'<ul>' +
-										'<li><span>资金管理</span></li>' +
-										'<li><span>投注记录</span></li>' +
-										'<li><span>充值记录</span></li>' +
-										'<li><span>修改密码</span></li>' +
-										'<li class="signout"><span>退出</span></li>' +
-									'</ul>' +
-								'</div>' +
 							'</div>' +
 
 							'<div class="time">' +
@@ -101,6 +67,10 @@
 								'</div>' +
 
 								'<div class="clear"></div>' +
+							'</div>' +
+
+							'<div class="menu">' +
+								'<img class="message-img" src="../img/menu.png">' +
 							'</div>' +
 						'</div>' +
 
@@ -134,6 +104,38 @@
 
 							'<div class="clear"></div>' +
 						'</div>' +
+
+						'<div class="grzx-float-window">' +
+							'<div class="title">' +
+								'<div class="username">LORENZO</div>' +
+								'<div class="userid">' +
+									'<span class="text">ID:</span>' +
+									'<span class="id-value">2678899511</span>' +
+								'</div>' +
+							'</div>' +
+
+							'<ul>' +
+								'<li><span>资金管理</span></li>' +
+								'<li><span>投注记录</span></li>' +
+								'<li><span>充值记录</span></li>' +
+								'<li><span>修改密码</span></li>' +
+								'<li class="signout"><span>退出</span></li>' +
+							'</ul>' +
+						'</div>' +
+
+						'<div class="wdsc-float-window">' +
+							'<ul>' +
+								'<li><span>古怪猴子</span></li>' +
+								'<li><span>古怪猴子</span></li>' +
+							'</ul>' +
+						'</div>' +
+
+						'<div class="language-float-window">' +
+							'<ul>' +
+								'<li><span>中文</span></li>' +
+								'<li><span>English</span></li>' +
+							'</ul>' +
+						'</div>' +
 					'</div>' +
 				'</div>';
 		
@@ -146,11 +148,13 @@
 
 	Header.prototype.showSignedInHeader = function () {
 		this.zone.find('.money-actions, .balance, .grzx').show();
+		this.zone.find('.my-collection').show();
 		this.zone.find('.signin-button, .signup-button').hide();
 	};
 
 	Header.prototype.showSignedOutHeader = function () {
 		this.zone.find('.money-actions, .balance, .grzx').hide();
+		this.zone.find('.my-collection').hide();
 		this.zone.find('.signin-button, .signup-button').show();
 	};
 
@@ -161,23 +165,55 @@
 		var stick;
 		var pageName;
 		var balance;
+		var menu;
 		var headRow2;
+		var langHoverItem;
+		var grzxHoverItem;
+		var wdscHoverItem;
+		var grzxFloatWindow;
+		var wdscFloatWindow;
+		var langFloatWindow;
 		var grzxUl;
 		var that = this;
 
 		this.zone = $('.header');
-		pagesUl   = this.zone.find('.pages');
-		pagesUl2  = this.zone.find('.row1');
-		headRow2  = this.zone.find('.row2');
-		grzxUl    = this.zone.find('.grzx-float-window ul');
+		pagesUl         = this.zone.find('.pages');
+		pagesUl2        = this.zone.find('.row1');
+		headRow2        = this.zone.find('.row2');
+		langHoverItem   = this.zone.find('.language, .language-float-window');
+		grzxHoverItem   = this.zone.find('.grzx, .grzx-float-window');
+		wdscHoverItem   = this.zone.find('.wdsc, .wdsc-float-window');
+		grzxFloatWindow = this.zone.find('.grzx-float-window');
+		wdscFloatWindow = this.zone.find('.wdsc-float-window');
+		langFloatWindow = this.zone.find('.language-float-window');
+		grzxUl          = this.zone.find('.grzx-float-window ul');
+		menu            = this.zone.find('.menu');
 		
-		stick     = pagesUl.children('.stick');
-		balance   = this.zone.find('.balance-value');
+		stick           = pagesUl.children('.stick');
+		balance         = this.zone.find('.balance-value');
+
+		grzxHoverItem.mouseover(function () {
+			grzxFloatWindow.css('top', '30px');
+		}).mouseout(function () {
+			grzxFloatWindow.css('top', '-300px');
+		});
+
+		wdscHoverItem.mouseover(function () {
+			wdscFloatWindow.css('top', '30px');
+		}).mouseout(function () {
+			wdscFloatWindow.css('top', '-300px');
+		});
+
+		langHoverItem.mouseover(function () {
+			langFloatWindow.css('top', '30px');
+		}).mouseout(function () {
+			langFloatWindow.css('top', '-300px');
+		});
 
 		pagesUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');
 			index    = $(this).index();
-			stick.css('left', index*80 + 'px');
+			stick.css('left', index * 80 + 'px');
 			//page('/' + pageName);
 			app.goTo(pageName);
 		});
@@ -192,6 +228,16 @@
 			if ($(this).hasClass('signout')) {
 				that.showSignedOutHeader();
 				app.goTo('homePage');
+			}
+		});
+
+		menu.click(function () {
+			if (parseInt(headRow2.css('height')) !== 0) {
+				headRow2.css('height', '0');
+				$('.app .main-wrapper').css('margin-top', '30px');
+			} else {
+				headRow2.css('height', '55px');
+				$('.app .main-wrapper').css('margin-top', '85px');
 			}
 		});
 
@@ -226,13 +272,13 @@
 
 		$(document).scroll(function(e) {
 			if (document.body.scrollTop > 15) {
-				headRow2.hide();
+				headRow2.css('height', '0');
 				that.zone.addClass('fixed-header');
-				$('.app .main').css('margin-top', '30px');
+				$('.app .main-wrapper').css('margin-top', '30px');
 			} else {
-				headRow2.show();
+				headRow2.css('height', '55px');
 				that.zone.removeClass('fixed-header');
-				$('.app .main').css('margin-top', '85px');
+				$('.app .main-wrapper').css('margin-top', '85px');
 			}
 		});
 

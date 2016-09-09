@@ -80,7 +80,7 @@
 		top = positions[index].top;
 
 		var temp =	'<li>' +
-						'<input type="radio">' +
+						'<input type="radio" name="withdrawBankRidio">' +
 						'<div class="logo text">' +
 							'<img style="top:' + top + 'px" src="../img/bankLogo.jpg">' +
 						'</div>' +
@@ -108,8 +108,19 @@
 
 	Withdraw.prototype.bindEvents = function() {
 		this.zone = $('.withdraw');
+		var row1Ul = this.zone.find('.content .row1');
+
 		this.button.bindEvents();
 		this.withdrawInput.bindEvents();
+
+		row1Ul.delegate('li','click',function(){
+			row1Ul.find('li').removeClass('selected');
+			$(this).addClass('selected');
+			row1Ul.find('input[type="radio"]').attr('checked',false);
+			$(this).find('input[type="radio"]').attr('checked',true);
+		});
+
+
 	}
 
 	window.Withdraw = Withdraw;

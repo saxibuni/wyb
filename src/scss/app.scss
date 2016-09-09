@@ -13,6 +13,26 @@
 		margin-top: $headerHeight;
 		font-size: 14px;
 		text-align: center;
-		width: 100%;
+		margin: 0 auto;
+		width: $contentWidth;
+		overflow: hidden;
+
+		.main-wrapper {
+			background-color: $theme-background-color;
+			width: 10000px;
+			position: relative;
+			left: 0;
+			text-align: left;
+			min-height: 643px;
+			transition: all .5s;
+			margin-top: 85px;
+
+			.page {
+				display: inline-block;
+				width: 1024px;
+				text-align: center;
+				vertical-align: top;
+			}
+		}
 	}
-} 
+}
