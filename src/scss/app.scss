@@ -1,20 +1,20 @@
 @import "mixins.scss";
 
 .app {
-	background-color: #121211;
+	background-color: $theme-background-color;
 	display: inline-block;
 	width: 100%;
-	min-height: 543px;
+	text-align: center;
 
 	.main {
 		background-color: $theme-background-color;
 		position: relative;
-		margin-top: $headerHeight;
+		top: $headerHeight;
 		font-size: 14px;
 		text-align: center;
-		margin: 0 auto;
 		width: $contentWidth;
 		overflow: hidden;
+    	display: inline-block;
 
 		.main-wrapper {
 			background-color: $theme-background-color;
@@ -24,7 +24,6 @@
 			text-align: left;
 			min-height: 643px;
 			transition: all .3s;
-			margin-top: 85px;
 
 			.page {
 				display: inline-block;

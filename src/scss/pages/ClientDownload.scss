@@ -2,12 +2,11 @@
 
 .client-download {
 	@include page-property;
-	padding-top: 20px;
+	padding: 20px;
 
 	.wrapper {
 		position: relative;
 		width: $contentWidth - 40px;
-		margin: 0 20px;
 
 		.title {
 			background-color: #48463A;

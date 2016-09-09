@@ -60,7 +60,7 @@
 
 		tar = $('.' + dict[pageName].cssClass);
 		index = tar.index();
-		height = tar.children('.wrapper').height();
+		height = tar.height();
 
 		wrapper.css({
 			'left': (0 - 1024 * index) + 'px',

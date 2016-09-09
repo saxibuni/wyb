@@ -1,7 +1,7 @@
 $contentWidth              :   1024px;
 $headerHeight              :   85px;
 $footerHeight              :   100px;
-$theme-background-color    :   #191919;
+$theme-background-color    :   #121212;
 
 @mixin page-property {
     background-color: #22221F;
@@ -9,7 +9,6 @@ $theme-background-color    :   #191919;
     display: none;
     position: relative;
     width: $contentWidth;
-    height: 100%;
     min-height: 450px;
     margin: 0 auto;
 }

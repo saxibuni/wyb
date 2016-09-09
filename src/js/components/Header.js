@@ -234,10 +234,10 @@
 		menu.click(function () {
 			if (parseInt(headRow2.css('height')) !== 0) {
 				headRow2.css('height', '0');
-				$('.app .main-wrapper').css('margin-top', '30px');
+				$('.app .main').css('top', '30px');
 			} else {
 				headRow2.css('height', '55px');
-				$('.app .main-wrapper').css('margin-top', '85px');
+				$('.app .main').css('top', '85px');
 			}
 		});
 
@@ -274,11 +274,11 @@
 			if (document.body.scrollTop > 15) {
 				headRow2.css('height', '0');
 				that.zone.addClass('fixed-header');
-				$('.app .main-wrapper').css('margin-top', '30px');
+				$('.app .main').css('top', '30px');
 			} else {
 				headRow2.css('height', '55px');
 				that.zone.removeClass('fixed-header');
-				$('.app .main-wrapper').css('margin-top', '85px');
+				$('.app .main').css('top', '85px');
 			}
 		});
 
