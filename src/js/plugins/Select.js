@@ -7,7 +7,7 @@
 	}
 
 	Select.prototype.initDom = function() {
-		var temp =	'<select class="select' + (this.opt.className?(' ' +this.opt.className): '') + '" id="' + this.id + '">' +
+		var temp =	'<select class="select' + (this.opt.className?(' ' +this.opt.className): '') + '"' + ((this.opt.id)?(' id="' + this.opt.id + '"'):'') + '>' +
 						this.createOptions() +
 					'</select>';
 
