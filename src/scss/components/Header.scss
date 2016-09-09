@@ -416,6 +416,31 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			}
 		}
 	}
+
+	.header-float-window {
+		background-color: #93949E;
+		position: absolute;
+		opacity: 0;
+		transition: all .5s;
+		height: 100px;
+		top: -200px;
+		width: $contentWidth + 1px;
+		z-index: 85;
+	    transform: translateX(0 - ($contentWidth/2 + 1px));
+	    left: 50%;
+
+		ul {
+			width: 100%;
+			height: 100px;
+
+			li {
+				height: 100px;
+				line-height: 100px;
+				display: inline-block;
+				width: 100px;
+			}
+		}
+	}
 }
 
 .fixed-header {

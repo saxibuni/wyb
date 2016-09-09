@@ -137,6 +137,25 @@
 							'</ul>' +
 						'</div>' +
 					'</div>' +
+					'<div class="header-float-window">' +
+						'<ul>' +
+							'<li>' +
+								'<img class="message-img" src="../img/zh-lang.png">' +
+							'</li>' +
+
+							'<li>' +
+								'<img class="message-img" src="../img/zh-lang.png">' +
+							'</li>' +
+
+							'<li>' +
+								'<img class="message-img" src="../img/zh-lang.png">' +
+							'</li>' +
+
+							'<li>' +
+								'<img class="message-img" src="../img/zh-lang.png">' +
+							'</li>' +
+						'</ul>' +
+					'</div>' +
 				'</div>';
 		
 		this.el  = temp;
@@ -174,23 +193,25 @@
 		var wdscFloatWindow;
 		var langFloatWindow;
 		var grzxUl;
+		var headerFloatWindow;
 		var that = this;
 
 		this.zone = $('.header');
-		pagesUl         = this.zone.find('.pages');
-		pagesUl2        = this.zone.find('.row1');
-		headRow2        = this.zone.find('.row2');
-		langHoverItem   = this.zone.find('.language, .language-float-window');
-		grzxHoverItem   = this.zone.find('.grzx, .grzx-float-window');
-		wdscHoverItem   = this.zone.find('.wdsc, .wdsc-float-window');
-		grzxFloatWindow = this.zone.find('.grzx-float-window');
-		wdscFloatWindow = this.zone.find('.wdsc-float-window');
-		langFloatWindow = this.zone.find('.language-float-window');
-		grzxUl          = this.zone.find('.grzx-float-window ul');
-		menu            = this.zone.find('.menu');
-		
-		stick           = pagesUl.children('.stick');
-		balance         = this.zone.find('.balance-value');
+		pagesUl           = this.zone.find('.pages');
+		pagesUl2          = this.zone.find('.row1');
+		headRow2          = this.zone.find('.row2');
+		langHoverItem     = this.zone.find('.language, .language-float-window');
+		grzxHoverItem     = this.zone.find('.grzx, .grzx-float-window');
+		wdscHoverItem     = this.zone.find('.wdsc, .wdsc-float-window');
+		grzxFloatWindow   = this.zone.find('.grzx-float-window');
+		wdscFloatWindow   = this.zone.find('.wdsc-float-window');
+		langFloatWindow   = this.zone.find('.language-float-window');
+		grzxUl            = this.zone.find('.grzx-float-window ul');
+		menu              = this.zone.find('.menu');
+		headerFloatItem   = this.zone.find('.pages li, .header-float-window');
+		headerFloatWindow = this.zone.find('.header-float-window');
+		stick             = pagesUl.children('.stick');
+		balance           = this.zone.find('.balance-value');
 
 		grzxHoverItem.mouseover(function () {
 			grzxFloatWindow.css('top', '30px');
@@ -216,6 +237,18 @@
 			stick.css('left', index * 80 + 'px');
 			//page('/' + pageName);
 			app.goTo(pageName);
+		});
+
+		headerFloatItem.mouseover(function () {
+			headerFloatWindow.css({
+				top: '85px',
+				opacity: '.8'
+			});
+		}).mouseout(function () {
+			headerFloatWindow.css({
+				top: '-200px',
+				opacity: '0'
+			});
 		});
 
 		pagesUl2.delegate('.nav-page','click',function(){
