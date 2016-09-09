@@ -171,6 +171,18 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					display: inline-block;
 				}
 			}
+
+			.menu {
+				cursor: pointer;
+				display: inline-block;
+				float: left;
+				width: 40px;
+
+				img {
+				    position: relative;
+				    top: 4px;
+				}
+			}
 		}
 
 		.row2 {
@@ -179,6 +191,8 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			line-height: $headerRow2Height;
 			position: relative;
 			z-index: 90;
+			transition: height .5s;
+			overflow: hidden;
 
 			.header-logo {
 				float: left;

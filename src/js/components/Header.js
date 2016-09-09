@@ -68,6 +68,10 @@
 
 								'<div class="clear"></div>' +
 							'</div>' +
+
+							'<div class="menu">' +
+								'<img class="message-img" src="../img/menu.png">' +
+							'</div>' +
 						'</div>' +
 
 						'<div class="row2">' +
@@ -161,6 +165,7 @@
 		var stick;
 		var pageName;
 		var balance;
+		var menu;
 		var headRow2;
 		var langHoverItem;
 		var grzxHoverItem;
@@ -182,6 +187,7 @@
 		wdscFloatWindow = this.zone.find('.wdsc-float-window');
 		langFloatWindow = this.zone.find('.language-float-window');
 		grzxUl          = this.zone.find('.grzx-float-window ul');
+		menu            = this.zone.find('.menu');
 		
 		stick           = pagesUl.children('.stick');
 		balance         = this.zone.find('.balance-value');
@@ -225,6 +231,16 @@
 			}
 		});
 
+		menu.click(function () {
+			if (parseInt(headRow2.css('height')) !== 0) {
+				headRow2.css('height', '0');
+				$('.app .main').css('margin-top', '30px');
+			} else {
+				headRow2.css('height', '55px');
+				$('.app .main').css('margin-top', '85px');
+			}
+		});
+
 		this.zone.find('.top-item').click(function  () {
 		});
 
@@ -256,11 +272,11 @@
 
 		$(document).scroll(function(e) {
 			if (document.body.scrollTop > 15) {
-				headRow2.hide();
+				headRow2.css('height', '0');
 				that.zone.addClass('fixed-header');
 				$('.app .main').css('margin-top', '30px');
 			} else {
-				headRow2.show();
+				headRow2.css('height', '55px');
 				that.zone.removeClass('fixed-header');
 				$('.app .main').css('margin-top', '85px');
 			}
