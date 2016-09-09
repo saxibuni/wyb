@@ -4,12 +4,12 @@
 	@include dialog-frame;
 
 	.dialog-wrapper {	
-		@include dialog-wrapper(300px);
+		@include dialog-wrapper(320px);
 		z-index: 150;
 		top: 50%;
 
 		.dialog {
-			@include dialog(300px, 430px);
+			@include dialog(320px, 430px);
 
 			background-color: #2F2F2C;
 			font-size: 14px;
@@ -19,6 +19,7 @@
 				color: #666666;
 				height: 25px;
 				line-height: 25px;
+				text-align: left;
 			}
 
 			.input-outer {
@@ -132,7 +133,7 @@
 					background-color: #4B4B42;
 					color: #222222;
 					cursor: pointer;
-					width: 300px;
+					width: 280px;
 					height: 35px;
 					line-height: 35px;
 					text-align: center;

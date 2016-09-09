@@ -30,10 +30,18 @@
 
 		    			i {
 		    				display: block;
+		    				transition: transform .5s;
 		    			}
 
 		    			&:last-child {
 		    				border-right: none;
+		    			}
+
+		    			&:hover {
+		    				i {
+		    					transform: scale(1.2);
+		    					font-weight: bold;
+		    				}
 		    			}
 		    		}
 
