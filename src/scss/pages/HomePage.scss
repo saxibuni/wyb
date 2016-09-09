@@ -188,6 +188,7 @@
 								border: solid 1px;
 								background-color: rgba(0,0,0,0.5);
 								filter: alpha(opacity=50);
+								transition: all .5s;
 							}
 
 							&:hover {
@@ -196,7 +197,9 @@
 								}
 
 								span {
-									color: #DCAD4B;
+									border: 1px solid #DCAD4B;
+									color: #FFF;
+									background-color: #DCAD4B;
 								}
 							}
 						}
@@ -237,7 +240,9 @@
 								}
 
 								span {
-									color: #DCAD4B;
+									border: 1px solid #DCAD4B;
+									color: #FFF;
+									background-color: #DCAD4B;
 								}
 							}
 						}
@@ -262,6 +267,7 @@
 							border: solid 1px;
 							background-color: rgba(0,0,0,0.5);
 							filter: alpha(opacity=50);
+							transition: all .5s;
 						}
 					}
 
