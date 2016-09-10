@@ -1,3 +1,7 @@
+/*
+ *  bet页面 入口函数
+ */
+
 (function () {
 	'use strict';
 
