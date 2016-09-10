@@ -49,12 +49,14 @@ gulp.task('clean', function () {
 gulp.task('prepare', ['clean'], function () {
     gulp.src([
             './bower_components/datetimepicker/jquery.datetimepicker.css',
-            './bower_components/Gallery/css/blueimp-gallery.min.css'
+            './bower_components/Gallery/css/blueimp-gallery.min.css',
+            './bower_components/bootstrap/dist/css/bootstrap.min.css'
         ])
         .pipe(gulp.dest(src_css_lib_path));
 
     gulp.src([
             './bower_components/jquery/dist/jquery.min.js',
+            './bower_components/bootstrap/dist/js/bootstrap.min.js',
             './bower_components/page/page.js',
             './bower_components/jquery-i18next/jquery-i18next.min.js',
             './bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js',
@@ -64,6 +66,9 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/unsilde/unslider-min.js'
         ])
         .pipe(gulp.dest(src_js_lib_path));
+
+    gulp.src('./bower_components/bootstrap/dist/fonts/*')
+        .pipe(gulp.dest('build/fonts/'));
 
     gulp.src(['src/img/*', './bower_components/Gallery/img/*'])
         .pipe(gulp.dest('build/img/'));
