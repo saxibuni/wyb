@@ -102,11 +102,11 @@
 	};
 
 	ClientDownload.prototype.show = function () {
-		this.zone.show();
+		this.zone.fadeIn(500);
 	};
 
 	ClientDownload.prototype.hide = function () {
-		this.zone.hide();
+		this.zone.fadeOut(500);
 	};
 
 	ClientDownload.prototype.bindEvents = function () {

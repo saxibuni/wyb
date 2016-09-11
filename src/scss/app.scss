@@ -1,5 +1,9 @@
 @import "mixins.scss";
 
+body {
+	overflow-x: hidden;	
+}
+
 .app {
 	background-color: $theme-background-color;
 	display: inline-block;
@@ -17,6 +21,63 @@
     	display: inline-block;
     	transition: top .3s;
 
+		.logo-wrapper {
+			height: 236px;
+			width: 100%;
+
+			.unslider-nav {
+			    position: absolute;
+			    top: 200px;
+			    right: 100px;
+
+			    ol {
+			    	li {
+					    width: 10px;
+					    height: 10px;
+			    	}
+			    }
+			}
+
+			.unslider-arrow {
+				cursor: pointer;
+				width: 50px;
+				height: 70px;
+				display: inline-block;
+				position: relative;
+				overflow: hidden;
+				top: -150px;
+				opacity: 0.5;
+				text-indent: 50px;
+			}
+
+			.prev:hover, .next:hover {
+				opacity: 1;
+			}
+
+			.prev {
+				left: -496px;
+				background: url('../img/left-normal.png') no-repeat;
+			}
+
+			.next {
+				left: 496px;
+				background: url('../img/right-normal.png') no-repeat;
+			}
+
+			.unslider-horizontal {
+				ul {
+					li {
+						display: inline-block;
+
+						img {
+							width: $contentWidth;
+			    			height: 236px;
+						}
+					}
+				}
+			}
+		}
+
 		.main-wrapper {
 			background-color: $theme-background-color;
 			width: 10000px;
@@ -27,9 +88,43 @@
 
 			.page {
 				display: inline-block;
-				width: 1024px;
+				width: 100%;
 				text-align: center;
 				vertical-align: top;
+				margin-top: 20px;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 0px) and (max-width: 1200px) {
+	body {
+		overflow-x: auto;	
+	}
+
+	.app {
+		.main {
+			width: 997px;
+
+			.logo-wrapper {
+				height: 236px;
+				width: 100%;
+
+				img {
+					width: 997px;
+				}
+			}
+
+			.main-wrapper {
+				.page {
+					.page-logo {
+						width: 997px;
+					}
+
+					.wrapper {
+						width: 997px;
+					}
+				}
 			}
 		}
 	}

@@ -8,11 +8,12 @@
 	text-align: center;
 	width: 100%;
 
-	.wrapper {  	
+	.wrapper { 
 		position: relative;
 		width: $contentWidth;
 		height: 100%;
 		margin: 0 auto;
+		transition: width .5s;
 
 		.footer-left {
 			float: left;
@@ -161,6 +162,14 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+@media screen and (min-width: 0px) and (max-width: 1200px) {
+	.footer {
+		.wrapper {
+			width: 997px;
 		}
 	}
 }

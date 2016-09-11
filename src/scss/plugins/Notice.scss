@@ -6,6 +6,8 @@ $baseYellow:#cda654;
     width:$contentWidth;
     margin:0 auto;
     background:#2C2C2C;
+    transition: width .5s;
+
     .notice-right{
       float: right;
       display: flex;
@@ -46,4 +48,12 @@ $baseYellow:#cda654;
   background:#fff;
   margin-top: 10px;
   margin-bottom:10px;
+}
+
+@media screen and (max-width: 1200px) {
+    $contentWidth: 997px;
+
+    .notice {
+        width: $contentWidth;
+    }
 }

@@ -1,4 +1,4 @@
-$contentWidth              :   1024px;
+$contentWidth              :   1200px;
 $headerHeight              :   85px;
 $footerHeight              :   100px;
 $theme-background-color    :   #121212;
@@ -8,9 +8,18 @@ $theme-background-color    :   #121212;
     color: #FFF;
     display: none;
     position: relative;
-    width: $contentWidth;
+    width: 100%;
     min-height: 450px;
     margin: 0 auto;
+
+    .page-logo {
+        transition: width .5s;
+    }
+
+    .wrapper {
+        width: $contentWidth;
+        transition: width .5s;
+    }
 }
 
 @mixin tab-page{

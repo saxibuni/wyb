@@ -6,58 +6,16 @@
 	LiveVideo.prototype.initDom = function () {
 		var temp =	'<div class="page live-video">' +
 						'<div class="wrapper">' +
-							'<div class="title">' +
-								'<img class="message-img" width="1024" height="236" src="../img/homepage-banner.jpg">' +
-							'</div>' +
-
 							'<div class="content">' +
-								'<table cellspacing="10" cellpadding="10">' +
-									'<tbody>' +
-										'<tr>' +
-											'<td colspan="2">' +
-												this.createItem({
-													width: '486px',
-													height: '220px',
-													className: 'first-item',
-													img: 's00-h'
-												}) +
-											'</td>' +
-											'<td>' +
-												this.createItem({
-													img: 's01-h'
-												}) +
-											'</td>' +
-											'<td>' +
-												this.createItem({
-													img: 's02-h'
-												}) +
-											'</td>' +
-										'</tr>' +
-
-										'<tr>' +
-											'<td>' +
-												this.createItem({
-													img: 's03-h'
-												}) +
-											'</td>' +
-											'<td>' +
-												this.createItem({
-													img: 's04-h'
-												}) +
-											'</td>' +
-											'<td>' +
-												this.createItem({
-													img: 's04-h'
-												}) +
-											'</td>' +
-											'<td>' +
-												this.createItem({
-													img: 's04-h'
-												}) +
-											'</td>' +
-										'</tr>' +
-									'</tbody>' +
-								'</table>' +
+								'<div class="picture-zone">' +
+									this.createItem({ className: 'img1', img: 's00-h'}) +
+									this.createItem({ className: 'img2', img: 's01-h'}) +
+									this.createItem({ className: 'img3', img: 's02-h'}) +
+									this.createItem({ className: 'img4', img: 's03-h'}) +
+									this.createItem({ className: 'img5', img: 's04-h'}) +
+									this.createItem({ className: 'img6', img: 's04-h'}) +
+									this.createItem({ className: 'img7', img: 's04-h'}) +
+								'</div>' +
 							'</div>' +
 						'</div>' +
 					'</div>';
@@ -96,11 +54,35 @@
 	};
 
 	LiveVideo.prototype.show = function () {
-		this.zone.show();
+		this.zone.fadeIn(500);
+		this.addSliders();
 	};
 
 	LiveVideo.prototype.hide = function () {
-		this.zone.hide();
+		this.zone.fadeOut(500);
+	};
+
+	LiveVideo.prototype.addSliders = function () {
+		var logoTemp = 	'<div class="live-video-sliders">' +
+							'<ul>' +
+								'<li><img src="../img/homepage-banner.jpg"></li>' +
+								'<li><img src="../img/homepage-banner.jpg"></li>' +
+								'<li><img src="../img/homepage-banner.jpg"></li>' +
+							'</ul>' +
+						'</div>';
+		
+		$('.unslider-horizontal').hide();
+
+		if ($('.live-video-sliders').length < 1) {
+			$('.main .logo-wrapper').html(logoTemp);
+
+			$('.live-video-sliders').unslider({
+				speed: 500,
+				delay: 3000
+			});
+		}
+
+		$('.live-video-sliders').show();
 	};
 
 	LiveVideo.prototype.bindEvents = function () {

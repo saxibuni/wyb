@@ -20,6 +20,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 		height: 100%;
 		width: $contentWidth;
 		margin: 0 auto;
+		transition: width .5s;
 
 		.row1 {
 			background-color: #201F1D;
@@ -465,4 +466,19 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 	position: fixed;
 	height: 30px;
 	z-index: 10;
+}
+
+@media screen and (max-width: 1200px) {
+	$contentWidth: 997px;
+
+	.header {
+		.wrapper {
+			width: $contentWidth;
+		}
+
+		.header-float-window {
+			width: $contentWidth;
+		    transform: translateX(0 - ($contentWidth/2 + 1px));
+		}
+	}
 }

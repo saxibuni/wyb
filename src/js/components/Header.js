@@ -4,7 +4,7 @@
 	}
 	
 	Header.prototype.initDom = function () {
-		var temp;
+		var temp = '';
 
 		this.switch = new Switch({id: 'money-switch'});
 		this.lxkfButton = new Button({
@@ -14,6 +14,74 @@
 			width: 70,
 			height: 22
 		});
+
+		// temp +=	'<nav class="navbar navbar-inverse header" role="navigation">' +
+		// 		    '<div class="container">' +
+		// 			    '<div>' +
+		// 				    '<p class="navbar-text navbar-left">' + 'GMT +8' + '</p>' +
+		// 				    '<p class="navbar-text navbar-left">' + '12:15:30' + '</p>' +
+
+		// 			        '<ul class="nav navbar-nav navbar-right">' +
+		// 			            '<li class="dropdown">' +
+		// 			                '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' +
+		// 			                    '中文 <b class="caret"></b>' +
+		// 			                '</a>' +
+		// 			                '<ul class="dropdown-menu">' +
+		// 			                    '<li><a href="#">中文</a></li>' +
+		// 			                    '<li><a href="#">English</a></li>' +
+		// 			                '</ul>' +
+		// 			            '</li>' +
+		// 			        '</ul>' +
+
+		// 			        '<p class="navbar-text navbar-right bzzx">帮助中心</p>' +
+
+		// 			        '<ul class="nav navbar-nav navbar-right">' +
+		// 			            '<li class="dropdown">' +
+		// 			                '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' +
+		// 			                    '我的收藏 <b class="caret"></b>' +
+		// 			                '</a>' +
+		// 			                '<ul class="dropdown-menu">' +
+		// 			                    '<li><a href="#">捕鱼网</a></li>' +
+		// 			                    '<li><a href="#">快乐猴子</a></li>' +
+		// 			                    '<li><a href="#">AG老虎机</a></li>' +
+		// 			                    '<li><a href="#">PT老虎机</a></li>' +
+		// 			                '</ul>' +
+		// 			            '</li>' +
+		// 			        '</ul>' +
+
+		// 			        '<p class="navbar-text navbar-right zz">转账</p>' +
+		// 			        '<p class="navbar-text navbar-right tk">提款</p>' +
+		// 			        '<p class="navbar-text navbar-right cz">充值</p>' +
+
+		// 			        this.switch.getDom() +
+
+		// 			        '<p class="navbar-text navbar-right balance-value">10000000.00</p>' +
+		// 			        '<p class="navbar-text navbar-right money-icon">¥</p>' +
+		// 					'<p class="navbar-text navbar-right title">余额</p>' +
+
+		// 			      	'<a class="navbar-right message" href="#">' +
+		// 			        	'<span class="glyphicon glyphicon-envelope message-img"></span>' +
+		// 			        	'<div class="dot">1</div>' +
+		// 			      	'</a>' +
+
+		// 			        '<ul class="nav navbar-nav navbar-right grzx">' +
+		// 			            '<li class="dropdown">' +
+		// 			                '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' +
+		// 			                    '个人中心 <b class="caret"></b>' +
+		// 			                '</a>' +
+		// 			                '<ul class="dropdown-menu">' +
+		// 			                    '<li><a href="#">LORENZO VIP3</a></li>' +
+		// 			                    '<li><a href="#">资金管理</a></li>' +
+		// 			                    '<li><a href="#">投注记录</a></li>' +
+		// 			                    '<li><a href="#">充值记录</a></li>' +
+		// 			                    '<li><a href="#">修改密码</a></li>' +
+		// 			                    '<li><a href="#">退出</a></li>' +
+		// 			                '</ul>' +
+		// 			            '</li>' +
+		// 			        '</ul>' +
+		// 			    '</div>' +
+		// 		    '</div>' +
+		// 		'</nav>';
 
 		temp =	'<div class="header">' +
 					'<div class="wrapper">' +

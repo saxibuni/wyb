@@ -30,11 +30,11 @@
 	};
 
 	SportsCompetition.prototype.show = function () {
-		this.zone.show();
+		this.zone.fadeIn(500);
 	};
 
 	SportsCompetition.prototype.hide = function () {
-		this.zone.hide();
+		this.zone.fadeOut(500);
 	};
 
 	SportsCompetition.prototype.bindEvents = function () {

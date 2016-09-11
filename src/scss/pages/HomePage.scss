@@ -5,84 +5,12 @@
 
 	.wrapper {
 		padding-bottom: 20px;
-		
-		.content1 {
-			width: 100%;
-			height: 236px;
-			.row {
-				height: 100%;
-				.unslider-nav {
-					height: 100%;
-					position: relative;
-					top: -125px;
-					ol {
-						width: 100px;
-						margin-right: 51px;
-						float: right;
-						li {
-							display: inline-block;
-							width: 18px;
-							height: 10px;
-							overflow: hidden;
-							text-indent: 50px;
-							background-color: #ccc;
-							margin: 0 5px;
-							border-radius: 3px;
-						}
-					}
-				}
-
-				.unslider-nav ol li.unslider-active {
-					background-color: #fff;
-				}
-				.prev, .next {
-					cursor: pointer;
-					width: 50px;
-					height: 70px;
-					display: inline-block;
-					position: relative;
-					overflow: hidden;
-					top: -150px;
-					opacity: 0.5;
-					text-indent: 50px;
-				}
-				.prev:hover, .next:hover {
-					opacity: 1;
-				}
-				.prev {
-					left: -496px;
-					background: url('../img/left-normal.png') no-repeat;
-				}
-				.next {
-					left: 496px;
-					background: url('../img/right-normal.png') no-repeat;
-				}
-			}
-
-			.banner {
-				height: 236px;
-				ul {
-					height: 100%;
-					position: relative;
-					li {
-						height: 100%;
-						float: left;
-						list-style: none;
-						img {
-							width: 100%;
-							height: 100%;
-						}
-					}
-
-				}
-
-			}
-		}
 
 		.content23 {
 			width: 100%;
 			display: inline-block;
 			background-color: #ccc;
+
 			.content2, .content3 {
 				width: 100%;
 				margin: auto;
@@ -94,215 +22,318 @@
 				padding-bottom: 10px;
 			}
 
-			.content3 {
-				display: inline-block;
-				vertical-align: top;
-				$content3-width: 664px;
-				.left {
-					width: $content3-width;
-					margin-right: 10px;
-					.row1 {
-						.row1-left {
-							width: 320px;
-							margin-right: 14px;
-							.kf, .xz {
-								display: block;
-								font-size: 24px;
+			.picture-zone {
+				$baseL              : 1200;
+				$baseWidth          : 1200px;
+				$pictureZone1Width  : $baseWidth * 735 / $baseL;
+				$pictureZone2Width  : $baseWidth * 455 / $baseL;
+				$zone1MarginRight   : $baseWidth * 10 / $baseL;
+				$image1Width        : $baseWidth * 368 / $baseL;
+				$image1Height       : $baseWidth * 206 / $baseL;
+				$image2Width        : $baseWidth * 368 / $baseL;
+				$image2Height       : $baseWidth * 144 / $baseL;
+				$image3Width        : $baseWidth * 353 / $baseL;
+				$image3Height       : $baseWidth * 362 / $baseL;
+				$image4Width        : $baseWidth * 734 / $baseL;
+				$image4Height       : $baseWidth * 118 / $baseL;
+				$image5Width        : $baseWidth * 222 / $baseL;
+				$image5Height       : $baseWidth * 252 / $baseL;
+				$image6Width        : $baseWidth * 222 / $baseL;
+				$image6Height       : $baseWidth * 252 / $baseL;
+				$image7Width        : $baseWidth * 449 / $baseL;
+				$image7Height       : $baseWidth * 224 / $baseL;
+				$gap1               : $baseWidth * 12 / $baseL;
+				$gap2               : $baseWidth * 24 / $baseL;
+				$gap3               : $baseWidth * 14 / $baseL;
+				$gap4               : $baseWidth * 10 / $baseL;
+				$gap5               : $baseWidth * 5 / $baseL;
+				$gap6               : $baseWidth * 8 / $baseL;
+				
+				margin-top: 10px;
+				
+				div {
+					display: inline-block;
+					position: relative;
+					text-align: center;
+					transition: all .5s;
+
+					.picture-bg {
+						height: 100%;
+						width: 100%;
+					}
+				}
+
+				.picture-zone1 {
+					float: left;
+					width: $pictureZone1Width;
+					margin-right: $zone1MarginRight;
+
+					.zone1-up {
+						width: $pictureZone1Width;
+
+						.zone1-up-left {
+							float: left;
+							width: $image1Width;
+
+							.zone1-up-left-up {
+								height: $image1Height;
+								line-height: $image1Height;
+								width: $image1Width;
+							}
+
+							.zone1-up-left-down {
+								height: $image2Height;
+								line-height: $image2Height;
+								width: $image2Width;
+								margin-top: $gap1;
+							}
+
+							.info {
+							    top: 0;
+							    position: absolute;
+							    left: 24%;
+								font-size: 30px;
 								font-weight: bold;
-								letter-spacing: 2px;
-								position: relative;
-								transition: all .5s;
 
-								i {
-									width: 50px;
-									height: 50px;
-									position: absolute;
-									left: -58px;
-									top: -11px;
-									background-image: url("../img/kf-icon.png");
-								}
-
-								&:hover {
-									left: 5px;
-									top: -5px;
-
-									span {
-										color: #DCAD4B;
-									}
-								}
-							}
-							.kf {
-								cursor: pointer;
-								margin-bottom: 12px;
-								height: 180px;
-								img {
-									width: 100%;
-								}
 								span {
-									position: relative;
-									top: -110px;
-									left: 20px;
-								}
-							}
-							.xz {
-								cursor: pointer;
-								height: 125px;
-
-								img {
-									width: 100%;
-								}
-								span {
-									position: relative;
-									top: -83px;
-									left: 20px;
-									i {
-										width:52px;
-										background-image: url("../img/xz-icon.png");
-									}
+									margin-left: 10px;
 								}
 							}
 						}
-						.row1-right {
-							cursor: pointer;
-							width: 330px;
-							height: 316px;
-							position: relative;
-							transition: all .5s;
 
-							img {
-								width: 100%;
-								height: 100%;
-								transition: all .5s;
-							}
-							span {
-								position: relative;
-								top: -55px;
-								left: 0;
-								width: 95%;
+						.zone1-up-right {
+							float: right;
+							height: $image3Height;
+							width: $image3Width;
+
+							.info {
+								cursor: pointer;
+								position: absolute;
+								top: 80%;
+								left: 77px;
+								width: 200px;
+								border: 1px solid #BDBEED;
 								height: 40px;
 								line-height: 40px;
-								display: inline-block;
-								font-size: 14px;
-								background-color: #000;
-								color: #828282;
-								border: solid 1px;
+								font-size: 16px;
+								color: #FFF;
 								background-color: rgba(0,0,0,0.5);
 								filter: alpha(opacity=50);
-								transition: all .5s;
-							}
-
-							&:hover {
-								img {
-									transform: rotateY(180deg);
-								}
-
-								span {
-									border: 1px solid #DCAD4B;
-									color: #FFF;
-									background-color: #DCAD4B;
-								}
 							}
 						}
-
 					}
 
-					.row2 {
-						width: $content3-width;
-						height: 141px;
+					.zone1-down {
+						height: $image4Height;
+						width: $image4Width;
 
-						img {
-							width:100%;
-						}
-						.jackpot {
-							position: relative;
-							left: 145px;
-							top: -65px;
-							color: #cda654;
-							font-size: 24px;
+						.info {
+						    font-size: 30px;
+						    color: #FCE189;
+						    position: absolute;
+						    top: 48px;
+						    right: 100px;
 						}
 					}
 				}
 
-				.right {
-					.row1 {
-						.sports {
-							margin-right: 10px;
+				.picture-zone2 {
+				    float: right;
+					display: inline-block;
+					width: $pictureZone2Width;
+					text-align: left;
+
+					.zone2-up {
+						.zone2-up-left {
+							height: $image5Height;
+							width: $image5Width;
+							margin-right: $gap5;
 						}
-						.sports, .video {
+
+						.zone2-up-right {
+							height: $image6Height;
+							width: $image6Width;
+						}
+
+						.info {
 							cursor: pointer;
-							width: 170px;
-							height: 210px;
-							position: relative;
-
-							&:hover {
-								img {
-									transform: rotateY(180deg);
-								}
-
-								span {
-									border: 1px solid #DCAD4B;
-									color: #FFF;
-									background-color: #DCAD4B;
-								}
-							}
-						}
-
-						img {
-							width: 100%;
-							height: 100%;
-							transition: all .5s;
-						}
-
-						span {
-							position: relative;
-							top: -55px;
-							left: 0;
-							width: 95%;
+							position: absolute;
+							top: 80%;
+							left: 11px;
+							width: 200px;
+							border: 1px solid #BDBEED;
 							height: 40px;
 							line-height: 40px;
-							display: inline-block;
-							font-size: 14px;
-							background-color: #000;
-							color: #828282;
-							border: solid 1px;
+							font-size: 16px;
+							color: #FFF;
 							background-color: rgba(0,0,0,0.5);
 							filter: alpha(opacity=50);
+						}
+					}
+
+					.zone2-down {
+						height: $image7Height;
+						width: $image7Width;
+						margin-top: $gap6;
+
+						.table {
+						    position: absolute;
+						    width: 300px;
+						    top: 85px;
+						    height: 90px;
+						    left: 80px;
+
+						    .tr {
+						    	height: 30px;
+						    	line-height: 30px;
+						    }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.home-page {
+		.wrapper {
+			.content23 {
+				.picture-zone {
+					$baseL              : 1200;
+					$baseWidth          : 997px;
+					$pictureZone1Width  : $baseWidth * 735 / $baseL;
+					$pictureZone2Width  : $baseWidth * 455 / $baseL;
+					$zone1MarginRight   : $baseWidth * 10 / $baseL;
+					$image1Width        : $baseWidth * 368 / $baseL;
+					$image1Height       : $baseWidth * 206 / $baseL;
+					$image2Width        : $baseWidth * 368 / $baseL;
+					$image2Height       : $baseWidth * 144 / $baseL;
+					$image3Width        : $baseWidth * 353 / $baseL;
+					$image3Height       : $baseWidth * 362 / $baseL;
+					$image4Width        : $baseWidth * 734 / $baseL;
+					$image4Height       : $baseWidth * 118 / $baseL;
+					$image5Width        : $baseWidth * 222 / $baseL;
+					$image5Height       : $baseWidth * 252 / $baseL;
+					$image6Width        : $baseWidth * 222 / $baseL;
+					$image6Height       : $baseWidth * 252 / $baseL;
+					$image7Width        : $baseWidth * 456 / $baseL;
+					$image7Height       : $baseWidth * 224 / $baseL;
+					$gap1               : $baseWidth * 12 / $baseL;
+					$gap2               : $baseWidth * 24 / $baseL;
+					$gap3               : $baseWidth * 14 / $baseL;
+					$gap4               : $baseWidth * 10 / $baseL;
+					$gap5               : $baseWidth * 5 / $baseL;
+					$gap6               : $baseWidth * 8 / $baseL;
+
+					div {
+						display: inline-block;
+						position: relative;
+						text-align: center;
+
+						.picture-bg {
+							height: 100%;
+							width: 100%;
 							transition: all .5s;
 						}
 					}
 
-					.row2 {
-						position: relative;
-						margin-top: 10px;
-						width: 350px;
-						height: 204px;
-						img{
-							width: 100%;
-							height: 100%;
-						}
-						.table {
-							position: absolute;
-							top: 68px;
-							left: 40px;
-							.tr {
-								width: 260px;
-								margin: auto;
-								padding-bottom: 5px;
-								padding-top: 5px;
-								border-bottom: 1px dotted;
-								.td1 {
-									margin-right: 65px;
+					.picture-zone1 {
+						float: left;
+						width: $pictureZone1Width;
+						margin-right: $zone1MarginRight;
+
+						.zone1-up {
+							width: $pictureZone1Width;
+
+							.zone1-up-left {
+								float: left;
+								width: $image1Width;
+
+								.info {
+									left: 20%;
+								}
+
+								.zone1-up-left-up {
+									height: $image1Height;
+									line-height: $image1Height;
+									width: $image1Width;
+								}
+
+								.zone1-up-left-down {
+									height: $image2Height;
+									line-height: $image2Height;
+									width: $image2Width;
+									margin-top: $gap1;
+								}
+							}
+
+							.zone1-up-right {
+								float: right;
+								height: $image3Height;
+								width: $image3Width;
+								text-align: center;
+
+								.info {
+									left: 47px;
 								}
 							}
 						}
 
+						.zone1-down {
+							height: $image4Height;
+							width: $image4Width;
+
+							.info {
+							    top: 35px;
+							    right: 70px;
+							}
+						}
+					}
+
+					.picture-zone2 {
+					    float: right;
+						display: inline-block;
+						width: $pictureZone2Width;
+
+						.zone2-up {
+							.zone2-up-left {
+								height: $image5Height;
+								width: $image5Width;
+								margin-right: $gap5;
+							}
+
+							.zone2-up-right {
+								height: $image6Height;
+								width: $image6Width;
+							}
+
+							.info {
+								position: absolute;
+							    top: 70%;
+							    left: 12px;
+								width: 160px;
+								border: 1px solid #FFF;
+								height: 40px;
+								line-height: 40px;
+								font-size: 18px;
+								color: #FFF;
+							}
+						}
+
+						.zone2-down {
+							height: $image7Height;
+							width: $image7Width;
+							margin-top: $gap6;
+
+							.table {
+							    top: 65px;
+							    left: 50px;
+							}
+						}
 					}
 				}
-
-
 			}
 		}
-
-
 	}
 }

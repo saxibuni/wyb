@@ -17,8 +17,10 @@
 		this.homePage = new HomePage();
 
 		this.el  = 	this.header.getDom() +
-
 					'<div class="main">' +
+						'<div class="logo-wrapper">' +
+						'</div>' +
+
 						'<div class="main-wrapper">' +
 							this.homePage.getDom() +
 						'</div>' +
@@ -37,6 +39,7 @@
 		var index;
 		var tar;
 		var height;
+		var logoHeiht;
 		var that = this;
 		var dict = {
 			'homePage'          : {'className': HomePage,          'cssClass': 'home-page'},
@@ -52,20 +55,31 @@
 			'forgetPassword'    : {'className': ForgetPassword ,   'cssClass': 'forget-password'}
 		};
 
+		$('.page').hide();
+
 		if (!that[pageName]) {
 			that[pageName] = new (dict[pageName].className)();
 			that.zone.find('.main-wrapper').append(that[pageName].getDom());
 			that[pageName].bindEvents();
 		}
 
-		tar    = $('.' + dict[pageName].cssClass);
-		index  = tar.index();
-		height = tar.css('height');
+		//如果有轮播图，就加进去
+		if (!that[pageName].addSliders) {
+			$('.main .logo-wrapper').html('');
+			$('.main .logo-wrapper').css('height', '0');
+		}
 
-		wrapper.css({
-			'left': (0 - 1024 * index) + 'px',
-			'height': height
-		});
+		that[pageName].show();
+
+		tar       = $('.' + dict[pageName].cssClass);
+		index     = tar.index();
+		height    = parseInt(tar.css('height'));
+		//logoHeiht = parseInt($('.logo-wrapper').css('height'));
+
+		// wrapper.css({
+		// 	'left': (0 - 1024 * index) + 'px',
+		// 	'height': height + 'px'
+		// });
 	};
 
 	app.prototype.initRouter = function () {

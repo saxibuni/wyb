@@ -50,7 +50,8 @@ gulp.task('prepare', ['clean'], function () {
     gulp.src([
             './bower_components/datetimepicker/jquery.datetimepicker.css',
             './bower_components/Gallery/css/blueimp-gallery.min.css',
-            './bower_components/bootstrap/dist/css/bootstrap.min.css'
+            './bower_components/bootstrap/dist/css/bootstrap.min.css',
+            './bower_components/unslider-master/dist/css/*.css'
         ])
         .pipe(gulp.dest(src_css_lib_path));
 
@@ -63,7 +64,7 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/i18next/i18next.min.js',
             './bower_components/datetimepicker/jquery.datetimepicker.js',
             './bower_components/Gallery/js/blueimp-gallery.min.js',
-            './bower_components/unsilde/unslider-min.js'
+            './bower_components/unslider-master/dist/js/unslider-min.js'
         ])
         .pipe(gulp.dest(src_js_lib_path));
 
@@ -77,6 +78,7 @@ gulp.task('prepare', ['clean'], function () {
 gulp.task('build', function () {
     gulp.src([
             'src/lib/js/jquery.min.js',
+            'src/lib/js/bootstrap.min.js',
             'src/lib/js/page.js',
             'src/lib/js/jquery.datetimepicker.js',
             'src/lib/js/jquery.history.js',
@@ -102,7 +104,10 @@ gulp.task('build', function () {
         ])
         .pipe(sass())
         .pipe(flatten())
-        .pipe(addsrc.prepend(['src/lib/css/jquery.datetimepicker.css']))
+        .pipe(addsrc.prepend([  'src/lib/css/bootstrap.min.css',
+                                'src/lib/css/jquery.datetimepicker.css',
+                                'src/lib/css/unslider.css',
+                                'src/lib/css/unslider-dots.css']))
         .pipe(concat('app.css'))
         .pipe(gulp.dest('build/css/'));
 
