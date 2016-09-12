@@ -199,8 +199,6 @@
 
 						.zone2 {
 							color: #C8C9D4;
-							height: 260px - $image2Height;
-							width: 100%;
 
 							.title {
 								height: 60px;
@@ -211,8 +209,6 @@
 								line-height: 30px;
 
 								span {
-									color: #999999;
-								    position: relative;
 								    left: 5px;
 								}
 							}
@@ -233,17 +229,11 @@
 						}
 
 						.zone2 {
-							color: #C8C9D4;
 							height: 260px - $image1Height;
-							width: 100%;
 
 							.title {
 								height: 40px;
 							}
-						}
-
-						.item-overlay {
-							display: none;
 						}
 					}
 
