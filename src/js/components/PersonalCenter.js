@@ -1,5 +1,5 @@
 $(function(){
-	function PersonalCenter(){
+	function PersonalCenter(opt){
 		this.mainWalletData  = {
 			moneyType: '¥',
 			balance: '100,000,000.00',
@@ -70,85 +70,90 @@ $(function(){
 		   	'znx':['站内信','通知公告'],
 		}
 
+		IMDialog.call(this, opt || {});
 		this.initDom();
 	};
 
+	PersonalCenter.prototype = new IMDialog();
 
 	PersonalCenter.prototype.initDom = function(){
-		var temp = '<div class="page personal-center">' +
-						'<div class="wrapper">' +
-							'<div class="left-container">' +
-								'<div class="user-profiles">' +
-									'<img src="../img/T0.png" class="user-img" />' +
-									'<div class="user">' +
-										'<span class="username">LORENZO</span>' +
-										'<img src="../img/t01.png" />' +
-										'<span class="vip">VIP3</span>' +
-									'</div>' +	
-									'<div class="psw-info">' +
-										'<span class="psw-intro">安全等级</span>' +
-										'<span class="psw-level-value">80%</span>' +
-										'<div class="psw-level">' +
-											'<div>' +
-												'<div class="psw-line-value">' +
+		var temp = '<div class="personal-center">' +
+						'<div class="dialog-wrapper">' +
+							'<div class="dialog">' +
+								'<div class="left-container">' +
+									'<div class="user-profiles">' +
+										'<img src="../img/T0.png" class="user-img" />' +
+										'<div class="user">' +
+											'<span class="username">LORENZO</span>' +
+											'<img src="../img/t01.png" />' +
+											'<span class="vip">VIP3</span>' +
+										'</div>' +	
+										'<div class="psw-info">' +
+											'<span class="psw-intro">安全等级</span>' +
+											'<span class="psw-level-value">80%</span>' +
+											'<div class="psw-level">' +
+												'<div>' +
+													'<div class="psw-line-value">' +
+													'</div>' +
 												'</div>' +
+												'<span>提升</span>' +
+												'<div class="menu-ico">' +
+													'<img src="../img/a01-h.png" />' +
+													'<img src="../img/a02-n.png" />' +
+													'<img src="../img/a03-n.png" />' +
+												'</div>' +	
 											'</div>' +
-											'<span>提升</span>' +
-											'<div class="menu-ico">' +
-												'<img src="../img/a01-h.png" />' +
-												'<img src="../img/a02-n.png" />' +
-												'<img src="../img/a03-n.png" />' +
-											'</div>' +	
 										'</div>' +
 									'</div>' +
+
+									'<div class="tree">' +
+										'<ul>' +
+	                                    	'<li><span>资金管理</span><div></div></li>' +
+	                                    	'<li><span>交易记录</span><div></div></li>' +
+	                                    	'<li><span>账户设置</span><div></div></li>' +
+	                                    	'<li><span>站内信</span><span class="letter-count">(2)</span><div></div></li>' +
+										'</ul>' +
+										'<div class="stick"></div>' +
+									'</div>' +
 								'</div>' +
 
-								'<div class="tree">' +
-									'<ul>' +
-                                    	'<li><span>资金管理</span><div></div></li>' +
-                                    	'<li><span>交易记录</span><div></div></li>' +
-                                    	'<li><span>账户设置</span><div></div></li>' +
-                                    	'<li><span>站内信</span><span class="letter-count">(2)</span><div></div></li>' +
-									'</ul>' +
-									'<div class="stick"></div>' +
-								'</div>' +
-							'</div>' +
+								'<div class="right-container">' +
+									'<div class="center-wallet">' +
+										'<img src="../img/refresh-h.png" class="refresh" />' +
+										'<span class="zxqb">中心钱包</span>' +
+										'<span class="money money-type">¥  </span><span class="money balance">100,000,000.00</span><span class="money-unit">  CNY</span>' +
+										'<hr class="line">' +
+										'<a href="javascript:void(0);" class="btn turn-into">转出</a>' +
+										'<a href="javascript:void(0);" class="btn turn-out">转入</a>' +									
+									'</div>' +
 
-							'<div class="right-container">' +
-								'<div class="center-wallet">' +
-									'<img src="../img/refresh-h.png" class="refresh" />' +
-									'<span class="zxqb">中心钱包</span>' +
-									'<span class="money money-type">¥  </span><span class="money balance">100,000,000.00</span><span class="money-unit">  CNY</span>' +
-									'<hr class="line">' +
-									'<a href="javascript:void(0);" class="btn turn-into">转出</a>' +
-									'<a href="javascript:void(0);" class="btn turn-out">转入</a>' +									
-								'</div>' +
+									'<div class="nav-left"><span><img src="../img/left-n.png" /></span></div>' +
+									'<div class="wallet-zone">' +
+										this.createSubWallet() +
+									'</div>' +
+									'<div class="nav-right"><span><img src="../img/right-n.png" /></span></div>' +
+									'<div class="clear"></div>' +
 
-								'<div class="nav-left"><span><img src="../img/left-n.png" /></span></div>' +
-								'<div class="wallet-zone">' +
-									this.createSubWallet() +
-								'</div>' +
-								'<div class="nav-right"><span><img src="../img/right-n.png" /></span></div>' +
+									'<div class="tab-container">' +
+										'<div class="zjgl-zone" menu-index="0">' +
+											this.createZjgl() +	
+										'</div>' +
+										'<div class="jyjl-zone" menu-index="1">' +
+											// this.createJyjl() +
+										'</div>' +
+										'<div class="zhsz-zone" menu-index="2">' +
+											// this.createZhsz() +
+										'</div>' +
+										'<div class="znx-zone" menu-index="3">' +
+											// this.createZnx() +
+										'</div>' +
+									'</div>' +
+	 							'</div>' +
 								'<div class="clear"></div>' +
-
-								'<div class="tab-container">' +
-									'<div class="zjgl-zone" menu-index="0">' +
-										this.createZjgl() +	
-									'</div>' +
-									'<div class="jyjl-zone" menu-index="1">' +
-										// this.createJyjl() +
-									'</div>' +
-									'<div class="zhsz-zone" menu-index="2">' +
-										// this.createZhsz() +
-									'</div>' +
-									'<div class="znx-zone" menu-index="3">' +
-										// this.createZnx() +
-									'</div>' +
-								'</div>' +
- 							'</div>' +
-							'<div class="clear"></div>' +
+							'</div>' +
 						'</div>' +
-					'</div>';
+					'</div>' +
+					'<div class="overlay overlay4"></div>';
 		this.el = temp;
 	};
 
@@ -157,11 +162,11 @@ $(function(){
 	};
 
 	PersonalCenter.prototype.show = function(){
-		this.zone.show();
+		this.showOverlay();
 	}
 
 	PersonalCenter.prototype.hide = function(){
-		this.zone.hide();
+		this.hideOverlay();
 	}
 
 	PersonalCenter.prototype.createSubWallet = function(){
@@ -275,13 +280,13 @@ $(function(){
 		this.zone.delegate('.nav-left','click',function(){
 			if (pageIndex == 0) return;
 			pageIndex--;
-			swiper.css('transform', 'translateX(' + (0 - 122 * pageIndex) + 'px)');
+			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)');
 		});
 
 		this.zone.delegate('.nav-right','click',function(){
 			if (pageIndex == pageCount - 1) return;
 			pageIndex++;
-			swiper.css('transform', 'translateX(' + (0 - 122 * pageIndex) + 'px)')
+			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)')
 		});
 
         walletzone.delegate('.sub-wallet','mouseover',function(){
@@ -294,7 +299,7 @@ $(function(){
 
         menuUl.delegate('li','click',function(){
             index = $(this).index();
-            stick.css('top',(index * 40) + 'px');
+            stick.css('top',(index * 32) + 'px');
             tabZone = that.zone.find('[menu-index="' + index +'"]');
             if (tabZone.html() == '') {	
 	            if (index == 1){
@@ -420,6 +425,7 @@ $(function(){
         	}
         });
 
+        this.bindOverlayEvents();
 	}
 
 	window.PersonalCenter = PersonalCenter;

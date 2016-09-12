@@ -1,0 +1,265 @@
+$scaleValue : 0.8;
+
+
+@import "../mixins.scss";
+.personal-center {
+    @include dialog-frame;
+
+    .dialog-wrapper {
+        @include dialog-wrapper(828px);   
+        z-index: 156;
+        top: 50%; 
+        
+        .dialog{
+            @include dialog(828px, 566px);
+
+            background-color: #2F2F2C;
+            padding: 8px 12px;
+
+            .left-container {
+                width: 144px;
+                height: auto;
+                background-color: #48463a;
+                float: left;
+                font-size: 14px;
+
+                .user-profiles {
+                    padding-top: 20px;
+                    .user-img {
+                        display: inline-block;
+                    }
+                    .user {
+                        .username {
+                            color: #f8f8f8;
+                            margin-right: 4px;
+                        }
+                        img {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                        .vip {
+                            color: #cda654;
+                        }
+                    }
+                    .psw-info {
+                        margin-top: 16px;
+                        text-align: left;
+                        .psw-intro {
+                            color: #b6b6b6;
+                            margin-left: 12px;
+                        }
+                        .psw-level-value {
+                            margin-left: 8px;
+                            color: #1393ff;
+                        }
+                        .psw-level {
+                            padding-left: 12px;
+                            & > div:nth-child(1) {
+                                display: inline-block;
+                                width: 96px;
+                                vertical-align: middle;
+                                background-color: #f8f8f8;
+                                height: 3px;
+                                border-radius: 2px;
+                                .psw-line-value {
+                                    width: 80%;
+                                    height: 3px;
+                                    border-top-left-radius: 2px;
+                                    border-bottom-left-radius: 2px;
+                                    background-color: #1393ff;
+                                }
+                            }
+                            span {
+                                margin-left: 7px;
+                                color: #1393ff;
+                            }
+                        }
+                    }
+                    .menu-ico {
+                        padding: 12px 0;
+                        & > img:nth-child(1) {
+                            margin-left: 8px;
+                        }
+                        & > img:nth-child(2) {
+                            margin-left: 12px;
+                        }
+                        & > img:nth-child(3) {
+                            margin-left: 12px;
+                        }
+                    }
+                }
+                .tree {
+                    width: 144px;
+                    height: 325px;
+                    background-color: #48463A;
+                    float: left;
+                    position: relative;
+                    border-top: 1px solid #535250;
+                    ul {
+                        width: 100%;
+                        li {
+                            height: 32px;
+                            line-height: 32px;
+                            display: inline-block;
+                            width: 100%;
+                            color: #b4b4b4;
+                            border-bottom: 1px solid #535250;
+                            span {
+                                margin-left: -40px;
+                            }
+                            .letter-count{
+                                margin:0;
+                            }
+                            div {
+                                width: 32px;
+                                height: 32px;
+                            }
+                            &:hover {
+                                color: #63563c;
+                                cursor: pointer;
+                                background-color: #cda654;
+                            }
+                        }
+                    }
+                    .stick {
+                        height: 31px;
+                        width: 3px;
+                        position: absolute;
+                        background-color: #cda654;
+                        top: 0px * $scaleValue;
+                        left: 0px * $scaleValue;
+                        transition: top 0.5s;
+                        -moz-transition: top 0.5s;
+                        -webkit-transition: top 0.5s;
+                        -o-transition: top 0.5s;
+                    }
+                }
+            }
+
+            .right-container {
+                background-color: #fff;
+                float: right;
+                width: 648px;
+                height: 548px;
+                padding: 4px 4px;
+                box-sizing: border-box;
+
+                .center-wallet{
+                    background-color: #ebe9e1;
+                    width: 184px;
+                    height: 128px;
+                    position: relative;
+                    padding: 3px;
+                    color: #535353;
+                    font-weight: bold;
+                    float: left;
+
+                    .refresh{
+                        position: absolute;
+                        right: 3px;
+                        top: 4px;
+                        cursor: pointer;
+                    }
+
+                    .zxqb{
+                        font-size:16px;
+                        margin-top: 15px;
+                        margin-bottom: 8px;
+                        display: block;
+                    }
+
+                    .money-type{
+                        font-size:13px;
+                    }
+
+                    .balance{
+                        font-size: 16px;
+                        margin-right: 5px;
+                    }
+
+                    .money-unit{
+                        font-size: 10px;
+                    }
+
+                    hr{
+                        height: 1px;
+                        border: none;
+                        border-top: 1px solid #cda654;
+                        width: 90%;   
+                    }
+
+                    .btn{
+                        width: 72px;
+                        height: 24px;
+                        line-height: 24px;
+                        font-size: 12px;
+                        border:1px solid #cda654;
+                        color: #cda654;
+                        display: inline-block;
+                        margin-top: 8px;
+                        &:hover{
+                            color:#fdfbf9;
+                            background-color:#cda654;
+                        }
+                    }
+
+                    .turn-out{
+                        margin-left: 16px;
+                    }
+                }
+
+                .nav-left,.nav-right{
+                    height: 128px;
+                    width: 16px;
+                    margin:0 4px;
+                    float: left;
+                    display:table;
+                    text-align:center;
+
+                    span{
+                        display:table-cell;
+                        vertical-align:middle;
+                        cursor: pointer;
+                    }
+
+                    img{
+                        vertical-align: middle;
+                    }
+                }
+
+                .wallet-zone{
+                    height: 134px;
+                    width: 392px;
+                    float: left;
+                    padding-left: 2px;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    
+                    .swiper{
+                        height: 100%;
+                        @include transition(0.4s);
+                    }
+
+                    .wallet-group{
+                        height: 100%;
+                        width: 96px;
+                        margin: 0 1px;
+                        float: left;
+                    }
+                }
+
+                .tab-container{
+                    margin-top: 7px;
+                    width: 100%;
+                    text-align: left;
+
+                    & > div > div {
+                        transform: scale(0.8);
+                        transform-origin: 0 0;
+                        width: 125%;
+                    }
+                }
+            }
+        }
+    }
+}

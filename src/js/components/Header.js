@@ -101,9 +101,9 @@
 
 							'<div class="money-actions">' +
 							 	'<div class="wrapper">' +
-									'<div class="cz action"><span>充值</span></div>' +
-									'<div class="tk action"><span>提款</span></div>' +
-									'<div class="zz action"><span>转账</span></div>' +
+									'<div class="grzx-layer cz action"><span>充值</span></div>' +
+									'<div class="grzx-layer tk action"><span>提款</span></div>' +
+									'<div class="grzx-layer zz action"><span>转账</span></div>' +
 								'</div>' +
 							'</div>' +
 
@@ -183,8 +183,8 @@
 							'</div>' +
 
 							'<ul>' +
-								'<li><span>资金管理</span></li>' +
-								'<li><span>投注记录</span></li>' +
+								'<li class="grzx-layer zjgl"><span>资金管理</span></li>' +
+								'<li class="grzx-layer tzjl"><span>投注记录</span></li>' +
 								'<li><span>充值记录</span></li>' +
 								'<li><span>修改密码</span></li>' +
 								'<li class="signout"><span>退出</span></li>' +
@@ -290,6 +290,7 @@
 		var langFloatWindow;
 		var grzxUl;
 		var headerFloatWindow;
+		var grzxNav;
 		var that = this;
 
 		this.zone = $('.header');
@@ -306,6 +307,7 @@
 		menu              = this.zone.find('.menu');
 		headerFloatItem   = this.zone.find('.pages li, .header-float-window');
 		headerFloatWindow = this.zone.find('.header-float-window');
+		grzxNav 		  = this.zone.find('.grzx-layer');
 		stick             = pagesUl.children('.stick');
 		balance           = this.zone.find('.balance-value');
 
@@ -333,6 +335,15 @@
 			stick.css('left', index * 80 + 'px');
 			//page('/' + pageName);
 			app.goTo(pageName);
+		});
+
+		grzxNav.click(function(){
+			if (!app.personCenterDialog) {
+				app.personCenterDialog = new PersonalCenter();
+				$('.app').append(app.personCenterDialog.getDom());
+				app.personCenterDialog.bindEvents();
+			}
+			app.personCenterDialog.show();
 		});
 
 		headerFloatItem.mouseover(function () {
