@@ -113,133 +113,10 @@
 
 									'<div class="stick"></div>'+
 								'</div>';
-		var testData=[{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/fnfrj.jpg",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/dw.jpg",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/dv2.jpg",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/frr.jpg",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test3.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test3.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test3.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test3.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test3.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		},{
-			url:"../img/test1.png",
-			score:4,
-			name:'古怪猴子'
-		}]
-		var getGameList=function(){
-			var html='';
-			for(var a=0; a<testData.length;a++){
-				var temp=testData[a];
-					html+='<li>'+
-						'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-						'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
-						'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
-					'</li>';
-			}
-			return html;
-		};
-		var listImg=getGameList();
-	  var bottomRightModule='<div class="bottom-right">'+
+
+		var listImg = this.getGameList();
+
+	  	var bottomRightModule='<div class="bottom-right">'+
 														'<ul>'+
 															listImg+
 														'</ul>'+
@@ -258,15 +135,37 @@
 				delay: 3000
 			});
 		}
+
 		$(".left-list").myScroll({
 			speed:40, //数值越大，速度越慢
 			rowHeight:30 //li的高度
 		});
+
 		$('.slider').data('run', true);
 	};
 
 	EEntertainment.prototype.getDom = function () {
 		return this.el;
+	};
+
+	EEntertainment.prototype.getGameList = function () {
+		var temp = {
+			url:"../img/fnfrj.jpg",
+			score:4,
+			name:'古怪猴子'
+		};
+
+		var html='';
+
+		for(var a = 0; a < 24; a++) {
+			html  +=	'<li>'+
+							'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
+							'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
+							'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
+						'</li>';
+		}
+
+		return html;
 	};
 
 	EEntertainment.prototype.show = function () {
@@ -282,18 +181,23 @@
 		var stick;
 		var index;
 		var imgIndex;
+		var imageUl;
+		var moreGame;
 		var that = this;
+
 		this.zone = $('.main-content');
 		this.notice.bindEvents();
+
 		$('.slider').unslider({
 			speed: 500,
 			delay: 3000
 		});
 
-		pageUl = this.zone.find('.bottom-left ul');
-		stick = this.zone.find('.bottom-left .stick');
-		imgUl=this.zone.find('.bottom-right ul');
-		marqueeList=this.zone.find('.top-left-module');
+		pageUl       =  this.zone.find('.bottom-left ul');
+		stick        =  this.zone.find('.bottom-left .stick');
+		imgUl        =  this.zone.find('.bottom-right ul');
+		marqueeList  =  this.zone.find('.top-left-module');
+		moreGame     =  this.zone.find('.bottom-right .more-game');
 
 		pageUl.delegate('li','mouseover',function(){
 			index = $(this).index();
@@ -326,8 +230,29 @@
 		imgUl.delegate('li','mouseover',function(){
 			  $(this).find("#hover-layer").removeClass("hover-layer-none").addClass("hover-layer");
 		});
+
 		imgUl.delegate('li','mouseout',function(){
 			  $(this).find("#hover-layer").removeClass("hover-layer").addClass("hover-layer-none");
+		});
+
+		$(document).scroll(function(e) {
+		    var viewH     = $('body').height();
+		    var contentH  = $('body').get(0).scrollHeight; 
+		    var scrollTop = $('body').scrollTop();
+
+		    if (imgUl.children('li').length > 72) {
+		    	moreGame.html('没有更多');
+		    	return;
+		    }
+
+		    if (contentH - viewH - scrollTop <= 10) {
+		    	moreGame.html('加载中...');
+
+		    	setTimeout(function () {
+		    		imgUl.append(that.getGameList());
+		    		moreGame.html('更多游戏');
+		    	}, 2000);
+		    }
 		});
 
 		function marquee(obj, step){
@@ -348,6 +273,7 @@
 				marquee($(".marqueen"), 30);
 			}
 		}, 100);
+
 		$(".marqueen").hover(function(){
 			clearInterval(_scroll);
 		},function(){
@@ -359,25 +285,18 @@
 				}
 			}, 100);
 		});
-
-
-
-
 	};
+
 	(function($){
-	$.fn.myScroll = function(options){
-	//榛樿閰嶇疆
-	var defaults = {
-		speed:40,  //婊氬姩閫熷害,鍊艰秺澶ч€熷害瓒婃參
-		rowHeight:24 //姣忚鐨勯珮搴�
-	};
-	var opts = $.extend({}, defaults, options),intId = [];
+		$.fn.myScroll = function(options){
+			var defaults = {
+				speed:40,
+				rowHeight:24 
+			};
 
+			var opts = $.extend({}, defaults, options),intId = [];
+		}
+	})(jQuery);
 
-
-
-	}
-
-})(jQuery);
 	window.EEntertainment = EEntertainment;
 }());
