@@ -15,8 +15,6 @@
 
 		$baseL              : 1200;
 		$baseWidth          : 1200px;
-		$pictureZoneHeight  : $baseWidth * 600 / $baseL;
-		$itemHeight         : $pictureZoneHeight / 2;
 		$image1Width        : $baseWidth * 560 / $baseL;
 		$image1Height       : $baseWidth * 222 / $baseL;
 		$image2Width        : $baseWidth * 260 / $baseL;
@@ -40,7 +38,7 @@
 					border: 1px solid #474539;
 					cursor: pointer;
 					display: inline-block;
-					height: $itemHeight;
+					height: 300px;
 					width: $image2Width;
 					position: relative;
 					text-align: left;
@@ -65,23 +63,24 @@
 
 					.zone2 {
 						color: #C8C9D4;
-						height: $itemHeight - $image2Height;
+						height: 300px - $image2Height;
 						width: 100%;
 						margin: 0 auto;
 						margin-top: 10px;
 
 						.title {
 							height: 40px;
+							padding: 0 10px;
 						}
 
 						.quantity {
-							height: 30px;
-							line-height: 30px;
+						    height: 50px;
+						    line-height: 50px;
+							padding: 0 10px;
 
 							span {
 								color: #999999;
 							    position: relative;
-							    bottom: 3px;
 							    left: 5px;
 							}
 						}
@@ -113,6 +112,18 @@
 						.logo {
 							width: $image1Width;
 							height: $image1Height;
+						}
+					}
+
+					.zone2 {
+						.title {
+							height: 30px;
+							line-height: 30px;
+						}
+
+						.quantity {
+						    height: 30px;
+						    line-height: 30px;
 						}
 					}
 
@@ -154,8 +165,6 @@
 		.wrapper {
 			$baseL              : 1200;
 			$baseWidth          : 900px;
-			$pictureZoneHeight  : $baseWidth * 600 / $baseL;
-			$itemHeight         : $pictureZoneHeight / 2;
 			$image1Width        : $baseWidth * 560 / $baseL;
 			$image1Height       : $baseWidth * 222 / $baseL;
 			$image2Width        : $baseWidth * 260 / $baseL;
@@ -167,7 +176,6 @@
 			$gap6               : $baseWidth * 59 / $baseL;
 
 			.content {
-				height: $pictureZoneHeight ;
 				width: 100%;
 				margin-bottom: 70px;
 
@@ -176,7 +184,7 @@
 					height: 100%;
 
 					.item {	
-						height: $itemHeight;
+						height: 260px;
 						width: $image2Width;
 
 						.zone1 {
@@ -191,11 +199,11 @@
 
 						.zone2 {
 							color: #C8C9D4;
-							height: $itemHeight - $image2Height;
+							height: 260px - $image2Height;
 							width: 100%;
 
 							.title {
-								height: 40px;
+								height: 60px;
 							}
 
 							.quantity {
@@ -205,7 +213,6 @@
 								span {
 									color: #999999;
 								    position: relative;
-								    bottom: 3px;
 								    left: 5px;
 								}
 							}
@@ -222,6 +229,16 @@
 							.logo {
 								width: $image1Width;
 								height: $image1Height;
+							}
+						}
+
+						.zone2 {
+							color: #C8C9D4;
+							height: 260px - $image1Height;
+							width: 100%;
+
+							.title {
+								height: 40px;
 							}
 						}
 
