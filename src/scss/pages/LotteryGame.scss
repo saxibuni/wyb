@@ -7,6 +7,7 @@
 		position: relative;
 		width: $contentWidth;
 		padding: 20px 0;
+		margin-bottom: 60px;
 
 		table {
 			background-color: #5A584D;
@@ -54,19 +55,26 @@
 		    }
 		}
 
+		$baseL              : 1200;
+		$baseWidth          : 1200px;
+		$height             : $baseWidth * 320 / $baseL;
+		$width1             : $baseWidth * 496 / $baseL;
+		$width2             : $baseWidth * ($baseL - 496) / $baseL;
+
 		.content1 {
-			height: 300px;
-			width: 100%;
+			height: $height;
+			width: $baseWidth;
 			margin-bottom: 20px;
 
 			.left {
 				background-image: url("../img/cp01.jpg");
-				background-size: 465px 300px;
+				background-size: 100%;
 				display: inline-block;
-				height: 100%;
-				width: 465px;
+				height: $height;
+				width: $width1;
 				text-align: left;
 				vertical-align: top;
+				transition: all .5s;
 
 				.row1 {
 					padding-left: 20px;
@@ -107,31 +115,32 @@
 
 			.right {
 				display: inline-block;
-				height: 100%;
-				width: 559px;
+				height: $height;
+				width: $width2;
 				vertical-align: top;
 			}
 		}
 
 		.content2 {
-			height: 300px;
-			width: 100%;
+			height: $height;
+			width: $baseWidth;
 
 			.left {
 				display: inline-block;
-				height: 100%;
-				width: 559px;
+				height: $height;
+				width: $width2;
 				vertical-align: top;
 			}
 
 			.right {
 				background-image: url("../img/cp02.jpg");
-				background-size: 465px 300px;
+				background-size: 100%;
 				display: inline-block;
-				height: 100%;
-				width: 465px;
+				height: $height;
+				width: $width1;
 				text-align: left;
 				vertical-align: top;
+				transition: all .5s;
 
 				.row1 {
 					padding-left: 20px;
@@ -175,6 +184,56 @@
 					    &:hover {
 					    	color: #DCAD4B;
 					    }
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.lottery-game {
+		.wrapper {
+			width: 997px;
+
+			$baseL              : 1200;
+			$baseWidth          : 997px;
+			$height             : $baseWidth * 320 / $baseL;
+			$width1             : $baseWidth * 496 / $baseL;
+			$width2             : $baseWidth * ($baseL - 496) / $baseL;
+
+			.content1 {
+				height: $height;
+				width: $baseWidth;
+				transition: all .5s;
+
+				.left {
+					height: $height;
+					width: $width1;
+				}
+
+				.right {
+					height: $height;
+					width: $width2;
+				}
+			}
+
+			.content2 {
+				height: $height;
+				width: $baseWidth;
+				transition: all .5s;
+
+				.left {
+					height: $height;
+					width: $width2;
+				}
+
+				.right {
+					height: $height;
+					width: $width1;
+
+					.row3 {
+						margin-top: 35px;
 					}
 				}
 			}
