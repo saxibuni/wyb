@@ -2,14 +2,13 @@
 
 .route-check {
 	@include page-property;
-	padding-top: 20px;
-	padding-bottom: 20px;
 
 	.wrapper {
 		position: relative;
 		width: $contentWidth - 40px;
 		height: 100%;
 		margin: 0 20px;
+		margin-bottom: 60px;
 
 		.title {
 			background-color: #48463A;
@@ -17,6 +16,7 @@
 			line-height: 50px;
 			text-align: left;
 			padding-left: 20px;
+			transition: all .5s;
 
 			.trend-icon {
 				display: inline-block;
@@ -47,10 +47,11 @@
 			.left-content {
 				display: inline-block;
 				float: left;
-				width: 60%;
+				width: 50%;
 				text-align: left;
 				padding-left: 20px;
 				padding-top: 20px;
+				transition: all .5s;
 
 				ul {
 					li {
@@ -116,9 +117,9 @@
 			.right-content {
 				display: inline-block;
 				float: right;
-				padding-right: 20px;
 				padding-top: 20px;
-				width: 35%;
+				width: 50%;
+				transition: all .5s;
 
 				.title {
 					background: none;
@@ -139,23 +140,25 @@
 				.row {
 					border: 1px solid #636157;
 					font-size: 13px;
-					width: 85%;
+					display: inline-block;
+					width: 80%;
 					padding: 20px;
 				}
 
 				.row1 {
-					height: 100px;
+					height: 140px;
 					margin-bottom: 20px;
 				}
 
 				.row2 {
-					height: 180px;
+					height: 220px;
 					margin-bottom: 20px;
 				}
 
 				.row3 {
 					height: 100px;
 					color: #FFF;
+					text-align: left;
 
 					ul {
 						margin-top: 20px;
@@ -174,6 +177,26 @@
 						}
 					}
 				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	$baseWidth: 997px;
+
+	.route-check {
+		width: $baseWidth !important;
+
+		.wrapper {
+			width: $baseWidth - 40px !important;
+
+			.title {
+				width: $baseWidth - 42px;
+			}
+
+			.content {
+				width: $baseWidth - 42px;
 			}
 		}
 	}

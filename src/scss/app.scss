@@ -107,10 +107,6 @@ body {
 }
 
 @media screen and (min-width: 0px) and (max-width: 1200px) {
-	body {
-		overflow-x: auto;	
-	}
-
 	.app {
 		.main {
 			width: 997px;
@@ -136,5 +132,11 @@ body {
 				}
 			}
 		}
+	}
+}
+
+@media screen and (min-width: 0px) and (max-width: 996px) {
+	body {
+		overflow-x: auto;	
 	}
 }
