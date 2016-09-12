@@ -76,16 +76,6 @@
 		}
 
 		that[pageName].show();
-
-		tar       = $('.' + dict[pageName].cssClass);
-		index     = tar.index();
-		height    = parseInt(tar.css('height'));
-		//logoHeiht = parseInt($('.logo-wrapper').css('height'));
-
-		// wrapper.css({
-		// 	'left': (0 - 1024 * index) + 'px',
-		// 	'height': height + 'px'
-		// });
 	};
 
 	app.prototype.initRouter = function () {

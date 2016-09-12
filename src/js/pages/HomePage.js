@@ -207,7 +207,6 @@
 							'</ul>' +
 						'</div>';
 
-		$('.unslider-horizontal').hide();
 		$('.main .logo-wrapper').html(logoTemp);
 		$('.home-pages-sliders').unslider({
 			speed: 500,

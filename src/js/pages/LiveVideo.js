@@ -71,7 +71,6 @@
 							'</ul>' +
 						'</div>';
 		
-		$('.unslider-horizontal').hide();
 		$('.main .logo-wrapper').html(logoTemp);
 		$('.live-video-sliders').unslider({
 			speed: 500,
