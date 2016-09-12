@@ -128,10 +128,14 @@
 
 		temp +=	'<li>' +
 					'<div class="speed">' +
-						data.speed + 'ms' +
+						'<span class="speed-value">' +
+							data.speed + 'ms' +
+						'</span>' +
+
+						'<img class="recommend" src="../img/recommend.png">' +
 					'</div>' +
 
-					'<img class="recommend" src="../img/recommend.png">' +
+					
 
 					'<div class="arrow">' +
 						'<img class="trend-icon-img" src="../img/arrow-right.png">' +
