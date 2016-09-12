@@ -4,25 +4,79 @@
 	@include page-property;
 
 	.wrapper {
-		padding: 20px;
+		margin-bottom: 60px;
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+		$baseL         : 1200;
+		$baseWidth     : 1200px;
+		$img1Width     : $baseWidth * 1200 / $baseL;
+		$img1Height    : $baseWidth * 340 / $baseL;
+		$img2Width     : $baseWidth * 590 / $baseL;
+		$img2Height    : $baseWidth * 240 / $baseL;
+		$gap           : $baseWidth - $img2Width * 2;
 
 		.row1 {
-
+			width: $img1Width;
+			height: $img1Height;
+			transition: all .5;
 		}
 
 		.row2 {
 			margin-top: 20px;
+			transition: all .5;
 
 			.sbty {
 				cursor: pointer;
 				display: inline-block;
-				width: 50%;
+				width: $img2Width;
+				height: $img2Height;
+				margin-right: $gap;
 			}
 
 			.threedty {
 				cursor: pointer;
 				display: inline-block;
-				width: 50%;
+				width: $img2Width;
+				height: $img2Height;
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: 1200px) {
+	.sports-competition {
+		width: 997px;
+
+		.wrapper {
+			$baseL         : 1200;
+			$baseWidth     : 997px;
+			$img1Width     : $baseWidth * 1200 / $baseL;
+			$img1Height    : $baseWidth * 340 / $baseL;
+			$img2Width     : $baseWidth * 590 / $baseL;
+			$img2Height    : $baseWidth * 240 / $baseL;
+			$gap           : $baseWidth - $img2Width * 2;
+
+			.row1 {
+				width: $img1Width;
+				height: $img1Height;
+			}
+
+			.row2 {
+				.sbty {
+					width: $img2Width;
+					height: $img2Height;
+					margin-right: $gap;
+				}
+
+				.threedty {
+					width: $img2Width;
+					height: $img2Height;
+				}
 			}
 		}
 	}

@@ -7,16 +7,16 @@
 		var temp =	'<div class="page sports-competition">' +
 						'<div class="wrapper">' +
 							'<div class="row1">' +
-								'<img src="../img/sports-competition-img1.png">' +
+								'<img src="../img/sports-competition-img1.jpg">' +
 							'</div>' +
 
 							'<div class="row2">' +
 								'<div class="sbty">' +
-									'<img src="../img/sports-competition-img2.png">' +
+									'<img src="../img/sports-competition-img2.jpg">' +
 								'</div>' +
 
 								'<div class="threedty">' +
-									'<img src="../img/sports-competition-img3.png">' +
+									'<img src="../img/sports-competition-img3.jpg">' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
