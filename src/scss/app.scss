@@ -16,7 +16,7 @@ body {
 		top: $headerHeight;
 		font-size: 14px;
 		text-align: center;
-		width: $contentWidth;
+		width: 100%;
 		overflow: hidden;
     	display: inline-block;
     	transition: top .3s;
@@ -24,6 +24,11 @@ body {
 		.logo-wrapper {
 			height: 236px;
 			width: 100%;
+
+			.unslider {
+				width: $contentWidth;
+				display: inline-block;
+			}
 
 			.unslider-nav {
 			    position: absolute;
@@ -79,20 +84,24 @@ body {
 		}
 
 		.main-wrapper {
-			background-color: $theme-background-color;
-			width: 10000px;
+			background-color: #23231D;
+			width: 100%;
 			position: relative;
 			left: 0;
-			text-align: left;
+			text-align: center;
 			transition: left .5s;
 
 			.page {
 				display: inline-block;
-				width: 100%;
+				width: $contentWidth;
 				text-align: center;
 				vertical-align: top;
 				margin-top: 20px;
 			}
+		}
+
+		.home {
+			background-color: #CCCCCC;
 		}
 	}
 }

@@ -69,6 +69,12 @@
 			$('.main .logo-wrapper').css('height', '0');
 		}
 
+		if (pageName === 'homePage') {
+			$('.main-wrapper').addClass('home');
+		} else {
+			$('.main-wrapper').removeClass('home');
+		}
+
 		that[pageName].show();
 
 		tar       = $('.' + dict[pageName].cssClass);

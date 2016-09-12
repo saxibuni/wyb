@@ -4,7 +4,7 @@
 	@include page-property;
 
 	.wrapper {
-		padding-bottom: 20px;
+		padding-bottom: 60px;
 		background-color: #CCCCCC;
 
 		.content23 {
@@ -99,6 +99,10 @@
 
 								span {
 									margin-left: 10px;
+								}
+
+								img {
+									vertical-align: middle;
 								}
 							}
 						}
