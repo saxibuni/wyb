@@ -13,26 +13,23 @@
 			width: 100%;
 		}
 
-		.content {
-			height: 700px;
-			width: 100%;
+		$baseL              : 1200;
+		$baseWidth          : 1200px;
+		$pictureZoneHeight  : $baseWidth * 600 / $baseL;
+		$itemHeight         : $pictureZoneHeight / 2;
+		$image1Width        : $baseWidth * 560 / $baseL;
+		$image1Height       : $baseWidth * 222 / $baseL;
+		$image2Width        : $baseWidth * 260 / $baseL;
+		$image2Height       : $baseWidth * 200 / $baseL;
+		$gap1               : $baseWidth * 60 / $baseL;
+		$gap2               : $baseWidth * 60 / $baseL;
+		$gap4               : $baseWidth * 41 / $baseL;
+		$gap5               : $baseWidth * 60 / $baseL;
+		$gap6               : $baseWidth * 59 / $baseL;
 
-			$baseL              : 1200;
-			$baseWidth          : 1200px;
-			$image1Width        : $baseWidth * 560 / $baseL;
-			$image1Height       : $baseWidth * 222 / $baseL;
-			$image2Width        : $baseWidth * 260 / $baseL;
-			$image2Height       : $baseWidth * 200 / $baseL;
-			$image3Width        : $baseWidth * 260 / $baseL;
-			$image3Height       : $baseWidth * 200 / $baseL;
-			$image4Width        : $baseWidth * 260 / $baseL;
-			$image4Height       : $baseWidth * 200 / $baseL;
-			$image5Width        : $baseWidth * 260 / $baseL;
-			$image5Height       : $baseWidth * 200 / $baseL;
-			$image6Width        : $baseWidth * 260 / $baseL;
-			$image6Height       : $baseWidth * 200 / $baseL;
-			$image7Width        : $baseWidth * 260 / $baseL;
-			$image7Height       : $baseWidth * 200 / $baseL;
+		.content {
+			width: 100%;
+			margin-bottom: 50px;
 
 			.picture-zone {
 				width: 100%;
@@ -42,29 +39,33 @@
 					background-color: #48463A;
 					border: 1px solid #474539;
 					cursor: pointer;
-					height: 350px;
+					display: inline-block;
+					height: $itemHeight;
 					width: $image2Width;
 					position: relative;
 					text-align: left;
+					vertical-align: top;
+					transition: all .5s;
+					overflow: hidden;
 
 					.zone1 {
 						height: $image2Height;
 						width: 100%;
 
 						.logo {
-							width: 226px;
-							height: 220px;
+							width: $image2Width;
+							height: $image2Height;
 
 							img {
-								width: 226px;
-								height: 220px;
+								width: 100%;
+								height: 100%;
 							}
 						}
 					}
 
 					.zone2 {
 						color: #C8C9D4;
-						height: 350px - $image2Height;
+						height: $itemHeight - $image2Height;
 						width: 100%;
 						margin: 0 auto;
 						margin-top: 10px;
@@ -104,9 +105,152 @@
 
 				.img1 {
 					width: $image1Width;
+					margin-right: $gap1;
+
+					.zone1 {
+						height: $image1Height;
+
+						.logo {
+							width: $image1Width;
+							height: $image1Height;
+						}
+					}
 
 					.item-overlay {
 						display: none;
+					}
+				}
+
+				.img2 {
+					margin-right: $gap2;
+				}
+
+				.img4 {
+					margin-top: 20px;
+					margin-right: $gap4;
+				}
+
+				.img5 {
+					margin-top: 20px;
+					margin-right: $gap5;
+				}
+
+				.img6 {
+					margin-top: 20px;
+					margin-right: $gap6;
+				}
+
+				.img7  {
+					margin-top: 20px;
+				}
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: 1200px) {
+	.live-video {
+		.wrapper {
+			$baseL              : 1200;
+			$baseWidth          : 900px;
+			$pictureZoneHeight  : $baseWidth * 600 / $baseL;
+			$itemHeight         : $pictureZoneHeight / 2;
+			$image1Width        : $baseWidth * 560 / $baseL;
+			$image1Height       : $baseWidth * 222 / $baseL;
+			$image2Width        : $baseWidth * 260 / $baseL;
+			$image2Height       : $baseWidth * 200 / $baseL;
+			$gap1               : $baseWidth * 60 / $baseL;
+			$gap2               : $baseWidth * 60 / $baseL;
+			$gap4               : $baseWidth * 41 / $baseL;
+			$gap5               : $baseWidth * 60 / $baseL;
+			$gap6               : $baseWidth * 59 / $baseL;
+
+			.content {
+				height: $pictureZoneHeight ;
+				width: 100%;
+				margin-bottom: 70px;
+
+				.picture-zone {
+					width: 100%;
+					height: 100%;
+
+					.item {	
+						height: $itemHeight;
+						width: $image2Width;
+
+						.zone1 {
+							height: $image2Height;
+							width: 100%;
+
+							.logo {
+								width: $image2Width;
+								height: $image2Height;
+							}
+						}
+
+						.zone2 {
+							color: #C8C9D4;
+							height: $itemHeight - $image2Height;
+							width: 100%;
+
+							.title {
+								height: 40px;
+							}
+
+							.quantity {
+								height: 30px;
+								line-height: 30px;
+
+								span {
+									color: #999999;
+								    position: relative;
+								    bottom: 3px;
+								    left: 5px;
+								}
+							}
+						}
+					}
+
+					.img1 {
+						width: $image1Width;
+						margin-right: $gap1;
+
+						.zone1 {
+							height: $image1Height;
+
+							.logo {
+								width: $image1Width;
+								height: $image1Height;
+							}
+						}
+
+						.item-overlay {
+							display: none;
+						}
+					}
+
+					.img2 {
+						margin-right: $gap2;
+					}
+
+					.img4 {
+						margin-top: 20px;
+						margin-right: $gap4;
+					}
+
+					.img5 {
+						margin-top: 20px;
+						margin-right: $gap5;
+					}
+
+					.img6 {
+						margin-top: 20px;
+						margin-right: $gap6;
+					}
+
+					.img7  {
+						margin-top: 20px;
 					}
 				}
 			}

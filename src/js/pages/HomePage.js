@@ -208,16 +208,12 @@
 						'</div>';
 
 		$('.unslider-horizontal').hide();
-
-		if ($('.home-pages-sliders').length < 1) {
-			$('.main .logo-wrapper').html(logoTemp);
-
-			$('.home-pages-sliders').unslider({
-				speed: 500,
-				delay: 3000
-			});
-		}
-
+		$('.main .logo-wrapper').html(logoTemp);
+		$('.home-pages-sliders').unslider({
+			speed: 500,
+			delay: 3000
+		});
+		$('.main .logo-wrapper').css('height', $('.home-pages-sliders').css('height'));
 		$('.home-pages-sliders').show();
 	};
 

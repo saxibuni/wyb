@@ -72,17 +72,13 @@
 						'</div>';
 		
 		$('.unslider-horizontal').hide();
-
-		if ($('.live-video-sliders').length < 1) {
-			$('.main .logo-wrapper').html(logoTemp);
-
-			$('.live-video-sliders').unslider({
-				speed: 500,
-				delay: 3000
-			});
-		}
-
+		$('.main .logo-wrapper').html(logoTemp);
+		$('.live-video-sliders').unslider({
+			speed: 500,
+			delay: 3000
+		});
 		$('.live-video-sliders').show();
+		$('.main .logo-wrapper').css('height', $('.live-video-sliders').css('height'));
 	};
 
 	LiveVideo.prototype.bindEvents = function () {
