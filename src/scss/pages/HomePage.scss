@@ -78,12 +78,14 @@
 							width: $image1Width;
 
 							.zone1-up-left-up {
+								cursor: pointer;
 								height: $image1Height;
 								line-height: $image1Height;
 								width: $image1Width;
 							}
 
 							.zone1-up-left-down {
+								cursor: pointer;
 								height: $image2Height;
 								line-height: $image2Height;
 								width: $image2Width;
@@ -96,6 +98,7 @@
 							    left: 24%;
 								font-size: 30px;
 								font-weight: bold;
+								transition: transform .5s;
 
 								span {
 									margin-left: 10px;
@@ -104,6 +107,10 @@
 								img {
 									vertical-align: middle;
 								}
+
+								&:hover {
+									transform: scale(1.2);
+								}		
 							}
 						}
 
@@ -111,6 +118,7 @@
 							float: right;
 							height: $image3Height;
 							width: $image3Width;
+							overflow: hidden;
 
 							.info {
 								cursor: pointer;
@@ -125,6 +133,14 @@
 								color: #FFF;
 								background-color: rgba(0,0,0,0.5);
 								filter: alpha(opacity=50);
+							}
+
+							.picture-bg {
+								transition: all .5s;
+
+								&:hover {
+									transform: scale(1.2);
+								}
 							}
 						}
 					}
@@ -151,14 +167,18 @@
 
 					.zone2-up {
 						.zone2-up-left {
+							cursor: pointer;
 							height: $image5Height;
 							width: $image5Width;
 							margin-right: $gap5;
+							overflow: hidden;
 						}
 
 						.zone2-up-right {
+							cursor: pointer;
 							height: $image6Height;
 							width: $image6Width;
+							overflow: hidden;
 						}
 
 						.info {
@@ -174,6 +194,19 @@
 							color: #FFF;
 							background-color: rgba(0,0,0,0.5);
 							filter: alpha(opacity=50);
+
+							&:hover {
+								border-color: #DCAD4B;
+								color: #DCAD4B;
+							}
+						}
+
+						.picture-bg {
+							transition: all .5s;
+
+							&:hover {
+								transform: scale(1.2);
+							}
 						}
 					}
 

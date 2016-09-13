@@ -29,7 +29,7 @@
 													'<img class="picture-bg" src="../img/sy-xz.jpg">' +
 													'<div class="info">' +
 														'<img class="icon" src="../img/xz-icon.png">' +
-														'<span>在线客服</span>' +
+														'<span>客户端下载</span>' +
 													'</div>' +
 												'</div>' +
 											'</div>' +
