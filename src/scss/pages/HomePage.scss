@@ -110,7 +110,7 @@
 
 								&:hover {
 									transform: scale(1.2);
-								}		
+								}
 							}
 						}
 
@@ -133,6 +133,11 @@
 								color: #FFF;
 								background-color: rgba(0,0,0,0.5);
 								filter: alpha(opacity=50);
+
+								&:hover {
+									background-color: #DCAD4B;
+									border-color: #DCAD4B;
+								}
 							}
 
 							.picture-bg {
@@ -196,8 +201,8 @@
 							filter: alpha(opacity=50);
 
 							&:hover {
+								background-color: #DCAD4B;
 								border-color: #DCAD4B;
-								color: #DCAD4B;
 							}
 						}
 

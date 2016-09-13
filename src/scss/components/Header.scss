@@ -23,7 +23,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 		transition: width .5s;
 
 		.row1 {
-			background-color: #201F1D;
+			background-color: #000;
 			color: #FFF;
 			height: $headerRow1Height;
 			line-height: $headerRow1Height;
@@ -161,6 +161,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				float: left;
 				height: $headerRow1Height;
 				line-height: $headerRow1Height;
+				margin-left: 40px;
 
 				.time-zone {
 					display: inline-block;
@@ -187,7 +188,6 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 		}
 
 		.row2 {
-			background-color: #474539;
 			height: $headerRow2Height;
 			line-height: $headerRow2Height;
 			position: relative;
@@ -195,6 +195,10 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			overflow: hidden;
 			transition: all .3s;
 			opacity: 1;
+   			background: -webkit-linear-gradient(left, #000 0%, #48463A 50%, #000 110%);
+    		background: -o-linear-gradient(left, #000 0%, #48463A 50%, #000 110%); 
+    		background: -moz-linear-gradient(left, #000 0%, #48463A 50%, #000 110%); 
+    		background: linear-gradient(left, #000 0%, #48463A 50%, #000 110%);
 
 			.header-logo {
 				float: left;

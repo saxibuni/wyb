@@ -62,7 +62,7 @@
 			that[pageName].bindEvents();
 		}
 
-		//如果有轮播图，就加进去
+		//没有轮播图
 		if (!that[pageName].addSliders) {
 			$('.main .logo-wrapper').html('');
 			$('.main .logo-wrapper').css('height', '0');

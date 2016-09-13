@@ -8,13 +8,13 @@
 						'<div class="wrapper">' +
 							'<div class="content">' +
 								'<div class="picture-zone">' +
-									this.createItem({ className: 'img1', img: 's00-h'}) +
-									this.createItem({ className: 'img2', img: 's01-h'}) +
-									this.createItem({ className: 'img3', img: 's02-h'}) +
-									this.createItem({ className: 'img4', img: 's03-h'}) +
-									this.createItem({ className: 'img5', img: 's04-h'}) +
-									this.createItem({ className: 'img6', img: 's04-h'}) +
-									this.createItem({ className: 'img7', img: 's04-h'}) +
+									this.createItem({ className: 'img1', img: 'live-video1'}) +
+									this.createItem({ className: 'img2', img: 'live-video2'}) +
+									this.createItem({ className: 'img3', img: 'live-video3'}) +
+									this.createItem({ className: 'img4', img: 'live-video4'}) +
+									this.createItem({ className: 'img5', img: 'live-video5'}) +
+									this.createItem({ className: 'img6', img: 'live-video6'}) +
+									this.createItem({ className: 'img7', img: 'live-video7'}) +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -63,21 +63,31 @@
 	};
 
 	LiveVideo.prototype.addSliders = function () {
+		// var logoTemp = 	'<div class="live-video-sliders">' +
+		// 					'<ul>' +
+		// 						'<li><img src="../img/homepage-banner.jpg"></li>' +
+		// 						'<li><img src="../img/homepage-banner.jpg"></li>' +
+		// 						'<li><img src="../img/homepage-banner.jpg"></li>' +
+		// 					'</ul>' +
+		// 				'</div>';
+		
+		// $('.main .logo-wrapper').html(logoTemp);
+		// $('.live-video-sliders').unslider({
+		// 	speed: 500,
+		// 	delay: 3000
+		// });
+		// $('.live-video-sliders').show();
+		// $('.main .logo-wrapper').css('height', $('.live-video-sliders').css('height'));
+
 		var logoTemp = 	'<div class="live-video-sliders">' +
-							'<ul>' +
-								'<li><img src="../img/homepage-banner.jpg"></li>' +
-								'<li><img src="../img/homepage-banner.jpg"></li>' +
-								'<li><img src="../img/homepage-banner.jpg"></li>' +
+							'<ul class="live-video-ul">' +
+								'<li><img src="../img/live-video-banner.jpg"></li>' +
 							'</ul>' +
 						'</div>';
-		
+
 		$('.main .logo-wrapper').html(logoTemp);
-		$('.live-video-sliders').unslider({
-			speed: 500,
-			delay: 3000
-		});
-		$('.live-video-sliders').show();
 		$('.main .logo-wrapper').css('height', $('.live-video-sliders').css('height'));
+		$('.live-video-sliders').show();
 	};
 
 	LiveVideo.prototype.bindEvents = function () {
