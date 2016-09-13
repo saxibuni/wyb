@@ -50,7 +50,6 @@
 			'promoActivity'     : {'className': PromoActivity,     'cssClass': 'promo-activity'},
 			'clientDownload'    : {'className': ClientDownload,    'cssClass': 'client-download'},
 			'routeCheck'        : {'className': RouteCheck,        'cssClass': 'route-check'},
-			'helpPage'			: {'className': HelpPage,          'cssClass': 'help-page'},
 			'personalCenter'	: {'className': PersonalCenter,    'cssClass': 'personal-center'},
 			'forgetPassword'    : {'className': ForgetPassword ,   'cssClass': 'forget-password'}
 		};
