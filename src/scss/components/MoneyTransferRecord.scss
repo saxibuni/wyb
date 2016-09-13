@@ -112,24 +112,6 @@
 			span{
 				display: inline-block;
 			}
-
-			.pager{
-				width: 80px;
-				float: right;
-				.current-page{
-					background-color: #717785;
-				    color: #fff;
-				    width: 16px;
-				    text-align: center;
-				}
-				.next-page{
-					background: url("../img/right-n.png");
-				    width: 7px;
-				    height: 11px;
-				    background-size: 100% 100%;
-    				margin: 0 10px;
-				}
-			}
 		}
 	}
 }

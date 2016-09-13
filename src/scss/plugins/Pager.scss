@@ -1,0 +1,43 @@
+@import "../mixins.scss";
+.pager {
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+        .prev {
+        	background: url("../img/left-n.png");
+		    width: 7px;
+		    height: 11px;
+		    background-size: 100% 100%;
+			margin: 0 10px;
+			cursor: pointer;
+        }
+        .next {
+        	background: url("../img/right-n.png");
+		    width: 7px;
+		    height: 11px;
+		    background-size: 100% 100%;
+			margin: 0 10px;
+			cursor: pointer; 
+        }
+
+        div {
+            display: inline-block;
+            span {
+                background-color: #fff;
+                color: #717785;
+                width: 16px;
+                text-align: center;
+                margin: 0 3px;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+            .selected{
+                background-color: #717785;
+                color: #fff;
+            }
+        }
+    }
+}
