@@ -174,7 +174,22 @@
 				}
 
 				.partner {
+					table {
+						width: 600px;
+						border:1px solid #CCCCCC;
+						border-bottom: 0;
+						border-right: 0;
+						margin: 10px;
 
+						tr {
+							height: 30px;
+
+							td {
+								border-bottom: 1px solid #CCCCCC;
+								border-right: 1px solid #CCCCCC;
+							}
+						}
+					}
 				}
 
 				.faq {
