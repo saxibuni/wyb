@@ -340,7 +340,7 @@
         var that = this;
 
         this.zone = $('.help-center');
-        pageUl = this.zone.find('ul');
+        pageUl = this.zone.find('.tree ul');
         stick = this.zone.find('.stick');
 
         pageUl.delegate('li','click',function() {
