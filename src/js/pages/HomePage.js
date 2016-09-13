@@ -74,30 +74,36 @@
 											'<img class="picture-bg" src="../img/md.png">' +
 
 											'<div class="table">' +
-												'<div class="tr">' +
-													'<span class="td1">' +
-														'dong62191***' +
-													'</span>' +
-													'<span class="td2">' +
-														'Macbook Pro' +
-													'</span>' +
+												'<div class="tbody">' +
+													'<div class="tr">' +
+														'<span class="td1">' +
+															'dong62191***' +
+														'</span>' +
+														'<span class="td2">' +
+															'Macbook Pro' +
+														'</span>' +
+													'</div>' +
+													'<div class="tr">' +
+														'<span class="td1">' +
+															'dong62191***' +
+														'</span>' +
+														'<span class="td2">' +
+															'Macbook Pro' +
+														'</span>' +
+													'</div>' +
+													'<div class="tr">' +
+														'<span class="td1">' +
+															'dong62191***' +
+														'</span>' +
+														'<span class="td2">' +
+															'Macbook Pro' +
+														'</span>' +
+													'</div>' +
 												'</div>' +
-												'<div class="tr">' +
-													'<span class="td1">' +
-														'dong62191***' +
-													'</span>' +
-													'<span class="td2">' +
-														'Macbook Pro' +
-													'</span>' +
-												'</div>' +
-												'<div class="tr">' +
-													'<span class="td1">' +
-														'dong62191***' +
-													'</span>' +
-													'<span class="td2">' +
-														'Macbook Pro' +
-													'</span>' +
-												'</div>' +
+											'</div>' +
+
+											'<div class="lucky-draw">' +
+												'立即抽奖' +
 											'</div>' +
 										'</div>' +
 									'</div>' +
@@ -142,7 +148,10 @@
 	};
 
 	HomePage.prototype.bindEvents = function () {
+		var luckyDrawTable;
+
 		this.zone = $('.home-page');
+		luckyDrawTable = this.zone.find('.zone2-down .table .tbody');
 	};
 
 	window.HomePage = HomePage;
