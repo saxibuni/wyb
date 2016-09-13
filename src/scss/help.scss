@@ -26,9 +26,10 @@
 
 		.wrapper{
 			padding: 10px 17px;
+			width: 100%;
 
 			.tree{
-				width: 180px;
+				width: 20%;
 				height: 500px;
 				background-color: #48463A;
 				float: left;
@@ -89,50 +90,58 @@
 			}
 
 			.container{
-				width: 800px;
+				width: 75%;
 				min-height: 600px;
 				background-color:#2B2A26;
 				float: right;
 				color: #757575;
 				padding-bottom: 30px;
 
-				.aboutus {
+				.title{
+					height: 50px;
+	    			line-height: 50px;
+	    			font-size: 20px;
+	    			font-weight: bold;
+	    			color: #cda654;
+	    			text-align: center;
+				}
+
+				hr{
+					height: 2px;
+					border: none;
+					border-top: 2px solid #cda654;
+					width: 100%;
+				}
+
+				.content-item {
+					padding: 20px 40px;
+					display: none;
+					width: 100%;
 					height: 100%;
 					text-align: left;
+				}
+
+				.aboutus {
+					display: block;
 					text-indent: 50px;
-					padding: 20px;
 					line-height: 20px;
+
+					p {
+						line-height: 25px;
+						margin-top: 20px;
+					}
 				}
 
 				.contactus{
-					display: none;
-					height: 100%;
-					width: 100%;
-
-					.title{
-						height: 50px;
-		    			line-height: 50px;
-		    			font-size: 20px;
-		    			font-weight: bold;
-		    			color: #cda654;
-					}
-
-					hr{
-						height: 2px;
-						border: none;
-						border-top: 2px solid #cda654;
-						width: 80%;
-					}
-
-					p{
+					p {
 						margin: 0 auto;
 		    			text-align: left;
-		    			text-indent: 28px;
-		    			width: 80%;
+		    			text-indent: 0;
+		    			line-height: 25px;
 					}
 
-					a {
-						color: #cda654;
+					.p1 {
+						text-indent: 28px;
 					}
 					
 					.subtile{
@@ -158,10 +167,6 @@
 				}
 
 				.deposithelp {
-					display: none;
-					width: 100%;
-					height: 100%;
-					text-align: left;
 				}
 
 				.withdrawhelp {
@@ -173,15 +178,13 @@
 				}
 
 				.faq {
+					ul {
+						margin-left: 30px;
 
-				}
-
-				.corporation {
-
-				}
-
-				.newguide {
-
+						li {
+							margin-bottom: 20px;
+						}
+					}
 				}
 			}
 		}
