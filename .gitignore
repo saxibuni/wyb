@@ -70,3 +70,4 @@ ant.properties
 /gulpfile-build.bat
 /gulpfile-clean.bat
 /gulpfile-prepare.bat
+/src/lib
