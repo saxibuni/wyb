@@ -253,10 +253,12 @@ $scaleValue : 0.8;
                     width: 100%;
                     text-align: left;
 
-                    & > div > div {
+                    & > div > div > div {
                         transform: scale(0.8);
                         transform-origin: 0 0;
                         width: 125%;
+                        max-height: 452px;
+                        overflow-y: auto;
                     }
                 }
             }

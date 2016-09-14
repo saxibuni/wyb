@@ -1,0 +1,93 @@
+@import "../mixins.scss";
+
+.modify-pwd-content{
+	@include dialog-frame;
+
+	.dialog-wrapper {
+		@include dialog-wrapper(320px);
+		z-index: 170;
+		top: 50%;
+
+		.dialog {
+			@include dialog(320px, 250px);
+			background-color: #2F2F2C;
+			font-size: 14px;
+			padding: 30px 20px 20px 20px;
+
+			.input-outer{
+				border: 1px solid #555555;
+				height: 30px;
+				line-height: 30px;
+				padding: 0 10px;
+				width: 277px;
+
+				img{
+					display: inline-block;
+					float: left;
+					position: relative;
+					height: 15px;
+					width: 15px;
+					top: 7px;
+					right: 0;
+				}
+
+				input {
+					background-color: transparent;
+					border: 0;
+					color: #FFF;
+					display: inline-block;
+					float: left;
+					height: 28px;
+					line-height: 28px;
+					width: 90%;
+				}
+			}
+
+			.row1{
+				height: 50px;
+				width: 100%;
+				position: relative;
+				text-align: center;
+			}
+
+			.row2{
+				height: 50px;
+				width: 100%;
+				position: relative;
+				text-align: center;
+			}
+
+			.row3{
+				height: 50px;
+				width: 100%;
+				position: relative;
+				text-align: center;
+			}
+
+			.row4{
+				height: 50px;
+				width: 100%;
+				position: relative;
+				text-align: center;
+
+				.button {
+					background-color: #4B4B42;
+					color: #222222;
+					cursor: pointer;
+					width: 80px;
+					height: 30px;
+					line-height: 30px;
+					text-align: center;
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+
+				.button:nth-child(2){
+					margin-left: 50px;
+				}
+			}
+		}
+	}
+}
