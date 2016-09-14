@@ -80,10 +80,22 @@
 							'</div>';
 	  	
 	  	var middleNavModule='<ul class="middle-module">'+
-								'<li class="pt-li"></li>'+
-								'<li class="bbin-li"></li>'+
-								'<li class="ag-li"></li>'+
-								'<li class="mg-li"></li>'+
+								'<li class="pt-li">' +
+									'<span class="img pt-img"></span>' +
+									'<span class="name">真人、老虎机</span>' +
+								'</li>'+
+								'<li class="bbin-li">' +
+									'<span class="img bbin-img"></span>' +
+									'<span class="name">真人、老虎机</span>' +
+								'</li>'+
+								'<li class="ag-li">' +
+									'<span class="img ag-img"></span>' +
+									'<span class="name">真人、老虎机</span>' +
+								'</li>'+
+								'<li class="mg-li">' +
+									'<span class="img mg-img"></span>' +
+									'<span class="name">真人、老虎机</span>' +
+								'</li>'+
 							'</ul>'+
 
 							// '<ul class="middle-right-module">'+
@@ -183,6 +195,7 @@
 		var imgIndex;
 		var imageUl;
 		var moreGame;
+		var middleModuleUl;
 		var that = this;
 
 		this.zone = $('.main-content');
@@ -193,11 +206,12 @@
 			delay: 3000
 		});
 
-		pageUl       =  this.zone.find('.bottom-left ul');
-		stick        =  this.zone.find('.bottom-left .stick');
-		imgUl        =  this.zone.find('.bottom-right ul');
-		marqueeList  =  this.zone.find('.top-left-module');
-		moreGame     =  this.zone.find('.bottom-right .more-game');
+		pageUl         =  this.zone.find('.bottom-left ul');
+		stick          =  this.zone.find('.bottom-left .stick');
+		imgUl          =  this.zone.find('.bottom-right ul');
+		marqueeList    =  this.zone.find('.top-left-module');
+		moreGame       =  this.zone.find('.bottom-right .more-game');
+		middleModuleUl = this.zone.find('.middle-module');
 
 		pageUl.delegate('li','mouseover',function(){
 			index = $(this).index();
@@ -233,6 +247,11 @@
 
 		imgUl.delegate('li','mouseout',function(){
 			  $(this).find("#hover-layer").removeClass("hover-layer").addClass("hover-layer-none");
+		});
+
+		middleModuleUl.delegate('li', 'click', function () {
+			middleModuleUl.find('li').removeClass('selected');
+			$(this).addClass('selected');
 		});
 
 		$(document).scroll(function(e) {

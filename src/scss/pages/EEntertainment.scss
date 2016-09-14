@@ -93,6 +93,7 @@
 		margin: 0 $topModuleGap;
 		float: left;
 		transition: all .5s;
+		overflow: hidden;
 
 		.unslider-nav {
 			position: relative;
@@ -245,58 +246,99 @@
 		transition: all .5s;
 
 		li {
+			cursor: pointer;
 			float:left;;
 			list-style: none;
 			color:#fff;
+			height:100%;
+			display: inline-block;
+			margin-left: 20px;
+			z-index: 20;
+
+			.img {
+				background: url("../img/merchants-logo.png");
+				display: inline-block;
+				width: 50px;
+				height: 100%;
+				overflow: hidden;
+			}
+
+			.name {
+				display: none;
+				width: 120px;
+				height:100%;
+				vertical-align: top;
+				text-align: left;
+			}
+
+			&:hover {
+				background-color:#cda654;
+
+				.pt-img {
+					background-position: 5px 60px;
+				}
+
+				.bbin-img {
+					background-position: 191px 60px;
+				}
+
+				.ag-img {
+					background-position: 127px 60px;
+				}
+
+				.mg-img {
+					background-position: 60px 60px;
+				}
+			}
 		}
 
-		li img{
-			height:100%;
-			vertical-align:middle;
+		.selected {
+			background-color:#cda654;
+
+			.name {
+				display: inline-block;
+			}
+
+			.pt-img {
+				background-position: 5px 60px;
+			}
+
+			.bbin-img {
+				background-position: 191px 60px;
+			}
+
+			.ag-img {
+				background-position: 127px 60px;
+			}
+
+			.mg-img {
+				background-position: 60px 60px;
+			}
 		}
+
 
 		.pt-li{
-			height:100%;
-			width:80px;
-			background: url("../img/pt-normal.png");
-		}
-
-		.pt-li:hover{
-			background: url("../img/pt-down.png");
-			background-color:#cda654;
-		}
-
-		.bbin-li:hover{
-			background: url("../img/bbin-down.png");
-			background-color:#cda654;
+			.img {
+				background-position: 5px 6px;
+			}
 		}
 
 		.bbin-li{
-			height:100%;
-			width:80px;
-			background: url("../img/bbin-normal.png");
+			.img {
+				background-position: 191px 6px;
+			}
 		}
 
 		.ag-li{
-			height:100%;
-			width:80px;
-			background: url("../img/ag-normal.png");
-		}
-
-		.ag-li:hover{
-			background: url("../img/ag-down.png");
-			background-color:#cda654;
+			.img {
+				background-position: 127px 6px;
+			}
 		}
 
 		.mg-li{
-			height:100%;
-			width:80px;
-			background: url("../img/mg-normal.png");
-		}
-
-		.mg-li:hover{
-			background: url("../img/mg-down.png");
-			background-color:#cda654;
+			.img {
+				background-position: 60px 6px;
+			}
 		}
 	}
 
@@ -372,7 +414,7 @@
 					width: 24px;
 				    height: 24px;
 				    position: relative;
-				    bottom: 2px;
+				    top: 6px;
 				    right: 15px;
 				}
 			}
@@ -616,6 +658,7 @@
 			margin: 0 $topModuleGap;
 			float: left;
 
+
 			.unslider-nav {
 				position: relative;
 				top: -125px;
@@ -757,67 +800,7 @@
 		}
 
 		.middle-module{
-			height:50px;
 			width: $baseWidth;
-			margin-top: 10px;
-			background:#48463A;
-			line-height:50px;
-			float:left;
-
-			li {
-				float:left;;
-				list-style: none;
-				color:#fff;
-			}
-
-			li img{
-				height:100%;
-				vertical-align:middle;
-			}
-
-			.pt-li{
-				height:100%;
-				width:80px;
-				background: url("../img/pt-normal.png");
-			}
-
-			.pt-li:hover{
-				background: url("../img/pt-down.png");
-				background-color:#cda654;
-			}
-
-			.bbin-li:hover{
-				background: url("../img/bbin-down.png");
-				background-color:#cda654;
-			}
-
-			.bbin-li{
-				height:100%;
-				width:80px;
-				background: url("../img/bbin-normal.png");
-			}
-
-			.ag-li{
-				height:100%;
-				width:80px;
-				background: url("../img/ag-normal.png");
-			}
-
-			.ag-li:hover{
-				background: url("../img/ag-down.png");
-				background-color:#cda654;
-			}
-
-			.mg-li{
-				height:100%;
-				width:80px;
-				background: url("../img/mg-normal.png");
-			}
-
-			.mg-li:hover{
-				background: url("../img/mg-down.png");
-				background-color:#cda654;
-			}
 		}
 
 		.middle-right-module{
