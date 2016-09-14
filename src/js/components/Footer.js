@@ -69,6 +69,7 @@
 											'<img src="../img/firefox-gray.png">' +
 											'<span>Firefox</span>' +
 										'</li>' +
+										
 										'<li data-value="safari">' +
 											'<img src="../img/safari-gray.png">' +
 											'<span>Safari</span>' +
