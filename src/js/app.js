@@ -8,7 +8,6 @@
 	function app () {
 		this.zone = $('.app');
 		this.init();
-		this.bindEvents();
 		this.showPromotion();
 	}
 
@@ -30,7 +29,7 @@
 					this.footer.getDom();
 
 		this.zone.append(this.el);
-		this.homePage.bindEvents();
+		this.bindEvents();
 		//this.initRouter();
 		this.goTo('homePage');
 	};
@@ -74,6 +73,14 @@
 		} else {
 			$('.main-wrapper').removeClass('home');
 		}
+
+		// if (pageName === 'sportsCompetition' || 
+		// 	pageName === 'lotteryGame' || 
+		// 	pageName === 'clientDownload') {
+		// 	this.footer.fixToBottom();
+		// } else {
+		// 	this.footer.releaseFix();
+		// }
 
 		that[pageName].show();
 	};

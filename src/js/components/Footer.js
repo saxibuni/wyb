@@ -104,6 +104,14 @@
 		return this.el;
 	};
 
+	Footer.prototype.fixToBottom = function () {
+		this.zone.addClass('fix-bottom');
+	};
+
+	Footer.prototype.releaseFix = function () {
+		this.zone.removeClass('fix-bottom');
+	};
+
 	Footer.prototype.bindEvents = function () {
 		var featureUl;
 		var pageName;

@@ -103,7 +103,7 @@ gulp.task('build', function () {
         ])
         .pipe(sass())
         .pipe(flatten())
-        .pipe(addsrc.prepend([  'src/lib/css/bootstrap.min.css',
+        .pipe(addsrc.prepend([  'src/lib/css/jquery.datetimepicker.css',
                                 'src/lib/css/unslider.css',
                                 'src/lib/css/unslider-dots.css']))
         .pipe(concat('app.css'))
