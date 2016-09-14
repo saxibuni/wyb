@@ -7,29 +7,24 @@
 		var temp =	'<div class="page client-download">' +
 						'<div class="wrapper">' +
 							'<div class="title">' +
-								'<div class="img img1 selected">' +
-									'<img class="normal" src="../img/pt-normal.png">' +
-									'<img class="down" src="../img/pt-down.png">' +
-									'<span>真人、老虎机</span>' +
-								'</div>' +
-
-								'<div class="img img2">' +
-									'<img class="normal" src="../img/bbin-normal.png">' +
-									'<img class="down" src="../img/bbin-down.png">' +
-									'<span>真人、老虎机</span>' +
-								'</div>' +
-
-								'<div class="img img3">' +
-									'<img class="normal" src="../img/ag-normal.png">' +
-									'<img class="down" src="../img/ag-down.png">' +
-									'<span>真人、老虎机</span>' +
-								'</div>' +
-
-								'<div class="img img4">' +
-									'<img class="normal" src="../img/mg-normal.png">' +
-									'<img class="down" src="../img/mg-down.png">' +
-									'<span>真人、老虎机</span>' +
-								'</div>' +
+								'<ul class="title-ul">' +
+									'<li class="pt-li">' +
+										'<span class="img pt-img"></span>' +
+										'<span class="name">真人、老虎机</span>' +
+									'</li>'+
+									'<li class="bbin-li">' +
+										'<span class="img bbin-img"></span>' +
+										'<span class="name">真人、老虎机</span>' +
+									'</li>'+
+									'<li class="ag-li">' +
+										'<span class="img ag-img"></span>' +
+										'<span class="name">真人、老虎机</span>' +
+									'</li>'+
+									'<li class="mg-li">' +
+										'<span class="img mg-img"></span>' +
+										'<span class="name">真人、老虎机</span>' +
+									'</li>'+
+								'</ul>' +
 							'</div>' +
 
 							'<div class="content">' +
@@ -111,13 +106,13 @@
 
 	ClientDownload.prototype.bindEvents = function () {
 		var that = this;
-		var titleImgs;
+		var titleUl;
 
 		this.zone = $('.client-download');
-		titleImgs = this.zone.find('.title .img');
+		titleUl = this.zone.find('.title-ul');
 
-		titleImgs.click(function () {
-			titleImgs.removeClass('selected');
+		titleUl.delegate('li', 'click', function () {
+			titleUl.find('li').removeClass('selected');
 			$(this).addClass('selected');
 		});
 	};

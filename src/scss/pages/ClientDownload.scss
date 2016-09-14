@@ -18,58 +18,104 @@
 			width: $contentWidth - 42px;
 			transition: all .5s;
 
-			.img {
-				cursor: pointer;
-				display: inline-block;
+			.title-ul {
 				height: 50px;
-				line-height: 50px;
-
-				.normal {
+				width: 100%;
+				
+				li {
+					cursor: pointer;
+					float:left;;
+					list-style: none;
+					color:#fff;
+					height:100%;
 					display: inline-block;
-				}
+					margin-left: 20px;
+					z-index: 20;
 
-				.down {
-					display: none;
-				}
-
-				span {
-				    display: none;
-				    position: relative;
-				    bottom: 20px;
-				    color: #837454;
-				    padding-right: 10px;
-				    left: 0;		
-				}
-
-				&:hover {
-					background-color: #CDA654;
-					color: #FFF;
-
-					.normal {
-						display: none;
+					.img {
+						background: url("../img/merchants-logo.png");
+						display: inline-block;
+						width: 50px;
+						height: 100%;
+						overflow: hidden;
 					}
 
-					.down {
+					.name {
+						display: none;
+						width: 100px;
+						height:100%;
+						vertical-align: top;
+						text-align: left;
+					}
+
+					&:hover {
+						background-color:#cda654;
+
+						.pt-img {
+							background-position: 5px 60px;
+						}
+
+						.bbin-img {
+							background-position: 191px 60px;
+						}
+
+						.ag-img {
+							background-position: 127px 60px;
+						}
+
+						.mg-img {
+							background-position: 60px 60px;
+						}
+					}
+				}
+
+				.selected {
+					background-color:#cda654;
+
+					.name {
 						display: inline-block;
 					}
+
+					.pt-img {
+						background-position: 5px 60px;
+					}
+
+					.bbin-img {
+						background-position: 191px 60px;
+					}
+
+					.ag-img {
+						background-position: 127px 60px;
+					}
+
+					.mg-img {
+						background-position: 60px 60px;
+					}
 				}
-			}
 
-			.selected {
-				background-color: #CDA654;
 
-				.normal {
-					display: none;
+				.pt-li{
+					.img {
+						background-position: 5px 6px;
+					}
 				}
 
-				.down {
-					display: inline-block;
+				.bbin-li{
+					.img {
+						background-position: 191px 6px;
+					}
 				}
 
-				span {
-					color: #FFF;
-					display: inline-block;
-					position: relative;
+				.ag-li{
+					.img {
+						background-position: 127px 6px;
+					}
+				}
+
+				.mg-li{
+					.img {
+						background-position: 60px 6px;
+					}
 				}
 			}
 		}
