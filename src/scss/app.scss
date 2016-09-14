@@ -13,14 +13,13 @@ body {
 
 	.main {
 		background-color: $theme-background-color;
-		position: relative;
-		top: $headerHeight;
+		margin-top: $headerHeight;
 		font-size: 14px;
 		text-align: center;
 		width: 100%;
 		overflow: hidden;
     	display: inline-block;
-    	transition: top .3s;
+    	transition: all .3s;
 
 		.logo-wrapper {
 			height: 236px;

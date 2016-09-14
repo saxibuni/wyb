@@ -388,13 +388,13 @@
 					'height': '0',
 					'opacity': '0'
 				});
-				$('.app .main').css('top', '30px');
+				$('.app .main').css('margin-top', '30px');
 			} else {
 				headRow2.css({
 					'height': '55px',
 					'opacity':'1'
 				});
-				$('.app .main').css('top', '85px');
+				$('.app .main').css('margin-top', '85px');
 			}
 		});
 
@@ -430,20 +430,20 @@
 		$(document).scroll(function(e) {
 			that.hideHeaderFloatWindow();
 
-			if (document.body.scrollTop > 15) {
+			if (document.body.scrollTop > 50) {
 				headRow2.css({
 					'height': '0',
 					'opacity':'0'
 				});
 				that.zone.addClass('fixed-header');
-				$('.app .main').css('top', '30px');
+				$('.app .main').css('margin-top', '30px');
 			} else {
 				headRow2.css({
 					'height': '55px',
 					'opacity':'1'
 				});
 				that.zone.removeClass('fixed-header');
-				$('.app .main').css('top', '85px');
+				$('.app .main').css('margin-top', '85px');
 			}
 		});
 
