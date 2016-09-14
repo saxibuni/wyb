@@ -2,7 +2,7 @@ $(function(){
 	function Pager(opt){
 		this.opt = opt;
 		this.id = opt.id;
-		this.pageSize = 10;
+		this.pageSize = opt.pageSize || 10;
 		this.pageIndex = 0;
 		this.callback = opt.callback;		
 		this.pageCount = Math.ceil(opt.totalCount / this.pageSize);

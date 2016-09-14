@@ -199,11 +199,7 @@ $(function(){
 		currentData = this.stationLetterData.filter(function(item, index){
 			return index >= pageIndex * 10 && index < (pageIndex + 1) * 10;
 		});
-		 									// 	'<tr>' +
-									// 	'<td><input type="checkbox" checked="checked" /></td>' +
-									// 	'<td><p>2016-08-01奥运会活动开启，敬请关注</p></td>' +
-									// 	'<td>2016-09-09&nbsp;11:11:11</td>' +
-									// '</tr>' +
+
 		for(i = 0; i < currentData.length; i++){
 			if (i % 2 == 0) {
 				dom +=	'<tr class="odd">' +
