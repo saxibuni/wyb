@@ -61,21 +61,21 @@
 									'</div>' +
 
 									'<ul>' +
-										'<li>' +
-											'<img src="../img/ie-gray.png">' +
-											'<span>IE9.0+</span>' +
-										'</li>' +
-										'<li>' +
+										'<li data-value="chrome">' +
 											'<img src="../img/chrome-gray.png">' +
 											'<span>Chrome</span>' +
 										'</li>' +
-										'<li>' +
+										'<li data-value="firefox">' +
+											'<img src="../img/firefox-gray.png">' +
+											'<span>Firefox</span>' +
+										'</li>' +
+										'<li data-value="safari">' +
 											'<img src="../img/safari-gray.png">' +
 											'<span>Safari</span>' +
 										'</li>' +
-										'<li>' +
-											'<img src="../img/firefox-gray.png">' +
-											'<span>Firefox</span>' +
+										'<li data-value="ie">' +
+											'<img src="../img/ie-gray.png">' +
+											'<span>IE9.0+</span>' +
 										'</li>' +
 									'</ul>' +
 								'</div>' +
@@ -106,16 +106,33 @@
 	Footer.prototype.bindEvents = function () {
 		var featureUl;
 		var pageName;
+		var downLoadUl;
+		var browserName;
 		var that = this;
 
 		this.zone = $('.footer');
 
-		featureUl = this.zone.find('.footer-left .row1');
+		featureUl  = this.zone.find('.footer-left .row1');
+		downLoadUl = this.zone.find('.footer-right .row1 ul');
 
 		featureUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');
 			//page('/' + pageName);
 			app.goTo(pageName);
+		});
+
+		downLoadUl.delegate('li', 'click', function () {
+			browserName = $(this).attr('data-value');
+
+			if (browserName === 'ie') {
+				window.open('https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads');
+			} else if (browserName === 'chrome') {
+				window.open('https://www.google.com/intl/zh-CN/chrome/browser/desktop/index.html');
+			} else if (browserName === 'safari') {
+
+			} else if (browserName === 'firefox') {
+				window.open('http://www.firefox.com.cn/download/');
+			}
 		});
 
 	};

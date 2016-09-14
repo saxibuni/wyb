@@ -78,7 +78,6 @@ gulp.task('prepare', ['clean'], function () {
 gulp.task('build', function () {
     gulp.src([
             'src/lib/js/jquery.min.js',
-            'src/lib/js/bootstrap.min.js',
             'src/lib/js/page.js',
             'src/lib/js/jquery.datetimepicker.js',
             'src/lib/js/jquery.history.js',
@@ -105,7 +104,6 @@ gulp.task('build', function () {
         .pipe(sass())
         .pipe(flatten())
         .pipe(addsrc.prepend([  'src/lib/css/bootstrap.min.css',
-                                'src/lib/css/jquery.datetimepicker.css',
                                 'src/lib/css/unslider.css',
                                 'src/lib/css/unslider-dots.css']))
         .pipe(concat('app.css'))
