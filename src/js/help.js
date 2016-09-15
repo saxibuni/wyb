@@ -24,7 +24,7 @@
                                     '<li data-value="partner"><span>合作伙伴</span><div></div></li>' +
                                     '<li data-value="faq"><span>常见问题</span><div></div></li>' +
                                 '</ul>' +
-                                '<div class="stick"></div>' +
+                                //'<div class="stick"></div>' +
                             '</div>' +
 
                             '<div class="container">' +
@@ -360,11 +360,11 @@
 
         this.zone = $('.help-center');
         pageUl = this.zone.find('.tree ul');
-        stick = this.zone.find('.stick');
+        //stick = this.zone.find('.stick');
 
         pageUl.delegate('li','click',function() {
             index = $(this).index();
-            stick.css('top',(index * 40 + 51) + 'px');
+            //stick.css('top',(index * 40 + 51) + 'px');
             name = $(this).attr('data-value');
             
             pageUl.find('li').removeClass('selected');
