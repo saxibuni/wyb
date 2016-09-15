@@ -4,6 +4,7 @@
 	function Help () {
 		this.init();
 		this.bindEvents();
+        this.show();
 	}
 
 	Help.prototype.init = function () {
@@ -330,7 +331,19 @@
     };
 
     Help.prototype.show = function() {
-        this.zone.show();
+        var name;
+        var url = window.location.href;
+        var pos = url.indexOf('item=');
+
+        if (pos === -1) {
+            name = 'aboutus';
+        } else {
+            name = url.substring(pos + 5);
+        }
+        debugger;
+        this.zone.find('.content-item').hide();
+        this.zone.find('.' + name).show();
+        this.zone.find('.tree ul li[data-value=' + name + ']').addClass('selected');
         this.zone.find('.tree').height(this.zone.find('.container').outerHeight());
     }
 
@@ -353,6 +366,10 @@
             index = $(this).index();
             stick.css('top',(index * 40 + 51) + 'px');
             name = $(this).attr('data-value');
+            
+            pageUl.find('li').removeClass('selected');
+            $(this).addClass('selected');
+
             that.zone.find('.content-item').hide();
             that.zone.find('.' + name).show();
         });

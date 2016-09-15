@@ -61,6 +61,7 @@ $(function(){
 				balance: '4,000.00'	
 			}
 		];
+		
 		this.subWallets = [];
 
 		this.tabData = {

@@ -9,11 +9,11 @@
 							'<div class="footer-left">' +
 								'<div class="row1">' +
 									'<ul>' +
-										'<li><span>关于我们</span></li>' +
-										'<li><span>联系我们</span></li>' +
-										'<li><span>存取款帮助</span></li>' +
-										'<li><span>常见问题</span></li>' +
-										'<li><span>合作伙伴</span></li>' +
+										'<li data-value="aboutus"><span>关于我们</span></li>' +
+										'<li data-value="contactus"><span>联系我们</span></li>' +
+										'<li data-value="deposithelp"><span>存取款帮助</span></li>' +
+										'<li data-value="faq"><span>常见问题</span></li>' +
+										'<li data-value="partner"><span>合作伙伴</span></li>' +
 										'<li data-value="routeCheck"><span>线路检测</span></li>' +
 									'</ul>' +
 								'</div>' +
@@ -126,8 +126,11 @@
 
 		featureUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');
-			//page('/' + pageName);
-			app.goTo(pageName);
+			if (pageName === 'routeCheck') {
+				app.goTo(pageName);
+			} else {
+				window.open('help.html?item=' + pageName);
+			}
 		});
 
 		downLoadUl.delegate('li', 'click', function () {
