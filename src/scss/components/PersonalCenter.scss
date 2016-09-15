@@ -15,6 +15,8 @@ $scaleValue : 0.8;
 
             background-color: #2F2F2C;
             padding: 8px 12px;
+            position: relative;
+            transition: all .5s;
 
             .left-container {
                 width: 144px;
@@ -260,6 +262,20 @@ $scaleValue : 0.8;
                         max-height: 452px;
                         overflow-y: auto;
                     }
+                }
+            }
+
+            .close {
+                color: #000;
+                font-size: 30px;
+                top: 3px;
+                right: 20px;
+                position: absolute;
+                z-index: 20;
+                cursor: pointer;
+
+                &:hover {
+                    color: #DCAD4B;
                 }
             }
         }

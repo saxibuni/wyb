@@ -150,6 +150,8 @@ $(function(){
 										'</div>' +
 									'</div>' +
 	 							'</div>' +
+
+	 							'<div class="close">×</div>' +
 								'<div class="clear"></div>' +
 							'</div>' +
 						'</div>' +
@@ -426,7 +428,9 @@ $(function(){
         	}
         });
 
-        this.bindOverlayEvents();
+        this.zone.find('.close').click(function () {
+        	that.hide();
+        });
 	}
 
 	window.PersonalCenter = PersonalCenter;
