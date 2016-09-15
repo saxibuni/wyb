@@ -8,7 +8,6 @@
 	function app () {
 		this.zone = $('.app');
 		this.init();
-		this.showPromotion();
 	}
 
 	app.prototype.init = function () {
@@ -121,13 +120,6 @@
 
 		page();
 		page('/homePage');
-	};
-
-	app.prototype.showPromotion = function () {
-		this.promoActivity = new PromoActivity();
-		$('.app').append(this.promoActivity.getDom());
-		this.promoActivity.bindEvents();
-		this.promoActivity.show();
 	};
 
 	app.prototype.bindEvents = function () {

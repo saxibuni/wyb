@@ -165,7 +165,7 @@
 								'<li data-value="eEntertainment">电子游艺</li>' +
 								'<li data-value="sportsCompetition">体育竞技</li>' +
 								'<li data-value="lotteryGame">彩票游戏</li>' +
-								// '<li data-value="promoActivity">优惠活动</li>' +
+								'<li data-value="promoActivity">优惠活动</li>' +
 								'<li data-value="clientDownload">客户端</li>' +
 								'<div class="stick"></div>' +
 							'</ul>' +
@@ -273,6 +273,16 @@
 		});
 	};
 
+	Header.prototype.showPromotion = function () {
+		if (!this.promoActivity) {
+			this.promoActivity = new PromoActivity();
+			$('.app').append(this.promoActivity.getDom());
+			this.promoActivity.bindEvents();
+		}
+		
+		this.promoActivity.show();
+	};
+
 	Header.prototype.bindEvents = function () {
 		var index;
 		var pagesUl;
@@ -334,7 +344,12 @@
 			index    = $(this).index();
 			stick.css('left', index * 80 + 'px');
 			//page('/' + pageName);
-			app.goTo(pageName);
+
+			if (pageName === 'promoActivity') {
+				that.showPromotion(); 
+			} else {
+				app.goTo(pageName);
+			}
 		});
 
 		grzxNav.click(function(){
