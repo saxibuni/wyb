@@ -51,7 +51,11 @@
 				margin-top: 10px;
 
 				tr {
+					height: 30px;
+					line-height: 30px;
+
 					td {
+						text-align: center;
 						border-right: 1px solid #CCCCCC;
 						border-bottom: 1px solid #CCCCCC;
 					}
