@@ -16,7 +16,7 @@
 
 		this.button2 = new Button({
 			id: 'topup-button2',
-			name: '立即充值',
+			name: '下一步',
 			width: 128,
 			height: 42
 		});
