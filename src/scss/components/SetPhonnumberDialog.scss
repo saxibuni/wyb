@@ -1,0 +1,169 @@
+@import "../mixins.scss";
+
+.set-phonenumber-dialog {
+	@include dialog-frame;
+
+	.dialog-wrapper {
+		@include dialog-wrapper(500px);
+		z-index: 180;
+		top: 50%;
+
+		.dialog {
+			@include dialog(500px, 250px);
+			background-color: #2F2F2C;
+			color: #666666;
+			font-size: 14px;
+			padding: 20px;
+
+			.row1 {
+				.steps {
+					background-color: #FEFEFE;
+					color: #AAA;
+					width: 100%;
+					height: 50px;
+
+					li {
+						display: inline-block;
+						height: 50px;
+						line-height: 50px;
+						width: 33.333%;
+
+						span {
+							border-right: 1px solid #CCCCCC;
+							display: inline-block;
+							width: 100%;
+							height: 30px;
+    						line-height: 30px;
+						}
+
+						&:last-child {
+							span {
+								border-right: none;
+							}
+						}
+					}
+
+					.active {
+					    background-color: #CDA654;
+					    color: #FFF;
+
+					    span {
+					    	border: none;
+					    }
+					}
+				}
+			}
+
+			.content {
+				display: none;
+			}
+
+			.content1 {
+				display: block;
+
+				table {
+					margin: 0 auto;
+					margin-top: 20px;
+
+					tr {
+						height: 40px;
+						lineght: 40px;
+						margin-top: 10px;
+
+						td {
+							text-align: left;
+
+							.input {
+								vertical-align: middle;
+							}
+
+							.button {
+								margin-left: 20px;
+							}
+						}
+
+						.text {
+							text-align: right;
+						}
+					}
+				}
+
+				.buttons {
+					display: inline-block;
+					margin: 0 auto;
+					margin-top: 20px;
+
+					.button {
+						&:last-child {
+							margin-left: 20px;
+						}
+					}
+				}	
+			}
+
+			.content2 {
+				table {
+					margin: 0 auto;
+					margin-top: 20px;
+
+					tr {
+						height: 40px;
+						lineght: 40px;
+						margin-top: 10px;
+
+						td {
+							text-align: left;
+
+							.input {
+								vertical-align: middle;
+							}
+
+							.button {
+								margin-left: 20px;
+							}
+						}
+
+						.text {
+							text-align: right;
+						}
+					}
+				}
+
+				.buttons {
+					display: inline-block;
+					margin: 0 auto;
+					margin-top: 20px;
+
+					.button {
+						&:last-child {
+							margin-left: 20px;
+						}
+					}
+				}	
+			}
+
+			.content {
+				.success {
+					height: 100px;
+					margin-top: 20px;
+
+					.success-img {
+						width: 50%;
+						float: left;
+						text-align: right;
+
+						img {
+							margin-right: 30px;
+						}
+					}
+
+					.success-info {
+						width: 50%;
+						float: right;
+						text-align: left;
+					}
+				}
+			}
+		}
+	}
+}

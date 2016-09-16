@@ -34,14 +34,14 @@ $(function(){
 							'<div class="status pass"></div>' +
 							'<img src="../img/t07.png" /><span class="item">手机号码</span>' +
 							'<span class="text">128******63</span>' +
-							'<a class="phone-detail">修改</a>' +
+							'<a class="set-phonenumber">修改</a>' +
 						'</div>' +
 
 						'<div class="row5">' +
 							'<div class="status pass"></div>' +
-							'<img src="../img/t08.png" /><span class="item">登录密码</span>' +
+							'<img src="../img/t08.png" /><span class="item">电子邮箱</span>' +
 							'<span class="text">立即绑定</span>' +
-							'<a class="email-detail">修改</a>' +
+							'<a class="set-email">修改</a>' +
 						'</div>' +
 
 					'</div>' +								
@@ -56,7 +56,7 @@ $(function(){
 
 	SecurityCenter.prototype.show = function(){
 		this.zone.show();
-	}
+	};
 
 	SecurityCenter.prototype.hide = function(){
 		this.zone.hide();
@@ -84,8 +84,25 @@ $(function(){
 			}
 			that.setPwdDialog.show();
 		});
-		
-	}
+	
+		this.zone.find('.set-phonenumber').click(function(){
+			if (!that.setPhonenumberDialog) {
+				that.setPhonenumberDialog = new SetPhonenumberDialog();
+				$('.app').append(that.setPhonenumberDialog.getDom());
+				that.setPhonenumberDialog.bindEvents();
+			}
+			that.setPhonenumberDialog.show();
+		});
+
+		this.zone.find('.set-email').click(function(){
+			if (!that.setEmailDialog) {
+				that.setEmailDialog = new SetEmailDialog();
+				$('.app').append(that.setEmailDialog.getDom());
+				that.setEmailDialog.bindEvents();
+			}
+			that.setEmailDialog.show();
+		});	
+	};
 
 	window.SecurityCenter = SecurityCenter;
 }());

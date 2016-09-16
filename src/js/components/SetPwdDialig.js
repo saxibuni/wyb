@@ -44,15 +44,15 @@ $(function(){
 
 	SetPwdDialog.prototype.getDom = function(){
 		return this.el;
-	}
+	};
 
 	SetPwdDialog.prototype.show = function(){
 		this.showOverlay();
-	}
+	};
 
 	SetPwdDialog.prototype.hide = function(){
 		this.hideOverlay();
-	}
+	};
 
 	SetPwdDialog.prototype.bindEvents = function(){
 		var that = this;
@@ -62,7 +62,7 @@ $(function(){
 
 
         this.bindOverlayEvents();
-	}
+	};
 
 	window.SetPwdDialog = SetPwdDialog;
 
