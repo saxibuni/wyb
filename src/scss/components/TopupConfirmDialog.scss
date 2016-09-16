@@ -1,0 +1,166 @@
+@import "../mixins.scss";
+
+.topup-confirm-dialog {
+	@include dialog-frame;
+
+	.dialog-wrapper {
+		@include dialog-wrapper(420px);
+		z-index: 170;
+		top: 50%;
+
+		.dialog {
+			@include dialog(420px, 450px);
+			background-color: #F2F2F2;
+			font-size: 14px;
+
+			.row1 {
+				height: 50px;
+				line-height: 50px;
+				position: relative;
+
+				.title {
+					color: #000;
+					font-size: 16px;
+					text-align: center;
+				}
+
+	            .close {
+	                color: #CCCCCC;
+	                font-size: 30px;
+				    top: -5px;
+				    right: 15px;
+	                position: absolute;
+	                z-index: 20;
+	                cursor: pointer;
+
+	                &:hover {
+	                    color: #DCAD4B;
+	                }
+	            }
+			}
+
+			.row2 {
+				background-color: #FFF;
+				border: 1px solid #CCCCCC;
+				height: 100px;
+			    margin: 0 10px;
+			    font-size: 12px;
+
+				.row2-left {
+					float: left;
+					display: inline-block;
+					height: 40%;
+					width: 60%;
+
+					table {
+						height: 100%;
+						width: 95%;
+
+						tr {
+							height: 30px;
+							line-height: 30px;
+
+							.name {
+								text-align: right;
+							}
+
+							.value {
+								text-align: left;
+							}
+						}
+					}
+				}
+
+				.row2-right {	
+					float: right;
+					display: inline-block;
+					height: 40%;
+					width: 40%;
+
+					.countdown {
+						.countdown-time {
+							color: #F44238;
+							font-size: 26px;
+						}
+
+						.countdown-info {
+							border: 1px solid #CCCCCC;
+							margin: 10px;
+							height: 40px;
+							padding: 5px;
+						}
+					}
+				}
+			}
+
+			.row3 {
+				.title {
+					color: #323232;
+					height: 30px;
+					line-height: 30px;
+					font-size: 16px;
+					font-weight: bold;
+				}
+
+				table {
+					border-top: 1px solid #CCCCCC;
+					border-left: 1px solid #CCCCCC;
+					font-size: 12px;
+					width: 100%;
+					height: 120px;
+
+					tr {
+						height: 30px;
+						line-height: 30px;
+
+						td {
+							border-bottom: 1px solid #CCCCCC;
+							border-right: 1px solid #CCCCCC;
+						}
+
+						.name {
+							width: 30%;
+						}
+
+						.value {
+							width: 70%;
+						}
+
+						.left {
+							float: left;
+							margin-left: 10px;
+						}
+
+						.right {
+							float: right;
+							margin-right: 10px;
+						}
+
+						.copy {
+							cursor: pointer;
+							
+							&:hover {
+								color: #CDA654;
+							}
+						}
+					}
+				}
+			}
+
+			.row4 {
+				font-size: 12px;
+				height: 50px;
+				border: 1px dashed #CCCCCC;
+				margin: 5px;
+				padding: 6px;
+				text-align: left;
+				color: #949494;
+			}
+
+			.row5 {
+				height: 50px;
+				line-height: 50px;
+			}
+		}
+	}
+}

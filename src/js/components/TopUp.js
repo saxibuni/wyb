@@ -235,6 +235,7 @@
 		var bankCardsUl;
 		var content;
 		var contentName;
+		var that = this;
 
 		this.zone    = $('.top-up');
 		content      = this.zone.find('.content');
@@ -255,6 +256,24 @@
 			$(this).addClass('selected');
 			bankCardsUl.find('input[type="radio"]').attr('checked',false);
 			$(this).find('input[type="radio"]').attr('checked',true);
+		});
+
+		this.zone.find('#topup-button').click(function () {
+			window.open('http://www.baidu.com');
+		});
+
+		this.zone.find('#topup-button2').click(function () {
+			if (!that.topupConfirmDialog) {
+				that.topupConfirmDialog = new TopupConfirmDialog();
+				$('.app').append(that.topupConfirmDialog.getDom());
+				that.topupConfirmDialog.bindEvents();
+			}
+
+			that.topupConfirmDialog.show();
+		});
+
+		this.zone.find('#topup-button3').click(function () {
+			window.open('http://www.baidu.com');
 		});
 
 		this.button.bindEvents();
