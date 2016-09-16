@@ -173,7 +173,7 @@
 
 										this.step3Button.getDom() +
 									'</div>' +
-								'</div>'
+								'</div>' +
 							'</div>' +
 						'</div>' +
 					'</div>' +
