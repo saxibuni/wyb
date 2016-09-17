@@ -217,15 +217,11 @@
 							'<div class="clear"></div>' +
 						'</div>';
 
-		row1.animate({'top': '-60px'}, 500, function () {
-			row1.remove();
-		});
-
-		row2.animate({'top': '-30px'}, 500, function () {
-			row2.remove();
-		});
-
+		row1.animate({'top': '-60px'});
+		row2.animate({'top': '-30px'});
 		row3.animate({'top': '0'}, 500,function () {
+			row1.remove();
+			row2.remove();
 			wrapper.append(temp);
 		});
 	};
