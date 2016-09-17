@@ -148,10 +148,10 @@
 			});
 		}
 
-		$(".left-list").myScroll({
-			speed:40, //数值越大，速度越慢
-			rowHeight:30 //li的高度
-		});
+		// $(".left-list").myScroll({
+		// 	speed:40, //数值越大，速度越慢
+		// 	rowHeight:30 //li的高度
+		// });
 
 		$('.slider').data('run', true);
 	};
@@ -254,68 +254,68 @@
 			$(this).addClass('selected');
 		});
 
-		$(document).scroll(function(e) {
-		    var viewH     = $('body').height();
-		    var contentH  = $('body').get(0).scrollHeight; 
-		    var scrollTop = $('body').scrollTop();
+		// $(document).scroll(function(e) {
+		//     var viewH     = $('body').height();
+		//     var contentH  = $('body').get(0).scrollHeight; 
+		//     var scrollTop = $('body').scrollTop();
 
-		    if (imgUl.children('li').length > 72) {
-		    	moreGame.html('没有更多');
-		    	return;
-		    }
+		//     if (imgUl.children('li').length > 72) {
+		//     	moreGame.html('没有更多');
+		//     	return;
+		//     }
 
-		    if (contentH - viewH - scrollTop <= 10) {
-		    	moreGame.html('加载中...');
+		//     if (contentH - viewH - scrollTop <= 10) {
+		//     	moreGame.html('加载中...');
 
-		    	setTimeout(function () {
-		    		imgUl.append(that.getGameList());
-		    		moreGame.html('更多游戏');
-		    	}, 2000);
-		    }
-		});
+		//     	setTimeout(function () {
+		//     		imgUl.append(that.getGameList());
+		//     		moreGame.html('更多游戏');
+		//     	}, 2000);
+		//     }
+		// });
 
-		function marquee(obj, step){
-			 obj.find("ul").animate({
-				 marginTop: '-=1'
-			 },0,function(){
-				 var s = Math.abs(parseInt($(this).css("margin-top")));
-				 if(s >= step){
-					 $(this).find("li").slice(0, 1).appendTo($(this));
-					 $(this).css("margin-top", 0);
-				 }
-			 });
-		 }
-		var _scroll = setInterval(function(){
-			if($(".marqueen").find("ul").height()<=$(".marqueen").height()){
-				clearInterval(_scroll);
-			}else{
-				marquee($(".marqueen"), 30);
-			}
-		}, 100);
+		// function marquee(obj, step){
+		// 	 obj.find("ul").animate({
+		// 		 marginTop: '-=1'
+		// 	 },0,function(){
+		// 		 var s = Math.abs(parseInt($(this).css("margin-top")));
+		// 		 if(s >= step){
+		// 			 $(this).find("li").slice(0, 1).appendTo($(this));
+		// 			 $(this).css("margin-top", 0);
+		// 		 }
+		// 	 });
+		//  }
+		// var _scroll = setInterval(function(){
+		// 	if($(".marqueen").find("ul").height()<=$(".marqueen").height()){
+		// 		clearInterval(_scroll);
+		// 	}else{
+		// 		marquee($(".marqueen"), 30);
+		// 	}
+		// }, 100);
 
-		$(".marqueen").hover(function(){
-			clearInterval(_scroll);
-		},function(){
-			_scroll = setInterval(function(){
-				if($(".marqueen").find("ul").height()<=$(".marqueen").height()){
-					clearInterval(_scroll);
-				}else{
-					marquee($(".marqueen"), 30);
-				}
-			}, 100);
-		});
+		// $(".marqueen").hover(function(){
+		// 	clearInterval(_scroll);
+		// },function(){
+		// 	_scroll = setInterval(function(){
+		// 		if($(".marqueen").find("ul").height()<=$(".marqueen").height()){
+		// 			clearInterval(_scroll);
+		// 		}else{
+		// 			marquee($(".marqueen"), 30);
+		// 		}
+		// 	}, 100);
+		// });
 	};
 
-	(function($){
-		$.fn.myScroll = function(options){
-			var defaults = {
-				speed:40,
-				rowHeight:24 
-			};
+	// (function($){
+	// 	$.fn.myScroll = function(options){
+	// 		var defaults = {
+	// 			speed:40,
+	// 			rowHeight:24 
+	// 		};
 
-			var opts = $.extend({}, defaults, options),intId = [];
-		}
-	})(jQuery);
+	// 		var opts = $.extend({}, defaults, options),intId = [];
+	// 	}
+	// })(jQuery);
 
 	window.EEntertainment = EEntertainment;
 }());

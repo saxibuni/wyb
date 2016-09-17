@@ -86,7 +86,7 @@
 						'</div>';
 
 		$('.main .logo-wrapper').html(logoTemp);
-		$('.main .logo-wrapper').css('height', $('.live-video-sliders').css('height'));
+		$('.main .logo-wrapper').css('height', '240px');
 		$('.live-video-sliders').show();
 	};
 
