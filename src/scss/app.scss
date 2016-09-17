@@ -65,7 +65,7 @@ body {
 			}
 
 			.next {
-				right: 100px;
+				right: -496px;
 				background: url('../img/right-normal.png') no-repeat;
 			}
 
@@ -120,6 +120,10 @@ body {
 		.main {
 			.logo-wrapper {
 				width: 100%;
+
+				.next {
+					right: -436px;
+				}
 			}
 
 			.main-wrapper {
