@@ -136,16 +136,16 @@ $(function(){
 									'<div class="clear"></div>' +
 
 									'<div class="tab-container">' +
-										'<div class="zjgl-zone" menu-index="0">' +
+										'<div class="tab-container-item zjgl-zone" menu-index="0">' +
 											this.createZjgl() +	
 										'</div>' +
-										'<div class="jyjl-zone" menu-index="1">' +
+										'<div class="tab-container-item jyjl-zone" menu-index="1">' +
 											// this.createJyjl() +
 										'</div>' +
-										'<div class="zhsz-zone" menu-index="2">' +
+										'<div class="tab-container-item zhsz-zone" menu-index="2">' +
 											// this.createZhsz() +
 										'</div>' +
-										'<div class="znx-zone" menu-index="3">' +
+										'<div class="tab-container-item znx-zone" menu-index="3">' +
 											// this.createZnx() +
 										'</div>' +
 									'</div>' +
@@ -168,16 +168,17 @@ $(function(){
 		var arr;
 
 		if (route) {
+			this.zone.find('.tab-container-item').hide();
 			arr = route.split('/');
 
 			if (arr[0] === 'zjgl') {
-
+				this.zone.find('[menu-index="0"]').click();
 			} else if (arr[0] === 'jyjl') {
-
+				this.zone.find('[menu-index="1"]').click();
 			} else if (arr[0] === 'zhsz') {
-				
+				this.zone.find('[menu-index="2"]').click();
 			} else if (arr[0] === 'znx') {
-				
+				this.zone.find('[menu-index="3"]').click();
 			}
  		}
 

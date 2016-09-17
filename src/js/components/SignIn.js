@@ -76,6 +76,14 @@
 		this.hideOverlay();
 	};
 
+	SignIn.prototype.checkInputPass = function () {
+		if (this.usernamePass && this.passwordPass && this.verifyPass) {
+			this.zone.find('.row5 .button').addClass('active');
+		} else {
+			this.zone.find('.row5 .button').removeClass('active');
+		}
+	};
+
 	SignIn.prototype.bindEvents = function () {
 		var usernameInput;
 		var passwordInput;
@@ -86,17 +94,18 @@
 		var value2;
 		var usernameReg   = '^[A-Za-z0-9]{6,12}$';
 		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
-		var verifyReg     = '';
+		var verifyReg     = '^[0-9]{4}$';
 		var inputEvents   = 'input';
 		var that          = this;
 
 		this.usernamePass   = false;
 		this.passwordPass   = false;
+		this.verifyPass     = false;
 
 		this.zone = $('.sign-in');
 		usernameInput   = this.zone.find('.row2 input:text');
 		passwordInput   = this.zone.find('.row3 input:password');
-		verifyInput     = this.zone.find('.row6 input:text');
+		verifyInput     = this.zone.find('.row4 input:text');
 		close           = this.zone.find('.close');
 		button          = this.zone.find('.row5 .button');
 
@@ -112,6 +121,8 @@
 				$(this).siblings('.pass').show();
 				that.usernamePass = true;
 			}
+
+			that.checkInputPass();
 		});
 
 		passwordInput.bind(inputEvents, function () {
@@ -126,6 +137,20 @@
 				$(this).siblings('.pass').show();
 				that.passwordPass = true;
 			}
+
+			that.checkInputPass();
+		});
+
+		verifyInput.bind(inputEvents, function () {
+			value = $(this).val();
+
+			if (!value.match(verifyReg)) {
+				that.verifyPass = false;
+			} else {
+				that.verifyPass = true;
+			}
+
+			that.checkInputPass();
 		});
 
 		close.click(function () {
