@@ -221,15 +221,23 @@
 						postion: relative;
 
 						.table {
-						    position: absolute;
+						    position: relative;
 						    width: 300px;
-						    top: 85px;
+						    top: -150px;
 						    height: 90px;
-						    left: 80px;
+						    overflow: hidden;
 
-						    .tr {
-						    	height: 30px;
-						    	line-height: 30px;
+						    .tbody {
+						    	position: absolute;
+						    	width: 100%;
+    							left: 0;
+    							top: 0;
+    							transition: top 5s ease-out;
+
+							    .tr {
+							    	height: 30px;
+							    	line-height: 30px;
+							    }
 						    }
 						}
 

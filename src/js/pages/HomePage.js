@@ -75,30 +75,7 @@
 
 											'<div class="table">' +
 												'<div class="tbody">' +
-													'<div class="tr">' +
-														'<span class="td1">' +
-															'dong62191***' +
-														'</span>' +
-														'<span class="td2">' +
-															'Macbook Pro' +
-														'</span>' +
-													'</div>' +
-													'<div class="tr">' +
-														'<span class="td1">' +
-															'dong62191***' +
-														'</span>' +
-														'<span class="td2">' +
-															'Macbook Pro' +
-														'</span>' +
-													'</div>' +
-													'<div class="tr">' +
-														'<span class="td1">' +
-															'dong62191***' +
-														'</span>' +
-														'<span class="td2">' +
-															'Macbook Pro' +
-														'</span>' +
-													'</div>' +
+													this.createLuckyDrawItems() +
 												'</div>' +
 											'</div>' +
 
@@ -118,6 +95,34 @@
 
 	HomePage.prototype.getDom = function () {
 		return this.el;
+	};
+
+	HomePage.prototype.createLuckyDrawItems = function () {
+		var i;
+		var temp = '';
+		var data = {
+			name: 'dong62192******',
+			gift: 'Macbook Pro'
+		};
+
+		for (i = 0; i < 100; i++) {
+			temp += this.createLuckyDrawItem(data);
+		}
+
+		return temp;
+	};
+
+	HomePage.prototype.createLuckyDrawItem = function (data) {
+		var temp =	'<div class="tr">' +
+						'<span class="td1">' +
+							data.name +
+						'</span>' +
+						'<span class="td2">' +
+							data.gift +
+						'</span>' +
+					'</div>';
+
+		return temp;
 	};
 
 	HomePage.prototype.show = function () {
@@ -148,10 +153,20 @@
 	};
 
 	HomePage.prototype.bindEvents = function () {
+		var luckyDrawButton;
 		var luckyDrawTable;
 
-		this.zone = $('.home-page');
-		luckyDrawTable = this.zone.find('.zone2-down .table .tbody');
+		this.zone        = $('.home-page');
+		luckyDrawTable   = this.zone.find('.zone2-down .table .tbody');
+		luckyDrawButton  = this.zone.find('.zone2-down .lucky-draw');
+
+		luckyDrawButton.click(function () {
+			if (luckyDrawTable.css('top') !== '-2100px') {
+				luckyDrawTable.css('top', '-2100px');
+			} else {
+				luckyDrawTable.css('top', '0');
+			}
+		})
 	};
 
 	window.HomePage = HomePage;
