@@ -33,9 +33,9 @@
 
 							'<div class="money-actions">' +
 							 	'<div class="wrapper">' +
-									'<div class="grzx-layer cz action"><span>充值</span></div>' +
-									'<div class="grzx-layer tk action"><span>提款</span></div>' +
-									'<div class="grzx-layer zz action"><span>转账</span></div>' +
+									'<div class="grzx-layer action" data-value="0 0"><span>充值</span></div>' +
+									'<div class="grzx-layer action" data-value="0 2"><span>提款</span></div>' +
+									'<div class="grzx-layer action" data-value="0 1"><span>转账</span></div>' +
 								'</div>' +
 							'</div>' +
 
@@ -115,9 +115,9 @@
 							'</div>' +
 
 							'<ul>' +
-								'<li class="grzx-layer zjgl"><span>资金管理</span></li>' +
-								'<li class="grzx-layer tzjl"><span>投注记录</span></li>' +
-								'<li><span>充值记录</span></li>' +
+								'<li class="grzx-layer" data-value="0 0"><span>资金管理</span></li>' +
+								'<li class="grzx-layer" data-value="1 3"><span>投注记录</span></li>' +
+								'<li class="grzx-layer" data-value="1 0"><span>充值记录</span></li>' +
 								'<li><span>修改密码</span></li>' +
 								'<li class="signout"><span>退出</span></li>' +
 							'</ul>' +
@@ -233,6 +233,7 @@
 		var grzxUl;
 		var headerFloatWindow;
 		var grzxNav;
+		var grzxRouterValue;
 		var that = this;
 
 		this.zone = $('.header');
@@ -290,7 +291,9 @@
 				$('.app').append(app.personCenterDialog.getDom());
 				app.personCenterDialog.bindEvents();
 			}
+			grzxRouterValue = $(this).attr('data-value').split(' ');
 			app.personCenterDialog.show();
+			app.personCenterRouter(grzxRouterValue[0],grzxRouterValue[1]);
 		});
 
 		headerFloatItem.mouseover(function () {

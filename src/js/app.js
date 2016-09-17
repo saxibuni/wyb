@@ -122,6 +122,16 @@
 		page('/homePage');
 	};
 
+	app.prototype.personCenterRouter = function (mainRouter, subRouter) {
+		this.personCenterDialog.zone
+			.find('.tree li:eq(' + mainRouter +')')
+			.trigger('click');
+		this.personCenterDialog.zone
+			.find('[menu-index=' + mainRouter +']')
+			.find('.tab > li:eq(' + subRouter + ')')
+			.trigger('click');
+	}
+
 	app.prototype.bindEvents = function () {
 		this.header.bindEvents();
 		this.footer.bindEvents();
