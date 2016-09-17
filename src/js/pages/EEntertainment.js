@@ -9,43 +9,15 @@
 		var noticeDom = this.notice.getDom();
 
 		var topLeftModule=	'<div class="left top-left-module">'+
-								'<p class="head-img"><img src="../img/cj.jpg"/></p>'+
+								'<div class="head-img">' +
+									'<img src="../img/cj.jpg"/>' +
+									this.createMarqueenLi1() +
+								'</div>'+
+
 								'<div class="left-list">' +
 									'<div class="marqueen">' +
 										'<ul>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
-											'<li>'+
-												'<p>百万幸运球</p><p>112321321321</p>'+
-											'</li>'+
+											this.createMarqueenItems() +
 										'</ul>'+
 									'</div>' +
 								'</div>' +
@@ -160,6 +132,124 @@
 		return this.el;
 	};
 
+	EEntertainment.prototype.createMarqueenLi1 = function (data) {
+		var temp =	'<div class="marqueen-li1">' +
+						'<div class="marqueen-li1-wrapper">' +
+							'<div class="row">' +
+								'<div class="marqueen-li1-game">' +
+									'百万幸运球' +
+								'</div>' +
+
+								'<div class="marqueen-li1-win">' +
+									'12,325.00' +
+								'</div>' +
+
+								'<div class="clear"></div>' +
+							'</div>' +
+
+							'<div class="row">' +
+								'<div class="marqueen-li1-game">' +
+									'百万幸运球2' +
+								'</div>' +
+
+								'<div class="marqueen-li1-win">' +
+									'12,325,666.00' +
+								'</div>' +
+
+								'<div class="clear"></div>' +
+							'</div>' +
+						'</div>' +
+					'</div>';
+
+		return temp;
+	};
+
+	EEntertainment.prototype.animateMarqueen = function (data) {
+		var game;
+		var win;
+		var interval;
+		var ulFirstLi;
+		var marqueenLi1Row2
+		var that            =  this;
+		var marqueenUl      =  this.zone.find('.left-list .marqueen ul');
+		
+		interval = setInterval(function () {
+			h         =  parseFloat(marqueenUl.children('li').css('height'));
+			ulFirstLi =  marqueenUl.children('li:first-child');
+			game      =  ulFirstLi.children('p:first-child').text();
+			win       =  ulFirstLi.children('p:last-child').text();
+
+			marqueenUl.animate({'top': (0 - h + 'px')}, 500, function () {
+				ulFirstLi.remove();
+				marqueenUl.css('top', '0');
+
+				if (marqueenUl.children('li').length < 10) {
+					marqueenUl.append(that.createMarqueenItems());
+				}
+			});
+
+			marqueenLi1Row2 =  $(that.zone.find('.marqueen-li1 .row')[1]);
+			marqueenLi1Row2.children('.marqueen-li1-game').text(game);
+			marqueenLi1Row2.children('.marqueen-li1-win').text(win);
+			that.animateMarqueenLi1();
+		}, 2000);
+	};
+
+	EEntertainment.prototype.animateMarqueenLi1 = function (data) {
+		var wrapper = this.zone.find('.marqueen-li1-wrapper');
+		var rows    = this.zone.find('.marqueen-li1 .row');
+		var row1    = $(rows[0]);
+		var row2    = $(rows[1]);
+		var temp    = 	'<div class="row">' +
+							'<div class="marqueen-li1-game">' +
+								'百万幸运球2' +
+							'</div>' +
+
+							'<div class="marqueen-li1-win">' +
+								'12,325,666.00' +
+							'</div>' +
+
+							'<div class="clear"></div>' +
+						'</div>';
+
+		row1.animate({'top': '-30px'}, 500, function () {
+			row1.remove();
+		});
+
+		row2.animate({'top': '0'}, 500,function () {
+			wrapper.append(temp);
+		});
+	};
+
+	EEntertainment.prototype.createMarqueenItems = function () {
+		var i;
+		var temp = '';
+		var data = {
+			game: '百万幸运球',
+			win: 1000000
+		};
+
+		for (i = 0; i < 20; i++) {
+			data.win += i;
+			temp += this.createMarqueenItem(data);
+		}
+
+		return temp;
+	};
+
+	EEntertainment.prototype.createMarqueenItem = function (data) {
+		var temp = 	'<li>'+
+						'<p>' +
+							data.game +
+						'</p>' +
+						'<p>' +
+							data.win +
+						'</p>'+
+					'</li>';
+
+		return temp;
+	};
+
 	EEntertainment.prototype.getGameList = function () {
 		var temp = {
 			url:"../img/fnfrj.jpg",
@@ -254,6 +344,8 @@
 			$(this).addClass('selected');
 		});
 
+		debugger
+		this.animateMarqueen();
 		// $(document).scroll(function(e) {
 		//     var viewH     = $('body').height();
 		//     var contentH  = $('body').get(0).scrollHeight; 
