@@ -27,7 +27,7 @@ $(function(){
 							'<div class="status pass"></div>' +
 							'<img src="../img/t06.png" /><span class="item">银行卡</span>' +
 							'<span class="text">已绑定<span class="card-count">2</span>张</span>' +
-							'<a class="manage">管理</a>' +
+							'<a class="card-manage">管理</a>' +
 						'</div>' +
 
 						'<div class="row4">' +
@@ -84,6 +84,15 @@ $(function(){
 			}
 			that.setPwdDialog.show();
 		});
+
+		this.zone.find('.card-manage').click(function(){
+			if (!that.cardManagerDialog) {
+				that.cardManagerDialog = new BankCarkManagerDialog();
+				$('.app').append(that.cardManagerDialog.getDom());
+				that.cardManagerDialog.bindEvents();
+			}
+			that.cardManagerDialog.show();
+		})
 	
 		this.zone.find('.set-phonenumber').click(function(){
 			if (!that.setPhonenumberDialog) {

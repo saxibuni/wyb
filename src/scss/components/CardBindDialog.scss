@@ -1,0 +1,87 @@
+@import "../mixins.scss";
+
+.card-bind-content{
+	@include dialog-frame;
+
+	.dialog-wrapper {
+		@include dialog-wrapper(500px);   
+        z-index: 200;
+        top: 50%;
+
+		.dialog{
+			@include dialog(500px, 350px);
+			background-color: #48463a;
+			font-size: 14px;
+			padding: 30px 20px 20px 20px;
+
+			.input-outer{
+				border: 1px solid #555555;
+				height: 40px;
+				line-height: 40px;
+				padding: 0 10px;
+				width: 450px;
+
+				img{
+					display: inline-block;
+					float: left;
+					position: relative;
+					height: 20px;
+					width: 20px;
+					top: 10px;
+					right: 0;
+				}
+
+				input {
+					background-color: transparent;
+					border: 0;
+					color: #FFF;
+					display: inline-block;
+					float: left;
+					height: 40px;
+					line-height: 40px;
+					width: 90%;
+					margin-left: 14px;
+				}
+
+				#card-bind-bink{
+				    background: transparent;
+				    border: none;
+				    outline: #48463a;
+				}
+
+				#card-bind-province,#card-bind-city{
+				    background: transparent;
+				    border: none;
+				    outline: #48463a;
+				    margin-left: 10px;
+				}
+			}
+
+			.row{
+				height: 50px;
+				width: 100%;
+				position: relative;
+				text-align: center;
+
+				.button{
+					background-color: #4B4B42;
+					color: #222222;
+					cursor: pointer;
+					width: 80px;
+					height: 30px;
+					line-height: 30px;
+					text-align: center;
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+
+				.button:nth-child(2){
+					margin-left: 50px;
+				}
+			}
+		}
+	}
+	
+}

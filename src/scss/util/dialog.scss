@@ -130,6 +130,34 @@
     z-index: 175;
 }
 
+.overlay7 {
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    color: #FFF;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity, 0.5s, ease-in-out;
+    visibility: hidden;
+    z-index: 185;
+}
+
+.overlay8 {
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    color: #FFF;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity, 0.5s, ease-in-out;
+    visibility: hidden;
+    z-index: 195;
+}
+
 .modal-dialog-active {
     visibility: visible;
     opacity: 1;
@@ -167,6 +195,16 @@
         opacity: 1;
         visibility: visible;  
     }
+
+    & + .overlay7{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    & + .overlay8{
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 .modal-dialog-deactive {
@@ -196,6 +234,27 @@
         opacity: 0;
         visibility: hidden;
     }
+
+    & + .overlay5 {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    & + .overlay6 {
+        opacity: 0;
+        visibility: hidden;        
+    }
+
+    & + .overlay7 {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    & + .overlay8 {
+        opacity: 0;
+        visibility: hidden;
+    }
+
 }
 
 .content-dialog-active {

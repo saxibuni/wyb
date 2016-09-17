@@ -1,0 +1,97 @@
+@import "../mixins.scss";
+
+.bank-card-manager-content{
+	@include dialog-frame;
+
+	.dialog-wrapper {
+		@include dialog-wrapper(700px);   
+        z-index: 190;
+        top: 50%;
+
+		.dialog{
+			@include dialog(700px, 480px);
+			background-color: #2F2F2C;
+			color: #666666;
+			font-size: 14px;
+			padding: 20px;
+
+			.subtile{
+			    height: 40px;
+			    line-height: 30px;
+			    margin: -20px;
+			    border-bottom: 1px solid #fff;
+			    margin-bottom: 0px;
+			    background: #fff;
+			    border-top-left-radius: 5px;
+			    border-top-right-radius: 5px;
+
+				.title-name{
+					float: left;
+					text-indent: 20px;
+					height: 40px;
+					line-height: 40px;
+					font-size: 16px;
+				}
+
+				.close {
+				    float: right;
+				    margin-right: 14px;
+				    margin-top: 5px;
+				    cursor: pointer;
+				    font-size: 25px;
+				}
+
+			}
+
+			.card-content{
+				.card-info {
+				    width: 192px;
+				    height: 120px;
+					margin: 20px 0 0 20px;
+				    border: 1px solid gray;
+				    text-align: center;
+				    float: left;
+				    background:#fff;
+				    border-radius: 3px;
+
+				    .img-content {
+				        margin:20px auto;
+				        height: 40px;
+				    	position: relative;
+				        overflow: hidden;
+
+				        img{
+				        	position: absolute;
+				        	left: 35px;
+				        }
+				    }
+				}
+
+
+				.add-card-info{
+				    width: 192px;
+					height: 120px;
+					margin: 20px 0 0 20px;
+					border: 1px solid gray;
+					float: left;
+					border-radius: 3px;
+					background: url('../img/add-card.png');
+					background-size: 100% 100%;
+					position:relative;
+					cursor: pointer;
+					
+					span{					
+					    bottom: 8px;
+					    text-align: center;
+					    position: absolute;
+					    left: 63px;
+					}
+				}
+			}
+
+
+
+		}
+
+	}
+}

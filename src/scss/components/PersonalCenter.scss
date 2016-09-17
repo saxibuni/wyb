@@ -1,7 +1,5 @@
-$scaleValue : 0.8;
-
-
 @import "../mixins.scss";
+
 .personal-center {
     @include dialog-frame;
 
@@ -128,8 +126,8 @@ $scaleValue : 0.8;
                         width: 3px;
                         position: absolute;
                         background-color: #cda654;
-                        top: 0px * $scaleValue;
-                        left: 0px * $scaleValue;
+                        top: 0px;
+                        left: 0px;
                         transition: top 0.5s;
                         -moz-transition: top 0.5s;
                         -webkit-transition: top 0.5s;
