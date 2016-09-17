@@ -261,7 +261,7 @@
 			score:4,
 			name:'古怪猴子'
 		};
-		console.log('haha')
+
 		var html='';
 
 		for(var a = 0; a < 24; a++) {
