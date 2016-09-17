@@ -110,11 +110,12 @@
 
 		.footer-middle {
 			position: absolute;
-			left: 600px;
+			left: 700px;
 			width: 1px;
 			background-color: #686868;
 			height: 86px;
 			top: 7px;
+			transition: left .5s;
 		}
 
 		.footer-right {
@@ -176,6 +177,10 @@
 	.footer {
 		.wrapper {
 			width: 997px;
+
+			.footer-middle {
+				left: 600px;
+			}
 		}
 	}
 }
