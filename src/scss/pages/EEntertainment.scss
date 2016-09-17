@@ -93,8 +93,16 @@
 						position: absolute;
 						width: 100%;
 
-						&:last-child {
+						&:nth-child(1) {
+							top: 0px;
+						}
+
+						&:nth-child(2) {
 							top: 30px;
+						}
+
+						&:nth-child(3) {
+							top: 60px;
 						}
 					}
 				}
