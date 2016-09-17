@@ -219,12 +219,13 @@
 						width: $image7Width;
 						margin-top: $gap6;
 						postion: relative;
+						overflow: hidden;
 
 						.table {
 						    position: relative;
 						    width: 300px;
-						    top: -150px;
-						    height: 90px;
+						    top: -155px;
+						    height: 100px;
 						    overflow: hidden;
 
 						    .tbody {
@@ -235,8 +236,13 @@
     							transition: top 5s ease-out;
 
 							    .tr {
-							    	height: 30px;
-							    	line-height: 30px;
+							    	font-size: 12px;
+							    	height: 25px;
+							    	line-height: 25px;
+
+							    	.td2 {
+							    		margin-left: 10px;
+							    	}
 							    }
 						    }
 						}
@@ -400,13 +406,8 @@
 							margin-top: $gap6;
 
 							.table {
-							    top: 65px;
-							    left: 50px;
-
-							    .tr {
-							    	height: 20px;
-							    	line-height: 20px;
-							    }
+								top: -130px;
+								height: 75px;
 							}
 						}
 					}

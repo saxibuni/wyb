@@ -161,8 +161,8 @@
 		luckyDrawButton  = this.zone.find('.zone2-down .lucky-draw');
 
 		luckyDrawButton.click(function () {
-			if (luckyDrawTable.css('top') !== '-2100px') {
-				luckyDrawTable.css('top', '-2100px');
+			if (luckyDrawTable.css('top') !== '-2000px') {
+				luckyDrawTable.css('top', '-2000px');
 			} else {
 				luckyDrawTable.css('top', '0');
 			}
