@@ -144,6 +144,7 @@
 											'<label for="topup-mobile-bank">手机银行</label>' +
 										'</li>' +
 									'</ul>' +
+								'</div>' +
 
 								'<div class="row4">' +
 									'<div class="text">充值金额</div>' +

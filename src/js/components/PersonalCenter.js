@@ -164,7 +164,23 @@ $(function(){
 		return this.el;
 	};
 
-	PersonalCenter.prototype.show = function(){
+	PersonalCenter.prototype.show = function(route){
+		var arr;
+
+		if (route) {
+			arr = route.split('/');
+
+			if (arr[0] === 'zjgl') {
+
+			} else if (arr[0] === 'jyjl') {
+
+			} else if (arr[0] === 'zhsz') {
+				
+			} else if (arr[0] === 'znx') {
+				
+			}
+ 		}
+
 		this.showOverlay();
 	}
 
@@ -209,7 +225,7 @@ $(function(){
 				'<div class="zjgl-content">' +
 					this.cz.getDom() +
 				'</div>';
-
+		console.log(temp)
 		return temp;
 	}
 
