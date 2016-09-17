@@ -79,8 +79,10 @@
 	SignIn.prototype.checkInputPass = function () {
 		if (this.usernamePass && this.passwordPass && this.verifyPass) {
 			this.zone.find('.row5 .button').addClass('active');
+			this.allPass = true;
 		} else {
 			this.zone.find('.row5 .button').removeClass('active');
+			this.allPass = false;
 		}
 	};
 
@@ -101,8 +103,9 @@
 		this.usernamePass   = false;
 		this.passwordPass   = false;
 		this.verifyPass     = false;
+		this.allPass        = false;
 
-		this.zone = $('.sign-in');
+		this.zone       = $('.sign-in');
 		usernameInput   = this.zone.find('.row2 input:text');
 		passwordInput   = this.zone.find('.row3 input:password');
 		verifyInput     = this.zone.find('.row4 input:text');
@@ -158,6 +161,10 @@
 		})
 
 		button.click(function () {
+			if (!that.allPass) {
+				return;
+			}
+
 			that.hide();
 			app.header.showSignedInHeader();
 		});
