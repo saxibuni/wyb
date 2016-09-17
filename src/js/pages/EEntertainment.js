@@ -261,7 +261,7 @@
 			score:4,
 			name:'古怪猴子'
 		};
-
+		console.log('haha')
 		var html='';
 
 		for(var a = 0; a < 24; a++) {
@@ -349,27 +349,31 @@
 			$(this).addClass('selected');
 		});
 
-		debugger
 		this.animateMarqueen();
-		// $(document).scroll(function(e) {
-		//     var viewH     = $('body').height();
-		//     var contentH  = $('body').get(0).scrollHeight; 
-		//     var scrollTop = $('body').scrollTop();
 
-		//     if (imgUl.children('li').length > 72) {
-		//     	moreGame.html('没有更多');
-		//     	return;
-		//     }
+		$(document).scroll(function(e) {
+		    var viewH     = $('body').height();
+		    var contentH  = $('body').get(0).scrollHeight; 
+		    var scrollTop = $('body').scrollTop();
 
-		//     if (contentH - viewH - scrollTop <= 10) {
-		//     	moreGame.html('加载中...');
+		    if (imgUl.children('li').length > 72) {
+		    	moreGame.html('没有更多');
+		    	return;
+		    }
 
-		//     	setTimeout(function () {
-		//     		imgUl.append(that.getGameList());
-		//     		moreGame.html('更多游戏');
-		//     	}, 2000);
-		//     }
-		// });
+		    if (contentH - viewH - scrollTop <= 10) {
+		    	moreGame.html('加载中...');
+
+		    	if (!that.loadImageTimeout) {
+			    	that.loadImageTimeout = setTimeout(function () {
+			    		imgUl.append(that.getGameList());
+			    		moreGame.html('更多游戏');
+			    		clearTimeout(that.loadImageTimeout);
+			    		that.loadImageTimeout = undefined;
+			    	}, 2000);
+		    	}
+		    }
+		});
 
 		// function marquee(obj, step){
 		// 	 obj.find("ul").animate({
