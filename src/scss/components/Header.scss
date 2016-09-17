@@ -429,9 +429,9 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 		transition: all .5s;
 		height: 130px;
 		top: -200px;
-		width: $contentWidth + 1px;
+		width: $contentWidth;
 		z-index: 85;
-	    transform: translateX(0 - ($contentWidth/2 + 1px));
+	    transform: translateX(0 - $contentWidth/2);
 	    left: 50%;
 
 		ul {
@@ -482,7 +482,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 
 		.header-float-window {
 			width: $contentWidth;
-		    transform: translateX(0 - ($contentWidth/2 + 1px));
+		    transform: translateX(0 - $contentWidth/2);
 		}
 	}
 }
