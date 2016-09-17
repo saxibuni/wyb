@@ -95,6 +95,18 @@
 		this.hideOverlay();
 	};
 
+	SignUp.prototype.checkInputPass = function () {
+		if (this.usernamePass && this.passwordPass && this.repeatPass
+			&& this.verifyPass && this.popularizePass) {
+
+			this.zone.find('.row7 .button').addClass('active');
+			this.allPass = true;
+		} else {
+			this.zone.find('.row7 .button').removeClass('active');
+			this.allPass = false;
+		}
+	};
+
 	SignUp.prototype.bindEvents = function () {
 		var usernameInput;
 		var passwordInput;
@@ -109,7 +121,7 @@
 		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
 		var repeatReg     = '^[A-Za-z0-9]{6,50}$';
 		var popularizeReg = '^[A-Za-z0-9]{10}$';
-		var verifyReg     = '';
+		var verifyReg     = '^[0-9]{4}$';
 		var inputEvents   = 'input';
 		var that          = this;
 
@@ -117,10 +129,10 @@
 		this.passwordPass   = false;
 		this.repeatPass     = false;
 		this.usernamePass   = false;
-		this.usernamePass   = false;
 		this.popularizePass = false;
+		this.allPass        = false;
 
-		this.zone = $('.sign-up');
+		this.zone       = $('.sign-up');
 		usernameInput   = this.zone.find('.row2 input:text');
 		passwordInput   = this.zone.find('.row3 input:password');
 		repeatInput     = this.zone.find('.row4 input:password');
@@ -141,6 +153,8 @@
 				$(this).siblings('.pass').show();
 				that.usernamePass = true;
 			}
+
+			that.checkInputPass();
 		});
 
 		passwordInput.bind(inputEvents, function () {
@@ -155,6 +169,8 @@
 				$(this).siblings('.pass').show();
 				that.passwordPass = true;
 			}
+
+			that.checkInputPass();
 		});
 
 		repeatInput.bind(inputEvents, function () {
@@ -169,6 +185,8 @@
 				$(this).siblings('.pass').show();
 				that.repeatPass = true;
 			}
+
+			that.checkInputPass();
 		}).blur(function () {
 			value  = passwordInput.val();
 			value2 = repeatInput.val();
@@ -182,6 +200,20 @@
 				$(this).siblings('.pass').show();
 				that.repeatPass = true;
 			}
+
+			that.checkInputPass();
+		});
+
+		verifyInput.bind(inputEvents, function () {
+			value = $(this).val();
+
+			if (!value.match(verifyReg)) {
+				that.verifyPass = false;
+			} else {
+				that.verifyPass = true;
+			}
+
+			that.checkInputPass();
 		});
 
 		popularizeInput.bind(inputEvents, function () {
@@ -196,6 +228,8 @@
 				$(this).siblings('.pass').show();
 				that.popularizePass = true;
 			}
+
+			that.checkInputPass();
 		});
 
 		close.click(function () {
@@ -203,6 +237,10 @@
 		})
 
 		button.click(function () {
+			if (!that.allPass) {
+				return;
+			}
+
 			that.hide();
 			app.header.showSignedInHeader();
 		});
