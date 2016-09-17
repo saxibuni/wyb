@@ -1,9 +1,9 @@
 (function () {
 	function Notice (opt) {
-		this.opt = opt;
-		this.date = opt.date;
+		this.opt      = opt;
+		this.date     = opt.date;
 		this.content  = opt.content;
-		this.hasBtn  = opt.hasBtn;
+		this.hasBtn   = opt.hasBtn;
 		this.initDom();
 	}
 
@@ -12,23 +12,25 @@
 		var titleCls=" title-black";
 		var moreCls=" more-grey";
 		var backCls=" back-white";
+
 		if(this.hasBtn){
 			closeBtn='<img id="close-btn" src="../img/close-r.png">';
 			titleCls="";
 			moreCls="";
 			backCls="";
 		}
-		var temp='<div class="notice'+backCls+'">'+
-						   '<div class="notice-right'+moreCls+'">'+
-						     '<span class="notice-date">'+this.date+'</span><span>更多公告</span>'+
-						     closeBtn+
-						   '</div>'+
-						   '<div class="notice-left">'+
-						     '<img src="../img/notice.png">'+
-						       '<span class="notice-title'+titleCls+'">[重要公告]</span>'+
-						       '<span class="notice-content">'+this.content+'</span>'+
-						   '</div>'+
-						'</div>'
+
+		var temp=	'<div class="notice'+backCls+'">'+
+					   	'<div class="notice-right'+moreCls+'">'+
+					     	'<span class="notice-date">'+this.date+'</span><span>更多公告</span>'+
+					     	closeBtn +
+					   	'</div>' +
+					   	'<div class="notice-left">'+
+					     	'<img src="../img/notice.png">'+
+					       	'<span class="notice-title'+titleCls+'">[重要公告]</span>'+
+					       	'<span class="notice-content">'+this.content+'</span>'+
+					   	'</div>'+
+					'</div>'
 		this.el  = temp;
 	};
 

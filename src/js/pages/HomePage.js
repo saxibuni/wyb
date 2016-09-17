@@ -1,16 +1,23 @@
 (function () {
-	var notice = new Notice({hasBtn: false, date: '2016-08-12', content: '为了给您提供便捷的充值方式，韦易博平台于6月18日上线【微信支付】充值方式，欢迎大家体验，谢谢。'});
 	var	suspension = new Suspension();
+	
 	function HomePage () {
 		this.initDom();
 	}
 	
 	HomePage.prototype.initDom = function () {
+		this.notice = new Notice2({
+			id: 'home-page-notice',
+			hasBtn: false,
+			date: '2016-08-12',
+			content: '为了给您提供便捷的充值方式，韦易博平台于6月18日上线【微信支付】充值方式，欢迎大家体验，谢谢。'
+		});
+
 		var temp = '<div class="page home-page">' +
 						'<div class="wrapper">' +
 							'<div class="content23">' +
 								'<div class="content2">' +
-									notice.getDom() +
+									this.notice.getDom() +
 								'</div>' +
 
 								'<div class="picture-zone">' +
@@ -87,7 +94,9 @@
 								'</div>' +
 							'</div>' +
 						'</div>' +
-						//suspension.getDom() +
+						
+						suspension.getDom() +
+						
 					'</div>';
 
 		this.el  = temp;
@@ -166,7 +175,9 @@
 			} else {
 				luckyDrawTable.css('top', '0');
 			}
-		})
+		});
+
+		this.notice.bindEvents();
 	};
 
 	window.HomePage = HomePage;
