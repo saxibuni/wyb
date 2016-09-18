@@ -32,10 +32,10 @@ $(function(){
 								'</div>' +
 
 								'<div class="row4">' +
-									'<div class="button">' +
+									'<div class="button ok">' +
 										'确定' +
 									'</div>' +
-									'<div class="button">' +
+									'<div class="button cancel">' +
 										'取消' +
 									'</div>' +
 								'</div>' +
@@ -66,7 +66,13 @@ $(function(){
 
 		this.zone = $('.modify-pwd-content');
 
+		this.zone.find('.ok').click(function () {
+			that.hide();
+		});
 
+		this.zone.find('.cancel').click(function () {
+			that.hide();
+		});
 
         this.bindOverlayEvents();
 	}
