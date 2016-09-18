@@ -377,6 +377,10 @@
 			balance.toggle();
 		});
 
+		this.zone.find('#header-lxkf').click(function () {
+			window.open('http://www.baidu.com');
+		});
+
 		$(document).scroll(function(e) {
 			that.hideHeaderFloatWindow();
 
