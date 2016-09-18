@@ -70,13 +70,13 @@
 							'</div>' +
 
 							'<div class="menu">' +
-								'<img class="message-img" src="../img/menu.png">' +
+								'<img src="../img/menu.png">' +
 							'</div>' +
 						'</div>' +
 
 						'<div class="row2">' +
 							'<div class="header-logo">' +
-								'<img class="message-img" src="../img/logo-sands-macao.png">' +
+								'<img src="../img/logo-sands-macao.png">' +
 							'</div>' +
 
 							'<div class="buttons-zone">' +
@@ -118,7 +118,7 @@
 								'<li class="grzx-layer" data-value="0 0"><span>资金管理</span></li>' +
 								'<li class="grzx-layer" data-value="1 3"><span>投注记录</span></li>' +
 								'<li class="grzx-layer" data-value="1 0"><span>充值记录</span></li>' +
-								'<li><span>修改密码</span></li>' +
+								'<li class="grzx-layer" data-value="2 1"><span>修改密码</span></li>' +
 								'<li class="signout"><span>退出</span></li>' +
 							'</ul>' +
 						'</div>' +
@@ -140,29 +140,29 @@
 					'<div class="header-float-window">' +
 						'<ul class="ul dzyy">' +
 							'<li>' +
-								'<img class="message-img" src="../img/dzyy-float-img1.png">' +
+								'<img src="../img/dzyy-float-img1.png">' +
 							'</li>' +
 
 							'<li>' +
-								'<img class="message-img" src="../img/dzyy-float-img2.png">' +
+								'<img src="../img/dzyy-float-img2.png">' +
 							'</li>' +
 
 							'<li>' +
-								'<img class="message-img" src="../img/dzyy-float-img3.png">' +
+								'<img src="../img/dzyy-float-img3.png">' +
 							'</li>' +
 						'</ul>' +
 
 						'<ul class="ul ty">' +
 							'<li>' +
-								'<img class="message-img" src="../img/ty-float-img1.png">' +
+								'<img src="../img/ty-float-img1.png">' +
 							'</li>' +
 
 							'<li>' +
-								'<img class="message-img" src="../img/ty-float-img2.png">' +
+								'<img src="../img/ty-float-img2.png">' +
 							'</li>' +
 
 							'<li>' +
-								'<img class="message-img" src="../img/ty-float-img3.png">' +
+								'<img src="../img/ty-float-img3.png">' +
 							'</li>' +
 						'</ul>' +
 					'</div>' +
