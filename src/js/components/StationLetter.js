@@ -112,7 +112,7 @@ $(function(){
 
 								this.button.getDom() +
 
-								'<ul>' +
+								'<ul class="fast-date">' +
 									'<li class="selected"><span>今日</span></li>' +
 									'<li><span>昨日</span></li>' +
 									'<li><span>3日</span></li>' +
@@ -227,13 +227,21 @@ $(function(){
 	StationLetter.prototype.bindEvents = function(){
 		var today = new Date();
 		var that = this;
+		var fastDateUl;
 
 		this.zone = $('.station-letter');
+		fastDateUl   = this.zone.find('.fast-date'); 
 
         today = today.formatDate();
 
         this.zone.find('.starttime').datetimepicker({value: today + ' 00:00', lang: 'en'});
         this.zone.find('.endtime').datetimepicker({value: today + ' 23:59', lang: 'en'});
+		
+        fastDateUl.delegate('li', 'click', function () {
+        	fastDateUl.children('li').removeClass('selected');
+        	$(this).addClass('selected');
+        });
+        
 		this.button.bindEvents();
 		this.pager.bindEvents();
 	}
