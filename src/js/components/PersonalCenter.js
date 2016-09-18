@@ -165,23 +165,6 @@ $(function(){
 	};
 
 	PersonalCenter.prototype.show = function(route){
-		var arr;
-
-		if (route) {
-			this.zone.find('.tab-container-item').hide();
-			arr = route.split('/');
-
-			if (arr[0] === 'zjgl') {
-				this.zone.find('[menu-index="0"]').click();
-			} else if (arr[0] === 'jyjl') {
-				this.zone.find('[menu-index="1"]').click();
-			} else if (arr[0] === 'zhsz') {
-				this.zone.find('[menu-index="2"]').click();
-			} else if (arr[0] === 'znx') {
-				this.zone.find('[menu-index="3"]').click();
-			}
- 		}
-
 		this.showOverlay();
 	}
 

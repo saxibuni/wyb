@@ -130,7 +130,7 @@
 			.find('[menu-index=' + mainRouter +']')
 			.find('.tab > li:eq(' + subRouter + ')')
 			.trigger('click');
-	}
+	};
 
 	app.prototype.bindEvents = function () {
 		this.header.bindEvents();
