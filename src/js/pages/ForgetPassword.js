@@ -7,56 +7,62 @@
 		var temp;
 
 		this.usernameInput = new Input({
-			id: 'topup-input',
+			id: 'forget-password-step1-input1',
 			width: 200,
 			height: 30,
-			placeholder: '请输入您的用户名'
+			placeholder: '请输入您的用户名',
+			reg: app.usernameReg
 		});
 
 		this.verifyInput = new Input({
-			id: 'verify-input',
+			id: 'forget-password-step1-input2',
 			width: 137,
 			height: 30,
-			placeholder: '请输入右侧验证码'
+			placeholder: '请输入右侧验证码',
+			reg: app.verifyReg
 		});
 
 		this.mailInput = new Input({
 			id: 'mail-input',
 			width: 250,
 			height: 30,
-			placeholder: '请输入您的邮箱'
+			placeholder: '请输入您的邮箱',
+			reg: app.emailReg
 		});
 
 		this.newPwdInput = new Input({
 			id: 'new-password',
 			width: 250,
 			height: 30,
-			placeholder: '请输入新密码'
+			placeholder: '请输入新密码',
+			reg: app.passwordReg
 		});
 
 		this.confirmPwdInput = new Input({
 			id: 'comfirm-password',
 			width: 250,
 			height: 30,
-			placeholder: '请再次输入新密码'
+			placeholder: '请再次输入新密码',
+			reg: app.passwordReg
 		});
 
 		this.mailVerifyInput = new Input({
 			id: 'mail-verify-input',
 			width: 120,
 			height: 30,
-			placeholder: '请输入邮箱验证码'
+			placeholder: '请输入邮箱验证码',
+			reg: app.emailVerifyCode
 		});
 
 		this.step1Next = new Button({
-			id: 'step1-next',
+			id: 'forget-password-step1-next',
 			name: '下一步',
 			width: 128,
 			height: 42
 		});
 
 		this.step2Next = new Button({
-			id: 'step2-next',
+			id: 'forget-password-step2-next',
 			name: '下一步',
 			width: 70,
 			height: 30
@@ -77,7 +83,7 @@
 		});
 
 		this.loginNow = new Button({
-			id: 'login-now',
+			id: 'forget-password-login-now',
 			name: '立即登录',
 			width: 130,
 			height: 30
@@ -125,7 +131,7 @@
 									'<div class="row2">' +
 										'<span class="text">验证码：</span>' +
 										this.verifyInput.getDom() +
-										'<img class="message-img" src="../img/verify-code.png">' +
+										'<img class="verify-img" src="../img/verify-code.png">' +
 									'</div>' +
 
 									'<div class="row3">' +
@@ -206,6 +212,18 @@
 		this.zone.hide();
 	};
 
+	ForgetPassword.prototype.checkStep2 = function () {
+		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
+	};
+
+	ForgetPassword.prototype.checkStep3 = function () {
+		
+	};
+
+	ForgetPassword.prototype.checkStep4 = function () {
+		
+	};
+
 	ForgetPassword.prototype.bindEvents = function () {
 		var titleUl;
 		var that = this;
@@ -214,14 +232,22 @@
 
 		titleUl = this.zone.find('ul.title');
 
-		this.zone.find('#step1-next').click(function () {
+		this.zone.find('#forget-password-step1-next').click(function () {
+			if (!$(this).addClass('active')) {
+				return;
+			}
+
 			that.zone.find('.step').hide();
 			that.zone.find('.step2').show()
 			titleUl.find('li').removeClass('active');
 			titleUl.find('li:eq(1)').addClass('active');
 		})
 
-		this.zone.find('#step2-next').click(function () {
+		this.zone.find('#forget-password-step2-next').click(function () {
+			if (!$(this).hasClass('active')) {
+				return;
+			}
+
 			that.zone.find('.step').hide();
 			that.zone.find('.step3').show()
 			titleUl.find('li').removeClass('active');
@@ -252,8 +278,17 @@
 			app.signInDialog.show();
 		});
 
-		this.usernameInput.bindEvents();
-		this.verifyInput.bindEvents();
+		var step1Callback = function () {
+			if (that.usernameInput.isPass() && that.verifyInput.isPass()) {
+				that.zone.find('#forget-password-step1-next').addClass('active');
+			} else {
+				that.zone.find('#forget-password-step1-next').removeClass('active');
+			}
+		};
+
+		this.usernameInput.bindEvents(step1Callback.bind(this));
+		this.verifyInput.bindEvents(step1Callback.bind(this));
+
 		this.mailInput.bindEvents();
 		this.newPwdInput.bindEvents();
 		this.confirmPwdInput.bindEvents();

@@ -1,7 +1,9 @@
 (function () {
 	function Input(opt) {
-		this.opt  = opt;
-		this.id   = opt.id;
+		this.opt    = opt;
+		this.id     = opt.id;
+		this.pass = false;
+
 		this.initDom();
 	}
 
@@ -20,6 +22,10 @@
 		return this.el;
 	};
 
+	Input.prototype.isPass = function() {
+		return this.pass;
+	};
+
 	Input.prototype.getValue = function() {
 		return this.zone.children('input').val();
 	};
@@ -28,10 +34,42 @@
 		this.zone.children('input').val(value);
 	};
 
-	Input.prototype.bindEvents = function() {
+	Input.prototype.showPass = function() {
+		this.zone.children('.pass').show();
+		this.zone.children('.warning').hide();
+		this.pass = true;
+	};
+
+	Input.prototype.showWarning = function() {
+		this.zone.children('.warning').show();
+		this.zone.children('.pass').hide();
+		this.pass = false;
+	};
+
+	Input.prototype.checkInput = function() {
+		var value = this.getValue();
+
+		if (!value.match(this.opt.reg)) {
+			this.showWarning();
+		} else {
+			this.showPass();
+		}
+	};
+
+	Input.prototype.bindEvents = function(callback) {
+		var value;
 		var that = this;
 
 		this.zone = $('#' + this.id);
+
+		this.zone.children('input').bind('input', function () {
+			that.checkInput();
+
+			if (typeof callback === 'function') {
+				callback();
+			}
+		});
+
 		this.resetStyles();
 	};
 

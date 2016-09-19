@@ -117,11 +117,11 @@
 		var button;
 		var value;
 		var value2;
-		var usernameReg   = '^[A-Za-z0-9]{6,12}$';
-		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
-		var repeatReg     = '^[A-Za-z0-9]{6,50}$';
-		var popularizeReg = '^[A-Za-z0-9]{10}$';
-		var verifyReg     = '^[0-9]{4}$';
+		var usernameReg   = app.usernameReg;
+		var passwordReg   = app.passwordReg;
+		var repeatReg     = app.passwordReg;
+		var popularizeReg = app.popularizeReg;
+		var verifyReg     = app.verifyReg;
 		var inputEvents   = 'input';
 		var that          = this;
 

@@ -152,6 +152,10 @@
 				.active {
 					background-color: #DCAD4B;
 					color: #FFF;
+
+					&:hover {
+						color: #000;
+					}
 				}
 
 				.button-info {

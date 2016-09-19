@@ -29,10 +29,21 @@
 
 		this.zone.append(this.el);
 		this.bindEvents();
+		this.initRegs();
 		//this.initRouter();
 		this.goTo('homePage');
 	};
 	
+	app.prototype.initRegs = function () {
+		this.usernameReg      =  '^[A-Za-z0-9]{6,12}$';
+		this.passwordReg      =  '^[A-Za-z0-9]{6,50}$';
+		this.verifyReg        =  '^[0-9]{4}$';
+		this.popularizeReg    =  '^[A-Za-z0-9]{10}$';
+		this.emailReg         =  '^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$';
+		this.emailVerifyCode  =  '^[0-9]{4}$';
+		this.moneyReg         =  '^[0-9]+(.[0-9]{1,2})?$';
+	};
+
 	app.prototype.goTo = function (pageName) {
 		var wrapper = this.zone.find('.main-wrapper');
 		var index;

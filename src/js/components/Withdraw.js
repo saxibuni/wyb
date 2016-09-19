@@ -17,7 +17,8 @@
 		this.withdrawInput = new Input({
 			id: 'withdraw-input',
 			width: 200,
-			height: 30
+			height: 30,
+			reg: app.moneyReg
 		});
 
 		temp 	= 	'<div class="withdraw grzx-money-action">' +

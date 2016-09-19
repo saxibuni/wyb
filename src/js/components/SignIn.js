@@ -94,9 +94,9 @@
 		var button;
 		var value;
 		var value2;
-		var usernameReg   = '^[A-Za-z0-9]{6,12}$';
-		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
-		var verifyReg     = '^[0-9]{4}$';
+		var usernameReg   = app.usernameReg;
+		var passwordReg   = app.passwordReg;
+		var verifyReg     = app.verifyReg;
 		var inputEvents   = 'input';
 		var that          = this;
 

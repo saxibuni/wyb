@@ -17,7 +17,8 @@
 		this.moneyTransferInput = new Input({
 			id: 'money-transfer-input',
 			width: 178,
-			height: 30
+			height: 30,
+			reg: app.moneyReg
 		});
 
 		this.fromSelect = new Select({

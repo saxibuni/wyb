@@ -31,19 +31,22 @@
 		this.topupInput = new Input({
 			id: 'topup-input',
 			width: 200,
-			height: 30
+			height: 30,
+			reg: app.moneyReg
 		});
 
 		this.topupInput2 = new Input({
 			id: 'topup-input2',
 			width: 200,
-			height: 30
+			height: 30,
+			reg: app.moneyReg
 		});
 
 		this.topupInput3 = new Input({
 			id: 'topup-input3',
 			width: 200,
-			height: 30
+			height: 30,
+			reg: app.moneyReg
 		});
 
 		temp = 		'<div class="top-up grzx-money-action">' +
@@ -233,7 +236,7 @@
 
 	TopUp.prototype.submit1 = function() {
 		var moneyValue  =  this.topupInput.getValue();
-		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
+		var moneyReg    =  app.moneyReg;
 
 		if (!moneyValue.match(moneyReg)) {
 			alert('格式不对');
@@ -244,7 +247,7 @@
 
 	TopUp.prototype.submit2 = function() {
 		var moneyValue  =  this.topupInput2.getValue();
-		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
+		var moneyReg    =  app.moneyReg;
 
 		if (!moneyValue.match(moneyReg)) {
 			alert('格式不对');
@@ -256,7 +259,7 @@
 
 	TopUp.prototype.submit3 = function() {
 		var moneyValue  =  this.topupInput3.getValue();
-		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
+		var moneyReg    =  app.moneyReg;
 
 		if (!moneyValue.match(moneyReg)) {
 			alert('格式不对');
