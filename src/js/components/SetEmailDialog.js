@@ -7,16 +7,18 @@
 	SetEmailDialog.prototype = new IMDialog();
 
 	SetEmailDialog.prototype.initDom = function(){
-		this.step1PhonenumberInput = new Input({
-			id: 'sed-step1-phonenumber-input',
+		this.step1EmailInput = new Input({
+			id: 'sed-step1-email-input',
 			width: 220,
-			height: 30
+			height: 30,
+			reg: app.emailReg
 		});
 
 		this.step1VerifyInput = new Input({
 			id: 'sed-step1-verify-input',
 			width: 100,
-			height: 30
+			height: 30,
+			reg: app.emailVerifyCodeReg
 		});
 
 		this.step1VerifyCodeButton = new Button({
@@ -40,16 +42,18 @@
 			height: 42
 		});
 
-		this.step2PhonenumberInput = new Input({
-			id: 'sed-step2-phonenumber-input',
+		this.step2EmailInput = new Input({
+			id: 'sed-step2-email-input',
 			width: 220,
-			height: 30
+			height: 30,
+			reg: app.emailReg
 		});
 
 		this.step2VerifyInput = new Input({
 			id: 'sed-step2-verify-input',
 			width: 100,
-			height: 30
+			height: 30,
+			reg: app.emailVerifyCodeReg
 		});
 
 		this.step2VerifyCodeButton = new Button({
@@ -106,7 +110,7 @@
 														'原有邮箱' +
 													'</td>' +
 													'<td>' +
-														this.step1PhonenumberInput.getDom() +
+														this.step1EmailInput.getDom() +
 													'</td>' +
 												'</tr>' +
 
@@ -136,7 +140,7 @@
 														'新邮箱' +
 													'</td>' +
 													'<td>' +
-														this.step2PhonenumberInput.getDom() +
+														this.step2EmailInput.getDom() +
 													'</td>' +
 												'</tr>' +
 
@@ -231,12 +235,12 @@
 			that.hide();
 		});
 
-		this.step1PhonenumberInput.bindEvents();
+		this.step1EmailInput.bindEvents();
 		this.step1VerifyInput.bindEvents();
 		this.step1VerifyCodeButton.bindEvents();
 		this.step1OkButton.bindEvents();
 		this.step1CancelButton.bindEvents();
-		this.step2PhonenumberInput.bindEvents();
+		this.step2EmailInput.bindEvents();
 		this.step2VerifyInput.bindEvents();
 		this.step2VerifyCodeButton.bindEvents();
 		this.step2OkButton.bindEvents();

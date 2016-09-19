@@ -11,7 +11,7 @@
 			id: 'spd-step1-phonenumber-input',
 			width: 220,
 			height: 30,
-			reg: app.phoneNumber
+			reg: app.phoneNumberReg
 		});
 
 		this.step1VerifyInput = new Input({
@@ -45,13 +45,15 @@
 		this.step2PhonenumberInput = new Input({
 			id: 'spd-step2-phonenumber-input',
 			width: 220,
-			height: 30
+			height: 30,
+			reg: app.phoneNumberReg
 		});
 
 		this.step2VerifyInput = new Input({
 			id: 'spd-step2-verify-input',
 			width: 100,
-			height: 30
+			height: 30,
+			reg: app.verifyReg
 		});
 
 		this.step2VerifyCodeButton = new Button({
