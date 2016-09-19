@@ -99,10 +99,7 @@
 	};
 
 	MoneyTransfer.prototype.submit = function() {
-		var moneyValue  =  this.moneyTransferInput.getValue();
-		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
-
-		if (!moneyValue.match(moneyReg)) {
+		if (!this.moneyTransferInput.isPass()) {
 			alert('格式不对');
 		} else {
 			window.open('http://www.baidu.com');

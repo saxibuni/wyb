@@ -235,10 +235,7 @@
 	};
 
 	TopUp.prototype.submit1 = function() {
-		var moneyValue  =  this.topupInput.getValue();
-		var moneyReg    =  app.moneyReg;
-
-		if (!moneyValue.match(moneyReg)) {
+		if (!this.topupInput.isPass()) {
 			alert('格式不对');
 		} else {
 			window.open('http://www.baidu.com');
@@ -246,22 +243,15 @@
 	};
 
 	TopUp.prototype.submit2 = function() {
-		var moneyValue  =  this.topupInput2.getValue();
-		var moneyReg    =  app.moneyReg;
-
-		if (!moneyValue.match(moneyReg)) {
+		if (!this.topupInput2.isPass()) {
 			alert('格式不对');
-			return false;
 		} else {
-			return true;
+			window.open('http://www.baidu.com');
 		}
 	};
 
 	TopUp.prototype.submit3 = function() {
-		var moneyValue  =  this.topupInput3.getValue();
-		var moneyReg    =  app.moneyReg;
-
-		if (!moneyValue.match(moneyReg)) {
+		if (!this.topupInput3.isPass()) {
 			alert('格式不对');
 		} else {
 			window.open('http://www.baidu.com');

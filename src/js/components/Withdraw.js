@@ -108,10 +108,7 @@
 	};
 
 	Withdraw.prototype.submit = function() {
-		var moneyValue  =  this.withdrawInput.getValue();
-		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
-
-		if (!moneyValue.match(moneyReg)) {
+		if (!this.withdrawInput.isPass()) {
 			alert('格式不对');
 		} else {
 			window.open('http://www.baidu.com');
