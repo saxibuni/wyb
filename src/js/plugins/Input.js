@@ -20,6 +20,14 @@
 		return this.el;
 	};
 
+	Input.prototype.getValue = function() {
+		return this.zone.children('input').val();
+	};
+
+	Input.prototype.setValue = function(value) {
+		this.zone.children('input').val(value);
+	};
+
 	Input.prototype.bindEvents = function() {
 		var that = this;
 

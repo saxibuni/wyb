@@ -231,12 +231,48 @@
 		this.zone.hide();
 	};
 
+	TopUp.prototype.submit1 = function() {
+		var moneyValue  =  this.topupInput.getValue();
+		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
+
+		if (!moneyValue.match(moneyReg)) {
+			alert('格式不对');
+		} else {
+			window.open('http://www.baidu.com');
+		}
+	};
+
+	TopUp.prototype.submit2 = function() {
+		var moneyValue  =  this.topupInput2.getValue();
+		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
+
+		if (!moneyValue.match(moneyReg)) {
+			alert('格式不对');
+			return false;
+		} else {
+			return true;
+		}
+	};
+
+	TopUp.prototype.submit3 = function() {
+		var moneyValue  =  this.topupInput3.getValue();
+		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
+
+		if (!moneyValue.match(moneyReg)) {
+			alert('格式不对');
+		} else {
+			window.open('http://www.baidu.com');
+		}
+	};
+
 	TopUp.prototype.bindEvents = function() {
 		var row1Ul;
 		var bankCardsUl;
 		var content;
 		var contentName;
-		var that = this;
+		var verifyReg     = '^[0-9]{4}$';
+		var inputEvents   = 'input';
+		var that          = this;
 
 		this.zone    = $('.top-up');
 		content      = this.zone.find('.content');
@@ -260,10 +296,14 @@
 		});
 
 		this.zone.find('#topup-button').click(function () {
-			window.open('http://www.baidu.com');
+			that.submit1();
 		});
 
 		this.zone.find('#topup-button2').click(function () {
+			if (!that.submit2()) {
+				return;
+			}
+
 			if (!that.topupConfirmDialog) {
 				that.topupConfirmDialog = new TopupConfirmDialog();
 				$('.app').append(that.topupConfirmDialog.getDom());
@@ -274,7 +314,7 @@
 		});
 
 		this.zone.find('#topup-button3').click(function () {
-			window.open('http://www.baidu.com');
+			that.submit3();
 		});
 
 		this.button.bindEvents();

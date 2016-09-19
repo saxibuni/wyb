@@ -106,12 +106,24 @@
 		this.zone.hide();
 	};
 
-	Withdraw.prototype.bindEvents = function() {
-		this.zone = $('.withdraw');
-		var row1Ul = this.zone.find('.content .row1');
+	Withdraw.prototype.submit = function() {
+		var moneyValue  =  this.withdrawInput.getValue();
+		var moneyReg    =  '^[0-9]+(.[0-9]{1,2})?$';
 
-		this.button.bindEvents();
-		this.withdrawInput.bindEvents();
+		if (!moneyValue.match(moneyReg)) {
+			alert('格式不对');
+		} else {
+			window.open('http://www.baidu.com');
+		}
+	};
+	
+	Withdraw.prototype.bindEvents = function() {
+		var row1Ul;
+		var that = this;
+
+		this.zone = $('.withdraw');
+
+		row1Ul = this.zone.find('.content .row1');
 
 		row1Ul.delegate('li','click',function(){
 			row1Ul.find('li').removeClass('selected');
@@ -120,7 +132,12 @@
 			$(this).find('input[type="radio"]').attr('checked',true);
 		});
 
+		this.zone.find('#withdraw-button').click(function () {
+			that.submit();
+		});
 
+		this.button.bindEvents();
+		this.withdrawInput.bindEvents();
 	}
 
 	window.Withdraw = Withdraw;
