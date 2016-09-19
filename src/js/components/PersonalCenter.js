@@ -209,7 +209,7 @@ $(function(){
 				'<div class="zjgl-content">' +
 					this.cz.getDom() +
 				'</div>';
-		console.log(temp)
+
 		return temp;
 	}
 
