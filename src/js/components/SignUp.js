@@ -243,6 +243,7 @@
 
 			that.hide();
 			app.header.showSignedInHeader();
+			app.signedIn = true;
 		});
 
 		this.zone.find('.signin-now').click(function () {

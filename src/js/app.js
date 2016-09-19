@@ -123,6 +123,25 @@
 	};
 
 	app.prototype.personCenterRouter = function (mainRouter, subRouter) {
+		if (!this.signedIn) {
+			if (!this.signInDialog) {
+				this.signInDialog = new SignIn();
+				$('.app').append(this.signInDialog.getDom());
+				this.signInDialog.bindEvents();
+			}
+
+			this.signInDialog.show();
+			return;
+		}
+
+		if (!this.personCenterDialog) {
+			this.personCenterDialog = new PersonalCenter();
+			$('.app').append(this.personCenterDialog.getDom());
+			this.personCenterDialog.bindEvents();
+		}
+
+		this.personCenterDialog.show();
+
 		this.personCenterDialog.zone
 			.find('.tree li:eq(' + mainRouter +')')
 			.trigger('click');

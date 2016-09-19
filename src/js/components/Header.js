@@ -286,13 +286,7 @@
 		});
 
 		grzxNav.click(function(){
-			if (!app.personCenterDialog) {
-				app.personCenterDialog = new PersonalCenter();
-				$('.app').append(app.personCenterDialog.getDom());
-				app.personCenterDialog.bindEvents();
-			}
 			grzxRouterValue = $(this).attr('data-value').split(' ');
-			app.personCenterDialog.show();
 			app.personCenterRouter(grzxRouterValue[0],grzxRouterValue[1]);
 		});
 
@@ -329,6 +323,7 @@
 				grzxFloatWindow.css('top', '-300px');
 				that.showSignedOutHeader();
 				app.goTo('homePage');
+				app.signedIn = false;
 			}
 		});
 

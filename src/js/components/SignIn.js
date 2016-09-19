@@ -167,6 +167,7 @@
 
 			that.hide();
 			app.header.showSignedInHeader();
+			app.signedIn = true;
 		});
 
 		this.zone.find('.find-password').click(function () {

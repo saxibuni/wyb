@@ -163,6 +163,10 @@
 			that.hide();
 		});
 
+		this.zone.find('.moreNotice').click(function () {
+			app.personCenterRouter(3, 1);
+		});
+
 		this.startAnimation();
 	};
 
