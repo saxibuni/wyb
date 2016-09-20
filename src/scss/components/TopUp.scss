@@ -107,7 +107,7 @@
 			    line-height: 35px;
 				width: 150px;
 				margin-right: 20px;
-				margin-top: 20px;
+				margin-top: 10px;
 				text-align: right;
 				overflow: hidden;
 				position: relative;
@@ -135,9 +135,14 @@
 
 	.more-bank-cards {
 		color: #0088CC;
+		cursor: pointer;
 		height: 30px;
 		line-height: 30px;
 		margin-top: 10px;
+
+		.img-rotate {
+			transform: rotateZ(180deg);
+		}
 	}
 
 	.row4 {

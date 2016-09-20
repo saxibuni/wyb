@@ -222,6 +222,20 @@
 		return temp;
 	};
 
+	TopUp.prototype.addBankCards = function() {
+		var i;
+		var temp =  '';
+
+		for (i = 0; i < 8; i++) {
+			temp += '<li data-value="zggsyh">' +
+						'<input type="radio" name="bank" />' +
+						'<img style="top: -32px;" src="../img/bankLogo.jpg">' +
+					'</li>';
+		}
+
+		return temp;
+	};
+
 	TopUp.prototype.getDom = function() {
 		return this.el;
 	};
@@ -263,6 +277,7 @@
 		var bankCardsUl;
 		var content;
 		var contentName;
+		var ul;
 		var verifyReg     = '^[0-9]{4}$';
 		var inputEvents   = 'input';
 		var that          = this;
@@ -308,6 +323,22 @@
 
 		this.zone.find('#topup-button3').click(function () {
 			that.submit3();
+		});
+
+		this.zone.find('.more-bank-cards').click(function () {
+			ul = $(this).siblings('.bank-cards').children('ul');
+
+			if ($(this).hasClass('full')) {
+				ul.children('li:gt(7)').remove();
+				$(this).removeClass('full');
+				$(this).children('span').text('更多网银');
+				$(this).children('img').removeClass('img-rotate');
+			} else {
+				ul.append(that.addBankCards());
+				$(this).addClass('full');
+				$(this).children('span').text('收起');
+				$(this).children('img').addClass('img-rotate');
+			}
 		});
 
 		this.button.bindEvents();
