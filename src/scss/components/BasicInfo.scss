@@ -18,13 +18,6 @@
 			text-indent: 37px;
 		}
 
-		select {
-			height: 30px;
-			line-height: 30px;
-			width: 200px;
-			margin-right: 20px; 
-		}
-
 		.row1 {
 			margin-top: 20px;
 			.text{
@@ -53,6 +46,16 @@
 
 		.row4{
 			margin-top: 20px;
+
+			.china-district {
+				display: inline-block;
+
+				select {
+				    height: 30px;
+				    margin: 0 10px;
+				    font-size: 16px;
+				}
+			}
 		}
 
 		.row5{

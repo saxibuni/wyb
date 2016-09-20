@@ -78,9 +78,15 @@ $(function(){
 
 						'<div class="row4">' +
 							'<div class="text">地址</div>' +
-							this.selectProvince.getDom() +
-							this.selectCity.getDom() +
-							this.selectCounty.getDom() +
+							// this.selectProvince.getDom() +
+							// this.selectCity.getDom() +
+							// this.selectCounty.getDom() +
+
+							'<div class="china-district" data-toggle="distpicker">' +
+								'<select data-province="---- 选择省 ----"></select>' +
+								'<select data-city="---- 选择市 ----"></select>' +
+								'<select data-district="---- 选择区 ----"></select>' +
+							'</div>' +
 						'</div>' +
 
 						'<div class="row5">' +
@@ -117,11 +123,11 @@ $(function(){
 
 		this.zone.find('.birthday').datetimepicker({value: today + ' 00:00', lang: 'en'})
 		this.realNameInput.bindEvents();
-		this.selectProvince.bindEvents();
-		this.selectCity.bindEvents();
-		this.selectCounty.bindEvents();
+		// this.selectProvince.bindEvents();
+		// this.selectCity.bindEvents();
+		// this.selectCounty.bindEvents();
 		this.button.bindEvents();
-
+		$('.china-district').distpicker();
 	}
 
 
