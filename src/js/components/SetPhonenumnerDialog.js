@@ -32,14 +32,14 @@
 			id: 'spd-step1-ok-button',
 			name: '下一步',
 			width: 128,
-			height: 42
+			height: 35
 		});
 
 		this.step1CancelButton = new Button({
 			id: 'spd-step1-cancel-button',
 			name: '取消',
 			width: 128,
-			height: 42
+			height: 35
 		});
 
 		this.step2PhonenumberInput = new Input({
@@ -67,21 +67,21 @@
 			id: 'spd-step2-ok-button',
 			name: '下一步',
 			width: 128,
-			height: 42
+			height: 35
 		});
 
 		this.step2CancelButton = new Button({
 			id: 'spd-step2-cancel-button',
 			name: '取消',
 			width: 128,
-			height: 42
+			height: 35
 		});
 
 		this.step3Button = new Button({
 			id: 'spd-step3-button',
 			name: '完成',
 			width: 128,
-			height: 42
+			height: 35
 		});
 
 		var temp = '<div class="set-phonenumber-dialog">' +
