@@ -19,31 +19,6 @@ $(function(){
 			]
 		});
 
-		this.selectProvince = new Select({
-			id: 'card-bind-province',
-			width: 100,
-			height: 36,
-			data:[
-				{
-					'text': '湖北省',
-					'value': '0'	
-				}
-			]
-		});
-
-		this.selectCity = new Select({
-			id: 'card-bind-city',
-			width: 100,
-			height: 36,
-			data:[
-				{
-					'text': '武汉市',
-					'value': '0'	
-				}
-			]
-		});
-
-
 		var temp = '<div class="card-bind-content">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
@@ -65,8 +40,12 @@ $(function(){
 								'<div class="row">' +
 									'<div class="input-outer">' +
 										'<img src="../img/t04.png" />' +
-										this.selectProvince.getDom() +
-										this.selectCity.getDom() +
+
+										'<div class="china-district" data-toggle="distpicker">' +
+											'<select data-province="---- 选择省 ----"></select>' +
+											'<select data-city="---- 选择市 ----"></select>' +
+										'</div>' +
+
 										'<span>* 请选择您的开户银行所在地</span>' +									
 									'</div>' +
 								'</div>' +
@@ -128,9 +107,7 @@ $(function(){
 			that.hide();	
 		});
 
-		this.selectBank.bindEvents();
-		this.selectProvince.bindEvents();
-		this.selectCity.bindEvents();
+		this.zone.find('.china-district').distpicker();
         this.bindOverlayEvents();
 	}
 

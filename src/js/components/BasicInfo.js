@@ -20,42 +20,6 @@ $(function(){
 			height: 30
 		});
 
-		this.selectProvince = new Select({
-			id: 'basic-info-province',
-			width: 100,
-			height: 36,
-			data:[
-				{
-					'text': '湖北省',
-					'value': '0'	
-				}
-			]
-		});
-
-		this.selectCity = new Select({
-			id: 'basic-info-city',
-			width: 100,
-			height: 36,
-			data:[
-				{
-					'text': '武汉市',
-					'value': '0'	
-				}
-			]
-		});
-
-		this.selectCounty = new Select({
-			id: 'basic-info-county',
-			width: 100,
-			height: 36,
-			data:[
-				{
-					'text': '武昌区',
-					'value': '0'	
-				}
-			]
-		});
-
 		temp = '<div class="basic-info zhsz-info-action">' +
 					'<div class="wrapper">' +
 						'<div class="row1">' +
@@ -78,9 +42,6 @@ $(function(){
 
 						'<div class="row4">' +
 							'<div class="text">地址</div>' +
-							// this.selectProvince.getDom() +
-							// this.selectCity.getDom() +
-							// this.selectCounty.getDom() +
 
 							'<div class="china-district" data-toggle="distpicker">' +
 								'<select data-province="---- 选择省 ----"></select>' +
@@ -127,7 +88,7 @@ $(function(){
 		// this.selectCity.bindEvents();
 		// this.selectCounty.bindEvents();
 		this.button.bindEvents();
-		$('.china-district').distpicker();
+		this.zone.find('.china-district').distpicker();
 	}
 
 

@@ -81,6 +81,21 @@
 					margin-left: 50px;
 				}
 			}
+
+			.china-district {
+				display: inline-block;
+
+				select {
+					background-color: #48463a;
+					color: #A9A9A9;
+					width: 100px;
+					margin: 5px;
+
+					&:first-child {
+						width: 80px;
+					}
+				}
+			}
 		}
 	}
 	
