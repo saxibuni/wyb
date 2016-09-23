@@ -51,7 +51,7 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/datetimepicker/jquery.datetimepicker.css',
             './bower_components/Gallery/css/blueimp-gallery.min.css',
             './bower_components/bootstrap/dist/css/bootstrap.min.css',
-            './bower_components/unslider-master/dist/css/*.css'
+            './bower_components/unslider/dist/css/*.css'
         ])
         .pipe(gulp.dest(src_css_lib_path));
 
@@ -64,7 +64,7 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/i18next/i18next.min.js',
             './bower_components/datetimepicker/jquery.datetimepicker.js',
             './bower_components/Gallery/js/blueimp-gallery.min.js',
-            './bower_components/unslider-master/dist/js/unslider-min.js',
+            './bower_components/unslider/dist/js/unslider-min.js',
             './bower_components/distpicker/dist/distpicker.data.min.js',
             './bower_components/distpicker/dist/distpicker.min.js'
         ])

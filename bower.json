@@ -15,7 +15,7 @@
   "dependencies": {
     "fastclick": "^1.0.6",
     "i18next": "https://github.com/i18next/i18next.git#^3.4.1",
-    "jquery": "^3.1.0",
+    "jquery": "^3.1.1",
     "jquery-i18next": "^0.2.0",
     "datetimepicker": "^2.5.4",
     "Gallery": "https://github.com/blueimp/Gallery.git#^2.21.3",
