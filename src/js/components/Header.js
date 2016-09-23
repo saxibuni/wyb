@@ -194,19 +194,26 @@
 	};
 
 	Header.prototype.addCollectGame = function () {
+		var temp2;
+		var wdscHoverItem = this.zone.find('.wdsc-float-window');
 		var temp = {
 			url:"../img/fnfrj.jpg",
 			score:4,
 			name:'古怪猴子'
 		};
-		
-		var temp = '<li>'+
-						'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-						'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
-						'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
-					'</li>';
 
-		this.zone.find('.wdsc-float-window ul').append(temp);
+		if (wdscHoverItem.find('ul').children('li').length >= 10) {
+			return;
+		}
+
+		temp2 = '<li>' +
+					'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
+					'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
+					'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
+				'</li>';
+
+		wdscHoverItem.children('ul').append(temp2);
+		wdscHoverItem.css('top', '30px');
 	};
 
 	Header.prototype.showSignedInHeader = function () {
@@ -284,10 +291,12 @@
 			grzxFloatWindow.css('top', '-300px');
 		});
 
-		wdscHoverItem.mouseover(function () {
-			wdscFloatWindow.css('top', '30px');
-		}).mouseout(function () {
-			wdscFloatWindow.css('top', '-300px');
+		wdscHoverItem.click(function () {
+			if (wdscFloatWindow.css('top') === '30px') {
+				wdscFloatWindow.css('top', '-600px');
+			} else {
+				wdscFloatWindow.css('top', '30px');
+			}
 		});
 
 		langHoverItem.click(function () {

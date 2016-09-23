@@ -317,7 +317,7 @@
 			if(!$(this).hasClass("selected")){
 				$(this).find("img").attr("src",path);
 			}
-		})
+		});
 
 		pageUl.delegate('li','click',function(){
 				index = $(this).index();
