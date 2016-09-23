@@ -1,5 +1,9 @@
 @import "mixins.scss";
 
+body {
+	background-color: #000;
+}
+
 .app {
 	background-color: $theme-background-color;
 	display: inline-block;
@@ -23,6 +27,8 @@
 		@include page-property;
 		display: inline-block;
 		margin-top: 30px;
+		width: 1200px;
+		margin: 0 atuo;
 
 		.wrapper{
 			padding: 10px 17px;

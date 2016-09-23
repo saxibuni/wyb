@@ -372,6 +372,8 @@
 
             that.zone.find('.content-item').hide();
             that.zone.find('.' + name).show();
+
+            that.zone.find('.tree').css('height', that.zone.find('.container').css('height'));
         });
 
 		this.header.bindEvents();

@@ -340,7 +340,6 @@
 		});
 
 		middleModuleUl.delegate('li', 'click', function () {
-			debugger
 			middleModuleUl.find('li').removeClass('selected');
 			$(this).addClass('selected');
 		});
