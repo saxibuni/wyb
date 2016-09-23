@@ -44,7 +44,7 @@
 			title: '重要公告'
 		};
 
-		for (i = 0; i < 50; i++) {
+		for (i = 0; i < 5; i++) {
 			temp += this.createContentItem(data);
 		}
 
@@ -71,7 +71,7 @@
 			date: '2016-08-08'
 		};
 
-		for (i = 0; i < 50; i++) {
+		for (i = 0; i < 5; i++) {
 			temp += this.createDateItem(data);
 		}
 
@@ -89,7 +89,7 @@
 	Notice2.prototype.startAnimation = function () {
 		var top;
 		var len;
-		var liHeight = 40;
+		var liHeight  = 40;
 		var contentUl = this.zone.find('.notice2-left ul');
 		var dateUl    = this.zone.find('.notice2-right ul');
 
@@ -98,12 +98,24 @@
 			len = contentUl.children('li').length;
 
 			if (top === (0 - liHeight * (len - 1))) {
-				contentUl.css('top', '0');
-				dateUl.css('top', '0');
+				contentUl.css({
+					'top': 0,
+					'transition': 'none'
+				});
+				dateUl.css({
+					'top': 0,
+					'transition': 'none'
+				});
 			} else {
 				top -= liHeight;
-				contentUl.css('top', top + 'px');
-				dateUl.css('top', top + 'px');
+				contentUl.css({
+					'top': top + 'px',
+					'transition': 'top .5s'
+				});
+				dateUl.css({
+					'top': top + 'px',
+					'transition': 'top .5s'
+				});
 			}
 		}, 3000);
 	};

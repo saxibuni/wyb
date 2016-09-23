@@ -34,7 +34,7 @@
 							'</div>';
 
 		var topRightModule='<div class="left top-right-module">'+
-								'<div class="amount-info"><p>4,324,432,432</p></div>'+
+								'<div class="amount-info"><p>1,244,324.70</p></div>'+
 								'<div class="user-info">'+
 									'<p><span class="red">恭喜</span><span class="userName">Wang **</span></p>'+
 									'<h3>于BBIN平台-连环夺宝</h3>'+
@@ -225,11 +225,10 @@
 		var temp = '';
 		var data = {
 			game: '百万幸运球',
-			win: 1000000
+			win: '6,412,345.20'
 		};
 
 		for (i = 0; i < 20; i++) {
-			data.win += i;
 			temp += this.createMarqueenItem(data);
 		}
 
