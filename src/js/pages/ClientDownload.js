@@ -8,7 +8,7 @@
 						'<div class="wrapper">' +
 							'<div class="title">' +
 								'<ul class="title-ul">' +
-									'<li class="pt-li">' +
+									'<li class="pt-li selected">' +
 										'<span class="img pt-img"></span>' +
 										'<span class="name">真人、老虎机</span>' +
 									'</li>'+

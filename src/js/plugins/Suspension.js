@@ -23,25 +23,25 @@
                         '<div class="activity">' +
                             '<a >' +
                                 '<i class="tab-icon"></i>' +
-                                '<em class="tab-text">活动</em>' +
+                                '<em class="tab-text">参与最新优惠</em>' +
                             '</a>' +
                         '</div>' +
                         '<div class="qq-kf">' +
                             '<a>' +
                                 '<i class="tab-icon"></i>' +
-                                '<em class="tab-text">QQ在线客服</em>' +
+                                '<em class="tab-text">947856321</em>' +
                             '</a>' +
                         '</div>' +
                         '<div class="phone-kf">' +
                                 '<a>' +
                                     '<i class="tab-icon"></i>' +
-                                    '<em class="tab-text">电话客服</em>' +
+                                    '<em class="tab-text">+639157158888</em>' +
                                 '</a>' +
                         '</div>' +
                         '<div class="online-kf">' +
                                 '<a>' +
                                     '<i class="tab-icon"></i>' +
-                                    '<em class="tab-text">在线客服</em>' +
+                                    '<em class="tab-text">24H在线客服</em>' +
                                 '</a>' +
                         '</div>' +
                     '</div>';

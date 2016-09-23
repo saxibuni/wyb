@@ -125,8 +125,7 @@
 
 						'<div class="wdsc-float-window">' +
 							'<ul>' +
-								'<li><span>古怪猴子</span></li>' +
-								'<li><span>古怪猴子</span></li>' +
+								this.getCollectList() +
 							'</ul>' +
 						'</div>' +
 
@@ -173,6 +172,25 @@
 
 	Header.prototype.getDom = function () {
 		return this.el;
+	};
+
+	Header.prototype.getCollectList = function () {
+		var html='';
+		var temp = {
+			url:"../img/fnfrj.jpg",
+			score:4,
+			name:'古怪猴子'
+		};
+
+		for(var a = 0; a < 3; a++) {
+			html  +=	'<li>'+
+							'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
+							'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
+							'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
+						'</li>';
+		}
+
+		return html;
 	};
 
 	Header.prototype.showSignedInHeader = function () {

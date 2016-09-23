@@ -52,7 +52,7 @@
 							'</div>';
 	  	
 	  	var middleNavModule='<ul class="middle-module">'+
-								'<li class="pt-li">' +
+								'<li class="pt-li selected">' +
 									'<span class="img pt-img"></span>' +
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
@@ -69,12 +69,6 @@
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
 							'</ul>'+
-
-							// '<ul class="middle-right-module">'+
-							// 	'<li></li>'+
-							// 	'<li></li>'+
-							// 	'<li></li>'+
-							// '</ul>' +
 
 							'<div class="clear"></div>';
 
