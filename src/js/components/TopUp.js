@@ -68,6 +68,8 @@
 
 						'<div class="content">' +
 							'<div class="content-item fast-topup">' +
+								this.createBankCards() +
+								
 								'<div class="row4">' +
 									'<div class="text">充值金额</div>' +
 									this.topupInput.getDom() +
@@ -76,8 +78,6 @@
 										'充值额度限定： 最低2.00元，最高45000.00元' +
 									'</div>' +
 								'</div>' +
-
-								this.createBankCards() +
 
 								'<div class="row5">' +
 									this.button.getDom() +

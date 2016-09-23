@@ -187,7 +187,7 @@
 			marqueenLi1Row3.children('.marqueen-li1-game').text(game);
 			marqueenLi1Row3.children('.marqueen-li1-win').text(win);
 			that.animateMarqueenLi1();
-		}, 2000);
+		}, 5000);
 	};
 
 	EEntertainment.prototype.animateMarqueenLi1 = function (data) {
@@ -259,7 +259,7 @@
 		for(var a = 0; a < 24; a++) {
 			html  +=	'<li>'+
 							'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-							'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
+							'<span class="red">'+temp.score+'</span><img class="collect" src="../img/sc-d.png"></p>'+
 							'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
 						'</li>';
 		}
@@ -340,11 +340,16 @@
 		});
 
 		middleModuleUl.delegate('li', 'click', function () {
+			debugger
 			middleModuleUl.find('li').removeClass('selected');
 			$(this).addClass('selected');
 		});
 
 		this.animateMarqueen();
+
+		this.zone.delegate('.collect', 'click', function () {
+			app.header.addCollectGame();
+		});
 		
 		$(document).scroll(function(e) {
 		    var viewH     = $('body').height();

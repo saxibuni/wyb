@@ -193,6 +193,22 @@
 		return html;
 	};
 
+	Header.prototype.addCollectGame = function () {
+		var temp = {
+			url:"../img/fnfrj.jpg",
+			score:4,
+			name:'古怪猴子'
+		};
+		
+		var temp = '<li>'+
+						'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
+						'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
+						'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
+					'</li>';
+
+		this.zone.find('.wdsc-float-window ul').append(temp);
+	};
+
 	Header.prototype.showSignedInHeader = function () {
 		this.zone.find('.money-actions, .balance, .grzx').show();
 		this.zone.find('.my-collection').show();
