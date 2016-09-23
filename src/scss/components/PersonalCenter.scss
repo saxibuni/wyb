@@ -15,6 +15,8 @@
             padding: 8px 12px;
             position: relative;
             transition: all .5s;
+            -webkit-transform: scale(0);
+            transform: scale(0);
 
             .left-container {
                 width: 144px;
@@ -275,6 +277,22 @@
                 &:hover {
                     color: #DCAD4B;
                 }
+            }
+        }
+
+        .scale {
+            transform: scale(1.2) !important;
+            transition: transform .5s;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .personal-center {
+        .dialog-wrapper {
+            .dialog{
+                -webkit-transform: rotateX(-90deg) scale(1.2);
+                transform: rotateX(-90deg) scale(1.2);
             }
         }
     }

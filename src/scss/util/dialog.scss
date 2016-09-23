@@ -26,23 +26,27 @@
     }
 }
 
-@keyframes content-dialog-in {
+@keyframes pc-show-dialog {
     from {
-        top: -700px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
     }
 
     to {
-        top: 0;
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
     }
 }
 
-@keyframes content-dialog-out {
+@keyframes pc-hide-dialog {
     from {
-        top: 0;
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
     }
 
     to {
-        top: -700px;
+        -webkit-transform: scale(0);
+        transform: scale(0);
     }
 }
  
@@ -257,27 +261,39 @@
 
 }
 
-.content-dialog-active {
+.pc-modal-dialog-active {
+    visibility: visible;
+    opacity: 1;
+
     .dialog-wrapper {
-        -webkit-animation: content-dialog-in 0.5s;
-        animation: content-dialog-in 0.5s;
-        top: 0;
+        .dialog {
+            -webkit-animation: pc-show-dialog 0.5s;
+            animation: pc-show-dialog 0.5s;
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
     }
 
-    & + .overlay1 {
-        opacity: 1;
-        visibility: visible;
+    & + .overlay4 {
+        opacity: .95;
+        visibility: visible;  
     }
 }
 
-.content-dialog-deactive {
+.pc-modal-dialog-deactive {
+    visibility: hidden;
+    opacity: 1;
+
     .dialog-wrapper {
-        -webkit-animation: content-dialog-out 0.5s;
-        animation: content-dialog-out 0.5s;
-        top: -700px;
+        .dialog {
+            -webkit-animation: pc-hide-dialog 0.5s;
+            animation: pc-hide-dialog 0.5s;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
     }
 
-    & + .overlay1 {
+    & + .overlay4 {
         opacity: 0;
         visibility: hidden;
     }

@@ -20,23 +20,16 @@
 		this.zone.addClass('modal-dialog-deactive');
 	};
 
-	//给BettingRecords和UserFeedback用的
-	IMDialog.prototype.showContentOverlay = function () {
-		var height1 = parseInt($('.bet .main').css('height'));
-		var height2 = parseInt($('.bet .left-nav').css('height'));
-		var height  = Math.max(height1, height2) + 'px';
-
-		$('body').css('overflow-y', 'hidden');
-		this.zone.next('.overlay').css('height', height);
-		this.zone.removeClass('content-dialog-deactive');
-		this.zone.addClass('content-dialog-active');
+	//给個人中心用的
+	IMDialog.prototype.showPersonalCenterOverlay = function () {
+		this.zone.removeClass('pc-modal-dialog-deactive');
+		this.zone.addClass('pc-modal-dialog-active');
 	};
 
-	//给BettingRecords和UserFeedback用的
-	IMDialog.prototype.hideContentOverlay = function () {
-		$('body').css('overflow-y', 'auto');
-		this.zone.removeClass('content-dialog-active');
-		this.zone.addClass('content-dialog-deactive');
+	//给個人中心用的
+	IMDialog.prototype.hidePersonalCenterOverlay = function () {
+		this.zone.removeClass('pc-modal-dialog-active');
+		this.zone.addClass('pc-modal-dialog-deactive');
 	};
 
 	IMDialog.prototype.bindOverlayEvents = function () {

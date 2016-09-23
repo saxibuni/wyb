@@ -165,12 +165,12 @@ $(function(){
 	};
 
 	PersonalCenter.prototype.show = function(route){
-		this.showOverlay();
-	}
+		this.showPersonalCenterOverlay();
+	};
 
 	PersonalCenter.prototype.hide = function(){
-		this.hideOverlay();
-	}
+		this.hidePersonalCenterOverlay();
+	};
 
 	PersonalCenter.prototype.createSubWallet = function(){
 		var temp = '';

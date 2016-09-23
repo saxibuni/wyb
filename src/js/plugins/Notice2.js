@@ -25,7 +25,7 @@
 								'</ul>' +
 							'</div>' +
 							'<div class="moreNotice">更多公告</div>' +
-							'<div class="close">×</div>' +
+							// '<div class="close">×</div>' +
 						'</div>' +
 					'</div>';
 
