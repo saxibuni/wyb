@@ -223,16 +223,6 @@
 		});
 	};
 
-	Header.prototype.showPromotion = function () {
-		if (!this.promoActivity) {
-			this.promoActivity = new PromoActivity();
-			$('.app').append(this.promoActivity.getDom());
-			this.promoActivity.bindEvents();
-		}
-		
-		this.promoActivity.show();
-	};
-
 	Header.prototype.bindEvents = function () {
 		var index;
 		var pagesUl;
@@ -296,11 +286,7 @@
 			stick.css('left', index * 80 + 'px');
 			//page('/' + pageName);
 
-			if (pageName === 'promoActivity') {
-				that.showPromotion(); 
-			} else {
-				app.goTo(pageName);
-			}
+			app.goTo(pageName);
 		});
 
 		grzxNav.click(function(){

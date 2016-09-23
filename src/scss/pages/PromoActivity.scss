@@ -1,0 +1,90 @@
+@import "../mixins.scss";
+
+.promo-activity {
+	@include page-property;
+
+	.wrapper {
+		position: relative;
+		width: $contentWidth - 40px;
+		height: 100%;
+		margin: 0 20px;
+		margin-bottom: 60px;
+		
+		.title {
+			height: 50px;
+			width: 100%;
+
+			ul {
+				background-color: #48463A;
+				height: 50px;
+				width: 100%;
+				position: relative;
+
+				li {
+					color: #FFF;
+					cursor: pointer;
+					display: inline-block;
+					height: 50px;
+					line-height: 50px;
+					text-align: center;
+					width: 14.286%;
+
+					span {
+						padding: 0 10px;
+					}
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+
+				.stick {
+					background-color: #DCAD4B;
+					position: absolute;
+					left: 0;
+					top: 48px;
+					width: 14.286%;
+					height: 2px;
+					transition: left .3s;
+				}
+			}
+		}
+
+		.content {
+			width: 100%;
+
+			ul {
+				width: 100%;
+
+				li {
+					cursor: pointer;
+					display: inline-block;
+					width: 100%;
+					margin-bottom: 5px;
+
+					img {
+						height: auto;
+						width: 100%;
+						vertical-align: top;
+					}
+
+					.activity-content {
+						display: none;
+					}
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+
+			.pull {
+				padding-top: 15px;
+
+				img {
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
