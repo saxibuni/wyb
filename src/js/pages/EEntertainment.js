@@ -38,7 +38,7 @@
 								'<div class="user-info">'+
 									'<p><span class="red">恭喜</span><span class="userName">Wang **</span></p>'+
 									'<h3>于BBIN平台-连环夺宝</h3>'+
-									'<p>获得<span>122142121424</span></p>'+
+									'<p>获得<span>3,456,456.20</span></p>'+
 								'</div>'+
 								'<button>快速游戏</button>'+
 							'</div>'+
@@ -163,13 +163,12 @@
 	EEntertainment.prototype.animateMarqueen = function (data) {
 		var game;
 		var win;
-		var interval;
 		var ulFirstLi;
 		var marqueenLi1Row3
 		var that            =  this;
 		var marqueenUl      =  this.zone.find('.left-list .marqueen ul');
 		
-		interval = setInterval(function () {
+		this.marqueenInterval = setInterval(function () {
 			h         =  parseFloat(marqueenUl.children('li').css('height'));
 			ulFirstLi =  marqueenUl.children('li:first-child');
 			game      =  ulFirstLi.children('p:first-child').text();
@@ -213,7 +212,7 @@
 
 		row1.animate({'top': '-60px'});
 		row2.animate({'top': '-30px'});
-		row3.animate({'top': '0'}, 500,function () {
+		row3.animate({'top': '0'}, 500, function () {
 			row1.remove();
 			row2.remove();
 			wrapper.append(temp);
@@ -270,10 +269,13 @@
 
 	EEntertainment.prototype.show = function () {
 		this.zone.fadeIn(500);
+		//this.animateMarqueen();
 	};
 
 	EEntertainment.prototype.hide = function () {
 		this.zone.fadeOut(500);
+		//clearInterval(this.marqueenInterval);
+		//this.marqueenInterval = undefined;
 	};
 
 	EEntertainment.prototype.bindEvents = function () {
@@ -343,7 +345,7 @@
 		});
 
 		this.animateMarqueen();
-
+		
 		$(document).scroll(function(e) {
 		    var viewH     = $('body').height();
 		    var contentH  = $('body').get(0).scrollHeight; 

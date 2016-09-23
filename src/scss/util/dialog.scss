@@ -25,30 +25,6 @@
         opacity:0
     }
 }
-
-@keyframes pc-show-dialog {
-    from {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-    }
-
-    to {
-        -webkit-transform: scale(1.2);
-        transform: scale(1.2);
-    }
-}
-
-@keyframes pc-hide-dialog {
-    from {
-        -webkit-transform: scale(1.2);
-        transform: scale(1.2);
-    }
-
-    to {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-    }
-}
  
 .overlay1 {
     background: #090908;
@@ -261,6 +237,31 @@
 
 }
 
+
+@keyframes pc-show-dialog {
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    to {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+}
+
+@keyframes pc-hide-dialog {
+    from {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    to {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
 .pc-modal-dialog-active {
     visibility: visible;
     opacity: 1;
@@ -296,5 +297,40 @@
     & + .overlay4 {
         opacity: 0;
         visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    @keyframes pc-show-dialog {
+        from {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        to {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    @keyframes pc-hide-dialog {
+        from {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        to {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+    }
+
+    .pc-modal-dialog-active {
+        .dialog-wrapper {
+            .dialog {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
     }
 }
