@@ -161,7 +161,7 @@
 		contentUl.children('li').hover(function () {
 			clearInterval(that.interval);
 			contentWrapper = $(this).find('.content-wrapper');
-			contentWrapper.animate({'left': '-1000px'}, 6000, function () {
+			contentWrapper.animate({'left': '-1000px'}, 10000, function () {
 				contentWrapper.css({'left': '0'});
 			});
 		}, function () {
