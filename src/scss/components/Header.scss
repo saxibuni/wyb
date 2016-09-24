@@ -502,9 +502,9 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 	}
 
 	.header-float-window {
-		background-color: #93949E;
+		background-color: #000;
 		position: absolute;
-		opacity: 0;
+		opacity: .9;
 		transition: all .5s;
 		height: 130px;
 		top: -200px;

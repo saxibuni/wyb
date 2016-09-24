@@ -230,7 +230,7 @@
 
 	EEntertainment.prototype.getGameList = function () {
 		var temp = {
-			url:"../img/fnfrj.jpg",
+			url:"../img/dv2.jpg",
 			score:4,
 			name:'古怪猴子'
 		};

@@ -243,7 +243,7 @@
 
 		headerFloatWindow.css({
 			top: '85px',
-			opacity: '1'
+			opacity: '0.9'
 		});
 	};
 
