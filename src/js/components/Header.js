@@ -377,21 +377,18 @@
 		});
 
 		menu.click(function () {
-			debugger
 			if (parseInt(headRow2.css('height')) !== 0) {
 				headRow2.css({
 					'height': '0',
 					'opacity': '0'
 				});
 				$('.app .main').css('margin-top', '30px');
-				that.zone.css('height', '30px');
 			} else {
 				headRow2.css({
 					'height': '55px',
 					'opacity':'1'
 				});
 				$('.app .main').css('margin-top', '85px');
-				that.zone.css('height', '85px');
 			}
 		});
 
