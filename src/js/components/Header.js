@@ -432,7 +432,7 @@
 		$(document).scroll(function(e) {
 			that.hideHeaderFloatWindow();
 
-			if (document.body.scrollTop > 50) {
+			if (document.body.scrollTop > 85) {
 				headRow2.css({
 					'height': '0',
 					'opacity':'0'
