@@ -484,6 +484,21 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					}
 				}
 			}
+
+			.close-wdsc {
+			    display: inline-block;
+			    width: 30px;
+			    position: absolute;
+			    right: 25px;
+			    top: 10px;
+			    font-size: 30px;
+			    cursor: pointer;
+			    color: #C6C4B9;
+
+			    &:hover {
+			    	color: #DCAD4B;
+			    }
+			}
 		}
 	}
 

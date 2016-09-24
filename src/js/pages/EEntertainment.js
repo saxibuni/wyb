@@ -259,7 +259,7 @@
 		for(var a = 0; a < 24; a++) {
 			html  +=	'<li>'+
 							'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-							'<span class="red">'+temp.score+'</span><img class="collect" src="../img/sc-d.png"></p>'+
+							'<span class="red">'+temp.score+'</span><img class="collect" src="../img/sc-h.png"></p>'+
 							'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
 						'</li>';
 		}
@@ -285,6 +285,7 @@
 		var imgIndex;
 		var imageUl;
 		var moreGame;
+		var imgSrc;
 		var middleModuleUl;
 		var that = this;
 
@@ -344,10 +345,18 @@
 			$(this).addClass('selected');
 		});
 
-		this.animateMarqueen();
+		//this.animateMarqueen();
 
 		this.zone.delegate('.collect', 'click', function () {
-			app.header.addCollectGame();
+			imgSrc = $(this).attr('src');
+
+			if (imgSrc.indexOf('sc-h.png') !== -1) {
+				$(this).attr('src', '../img/sc-d.png');
+				app.header.addCollectGame();
+			} else {
+				$(this).attr('src', '../img/sc-h.png');
+				app.header.deleteCollectGame();
+			}
 		});
 		
 		$(document).scroll(function(e) {

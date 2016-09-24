@@ -127,6 +127,7 @@
 							'<ul>' +
 								this.getCollectList() +
 							'</ul>' +
+							'<div class="close-wdsc">×</div>' +
 						'</div>' +
 
 						'<div class="language-float-window">' +
@@ -185,7 +186,7 @@
 		for(var a = 0; a < 3; a++) {
 			html  +=	'<li>'+
 							'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-							'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
+							'<span class="red">'+temp.score+'</span><img class="collect" src="../img/sc-d.png"></p>'+
 							'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
 						'</li>';
 		}
@@ -214,6 +215,11 @@
 
 		wdscHoverItem.children('ul').append(temp2);
 		wdscHoverItem.css('top', '30px');
+	};
+
+	Header.prototype.deleteCollectGame = function (id) {
+		var ul = this.zone.find('.wdsc-float-window ul');
+		ul.children('li:last-child').remove();
 	};
 
 	Header.prototype.showSignedInHeader = function () {
@@ -273,7 +279,7 @@
 		headRow2          = this.zone.find('.row2');
 		langHoverItem     = this.zone.find('.language, .language-float-window');
 		grzxHoverItem     = this.zone.find('.grzx, .grzx-float-window');
-		wdscHoverItem     = this.zone.find('.wdsc, .wdsc-float-window');
+		wdscHoverItem     = this.zone.find('.wdsc');
 		grzxFloatWindow   = this.zone.find('.grzx-float-window');
 		wdscFloatWindow   = this.zone.find('.wdsc-float-window');
 		langFloatWindow   = this.zone.find('.language-float-window');
@@ -297,6 +303,10 @@
 			} else {
 				wdscFloatWindow.css('top', '30px');
 			}
+		});
+
+		wdscFloatWindow.delegate('.collect', 'click', function () {
+			$(this).parents('li').remove();
 		});
 
 		langHoverItem.click(function () {
