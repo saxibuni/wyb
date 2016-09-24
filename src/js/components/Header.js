@@ -127,7 +127,9 @@
 							'<ul>' +
 								this.getCollectList() +
 							'</ul>' +
-							'<div class="close-wdsc">×</div>' +
+							'<div class="close-wdsc">' +
+								'<img src="../img/pack-up-arrow.png">' +
+							'</div>' +
 						'</div>' +
 
 						'<div class="language-float-window">' +
@@ -269,6 +271,7 @@
 		var langFloatWindow;
 		var grzxUl;
 		var headerFloatWindow;
+		var closeWdsc;
 		var grzxNav;
 		var grzxRouterValue;
 		var that = this;
@@ -282,6 +285,7 @@
 		wdscHoverItem     = this.zone.find('.wdsc');
 		grzxFloatWindow   = this.zone.find('.grzx-float-window');
 		wdscFloatWindow   = this.zone.find('.wdsc-float-window');
+		closeWdsc         = wdscFloatWindow.find('.close-wdsc');
 		langFloatWindow   = this.zone.find('.language-float-window');
 		grzxUl            = this.zone.find('.grzx-float-window ul');
 		menu              = this.zone.find('.menu');
@@ -385,6 +389,10 @@
 		this.zone.find('.top-item').click(function  () {
 		});
 
+		closeWdsc.click(function () {
+			wdscFloatWindow.css('top', '-600px');
+		});
+		
 		this.zone.find('.header-button').click(function () {
 			if ($(this).hasClass('signin-button')) {
 				if (!app.signInDialog) {

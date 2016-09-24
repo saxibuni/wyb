@@ -545,7 +545,7 @@
 					float:left;
 					border:1px solid #535250;
 					position:relative;
-					width: $gameImageWidth;
+					width: $gameImageWidth + 2px;
 					margin-left: $gameImageGap;
 					margin-top: $gameImageGap;
 					transition: all .5s;
@@ -1020,7 +1020,7 @@
 						float:left;
 						border:1px solid #535250;
 						position:relative;
-						width: $gameImageWidth;
+						width: $gameImageWidth + 2px;
 						margin-left: $gameImageGap;
 						margin-top: $gameImageGap;
 

@@ -398,7 +398,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			transition: top .5s;
 
 			ul {
-				background-color: #37352C;
+				display: inline-block;
 
 				li {
 					list-style:none;
@@ -410,7 +410,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					transition: all .5s;
 
 					img {
-						width: 150px;
+						width: 147px;
 						height: 150px;
 					}
 
@@ -478,7 +478,6 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					top: 0;
 					background-color: rgba(0, 0, 0, 0.5);
 
-
 					button {
 						cursor: pointer;
 					}
@@ -486,17 +485,15 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 			}
 
 			.close-wdsc {
-			    display: inline-block;
-			    width: 30px;
-			    position: absolute;
-			    right: 25px;
-			    top: 10px;
-			    font-size: 30px;
-			    cursor: pointer;
-			    color: #C6C4B9;
+				cursor: pointer;
+			    height: 30px;
+			    line-height: 30px;
+			    width: 100%;
+			    text-align: center;
 
-			    &:hover {
-			    	color: #DCAD4B;
+			    img {
+				    width: 25px;
+				    height: auto;
 			    }
 			}
 		}
