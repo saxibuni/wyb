@@ -141,17 +141,9 @@
 								'<div class="clear"></div>' +
 							'</div>' +
 
-							'<div class="row"></div>' +
-
 							'<div class="row">' +
-								'<div class="marqueen-li1-game">' +
-									'百万幸运球2' +
-								'</div>' +
-
-								'<div class="marqueen-li1-win">' +
-									'12,325,666.00' +
-								'</div>' +
-
+								'<div class="marqueen-li1-game"></div>' +
+								'<div class="marqueen-li1-win"></div>' +
 								'<div class="clear"></div>' +
 							'</div>' +
 						'</div>' +
@@ -164,7 +156,7 @@
 		var game;
 		var win;
 		var ulFirstLi;
-		var marqueenLi1Row3
+		var marqueenLi1Row2;
 		var that            =  this;
 		var marqueenUl      =  this.zone.find('.left-list .marqueen ul');
 		
@@ -183,9 +175,9 @@
 				}
 			});
 
-			marqueenLi1Row3 =  $(that.zone.find('.marqueen-li1 .row')[2]);
-			marqueenLi1Row3.children('.marqueen-li1-game').text(game);
-			marqueenLi1Row3.children('.marqueen-li1-win').text(win);
+			marqueenLi1Row2 = $(that.zone.find('.marqueen-li1 .row')[1]);
+			marqueenLi1Row2.children('.marqueen-li1-game').text(game);
+			marqueenLi1Row2.children('.marqueen-li1-win').text(win);
 			that.animateMarqueenLi1();
 		}, 5000);
 	};
@@ -195,26 +187,15 @@
 		var rows    = this.zone.find('.marqueen-li1 .row');
 		var row1    = $(rows[0]);
 		var row2    = $(rows[1]);
-		var row3    = $(rows[2]);
-		var temp    = 	'<div class="row"></div>' +
-
-						'<div class="row">' +
-							'<div class="marqueen-li1-game">' +
-								'百万幸运球2' +
-							'</div>' +
-
-							'<div class="marqueen-li1-win">' +
-								'12,325,666.00' +
-							'</div>' +
-
+		var temp    = 	'<div class="row">' +
+							'<div class="marqueen-li1-game"></div>' +
+							'<div class="marqueen-li1-win"></div>' +
 							'<div class="clear"></div>' +
 						'</div>';
 
-		row1.animate({'top': '-60px'});
-		row2.animate({'top': '-30px'});
-		row3.animate({'top': '0'}, 500, function () {
+		row1.animate({'top': '-30px'});
+		row2.animate({'top': '0'}, 500, function () {
 			row1.remove();
-			row2.remove();
 			wrapper.append(temp);
 		});
 	};
@@ -345,7 +326,7 @@
 			$(this).addClass('selected');
 		});
 
-		//this.animateMarqueen();
+		this.animateMarqueen();
 
 		this.zone.delegate('.collect', 'click', function () {
 			imgSrc = $(this).attr('src');
