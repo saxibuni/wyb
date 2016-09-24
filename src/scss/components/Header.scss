@@ -118,41 +118,43 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				height: $headerRow1Height;
 				line-height: $headerRow1Height;
 				position: relative;
-				margin-right: 10px;
+				margin-right: 5px;
 
 				.title {
 					cursor: pointer;
 					display: inline-block;	
 					margin-right: 5px;
 				}
+			}
 
-				.message {
-					cursor: pointer;
+			.message {
+				cursor: pointer;
+				display: inline-block;
+				float: right;
+				height: $headerRow1Height;
+				line-height: $headerRow1Height;
+				position: relative;
+				margin-right: 10px;
+
+				.message-img {
+					vertical-align: middle;
+					margin-bottom: 2px;
+				}
+
+				.dot {
+					$dotSize: 12px;
+
+					background-color: #F00;
+					border: 0;
+					border-radius: 50%;
 					display: inline-block;
-					height: $headerRow1Height;
-					line-height: $headerRow1Height;
-					position: relative;
-
-					.message-img {
-						vertical-align: middle;
-						margin-bottom: 2px;
-					}
-
-					.dot {
-						$dotSize: 12px;
-
-						background-color: #F00;
-						border: 0;
-						border-radius: 50%;
-						display: inline-block;
-						font-size: 10px;
-						height: $dotSize;
-						width: $dotSize;
-						line-height: $dotSize;
-						position: absolute;
-						left : 12px;
-						top: 4px;
-					}
+					font-size: 10px;
+					height: $dotSize;
+					width: $dotSize;
+					line-height: $dotSize;
+					position: absolute;
+					left : 12px;
+					top: 4px;
 				}
 			}
 

@@ -46,14 +46,14 @@
 								this.switch.getDom() +
 							'</div>' +
 
+							'<div class="grzx-layer message" data-value="3 0">' +
+								'<img class="message-img" src="../img/message.png">' +
+								'<div class="dot">1</div>' +
+							'</div>' +
+
 							'<div class="grzx">' +
 								'<div class="title nav-page" data-value="personalCenter">' +
 									'个人中心' +
-								'</div>' +
-
-								'<div class="message">' +
-									'<img src="../img/message.png">' +
-									'<div class="dot">1</div>' +
 								'</div>' +
 							'</div>' +
 
@@ -227,12 +227,14 @@
 	Header.prototype.showSignedInHeader = function () {
 		this.zone.find('.money-actions, .balance, .grzx').show();
 		this.zone.find('.my-collection').show();
+		this.zone.find('.message').show();
 		this.zone.find('.signin-button, .signup-button').hide();
 	};
 
 	Header.prototype.showSignedOutHeader = function () {
 		this.zone.find('.money-actions, .balance, .grzx').hide();
 		this.zone.find('.my-collection').hide();
+		this.zone.find('.message').hide();
 		this.zone.find('.signin-button, .signup-button').show();
 	};
 
@@ -390,9 +392,6 @@
 				});
 				$('.app .main').css('margin-top', '85px');
 			}
-		});
-
-		this.zone.find('.top-item').click(function  () {
 		});
 
 		closeWdsc.click(function () {
