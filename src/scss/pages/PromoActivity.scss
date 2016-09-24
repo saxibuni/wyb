@@ -55,6 +55,7 @@
 			padding: 0 10px;
 			overflow-y: auto;
 			height: 580px;
+			transition: height .5s;
 
 			ul {
 				width: 100%;
@@ -87,6 +88,18 @@
 				img {
 					cursor: pointer;
 				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	$baseWidth: 997px;
+
+	.promo-activity {
+		.wrapper {
+			.content {
+				height: 500px;
 			}
 		}
 	}
