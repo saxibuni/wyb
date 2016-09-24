@@ -39,8 +39,10 @@
 			margin-top: 20px;
 
 			.birthday{
+				border: 1px solid #AAAAAA;
 				height: 30px;
 				line-height: 30px;
+				text-align: center;
 			}
 		}
 
@@ -52,7 +54,7 @@
 
 				select {
 				    height: 30px;
-				    margin: 0 10px;
+				    margin-right: 10px;
 				    font-size: 16px;
 				}
 			}
@@ -64,6 +66,7 @@
 				bottom: 50px;
 			}
 			textarea{
+				border: 1px solid #AAAAAA;
 				width: 500px;
 				height: 100px;
 			}
