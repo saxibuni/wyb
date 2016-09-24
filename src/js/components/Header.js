@@ -19,7 +19,7 @@
 					'<div class="wrapper">' +
 						'<div class="row1">' +
 							'<div class="language">' +
-								'<img class="message-img" src="../img/zh-lang.png">' +
+								'<img src="../img/zh-lang.png">' +
 								'<span>CHN</span>' +
 							'</div>' +
 
@@ -52,7 +52,7 @@
 								'</div>' +
 
 								'<div class="message">' +
-									'<img class="message-img" src="../img/message.png">' +
+									'<img src="../img/message.png">' +
 									'<div class="dot">1</div>' +
 								'</div>' +
 							'</div>' +
