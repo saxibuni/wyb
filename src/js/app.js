@@ -43,6 +43,12 @@
 		this.emailVerifyCodeReg  =  '^[0-9]{4}$';
 		this.moneyReg            =  '^[0-9]+(.[0-9]{1,2})?$';
 		this.phoneNumberReg      =  '^[0-9]{11}$';
+
+		this.timeout = 3000;
+		this.domain  = '';
+		this.urls = {
+			signUp: this.domain + 'api/Account/Regist'
+		};
 	};
 
 	app.prototype.goTo = function (pageName) {

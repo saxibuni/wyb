@@ -144,6 +144,23 @@
 	};
 
 	HomePage.prototype.addSliders = function () {
+
+		// var images = [
+		// 	'../img/homepage-banner1.jpg',
+		// 	'../img/homepage-banner2.jpg',
+		// 	'../img/homepage-banner3.jpg'
+		// ];
+
+		// logoTemp = 	'<div class="home-pages-sliders">' +
+		// 				'<ul>';
+
+		// for (i = 0; i < images.length; i++) {
+		// 	logoTemp += 	'<li style="background: url("' + images[i] + '") 50% 50% no-repeat;"></li>';
+		// }
+
+		// logoTemp +=		'</ul>' +
+		// 			'</div>';
+					
 		var logoTemp = 	'<div class="home-pages-sliders">' +
 							'<ul>' +
 								'<li><img src="../img/homepage-banner1.jpg"></li>' +

@@ -86,10 +86,39 @@
 		}
 	};
 
+	SignIn.prototype.commit = function () {
+		var data;
+		var callback;
+		var that = this;
+
+		if (!this.allPass) {
+			return;
+		}
+
+		callback = function () {
+			that.hide();
+			app.header.showSignedInHeader();
+			app.signedIn = true;
+		};
+
+		data = {
+			UserName: this.usernameInput.val(),
+			Password: this.passwordInput.val()
+		};
+
+        $.ajax({
+            type: 'POST',
+            url: app.urls.signUp,
+            dataType: 'json',
+            timeout: app.timeout
+        }).done(function(json) {
+            debugger;
+        }).fail(function(xhr, textStatus, error) {
+            debugger;
+        });
+	};
+
 	SignIn.prototype.bindEvents = function () {
-		var usernameInput;
-		var passwordInput;
-		var verifyInput;
 		var close;
 		var button;
 		var value;
@@ -106,13 +135,13 @@
 		this.allPass        = false;
 
 		this.zone       = $('.sign-in');
-		usernameInput   = this.zone.find('.row2 input:text');
-		passwordInput   = this.zone.find('.row3 input:password');
-		verifyInput     = this.zone.find('.row4 input:text');
+		this.usernameInput   = this.zone.find('.row2 input:text');
+		this.passwordInput   = this.zone.find('.row3 input:password');
+		this.verifyInput     = this.zone.find('.row4 input:text');
 		close           = this.zone.find('.close');
 		button          = this.zone.find('.row5 .button');
 
-		usernameInput.bind(inputEvents, function () {
+		this.usernameInput.bind(inputEvents, function () {
 			value = $(this).val();
 
 			if (!value.match(usernameReg)) {
@@ -128,7 +157,7 @@
 			that.checkInputPass();
 		});
 
-		passwordInput.bind(inputEvents, function () {
+		this.passwordInput.bind(inputEvents, function () {
 			value = $(this).val();
 
 			if (!value.match(passwordReg)) {
@@ -144,7 +173,7 @@
 			that.checkInputPass();
 		});
 
-		verifyInput.bind(inputEvents, function () {
+		this.verifyInput.bind(inputEvents, function () {
 			value = $(this).val();
 
 			if (!value.match(verifyReg)) {
@@ -161,13 +190,7 @@
 		})
 
 		button.click(function () {
-			if (!that.allPass) {
-				return;
-			}
-
-			that.hide();
-			app.header.showSignedInHeader();
-			app.signedIn = true;
+			that.commit();
 		});
 
 		this.zone.find('.find-password').click(function () {
