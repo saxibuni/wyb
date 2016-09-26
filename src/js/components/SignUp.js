@@ -58,8 +58,8 @@
 									'<div class="input-outer verify-input-outer">' +
 										'<input type="text" placeholder="请输入验证码">' +
 									'</div>' +
-									'<img src="../img/verify-code.png">' +
-									'<span>换一个</span>' +
+									'<img class="verify-code" src="' + app.urls.verifyImage + '">' +
+									'<span class="change-verify-code">换一个</span>' +
 									'<div class="agree">' +
 										'<input type="checkbox" id="remember-checkbox" checked="checked">' +
 										'<label for="remember-checkbox">我已届满合法博彩年龄，且同意各项开户条约</label>' +
@@ -108,6 +108,30 @@
 	};
 
 	SignUp.prototype.commit = function () {
+		var that = this;
+		var url = app.urls.checkVerifyImage + this.verifyInput.val();
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'text',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	if (!json) {
+        		alert('验证码错误');
+        		return;
+        	}
+
+        	that.register();
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	SignUp.prototype.register = function () {
 		var data;
 		var callback;
 		var that = this;
@@ -120,6 +144,7 @@
 			that.hide();
 			app.header.showSignedInHeader(data);
 			app.signedIn = true;
+			//app.getLoginStatus();
 		};
 
 		data = {
@@ -132,7 +157,10 @@
             url: app.urls.signUp,
             dataType: 'json',
             timeout: app.timeout,
-            data: data
+            data: data,
+            xhrFields: {
+            	withCredentials: true
+            }
         }).done(function(json) {
             callback(json);
         }).fail(function(xhr, textStatus, error) {
@@ -266,6 +294,12 @@
 
 		button.click(function () {
 			that.commit();
+		});
+
+		this.zone.find('.change-verify-code').click(function () {
+            that.zone.find('.verify-code').attr('src', 
+            	app.urls.verifyImage + '?sid=' + Math.random()
+            );
 		});
 
 		this.zone.find('.signin-now').click(function () {

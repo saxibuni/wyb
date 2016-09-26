@@ -37,7 +37,7 @@
 	app.prototype.initRegs = function () {
 		this.usernameReg         =  '^[A-Za-z0-9]{6,12}$';
 		this.passwordReg         =  '^[A-Za-z0-9]{6,50}$';
-		this.verifyReg           =  '^[0-9]{4}$';
+		this.verifyReg           =  '^[A-Za-z0-9]{4}$';
 		this.popularizeReg       =  '^[A-Za-z0-9]{10}$';
 		this.emailReg            =  '^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$';
 		this.emailVerifyCodeReg  =  '^[0-9]{4}$';
@@ -49,8 +49,58 @@
 		this.urls = {
 			signUp: this.domain + 'api/Account/Regist',
 			signIn: this.domain + 'api/Account/Login',
-			signOut: this.domain + 'api/Account/Logout'
+			signOut: this.domain + 'api/Account/Logout',
+			verifyImage: this.domain + 'api/AuthCode/CreateImageCode',
+			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?securityCode=',
+			loginStatus: this.domain + 'api/Account/GetLoginStatus'
 		};
+	};
+
+	app.prototype.generateVefiyImage = function (callback) {
+		var callback;
+		var that = this;
+		var grzxFloatWindow = this.zone.find('.grzx-float-window');
+
+        $.ajax({
+            type: 'GET',
+            url: this.urls.checkVerifyImage,
+            dataType: 'image/',
+            timeout: this.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	if (typeof callback === 'function') {
+        		callback(json);
+        	}
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	app.prototype.getLoginStatus = function (callback) {
+        $.ajax({
+            type: 'GET',
+            url: this.urls.loginStatus,
+            dataType: 'json',
+            timeout: this.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	console.log('登录状态：' + json);
+        	if (json === 0) {
+        		if (typeof callback === 'function') {
+        			callback();
+        		}
+        	} else if (json === 1) {
+        		alert('未登录');
+        	} else if (json === 2) {
+        		alert('已过期');
+        	}
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
 	};
 
 	app.prototype.goTo = function (pageName) {

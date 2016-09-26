@@ -275,7 +275,10 @@
             type: 'GET',
             url: app.urls.signOut,
             dataType: 'json',
-            timeout: app.TIMEOUT
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
         }).done(function (json) {
             if(json === true) {
             	callback();
