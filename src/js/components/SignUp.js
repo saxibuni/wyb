@@ -107,12 +107,40 @@
 		}
 	};
 
+	SignUp.prototype.commit = function () {
+		var data;
+		var callback;
+		var that = this;
+
+		if (!this.allPass) {
+			return;
+		}
+
+		callback = function (data) {
+			that.hide();
+			app.header.showSignedInHeader(data);
+			app.signedIn = true;
+		};
+
+		data = {
+			UserName: this.usernameInput.val(),
+			Password: this.passwordInput.val()
+		};
+
+        $.ajax({
+            type: 'POST',
+            url: app.urls.signUp,
+            dataType: 'json',
+            timeout: app.timeout,
+            data: data
+        }).done(function(json) {
+            callback(json);
+        }).fail(function(xhr, textStatus, error) {
+            alert('register request failed');
+        });
+	};
+
 	SignUp.prototype.bindEvents = function () {
-		var usernameInput;
-		var passwordInput;
-		var repeatInput;
-		var popularizeInput;
-		var verifyInput;
 		var close;
 		var button;
 		var value;
@@ -132,16 +160,16 @@
 		this.popularizePass = false;
 		this.allPass        = false;
 
-		this.zone       = $('.sign-up');
-		usernameInput   = this.zone.find('.row2 input:text');
-		passwordInput   = this.zone.find('.row3 input:password');
-		repeatInput     = this.zone.find('.row4 input:password');
-		popularizeInput = this.zone.find('.row5 input:text');
-		verifyInput     = this.zone.find('.row6 input:text');
-		close           = this.zone.find('.close');
-		button          = this.zone.find('.row7 .button');
+		this.zone            = $('.sign-up');
+		this.usernameInput   = this.zone.find('.row2 input:text');
+		this.passwordInput   = this.zone.find('.row3 input:password');
+		this.repeatInput     = this.zone.find('.row4 input:password');
+		this.popularizeInput = this.zone.find('.row5 input:text');
+		this.verifyInput     = this.zone.find('.row6 input:text');
+		close                = this.zone.find('.close');
+		button               = this.zone.find('.row7 .button');
 
-		usernameInput.bind(inputEvents, function () {
+		this.usernameInput.bind(inputEvents, function () {
 			value = $(this).val();
 
 			if (!value.match(usernameReg)) {
@@ -157,7 +185,7 @@
 			that.checkInputPass();
 		});
 
-		passwordInput.bind(inputEvents, function () {
+		this.passwordInput.bind(inputEvents, function () {
 			value = $(this).val();
 
 			if (!value.match(passwordReg)) {
@@ -173,7 +201,7 @@
 			that.checkInputPass();
 		});
 
-		repeatInput.bind(inputEvents, function () {
+		this.repeatInput.bind(inputEvents, function () {
 			value  = $(this).val();
 
 			if (!value.match(repeatReg)) {
@@ -188,8 +216,8 @@
 
 			that.checkInputPass();
 		}).blur(function () {
-			value  = passwordInput.val();
-			value2 = repeatInput.val();
+			value  = that.passwordInput.val();
+			value2 = that.repeatInput.val();
 
 			if (value !== value2) {
 				$(this).siblings('.warning').show();
@@ -204,7 +232,7 @@
 			that.checkInputPass();
 		});
 
-		verifyInput.bind(inputEvents, function () {
+		this.verifyInput.bind(inputEvents, function () {
 			value = $(this).val();
 
 			if (!value.match(verifyReg)) {
@@ -216,7 +244,7 @@
 			that.checkInputPass();
 		});
 
-		popularizeInput.bind(inputEvents, function () {
+		this.popularizeInput.bind(inputEvents, function () {
 			value  = $(this).val();
 
 			if (!value.match(popularizeReg)) {
@@ -237,13 +265,7 @@
 		})
 
 		button.click(function () {
-			if (!that.allPass) {
-				return;
-			}
-
-			that.hide();
-			app.header.showSignedInHeader();
-			app.signedIn = true;
+			that.commit();
 		});
 
 		this.zone.find('.signin-now').click(function () {

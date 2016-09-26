@@ -66,7 +66,8 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/Gallery/js/blueimp-gallery.min.js',
             './bower_components/unslider/dist/js/unslider-min.js',
             './bower_components/distpicker/dist/distpicker.data.min.js',
-            './bower_components/distpicker/dist/distpicker.min.js'
+            './bower_components/distpicker/dist/distpicker.min.js',
+            './bower_components/JavaScript-MD5/js/md5.min.js',
         ])
         .pipe(gulp.dest(src_js_lib_path));
 
@@ -86,6 +87,7 @@ gulp.task('build', function () {
             'src/lib/js/unslider-min.js',
             'src/lib/js/distpicker.data.min.js',
             'src/lib/js/distpicker.min.js',
+            'src/lib/js/md5.min.js',
             'src/js/utils/*.js',
             'src/js/plugins/IMDialog.js',
             'src/js/plugins/*.js',

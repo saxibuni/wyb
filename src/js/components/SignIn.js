@@ -95,9 +95,9 @@
 			return;
 		}
 
-		callback = function () {
+		callback = function (data) {
 			that.hide();
-			app.header.showSignedInHeader();
+			app.header.showSignedInHeader(data);
 			app.signedIn = true;
 		};
 
@@ -108,13 +108,18 @@
 
         $.ajax({
             type: 'POST',
-            url: app.urls.signUp,
+            url: app.urls.signIn,
             dataType: 'json',
-            timeout: app.timeout
+            timeout: app.timeout,
+            data: data
         }).done(function(json) {
-            debugger;
+        	if (json.StatusCode && !json.access_token) {
+        		alert(json.Message);
+        	} else {
+        		callback(json);
+        	}
         }).fail(function(xhr, textStatus, error) {
-            debugger;
+            alert(error);
         });
 	};
 

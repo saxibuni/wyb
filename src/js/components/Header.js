@@ -224,14 +224,17 @@
 		ul.children('li:last-child').remove();
 	};
 
-	Header.prototype.showSignedInHeader = function () {
+	Header.prototype.showSignedInHeader = function (data) {
+		this.userLoginData = data;
 		this.zone.find('.money-actions, .balance, .grzx').show();
 		this.zone.find('.my-collection').show();
 		this.zone.find('.message').show();
 		this.zone.find('.signin-button, .signup-button').hide();
+		this.zone.find('.grzx-float-window .username').text(data.userName);
+		this.zone.find('.grzx-float-window .userid .id-value').text(data.userId);
 	};
 
-	Header.prototype.showSignedOutHeader = function () {
+	Header.prototype.showSignedOutHeader = function () { 
 		this.zone.find('.money-actions, .balance, .grzx').hide();
 		this.zone.find('.my-collection').hide();
 		this.zone.find('.message').hide();
@@ -254,6 +257,32 @@
 			top: '-200px',
 			opacity: '0'
 		});
+	};
+
+	Header.prototype.signOut = function () {
+		var callback;
+		var that = this;
+		var grzxFloatWindow = this.zone.find('.grzx-float-window');
+
+		callback = function () {
+			grzxFloatWindow.css('top', '-300px');
+			that.showSignedOutHeader();
+			app.goTo('homePage');
+			app.signedIn = false;
+		};
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.signOut,
+            dataType: 'json',
+            timeout: app.TIMEOUT
+        }).done(function (json) {
+            if(json === true) {
+            	callback();
+            }
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
 	};
 
 	Header.prototype.bindEvents = function () {
@@ -371,10 +400,7 @@
 
 		grzxUl.delegate('li', 'click', function () {
 			if ($(this).hasClass('signout')) {
-				grzxFloatWindow.css('top', '-300px');
-				that.showSignedOutHeader();
-				app.goTo('homePage');
-				app.signedIn = false;
+				that.signOut();
 			}
 		});
 

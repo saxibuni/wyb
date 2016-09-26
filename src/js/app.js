@@ -44,10 +44,12 @@
 		this.moneyReg            =  '^[0-9]+(.[0-9]{1,2})?$';
 		this.phoneNumberReg      =  '^[0-9]{11}$';
 
-		this.timeout = 3000;
-		this.domain  = '';
+		this.timeout = 6000;
+		this.domain  = 'http://api.vbetctrl.net/';
 		this.urls = {
-			signUp: this.domain + 'api/Account/Regist'
+			signUp: this.domain + 'api/Account/Regist',
+			signIn: this.domain + 'api/Account/Login',
+			signOut: this.domain + 'api/Account/Logout'
 		};
 	};
 
