@@ -16,9 +16,7 @@
 
 								'<div class="left-list">' +
 									'<div class="marqueen">' +
-										'<ul>'+
-											this.createMarqueenItems() +
-										'</ul>'+
+										'<ul></ul>'+
 									'</div>' +
 								'</div>' +
 							'</div>';
@@ -171,7 +169,7 @@
 				marqueenUl.css('top', '0');
 
 				if (marqueenUl.children('li').length < 10) {
-					marqueenUl.append(that.createMarqueenItems());
+					that.setMarqueenItems();
 				}
 			});
 
@@ -200,19 +198,42 @@
 		});
 	};
 
-	EEntertainment.prototype.createMarqueenItems = function () {
+	EEntertainment.prototype.setMarqueenItems = function () {
 		var i;
 		var temp = '';
-		var data = {
-			game: '百万幸运球',
-			win: '6,412,345.20'
-		};
+		var data = this.bonusPoolData;
+		var values = [
+			'79,983.22',
+			'11,223,64.75',
+			'1,342,624.02',
+			'3264.75',
+			'939,264.75',
+			'11,264.75',
+			'32,222.23',
+			'234,627.42',
+			'192,638.91',
+			'847,173.88',
+			'3,854.29',
+			'42,332.30',
+			'25,285.52',
+			'76,947.44',
+			'984,220.76',
+			'112,034.49',
+			'583,097.95',
+			'98,802.63',
+			'3,230.82',
+			'45,338.01'
+		];
 
-		for (i = 0; i < 20; i++) {
-			temp += this.createMarqueenItem(data);
+		for (i = 0; i < data.length; i++) {
+			temp += this.createMarqueenItem({
+				game: data[i].Title,
+				win: values[i]
+			});
 		}
 
-		return temp;
+		this.zone.find('.marqueen ul').html(temp);
+		this.animateMarqueen();
 	};
 
 	EEntertainment.prototype.createMarqueenItem = function (data) {
@@ -250,9 +271,35 @@
 
     EEntertainment.prototype.createLoader = function() {
         var wrapper1 = this.zone.find('.top-right-module .amount-info')[0];
+        var wrapper2 = this.zone.find('.top-left-module .marqueen')[0];
 
         this.loader1 = new Loader(wrapper1);
+        this.loader2 = new Loader(wrapper2);
     };
+
+	EEntertainment.prototype.getBonusPool = function () {
+		var url;
+		var that = this;
+
+		this.loader1.play();
+
+		url = app.urls.getBonusPool + 'pageIndex=0&pageSize=20'
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	that.bonusPoolData = json;
+        	that.setMarqueenItems();
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
 
     EEntertainment.prototype.setJackpotValue = function (data) {
     	data = '17,232,455.00';
@@ -284,6 +331,7 @@
 
 	EEntertainment.prototype.show = function () {
 		this.zone.fadeIn(500);
+		this.getBonusPool();
 		this.getJackpot();
 	};
 
@@ -359,8 +407,6 @@
 			middleModuleUl.find('li').removeClass('selected');
 			$(this).addClass('selected');
 		});
-
-		this.animateMarqueen();
 
 		this.zone.delegate('.collect', 'click', function () {
 			imgSrc = $(this).attr('src');
