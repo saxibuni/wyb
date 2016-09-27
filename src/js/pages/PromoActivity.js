@@ -74,10 +74,76 @@
 
 	PromoActivity.prototype.show = function () {
 		this.zone.show();
+		this.queryPromoTypes();
 	};
 
 	PromoActivity.prototype.hide = function () {
 		this.zone.hide();
+	};
+
+    PromoActivity.prototype.createLoader = function() {
+        var wrapper1 = this.zone.find('.content')[0];
+
+        this.loader1 = new Loader(wrapper1);
+    };
+
+	PromoActivity.prototype.queryPromoTypes = function () {
+		var that = this;
+
+		this.loader1.play();
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.queryPromoTypes,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	debugger
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	PromoActivity.prototype.queryPromoListsByType = function (type) {
+		var url;
+		var that = this;
+
+		url = app.urls.queryPromoListByType + '?type=' + type + '&pageIndex=1&pageSize=5'; 
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	debugger
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	PromoActivity.prototype.queryPromoContentById = function () {
+		var that = this;
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.queryPromoContentById,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	debugger
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
 	};
 
 	PromoActivity.prototype.bindEvents = function () {
@@ -104,6 +170,8 @@
 		pull.click(function () {
 			that.loadImages();	
 		});
+
+		this.createLoader();
 	};
 
 	window.PromoActivity = PromoActivity;

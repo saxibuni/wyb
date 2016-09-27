@@ -31,7 +31,6 @@
 		this.bindEvents();
 		this.initRegs();
 		//this.initRouter();
-		this.goTo('homePage');
 	};
 	
 	app.prototype.initRegs = function () {
@@ -46,36 +45,26 @@
 
 		this.timeout = 6000;
 		this.domain  = 'http://api.vbetctrl.net/';
-		this.urls = {
+		this.urls    = {
 			signUp: this.domain + 'api/Account/Regist',
 			signIn: this.domain + 'api/Account/Login',
 			signOut: this.domain + 'api/Account/Logout',
 			verifyImage: this.domain + 'api/AuthCode/CreateImageCode',
 			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?securityCode=',
-			loginStatus: this.domain + 'api/Account/GetLoginStatus'
+			loginStatus: this.domain + 'api/Account/GetLoginStatus',
+			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
+			getJackpot: this.domain + 'api/Game/GetJackpots',
+			queryPromoTypes: this.domain + 'api/Promo/GetAllType',
+			queryPromoListByType: this.domain + 'api/Promo/GetList',
+			queryPromoContentById: this.domain + 'api/Promo/GetInfo',
+			topupRecords: this.domain + 'api/Withdrawal/GetWithdrawalList',
+			transferRecords: this.domain + 'api/Transfer/GetTransferList',
+			withdrawRecords: this.domain + 'api/Withdrawal/GetWithdrawalList',
+			bettingRecords: this.domain + 'api/Bet/GetBetList',
+			dividentRecords: this.domain + '',
+			queryStationLetter: this.domain + 'api/User/GetMessageList',
+			queryNotices: this.domain + 'api/News/GetNotices'
 		};
-	};
-
-	app.prototype.generateVefiyImage = function (callback) {
-		var callback;
-		var that = this;
-		var grzxFloatWindow = this.zone.find('.grzx-float-window');
-
-        $.ajax({
-            type: 'GET',
-            url: this.urls.checkVerifyImage,
-            dataType: 'image/',
-            timeout: this.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	if (typeof callback === 'function') {
-        		callback(json);
-        	}
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
 	};
 
 	app.prototype.getLoginStatus = function (callback) {
@@ -225,7 +214,9 @@
 		this.header.bindEvents();
 		this.footer.bindEvents();
 		this.homePage.bindEvents();
+		this.homePage.bindEvents();
 	};
 
 	window.app = new app();
+	window.app.goTo('homePage');
 })();

@@ -81,8 +81,8 @@
 											'<img class="picture-bg" src="../img/md.png">' +
 
 											'<div class="table">' +
-												'<div class="tbody">' +
-													this.createLuckyDrawItems() +
+												'<div class="tbody lucky-draw-tbody">' +
+													//this.createLuckyDrawItems() +
 												'</div>' +
 											'</div>' +
 
@@ -106,7 +106,7 @@
 		return this.el;
 	};
 
-	HomePage.prototype.createLuckyDrawItems = function () {
+	HomePage.prototype.setLuckyDrawItems = function (data) {
 		var i;
 		var temp = '';
 		var data = {
@@ -118,7 +118,7 @@
 			temp += this.createLuckyDrawItem(data);
 		}
 
-		return temp;
+		this.zone.find('.lucky-draw-tbody').append($(temp));
 	};
 
 	HomePage.prototype.createLuckyDrawItem = function (data) {
@@ -137,10 +137,48 @@
 	HomePage.prototype.show = function () {
 		this.zone.fadeIn(500);
 		this.addSliders();
+		this.getLuckyDrawWinRecords();
 	};
 
 	HomePage.prototype.hide = function () {
 		this.zone.fadeOut(500);
+	};
+
+    HomePage.prototype.createLoader = function() {
+        var wrapper = this.zone.find('.zone2-down .table')[0];
+
+        this.loader = new Loader(wrapper);
+    };
+
+	HomePage.prototype.getLuckyDrawWinRecords = function () {
+		var url;
+		var that = this;
+		var today = new Date();
+
+		this.loader.play();
+
+		today = today.formatDate();
+		url  = 	app.urls.luckyDrawWinRecords +
+				'?beginTime=20150101&endTime=' + today + 
+				'&status=1&pageIndex=0&pageSize=4';
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	if (parseInt(json.StatusCode) === 0) {
+        		that.setLuckyDrawItems(json.data);
+        	}
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        }).done(function () {
+        	that.loader.stop();
+        });
 	};
 
 	HomePage.prototype.addSliders = function () {
@@ -196,6 +234,7 @@
 		});
 
 		this.notice.bindEvents();
+		this.createLoader();
 	};
 
 	window.HomePage = HomePage;

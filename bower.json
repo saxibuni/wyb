@@ -23,6 +23,7 @@
     "page": "https://github.com/visionmedia/page.js.git#^1.7.1",
     "bootstrap": "^3.3.7",
     "distpicker": "^1.0.4",
-    "JavaScript-MD5": "https://github.com/blueimp/JavaScript-MD5.git#^2.3.1"
+    "JavaScript-MD5": "https://github.com/blueimp/JavaScript-MD5.git#^2.3.1",
+    "spin.js": "https://github.com/fgnass/spin.js.git#^2.3.2"
   }
 }

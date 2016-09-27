@@ -34,7 +34,7 @@
 							'</div>';
 
 		var topRightModule='<div class="left top-right-module">'+
-								'<div class="amount-info"><p>1,244,324.70</p></div>'+
+								'<div class="amount-info"><p class="jackpot-value"></p></div>'+
 								'<div class="user-info">'+
 									'<p><span class="red">恭喜</span><span class="userName">Wang **</span></p>'+
 									'<h3>于BBIN平台-连环夺宝</h3>'+
@@ -248,9 +248,43 @@
 		return html;
 	};
 
+    EEntertainment.prototype.createLoader = function() {
+        var wrapper1 = this.zone.find('.top-right-module .amount-info')[0];
+
+        this.loader1 = new Loader(wrapper1);
+    };
+
+    EEntertainment.prototype.setJackpotValue = function (data) {
+    	data = '17,232,455.00';
+    	this.zone.find('.jackpot-value').text(data);
+    };
+
+	EEntertainment.prototype.getJackpot = function () {
+		var that = this;
+
+		this.loader1.play();
+
+        $.ajax({
+            type: 'POST',
+            url: app.urls.getJackpot,
+            dataType: 'json',
+            timeout: app.timeout
+        }).done(function(json) {
+        	if (json.StatusCode === 0) {
+        		that.setJackpotValue();
+        	} else {
+        		that.setJackpotValue();
+        	}
+        }).fail(function(xhr, textStatus, error) {
+            alert(error);
+        }).done(function () {
+        	that.loader1.stop();
+        });
+	};
+
 	EEntertainment.prototype.show = function () {
 		this.zone.fadeIn(500);
-		//this.animateMarqueen();
+		this.getJackpot();
 	};
 
 	EEntertainment.prototype.hide = function () {
@@ -364,48 +398,8 @@
 		    }
 		});
 
-		// function marquee(obj, step){
-		// 	 obj.find("ul").animate({
-		// 		 marginTop: '-=1'
-		// 	 },0,function(){
-		// 		 var s = Math.abs(parseInt($(this).css("margin-top")));
-		// 		 if(s >= step){
-		// 			 $(this).find("li").slice(0, 1).appendTo($(this));
-		// 			 $(this).css("margin-top", 0);
-		// 		 }
-		// 	 });
-		//  }
-		// var _scroll = setInterval(function(){
-		// 	if($(".marqueen").find("ul").height()<=$(".marqueen").height()){
-		// 		clearInterval(_scroll);
-		// 	}else{
-		// 		marquee($(".marqueen"), 30);
-		// 	}
-		// }, 100);
-
-		// $(".marqueen").hover(function(){
-		// 	clearInterval(_scroll);
-		// },function(){
-		// 	_scroll = setInterval(function(){
-		// 		if($(".marqueen").find("ul").height()<=$(".marqueen").height()){
-		// 			clearInterval(_scroll);
-		// 		}else{
-		// 			marquee($(".marqueen"), 30);
-		// 		}
-		// 	}, 100);
-		// });
+		this.createLoader();
 	};
-
-	// (function($){
-	// 	$.fn.myScroll = function(options){
-	// 		var defaults = {
-	// 			speed:40,
-	// 			rowHeight:24 
-	// 		};
-
-	// 		var opts = $.extend({}, defaults, options),intId = [];
-	// 	}
-	// })(jQuery);
 
 	window.EEntertainment = EEntertainment;
 }());

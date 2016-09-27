@@ -244,11 +244,16 @@
 			background-size: contain;
 			height: 150px;
 			width: 100%;
+			position: relative;
 
 			p {
 				position:relative;
 			    top: 90px;
 			    font-size: 30px;
+			}
+
+			.spinner {
+				top: 72%;
 			}
 		}
 
