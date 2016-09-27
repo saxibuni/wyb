@@ -1,5 +1,5 @@
 (function () {
-	function Loader (wrapper) {
+	function Loader (wrapper, options) {
 		var opt = {
             lines: 12,
             length: 8,
@@ -15,6 +15,16 @@
             position: 'absolute',
             color: '#FFF'
         };
+
+        if (options) {
+            if (options.top) {
+                opt.top = options.top;
+            }
+
+            if (options.left) {
+                opt.left = options.left;
+            }
+        }
 
         this.wrapper = wrapper;
         this.spinner = new Spinner(opt);

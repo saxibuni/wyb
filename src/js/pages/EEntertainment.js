@@ -90,11 +90,8 @@
 									'<div class="stick"></div>'+
 								'</div>';
 
-		var listImg = this.getGameList();
-
 	  	var bottomRightModule='<div class="bottom-right">'+
 														'<ul>'+
-															listImg+
 														'</ul>'+
 														'<div class="more-game">更多游戏</div>'+
 												'</div>'
@@ -198,6 +195,11 @@
 		});
 	};
 
+    EEntertainment.prototype.setJackpotValue = function (data) {
+    	data = '17,232,455.00';
+    	this.zone.find('.jackpot-value').text(data);
+    };
+
 	EEntertainment.prototype.setMarqueenItems = function () {
 		var i;
 		var temp = '';
@@ -271,9 +273,16 @@
     EEntertainment.prototype.createLoader = function() {
     	var wrapper1 = this.zone.find('.top-left-module .marqueen')[0];
         var wrapper2 = this.zone.find('.top-right-module .amount-info')[0];
+        var wrapper3 = this.zone.find('.bottom-right')[0];
         
         this.loader1 = new Loader(wrapper1);
-        this.loader2 = new Loader(wrapper2);
+        this.loader2 = new Loader(wrapper2, {
+        	top: '74%'
+        });
+        this.loader3 = new Loader(wrapper3, {
+        	left: '60%',
+        	top: '80%'
+        });
     };
 
 	EEntertainment.prototype.getBonusPool = function () {
@@ -302,11 +311,6 @@
         });
 	};
 
-    EEntertainment.prototype.setJackpotValue = function (data) {
-    	data = '17,232,455.00';
-    	this.zone.find('.jackpot-value').text(data);
-    };
-
 	EEntertainment.prototype.getJackpot = function () {
 		var that = this;
 
@@ -329,12 +333,37 @@
         });
 	};
 
+    EEntertainment.prototype.getGameLists = function () {
+    	var that = this;
+    	var url  = app.urls.getPtBonusPoolGameList + 'pageIndex=0&pageSize=20';
+
+    	this.loader3.play();
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	debugger
+        	that.loader3.stop();
+        	var listImg = that.getGameList();
+        	that.zone.find('.bottom-right ul').append(listImg);
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+    };
+
 	EEntertainment.prototype.show = function () {
 		this.zone.fadeIn(500);
 
 		if (!this.firstTime) {
 			this.getBonusPool();
 			this.getJackpot();
+			this.getGameLists();
 			this.firstTime = true;
 		}
 	};

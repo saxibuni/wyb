@@ -53,6 +53,7 @@
 			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?securityCode=',
 			loginStatus: this.domain + 'api/Account/GetLoginStatus',
 			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
+			getPtBonusPoolGameList: this.domain + 'api/Game/GetJackpotsGames?',
 			getBonusPool: this.domain + 'api/Game/GetJackpotsGames?',
 			getJackpot: this.domain + 'api/Game/GetJackpots',
 			queryPromoTypes: this.domain + 'api/Promo/GetAllType',
@@ -64,7 +65,7 @@
 			bettingRecords: this.domain + 'api/Bet/GetBetList',
 			dividentRecords: this.domain + '',
 			queryStationLetter: this.domain + 'api/User/GetMessageList',
-			queryNotices: this.domain + 'api/News/GetNotices'
+			queryNotices: this.domain + 'api/News/GetNotices',
 		};
 	};
 
