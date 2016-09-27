@@ -232,8 +232,7 @@
 			});
 		}
 
-		this.zone.find('.marqueen ul').html(temp);
-		this.animateMarqueen();
+		this.zone.find('.marqueen ul').append(temp);
 	};
 
 	EEntertainment.prototype.createMarqueenItem = function (data) {
@@ -270,9 +269,9 @@
 	};
 
     EEntertainment.prototype.createLoader = function() {
-        var wrapper1 = this.zone.find('.top-right-module .amount-info')[0];
-        var wrapper2 = this.zone.find('.top-left-module .marqueen')[0];
-
+    	var wrapper1 = this.zone.find('.top-left-module .marqueen')[0];
+        var wrapper2 = this.zone.find('.top-right-module .amount-info')[0];
+        
         this.loader1 = new Loader(wrapper1);
         this.loader2 = new Loader(wrapper2);
     };
@@ -294,8 +293,10 @@
             	withCredentials: true
             }
         }).done(function (json) {
+        	that.loader1.stop();
         	that.bonusPoolData = json;
         	that.setMarqueenItems();
+        	that.animateMarqueen();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -309,7 +310,7 @@
 	EEntertainment.prototype.getJackpot = function () {
 		var that = this;
 
-		this.loader1.play();
+		this.loader2.play();
 
         $.ajax({
             type: 'POST',
@@ -317,6 +318,7 @@
             dataType: 'json',
             timeout: app.timeout
         }).done(function(json) {
+        	that.loader2.stop();
         	if (json.StatusCode === 0) {
         		that.setJackpotValue();
         	} else {
@@ -324,21 +326,21 @@
         	}
         }).fail(function(xhr, textStatus, error) {
             alert(error);
-        }).done(function () {
-        	that.loader1.stop();
         });
 	};
 
 	EEntertainment.prototype.show = function () {
 		this.zone.fadeIn(500);
-		this.getBonusPool();
-		this.getJackpot();
+
+		if (!this.firstTime) {
+			this.getBonusPool();
+			this.getJackpot();
+			this.firstTime = true;
+		}
 	};
 
 	EEntertainment.prototype.hide = function () {
 		this.zone.fadeOut(500);
-		//clearInterval(this.marqueenInterval);
-		//this.marqueenInterval = undefined;
 	};
 
 	EEntertainment.prototype.bindEvents = function () {
