@@ -4,10 +4,8 @@
 	@include page-property;
 
 	.wrapper {
-		border: 1px solid #636157;
 		position: relative;
 		width: $contentWidth - 40px;
-		margin: 0 20px;
 		margin-bottom: 60px;
 		
 		.title {
@@ -54,7 +52,7 @@
 			width: 100%;
 			padding: 0 10px;
 			overflow-y: auto;
-			height: 580px;
+			height: auto;
 			transition: height .5s;
 
 			ul {
