@@ -292,7 +292,7 @@
 
         $.ajax({
             type: 'POST',
-            url: app.urls.getJackpotBonusPool,
+            url: app.urls.getJackpotBonusPool + 'pageIndex=0&pageSize=20',
             dataType: 'json',
             timeout: app.timeout,
             xhrFields: {
@@ -311,7 +311,7 @@
 
     EEntertainment.prototype.getGameLists = function () {
     	var that = this;
-    	var url  = app.urls.getPtBonusPoolGameList + 'pageIndex=0&pageSize=20';
+    	var url  = app.urls.getBonusPoolGames + 'pageIndex=0&pageSize=20';
 
     	this.loader3.play();
 
