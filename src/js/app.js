@@ -60,13 +60,15 @@
 			loginStatus: this.domain + 'api/Account/GetLoginStatus',
 			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
 			
-			getFavoriteGames: this.domain + 'api/Game/GetFavoriteGames?',
+			getFavoriteGames: this.domain + 'api/Game/GetFavoriteGames?', //获取所有收藏的游戏
+			addFavoriteGameById: this.domain + 'api/Game/AddFavorite',       //添加收藏游戏
+			deleteFavoriteGameById: this.domain + 'api/Game/DeleteFavorite',  //删除收藏游戏
 
 			getAds: this.domain + 'api/News/GetAds?',
 
 			getJackpotsGames: this.domain + 'api/Game/GetJackpotsGames?',   //获取PT奖金池游戏
-			getGameCategories: this.domain + 'api/Game/GetCategories?',
-			getGameList: this.domain + 'api/Game/GetList?',
+			getGameCategories: this.domain + 'api/Game/GetCategories?',   //获取电子游艺游戏类型
+			getGameList: this.domain + 'api/Game/GetList?',              //获取电子游艺游戏列表
 
 			getGameUrlForLogin: this.domain + 'api/Game/GetGameUrlForLogin?',
 
@@ -114,6 +116,56 @@
         }).done(function (json) {
         	if (typeof callback === 'function') {
         		callback(json);
+        	}
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	app.prototype.addFavoriteGame = function (gameId) {
+		var that = this;
+
+		console.log('添加收藏游戏gameId = ' + gameId);
+        
+        $.ajax({
+            type: 'POST',
+            url: this.urls.addFavoriteGameById,
+            dataType: 'json',
+            timeout: this.timeout,
+            data: {
+            	id: gameId
+            },
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	debugger
+        	that.header.addCollectGame();
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	app.prototype.deleteFavoriteGame = function (gameId, callback) {
+		var that = this;
+
+		console.log('删除收藏游戏gameId = ' + gameId);
+        
+        $.ajax({
+            type: 'POST',
+            url: this.urls.deleteFavoriteGameById,
+            dataType: 'json',
+            timeout: this.timeout,
+            data: {
+            	id: gameId
+            },
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	debugger
+        	if (typeof callback === 'function') {
+        		callback();
         	}
         }).fail(function (xhr, testStatus, error) {
             alert(error);

@@ -255,7 +255,7 @@
 		var html='';
 
 		for (i = 0; i < data.length; i++) {
-			html +=	'<li>'+
+			html +=	'<li data-id="' + data[i].Id + '">'+
 						'<img src='+app.imageServer + data[i].ImageUrl+'><p><span class="game-name">'+data[i].Title+'</span>'+
 						'<span class="red">'+data[i].RecommendNo+'</span><img class="collect" src="../img/sc-h.png"></p>'+
 						'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
@@ -346,6 +346,7 @@
 	};
 
 	EEntertainment.prototype.bindEvents = function () {
+		var gameId;
 		var pageUl;
 		var stick;
 		var index;
@@ -414,13 +415,14 @@
 
 		this.zone.delegate('.collect', 'click', function () {
 			imgSrc = $(this).attr('src');
+			gameId = $(this).parent().parent('li').attr('data-id');
 
 			if (imgSrc.indexOf('sc-h.png') !== -1) {
 				$(this).attr('src', '../img/sc-d.png');
-				app.header.addCollectGame();
+				app.addFavoriteGame(gameId);
 			} else {
 				$(this).attr('src', '../img/sc-h.png');
-				app.header.deleteCollectGame();
+				app.deleteFavoriteGame(gameId);
 			}
 		});
 		

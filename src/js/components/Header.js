@@ -176,6 +176,34 @@
 		return this.el;
 	};
 
+	Header.prototype.addCollectGame = function () {
+		var temp2;
+		var wdscHoverItem = this.zone.find('.wdsc-float-window');
+		var temp = {
+			url:"../img/fnfrj.jpg",
+			score:4,
+			name:'古怪猴子'
+		};
+
+		if (wdscHoverItem.find('ul').children('li').length >= 10) {
+			return;
+		}
+
+		temp2 = '<li>' +
+					'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
+					'<span class="red">'+temp.score+'</span><img class="collect" src="../img/sc-d.png"></p>'+
+					'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
+				'</li>';
+
+		wdscHoverItem.children('ul').append(temp2);
+		wdscHoverItem.css('top', '30px');
+	};
+
+	Header.prototype.deleteCollectGame = function (id) {
+		var ul = this.zone.find('.wdsc-float-window ul');
+		ul.children('li:last-child').remove();
+	};
+
 	Header.prototype.setCollectList = function () {
 		var html='';
 		var temp = {
@@ -198,7 +226,6 @@
 	Header.prototype.getCollectList = function () {
 		var that = this;
 
-
         $.ajax({
             type: 'GET',
             url: app.urls.getFavoriteGames + 'platform=PT&pageSize=10&pageIndex=0',
@@ -214,34 +241,6 @@
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
-	};
-
-	Header.prototype.addCollectGame = function () {
-		var temp2;
-		var wdscHoverItem = this.zone.find('.wdsc-float-window');
-		var temp = {
-			url:"../img/fnfrj.jpg",
-			score:4,
-			name:'古怪猴子'
-		};
-
-		if (wdscHoverItem.find('ul').children('li').length >= 10) {
-			return;
-		}
-
-		temp2 = '<li>' +
-					'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-					'<span class="red">'+temp.score+'</span><img src="../img/sc-d.png"></p>'+
-					'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
-				'</li>';
-
-		wdscHoverItem.children('ul').append(temp2);
-		wdscHoverItem.css('top', '30px');
-	};
-
-	Header.prototype.deleteCollectGame = function (id) {
-		var ul = this.zone.find('.wdsc-float-window ul');
-		ul.children('li:last-child').remove();
 	};
 
 	Header.prototype.showSignedInHeader = function (data, callback) {
@@ -334,6 +333,8 @@
 		var closeWdsc;
 		var grzxNav;
 		var grzxRouterValue;
+		var deleteCollectCallback;
+		var targetItem;
 		var that = this;
 
 		this.zone = $('.header');
@@ -372,7 +373,15 @@
 		});
 
 		wdscFloatWindow.delegate('.collect', 'click', function () {
-			$(this).parents('li').remove();
+			imgSrc     = $(this).attr('src');
+			gameId     = $(this).parent().parent('li').attr('data-id');
+			targetItem = $(this).parents('li');
+
+			deleteCollectCallback = function () {
+				targetItem.remove();
+			};
+
+			app.deleteFavoriteGame(gameId, deleteCollectCallback.bind(this));
 		});
 
 		langHoverItem.click(function () {
