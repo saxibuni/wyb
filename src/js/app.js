@@ -76,7 +76,7 @@
 			queryPromoListByType: this.domain + 'api/Promo/GetList',
 			queryPromoContentById: this.domain + 'api/Promo/GetInfo',
 
-			topupRecords: this.domain + 'api/Withdrawal/GetWithdrawalList',
+			topupRecords: this.domain + 'api/Deposit/GetDepositList?',   //获取充值列表
 			transferRecords: this.domain + 'api/Transfer/GetTransferList',
 			withdrawRecords: this.domain + 'api/Withdrawal/GetWithdrawalList',
 			bettingRecords: this.domain + 'api/Bet/GetBetList',

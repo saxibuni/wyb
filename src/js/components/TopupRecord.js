@@ -157,7 +157,7 @@
 									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
 									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
 									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +									
-									this.queryData(0) +
+									// this.queryData(0) +
 								'</tobdy>' +
  							'</table>' +
  							'<div class="page-content">' +
@@ -176,13 +176,59 @@
 
 	TopupRecord.prototype.show = function(){
 		this.zone.show();
+
+		if (!this.firstTime) {
+			this.queryData(0);
+			this.firstTime = true;
+		}
 	}
 
 	TopupRecord.prototype.hide = function(){
 		this.zone.hide();
 	}
 
+    TopupRecord.prototype.createLoader = function() {
+        var wrapper1 = this.zone.find('.table-zone tbody')[0];
+
+        this.loader1 = new Loader(wrapper1, {
+        	left: '72%'
+        });
+    };
+
 	TopupRecord.prototype.queryData = function(pageIndex){
+		var params  = '';
+		var that = this;
+
+		var starttime = this.zone.find('.starttime').val();
+		var endtime   = this.zone.find('.end').val();;
+		
+		params += 	'status=' + '0' +
+					'type=' + '0' +
+					'&startTime=' + '20150101' + 
+					'&endTime=' + '20161010' + 
+					'&pageIndex=' + pageIndex +
+					'&pageSize=10';
+
+		this.loader1.play();
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.topupRecords + params,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	debugger
+        	that.loader1.play();
+        	that.setData(json);
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	TopupRecord.prototype.setData = function(data){
 		var dom = '';
 		var i = 0;
 		var currentData = [];
@@ -212,13 +258,12 @@
 		}
 
 		return dom;
-	}
+	};
 
 	TopupRecord.prototype.bindData = function(pageIndex){
 		var dom = this.queryData(pageIndex);
 		this.zone.find('.table-zone  table > tbody').html(dom);
-	}
-
+	};
 
 	TopupRecord.prototype.bindEvents = function () {
 		var today = new Date();
@@ -239,6 +284,7 @@
 
 		this.select.bindEvents();
 		this.pager.bindEvents();
+		this.createLoader();
 	};
 
 	window.TopupRecord = TopupRecord;

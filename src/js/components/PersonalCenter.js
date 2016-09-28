@@ -304,11 +304,13 @@ $(function(){
             index = $(this).index();
             stick.css('top',(index * 32) + 'px');
             tabZone = that.zone.find('[menu-index="' + index +'"]');
+
             if (tabZone.html() == '') {	
 	            if (index == 1){
 	        		tabZone.html(that.createJyjl());
 	        		that.jyjlTab.bindEvents();
 	        		that.topupRecord.bindEvents();
+	        		that.topupRecord.show();
 	        	} 
 	        	if (index == 2) {
 	        		tabZone.html(that.createZhsz());
