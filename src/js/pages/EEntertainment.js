@@ -285,50 +285,26 @@
         });
     };
 
-	EEntertainment.prototype.getBonusPool = function () {
-		var url;
+	EEntertainment.prototype.getJackpotBonusPool = function () {
 		var that = this;
 
 		this.loader1.play();
 
-		url = app.urls.getBonusPool + 'pageIndex=0&pageSize=20'
-
         $.ajax({
-            type: 'GET',
-            url: url,
+            type: 'POST',
+            url: app.urls.getJackpotBonusPool,
             dataType: 'json',
             timeout: app.timeout,
             xhrFields: {
             	withCredentials: true
             }
         }).done(function (json) {
+        	debugger
         	that.loader1.stop();
         	that.bonusPoolData = json;
         	that.setMarqueenItems();
         	that.animateMarqueen();
         }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
-	};
-
-	EEntertainment.prototype.getJackpot = function () {
-		var that = this;
-
-		this.loader2.play();
-
-        $.ajax({
-            type: 'POST',
-            url: app.urls.getJackpot,
-            dataType: 'json',
-            timeout: app.timeout
-        }).done(function(json) {
-        	that.loader2.stop();
-        	if (json.StatusCode === 0) {
-        		that.setJackpotValue();
-        	} else {
-        		that.setJackpotValue();
-        	}
-        }).fail(function(xhr, textStatus, error) {
             alert(error);
         });
 	};
@@ -361,8 +337,7 @@
 		this.zone.fadeIn(500);
 
 		if (!this.firstTime) {
-			this.getBonusPool();
-			this.getJackpot();
+			this.getJackpotBonusPool();
 			this.getGameLists();
 			this.firstTime = true;
 		}

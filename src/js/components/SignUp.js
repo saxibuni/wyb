@@ -107,9 +107,16 @@
 		}
 	};
 
+    SignUp.prototype.createLoader = function() {
+        var wrapper = this.zone.find('.dialog')[0];
+        this.loader = new Loader(wrapper);
+    };
+
 	SignUp.prototype.commit = function () {
 		var that = this;
 		var url = app.urls.checkVerifyImage + this.verifyInput.val();
+
+		this.loader.play();
 
         $.ajax({
             type: 'GET',
@@ -163,6 +170,7 @@
             }
         }).done(function(json) {
             callback(json);
+            that.loader.play();
         }).fail(function(xhr, textStatus, error) {
             alert('register request failed');
         });
@@ -315,6 +323,7 @@
 		});
 
 		this.bindOverlayEvents();
+		this.createLoader();
 	};
 
 	window.SignUp = SignUp;

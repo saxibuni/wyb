@@ -86,9 +86,16 @@
 		}
 	};
 
+    SignIn.prototype.createLoader = function() {
+        var wrapper = this.zone.find('.dialog')[0];
+        this.loader = new Loader(wrapper);
+    };
+
 	SignIn.prototype.commit = function () {
 		var that = this;
 		var url = app.urls.checkVerifyImage + this.verifyInput.val();
+
+		this.loader.play();
 
         $.ajax({
             type: 'GET',
@@ -146,6 +153,7 @@
         	} else {
         		callback(json);
         	}
+        	that.loader.stop();
         }).fail(function(xhr, textStatus, error) {
             alert(error);
         });
@@ -250,6 +258,7 @@
 		});
 
 		this.bindOverlayEvents();
+		this.createLoader();
 	};
 
 	window.SignIn = SignIn;

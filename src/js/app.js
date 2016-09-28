@@ -53,9 +53,12 @@
 			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?securityCode=',
 			loginStatus: this.domain + 'api/Account/GetLoginStatus',
 			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
+
 			getPtBonusPoolGameList: this.domain + 'api/Game/GetJackpotsGames?',
-			getBonusPool: this.domain + 'api/Game/GetJackpotsGames?',
-			getJackpot: this.domain + 'api/Game/GetJackpots',
+			
+			getJackpotBonusPool: this.domain + 'api/Game/GetJackpots',
+			getBonusPoolGames: this.domain + 'api/Game/GetJackpotsGames?',
+
 			queryPromoTypes: this.domain + 'api/Promo/GetAllType',
 			queryPromoListByType: this.domain + 'api/Promo/GetList',
 			queryPromoContentById: this.domain + 'api/Promo/GetInfo',
