@@ -379,6 +379,10 @@
 
 			deleteCollectCallback = function () {
 				targetItem.remove();
+
+				if (wdscFloatWindow.children('ul').children('li').length < 1) {
+					wdscFloatWindow.css('top', '-600px');
+				}
 			};
 
 			app.deleteFavoriteGame(gameId, deleteCollectCallback.bind(this));
