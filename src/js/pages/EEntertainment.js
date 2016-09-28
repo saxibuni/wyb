@@ -250,24 +250,19 @@
 		return temp;
 	};
 
-	EEntertainment.prototype.getGameList = function () {
-		var temp = {
-			url:"../img/dv2.jpg",
-			score:4,
-			name:'古怪猴子'
-		};
-
+	EEntertainment.prototype.setGameList = function (data) {
+		var i;
 		var html='';
 
-		for(var a = 0; a < 24; a++) {
-			html  +=	'<li>'+
-							'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-							'<span class="red">'+temp.score+'</span><img class="collect" src="../img/sc-h.png"></p>'+
-							'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
-						'</li>';
+		for (i = 0; i < data.length; i++) {
+			html +=	'<li>'+
+						'<img src='+app.imageServer + data[i].ImageUrl+'><p><span class="game-name">'+data[i].Title+'</span>'+
+						'<span class="red">'+data[i].RecommendNo+'</span><img class="collect" src="../img/sc-h.png"></p>'+
+						'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
+					'</li>';
 		}
 
-		return html;
+		this.zone.find('.bottom-right ul').append(html);
 	};
 
     EEntertainment.prototype.createLoader = function() {
@@ -285,21 +280,20 @@
         });
     };
 
-	EEntertainment.prototype.getJackpotBonusPool = function () {
+	EEntertainment.prototype.getJackpotsGames = function () {
 		var that = this;
 
 		this.loader1.play();
 
         $.ajax({
-            type: 'POST',
-            url: app.urls.getJackpotBonusPool + 'pageIndex=0&pageSize=20',
+            type: 'GET',
+            url: app.urls.getJackpotsGames + 'pageIndex=0&pageSize=20',
             dataType: 'json',
             timeout: app.timeout,
             xhrFields: {
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
         	that.loader1.stop();
         	that.bonusPoolData = json;
         	that.setMarqueenItems();
@@ -309,9 +303,29 @@
         });
 	};
 
-    EEntertainment.prototype.getGameLists = function () {
+	EEntertainment.prototype.getGameCategories = function () {
+		var that = this;
+
+		this.loader3.play();
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.getGameCategories + 'code=electron',
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	that.getGameList(json[0].Id);
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+    EEntertainment.prototype.getGameList = function (cateGoryId) {
     	var that = this;
-    	var url  = app.urls.getBonusPoolGames + 'pageIndex=0&pageSize=20';
+    	var url  = app.urls.getGameList + 'pageIndex=0&pageSize=20&categoryId=' + cateGoryId;
 
     	this.loader3.play();
 
@@ -324,10 +338,8 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
         	that.loader3.stop();
-        	var listImg = that.getGameList();
-        	that.zone.find('.bottom-right ul').append(listImg);
+        	that.setGameList(json.list);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -337,8 +349,8 @@
 		this.zone.fadeIn(500);
 
 		if (!this.firstTime) {
-			this.getJackpotBonusPool();
-			this.getGameLists();
+			this.getJackpotsGames();
+			this.getGameCategories();
 			this.firstTime = true;
 		}
 	};
@@ -441,7 +453,7 @@
 
 		    	if (!that.loadImageTimeout) {
 			    	that.loadImageTimeout = setTimeout(function () {
-			    		imgUl.append(that.getGameList());
+			    		imgUl.append(that.setGameList());
 			    		moreGame.html('更多游戏');
 			    		clearTimeout(that.loadImageTimeout);
 			    		that.loadImageTimeout = undefined;

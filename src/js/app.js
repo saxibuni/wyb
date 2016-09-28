@@ -45,17 +45,21 @@
 
 		this.timeout = 6000;
 		this.domain  = 'http://api.vbetctrl.net/';
+		this.imageServer = 'http://img.lb118.com/';
 		this.urls    = {
 			signUp: this.domain + 'api/Account/Regist',
 			signIn: this.domain + 'api/Account/Login',
 			signOut: this.domain + 'api/Account/Logout',
 			verifyImage: this.domain + 'api/AuthCode/CreateImageCode',
 			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?securityCode=',
-			loginStatus: this.domain + 'api/Account/GetLoginStatus',
+			loginStatus: this.domain + 'api/Account/GetLogetAdsginStatus',
 			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
 			
-			getJackpotBonusPool: this.domain + 'api/Game/GetJackpots?',
-			getBonusPoolGames: this.domain + 'api/Game/GetJackpotsGames?',
+			getAds: this.domain + 'api/News/GetAds?',
+
+			getJackpotsGames: this.domain + 'api/Game/GetJackpotsGames?',
+			getGameCategories: this.domain + 'api/Game/GetCategories?',
+			getGameList: this.domain + 'api/Game/GetList?',
 
 			queryPromoTypes: this.domain + 'api/Promo/GetAllType',
 			queryPromoListByType: this.domain + 'api/Promo/GetList',

@@ -8,13 +8,6 @@
 						'<div class="wrapper">' +
 							'<div class="content">' +
 								'<div class="picture-zone">' +
-									this.createItem({ className: 'img1', img: 'live-video1'}) +
-									this.createItem({ className: 'img2', img: 'live-video2'}) +
-									this.createItem({ className: 'img3', img: 'live-video3'}) +
-									this.createItem({ className: 'img4', img: 'live-video4'}) +
-									this.createItem({ className: 'img5', img: 'live-video5'}) +
-									this.createItem({ className: 'img6', img: 'live-video6'}) +
-									this.createItem({ className: 'img7', img: 'live-video7'}) +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -25,6 +18,18 @@
 
 	LiveVideo.prototype.getDom = function () {
 		return this.el;
+	};
+
+	LiveVideo.prototype.setItems = function (opt) {
+		var temp = 	this.createItem({ className: 'img1', img: 'live-video1'}) +
+					this.createItem({ className: 'img2', img: 'live-video2'}) +
+					this.createItem({ className: 'img3', img: 'live-video3'}) +
+					this.createItem({ className: 'img4', img: 'live-video4'}) +
+					this.createItem({ className: 'img5', img: 'live-video5'}) +
+					this.createItem({ className: 'img6', img: 'live-video6'}) +
+					this.createItem({ className: 'img7', img: 'live-video7'});
+
+		this.zone.find('.picture-zone').html(temp);
 	};
 
 	LiveVideo.prototype.createItem = function (opt) {
@@ -56,6 +61,11 @@
 	LiveVideo.prototype.show = function () {
 		this.zone.fadeIn(500);
 		this.addSliders();
+		
+		if (!this.firstTime) {
+			this.getAds();
+			this.firstTime = true;
+		}
 	};
 
 	LiveVideo.prototype.hide = function () {
@@ -90,8 +100,38 @@
 		$('.live-video-sliders').show();
 	};
 
+    LiveVideo.prototype.createLoader = function() {
+        var wrapper = this.zone.find('.content')[0];
+
+        this.loader = new Loader(wrapper, {
+        	top: '50%'
+        });
+    };
+
+	LiveVideo.prototype.getAds = function () {
+		var that = this;
+
+		this.loader.play();
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.getAds + 'type=new_casino_carousel_1&pageSize=10&pageIndex=0',
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	that.loader.stop();
+        	that.setItems();
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
 	LiveVideo.prototype.bindEvents = function () {
 		this.zone = $('.live-video');
+		this.createLoader();
 	};
 
 	window.LiveVideo = LiveVideo;
