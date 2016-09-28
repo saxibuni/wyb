@@ -108,6 +108,7 @@
         }).done(function (json) {
         	if (!json) {
         		alert('验证码错误');
+        		that.loader.stop();
         		return;
         	}
 

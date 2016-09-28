@@ -34,6 +34,11 @@
 	};
 	
 	app.prototype.initRegs = function () {
+		this.platforms = [
+			'MG', 'PT', 'HG', 'BBIN', 'IBC', 'T188', 'EA', 'TB', 'AB', 'TTG', 'OW'
+			, 'MT', 'HY', 'FG', 'OPUS', 'OPUS2', 'AG'
+		];
+
 		this.usernameReg         =  '^[A-Za-z0-9]{6,12}$';
 		this.passwordReg         =  '^[A-Za-z0-9]{6,50}$';
 		this.verifyReg           =  '^[A-Za-z0-9]{4}$';
@@ -43,7 +48,7 @@
 		this.moneyReg            =  '^[0-9]+(.[0-9]{1,2})?$';
 		this.phoneNumberReg      =  '^[0-9]{11}$';
 
-		this.timeout = 6000;
+		this.timeout = 12000;
 		this.domain  = 'http://api.vbetctrl.net/';
 		this.imageServer = 'http://img.lb118.com/';
 		this.urls    = {
@@ -52,18 +57,21 @@
 			signOut: this.domain + 'api/Account/Logout',
 			verifyImage: this.domain + 'api/AuthCode/CreateImageCode',
 			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?securityCode=',
-			loginStatus: this.domain + 'api/Account/GetLogetAdsginStatus',
+			loginStatus: this.domain + 'api/Account/GetLoginStatus',
 			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
 			
 			getAds: this.domain + 'api/News/GetAds?',
 
-			getJackpotsGames: this.domain + 'api/Game/GetJackpotsGames?',
+			getJackpotsGames: this.domain + 'api/Game/GetJackpotsGames?',   //获取PT奖金池游戏
 			getGameCategories: this.domain + 'api/Game/GetCategories?',
 			getGameList: this.domain + 'api/Game/GetList?',
 
-			queryPromoTypes: this.domain + 'api/Promo/GetAllType',
+			getGameUrlForLogin: this.domain + 'api/Game/GetGameUrlForLogin?',
+
+			queryPromoTypes: this.domain + 'api/Promo/GetAllType?',
 			queryPromoListByType: this.domain + 'api/Promo/GetList',
 			queryPromoContentById: this.domain + 'api/Promo/GetInfo',
+
 			topupRecords: this.domain + 'api/Withdrawal/GetWithdrawalList',
 			transferRecords: this.domain + 'api/Transfer/GetTransferList',
 			withdrawRecords: this.domain + 'api/Withdrawal/GetWithdrawalList',
@@ -84,15 +92,26 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	console.log('登录状态：' + json);
-        	if (json === 0) {
-        		if (typeof callback === 'function') {
-        			callback();
-        		}
-        	} else if (json === 1) {
-        		alert('未登录');
-        	} else if (json === 2) {
-        		alert('已过期');
+        	callback(json);
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	app.prototype.getJackpotsGames = function (callback) {
+		var that = this;
+
+        $.ajax({
+            type: 'GET',
+            url: this.urls.getJackpotsGames + 'pageIndex=0&pageSize=20',
+            dataType: 'json',
+            timeout: this.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	if (typeof callback === 'function') {
+        		callback(json);
         	}
         }).fail(function (xhr, testStatus, error) {
             alert(error);
@@ -188,15 +207,19 @@
 		page('/homePage');
 	};
 
+	app.prototype.showSignInDialog = function () {
+		if (!this.signInDialog) {
+			this.signInDialog = new SignIn();
+			$('.app').append(this.signInDialog.getDom());
+			this.signInDialog.bindEvents();
+		}
+
+		this.signInDialog.show();
+	};
+
 	app.prototype.personCenterRouter = function (mainRouter, subRouter) {
 		if (!this.signedIn) {
-			if (!this.signInDialog) {
-				this.signInDialog = new SignIn();
-				$('.app').append(this.signInDialog.getDom());
-				this.signInDialog.bindEvents();
-			}
-
-			this.signInDialog.show();
+			this.showSignInDialog();
 			return;
 		}
 
@@ -220,7 +243,6 @@
 	app.prototype.bindEvents = function () {
 		this.header.bindEvents();
 		this.footer.bindEvents();
-		this.homePage.bindEvents();
 		this.homePage.bindEvents();
 	};
 

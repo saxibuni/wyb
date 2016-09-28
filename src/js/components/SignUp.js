@@ -128,6 +128,7 @@
             }
         }).done(function (json) {
         	if (!json) {
+        		that.loader.stop();
         		alert('验证码错误');
         		return;
         	}

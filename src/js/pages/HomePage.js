@@ -53,7 +53,7 @@
 										'<div class="zone1-down">' +
 											'<img class="picture-bg" src="../img/jackpot.png">' +
 											'<div class="info">' +
-												'<span>509,456,228.88</span>' +
+												'<span class="pt-jackpot-value"></span>' +
 											'</div>' +
 										'</div>' +
 									'</div>' +
@@ -137,6 +137,7 @@
 	HomePage.prototype.show = function () {
 		this.zone.fadeIn(500);
 		this.addSliders();
+		this.getPtJackpot();
 		this.getLuckyDrawWinRecords();
 	};
 
@@ -145,17 +146,37 @@
 	};
 
     HomePage.prototype.createLoader = function() {
-        var wrapper = this.zone.find('.zone2-down .table')[0];
+        var wrapper1 = this.zone.find('.zone1-down')[0];
+        var wrapper2 = this.zone.find('.zone2-down .table')[0];
 
-        this.loader = new Loader(wrapper);
+        this.loader1 = new Loader(wrapper1, {
+        	left: '72%'
+        });
+        this.loader2 = new Loader(wrapper2);
     };
+
+    HomePage.prototype.setJackpotValue = function () {
+    	this.zone.find('.pt-jackpot-value').text('509,456,228.88');
+    };
+
+	HomePage.prototype.getPtJackpot = function () {
+		var that = this;
+
+		var callback = function (data) {
+			that.loader1.stop();
+			that.setJackpotValue(data);
+		};
+
+		this.loader1.play();
+		app.getJackpotsGames(callback.bind(this));
+	};
 
 	HomePage.prototype.getLuckyDrawWinRecords = function () {
 		var url;
 		var that = this;
 		var today = new Date();
 
-		this.loader.play();
+		this.loader2.play();
 
 		today = today.formatDate();
 		url  = 	app.urls.luckyDrawWinRecords +
@@ -174,10 +195,9 @@
         	if (parseInt(json.StatusCode) === 0) {
         		that.setLuckyDrawItems(json.data);
         	}
+        	that.loader2.stop();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
-        }).done(function () {
-        	that.loader.stop();
         });
 	};
 

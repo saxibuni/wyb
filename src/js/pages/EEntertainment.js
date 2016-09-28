@@ -280,29 +280,6 @@
         });
     };
 
-	EEntertainment.prototype.getJackpotsGames = function () {
-		var that = this;
-
-		this.loader1.play();
-
-        $.ajax({
-            type: 'GET',
-            url: app.urls.getJackpotsGames + 'pageIndex=0&pageSize=20',
-            dataType: 'json',
-            timeout: app.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	that.loader1.stop();
-        	that.bonusPoolData = json;
-        	that.setMarqueenItems();
-        	that.animateMarqueen();
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
-	};
-
 	EEntertainment.prototype.getGameCategories = function () {
 		var that = this;
 
@@ -346,10 +323,19 @@
     };
 
 	EEntertainment.prototype.show = function () {
+		var callback;
+		var that = this;
+
 		this.zone.fadeIn(500);
 
 		if (!this.firstTime) {
-			this.getJackpotsGames();
+			callback = function () {
+	        	that.bonusPoolData = json;
+	        	that.setMarqueenItems();
+	        	that.animateMarqueen();
+			};
+			
+			app.getJackpotsGames(callback.bind(this));
 			this.getGameCategories();
 			this.firstTime = true;
 		}

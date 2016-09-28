@@ -108,6 +108,9 @@
         });
     };
 
+    /*
+    ** 此接口暂时没有测试数据
+    */
 	LiveVideo.prototype.getAds = function () {
 		var that = this;
 
@@ -115,7 +118,7 @@
 
         $.ajax({
             type: 'GET',
-            url: app.urls.getAds + 'type=new_casino_carousel_1&pageSize=10&pageIndex=0',
+            url: app.urls.getAds + 'type=new_casino_carousel_1&pageSize=1&pageIndex=0',
             dataType: 'json',
             timeout: app.timeout,
             xhrFields: {

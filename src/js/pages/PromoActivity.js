@@ -101,7 +101,7 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
+        	that.queryPromoListsByType(json[0].Id);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -122,7 +122,8 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
+        	json = {"count":3,"extend":null,"list":[]};
+        	that.loader1.stop();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });

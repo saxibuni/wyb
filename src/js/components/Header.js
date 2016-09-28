@@ -224,7 +224,7 @@
 		ul.children('li:last-child').remove();
 	};
 
-	Header.prototype.showSignedInHeader = function (data) {
+	Header.prototype.showSignedInHeader = function (data, callback) {
 		this.userLoginData = data;
 		this.zone.find('.money-actions, .balance, .grzx').show();
 		this.zone.find('.my-collection').show();
@@ -232,6 +232,10 @@
 		this.zone.find('.signin-button, .signup-button').hide();
 		this.zone.find('.grzx-float-window .username').text(data.userName);
 		this.zone.find('.grzx-float-window .userid .id-value').text(data.userId);
+
+		if (callback && typeof callback === 'function') {
+			callback();
+		}
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 
