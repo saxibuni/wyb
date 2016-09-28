@@ -329,12 +329,12 @@
 		this.zone.fadeIn(500);
 
 		if (!this.firstTime) {
-			callback = function () {
+			callback = function (json) {
 	        	that.bonusPoolData = json;
 	        	that.setMarqueenItems();
 	        	that.animateMarqueen();
 			};
-			
+
 			app.getJackpotsGames(callback.bind(this));
 			this.getGameCategories();
 			this.firstTime = true;

@@ -125,7 +125,6 @@
 
 						'<div class="wdsc-float-window">' +
 							'<ul>' +
-								this.getCollectList() +
 							'</ul>' +
 							'<div class="close-wdsc">' +
 								'<img src="../img/pack-up-arrow.png">' +
@@ -177,7 +176,7 @@
 		return this.el;
 	};
 
-	Header.prototype.getCollectList = function () {
+	Header.prototype.setCollectList = function () {
 		var html='';
 		var temp = {
 			url:"../img/fnfrj.jpg",
@@ -193,7 +192,28 @@
 						'</li>';
 		}
 
-		return html;
+		this.zone.find('.wdsc-float-window ul').html(html);
+	};
+
+	Header.prototype.getCollectList = function () {
+		var that = this;
+
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.getFavoriteGames + 'platform=PT&pageSize=10&pageIndex=0',
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	json = {"StatusCode":0,"Message":"","Data":{"count":0,"extend":null,"list":[]}};
+
+        	that.setCollectList(json);
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
 	};
 
 	Header.prototype.addCollectGame = function () {
@@ -236,6 +256,8 @@
 		if (callback && typeof callback === 'function') {
 			callback();
 		}
+
+		this.getCollectList();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 

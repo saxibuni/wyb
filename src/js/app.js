@@ -60,6 +60,8 @@
 			loginStatus: this.domain + 'api/Account/GetLoginStatus',
 			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
 			
+			getFavoriteGames: this.domain + 'api/Game/GetFavoriteGames?',
+
 			getAds: this.domain + 'api/News/GetAds?',
 
 			getJackpotsGames: this.domain + 'api/Game/GetJackpotsGames?',   //获取PT奖金池游戏
