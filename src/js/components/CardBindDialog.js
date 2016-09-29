@@ -79,14 +79,21 @@ $(function(){
 								'<div class="row">' +
 									'<div class="input-outer">' +
 										'<img src="../img/t04.png" />' +
-										'<input type="old-psw" placeholder="请输入您的开户行支行" />' +
+										'<input class="branch-bank" type="text" placeholder="请输入您的开户行支行" />' +
 									'</div>' +
 								'</div>' +
 
 								'<div class="row">' +
 									'<div class="input-outer">' +
 										'<img src="../img/t04.png" />' +
-										'<input type="old-psw" placeholder="请输入您的银行卡卡号" />' +
+										'<input class="bank-card-number" type="text" placeholder="请输入您的银行卡卡号" />' +
+									'</div>' +
+								'</div>' +
+
+								'<div class="row">' +
+									'<div class="input-outer">' +
+										'<img src="../img/t04.png" />' +
+										'<input class="card-owner" type="text" placeholder="请输入开户人姓名" />' +
 									'</div>' +
 								'</div>' +
 
@@ -224,17 +231,54 @@ $(function(){
 		Service.get(opt, callback);
 	};
 
+	CardBindDialog.prototype.bindCard = function() {
+		var callback;
+		var opt;
+		var that = this;
+		var bankId     = this.selectBank.getValue();
+		var provinceId = this.selectProvince.getValue();
+		var cityId     = this.selectCity.getValue();
+		var moneyPwd   = this.zone.find('.money-psw').val();
+		var branchBank = this.zone.find('.branch-bank').val();
+		var bankNumber = this.zone.find('.bank-card-number').val();
+		var owner      = this.zone.find('.card-owner').val();
+
+		opt = {
+			url: app.urls.addUserBank,
+			data: {
+				BankId: bankId,
+				Province: provinceId,
+				City: cityId,
+				BranchName: branchBank,
+				AccountNo: bankNumber,
+				WithdrawalPwd: moneyPwd,
+				AccountName: owner
+			}
+		};
+
+		callback = function (data) {
+			if (data.statusCode !== 0) {
+				alert(data.Message);
+				return;
+			}
+
+			that.hide();
+		};
+
+		Service.post(opt, callback);
+	};
+
 	CardBindDialog.prototype.bindEvents = function(){
 		var that = this;
 
 		this.zone = $('.card-bind-content');
 
-		this.zone.find('.ok').click(function(){
-			that.hide();
+		this.zone.find('.ok').click(function() {
+			that.bindCard();
 		});
 
-		this.zone.find('.cancel').click(function(){
-			that.hide();	
+		this.zone.find('.cancel').click(function() {
+			that.hide();
 		});
 
 		this.zone.find('#card-bind-province').change(function () {

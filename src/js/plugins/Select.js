@@ -30,7 +30,7 @@
 	};
 
 	Select.prototype.setOptions = function(temp) {
-		this.zone.append(temp);
+		this.zone.html(temp);
 	};
 
 	Select.prototype.getValue = function() {
