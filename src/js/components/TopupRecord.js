@@ -181,17 +181,18 @@
 			this.queryData(0);
 			this.firstTime = true;
 		}
-	}
+	};
 
 	TopupRecord.prototype.hide = function(){
 		this.zone.hide();
-	}
+	};
 
     TopupRecord.prototype.createLoader = function() {
         var wrapper1 = this.zone.find('.table-zone tbody')[0];
 
         this.loader1 = new Loader(wrapper1, {
-        	left: '72%'
+        	top: '84%',
+        	color: '#000'
         });
     };
 
@@ -200,7 +201,7 @@
 		var that = this;
 
 		var starttime = this.zone.find('.starttime').val();
-		var endtime   = this.zone.find('.end').val();;
+		var endtime   = this.zone.find('.end').val();
 		
 		params += 	'status=' + '0' +
 					'type=' + '0' +

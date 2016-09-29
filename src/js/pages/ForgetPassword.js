@@ -8,7 +8,7 @@
 
 		this.usernameInput = new Input({
 			id: 'forget-password-step1-input1',
-			width: 200,
+			width: 230,
 			height: 30,
 			placeholder: '请输入您的用户名',
 			reg: app.usernameReg
@@ -16,7 +16,7 @@
 
 		this.verifyInput = new Input({
 			id: 'forget-password-step1-input2',
-			width: 137,
+			width: 150,
 			height: 30,
 			placeholder: '请输入右侧验证码',
 			reg: app.verifyReg
@@ -24,10 +24,34 @@
 
 		this.mailInput = new Input({
 			id: 'mail-input',
-			width: 250,
+			width: 280,
 			height: 30,
 			placeholder: '请输入您的邮箱',
 			reg: app.emailReg
+		});
+
+		this.mailVerifyInput = new Input({
+			id: 'mail-verify-input',
+			width: 150,
+			height: 30,
+			placeholder: '请输入邮箱验证码',
+			reg: app.emailVerifyCode
+		});
+
+		this.phoneInput = new Input({
+			id: 'phone-input',
+			width: 280,
+			height: 30,
+			placeholder: '请输入您的手机号码',
+			reg: app.emailReg
+		});
+
+		this.phoneVerifyInput = new Input({
+			id: 'phone-verify-input',
+			width: 150,
+			height: 30,
+			placeholder: '请输入手机验证码',
+			reg: app.emailVerifyCode
 		});
 
 		this.newPwdInput = new Input({
@@ -44,14 +68,6 @@
 			height: 30,
 			placeholder: '请再次输入新密码',
 			reg: app.passwordReg
-		});
-
-		this.mailVerifyInput = new Input({
-			id: 'mail-verify-input',
-			width: 120,
-			height: 30,
-			placeholder: '请输入邮箱验证码',
-			reg: app.emailVerifyCode
 		});
 
 		this.step1Next = new Button({
@@ -71,6 +87,13 @@
 		this.getMailVerifyCode = new Button({
 			id: 'get-mail-verify-code',
 			name: '获取邮箱验证码',
+			width: 110,
+			height: 33
+		});
+
+		this.getPhoneVerifyCode = new Button({
+			id: 'get-phone-verify-code',
+			name: '获取手机验证码',
 			width: 110,
 			height: 33
 		});
@@ -131,7 +154,7 @@
 									'<div class="row2">' +
 										'<span class="text">验证码：</span>' +
 										this.verifyInput.getDom() +
-										'<img class="verify-img" src="../img/verify-code.png">' +
+										'<img class="verify-code" src="' + app.urls.verifyImage + '">' +
 									'</div>' +
 
 									'<div class="row3">' +
@@ -147,11 +170,55 @@
 									'</div>' +
 
 									'<div class="row2">' +
-										'<img class="mailimg left" src="../img/t08.png">' +
-										'<span class="text left">通过邮箱找回登录密码</span>' +
-										'<span class="text right not-bind">(未绑定，不可用)</span>' +
-										this.step2Next.getDom() +
-										'<div class="clear"></div>' +
+										'<ul>' +
+											'<li class="active">' +
+												'<div class="info-zone">' +
+													'<img class="mailimg left" src="../img/t08.png">' +
+													'<span class="text left">通过邮箱找回登录密码</span>' +
+													'<span class="text right not-bind">(未绑定，不可用)</span>' +
+													'<div class="clear"></div>' +
+												'</div>' +
+
+												'<div class="verify-zone">' +
+													'<div class="line1">' +
+														this.mailInput.getDom() +
+													'</div>' +
+
+													'<div class="line1-5">' +
+														'验证码已成功发送到您的邮箱' +
+													'</div>' +
+
+													'<div class="line2">' +
+														this.mailVerifyInput.getDom() +
+														this.getMailVerifyCode.getDom() +
+													'</div>' +
+												'</div>' +
+											'</li>' +
+
+											'<li>' +
+												'<div class="info-zone">' +
+													'<img class="mailimg left" src="../img/t08.png">' +
+													'<span class="text left">通过手机找回登录密码</span>' +
+													'<span class="text right not-bind">(未绑定，不可用)</span>' +
+													'<div class="clear"></div>' +
+												'</div>' +
+
+												'<div class="verify-zone">' +
+													'<div class="line1">' +
+														this.phoneInput.getDom() +
+													'</div>' +
+
+													'<div class="line2">' +
+														this.phoneVerifyInput.getDom() +
+														this.getPhoneVerifyCode.getDom() +
+													'</div>' +
+												'</div>' +
+											'</li>' +
+										'</ul>' +
+
+										'<div class="button-zone">' +
+											this.step2Next.getDom() +
+										'</div>' +
 									'</div>' +
 
 									'<div class="row3">' +
@@ -162,15 +229,6 @@
 								'</div>' +
 
 								'<div class="step step3">' +
-									'<div class="row1">' +
-										this.mailInput.getDom() +
-									'</div>' +
-
-									'<div class="row2">' +
-										this.mailVerifyInput.getDom() +
-										this.getMailVerifyCode.getDom() +
-									'</div>' +
-
 									'<div class="row3">' +
 										this.newPwdInput.getDom() +
 									'</div>' +
@@ -224,8 +282,117 @@
 		
 	};
 
+	ForgetPassword.prototype.checkUserName = function (userName) {
+		var callback;
+		var that    =  this;
+		var titleUl =  this.zone.find('ul.title');
+		var opt     =  {
+			url: app.urls.checkUserName,
+			data: {
+				userName: userName
+			}
+		};
+
+		callback = function (data) {
+			if (!data) {
+				return;
+			}
+
+			that.userName = userName;
+			that.zone.find('.step2 .row1 .username').text(userName);
+			that.zone.find('.step').hide();
+			that.zone.find('.step2').show()
+			titleUl.find('li').removeClass('active');
+			titleUl.find('li:eq(1)').addClass('active');
+		};
+
+		Service.get(opt, callback);
+	};
+
+	ForgetPassword.prototype.step2Commit = function (param) {
+		var opt;
+		var callback;
+		var step2Ul = this.zone.find('.step2 ul');
+		var lis  = step2Ul.children('li');
+		var that = this;
+
+		if ($(lis[0]).hasClass('active')) {
+			callback = function (data) {
+				
+			};
+
+			opt  =  {
+				url: app.urls.validateEmail,
+				data: {
+					email: param
+				}
+			};
+		} else {
+			callback = function (data) {
+				
+			};
+
+			opt  =  {
+				url: app.urls.validatePhone,
+				data: {
+					phone: param
+				}
+			};
+		}
+
+		Service.post(opt, callback);
+	};
+
+	ForgetPassword.prototype.getEmailValidateCode = function (email) {
+		var opt;
+		var callback;
+		var that = this;
+
+		opt = {
+			url: app.urls.sendEmailValidateCode,
+			data: {
+				email: email
+			}
+		};
+
+		callback = function (data) {
+			debugger
+			if (data === true) {
+				that.zone.find('.step2 ul li.active .line1-5').show();
+			}
+		};
+
+		Service.post(opt, callback);
+	};
+
+	ForgetPassword.prototype.getPhoneValidateCode = function (phone) {
+		var opt;
+		var callback;
+
+		opt = {
+			url: app.urls.sendEmailValidateCode,
+			data: {
+				phone: phone
+			}
+		};
+
+		callback = function (data) {
+			debugger
+			if (data === true) {
+				that.zone.find('.step2 ul li.active .line1-5').show();
+			}
+		};
+
+		Service.post(opt, callback);
+	};
+
 	ForgetPassword.prototype.bindEvents = function () {
+		var userName;
+		var email;
+		var phone;
 		var titleUl;
+		var callback;
+		var step2;
 		var that = this;
 
 		this.zone = $('.forget-password');
@@ -237,22 +404,25 @@
 				return;
 			}
 
-			that.zone.find('.step').hide();
-			that.zone.find('.step2').show()
-			titleUl.find('li').removeClass('active');
-			titleUl.find('li:eq(1)').addClass('active');
-		})
+			userName = that.usernameInput.getValue();
+			that.checkUserName(userName);
+		});
+
+		this.zone.find('.step2 .row2 ul li .info-zone').click(function () {
+			that.zone.find('.step2 .row2 ul li').removeClass('active');
+			$(this).parent('li').addClass('active');
+			that.zone.find('.step2 .row2 ul li .verify-zone').hide();
+			$(this).next('.verify-zone').show();
+
+		});
 
 		this.zone.find('#forget-password-step2-next').click(function () {
 			if (!$(this).hasClass('active')) {
 				return;
 			}
 
-			that.zone.find('.step').hide();
-			that.zone.find('.step3').show()
-			titleUl.find('li').removeClass('active');
-			titleUl.find('li:eq(2)').addClass('active');
-		})
+			that.step2Commit();
+		});
 
 		this.zone.find('#update-pwd').click(function () {
 			that.zone.find('.step').hide();
@@ -286,20 +456,37 @@
 			}
 		};
 
+		this.zone.find('.verify-code').click(function () {
+            $(this).attr('src', 
+            	app.urls.verifyImage + '?sid=' + Math.random()
+            );
+		});
+
+		this.zone.find('#get-mail-verify-code').click(function () {
+			email = that.mailInput.getValue();
+			that.getEmailValidateCode(email);
+		});
+
+		this.zone.find('#get-phone-verify-code').click(function () {
+			phone = that.phoneInput.getValue();
+			that.getPhoneValidateCode(phone);
+		});
+
 		this.usernameInput.bindEvents(step1Callback.bind(this));
 		this.verifyInput.bindEvents(step1Callback.bind(this));
 
 		this.mailInput.bindEvents();
+		this.mailVerifyInput.bindEvents();
+		this.phoneInput.bindEvents();
+		this.phoneVerifyInput.bindEvents();
 		this.newPwdInput.bindEvents();
 		this.confirmPwdInput.bindEvents();
-		this.mailVerifyInput.bindEvents();
 		this.step1Next.bindEvents();
 		this.step2Next.bindEvents();
 		this.getMailVerifyCode.bindEvents();
+		this.getPhoneVerifyCode.bindEvents();
 		this.updatePwd.bindEvents();
 		this.loginNow.bindEvents();
-
-
 	};
 
 	window.ForgetPassword = ForgetPassword;

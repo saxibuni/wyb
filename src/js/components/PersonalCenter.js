@@ -305,7 +305,7 @@ $(function(){
             stick.css('top',(index * 32) + 'px');
             tabZone = that.zone.find('[menu-index="' + index +'"]');
 
-            if (tabZone.html() == '') {	
+            if (tabZone.html() == '') {
 	            if (index == 1){
 	        		tabZone.html(that.createJyjl());
 	        		that.jyjlTab.bindEvents();
@@ -325,9 +325,7 @@ $(function(){
             }
         	tabZone.siblings().hide();
             tabZone.show();
-
         });
-
 
         this.zjglTab.bindEvents();
         this.cz.bindEvents();

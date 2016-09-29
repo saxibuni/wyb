@@ -16,16 +16,7 @@
             color: '#FFF'
         };
 
-        if (options) {
-            if (options.top) {
-                opt.top = options.top;
-            }
-
-            if (options.left) {
-                opt.left = options.left;
-            }
-        }
-
+        $.extend(opt, options);
         this.wrapper = wrapper;
         this.spinner = new Spinner(opt);
 	}

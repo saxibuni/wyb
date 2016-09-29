@@ -44,6 +44,7 @@
 		this.verifyReg           =  '^[A-Za-z0-9]{4}$';
 		this.popularizeReg       =  '^[A-Za-z0-9]{10}$';
 		this.emailReg            =  '^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$';
+		this.emailReg            =  '';
 		this.emailVerifyCodeReg  =  '^[0-9]{4}$';
 		this.moneyReg            =  '^[0-9]+(.[0-9]{1,2})?$';
 		this.phoneNumberReg      =  '^[0-9]{11}$';
@@ -83,6 +84,12 @@
 			dividentRecords: this.domain + '',
 			queryStationLetter: this.domain + 'api/User/GetMessageList',
 			queryNotices: this.domain + 'api/News/GetNotices',
+
+			checkUserName: this.domain + 'api/User/CheckUserName?',    //检查用户名是否存在
+			validateEmail: this.domain + 'api/User/ValidateEmail', //验证邮箱
+			validatePhone: this.domain + 'api/User/ValidatePhone', //验证手机
+			sendEmailValidateCode: this.domain + 'api/User/SendEmailValidateCode', //发送邮箱验证码
+			sendPhoneValidateCode: this.domain + 'api/User/SendMobileValidateCode', //发送手机验证码
 		};
 	};
 
