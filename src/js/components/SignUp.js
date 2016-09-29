@@ -97,7 +97,7 @@
 
 	SignUp.prototype.checkInputPass = function () {
 		if (this.usernamePass && this.passwordPass && this.repeatPass
-			&& this.verifyPass && this.popularizePass) {
+			&& this.verifyPass) {
 
 			this.zone.find('.row7 .button').addClass('active');
 			this.allPass = true;
