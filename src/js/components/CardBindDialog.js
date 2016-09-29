@@ -243,6 +243,11 @@ $(function(){
 		var bankNumber = this.zone.find('.bank-card-number').val();
 		var owner      = this.zone.find('.card-owner').val();
 
+		if (!(bankId && provinceId && cityId && moneyPwd && branchBank && bankNumber && owner)) {
+			alert('请完成相关信息!');
+			return;
+		}
+
 		opt = {
 			url: app.urls.addUserBank,
 			data: {
