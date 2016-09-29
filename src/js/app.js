@@ -57,7 +57,7 @@
 			signIn: this.domain + 'api/Account/Login',
 			signOut: this.domain + 'api/Account/Logout',
 			verifyImage: this.domain + 'api/AuthCode/CreateImageCode',
-			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?securityCode=',
+			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?',
 			loginStatus: this.domain + 'api/Account/GetLoginStatus',
 			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
 			

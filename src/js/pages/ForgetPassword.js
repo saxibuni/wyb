@@ -276,6 +276,32 @@
 		this.zone.hide();
 	};
 
+	ForgetPassword.prototype.checkStep1 = function () {
+		var callback;
+		var opt;
+		var userName;
+		var that = this;
+
+		opt =  {
+			url: app.urls.checkVerifyImage,
+			data: {
+				securityCode: this.verifyInput.getValue()
+			}
+		};
+
+		callback = function (data) {
+			if (!data) {
+				alert('验证码错误');
+				return;
+			}
+
+			userName = that.usernameInput.getValue();
+			that.checkUserName(userName);
+		};
+
+		Service.get(opt, callback);
+	};
+
 	ForgetPassword.prototype.checkUserName = function (userName) {
 		var callback;
 		var that    =  this;
@@ -289,6 +315,7 @@
 
 		callback = function (data) {
 			if (!data) {
+				alert('用户名不存在');
 				return;
 			}
 
@@ -371,9 +398,9 @@
 			callback = function (data) {
 				if (data.StatusCode !== 0) {
 					alert(data.Message);
+					return;
 				}
 
-				debugger
 				that.zone.find('.step').hide();
 				that.zone.find('.step3').show();
 				titleUl.find('li').removeClass('active');
@@ -403,7 +430,6 @@
 					return;
 				}
 
-				debugger
 				that.zone.find('.step').hide();
 				that.zone.find('.step3').show();
 				titleUl.find('li').removeClass('active');
@@ -429,7 +455,11 @@
 		var titleUl = this.zone.find('ul.title');
 
 		callback = function (data) {
-			debugger
+			if (data !== true) {
+				alert('修改失败');
+				return;
+			}
+			
 			that.zone.find('.step').hide();
 			that.zone.find('.step4').show()
 			titleUl.find('li').removeClass('active');
@@ -471,9 +501,7 @@
 			if (!$(this).addClass('active')) {
 				return;
 			}
-
-			userName = that.usernameInput.getValue();
-			that.checkUserName(userName);
+			that.checkStep1();
 		});
 
 		this.zone.find('.step2 .row2 ul li .info-zone').click(function () {
@@ -491,7 +519,7 @@
 			that.changePassword();
 		});
 
-		this.zone.find('#login-now').click(function () {
+		this.zone.find('#forget-password-login-now').click(function () {
 			app.goTo('homePage');
 
 			if (!app.signInDialog) {

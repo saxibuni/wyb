@@ -114,7 +114,7 @@
 
 	SignUp.prototype.commit = function () {
 		var that = this;
-		var url = app.urls.checkVerifyImage + this.verifyInput.val();
+		var url = app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.val();
 
 		this.loader.play();
 
