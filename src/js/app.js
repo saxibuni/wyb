@@ -86,10 +86,11 @@
 			queryNotices: this.domain + 'api/News/GetNotices',
 
 			checkUserName: this.domain + 'api/User/CheckUserName?',    //检查用户名是否存在
-			validateEmail: this.domain + 'api/User/ValidateEmail', //验证邮箱
-			validatePhone: this.domain + 'api/User/ValidatePhone', //验证手机
-			sendEmailValidateCode: this.domain + 'api/User/SendEmailValidateCode', //发送邮箱验证码
+			validateEmail: this.domain + 'api/User/ValidateEmail',     //验证邮箱
+			validatePhone: this.domain + 'api/User/ValidatePhone',     //验证手机
+			sendEmailValidateCode: this.domain + 'api/User/SendEmailValidateCode',  //发送邮箱验证码
 			sendPhoneValidateCode: this.domain + 'api/User/SendMobileValidateCode', //发送手机验证码
+			changePasswordByForget: this.domain + 'api/User/ChangePasswordByForget' //更改用户密码
 		};
 	};
 

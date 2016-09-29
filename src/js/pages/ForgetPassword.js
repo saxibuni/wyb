@@ -59,7 +59,8 @@
 			width: 250,
 			height: 30,
 			placeholder: '请输入新密码',
-			reg: app.passwordReg
+			reg: app.passwordReg,
+			type: 'password'
 		});
 
 		this.confirmPwdInput = new Input({
@@ -67,7 +68,8 @@
 			width: 250,
 			height: 30,
 			placeholder: '请再次输入新密码',
-			reg: app.passwordReg
+			reg: app.passwordReg,
+			type: 'password'
 		});
 
 		this.step1Next = new Button({
@@ -208,6 +210,10 @@
 														this.phoneInput.getDom() +
 													'</div>' +
 
+													'<div class="line1-5">' +
+														'验证码已成功发送到您的手机' +
+													'</div>' +
+
 													'<div class="line2">' +
 														this.phoneVerifyInput.getDom() +
 														this.getPhoneVerifyCode.getDom() +
@@ -270,18 +276,6 @@
 		this.zone.hide();
 	};
 
-	ForgetPassword.prototype.checkStep2 = function () {
-		var passwordReg   = '^[A-Za-z0-9]{6,50}$';
-	};
-
-	ForgetPassword.prototype.checkStep3 = function () {
-		
-	};
-
-	ForgetPassword.prototype.checkStep4 = function () {
-		
-	};
-
 	ForgetPassword.prototype.checkUserName = function (userName) {
 		var callback;
 		var that    =  this;
@@ -309,40 +303,6 @@
 		Service.get(opt, callback);
 	};
 
-	ForgetPassword.prototype.step2Commit = function (param) {
-		var opt;
-		var callback;
-		var step2Ul = this.zone.find('.step2 ul');
-		var lis  = step2Ul.children('li');
-		var that = this;
-
-		if ($(lis[0]).hasClass('active')) {
-			callback = function (data) {
-				
-			};
-
-			opt  =  {
-				url: app.urls.validateEmail,
-				data: {
-					email: param
-				}
-			};
-		} else {
-			callback = function (data) {
-				
-			};
-
-			opt  =  {
-				url: app.urls.validatePhone,
-				data: {
-					phone: param
-				}
-			};
-		}
-
-		Service.post(opt, callback);
-	};
-
 	ForgetPassword.prototype.getEmailValidateCode = function (email) {
 		var opt;
 		var callback;
@@ -356,9 +316,10 @@
 		};
 
 		callback = function (data) {
-			debugger
 			if (data === true) {
 				that.zone.find('.step2 ul li.active .line1-5').show();
+			} else {
+				alert(data.Message);
 			}
 		};
 
@@ -368,6 +329,7 @@
 	ForgetPassword.prototype.getPhoneValidateCode = function (phone) {
 		var opt;
 		var callback;
+		var that = this;
 
 		opt = {
 			url: app.urls.sendEmailValidateCode,
@@ -382,6 +344,112 @@
 				that.zone.find('.step2 ul li.active .line1-5').show();
 			}
 		};
+
+		Service.post(opt, callback);
+	};
+
+	ForgetPassword.prototype.step2Commit = function () {
+		var opt;
+		var value1;
+		var value2;
+		var callback;
+		var step2Ul = this.zone.find('.step2 ul');
+		var lis     = step2Ul.children('li');
+		var that    = this;
+		var titleUl = this.zone.find('ul.title');
+
+		if ($(lis[0]).hasClass('active')) {
+			value1 = this.mailInput.getValue();
+			value2 = this.mailVerifyInput.getValue();
+			this.verifyType = 'email';
+			this.verifyCode = value2;
+
+			if (!(value1 && value2)) {
+				return;
+			}
+
+			callback = function (data) {
+				if (data.StatusCode !== 0) {
+					alert(data.Message);
+				}
+
+				debugger
+				that.zone.find('.step').hide();
+				that.zone.find('.step3').show();
+				titleUl.find('li').removeClass('active');
+				titleUl.find('li:eq(2)').addClass('active');
+			};
+
+			opt  =  {
+				url: app.urls.validateEmail,
+				data: {
+					Email: value1,
+					EmailValidateCode: value2
+				}
+			};
+		} else {
+			value1 = this.phoneInput.getValue();
+			value2 = this.phoneVerifyInput.getValue();
+			this.verifyType = 'phone';
+			this.verifyCode = value2;
+
+			if (!(value1 && value2)) {
+				return;
+			}
+
+			callback = function (data) {
+				if (data.StatusCode !== 0) {
+					alert(data.Message);
+					return;
+				}
+
+				debugger
+				that.zone.find('.step').hide();
+				that.zone.find('.step3').show();
+				titleUl.find('li').removeClass('active');
+				titleUl.find('li:eq(2)').addClass('active');
+			};
+
+			opt  =  {
+				url: app.urls.validatePhone,
+				data: {
+					Phone: value1,
+					PhoneValidateCode: value2
+				}
+			};
+		}
+
+		Service.post(opt, callback);
+	};
+
+	ForgetPassword.prototype.changePassword = function () {
+		var opt;
+		var callback;
+		var that = this;
+		var titleUl = this.zone.find('ul.title');
+
+		callback = function (data) {
+			debugger
+			that.zone.find('.step').hide();
+			that.zone.find('.step4').show()
+			titleUl.find('li').removeClass('active');
+			titleUl.find('li:eq(3)').addClass('active');
+		};
+
+		opt = {
+			url: app.urls.changePasswordByForget,
+			data: {
+				UserName: this.userName,
+				NewPassword: this.newPwdInput.getValue(),
+				ConfirmPassword: this.confirmPwdInput.getValue()
+			}
+		};
+
+		if (this.verifyType === 'email') {
+			opt.data.EmailValidateCode = this.verifyCode;
+		} else {
+			opt.data.PhoneValidateCode = this.verifyCode;
+		}
 
 		Service.post(opt, callback);
 	};
@@ -413,22 +481,14 @@
 			$(this).parent('li').addClass('active');
 			that.zone.find('.step2 .row2 ul li .verify-zone').hide();
 			$(this).next('.verify-zone').show();
-
 		});
 
 		this.zone.find('#forget-password-step2-next').click(function () {
-			if (!$(this).hasClass('active')) {
-				return;
-			}
-
 			that.step2Commit();
 		});
 
 		this.zone.find('#update-pwd').click(function () {
-			that.zone.find('.step').hide();
-			that.zone.find('.step4').show()
-			titleUl.find('li').removeClass('active');
-			titleUl.find('li:eq(3)').addClass('active');
+			that.changePassword();
 		});
 
 		this.zone.find('#login-now').click(function () {
