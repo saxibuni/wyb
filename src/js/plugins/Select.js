@@ -29,6 +29,14 @@
 		return temp;
 	};
 
+	Select.prototype.setOptions = function(temp) {
+		this.zone.append(temp);
+	};
+
+	Select.prototype.getValue = function() {
+		return this.zone.find('option:selected').attr('data-value');
+	};
+
 	Select.prototype.bindEvents = function() {
 		var that = this;
 

@@ -178,7 +178,7 @@
 		this.zone.show();
 
 		if (!this.firstTime) {
-			this.queryData(0);
+			//this.queryData(0);
 			this.firstTime = true;
 		}
 	};

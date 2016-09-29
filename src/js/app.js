@@ -90,7 +90,12 @@
 			validatePhone: this.domain + 'api/User/ValidatePhone',     //验证手机
 			sendEmailValidateCode: this.domain + 'api/User/SendEmailValidateCode',  //发送邮箱验证码
 			sendPhoneValidateCode: this.domain + 'api/User/SendMobileValidateCode', //发送手机验证码
-			changePasswordByForget: this.domain + 'api/User/ChangePasswordByForget' //更改用户密码
+			changePasswordByForget: this.domain + 'api/User/ChangePasswordByForget', //更改用户密码
+
+			addUserBank: this.domain + 'api/Withdrawal/AddUserBank',
+			getBankList: this.domain + 'api/Config/GetBankList',
+			getProvinceList: this.domain + 'api/Config/GetProvinceList',
+			getCityList: this.domain + 'api/Config/GetCityList?'
 		};
 	};
 
@@ -308,6 +313,16 @@
 		this.homePage.bindEvents();
 	};
 
+	app.prototype.showDialog = function () {
+		if (!this.cardBindDiag) {
+			this.cardBindDiag = new CardBindDialog();
+			$('.app').append(this.cardBindDiag.getDom());
+			this.cardBindDiag.bindEvents();
+		}
+		this.cardBindDiag.show();
+	};
+
 	window.app = new app();
 	window.app.goTo('homePage');
+	window.app.showDialog();
 })();
