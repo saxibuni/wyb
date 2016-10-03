@@ -44,6 +44,16 @@
 									'</div>' +
 								'</div>' +
 
+								'<div class="row45">' +
+									'<div class="text">真实姓名</div>' +
+									'<div class="input-outer">' +
+										'<input type="text" placeholder="请输入您的真实姓名">' +
+										'<img class="pass" src="../img/pass.png">' +
+										'<img class="warning" src="../img/warning.png">' +
+										'<div class="clear"></div>' +
+									'</div>' +
+								'</div>' +
+
 								'<div class="row5">' +
 									'<div class="text">推广码</div>' +
 									'<div class="input-outer">' +
@@ -97,7 +107,7 @@
 
 	SignUp.prototype.checkInputPass = function () {
 		if (this.usernamePass && this.passwordPass && this.repeatPass
-			&& this.verifyPass) {
+			&& this.verifyPass && this.realNamePass) {
 
 			this.zone.find('.row7 .button').addClass('active');
 			this.allPass = true;
@@ -127,7 +137,8 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	if (!json) {
+        	debugger
+        	if (!json || json == 'false') {
         		that.loader.stop();
         		alert('验证码错误');
         		return;
@@ -143,7 +154,7 @@
 		var data;
 		var callback;
 		var that = this;
-
+		debugger
 		if (!this.allPass) {
 			return;
 		}
@@ -170,8 +181,9 @@
             	withCredentials: true
             }
         }).done(function(json) {
+        	debugger
             callback(json);
-            that.loader.play();
+            that.loader.stop();
         }).fail(function(xhr, textStatus, error) {
             alert('register request failed');
         });
@@ -186,6 +198,7 @@
 		var passwordReg   = app.passwordReg;
 		var repeatReg     = app.passwordReg;
 		var popularizeReg = app.popularizeReg;
+		var realNameReg   = app.realNameReg;
 		var verifyReg     = app.verifyReg;
 		var inputEvents   = 'input';
 		var that          = this;
@@ -195,12 +208,14 @@
 		this.repeatPass     = false;
 		this.usernamePass   = false;
 		this.popularizePass = false;
+		this.realNamePass   = false;
 		this.allPass        = false;
 
 		this.zone            = $('.sign-up');
 		this.usernameInput   = this.zone.find('.row2 input:text');
 		this.passwordInput   = this.zone.find('.row3 input:password');
 		this.repeatInput     = this.zone.find('.row4 input:password');
+		this.realNameInput   = this.zone.find('.row45 input:text');
 		this.popularizeInput = this.zone.find('.row5 input:text');
 		this.verifyInput     = this.zone.find('.row6 input:text');
 		close                = this.zone.find('.close');
@@ -292,6 +307,22 @@
 				$(this).siblings('.warning').hide();
 				$(this).siblings('.pass').show();
 				that.popularizePass = true;
+			}
+
+			that.checkInputPass();
+		});
+
+		this.realNameInput.bind(inputEvents, function () {
+			value  = $(this).val();
+
+			if (!value.match(realNameReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.realNamePass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.realNamePass = true;
 			}
 
 			that.checkInputPass();

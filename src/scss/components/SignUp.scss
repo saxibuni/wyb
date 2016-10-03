@@ -9,7 +9,7 @@
 		top: 50%;
 
 		.dialog {
-			@include dialog(320px, 530px);
+			@include dialog(320px, 580px);
 
 			background-color: #2F2F2C;
 			font-size: 14px;
@@ -98,6 +98,12 @@
 			.row4 {
 				height: 30px;
 				margin-top: 30px;
+				width: 100%;
+			}
+
+			.row45 {
+				height: 50px;
+				margin-top: 15px;
 				width: 100%;
 			}
 

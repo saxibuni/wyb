@@ -136,7 +136,8 @@
 
 	HomePage.prototype.show = function () {
 		this.zone.fadeIn(500);
-		this.addSliders();
+		this.getAds();
+		//this.addSliders();
 		this.getPtJackpot();
 		this.getLuckyDrawWinRecords();
 	};
@@ -201,7 +202,30 @@
         });
 	};
 
-	HomePage.prototype.addSliders = function () {
+	HomePage.prototype.getAds = function () {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getAds,
+			data: {
+				type: 'pd_wyb_index_ads',
+				pageIndex: 0,
+				pageSize: 10
+			}
+		};
+
+		callback = function (data) {
+			if (!data) {
+				return;
+			}
+
+			that.addSliders(data);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	HomePage.prototype.addSliders = function (data) {
 
 		// var images = [
 		// 	'../img/homepage-banner1.jpg',
@@ -218,13 +242,20 @@
 
 		// logoTemp +=		'</ul>' +
 		// 			'</div>';
-					
+		
+		var i;
+		var len = data.count;
+		var arr = data.list;
 		var logoTemp = 	'<div class="home-pages-sliders">' +
-							'<ul>' +
-								'<li><img src="../img/homepage-banner1.jpg"></li>' +
-								'<li><img src="../img/homepage-banner2.jpg"></li>' +
-								'<li><img src="../img/homepage-banner3.jpg"></li>' +
-							'</ul>' +
+							'<ul>';
+
+		for (i = 0; i < len; i++) {
+			logoTemp += '<li>' +
+							'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
+						'</li>';
+		}
+
+		logoTemp +=			'</ul>' +
 						'</div>';
 
 		$('.main .logo-wrapper').html(logoTemp);

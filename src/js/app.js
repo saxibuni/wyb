@@ -48,10 +48,11 @@
 		this.emailVerifyCodeReg  =  '^[0-9]{4}$';
 		this.moneyReg            =  '^[0-9]+(.[0-9]{1,2})?$';
 		this.phoneNumberReg      =  '^[0-9]{11}$';
+		this.realNameReg         =  '';
 
 		this.timeout = 12000;
-		this.domain  = 'http://api.vbetctrl.net/';
-		this.imageServer = 'http://img.lb118.com/';
+		this.domain  = 'http://api.vebets.com/';
+		this.imageServer = 'http://img.vebets.com/';
 		this.urls    = {
 			signUp: this.domain + 'api/Account/Regist',
 			signIn: this.domain + 'api/Account/Login',
@@ -103,8 +104,8 @@
 			getWalletCash: this.domain + 'api/User/GetWalletCash?',
 
 			fastPay: this.domain + '',
-			superFastTransfer: 
-			bankTransfer: 
+			superFastTransfer: '',
+			bankTransfer: ''
 		};
 	};
 
