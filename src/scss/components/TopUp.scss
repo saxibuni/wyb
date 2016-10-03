@@ -44,6 +44,19 @@
 		.bank-topup {
 			display: none;
 
+			.user-admin-banks-select {
+				height: 40px;
+				margin-top: 15px;
+				width: 200px;
+
+				option {
+					display: block;
+					white-space: pre;
+					height: 40px;
+					padding: 0px 2px 1px;
+				}
+			}
+
 			table {
 				border-top: 1px solid #CCCCCC;
 				border-left: 1px solid #CCCCCC;

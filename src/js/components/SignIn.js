@@ -152,6 +152,7 @@
         	if (json.StatusCode && !json.access_token) {
         		alert(json.Message);
         	} else {
+        		app.userinfo = json;
         		callback(json);
         	}
         	that.loader.stop();

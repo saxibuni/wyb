@@ -68,8 +68,6 @@
 
 						'<div class="content">' +
 							'<div class="content-item fast-topup">' +
-								this.createBankCards() +
-								
 								'<div class="row4">' +
 									'<div class="text">充值金额</div>' +
 									this.topupInput.getDom() +
@@ -85,9 +83,6 @@
 							'</div>' +
 
 							'<div class="content-item superfast-topup">' +
-								
-								this.createBankCards() +
-
 								'<div class="row4">' +
 									'<div class="text">充值金额</div>' +
 									this.topupInput2.getDom() +
@@ -104,21 +99,23 @@
 
 							'<div class="content-item bank-topup">' +
 								
-								this.createBankCards() +
+								//this.createBankCards() +
+								'<select class="user-admin-banks-select">' +
+								'</select>' +
 
 								'<table>' +
 									'<tbody>' +
 										'<tr>' +
 											'<td class="bank-name">收款银行</td>' +
-											'<td>中国工商银行</td>' +
+											'<td class="bank-name-value">中国工商银行</td>' +
 										'</tr>' +
 										'<tr>' +
 											'<td class="user-name">账户名</td>' +
-											'<td>刘文慧</td>' +
+											'<td class="user-name-value">刘文慧</td>' +
 										'</tr>' +
 										'<tr>' +
 											'<td class="account">收款账号</td>' +
-											'<td>collowzuez99@sina.com</td>' +
+											'<td class="account-value">collowzuez99@sina.com</td>' +
 										'</tr>' +
 									'</tbody>' +
 								'</table>' +
@@ -169,71 +166,39 @@
 	};
 
 	TopUp.prototype.getCardPosition = function(name) {
-
 	};
 
-	TopUp.prototype.createBankCards = function() {
+	TopUp.prototype.setBankCards = function(data) {
+		var that = this;
+        var bankList = data.UserGroup.ThirdPays[0].BankList;
 		var temp = '<div class="bank-cards">' +
 						'<div class="title">' +
 							'请选择充值银行：' +
 						'</div>' +
 
-						'<ul>' +
-							'<li data-value="zggsyh">' +
-								'<input type="radio" name="bank" />' +
-								'<img style="top: -32px;" src="../img/bankLogo.jpg">' +
-							'</li>' +
-							'<li data-value="zgjsyh">' +
-								'<input type="radio" name="bank" />' +								
-								'<img style="top: -130px;" src="../img/bankLogo.jpg">' +
-							'</li>' +
-							'<li data-value="jtyh">' +
-								'<input type="radio" name="bank" />' +
-								'<img style="top: -165px;" src="../img/bankLogo.jpg">' +
-							'</li>' +
-							'<li data-value="zgyh">' +
-								'<input type="radio" name="bank" />' +
-								'<img style="top: -98px;" src="../img/bankLogo.jpg">' +
-							'</li>' +
-							'<li data-value="zgnyyh">' +
-								'<input type="radio" name="bank" />' +
-								'<img style="top: -67px;" src="../img/bankLogo.jpg">' +
-							'</li>' +
-							'<li data-value="zsyh">' +
-								'<input type="radio" name="bank" />' +
-								'<img style="top: -428px;" src="../img/bankLogo.jpg">' +
-							'</li>' +
-							'<li data-value="pfyh">' +
-								'<input type="radio" name="bank" />' +
-								'<img style="top: -495px;" src="../img/bankLogo.jpg">' +
-							'</li>' +
-							'<li data-value="zgyzcxyh">' +
-								'<input type="radio" name="bank" />' +
-								'<img style="top: -195px;" src="../img/bankLogo.jpg">' +
-							'</li>' +
-						'</ul>' +
-					'</div>' +
+						'<ul>';
 
-					'<div class="more-bank-cards">' +
-						'<span>更多网银</span>' +
-						'<img class="message-img" src="../img/sxl.png">' +
+        for (i = 0; i < bankList.length; i++) {
+        	temp += 		'<li data-id="' + bankList[i].Id + '"' +
+        						' data-code="' + bankList[i].BankCode + '"' + 
+        						' data-name="' + bankList[i].BankName + '"' +
+        						'>' +
+								'<input type="radio" name="bank" />' +
+								'<span class="bankLogo ' + bankList[i].CssName + '" src="../img/bankLogo.jpg"></span>' +
+							'</li>';
+        }
+
+        temp += 		'</ul>' +
 					'</div>';
 
-		return temp;
-	};
+					// '<div class="more-bank-cards">' +
+					// 	'<span>更多网银</span>' +
+					// 	'<img class="message-img" src="../img/sxl.png">' +
+					// '</div>';
 
-	TopUp.prototype.addBankCards = function() {
-		var i;
-		var temp =  '';
-
-		for (i = 0; i < 8; i++) {
-			temp += '<li data-value="zggsyh">' +
-						'<input type="radio" name="bank" />' +
-						'<img style="top: -32px;" src="../img/bankLogo.jpg">' +
-					'</li>';
-		}
-
-		return temp;
+        this.zone.find('.fast-topup').prepend(temp);
+        this.zone.find('.superfast-topup').prepend(temp);
+        this.bindBankCardsEvents();
 	};
 
 	TopUp.prototype.getDom = function() {
@@ -242,34 +207,163 @@
 
 	TopUp.prototype.show = function() {
 		this.zone.show();
+
+		if (!this.firstTime) {
+			this.getUserPays();
+			this.getUserAdminBank();
+			this.firstTime = true;
+		}
 	};
 
 	TopUp.prototype.hide = function() {
 		this.zone.hide();
 	};
 
+	TopUp.prototype.createUserAdminUl = function(data) {
+		var i;
+		var temp = '';
+
+		for (i = 0; i < data.length; i++) {
+			temp += '<option>' +
+						data[i].Bank.BankName + ', ' + data[i].AccountName + ', ' + data[i].AccountNo + 
+					'</option>';
+		}
+
+		this.zone.find('.user-admin-banks-select').append(temp);
+	};
+
 	TopUp.prototype.submit1 = function() {
 		if (!this.topupInput.isPass()) {
 			alert('格式不对');
-		} else {
-			window.open('http://www.baidu.com');
 		}
+
+		var i;
+		var callback;
+		var selectedBank = $("input[name='bank']:checked").parent('li');
+		var that = this;
+		var opt  = {
+			url: app.urls.payForm,
+			data: {
+				Amount: this.topupInput.getValue(),
+				UserName: app.userinfo.userName,
+				PayPlatform: that.payPlatform,
+				PayMerCode: that.thirdPayMerCode,
+	            PayBankCode: selectedBank.attr('data-code'),
+	            PayBankName: selectedBank.attr('data-name')
+			}
+		};
+
+		callback = function (data) {
+            var payWin = window.open("", "payWin");
+
+            if (!payWin) {
+                alert('请在浏览口中设置允许本网站的弹出式窗口');
+                return;
+            }
+
+            payWin.document.write(data.Data);
+            payWin.document.close();  // 弹出提示层
+		};
+
+		Service.post(opt, callback);
 	};
 
 	TopUp.prototype.submit2 = function() {
 		if (!this.topupInput2.isPass()) {
 			alert('格式不对');
-		} else {
-			window.open('http://www.baidu.com');
+		}
+
+		if (that.userPaysData.UserGroup.AutoPays.length < 1) {
+			alert('你所在的组不能进行极速转账！');
+			return;
 		}
 	};
 
 	TopUp.prototype.submit3 = function() {
 		if (!this.topupInput3.isPass()) {
 			alert('格式不对');
-		} else {
-			window.open('http://www.baidu.com');
 		}
+
+
+	};
+
+	TopUp.prototype.getUserPays = function () {
+		var i;
+		var callback;
+		var that = this;
+		var opt  = {
+			url: app.urls.getUserPays,
+			data: {}
+		};
+
+		callback = function (data) {
+            if (data && data.StatusCode) {
+                alert(data.Message);
+                return;
+            }
+
+            that.userPaysData    = data;
+            that.thirdPayMerCode = data.UserGroup.ThirdPays[0].MerCode;
+            that.payPlatform     = data.UserGroup.ThirdPays[0].ThirdPayCode;
+            that.setBankCards(data);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	TopUp.prototype.getUserAdminBank = function () {
+		var i;
+		var callback;
+		var that = this;
+		var opt  = {
+			url: app.urls.getUserAdminBank,
+			data: {
+				type: 1
+			}
+		};
+
+		callback = function (data) {
+            if (data && data.StatusCode) {
+                alert(data.Message);
+                return;
+            }
+
+            that.banTopupInfo = data;
+            that.createUserAdminUl(data);
+
+            that.zone.find('.bank-topup table .bank-name-value').text(data[0].Bank.BankName);
+            that.zone.find('.bank-topup table .user-name-value').text(data[0].AccountName);
+            that.zone.find('.bank-topup table .account-value').text(data[0].Bank.AccountNo);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	TopUp.prototype.bindBankCardsEvents = function() {
+		var bankCardsUl  = this.zone.find('.bank-cards ul');
+
+		bankCardsUl.delegate('li','click',function() {
+			bankCardsUl.find('li').removeClass('selected');
+			$(this).addClass('selected');
+			bankCardsUl.find('input[type="radio"]').attr('checked',false);
+			$(this).find('input[type="radio"]').attr('checked',true);
+		});
+
+		this.zone.find('.more-bank-cards').click(function () {
+			ul = $(this).siblings('.bank-cards').children('ul');
+
+			if ($(this).hasClass('full')) {
+				ul.children('li:gt(7)').remove();
+				$(this).removeClass('full');
+				$(this).children('span').text('更多网银');
+				$(this).children('img').removeClass('img-rotate');
+			} else {
+				ul.append(that.addBankCards());
+				$(this).addClass('full');
+				$(this).children('span').text('收起');
+				$(this).children('img').addClass('img-rotate');
+			}
+		});
 	};
 
 	TopUp.prototype.bindEvents = function() {
@@ -285,7 +379,7 @@
 		this.zone    = $('.top-up');
 		content      = this.zone.find('.content');
 		row1Ul       = this.zone.find('.row1 ul');
-		bankCardsUl  = this.zone.find('.bank-cards ul');
+		
 
 		row1Ul.delegate('li', 'click', function () {
 			row1Ul.find('li').removeClass('selected');
@@ -294,13 +388,6 @@
 			contentName = $(this).attr('data-value');
 			content.children('.content-item').hide();
 			content.children('.' + contentName).show();
-		});
-
-		bankCardsUl.delegate('li','click',function(){
-			bankCardsUl.find('li').removeClass('selected');
-			$(this).addClass('selected');
-			bankCardsUl.find('input[type="radio"]').attr('checked',false);
-			$(this).find('input[type="radio"]').attr('checked',true);
 		});
 
 		this.zone.find('#topup-button').click(function () {
@@ -323,22 +410,6 @@
 
 		this.zone.find('#topup-button3').click(function () {
 			that.submit3();
-		});
-
-		this.zone.find('.more-bank-cards').click(function () {
-			ul = $(this).siblings('.bank-cards').children('ul');
-
-			if ($(this).hasClass('full')) {
-				ul.children('li:gt(7)').remove();
-				$(this).removeClass('full');
-				$(this).children('span').text('更多网银');
-				$(this).children('img').removeClass('img-rotate');
-			} else {
-				ul.append(that.addBankCards());
-				$(this).addClass('full');
-				$(this).children('span').text('收起');
-				$(this).children('img').addClass('img-rotate');
-			}
 		});
 
 		this.button.bindEvents();

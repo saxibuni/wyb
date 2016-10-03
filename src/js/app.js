@@ -109,7 +109,12 @@
 
 			getAllAPI: this.domain + 'api/Game/GetAllApi',
 			getPlatformBalance: this.domain + 'api/Game/GetCash?',
-			getBalanceSum: this.domain + 'api/Game/GetCashSum'
+			getBalanceSum: this.domain + 'api/Game/GetCashSum',
+
+			getUserPays: this.domain + 'api/Deposit/GetUserPays',
+			payForm: this.domain + 'api/Pay/PayForm',
+			addDeposit: this.domain + 'api/Deposit/AddDeposit',
+			getUserAdminBank: this.domain + 'api/Deposit/GetUserAdminBank?'
 		};
 	};
 
