@@ -44,16 +44,16 @@ $(function(){
 
 	BankCarkManagerDialog.prototype.getDom = function(){
 		return this.el;
-	}
+	};
 
 	BankCarkManagerDialog.prototype.getCardInfo = function(){
 
-	}
+	};
 
 
 	BankCarkManagerDialog.prototype.show = function(){
 		this.showOverlay();
-	}
+	};
 
 	BankCarkManagerDialog.prototype.hide = function(){
 		this.hideOverlay();

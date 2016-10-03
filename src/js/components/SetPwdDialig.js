@@ -39,7 +39,6 @@ $(function(){
 					'<div class="overlay overlay5"></div>';
 
 		this.el = temp;
-
 	}
 
 	SetPwdDialog.prototype.getDom = function(){

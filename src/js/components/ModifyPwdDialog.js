@@ -46,7 +46,6 @@ $(function(){
 					'<div class="overlay overlay5"></div>';
 
 		this.el = temp;
-
 	}
 
 	ModifyPwdDialog.prototype.getDom = function(){
@@ -59,6 +58,10 @@ $(function(){
 
 	ModifyPwdDialog.prototype.hide = function(){
 		this.hideOverlay();
+	}
+
+	ModifyPwdDialog.prototype.commit = function(){
+		
 	}
 
 	ModifyPwdDialog.prototype.bindEvents = function(){

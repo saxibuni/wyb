@@ -81,7 +81,7 @@
 
 	MoneyTransfer.prototype.getDom = function() {
 		return this.el;
-	}
+	};
 
 	MoneyTransfer.prototype.show = function() {
 		this.zone.show();

@@ -49,6 +49,30 @@
 			reg: app.moneyReg
 		});
 
+		this.selectProvince = new Select({
+			id: 'card-bind-province',
+			width: 100,
+			height: 36,
+			data:[
+				{
+					'text': '省',
+					'value': '-1'	
+				}
+			]
+		});
+
+		this.selectCity = new Select({
+			id: 'card-bind-city',
+			width: 100,
+			height: 36,
+			data:[
+				{
+					'text': '市',
+					'value': '-1'	
+				}
+			]
+		});
+
 		temp = 		'<div class="top-up grzx-money-action">' +
 						'<div class="row1">' +
 							'<ul>' +
@@ -147,11 +171,19 @@
 								'</div>' +
 
 								'<div class="row4">' +
-									'<div class="text">充值金额</div>' +
-									this.topupInput3.getDom() +
-									'<div class="text unit">元</div>' +
-									'<div class="input-notice">' +
-										'充值额度限定： 最低2.00元，最高45000.00元' +
+									'<div class="row4-1">' +
+										'<div class="text">充值金额</div>' +
+										this.topupInput3.getDom() +
+										'<div class="text unit">元</div>' +
+										'<div class="input-notice">' +
+											'充值额度限定： 最低2.00元，最高45000.00元' +
+										'</div>' +
+									'</div>' +
+
+									'<div class="row4-2">' +
+										'<div class="text">银行所属支行</div>' +
+										this.selectProvince.getDom() +
+										this.selectCity.getDom() +
 									'</div>' +
 								'</div>' +
 
@@ -283,8 +315,8 @@
 		if (!this.topupInput3.isPass()) {
 			alert('格式不对');
 		}
-
-
+		
+		
 	};
 
 	TopUp.prototype.getUserPays = function () {
@@ -339,6 +371,72 @@
 		Service.get(opt, callback);
 	};
 
+	TopUp.prototype.createProvinceUl = function(data) {
+		var i;
+		var temp = '';
+
+		for (i = 0; i < data.length; i++) {
+			temp += '<option data-value="' + data[i].Id + '">' +
+						data[i].Name +
+					'</option>';
+		}
+
+		this.selectProvince.setOptions(temp);
+	};
+
+	TopUp.prototype.createCityUl = function(data) {
+		var i;
+		var temp = '';
+
+		for (i = 0; i < data.length; i++) {
+			temp += '<option data-value="' + data[i].Id + '">' +
+						data[i].Name +
+					'</option>';
+		}
+
+		this.selectCity.setOptions(temp);
+	};
+
+	TopUp.prototype.getProvinceList = function() {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getProvinceList,
+			data: {}
+		};
+
+		callback = function (data) {
+			if (!data) {
+				return;
+			}
+
+			that.createProvinceUl(data);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	TopUp.prototype.getCityList = function(provinceId) {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getCityList,
+			data: {
+				provinceId: provinceId
+			}
+		};
+
+		callback = function (data) {
+			if (!data) {
+				return;
+			}
+
+			that.createCityUl(data);
+		};
+
+		Service.get(opt, callback);
+	};
+	
 	TopUp.prototype.bindBankCardsEvents = function() {
 		var bankCardsUl  = this.zone.find('.bank-cards ul');
 
@@ -418,6 +516,8 @@
 		this.topupInput.bindEvents();
 		this.topupInput2.bindEvents();
 		this.topupInput3.bindEvents();
+		this.selectProvince.bindEvents();
+		this.selectCity.bindEvents();
 	};
 
 	window.TopUp = TopUp;

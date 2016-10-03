@@ -61,19 +61,27 @@ $(function(){
 				'</div>';
 
 		this.el = temp;
-	}
+	};
 
-	BasicInfo.prototype.getDom = function(){
+	BasicInfo.prototype.getDom = function() {
 		return this.el;
-	}
+	};
 
-	BasicInfo.prototype.show = function(){
+	BasicInfo.prototype.show = function() {
 		this.zone.show();
-	}
+	};
 
 	BasicInfo.prototype.hide = function() {
 		this.zone.hide();
-	}
+	};
+
+	BasicInfo.prototype.getInfo = function() {
+		this.zone.hide();
+	};
+
+	BasicInfo.prototype.commit = function() {
+		this.zone.hide();
+	};
 
 	BasicInfo.prototype.bindEvents = function(){
 		var today = new Date();
@@ -89,7 +97,7 @@ $(function(){
 		// this.selectCounty.bindEvents();
 		this.button.bindEvents();
 		this.zone.find('.china-district').distpicker();
-	}
+	};
 
 
 	window.BasicInfo = BasicInfo;
