@@ -294,6 +294,7 @@
             	withCredentials: true
             }
         }).done(function (json) {
+        	console.log(JSON.stringify(json));
         	that.getGameList(json[0].Id);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
@@ -335,7 +336,7 @@
 	        	that.animateMarqueen();
 			};
 
-			app.getJackpotsGames(callback.bind(this));
+			app.getJackpotsGames(callback.bind(this));  //获取pt奖金池
 			this.getGameCategories();
 			this.firstTime = true;
 		}

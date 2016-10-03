@@ -236,7 +236,6 @@
             }
         }).done(function (json) {
         	json = {"StatusCode":0,"Message":"","Data":{"count":0,"extend":null,"list":[]}};
-
         	that.setCollectList(json);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
@@ -257,6 +256,7 @@
 		}
 
 		this.getCollectList();
+		this.showDialog();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 
@@ -519,6 +519,15 @@
 		this.showSignedOutHeader();
 		//this.showSignedInHeader();
 		this.lxkfButton.bindEvents();
+	};
+
+	Header.prototype.showDialog = function () {
+		if (!this.cardBindDiag) {
+			this.cardBindDiag = new CardBindDialog();
+			$('.app').append(this.cardBindDiag.getDom());
+			this.cardBindDiag.bindEvents();
+		}
+		this.cardBindDiag.show();
 	};
 
 	window.Header = Header;

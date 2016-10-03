@@ -95,7 +95,16 @@
 			addUserBank: this.domain + 'api/Withdrawal/AddUserBank',
 			getBankList: this.domain + 'api/Config/GetBankList',
 			getProvinceList: this.domain + 'api/Config/GetProvinceList',
-			getCityList: this.domain + 'api/Config/GetCityList?'
+			getCityList: this.domain + 'api/Config/GetCityList?',
+
+			getThirdPay: this.domain + 'api/Pay/GetThirdPay?id={id}',
+
+			getWalletList: this.domain + 'api/Promo/GetWalletList?',
+			getWalletCash: this.domain + 'api/User/GetWalletCash?',
+
+			fastPay: this.domain + '',
+			superFastTransfer: 
+			bankTransfer: 
 		};
 	};
 
@@ -109,6 +118,7 @@
             	withCredentials: true
             }
         }).done(function (json) {
+        	debugger
         	callback(json);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
@@ -120,7 +130,7 @@
 
         $.ajax({
             type: 'GET',
-            url: this.urls.getJackpotsGames + 'pageIndex=0&pageSize=20',
+            url: this.urls.getJackpotsGames + 'platform=pt&pageIndex=0&pageSize=20',
             dataType: 'json',
             timeout: this.timeout,
             xhrFields: {
@@ -322,7 +332,10 @@
 		this.cardBindDiag.show();
 	};
 
+	app.a2jfdh22e3 = function () {
+		
+	};
+
 	window.app = new app();
 	window.app.goTo('homePage');
-	window.app.showDialog();
 })();

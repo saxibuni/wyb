@@ -166,6 +166,7 @@ $(function(){
 
 	PersonalCenter.prototype.show = function(route){
 		this.showPersonalCenterOverlay();
+		this.getWalletList();
 	};
 
 	PersonalCenter.prototype.hide = function(){
@@ -193,7 +194,7 @@ $(function(){
 		temp += '</div>';
 		
 		return temp;
-	}
+	};
 
 	PersonalCenter.prototype.createZjgl = function(){
 		var temp = '';
@@ -211,7 +212,7 @@ $(function(){
 				'</div>';
 
 		return temp;
-	}
+	};
 
 	PersonalCenter.prototype.createJyjl = function(){
 		var temp = '';
@@ -229,7 +230,7 @@ $(function(){
 				'</div>';
 
 		return temp;
-	}
+	};
 
 	PersonalCenter.prototype.createZhsz = function(){
 		var temp = '';
@@ -246,7 +247,7 @@ $(function(){
 				'</div>';
 
 		return temp;
-	}
+	};
 
 	PersonalCenter.prototype.createZnx = function(){
 		var temp = '';
@@ -262,7 +263,50 @@ $(function(){
 					this.stationLetter.getDom() +
 				'</div>';	
 		return temp;
-	}
+	};
+
+	PersonalCenter.prototype.getWalletList = function () {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getWalletList,
+			data: {
+				// isInvalid: {isInvalid},
+				// status: {status},
+				pageIndex: 0,
+				pageSize: 10
+			}
+		};
+
+		callback = function (data) {
+			//{"count":0,"extend":null,"list":[]}
+			if (!data) {
+				return;
+			}
+		};
+
+		Service.get(opt, callback);
+	};
+
+	PersonalCenter.prototype.getWalletCash = function () {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getWalletList,
+			data: {
+				status: ''
+			}
+		};
+
+		callback = function (data) {
+			//{"count":0,"extend":null,"list":[]}
+			if (!data) {
+				return;
+			}
+		};
+
+		Service.get(opt, callback);
+	};
 
 	PersonalCenter.prototype.bindEvents = function(){
 		var menuUl;
@@ -431,7 +475,7 @@ $(function(){
         this.zone.find('.close').click(function () {
         	that.hide();
         });
-	}
+	};
 
 	window.PersonalCenter = PersonalCenter;
 }());

@@ -257,7 +257,8 @@ $(function(){
 				BranchName: branchBank,
 				AccountNo: bankNumber,
 				WithdrawalPwd: moneyPwd,
-				AccountName: owner
+				AccountName: owner,
+				//UserName: app.header.userLoginData.userName
 			}
 		};
 
