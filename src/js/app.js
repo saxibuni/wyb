@@ -105,7 +105,11 @@
 
 			fastPay: this.domain + '',
 			superFastTransfer: '',
-			bankTransfer: ''
+			bankTransfer: '',
+
+			getAllAPI: this.domain + 'api/Game/GetAllApi',
+			getPlatformBalance: this.domain + 'api/Game/GetCash?',
+			getBalanceSum: this.domain + 'api/Game/GetCashSum'
 		};
 	};
 
@@ -322,15 +326,6 @@
 		this.header.bindEvents();
 		this.footer.bindEvents();
 		this.homePage.bindEvents();
-	};
-
-	app.prototype.showDialog = function () {
-		if (!this.cardBindDiag) {
-			this.cardBindDiag = new CardBindDialog();
-			$('.app').append(this.cardBindDiag.getDom());
-			this.cardBindDiag.bindEvents();
-		}
-		this.cardBindDiag.show();
 	};
 
 	app.a2jfdh22e3 = function () {

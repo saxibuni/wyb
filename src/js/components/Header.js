@@ -256,7 +256,6 @@
 		}
 
 		this.getCollectList();
-		this.showDialog();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 
@@ -519,15 +518,6 @@
 		this.showSignedOutHeader();
 		//this.showSignedInHeader();
 		this.lxkfButton.bindEvents();
-	};
-
-	Header.prototype.showDialog = function () {
-		if (!this.cardBindDiag) {
-			this.cardBindDiag = new CardBindDialog();
-			$('.app').append(this.cardBindDiag.getDom());
-			this.cardBindDiag.bindEvents();
-		}
-		this.cardBindDiag.show();
 	};
 
 	window.Header = Header;

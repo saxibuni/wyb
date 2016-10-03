@@ -1,68 +1,10 @@
 $(function(){
-	function PersonalCenter(opt){
+	function PersonalCenter(opt) {
 		this.mainWalletData  = {
 			moneyType: '¥',
 			balance: '100,000,000.00',
 			moneyUnit: 'CNY'
 		};
-
-		this.subWalletData = [
-			{
-				id: 0,
-				walletType: 'PT',
-				balance: '1,000.00'
-			},{
-				id: 1,
-				walletType: 'SG',
-				balance: '2,000.00'				
-			},{
-				id: 2,
-				walletType: 'LT',
-				balance: '3,000.00'				
-			},{
-				id: 3,
-				walletType: 'PT',
-				balance: '4,000.00'				
-			},{
-				id: 4,
-				walletType: 'PT',
-				balance: '4,000.00'				
-			},{
-				id: 5,
-				walletType: 'PT',
-				balance: '4,000.00'				
-			},{
-				id: 6,
-				walletType: 'PT',
-				balance: '4,000.00'				
-			},{
-				id: 7,
-				walletType: 'PT',
-				balance: '4,000.00'				
-			},{
-				id: 8,
-				walletType: 'PT',
-				balance: '4,000.00'				
-			},{
-				id: 9,
-				walletType: 'PT',
-				balance: '4,000.00'	
-			},{
-				id: 10,
-				walletType: 'PT',
-				balance: '4,000.00'	
-			},{
-				id: 11,
-				walletType: 'PT',
-				balance: '4,000.00'	
-			},{
-				id: 12,
-				walletType: 'PT',
-				balance: '4,000.00'	
-			}
-		];
-		
-		this.subWallets = [];
 
 		this.tabData = {
 		    'zjgl': ['充值','转账','提现'],
@@ -130,7 +72,7 @@ $(function(){
 
 									'<div class="nav-left"><span><img src="../img/left-n.png" /></span></div>' +
 									'<div class="wallet-zone">' +
-										this.createSubWallet() +
+										//this.createSubWallet() +
 									'</div>' +
 									'<div class="nav-right"><span><img src="../img/right-n.png" /></span></div>' +
 									'<div class="clear"></div>' +
@@ -166,14 +108,15 @@ $(function(){
 
 	PersonalCenter.prototype.show = function(route){
 		this.showPersonalCenterOverlay();
-		this.getWalletList();
+		this.getBalanceSum();
+		this.getAllPlatforms();
 	};
 
 	PersonalCenter.prototype.hide = function(){
 		this.hidePersonalCenterOverlay();
 	};
 
-	PersonalCenter.prototype.createSubWallet = function(){
+	PersonalCenter.prototype.setSubWallet = function(){
 		var temp = '';
 		var subWallet;
 		var swipperWith;
@@ -193,7 +136,9 @@ $(function(){
 		temp = '<div class="swiper" style="width:' + swipperWith + 'px">' + temp;
 		temp += '</div>';
 		
-		return temp;
+		this.zone.find('.wallet-zone').html(temp);
+
+		this.bindWalletEvents();
 	};
 
 	PersonalCenter.prototype.createZjgl = function(){
@@ -265,64 +210,89 @@ $(function(){
 		return temp;
 	};
 
-	PersonalCenter.prototype.getWalletList = function () {
+	PersonalCenter.prototype.getAllPlatforms = function () {
+		var i;
 		var callback;
-		var that    =  this;
-		var opt     =  {
-			url: app.urls.getWalletList,
-			data: {
-				// isInvalid: {isInvalid},
-				// status: {status},
-				pageIndex: 0,
-				pageSize: 10
-			}
-		};
-
-		callback = function (data) {
-			//{"count":0,"extend":null,"list":[]}
-			if (!data) {
-				return;
-			}
-		};
-
-		Service.get(opt, callback);
-	};
-
-	PersonalCenter.prototype.getWalletCash = function () {
-		var callback;
-		var that    =  this;
-		var opt     =  {
-			url: app.urls.getWalletList,
-			data: {
-				status: ''
-			}
-		};
-
-		callback = function (data) {
-			//{"count":0,"extend":null,"list":[]}
-			if (!data) {
-				return;
-			}
-		};
-
-		Service.get(opt, callback);
-	};
-
-	PersonalCenter.prototype.bindEvents = function(){
-		var menuUl;
-		var stick;
-		var index;
-		var walletzone;
-		var tabZone;
 		var that = this;
-		var pageIndex = 0;
-		var pageCount = Math.round(this.subWalletData.length / 2) - 3;
+		var opt  = {
+			url: app.urls.getAllAPI,
+			data: {}
+		};
 
-		this.zone = $('.personal-center');
-		menuUl = this.zone.find('.tree > ul');
-		walletzone = this.zone.find('.wallet-zone');
-		stick = this.zone.find('.stick');
-		swiper = this.zone.find('.swiper');
+		callback = function (data) {
+			if (!data) {
+				return;
+			}
+			
+			that.subWallets    = [];
+			that.subWalletData = [];
+
+			for (i = 0; i < data.length; i++) {
+				temp = {
+					id: data[i].GamePlatform,
+					walletType: data[i].GameName,
+					balance: ''
+				}
+
+				if (temp.walletType === '沙巴体育(新)') {
+					temp.id = 'sb-sports';
+				}
+
+				that.subWalletData.push(temp);
+			}
+
+			that.setSubWallet();
+			that.bindEvents();
+
+			for (i = 0; i < that.subWalletData.length; i++) {
+				that.getPlatformBalance(that.subWalletData[i].id);
+			}
+
+		};
+
+		Service.get(opt, callback);
+	};
+
+	PersonalCenter.prototype.getPlatformBalance = function (platform) {
+		var i;
+		var callback;
+		var that = this;
+		var opt  = {
+			url: app.urls.getPlatformBalance,
+			data: {
+				gamePlatform: platform
+			}
+		};
+
+		callback = function (data) {
+			that.zone.find('.wallet-group').find('#' + platform).children('.balance').text(data);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	PersonalCenter.prototype.getBalanceSum = function () {
+		var i;
+		var callback;
+		var that = this;
+		var opt  = {
+			url: app.urls.getBalanceSum,
+			data: {}
+		};
+
+		callback = function (data) {
+			that.zone.find('.center-wallet').children('.balance').text(data);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	PersonalCenter.prototype.bindWalletEvents = function () {
+		var that       = this;
+		var pageIndex  = 0;
+		var pageCount  = Math.round(this.subWalletData.length / 2) - 3;
+		var swiper     = this.zone.find('.swiper');
+		var walletzone = this.zone.find('.wallet-zone');
 
 		this.zone.delegate('.nav-left','click',function(){
 			if (pageIndex == 0) return;
@@ -343,6 +313,24 @@ $(function(){
         walletzone.delegate('.sub-wallet','mouseout',function(){
         	$(this).find('.transfer-layer').hide();
         });
+
+        walletzone.delegate('.refresh', 'click', function () {
+        	that.getPlatformBalance($(this).parents('.sub-wallet').attr('id'));
+        });
+	};
+
+	PersonalCenter.prototype.bindEvents = function(){
+		var menuUl;
+		var stick;
+		var index;
+		var walletzone;
+		var tabZone;
+		var that = this;
+
+		this.zone = $('.personal-center');
+		menuUl = this.zone.find('.tree > ul');
+		stick = this.zone.find('.stick');
+		
 
         menuUl.delegate('li','click',function(){
             index = $(this).index();

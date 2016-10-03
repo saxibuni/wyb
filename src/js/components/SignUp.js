@@ -54,6 +54,26 @@
 									'</div>' +
 								'</div>' +
 
+								'<div class="row46">' +
+									'<div class="text">电话号码</div>' +
+									'<div class="input-outer">' +
+										'<input type="text" placeholder="请输入您的手机号码">' +
+										'<img class="pass" src="../img/pass.png">' +
+										'<img class="warning" src="../img/warning.png">' +
+										'<div class="clear"></div>' +
+									'</div>' +
+								'</div>' +
+
+								'<div class="row47">' +
+									'<div class="text">电子邮箱</div>' +
+									'<div class="input-outer">' +
+										'<input type="text" placeholder="请输入您的邮箱地址">' +
+										'<img class="pass" src="../img/pass.png">' +
+										'<img class="warning" src="../img/warning.png">' +
+										'<div class="clear"></div>' +
+									'</div>' +
+								'</div>' +
+
 								'<div class="row5">' +
 									'<div class="text">推广码</div>' +
 									'<div class="input-outer">' +
@@ -107,7 +127,8 @@
 
 	SignUp.prototype.checkInputPass = function () {
 		if (this.usernamePass && this.passwordPass && this.repeatPass
-			&& this.verifyPass && this.realNamePass) {
+			&& this.verifyPass && this.realNamePass && this.phoneNumberPass
+			&& this.emailPass) {
 
 			this.zone.find('.row7 .button').addClass('active');
 			this.allPass = true;
@@ -131,13 +152,12 @@
         $.ajax({
             type: 'GET',
             url: url,
-            dataType: 'text',
+            dataType: 'json',
             timeout: app.timeout,
             xhrFields: {
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
         	if (!json || json == 'false') {
         		that.loader.stop();
         		alert('验证码错误');
@@ -154,7 +174,7 @@
 		var data;
 		var callback;
 		var that = this;
-		debugger
+
 		if (!this.allPass) {
 			return;
 		}
@@ -168,7 +188,11 @@
 
 		data = {
 			UserName: this.usernameInput.val(),
-			Password: this.passwordInput.val()
+			Password: this.passwordInput.val(),
+			TrueName: this.realNameInput.val(),
+			ExtendCode: this.popularizeInput.val() || '',
+			Phone: this.phoneNumberInput.val(),
+			Email: this.emailInput.val()
 		};
 
         $.ajax({
@@ -181,7 +205,6 @@
             	withCredentials: true
             }
         }).done(function(json) {
-        	debugger
             callback(json);
             that.loader.stop();
         }).fail(function(xhr, textStatus, error) {
@@ -194,14 +217,16 @@
 		var button;
 		var value;
 		var value2;
-		var usernameReg   = app.usernameReg;
-		var passwordReg   = app.passwordReg;
-		var repeatReg     = app.passwordReg;
-		var popularizeReg = app.popularizeReg;
-		var realNameReg   = app.realNameReg;
-		var verifyReg     = app.verifyReg;
-		var inputEvents   = 'input';
-		var that          = this;
+		var usernameReg    = app.usernameReg;
+		var passwordReg    = app.passwordReg;
+		var repeatReg      = app.passwordReg;
+		var popularizeReg  = app.popularizeReg;
+		var realNameReg    = app.realNameReg;
+		var verifyReg      = app.verifyReg;
+		var phoneNumberReg = app.phoneNumberReg;
+		var emailReg       = app.emailReg;
+		var inputEvents    = 'input';
+		var that           = this;
 
 		this.usernamePass   = false;
 		this.passwordPass   = false;
@@ -211,15 +236,17 @@
 		this.realNamePass   = false;
 		this.allPass        = false;
 
-		this.zone            = $('.sign-up');
-		this.usernameInput   = this.zone.find('.row2 input:text');
-		this.passwordInput   = this.zone.find('.row3 input:password');
-		this.repeatInput     = this.zone.find('.row4 input:password');
-		this.realNameInput   = this.zone.find('.row45 input:text');
-		this.popularizeInput = this.zone.find('.row5 input:text');
-		this.verifyInput     = this.zone.find('.row6 input:text');
-		close                = this.zone.find('.close');
-		button               = this.zone.find('.row7 .button');
+		this.zone             = $('.sign-up');
+		this.usernameInput    = this.zone.find('.row2 input:text');
+		this.passwordInput    = this.zone.find('.row3 input:password');
+		this.repeatInput      = this.zone.find('.row4 input:password');
+		this.realNameInput    = this.zone.find('.row45 input:text');
+		this.phoneNumberInput = this.zone.find('.row46 input:text');
+		this.emailInput       = this.zone.find('.row47 input:text');
+		this.popularizeInput  = this.zone.find('.row5 input:text');
+		this.verifyInput      = this.zone.find('.row6 input:text');
+		close                 = this.zone.find('.close');
+		button                = this.zone.find('.row7 .button');
 
 		this.usernameInput.bind(inputEvents, function () {
 			value = $(this).val();
@@ -323,6 +350,38 @@
 				$(this).siblings('.warning').hide();
 				$(this).siblings('.pass').show();
 				that.realNamePass = true;
+			}
+
+			that.checkInputPass();
+		});
+
+		this.phoneNumberInput.bind(inputEvents, function () {
+			value  = $(this).val();
+
+			if (!value.match(phoneNumberReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.phoneNumberPass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.phoneNumberPass = true;
+			}
+
+			that.checkInputPass();
+		});
+
+		this.emailInput.bind(inputEvents, function () {
+			value  = $(this).val();
+
+			if (!value.match(emailReg)) {
+				$(this).siblings('.warning').show();
+				$(this).siblings('.pass').hide();
+				that.emailPass = false;
+			} else {
+				$(this).siblings('.warning').hide();
+				$(this).siblings('.pass').show();
+				that.emailPass = true;
 			}
 
 			that.checkInputPass();

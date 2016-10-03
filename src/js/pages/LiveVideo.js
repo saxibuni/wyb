@@ -60,7 +60,6 @@
 
 	LiveVideo.prototype.show = function () {
 		this.zone.fadeIn(500);
-		this.addSliders();
 		
 		if (!this.firstTime) {
 			this.getAds();
@@ -72,7 +71,7 @@
 		this.zone.fadeOut(500);
 	};
 
-	LiveVideo.prototype.addSliders = function () {
+	LiveVideo.prototype.addSliders = function (data) {
 		// var logoTemp = 	'<div class="live-video-sliders">' +
 		// 					'<ul>' +
 		// 						'<li><img src="../img/homepage-banner.jpg"></li>' +
@@ -89,10 +88,19 @@
 		// $('.live-video-sliders').show();
 		// $('.main .logo-wrapper').css('height', $('.live-video-sliders').css('height'));
 
+		var i;
+		var len = data.count;
+		var arr = data.list;
 		var logoTemp = 	'<div class="live-video-sliders">' +
-							'<ul class="live-video-ul">' +
-								'<li><img src="../img/live-video-banner.jpg"></li>' +
-							'</ul>' +
+							'<ul class="live-video-ul">';
+
+		for (i = 0; i < len; i++) {
+			logoTemp += 		'<li>' +
+									'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
+								'</li>';
+		}
+
+		logoTemp +=			'</ul>' +
 						'</div>';
 
 		$('.main .logo-wrapper').html(logoTemp);
@@ -108,28 +116,28 @@
         });
     };
 
-    /*
-    ** 此接口暂时没有测试数据
-    */
 	LiveVideo.prototype.getAds = function () {
-		var that = this;
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getAds,
+			data: {
+				type: 'pd_wyb_casino_ads',
+				pageIndex: 0,
+				pageSize: 10
+			}
+		};
 
-		this.loader.play();
+		callback = function (data) {
+			if (!data) {
+				return;
+			}
 
-        $.ajax({
-            type: 'GET',
-            url: app.urls.getAds + 'type=new_casino_carousel_1&pageSize=1&pageIndex=0',
-            dataType: 'json',
-            timeout: app.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	that.loader.stop();
-        	that.setItems();
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
+			that.addSliders(data);
+			that.setItems();
+		};
+
+		Service.get(opt, callback);
 	};
 
 	LiveVideo.prototype.bindEvents = function () {
