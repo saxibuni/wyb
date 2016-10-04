@@ -124,6 +124,7 @@
 			getInfoByUserName: this.domain + 'api/User/GetByUserName?',
 
 			getStationLetters: this.domain + 'api/User/GetMessageList?',
+			getAnnouncements: this.domain + 'api/News/GetNotices?'
 		};
 	};
 
