@@ -153,6 +153,7 @@
         		alert(json.Message);
         	} else {
         		app.userinfo = json;
+        		app.userinfo.trueName = '王小四';
         		callback(json);
         	}
         	that.loader.stop();

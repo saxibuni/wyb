@@ -183,7 +183,9 @@
 
 												'<div class="verify-zone">' +
 													'<div class="line1">' +
-														this.mailInput.getDom() +
+														//this.mailInput.getDom() +
+														'<span class="text">您的注册邮箱为:</span>' +
+														'<span class="text email"></span>' +
 													'</div>' +
 
 													'<div class="line1-5">' +
@@ -207,7 +209,9 @@
 
 												'<div class="verify-zone">' +
 													'<div class="line1">' +
-														this.phoneInput.getDom() +
+														//this.phoneInput.getDom() +
+														'<span class="text">您的注册手机号为:</span>' +
+														'<span class="text phone"></span>' +
 													'</div>' +
 
 													'<div class="line1-5">' +
@@ -307,19 +311,22 @@
 		var that    =  this;
 		var titleUl =  this.zone.find('ul.title');
 		var opt     =  {
-			url: app.urls.checkUserName,
+			url: app.urls.getInfoByUserName,
 			data: {
 				userName: userName
 			}
 		};
 
 		callback = function (data) {
-			if (!data) {
-				alert('用户名不存在');
-				return;
-			}
+        	if (data.StatusCode && data.StatusCode !== 0) {
+        		alert(data.Message);
+        		return;
+        	}
 
-			that.userName = userName;
+			that.userinfo = data;
+			that.zone.find('.step2 .email').text(that.userinfo.Email);
+			that.zone.find('.step2 .phone').text(that.userinfo.Phone);
+
 			that.zone.find('.step2 .row1 .username').text(userName);
 			that.zone.find('.step').hide();
 			that.zone.find('.step2').show()
@@ -329,7 +336,7 @@
 
 		Service.get(opt, callback);
 	};
-
+/*
 	ForgetPassword.prototype.getEmailValidateCode = function (email) {
 		var opt;
 		var callback;
@@ -366,9 +373,31 @@
 		};
 
 		callback = function (data) {
-			debugger
 			if (data === true) {
 				that.zone.find('.step2 ul li.active .line1-5').show();
+			}
+		};
+
+		Service.post(opt, callback);
+	};
+*/
+	ForgetPassword.prototype.getValidateCode = function (type, param) {
+		var opt;
+		var callback;
+		var that = this;
+
+		opt = {
+			url: app.urls.getForgetPwdValidateCode,
+			data: {
+				ValidateType: type
+			}
+		};
+
+		callback = function (data) {
+			if (data === true) {
+				that.zone.find('.step2 ul li.active .line1-5').show();
+			} else {
+				alert(data.Message);
 			}
 		};
 
@@ -386,12 +415,12 @@
 		var titleUl = this.zone.find('ul.title');
 
 		if ($(lis[0]).hasClass('active')) {
-			value1 = this.mailInput.getValue();
+			value1 = this.userinfo.Email;
 			value2 = this.mailVerifyInput.getValue();
 			this.verifyType = 'email';
 			this.verifyCode = value2;
 
-			if (!(value1 && value2)) {
+			if (!value2) {
 				return;
 			}
 
@@ -415,7 +444,7 @@
 				}
 			};
 		} else {
-			value1 = this.phoneInput.getValue();
+			value1 = this.userinfo.Phone;
 			value2 = this.phoneVerifyInput.getValue();
 			this.verifyType = 'phone';
 			this.verifyCode = value2;
@@ -551,21 +580,23 @@
 		});
 
 		this.zone.find('#get-mail-verify-code').click(function () {
-			email = that.mailInput.getValue();
-			that.getEmailValidateCode(email);
+			//email = that.mailInput.getValue();
+			//that.getEmailValidateCode(email);
+			that.getValidateCode('Email');
 		});
 
 		this.zone.find('#get-phone-verify-code').click(function () {
-			phone = that.phoneInput.getValue();
-			that.getPhoneValidateCode(phone);
+			//phone = that.phoneInput.getValue();
+			//that.getPhoneValidateCode(phone);
+			that.getValidateCode('Mobile');
 		});
 
 		this.usernameInput.bindEvents(step1Callback.bind(this));
 		this.verifyInput.bindEvents(step1Callback.bind(this));
 
-		this.mailInput.bindEvents();
+		//this.mailInput.bindEvents();
 		this.mailVerifyInput.bindEvents();
-		this.phoneInput.bindEvents();
+		//this.phoneInput.bindEvents();
 		this.phoneVerifyInput.bindEvents();
 		this.newPwdInput.bindEvents();
 		this.confirmPwdInput.bindEvents();

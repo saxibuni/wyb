@@ -86,11 +86,11 @@
 			queryStationLetter: this.domain + 'api/User/GetMessageList',
 			queryNotices: this.domain + 'api/News/GetNotices',
 
-			checkUserName: this.domain + 'api/User/CheckUserName?',    //检查用户名是否存在
 			validateEmail: this.domain + 'api/User/ValidateEmail',     //验证邮箱
 			validatePhone: this.domain + 'api/User/ValidatePhone',     //验证手机
 			sendEmailValidateCode: this.domain + 'api/User/SendEmailValidateCode',  //发送邮箱验证码
 			sendPhoneValidateCode: this.domain + 'api/User/SendMobileValidateCode', //发送手机验证码
+			getForgetPwdValidateCode: this.domain + 'api/User/GetForgetPwdValidateCode?', //发送手机和邮箱验证码
 			changePasswordByForget: this.domain + 'api/User/ChangePasswordByForget', //更改用户密码
 
 			addUserBank: this.domain + 'api/Withdrawal/AddUserBank',
@@ -118,7 +118,10 @@
 
 			changeLoginPassword: this.domain + 'api/User/ChangePasswordByUser',
 			changeWithdrawPassword: this.domain + 'api/User/UpdateWithdrawalPwd',
-			checkWithdrawPwd: this.domain + 'api/User/CheckWithdrawPwd'
+			checkWithdrawPwd: this.domain + 'api/User/CheckWithdrawPwd',
+
+			getLoginInUserInfo: this.domain + 'api/Account/GetLoginUser',
+			getInfoByUserName: this.domain + 'api/User/GetByUserName?'
 		};
 	};
 
@@ -132,7 +135,6 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
         	callback(json);
         }).fail(function (xhr, testStatus, error) {
             alert(error);

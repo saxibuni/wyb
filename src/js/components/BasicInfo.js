@@ -75,8 +75,27 @@ $(function(){
 		this.zone.hide();
 	};
 
-	BasicInfo.prototype.getInfo = function() {
-		this.zone.hide();
+	BasicInfo.prototype.getUserInfo = function() {
+		var i;
+		var callback;
+		var that = this;
+
+		var opt  = {
+			url: app.urls.getLoginInUserInfo,
+			data: {}
+		};
+
+		callback = function (data) {
+			if (!data) {
+				return;
+			}
+
+			that.loginUserInfo = data;
+
+			that.realNameInput.setValue(data.TrueName);
+		};
+
+		Service.get(opt, callback);
 	};
 
 	BasicInfo.prototype.commit = function() {
@@ -97,10 +116,8 @@ $(function(){
 		// this.selectCounty.bindEvents();
 		this.button.bindEvents();
 		this.zone.find('.china-district').distpicker();
+		this.getUserInfo();
 	};
 
-
 	window.BasicInfo = BasicInfo;
-
-
 }());

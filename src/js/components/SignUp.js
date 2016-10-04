@@ -205,8 +205,16 @@
             	withCredentials: true
             }
         }).done(function(json) {
+        	that.loader.stop();
+
+        	if (json.StatusCode && json.StatusCode !== 0) {
+        		alert(json.Message);
+        		return;
+        	}
+
+        	app.userinfo = json;
+        	app.userinfo.trueName = '王小四';
             callback(json);
-            that.loader.stop();
         }).fail(function(xhr, textStatus, error) {
             alert('register request failed');
         });
