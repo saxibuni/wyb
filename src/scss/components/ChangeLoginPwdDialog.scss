@@ -1,0 +1,227 @@
+@import "../mixins.scss";
+
+.change-login-pwd-dialog {
+	@include dialog-frame;
+
+	.dialog-wrapper {
+		@include dialog-wrapper(600px);
+		z-index: 180;
+		top: 50%;
+
+		.dialog {
+			@include dialog(600px, 450px);
+			background-color: #2F2F2C;
+			color: #666666;
+			font-size: 14px;
+			padding: 20px;
+
+			.title {
+				height: 50px;
+				width: 100%;
+
+				li {
+					background-color: #FEFEFE;
+					color: #AAA;
+					display: inline-block;
+					height: 50px;
+					line-height: 50px;
+					width: 33.33%;
+
+					.li-wrapper {
+						border-right: 1px solid #CCCCCC;
+						height: 40px;
+						line-height: 40px;
+						margin-top: 5px;
+					}
+
+					.number {
+						font-size: 18px;
+					}
+
+					.text {
+						font-size: 14px;
+						margin-left: 10px;
+						vertical-align: top;
+					}
+
+					&:last-child {
+						.li-wrapper {
+							border-right: none;
+						}
+					}
+				}
+
+				.active {
+					background-color: #DCAD4B;
+					color: #FFF;
+				}
+			}
+
+			.content {
+				width:100%;
+				height: 100%;
+				padding-top: 20px;
+
+				.step2 {
+					width: 500px;
+					margin: 0 auto;
+					text-align: left;
+
+					.row1 {
+						.username {
+							color: #DCAD4B;
+						}
+					}
+
+					.row2 {
+						ul {
+							li {
+								cursor: pointer;
+							    height: auto;
+							    line-height: 60px;
+							    border: 1px solid #CCCCCC;
+							    margin-top: 20px;
+
+							    .verify-zone {
+							    	display: none;
+							    	padding: 20px;
+							    	padding-top: 0;
+							    	padding-left: 63px;
+
+									.line1 {
+										height: 40px;
+									}
+
+									.line1-5 {
+										color: #CDA654;
+										display: none;
+										font-size: 12px;
+										height: 30px;
+										line-height: 30px;
+									}
+
+									.line2 {
+										height: 40px;
+										margin-top: 5px;
+
+										.button {
+											margin-left: 20px;
+										    position: relative;
+										    bottom: 13px;
+										}
+									}
+							    }
+
+							    .info-zone {
+								    .left {
+								    	float: left;
+								    }
+
+								    .right {
+								    	float: right;
+								    }
+
+								    .mailimg {
+									    margin-left: 20px;
+									    position: relative;
+									    top: 20px;
+								    }
+								    
+								    .button {
+								    	float: right;
+									    position: relative;
+									    top: 15px;
+									    right: 20px;
+									    background-color: #4B4B42;
+									    color: #222222;
+								    }
+
+									.active {
+										background-color: #DCAD4B;
+										color: #FFF;
+
+										&:hover {
+											color: #000;
+										}
+									}
+
+								    .not-bind {
+								    	display: none;
+								    }
+
+								    .text {
+								    	margin: 0 20px;
+								    }
+							    }
+							}
+
+							.active {
+								border: 1px solid #DCAD4B;
+
+								.verify-zone {
+									display: block;
+								}
+							}
+						}
+
+						.button-zone {
+							padding-top: 20px;
+							width: 100%;
+							text-align: center;
+						}
+					}
+
+					.row3 {
+						margin-top: 50px;
+
+						.contactcs {
+							color: #CDA654;
+						}
+					}
+				}
+
+				.step3 {
+					display: none;
+					width: 300px;
+					margin: 0 auto;
+					text-align: left;
+
+					.row2 {
+						margin-top: 30px;
+					}
+
+					.row3 {
+						margin-top: 30px;
+					}
+
+					.row4 {
+						margin-top: 30px;
+					}
+
+					.row5 {
+						width: 500px;
+						margin: 0 auto;
+						margin-top: 30px;
+						text-align: left;
+
+						.button {
+							margin-top: 10px;
+						}
+					}
+				}
+
+				.step4 {
+					display: none;
+
+					.row1 {
+						margin-top: 20%;
+					}
+
+					.row2 {
+						margin-top: 20px;
+					}
+				}
+			}
+		}
+	}
+}

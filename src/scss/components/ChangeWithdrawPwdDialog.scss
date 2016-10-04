@@ -1,6 +1,6 @@
 @import "../mixins.scss";
 
-.set-pwd-content{
+.change-withdraw-pwd-dialog{
 	@include dialog-frame;
 
 	.dialog-wrapper {
@@ -9,7 +9,7 @@
 		top: 50%;
 
 		.dialog {
-			@include dialog(320px, 190px);
+			@include dialog(320px, 230px);
 			background-color: #2F2F2C;
 			font-size: 14px;
 			padding: 30px 20px 20px 20px;
@@ -39,8 +39,16 @@
 					float: left;
 					height: 28px;
 					line-height: 28px;
-					width: 90%;
+				    width: 80%;
+				    margin-left: 20px;
 				}
+			}
+
+			.row0{
+				height: 50px;
+				width: 100%;
+				position: relative;
+				text-align: center;
 			}
 
 			.row1{

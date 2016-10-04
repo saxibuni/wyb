@@ -13,14 +13,14 @@ $(function(){
 							'<div class="status pass"></div>' +
 							'<img src="../img/t04.png" /><span class="item">登录密码</span>' +
 							'<span class="text">安全级别：</span><span class="text security-level">中</span>' +
-							'<a class="modify-pwd">修改</a>' +
+							'<a class="change-login-pwd">修改</a>' +
 						'</div>' +
 
 						'<div>' +
 							'<div class="status warn"></div>' +
 							'<img src="../img/t05.png" /><span class="item">资金密码</span>' +
 							'<span class="text">安全级别：</span><span class="text security-level">中</span>' +
-							'<a class="set-pwd">设置</a>' +
+							'<a class="change-withdraw-pwd">设置</a>' +
 						'</div>' +
 
 						'<div class="row3">' +
@@ -30,19 +30,19 @@ $(function(){
 							'<a class="card-manage">管理</a>' +
 						'</div>' +
 
-						'<div class="row4">' +
-							'<div class="status pass"></div>' +
-							'<img src="../img/t07.png" /><span class="item">手机号码</span>' +
-							'<span class="text">128******63</span>' +
-							'<a class="set-phonenumber">修改</a>' +
-						'</div>' +
+						// '<div class="row4">' +
+						// 	'<div class="status pass"></div>' +
+						// 	'<img src="../img/t07.png" /><span class="item">手机号码</span>' +
+						// 	'<span class="text">128******63</span>' +
+						// 	'<a class="set-phonenumber">修改</a>' +
+						// '</div>' +
 
-						'<div class="row5">' +
-							'<div class="status pass"></div>' +
-							'<img src="../img/t08.png" /><span class="item">电子邮箱</span>' +
-							'<span class="text">立即绑定</span>' +
-							'<a class="set-email">修改</a>' +
-						'</div>' +
+						// '<div class="row5">' +
+						// 	'<div class="status pass"></div>' +
+						// 	'<img src="../img/t08.png" /><span class="item">电子邮箱</span>' +
+						// 	'<span class="text">立即绑定</span>' +
+						// 	'<a class="set-email">修改</a>' +
+						// '</div>' +
 
 					'</div>' +								
 				'</div>';
@@ -67,22 +67,22 @@ $(function(){
 
 		this.zone = $('.security-center');
 
-		this.zone.find('.modify-pwd').click(function(){
-			if (!that.modifyPwdDialog) {
-				that.modifyPwdDialog = new ModifyPwdDialog();
-				$('.app').append(that.modifyPwdDialog.getDom());
-				that.modifyPwdDialog.bindEvents();
+		this.zone.find('.change-login-pwd').click(function() {
+			if (!that.changeLoginPwdDialog) {
+				that.changeLoginPwdDialog = new ChangeLoginPwdDialog();
+				$('.app').append(that.changeLoginPwdDialog.getDom());
+				that.changeLoginPwdDialog.bindEvents();
 			}
-			that.modifyPwdDialog.show();
+			that.changeLoginPwdDialog.show();
 		});
 
-		this.zone.find('.set-pwd').click(function(){
-			if (!that.setPwdDialog) {
-				that.setPwdDialog = new SetPwdDialog();
-				$('.app').append(that.setPwdDialog.getDom());
-				that.setPwdDialog.bindEvents();
+		this.zone.find('.change-withdraw-pwd').click(function(){
+			if (!that.changeWithdrawPwdDialog) {
+				that.changeWithdrawPwdDialog = new ChangeWithdrawPwdDialog();
+				$('.app').append(that.changeWithdrawPwdDialog.getDom());
+				that.changeWithdrawPwdDialog.bindEvents();
 			}
-			that.setPwdDialog.show();
+			that.changeWithdrawPwdDialog.show();
 		});
 
 		this.zone.find('.card-manage').click(function(){
