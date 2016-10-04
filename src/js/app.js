@@ -116,6 +116,9 @@
 			addDeposit: this.domain + 'api/Deposit/AddDeposit',
 			getUserAdminBank: this.domain + 'api/Deposit/GetUserAdminBank?',
 
+			transferToPlatform: this.domain + 'api/Transfer/DoTransferToGame',
+			transferToAccount: this.domain + 'api/Transfer/DoTransferFromGame',
+
 			changeLoginPassword: this.domain + 'api/User/ChangePasswordByUser',
 			changeWithdrawPassword: this.domain + 'api/User/UpdateWithdrawalPwd',
 			checkWithdrawPwd: this.domain + 'api/User/CheckWithdrawPwd',
@@ -125,7 +128,7 @@
 			updateUserInfo: this.domain + 'api/User/UpdateUserInfo',
 
 			getStationLetters: this.domain + 'api/User/GetMessageList?',
-			getAnnouncements: this.domain + 'api/News/GetNotices?'
+			getAnnouncements: this.domain + 'api/News/GetNotices?',
 		};
 	};
 

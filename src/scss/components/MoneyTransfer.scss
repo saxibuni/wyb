@@ -3,7 +3,7 @@
 	@include tab-page;
 
 	.wrapper {
-		width: 300px;
+		width: 600px;
     	margin: 20px 140px 30px;
         position: relative;
 
@@ -24,10 +24,20 @@
 
 		.row1 {
 			margin-top: 20px;
+
+			.from-balance {
+				display: inline-block;
+				margin-left: 20px;
+			}
 		}
 
 		.row2 {
 			margin-top: 20px;
+
+			.to-balance {
+				display: inline-block;
+				margin-left: 20px;
+			}
 		}
 
 		.row3 {
@@ -40,11 +50,11 @@
 
 		.row4 {
 			margin-top: 20px;
-			text-align: center;
+			text-align: left;
 
 			.button {
 			    position: relative;
-			    left: 13px;
+			    left: 17%;
 			}
 		}
 
