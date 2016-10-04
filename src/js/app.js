@@ -122,6 +122,7 @@
 
 			getLoginInUserInfo: this.domain + 'api/Account/GetLoginUser',
 			getInfoByUserName: this.domain + 'api/User/GetByUserName?',
+			updateUserInfo: this.domain + 'api/User/UpdateUserInfo',
 
 			getStationLetters: this.domain + 'api/User/GetMessageList?',
 			getAnnouncements: this.domain + 'api/News/GetNotices?'

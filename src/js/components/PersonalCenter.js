@@ -348,11 +348,13 @@ $(function(){
 	        		tabZone.html(that.createZhsz());
 	        		that.zhszTab.bindEvents();
 	        		that.basicInfo.bindEvents();
+	        		that.basicInfo.show();
 	        	}
 	        	if (index == 3) {
 	        		tabZone.html(that.createZnx());
 	        		that.znxTab.bindEvents();
 	        		that.stationLetter.bindEvents();
+	        		that.stationLetter.show();
 	        	}
             }
         	tabZone.siblings().hide();
