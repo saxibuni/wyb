@@ -54,6 +54,10 @@ $(function(){
 
 	ChangeWithdrawPwdDialog.prototype.show = function() {
 		this.showOverlay();
+		this.oldPwdInput.val('');
+		this.newPwdInput.val('');
+		this.confirmPwdInput.val('');
+		this.checkPwd();
 	};
 
 	ChangeWithdrawPwdDialog.prototype.hide = function() {
@@ -64,6 +68,32 @@ $(function(){
         var wrapper = this.zone.find('.dialog')[0];
         this.loader = new Loader(wrapper);
     };
+
+	ChangeWithdrawPwdDialog.prototype.checkPwd = function() {
+		var opt;
+		var callback;
+		var that = this;
+
+		opt = {
+			url: app.urls.checkWithdrawPwd,
+			data: {}
+		};
+
+		callback = function (data) {
+			if (data.StatusCode && data.StatusCode !== 0) {
+				alert(data.Message);
+				return;
+			}
+
+			if (data === true) {
+				that.zone.find('.row0').show();
+			} else {
+				that.zone.find('.row0').hide();
+			}
+		};
+
+		Service.get(opt, callback);
+	};
 
 	ChangeWithdrawPwdDialog.prototype.commit = function () {
 		var opt;
@@ -90,8 +120,11 @@ $(function(){
 			if (data.StatusCode && data.StatusCode !== 0) {
 				alert(data.Message);
 			}
-			
-			that.hide();
+
+			if (data === true) {
+				alert('修改成功');
+				that.hide();
+			}
 		};
 
 		Service.post(opt, callback);

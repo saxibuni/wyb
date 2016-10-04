@@ -117,8 +117,8 @@
 			getUserAdminBank: this.domain + 'api/Deposit/GetUserAdminBank?',
 
 			changeLoginPassword: this.domain + 'api/User/ChangePasswordByUser',
-			changeWithdrawPassword: this.domain + 'api/User/UpdateWithdrawalPwd'
-
+			changeWithdrawPassword: this.domain + 'api/User/UpdateWithdrawalPwd',
+			checkWithdrawPwd: this.domain + 'api/User/CheckWithdrawPwd'
 		};
 	};
 
