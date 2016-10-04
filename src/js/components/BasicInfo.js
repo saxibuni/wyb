@@ -90,7 +90,7 @@ $(function(){
 				return;
 			}
 
-			that.loginUserInfo = data;
+			app.userTotalInfo = data;
 
 			that.realNameInput.setValue(data.TrueName);
 		};
