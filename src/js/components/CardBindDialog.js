@@ -262,7 +262,7 @@ $(function(){
 		};
 
 		callback = function (data) {
-			if (data.statusCode !== 0) {
+			if (data.statusCode && data.statusCode !== 0) {
 				alert(data.Message);
 				return;
 			}

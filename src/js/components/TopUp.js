@@ -50,7 +50,7 @@
 		});
 
 		this.selectProvince = new Select({
-			id: 'card-bind-province',
+			id: 'topup-province',
 			width: 100,
 			height: 36,
 			data:[
@@ -62,7 +62,7 @@
 		});
 
 		this.selectCity = new Select({
-			id: 'card-bind-city',
+			id: 'topup-city',
 			width: 100,
 			height: 36,
 			data:[
