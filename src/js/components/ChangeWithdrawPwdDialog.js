@@ -85,10 +85,10 @@ $(function(){
 				return;
 			}
 
-			if (data === true) {
-				that.zone.find('.row0').show();
-			} else {
-				that.zone.find('.row0').hide();
+			if (data === false) {
+				alert('请先绑定银行卡, 才能修改资金密码');
+				that.hide();
+				return;
 			}
 		};
 

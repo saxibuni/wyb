@@ -192,6 +192,37 @@ $(function(){
 	}
 
 	StationLetter.prototype.queryData = function(pageIndex){
+		var i;
+		var callback;
+		var that = this;
+		var beginTime = '';
+		var endTime = '';
+		var opt  = {
+			url: app.urls.getStationLetters,
+			data: {
+				beginTime: beginTime,
+				endTime: endTime,
+				status: '',
+				pageIndex: pageIndex,
+				pageSize: 10
+			}
+		};
+
+		callback = function (data) {
+			debugger
+
+            if (data && data.StatusCode) {
+                alert(data.Message);
+                return;
+            }
+
+            that.setData(data);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	StationLetter.prototype.setData = function(pageIndex){
 		var dom = '';
 		var i = 0;
 		var currentData = [];

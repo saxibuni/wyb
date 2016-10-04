@@ -121,7 +121,9 @@
 			checkWithdrawPwd: this.domain + 'api/User/CheckWithdrawPwd',
 
 			getLoginInUserInfo: this.domain + 'api/Account/GetLoginUser',
-			getInfoByUserName: this.domain + 'api/User/GetByUserName?'
+			getInfoByUserName: this.domain + 'api/User/GetByUserName?',
+
+			getStationLetters: this.domain + 'api/User/GetMessageList?',
 		};
 	};
 
