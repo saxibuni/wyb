@@ -209,8 +209,6 @@ $(function(){
 		};
 
 		callback = function (data) {
-			debugger
-
             if (data && data.StatusCode) {
                 alert(data.Message);
                 return;

@@ -49,6 +49,12 @@
 			reg: app.moneyReg
 		});
 
+		this.bankBranchInput = new Input({
+			id: 'topup-bank-branch-input',
+			width: 200,
+			height: 35
+		});
+
 		this.selectProvince = new Select({
 			id: 'topup-province',
 			width: 100,
@@ -148,42 +154,41 @@
 									'<span class="title">存款方式</span>' +
 									'<ul>' +
 										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-wyzz" checked="checked">' +
+											'<input name="deposit-method" type="radio" id="topup-wyzz" data-value="1" checked="checked">' +
 											'<label for="topup-wyzz">网银转账</label>' +
 										'</li>' +
 										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-atm-autocounter">' +
+											'<input name="deposit-method" type="radio" id="topup-atm-autocounter" data-value="2">' +
 											'<label for="topup-atm-autocounter">ATM自动柜员机</label>' +
 										'</li>' +
 										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-atm-cash">' +
+											'<input name="deposit-method" type="radio" id="topup-atm-cash" data-value="3">' +
 											'<label for="topup-atm-cash">ATM现金入款</label>' +
 										'</li>' +
 										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-bank-counter">' +
+											'<input name="deposit-method" type="radio" id="topup-bank-counter" data-value="4">' +
 											'<label for="topup-bank-counter">银行柜台</label>' +
 										'</li>' +
 										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-mobile-bank">' +
+											'<input name="deposit-method" type="radio" id="topup-mobile-bank" data-value="5">' +
 											'<label for="topup-mobile-bank">手机银行</label>' +
 										'</li>' +
 									'</ul>' +
 								'</div>' +
 
-								'<div class="row4">' +
-									'<div class="row4-1">' +
-										'<div class="text">充值金额</div>' +
-										this.topupInput3.getDom() +
-										'<div class="text unit">元</div>' +
-										'<div class="input-notice">' +
-											'充值额度限定： 最低2.00元，最高45000.00元' +
-										'</div>' +
-									'</div>' +
+								'<div class="payment-counter">' +
+									'<div class="text">银行所属支行</div>' +
+									this.selectProvince.getDom() +
+									this.selectCity.getDom() +
+									this.bankBranchInput.getDom() +
+								'</div>' +
 
-									'<div class="row4-2">' +
-										'<div class="text">银行所属支行</div>' +
-										this.selectProvince.getDom() +
-										this.selectCity.getDom() +
+								'<div class="row4">' +
+									'<div class="text">充值金额</div>' +
+									this.topupInput3.getDom() +
+									'<div class="text unit">元</div>' +
+									'<div class="input-notice">' +
+										'充值额度限定： 最低2.00元，最高45000.00元' +
 									'</div>' +
 								'</div>' +
 
@@ -309,7 +314,7 @@
 			alert('格式不对');
 		}
 
-		if (that.userPaysData.UserGroup.AutoPays.length < 1) {
+		if (this.userPaysData.UserGroup.AutoPays.length < 1) {
 			alert('你所在的组不能进行极速转账！');
 			return;
 		}
@@ -318,9 +323,39 @@
 	TopUp.prototype.submit3 = function() {
 		if (!this.topupInput3.isPass()) {
 			alert('格式不对');
+			return;
 		}
-		
-		
+
+		var i;
+		var callback;
+		var transType = this.zone.find('input[name="deposit-method"]:checked').attr('data-value');
+		var that      = this;
+		var opt       = {
+			url: app.urls.addDeposit,
+			data: {
+				UserName: app.userinfo.userName,
+				TrueName: app.userinfo.trueName,
+				BankId: this.zone.find('.bank-topup table .account-value').text(),
+				Amount: this.topupInput3.getValue(),
+				DepositType: 0,
+				TransType: transType
+			}
+		};
+
+		if (transType == 2 || transType == 3 || transType == 4) {
+			opt.data.Province = this.selectProvince.getValue();
+			opt.data.City     = this.selectCity.getValue();
+			opt.data.Address  = this.bankBranchInput.getValue();
+		}
+
+		callback = function (data) {
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+		};
+
+		Service.post(opt, callback);
 	};
 
 	TopUp.prototype.getUserPays = function () {
@@ -366,10 +401,9 @@
 
             that.banTopupInfo = data;
             that.createUserAdminUl(data);
-
             that.zone.find('.bank-topup table .bank-name-value').text(data[0].Bank.BankName);
             that.zone.find('.bank-topup table .user-name-value').text(data[0].AccountName);
-            that.zone.find('.bank-topup table .account-value').text(data[0].Bank.AccountNo);
+            that.zone.find('.bank-topup table .account-value').text(data[0].AccountNo);
 		};
 
 		Service.get(opt, callback);
@@ -474,6 +508,7 @@
 		var content;
 		var contentName;
 		var ul;
+		var methodId;
 		var verifyReg     = '^[0-9]{4}$';
 		var inputEvents   = 'input';
 		var that          = this;
@@ -490,6 +525,23 @@
 			contentName = $(this).attr('data-value');
 			content.children('.content-item').hide();
 			content.children('.' + contentName).show();
+
+			if (contentName === 'bank-topup') {
+				if (!that.bankTopupFirstTime) {
+					that.getProvinceList();
+					that.bankTopupFirstTime = false;
+				}
+			}
+		});
+
+		this.zone.find('input[name="deposit-method"]').click(function () {
+			methodId = $(this).attr('id');
+			
+			if (methodId === 'topup-wyzz' || methodId === 'topup-mobile-bank') {
+				that.zone.find('.payment-counter').hide();
+			} else {
+				that.zone.find('.payment-counter').show();
+			}
 		});
 
 		this.zone.find('#topup-button').click(function () {
@@ -510,8 +562,12 @@
 			that.topupConfirmDialog.show();
 		});
 
-		this.zone.find('#topup-button3').click(function () {
+		this.zone.find('#topup-button3').unbind('click').click(function () {
 			that.submit3();
+		});
+
+		this.zone.find('#topup-province').change(function () {
+			that.getCityList(that.selectProvince.getValue());
 		});
 
 		this.button.bindEvents();
@@ -520,6 +576,7 @@
 		this.topupInput.bindEvents();
 		this.topupInput2.bindEvents();
 		this.topupInput3.bindEvents();
+		this.bankBranchInput.bindEvents();
 		this.selectProvince.bindEvents();
 		this.selectCity.bindEvents();
 	};

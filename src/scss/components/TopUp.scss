@@ -98,6 +98,36 @@
 					}
 				}
 			}
+
+			.payment-counter {
+				display: none;
+				margin: 10px 0;
+				
+				.text {
+					color: #333333;
+					display: inline-block;
+					height: 30px;
+					line-height: 30px;
+					bottom: 0;
+					position: relative;
+					margin-right: 10px;
+				}
+
+				select {
+					width: 150px;
+					margin-left: 5px;
+
+					&:last-child {
+						margin-left: 20px;						
+					}
+				}
+
+				.input {
+				    position: relative;
+				    top: 12px;
+				    margin-left: 10px;
+				}
+			}
 		}
 	}
 
