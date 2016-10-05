@@ -201,9 +201,13 @@
 	};
 
 	TopUp.prototype.setBankCards = function(data) {
+		var temp;
 		var that = this;
         var bankList = data.UserGroup.ThirdPays[0].BankList;
-		var temp = '<div class="bank-cards">' +
+
+        app.bankList = bankList;
+        
+		temp 	= 	'<div class="bank-cards">' +
 						'<div class="title">' +
 							'请选择充值银行：' +
 						'</div>' +

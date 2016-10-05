@@ -14,11 +14,19 @@
 			height: 42
 		});
 
-		this.withdrawInput = new Input({
+		this.moneyInput = new Input({
 			id: 'withdraw-input',
 			width: 200,
 			height: 30,
 			reg: app.moneyReg
+		});
+
+		this.passwordInput = new Input({
+			id: 'withdraw-pwd-input',
+			width: 200,
+			height: 30,
+			reg: '',
+			type: 'password'
 		});
 
 		temp 	= 	'<div class="withdraw grzx-money-action">' +
@@ -43,19 +51,21 @@
 							'<div class="row1">' +
 								'<div class="title">请选择收款银行卡</div>' +
 
-								'<ul>' +
-									this.createCardItem(1) +
-									this.createCardItem(2) +
-								'</ul>' +
+								'<ul class="user-banks"></ul>' +
 							'</div>' +
 
 							'<div class="row2">' +
 								'<div class="text">提现金额</div>' +
-								this.withdrawInput.getDom() +
+								this.moneyInput.getDom() +
 								'<div class="text unit">元</div>' +
 								'<div class="input-notice">' +
 									'充值额度限定： 最低100元，最高150000元' +
 								'</div>' +
+							'</div>' +
+
+							'<div class="row21">' +
+								'<div class="text">取款密码</div>' +
+								this.passwordInput.getDom() +
 							'</div>' +
 
 							'<div class="row3">' +
@@ -67,32 +77,42 @@
 		this.el = temp;
 	}
 
-	Withdraw.prototype.createCardItem = function(index) {
-		var top;
-		var positions = {
-			1: {
-				top: '-32'
-			},
-			2: {
-				top: '-130'
+	Withdraw.prototype.addCardItem = function(data, index) {
+		var i;
+		var temp;
+		var cssName;
+		var bankName   =  data.Bank.BankName;
+		var accountLen =  data.AccountNo.length;
+		var tailnumber =  data.AccountNo.substring(accountLen - 4);
+		var nameLen    =  data.AccountName.length;
+		var tailname   =  data.AccountName[nameLen - 1];
+		var nameStart  = '';
+
+		for (i = 0; i < nameLen - 1; i++) {
+			nameStart += '*';
+		}
+
+		for (i = 0; i < app.bankList.length; i++) {
+			if (app.bankList[i].id == data.Bank.Id) {
+				cssName = app.bankList[i].CssName;
+				break;
 			}
-		};
+		}
 
-		top = positions[index].top;
-
-		var temp =	'<li>' +
+		temp 	=	'<li ' + ((index === 0)?'class="selected" ' : '') + 'data-index="' + index + '">' +
 						'<input type="radio" name="withdrawBankRidio">' +
 						'<div class="logo text">' +
-							'<img style="top:' + top + 'px" src="../img/bankLogo.jpg">' +
+							//'<img class="bankLogo ' + cssName + '" src="../img/bankLogo.jpg">' +
+							bankName +
 						'</div>' +
 						'<span class="text">尾号：****</span>' +
-						'<span class="value tailnumber">8410</span>' +
-						'<span class="text">[**</span>' +
-						'<span class="value tailname">天</span>' +
+						'<span class="value tailnumber">' + tailnumber + '</span>' +
+						'<span class="text">[' + nameStart + '</span>' +
+						'<span class="value tailname">' + tailname +'</span>' +
 						'<span class="text">]</span>' +
 					'</li>';
 
-		return temp;
+		this.zone.find('.user-banks').append(temp);
 	}
 
 	Withdraw.prototype.getDom = function() {
@@ -101,18 +121,78 @@
 
 	Withdraw.prototype.show = function() {
 		this.zone.show();
+
+		if (!this.firstTime) {
+			this.getUserBankList();
+			this.firstTime = true;
+		}
 	};
 
 	Withdraw.prototype.hide = function() {
 		this.zone.hide();
 	};
 
+	Withdraw.prototype.getUserBankList = function() {
+		var i;
+		var callback;
+		var that = this;
+
+		var opt  = {
+			url: app.urls.getUserBankList,
+			data: {}
+		};
+
+		callback = function (data) {
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+
+			for (i = 0; i < data.length; i++) {
+				that.addCardItem(data[i], i);
+			}
+
+			that.userBanks = data;
+		};
+
+		Service.get(opt, callback);
+	};
+
 	Withdraw.prototype.submit = function() {
-		if (!this.withdrawInput.isPass()) {
+		var i;
+		var callback;
+		var opt;
+		var that  = this;
+		var index = this.zone.find('.user-banks li.selected').attr('data-index');
+
+		if (!this.moneyInput.isPass()) {
 			alert('格式不对');
-		} else {
-			window.open('http://www.baidu.com');
+			return;
 		}
+
+		opt = {
+			url: app.urls.withdraw,
+			data: {
+				BankAccountId: that.userBanks[index].AccountNo,
+				Amount: this.moneyInput.getValue(),
+				WithdrawPwd: this.passwordInput.getValue()
+			}
+		};
+
+		callback = function (data) {
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+
+			if (data === true) {
+				alert('取款成功');
+			} else {
+				alert('取款失败');
+			}
+		};
+
+		Service.post(opt, callback);
 	};
 	
 	Withdraw.prototype.bindEvents = function() {
@@ -135,7 +215,8 @@
 		});
 
 		this.button.bindEvents();
-		this.withdrawInput.bindEvents();
+		this.moneyInput.bindEvents();
+		this.passwordInput.bindEvents();
 	}
 
 	window.Withdraw = Withdraw;

@@ -119,6 +119,9 @@
 			transferToPlatform: this.domain + 'api/Transfer/DoTransferToGame',
 			transferToAccount: this.domain + 'api/Transfer/DoTransferFromGame',
 
+			withdraw: this.domain + 'api/Withdrawal/DoWithdrawal',
+			getUserBankList: this.domain + 'api/User/GetUserBankList',
+
 			changeLoginPassword: this.domain + 'api/User/ChangePasswordByUser',
 			changeWithdrawPassword: this.domain + 'api/User/UpdateWithdrawalPwd',
 			checkWithdrawPwd: this.domain + 'api/User/CheckWithdrawPwd',
