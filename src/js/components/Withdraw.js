@@ -86,7 +86,7 @@
 		var tailnumber =  data.AccountNo.substring(accountLen - 4);
 		var nameLen    =  data.AccountName.length;
 		var tailname   =  data.AccountName[nameLen - 1];
-		var nameStart  = '';
+		var nameStart  =  '';
 
 		for (i = 0; i < nameLen - 1; i++) {
 			nameStart += '*';

@@ -87,11 +87,11 @@ $(function(){
 
 		this.zone.find('.card-manage').click(function(){
 			if (!that.cardManagerDialog) {
-				that.cardManagerDialog = new BankCarkManagerDialog();
-				$('.app').append(that.cardManagerDialog.getDom());
-				that.cardManagerDialog.bindEvents();
+				app.cardManagerDialog = new BankCarkManagerDialog();
+				$('.app').append(app.cardManagerDialog.getDom());
+				app.cardManagerDialog.bindEvents();
 			}
-			that.cardManagerDialog.show();
+			app.cardManagerDialog.show();
 		})
 	
 		this.zone.find('.set-phonenumber').click(function(){

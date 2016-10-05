@@ -262,12 +262,15 @@ $(function(){
 		};
 
 		callback = function (data) {
-			if (data.statusCode && data.statusCode !== 0) {
+			if (data.StatusCode && data.StatusCode !== 0) {
 				alert(data.Message);
+				that.hide();
 				return;
 			}
 
+			alert('绑定成功');
 			that.hide();
+			app.cardManagerDialog.refresh();
 		};
 
 		Service.post(opt, callback);
