@@ -294,6 +294,7 @@
             	withCredentials: true
             }
         }).done(function (json) {
+        	debugger
         	console.log(JSON.stringify(json));
         	that.getGameList(json[0].Id);
         }).fail(function (xhr, testStatus, error) {

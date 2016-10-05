@@ -11,42 +11,16 @@
 						'<div class="wrapper">' +
 							'<div class="title">' +
 								'<ul>'  +
-									'<li><span>热门优惠</span></li>' +
-									'<li><span>真人优惠</span></li>' +
-									'<li><span>电子优惠</span></li>' +
-									'<li><span>体育优惠</span></li>' +
-									'<li><span>彩票优惠</span></li>' +
-									'<li><span>VIP优惠</span></li>' +
-									'<li><span>往期回顾</span></li>' +
 									'<div class="stick"></div>' +
 								'</ul>' +
 							'</div>' +
 
 							'<div class="content">' +
-								'<ul>' +
-									'<li>' +
-										'<img class="down" src="../img/promo.jpg">' +
-										'<div class="activity-content">' +
-											'我是活动内容' +
-										'</div>' +
-									'</li>' +
-									'<li>' +
-										'<img class="down" src="../img/promo.jpg">' +
-										'<div class="activity-content">' +
-											'我是活动内容' +
-										'</div>' +
-									'</li>' +
-									'<li>' +
-										'<img class="down" src="../img/promo.jpg">' +
-										'<div class="activity-content">' +
-											'我是活动内容' +
-										'</div>' +
-									'</li>' +
-								'</ul>' +
+								'<ul></ul>' +
 
-								'<div class="pull">' +
-									'<img src="../img/pull.png">' +
-								'</div>' +
+								// '<div class="pull">' +
+								// 	'<img src="../img/pull.png">' +
+								// '</div>' +
 							'</div>' +
 						'</div>' +
 					'</div>';
@@ -74,7 +48,11 @@
 
 	PromoActivity.prototype.show = function () {
 		this.zone.show();
-		this.queryPromoTypes();
+
+		if (!this.firstTime) {
+			this.queryPromoTypes();
+			this.firstTime = true;
+		}
 	};
 
 	PromoActivity.prototype.hide = function () {
@@ -86,6 +64,40 @@
 
         this.loader1 = new Loader(wrapper1);
     };
+
+	PromoActivity.prototype.setTitle = function (data) {
+		var i;
+		var temp = '';
+
+		for (i = 0; i < data.length; i++) {
+			temp += '<li data-type="' + data[i].Id + '">' +
+						'<span>' +
+							data[i].TypeName +
+						'</span>' +
+					'</li>';
+		}
+
+		temp += '<div class="stick"></div>';
+
+		this.zone.find('.title ul').html(temp);
+		this.bindTitleEvents();
+	};
+
+	PromoActivity.prototype.setPromoList = function (data) {
+		var i;
+		var temp = '';
+
+		for (i = 0; i < data.length; i++) {
+			temp +=	'<li>' +
+						'<img src="' + app.imageServer + data[i].Img + '">' +
+						'<div class="activity-content">' +
+							data[i].Content +
+						'</div>' +
+					'</li>';
+		}
+
+		this.zone.find('.content ul').html(temp);
+	};
 
 	PromoActivity.prototype.queryPromoTypes = function () {
 		var that = this;
@@ -101,6 +113,7 @@
             	withCredentials: true
             }
         }).done(function (json) {
+        	that.setTitle(json);
         	that.queryPromoListsByType(json[0].Id);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
@@ -111,7 +124,7 @@
 		var url;
 		var that = this;
 
-		url = app.urls.queryPromoListByType + '?type=' + type + '&pageIndex=1&pageSize=5'; 
+		url = app.urls.queryPromoListByType + '?type=' + type + '&pageIndex=0&pageSize=10'; 
 
         $.ajax({
             type: 'GET',
@@ -122,50 +135,52 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	json = {"count":3,"extend":null,"list":[]};
+        	that.setPromoList(json.list);
         	that.loader1.stop();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
 	};
 
-	PromoActivity.prototype.queryPromoContentById = function () {
-		var that = this;
+	PromoActivity.prototype.bindTitleEvents = function () {
+		var index;
+		var type;
+		var that    = this;
+		var gap     = 14.286;
+		var titleUl = this.zone.find('.title ul');
+		var stick   = titleUl.children('.stick');
 
-        $.ajax({
-            type: 'GET',
-            url: app.urls.queryPromoContentById,
-            dataType: 'json',
-            timeout: app.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	debugger
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
+		titleUl.delegate('li', 'click', function () {
+			index = $(this).index();
+			left  = index*gap + '%';
+			stick.css('left', left);
+
+			type = $(this).attr('data-type');
+			that.queryPromoListsByType(type);
+		});
 	};
 
 	PromoActivity.prototype.bindEvents = function () {
-		var titleUl;
-		var stick;
+		var contentUl;
+		var status;
 		var index;
 		var left;
 		var pull;
-		var gap  = 14.286;
 		var that = this;
 
 		this.zone = $('.promo-activity');
 		
-		titleUl   = this.zone.find('.title ul');
-		stick     = titleUl.children('.stick');
+		contentUl = this.zone.find('.content ul');
 		pull      = this.zone.find('.pull img');
 
-		titleUl.delegate('li', 'click', function () {
-			index = $(this).index();
-			left  = index*gap +  '%';
-			stick.css('left', left);
+		contentUl.delegate('li', 'click', function () {
+			status = $(this).children('.activity-content').css('display');
+
+			if (status == 'none') {
+				$(this).children('.activity-content').slideDown();
+			} else {
+				$(this).children('.activity-content').slideUp();
+			}
 		});	
 
 		pull.click(function () {
