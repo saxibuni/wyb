@@ -634,6 +634,7 @@
 			}
 
 			.more-game{
+				display: none;
 				float: left;
     			width: $bottomRightModuleWidth - $gameImageGap * 2;
     			margin-left: $gameImageGap;

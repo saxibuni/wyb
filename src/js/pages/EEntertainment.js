@@ -4,9 +4,10 @@
 	}
 
 	EEntertainment.prototype.initDom = function () {
-		this.notice=new Notice({date:'2016-09-05',content:'这是一个测试公告',hasBtn:true});
+		this.currenPage = 0;
+		this.notice     = new Notice({date:'2016-09-05',content:'这是一个测试公告',hasBtn:true});
 
-		var noticeDom = this.notice.getDom();
+		var noticeDom   = this.notice.getDom();
 
 		var topLeftModule=	'<div class="left top-left-module">'+
 								'<div class="head-img">' +
@@ -50,19 +51,19 @@
 							'</div>';
 	  	
 	  	var middleNavModule='<ul class="middle-module">'+
-								'<li class="pt-li selected">' +
+								'<li class="pt-li selected" data-type="PT">' +
 									'<span class="img pt-img"></span>' +
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
-								'<li class="bbin-li">' +
+								'<li class="bbin-li" data-type="BBIN">' +
 									'<span class="img bbin-img"></span>' +
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
-								'<li class="ag-li">' +
+								'<li class="ag-li" data-type="AG">' +
 									'<span class="img ag-img"></span>' +
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
-								'<li class="mg-li">' +
+								'<li class="mg-li" data-type="MG">' +
 									'<span class="img mg-img"></span>' +
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
@@ -77,14 +78,14 @@
 										'<div class="clear"></div>'+
 									'</div>'+
 
-									'<ul>'+
-										'<li class="selected"><img src="../img/v01-d.png" /><span>热门游戏</span><div></div></li>'+
-										'<li><img src="../img/v02-n.png" /><span>全部游戏</span><div></div></li>'+
-										'<li><img src="../img/v03-n.png" /><span>经典游戏</span><div></div></li>'+
-										'<li><img src="../img/v04-n.png" /><span>奖金游戏</span><div></div></li>'+
-										'<li><img src="../img/v05-n.png" /><span>视频扑克</span><div></div></li>'+
-										'<li><img src="../img/v06-n.png" /><span>免费游戏</span><div></div></li>'+
-										'<li><img src="../img/v07-n.png" /><span>我的收藏</span><div></div></li>'+
+									'<ul class="game-tree">'+
+										// '<li class="selected"><img src="../img/v01-d.png" /><span>热门游戏</span><div></div></li>'+
+										// '<li><img src="../img/v02-n.png" /><span>全部游戏</span><div></div></li>'+
+										// '<li><img src="../img/v03-n.png" /><span>经典游戏</span><div></div></li>'+
+										// '<li><img src="../img/v04-n.png" /><span>奖金游戏</span><div></div></li>'+
+										// '<li><img src="../img/v05-n.png" /><span>视频扑克</span><div></div></li>'+
+										// '<li><img src="../img/v06-n.png" /><span>免费游戏</span><div></div></li>'+
+										// '<li><img src="../img/v07-n.png" /><span>我的收藏</span><div></div></li>'+
 									'</ul>'+
 
 									'<div class="stick"></div>'+
@@ -262,7 +263,11 @@
 					'</li>';
 		}
 
-		this.zone.find('.bottom-right ul').append(html);
+		if (!this.isScroll) {
+			this.zone.find('.bottom-right ul').html(html);
+		} else {
+			this.zone.find('.bottom-right ul').append(html);
+		}
 	};
 
     EEntertainment.prototype.createLoader = function() {
@@ -280,6 +285,23 @@
         });
     };
 
+    EEntertainment.prototype.setGameTree = function (data) {
+    	var i;
+    	var temp = '';
+
+    	for (i = 0; i < data.length; i++) {
+    		temp += '<li ' + ((i === 0)?'class="selected" ': '') + 'data-id="' + data[i].Id + '">' +
+    					'<span>' +
+    						data[i].Name +
+    					'</span>' +
+    					'<div></div>' +
+    				'</li>';
+    	}
+
+    	this.zone.find('.game-tree').html(temp);
+    	this.bindTreeEvents();
+    };
+
 	EEntertainment.prototype.getGameCategories = function () {
 		var that = this;
 
@@ -294,34 +316,49 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
-        	console.log(JSON.stringify(json));
-        	that.getGameList(json[0].Id);
+        	that.setGameTree(json);
+        	that.getGameList();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
 	};
 
-    EEntertainment.prototype.getGameList = function (cateGoryId) {
-    	var that = this;
-    	var url  = app.urls.getGameList + 'pageIndex=0&pageSize=20&categoryId=' + cateGoryId;
+    EEntertainment.prototype.getGameList = function () {
+		var callback;
+		var platformUl = this.zone.find('.middle-module');
+		var treeUl     = this.zone.find('.game-tree');
+		var platform   = platformUl.children('li.selected').attr('data-type');
+		var cateGoryId = treeUl.children('li.selected').attr('data-id');
+		var that       =  this; 
+		var opt        =  {
+			url: app.urls.getGameList,
+			data: {
+				platform: platform,
+				categoryId: cateGoryId,
+				pageIndex: this.currenPage,
+				pageSize: 24
+			}
+		};
 
-    	this.loader3.play();
+		callback = function (data) {
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
 
-        $.ajax({
-            type: 'GET',
-            url: url,
-            dataType: 'json',
-            timeout: app.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
         	that.loader3.stop();
-        	that.setGameList(json.list);
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
+        	that.setGameList(data.list);
+
+        	if (data.list.length < 1) {
+        		that.zone.find('.bottom-right .more-game').text('没有更多');
+        		that.zone.find('.bottom-right .more-game').show();
+        	} else {
+        		that.zone.find('.bottom-right .more-game').hide();
+        	}
+		};
+
+		this.loader3.play();
+		Service.get(opt, callback);
     };
 
 	EEntertainment.prototype.show = function () {
@@ -347,11 +384,53 @@
 		this.zone.fadeOut(500);
 	};
 
+	EEntertainment.prototype.bindTreeEvents = function (data) {
+		var index;
+		var pageUl =  this.zone.find('.bottom-left ul');
+		var stick  = this.zone.find('.bottom-left .stick');
+		var that   = this;
+
+		pageUl.delegate('li','click',function(){
+			index = $(this).index();
+			$(".bottom-left").find("li").removeClass("selected");
+			$(this).addClass("selected");
+			stick.css('top',(index * 40 + 65) + 'px');
+			that.isScroll = false;
+			that.currenPage = 0;
+			that.getGameList();
+		});
+
+		// pageUl.delegate('li','click',function(){
+		// 	index = $(this).index();
+		// 	imgIndex=index+1;
+		// 	var path="../img/v0"+imgIndex+"-d.png";
+		// 	var tt=$(".selected").find("img").attr("src").replace("-d","-n");
+		// 	$(".selected").find("img").attr("src",tt);
+		// 	$(".bottom-left").find("li").removeClass("selected");
+		// 	$(this).addClass("selected");
+		// 	$(this).find("img").attr("src",path);
+		// 	stick.css('top',(index * 40 + 65) + 'px');
+		// });
+
+		// pageUl.delegate('li','mouseover',function(){
+		// 	index = $(this).index();
+		// 	imgIndex=index+1;
+		// 	var path="../img/v0"+imgIndex+"-d.png";
+		// 	$(this).find("img").attr("src",path);
+		// });
+
+		// pageUl.delegate('li','mouseout',function(){
+		// 	index = $(this).index();
+		// 	imgIndex=index+1;
+		// 	var path="../img/v0"+imgIndex+"-n.png";
+		// 	if(!$(this).hasClass("selected")){
+		// 		$(this).find("img").attr("src",path);
+		// 	}
+		// });
+	};
+
 	EEntertainment.prototype.bindEvents = function () {
 		var gameId;
-		var pageUl;
-		var stick;
-		var index;
 		var imgIndex;
 		var imageUl;
 		var moreGame;
@@ -367,40 +446,10 @@
 			delay: 3000
 		});
 
-		pageUl         =  this.zone.find('.bottom-left ul');
-		stick          =  this.zone.find('.bottom-left .stick');
 		imgUl          =  this.zone.find('.bottom-right ul');
 		marqueeList    =  this.zone.find('.top-left-module');
 		moreGame       =  this.zone.find('.bottom-right .more-game');
 		middleModuleUl = this.zone.find('.middle-module');
-
-		pageUl.delegate('li','mouseover',function(){
-			index = $(this).index();
-			imgIndex=index+1;
-			var path="../img/v0"+imgIndex+"-d.png";
-			$(this).find("img").attr("src",path);
-		});
-
-		pageUl.delegate('li','mouseout',function(){
-			index = $(this).index();
-			imgIndex=index+1;
-			var path="../img/v0"+imgIndex+"-n.png";
-			if(!$(this).hasClass("selected")){
-				$(this).find("img").attr("src",path);
-			}
-		});
-
-		pageUl.delegate('li','click',function(){
-				index = $(this).index();
-				imgIndex=index+1;
-				var path="../img/v0"+imgIndex+"-d.png";
-				var tt=$(".selected").find("img").attr("src").replace("-d","-n");
-				$(".selected").find("img").attr("src",tt);
-				$(".bottom-left").find("li").removeClass("selected");
-				$(this).addClass("selected");
-				$(this).find("img").attr("src",path);
-				stick.css('top',(index * 40 + 65) + 'px');
-		});
 
 		imgUl.delegate('li','mouseover',function(){
 			  $(this).find("#hover-layer").removeClass("hover-layer-none").addClass("hover-layer");
@@ -413,6 +462,9 @@
 		middleModuleUl.delegate('li', 'click', function () {
 			middleModuleUl.find('li').removeClass('selected');
 			$(this).addClass('selected');
+			that.isScroll = false;
+			that.currenPage = 0;
+			that.getGameList();
 		});
 
 		this.zone.delegate('.collect', 'click', function () {
@@ -433,22 +485,13 @@
 		    var contentH  = $('body').get(0).scrollHeight; 
 		    var scrollTop = $('body').scrollTop();
 
-		    if (imgUl.children('li').length > 72) {
-		    	moreGame.html('没有更多');
-		    	return;
-		    }
-
 		    if (contentH - viewH - scrollTop <= 10) {
 		    	moreGame.html('加载中...');
+		    	moreGame.show();
 
-		    	if (!that.loadImageTimeout) {
-			    	that.loadImageTimeout = setTimeout(function () {
-			    		imgUl.append(that.setGameList());
-			    		moreGame.html('更多游戏');
-			    		clearTimeout(that.loadImageTimeout);
-			    		that.loadImageTimeout = undefined;
-			    	}, 2000);
-		    	}
+		    	that.isScroll = true;
+		    	that.currenPage++;
+		    	that.getGameList();
 		    }
 		});
 
