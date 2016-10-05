@@ -2,7 +2,7 @@
 	function Select(opt) {
 		this.opt  = opt;
 		this.id   = opt.id;
-		this.data = opt.data;
+		this.data = opt.data || [];
 		this.initDom();
 	}
 

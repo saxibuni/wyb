@@ -108,7 +108,7 @@ $(function(){
 
 	PersonalCenter.prototype.show = function(route){
 		this.showPersonalCenterOverlay();
-		this.getBalanceSum();
+		this.getCenterWalletCash();
 		this.getAllPlatforms();
 	};
 
@@ -271,12 +271,12 @@ $(function(){
 		Service.get(opt, callback);
 	};
 
-	PersonalCenter.prototype.getBalanceSum = function () {
+	PersonalCenter.prototype.getCenterWalletCash = function () {
 		var i;
 		var callback;
 		var that = this;
 		var opt  = {
-			url: app.urls.getBalanceSum,
+			url: app.urls.getCenterWalletCash,
 			data: {}
 		};
 

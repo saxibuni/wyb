@@ -109,7 +109,7 @@
 
 			getAllAPI: this.domain + 'api/Game/GetAllApi',
 			getPlatformBalance: this.domain + 'api/Game/GetCash?',
-			getBalanceSum: this.domain + 'api/Game/GetCashSum',
+			getCenterWalletCash: this.domain + 'api/User/GetUserCash',
 
 			getUserPays: this.domain + 'api/Deposit/GetUserPays',
 			payForm: this.domain + 'api/Pay/PayForm',

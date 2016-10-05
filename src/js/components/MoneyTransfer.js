@@ -24,25 +24,13 @@
 		this.fromSelect = new Select({
 			id: 'money-transfer-from-select',
 			width: 150,
-			height: 36,
-			data: [
-				{
-					'text': '主账户',
-					'value': '0'
-				}
-			]
+			height: 36
 		});
 
 		this.toSelect = new Select({
 			id: 'money-transfer-to-select',
 			width: 150,
-			height: 36,
-			data: [
-				{
-					'text': '主账户',
-					'value': '0'
-				}
-			]
+			height: 36
 		});
 
 		temp = 		'<div class="money-transfer grzx-money-action">' +
@@ -129,7 +117,10 @@
 				return;
 			}
 			
-			that.selectData = [];
+			that.selectData = [{
+				id: '0',
+				name: '主账户'
+			}];
 
 			for (i = 0; i < data.length; i++) {
 				temp = {
@@ -145,9 +136,7 @@
 			}
 
 			that.setSelects();
-			that.bindEvents();
-
-			that.getPlatformBalance(that.selectData[0].id, 'all');
+			that.getCenterWalletCash('all');
 		};
 
 		Service.get(opt, callback);
@@ -178,25 +167,51 @@
 		Service.get(opt, callback);
 	};
 
-	MoneyTransfer.prototype.getBalanceSum = function () {
+	MoneyTransfer.prototype.getCenterWalletCash = function (type) {
 		var i;
 		var callback;
 		var that = this;
 		var opt  = {
-			url: app.urls.getBalanceSum,
+			url: app.urls.getCenterWalletCash,
 			data: {}
 		};
 
 		callback = function (data) {
-			that.zone.find('.center-wallet').children('.balance').text(data);
+			if (type === 'from') {
+				that.zone.find('.from-balance-value').text(data);
+			} else if (type === 'to') {
+				that.zone.find('.to-balance-value').text(data);
+			} else {
+				that.zone.find('.from-balance-value').text(data);
+				that.zone.find('.to-balance-value').text(data);
+			}
 		};
 
 		Service.get(opt, callback);
 	};
 
 	MoneyTransfer.prototype.submit = function() {
+		var from = this.fromSelect.getValue();
+		var to   = this.toSelect.getValue();
+
 		if (!this.moneyTransferInput.isPass()) {
 			alert('格式不对');
+		}
+
+		if (from == to) {
+			alert("同账户不允许互转");
+			return;
+		}
+
+		if (from != '0' && to != '0') {
+			alert("游戏平台账户不允许互转");
+			return;
+		}
+
+		if (from == '0') {
+			this.transferToPlatform();
+		} else {
+			this.transferToAccount();
 		}
 	};
 
@@ -204,14 +219,28 @@
 		var i;
 		var callback;
 		var that     = this;
-		var opt  = {
+		var amount   = $.trim(this.moneyTransferInput.getValue());
+		var to       = this.toSelect.getValue();
+		var opt      = {
 			url: app.urls.transferToPlatform,
 			data: {
+				UserName: app.userinfo.userName,
+				Amount: amount,
+				GamePlatform: to
 			}
 		};
 
 		callback = function (data) {
-			debugger
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+
+			if (data === true) {
+				alert('转账成功');
+			} else {
+				alert('转账失败');
+			}
 		};
 
 		Service.post(opt, callback);
@@ -221,21 +250,37 @@
 		var i;
 		var callback;
 		var that     = this;
-		var opt  = {
+		var amount   = $.trim(this.moneyTransferInput.getValue());
+		var from     = this.fromSelect.getValue();
+		var opt      = {
 			url: app.urls.transferToAccount,
 			data: {
+				UserName: app.userinfo.userName,
+				Amount: amount,
+				GamePlatform: from
 			}
 		};
 
 		callback = function (data) {
-			debugger
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+
+			if (data === true) {
+				alert('转账成功');
+			} else {
+				alert('转账失败');
+			}
 		};
 
 		Service.post(opt, callback);
 	};
 
 	MoneyTransfer.prototype.bindEvents = function() {
+		var value;
 		var that  = this;
+
 		this.zone = $('.money-transfer');
 
 		this.zone.find('#money-transfer-button').click(function () {
@@ -243,11 +288,23 @@
 		});
 
 		this.zone.find('#money-transfer-from-select').change(function () {
-			that.getPlatformBalance(that.fromSelect.getValue(), 'from');
+			value = that.fromSelect.getValue();
+
+			if (parseInt(value) !== 0) {
+				that.getPlatformBalance(value, 'from');
+			} else {
+				that.getCenterWalletCash('from');
+			}
 		});
 
 		this.zone.find('#money-transfer-to-select').change(function () {
-			that.getPlatformBalance(that.toSelect.getValue(), 'to');
+			value = that.toSelect.getValue();
+			
+			if (parseInt(value) !== 0) {
+				that.getPlatformBalance(value, 'to');
+			} else {
+				that.getCenterWalletCash('to');
+			}
 		});
 
 		this.button.bindEvents();
