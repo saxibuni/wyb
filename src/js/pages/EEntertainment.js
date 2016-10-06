@@ -144,7 +144,7 @@
 		callback = function (json) {
         	that.bonusPoolData = json;
         	that.setMarqueenItems(true);
-        	that.resfreshBaseValues();
+        	that.resfreshBaseValues(platform);
         	that.animateMarqueen();
 		};
 
@@ -327,7 +327,7 @@
 	/*
 	** Marqueen Data
 	*/
-	EEntertainment.prototype.resfreshBaseValues = function () {
+	EEntertainment.prototype.resfreshBaseValues = function (parentPlatform) {
 		var i;
 		var item;
 		var items;
@@ -352,9 +352,9 @@
 			}
 		}
 
-		if (platform === 'MG') {
-			this.setPtSumBaseValue('MG');
-		} else if (platform === 'PT') {
+		if (parentPlatform === 'MG') {
+			this.setMgSumBaseValue('MG');
+		} else if (parentPlatform === 'PT') {
 			this.setPtSumBaseValue();
 		} else {
 			
@@ -384,7 +384,7 @@
 		var opt  =  {
 			url: app.urls.getJackpotsByUrl,
 	        data: {
-	        	url: app.getPtSumJackpotBaseValue
+	        	'': app.urls.getPtSumJackpotBaseValue
 	        }
 		};
 
@@ -426,7 +426,7 @@
 		};
 
 		callback = function (data) {
-			that.zone.find('.top-right-module .jackpot-value').text(data.Data);
+			that.zone.find('.top-right-module .jackpot-value').text(data);
 		};
 
 		Service.post(opt, callback);
@@ -605,7 +605,6 @@
 
 		app.getLoginStatus(callback.bind(this));
     };
-
 
 	EEntertainment.prototype.show = function () {
 		var callback;

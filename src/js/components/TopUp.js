@@ -81,165 +81,13 @@
 
 		temp = 		'<div class="top-up grzx-money-action">' +
 						'<div class="row1">' +
-							'<ul>' +
-								'<li data-value="fast-topup" class="selected">' +
-									'<span>快捷支付</span>' +
-								'</li>' +
-
-								'<li data-value="superfast-topup">' +
-									'<span>急速网银转账</span>' +
-								'</li>' +
-
-								'<li data-value="bank-topup">' +
-									'<span>银行转账</span>' +
-								'</li>' +
-							'</ul>' +
+							'<ul class="deposit-types"></ul>' +
 						'</div>' +
 
-						'<div class="content">' +
-							'<div class="content-item fast-topup">' +
-								'<div class="row4">' +
-									'<div class="text">充值金额</div>' +
-									this.topupInput.getDom() +
-									'<div class="text unit">元</div>' +
-									'<div class="input-notice">' +
-										'充值额度限定： 最低2.00元，最高45000.00元' +
-									'</div>' +
-								'</div>' +
-
-								'<div class="row5">' +
-									this.button.getDom() +
-								'</div>' +
-							'</div>' +
-
-							'<div class="content-item superfast-topup">' +
-								'<div class="row4">' +
-									'<div class="text">充值金额</div>' +
-									this.topupInput2.getDom() +
-									'<div class="text unit">元</div>' +
-									'<div class="input-notice">' +
-										'充值额度限定： 最低2.00元，最高45000.00元' +
-									'</div>' +
-								'</div>' +
-
-								'<div class="row5">' +
-									this.button2.getDom() +
-								'</div>' +
-							'</div>' +
-
-							'<div class="content-item bank-topup">' +
-								
-								//this.createBankCards() +
-								'<select class="user-admin-banks-select">' +
-								'</select>' +
-
-								'<table>' +
-									'<tbody>' +
-										'<tr>' +
-											'<td class="bank-name">收款银行</td>' +
-											'<td class="bank-name-value">中国工商银行</td>' +
-										'</tr>' +
-										'<tr>' +
-											'<td class="user-name">账户名</td>' +
-											'<td class="user-name-value">刘文慧</td>' +
-										'</tr>' +
-										'<tr>' +
-											'<td class="account">收款账号</td>' +
-											'<td class="account-value">collowzuez99@sina.com</td>' +
-										'</tr>' +
-									'</tbody>' +
-								'</table>' +
-
-								'<div class="deposit-method">' +
-									'<span class="title">存款方式</span>' +
-									'<ul>' +
-										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-wyzz" data-value="1" checked="checked">' +
-											'<label for="topup-wyzz">网银转账</label>' +
-										'</li>' +
-										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-atm-autocounter" data-value="2">' +
-											'<label for="topup-atm-autocounter">ATM自动柜员机</label>' +
-										'</li>' +
-										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-atm-cash" data-value="3">' +
-											'<label for="topup-atm-cash">ATM现金入款</label>' +
-										'</li>' +
-										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-bank-counter" data-value="4">' +
-											'<label for="topup-bank-counter">银行柜台</label>' +
-										'</li>' +
-										'<li>' +
-											'<input name="deposit-method" type="radio" id="topup-mobile-bank" data-value="5">' +
-											'<label for="topup-mobile-bank">手机银行</label>' +
-										'</li>' +
-									'</ul>' +
-								'</div>' +
-
-								'<div class="payment-counter">' +
-									'<div class="text">银行所属支行</div>' +
-									this.selectProvince.getDom() +
-									this.selectCity.getDom() +
-									this.bankBranchInput.getDom() +
-								'</div>' +
-
-								'<div class="row4">' +
-									'<div class="text">充值金额</div>' +
-									this.topupInput3.getDom() +
-									'<div class="text unit">元</div>' +
-									'<div class="input-notice">' +
-										'充值额度限定： 最低2.00元，最高45000.00元' +
-									'</div>' +
-								'</div>' +
-
-								'<div class="row5">' +
-									this.button3.getDom() +
-								'</div>' +
-							'</div>' +
-						'</div>' +
+						'<div class="content"></div>' +
 					'</div>';
 
 		this.el = temp;
-	};
-
-	TopUp.prototype.getCardPosition = function(name) {
-	};
-
-	TopUp.prototype.setBankCards = function(data) {
-		var temp;
-		var that = this;
-        var bankList = data.UserGroup.ThirdPays[0].BankList;
-
-        app.bankList = bankList;
-        
-		temp 	= 	'<div class="bank-cards">' +
-						'<div class="title">' +
-							'请选择充值银行：' +
-						'</div>' +
-
-						'<ul>';
-
-        for (i = 0; i < bankList.length; i++) {
-        	temp += 		'<li data-id="' + bankList[i].Id + '"' +
-        						' data-code="' + bankList[i].BankCode + '"' + 
-        						' data-name="' + bankList[i].BankName + '"' +
-        						'>' +
-								'<input type="radio" name="bank" />' +
-								'<span class="bankLogo ' + bankList[i].CssName + '" src="../img/bankLogo.jpg"></span>' +
-							'</li>';
-        }
-
-        temp += 		'</ul>' +
-					'</div>';
-
-					// '<div class="more-bank-cards">' +
-					// 	'<span>更多网银</span>' +
-					// 	'<img class="message-img" src="../img/sxl.png">' +
-					// '</div>';
-
-        this.zone.find('.fast-topup').prepend(temp);
-        this.zone.find('.superfast-topup').prepend(temp);
-        this.bindBankCardsEvents();
 	};
 
 	TopUp.prototype.getDom = function() {
@@ -251,7 +99,6 @@
 
 		if (!this.firstTime) {
 			this.getUserPays();
-			this.getUserAdminBank();
 			this.firstTime = true;
 		}
 	};
@@ -373,13 +220,193 @@
                 return;
             }
 
+            that.setDepositTypes(data);
             that.userPaysData    = data;
             that.thirdPayMerCode = data.UserGroup.ThirdPays[0].MerCode;
             that.payPlatform     = data.UserGroup.ThirdPays[0].ThirdPayCode;
-            that.setBankCards(data);
+            that.setThirdAndAutoContent(data.UserGroup.ThirdPays[0].BankList);
 		};
 
 		Service.get(opt, callback);
+	};
+
+	TopUp.prototype.setThirdAndAutoContent = function (bankList) {
+		var temp ='';
+		var that = this;
+
+		temp +=		'<div class="content-item">' +
+						'<div class="bank-cards">' +
+							'<div class="title">' +
+								'请选择充值银行：' +
+							'</div>' +
+
+							'<ul>';
+
+        for (i = 0; i < bankList.length; i++) {
+        	temp += 			'<li data-id="' + bankList[i].Id + '"' +
+	        						' data-code="' + bankList[i].BankCode + '"' + 
+	        						' data-name="' + bankList[i].BankName + '"' +
+	        						'>' +
+									'<input type="radio" name="bank" />' +
+									'<span class="bankLogo ' + bankList[i].CssName + '" src="../img/bankLogo.jpg"></span>' +
+								'</li>';
+        }
+
+	    temp += 			'</ul>' +
+						'</div>' +
+
+						'<div class="row4">' +
+							'<div class="text">充值金额</div>' +
+							this.topupInput.getDom() +
+							'<div class="text unit">元</div>' +
+							'<div class="input-notice">' +
+								'充值额度限定： 最低2.00元，最高45000.00元' +
+							'</div>' +
+						'</div>' +
+
+						'<div class="row5">' +
+							this.button.getDom() +
+						'</div>' +
+					'</div>';
+
+		this.zone.find('.content').html(temp);
+		this.bindBankCardsEvents();
+	};
+
+	TopUp.prototype.setBankContent = function () {
+		var temp = '';
+
+		temp += '<div class="content-item bank-topup">' +
+					'<select class="user-admin-banks-select">' +
+					'</select>' +
+
+					'<table>' +
+						'<tbody>' +
+							'<tr>' +
+								'<td class="bank-name">收款银行</td>' +
+								'<td class="bank-name-value">中国工商银行</td>' +
+							'</tr>' +
+							'<tr>' +
+								'<td class="user-name">账户名</td>' +
+								'<td class="user-name-value">刘文慧</td>' +
+							'</tr>' +
+							'<tr>' +
+								'<td class="account">收款账号</td>' +
+								'<td class="account-value">collowzuez99@sina.com</td>' +
+							'</tr>' +
+						'</tbody>' +
+					'</table>' +
+
+					'<div class="deposit-method">' +
+						'<span class="title">存款方式</span>' +
+						'<ul>' +
+							'<li>' +
+								'<input name="deposit-method" type="radio" id="topup-wyzz" data-value="1" checked="checked">' +
+								'<label for="topup-wyzz">网银转账</label>' +
+							'</li>' +
+							'<li>' +
+								'<input name="deposit-method" type="radio" id="topup-atm-autocounter" data-value="2">' +
+								'<label for="topup-atm-autocounter">ATM自动柜员机</label>' +
+							'</li>' +
+							'<li>' +
+								'<input name="deposit-method" type="radio" id="topup-atm-cash" data-value="3">' +
+								'<label for="topup-atm-cash">ATM现金入款</label>' +
+							'</li>' +
+							'<li>' +
+								'<input name="deposit-method" type="radio" id="topup-bank-counter" data-value="4">' +
+								'<label for="topup-bank-counter">银行柜台</label>' +
+							'</li>' +
+							'<li>' +
+								'<input name="deposit-method" type="radio" id="topup-mobile-bank" data-value="5">' +
+								'<label for="topup-mobile-bank">手机银行</label>' +
+							'</li>' +
+						'</ul>' +
+					'</div>' +
+
+					'<div class="payment-counter">' +
+						'<div class="text">银行所属支行</div>' +
+						this.selectProvince.getDom() +
+						this.selectCity.getDom() +
+						this.bankBranchInput.getDom() +
+					'</div>' +
+
+					'<div class="row4">' +
+						'<div class="text">充值金额</div>' +
+						this.topupInput3.getDom() +
+						'<div class="text unit">元</div>' +
+						'<div class="input-notice">' +
+							'充值额度限定： 最低2.00元，最高45000.00元' +
+						'</div>' +
+					'</div>' +
+
+					'<div class="row5">' +
+						this.button3.getDom() +
+					'</div>' +
+				'</div>';
+
+		this.zone.find('.content').html(temp);
+		this.getUserAdminBank();
+	};
+
+	TopUp.prototype.setDepositTypes = function (data) {
+		var i;
+		var alipay     = null;
+		var wechat     = null;
+		var temp       = '';
+		var thirdPays  = data.UserGroup.ThirdPays;
+		var autoPays   = data.UserGroup.AutoPays;
+		var adminBanks = data.UserGroup.AdminBanks;
+
+		for (i = 0; i < thirdPays.length; i++) {
+			temp += '<li data-id="' + thirdPays[i].Id + '" data-type="ThirdPays" data-index="' + i + '">' +
+						'<span>' +
+							thirdPays[i].MerName +
+						'</span>' +
+					'</li>';
+		}
+
+		for (i = 0; i < autoPays.length; i++) {
+			if (autoPays[i].CustId.replace("-", "") == "DADDYPAYCARD") {
+				temp += '<li data-type="AutoPays" data-index="' + i + '">' +
+							'<span>' +
+								autoPays[i].CustName +
+							'</span>' +
+						'</li>';
+			}
+		}
+
+		for (i = 0; i < adminBanks.length; i++) {
+            if (wechat == null && adminBanks[i].Type == 0) {
+                wechat = adminBanks[i];
+            }
+
+            if (alipay == null && adminBanks[i].Type == 2) {
+                alipay = adminBanks[i];
+            }
+		}
+
+        if (alipay != null) {
+			temp += '<li>' +
+						'<span>' +
+							'支付宝' +
+						'</span>' +
+					'</li>';
+        }
+
+        if (wechat != null) {
+			temp += '<li>' +
+						'<span>' +
+							'微信' +
+						'</span>' +
+					'</li>';
+        }
+
+		temp +=	'<li data-value="bank-topup" data-type="bank-pay">' +
+					'<span>银行转账</span>' +
+				'</li>';
+
+		this.zone.find('.deposit-types').html(temp);
+		this.bindDepositTypesEvents();
 	};
 
 	TopUp.prototype.getUserAdminBank = function () {
@@ -399,7 +426,7 @@
                 return;
             }
 
-            that.banTopupInfo = data;
+            that.userAdminBankData = data;
             that.createUserAdminUl(data);
             that.zone.find('.bank-topup table .bank-name-value').text(data[0].Bank.BankName);
             that.zone.find('.bank-topup table .user-name-value').text(data[0].AccountName);
@@ -502,23 +529,22 @@
 		});
 	};
 
-	TopUp.prototype.bindEvents = function() {
+	TopUp.prototype.bindDepositTypesEvents = function() {
 		var row1Ul;
-		var bankCardsUl;
 		var content;
 		var contentName;
-		var ul;
+		var type;
+		var index;
+		var bankList;
 		var methodId;
 		var verifyReg     = '^[0-9]{4}$';
 		var inputEvents   = 'input';
 		var that          = this;
 
-		this.zone    = $('.top-up');
-		content      = this.zone.find('.content');
-		row1Ul       = this.zone.find('.row1 ul');
+		row1Ul  = this.zone.find('.row1 ul');
+		content = this.zone.find('.content');
 		
-
-		row1Ul.delegate('li', 'click', function () {
+		row1Ul.children('li').unbind('click').click(function () {
 			row1Ul.find('li').removeClass('selected');
 			$(this).addClass('selected');
 
@@ -532,7 +558,35 @@
 					that.bankTopupFirstTime = false;
 				}
 			}
+
+			type  = $(this).attr('data-type');
+
+			if (type === 'ThirdPays') {
+				index    = $(this).attr('data-index');
+				bankList = that.userPaysData.UserGroup[type][index].BankList;
+				that.setThirdAndAutoContent(bankList);
+			} else if (type === 'AutoPays') {
+				index    = $(this).attr('data-index');
+				bankList = that.userPaysData.UserGroup[type][index].ThirdPayPlatformBanks;
+				that.setThirdAndAutoContent(bankList);
+			} else {
+				that.setBankContent();
+			}
 		});
+	};
+
+	TopUp.prototype.bindEvents = function() {
+		var bankCardsUl;
+		var content;
+		var contentName;
+		var ul;
+		var methodId;
+		var verifyReg     = '^[0-9]{4}$';
+		var inputEvents   = 'input';
+		var that          = this;
+
+		this.zone    = $('.top-up');
+		content      = this.zone.find('.content');
 
 		this.zone.find('input[name="deposit-method"]').click(function () {
 			methodId = $(this).attr('id');
