@@ -122,18 +122,83 @@
 		return this.el;
 	};
 
+	/*
+	**  获取奖金池游戏
+	*/
+	EEntertainment.prototype.getJackpotsGames = function (platform) {
+		var callback;
+		var that =  this; 
+		var opt  =  {
+			url: app.urls.getJackpotsGames,
+	        data: {
+	        	platform: platform,
+	        	pageIndex: 0,
+	        	pageSize: 20
+	        }
+		};
+
+		if (platform !== 'PT' && platform !== 'MG') {
+			return;
+		}
+
+		callback = function (json) {
+        	that.bonusPoolData = json;
+        	that.setMarqueenItems(true);
+        	that.resfreshBaseValues();
+        	that.animateMarqueen();
+		};
+
+		Service.get(opt, callback);
+	};
+
+	/*
+	** Marqueen
+	*/
+	EEntertainment.prototype.formatJackpotsUrl = function (data) {
+        var jackpotsUrl;
+        var jackpotCode;
+		var _jackpotInfoType = {
+            CASINOBASED    : '2',
+            CASINOSTOTAL   : '4',
+            GAMEBASED      : '1',
+            GAMEGROUPTOTAL : '5',
+            GAMETOTAL      : '3'
+        };
+
+	    if (data.ShowJackpots) {
+	        jackpotsUrl = data.Api.LoginUrl2 + "?info=" + data.JackpotsInfo + "&currency=cny";
+
+	        if (data.JackpotsInfo == _jackpotInfoType.GAMEBASED) {
+	            jackpotCode = data.GameIdentify;
+
+	            if (data.JackpotsParams.length > 0) {
+	                jackpotCode = data.JackpotsParams;
+	            }
+
+	            jackpotsUrl += "&casino=playtech&game=" + jackpotCode;
+	        } else if ( data.JackpotsInfo == _jackpotInfoType.CASINOBASED || 
+	        			data.JackpotsInfo == _jackpotInfoType.CASINOSTOTAL) {
+	            jackpotsUrl += "&casino=playtech";
+	        } else if (data.JackpotsInfo == _jackpotInfoType.GAMEGROUPTOTAL) {
+	            jackpotCode = data.GameIdentify;
+
+	            if (data.JackpotsParams.length > 0) {
+	                jackpotCode = data.JackpotsParams;
+	            }
+
+	            jackpotsUrl += "&casino=playtech&group=" + jackpotCode;
+	        }
+	    }
+
+	    return jackpotsUrl;
+	};
+
 	EEntertainment.prototype.createMarqueenLi1 = function (data) {
 		var temp =	'<div class="marqueen-li1">' +
 						'<div class="marqueen-li1-wrapper">' +
 							'<div class="row">' +
-								'<div class="marqueen-li1-game">' +
-									'百万幸运球' +
-								'</div>' +
-
-								'<div class="marqueen-li1-win">' +
-									'12,325.00' +
-								'</div>' +
-
+								'<div class="marqueen-li1-game"></div>' +
+								'<div class="marqueen-li1-win"></div>' +
 								'<div class="clear"></div>' +
 							'</div>' +
 
@@ -146,6 +211,80 @@
 					'</div>';
 
 		return temp;
+	};
+
+	EEntertainment.prototype.setMarqueenItems = function (isNewPlatform) {
+		var i;
+		var jackpotsUrl;
+		var temp   = '';
+		var data   = this.bonusPoolData;
+		var values = [
+			'79,983.22',
+			'11,223,64.75',
+			'1,342,624.02',
+			'3264.75',
+			'939,264.75',
+			'11,264.75',
+			'32,222.23',
+			'234,627.42',
+			'192,638.91',
+			'847,173.88',
+			'3,854.29',
+			'42,332.30',
+			'25,285.52',
+			'76,947.44',
+			'984,220.76',
+			'112,034.49',
+			'583,097.95',
+			'98,802.63',
+			'3,230.82',
+			'45,338.01'
+		];
+
+		for (i = 0; i < data.length; i++) {
+			temp += this.createMarqueenItem({
+				game        : data[i].Title,
+				platform    : data[i].Api.GamePlatform,         //取MG基础值的时候用
+				id          : data[i].Id,                       //取MG基础值的时候用
+				jackpotsUrl : this.formatJackpotsUrl(data[i])   //取PT基础值的时候用
+			});
+		}
+
+		if (isNewPlatform) {
+			this.zone.find('.marqueen ul').html(temp);
+		} else {
+			this.zone.find('.marqueen ul').append(temp);
+		}
+	};
+
+	EEntertainment.prototype.createMarqueenItem = function (data) {
+		var temp = 	'<li>'+
+						'<p>' +
+							data.game +
+						'</p>' +
+						'<p class="jackpots-basevalue" data-url="' + data.jackpotsUrl + '" data-id="' + data.id + '" data-platform="' + data.platform + '">' +
+						'</p>'+
+					'</li>';
+
+		return temp;
+	};
+
+	EEntertainment.prototype.animateMarqueenLi1 = function (data) {
+		var wrapper = this.zone.find('.marqueen-li1-wrapper');
+		var rows    = this.zone.find('.marqueen-li1 .row');
+		var row1    = $(rows[0]);
+		var row2    = $(rows[1]);
+		var temp    = 	'<div class="row">' +
+							'<div class="marqueen-li1-game"></div>' +
+							'<div class="marqueen-li1-win"></div>' +
+							'<div class="clear"></div>' +
+						'</div>';
+
+		row1.animate({'top': '-30px'});
+		row2.animate({'top': '0'}, 500, function () {
+			row1.remove();
+			wrapper.append(temp);
+		});
 	};
 
 	EEntertainment.prototype.animateMarqueen = function (data) {
@@ -178,113 +317,124 @@
 		}, 5000);
 	};
 
-	EEntertainment.prototype.animateMarqueenLi1 = function (data) {
-		var wrapper = this.zone.find('.marqueen-li1-wrapper');
-		var rows    = this.zone.find('.marqueen-li1 .row');
-		var row1    = $(rows[0]);
-		var row2    = $(rows[1]);
-		var temp    = 	'<div class="row">' +
-							'<div class="marqueen-li1-game"></div>' +
-							'<div class="marqueen-li1-win"></div>' +
-							'<div class="clear"></div>' +
-						'</div>';
-
-		row1.animate({'top': '-30px'});
-		row2.animate({'top': '0'}, 500, function () {
-			row1.remove();
-			wrapper.append(temp);
-		});
+	EEntertainment.prototype.stopAnimation = function () {
+		this.zone.find('.marqueen-li1 .row').stop();
+		this.zone.find('.left-list .marqueen ul').stop();
+		clearInterval(this.marqueenInterval); 
+		this.marqueenInterval = undefined;
 	};
 
-    EEntertainment.prototype.setJackpotValue = function (data) {
-    	data = '17,232,455.00';
-    	this.zone.find('.jackpot-value').text(data);
-    };
-
-	EEntertainment.prototype.setMarqueenItems = function () {
+	/*
+	** Marqueen Data
+	*/
+	EEntertainment.prototype.resfreshBaseValues = function () {
 		var i;
-		var temp = '';
-		var data = this.bonusPoolData;
-		var values = [
-			'79,983.22',
-			'11,223,64.75',
-			'1,342,624.02',
-			'3264.75',
-			'939,264.75',
-			'11,264.75',
-			'32,222.23',
-			'234,627.42',
-			'192,638.91',
-			'847,173.88',
-			'3,854.29',
-			'42,332.30',
-			'25,285.52',
-			'76,947.44',
-			'984,220.76',
-			'112,034.49',
-			'583,097.95',
-			'98,802.63',
-			'3,230.82',
-			'45,338.01'
-		];
+		var item;
+		var items;
+		var platform;
+		var gameId;
+		var url;
 
-		for (i = 0; i < data.length; i++) {
-			temp += this.createMarqueenItem({
-				game: data[i].Title,
-				win: values[i]
-			});
+		items = this.zone.find('.marqueen ul .jackpots-basevalue');
+		
+		for (i = 0; i < items.length; i++) {
+			item     = $(items[i]);
+			platform = item.attr('data-platform');
+			gameId   = item.attr('data-id');
+			url      = item.attr('data-url');
+
+			if (platform === 'MG') {
+				this.setMgSingleBaseValue(platform, gameId, item);
+			} else if (platform === 'PT') {
+				this.setPtSingleBaseValue(item.attr('data-url'), item);
+			} else {
+
+			}
 		}
 
-		this.zone.find('.marqueen ul').append(temp);
-	};
-
-	EEntertainment.prototype.createMarqueenItem = function (data) {
-		var temp = 	'<li>'+
-						'<p>' +
-							data.game +
-						'</p>' +
-						'<p>' +
-							data.win +
-						'</p>'+
-					'</li>';
-
-		return temp;
-	};
-
-	EEntertainment.prototype.setGameList = function (data) {
-		var i;
-		var html='';
-
-		for (i = 0; i < data.length; i++) {
-			html +=	'<li data-id="' + data[i].Id + '">'+
-						'<img src='+app.imageServer + data[i].ImageUrl+'><p><span class="game-name">'+data[i].Title+'</span>'+
-						'<span class="red">'+data[i].RecommendNo+'</span><img class="collect" src="../img/sc-h.png"></p>'+
-						'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
-					'</li>';
-		}
-
-		if (!this.isScroll) {
-			this.zone.find('.bottom-right ul').html(html);
+		if (platform === 'MG') {
+			this.setPtSumBaseValue('MG');
+		} else if (platform === 'PT') {
+			this.setPtSumBaseValue();
 		} else {
-			this.zone.find('.bottom-right ul').append(html);
+			
 		}
 	};
 
-    EEntertainment.prototype.createLoader = function() {
-    	var wrapper1 = this.zone.find('.top-left-module .marqueen')[0];
-        var wrapper2 = this.zone.find('.top-right-module .amount-info')[0];
-        var wrapper3 = this.zone.find('.bottom-right')[0];
-        
-        this.loader1 = new Loader(wrapper1);
-        this.loader2 = new Loader(wrapper2, {
-        	top: '74%'
-        });
-        this.loader3 = new Loader(wrapper3, {
-        	left: '60%',
-        	top: '80%'
-        });
-    };
+	EEntertainment.prototype.setPtSingleBaseValue = function (url, item) {
+		var callback;
+		var that =  this; 
+		var opt  =  {
+			url: app.urls.getJackpotsByUrl,
+	        data: {
+	        	url: url
+	        }
+		};
 
+		callback = function (data) {
+			item.text(data.Data);
+		};
+
+		Service.post(opt, callback);
+	};
+
+	EEntertainment.prototype.setPtSumBaseValue = function () {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpotsByUrl,
+	        data: {
+	        	url: app.getPtSumJackpotBaseValue
+	        }
+		};
+
+		callback = function (data) {
+			that.zone.find('.top-right-module .jackpot-value').text(data.Data);
+		};
+
+		Service.post(opt, callback);
+	};
+
+	EEntertainment.prototype.setMgSingleBaseValue = function (platform, gameId, item) {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpots,
+	        data: {
+	        	Game: platform,
+	        	JackpotInfoType: 1,
+	        	GameNameId: gameId
+	        }
+		};
+
+		callback = function (data) {
+			that.zone.find('.top-right-module .jackpot-value').text(data.Data);
+		};
+
+		Service.post(opt, callback);
+	};
+
+	EEntertainment.prototype.setMgSumBaseValue = function (platform) {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpots,
+	        data: {
+	        	Game: platform,
+	        	JackpotInfoType: 3
+	        }
+		};
+
+		callback = function (data) {
+			that.zone.find('.top-right-module .jackpot-value').text(data.Data);
+		};
+
+		Service.post(opt, callback);
+	};
+
+	/*
+	** game tree
+	*/
     EEntertainment.prototype.setGameTree = function (data) {
     	var i;
     	var temp = '';
@@ -323,13 +473,32 @@
         });
 	};
 
+	/*
+	** game zone
+	*/
+
+    EEntertainment.prototype.createLoader = function() {
+    	var wrapper1 = this.zone.find('.top-left-module .marqueen')[0];
+        var wrapper2 = this.zone.find('.top-right-module .amount-info')[0];
+        var wrapper3 = this.zone.find('.bottom-right')[0];
+        
+        this.loader1 = new Loader(wrapper1);
+        this.loader2 = new Loader(wrapper2, {
+        	top: '74%'
+        });
+        this.loader3 = new Loader(wrapper3, {
+        	left: '60%',
+        	top: '80%'
+        });
+    };
+
     EEntertainment.prototype.getGameList = function () {
 		var callback;
 		var platformUl = this.zone.find('.middle-module');
 		var treeUl     = this.zone.find('.game-tree');
 		var platform   = platformUl.children('li.selected').attr('data-type');
 		var cateGoryId = treeUl.children('li.selected').attr('data-id');
-		var that       =  this; 
+		var that       =  this;
 		var opt        =  {
 			url: app.urls.getGameList,
 			data: {
@@ -361,6 +530,83 @@
 		Service.get(opt, callback);
     };
 
+	EEntertainment.prototype.setGameList = function (data) {
+		var i;
+		var html='';
+
+		for (i = 0; i < data.length; i++) {
+			html +=	'<li data-id="' + data[i].Id + '"' + ' data-identify="' + data[i].GameIdentify + '" data-try="' + data[i].IsTry + '" data-platform="' + data[i].Api.GamePlatform + '"' + '>' +
+						'<img src='+app.imageServer + data[i].ImageUrl+'><p><span class="game-name">'+data[i].Title+'</span>'+
+						'<span class="red">'+data[i].RecommendNo+'</span><img class="collect" src="../img/sc-h.png"></p>'+
+						'<p id="hover-layer" class="hover-layer-none">' +
+							'<button class="start-game">开始游戏</button>' +
+							'<br/>' +
+							'<button class="try-game">免费试玩</button>' +
+						'</p>' +
+					'</li>';
+		}
+
+		if (!this.isScroll) {
+			this.zone.find('.bottom-right ul').html(html);
+		} else {
+			this.zone.find('.bottom-right ul').append(html);
+		}
+	};
+
+    EEntertainment.prototype.getGameLaunchUrl = function (gameId) {
+		var callback;
+		var platformUl = this.zone.find('.middle-module');
+		var platform   = platformUl.children('li.selected').attr('data-type');
+		var that       =  this; 
+		var opt        =  {
+			url: app.urls.getGameLaunchUrl,
+			data: {
+				gamePlatform: platform,
+				gameType: '',
+				gameId: gameId
+			}
+		};
+
+		callback = function (data) {
+			window.open(data);
+		};
+
+		Service.get(opt, callback);
+    };
+
+    EEntertainment.prototype.getGameLoginUrl = function (gameId) {
+    	var opt;
+		var callback;
+		var platformUl = this.zone.find('.middle-module');
+		var platform   = platformUl.children('li.selected').attr('data-type');
+		var that       =  this;
+		
+		function callback(data) {
+			if (data == 1) {
+				alert('请先登录');
+				return;
+			}
+
+			opt =  {
+				url: app.urls.getGameLoginUrl,
+				data: {
+					gamePlatform: platform,
+					gameType: 'slot',
+					gameId: gameId
+				}
+			};
+
+			callback = function (data) {
+				window.open(data);
+			};
+
+			Service.get(opt, callback);
+		}
+
+		app.getLoginStatus(callback.bind(this));
+    };
+
+
 	EEntertainment.prototype.show = function () {
 		var callback;
 		var that = this;
@@ -368,13 +614,7 @@
 		this.zone.fadeIn(500);
 
 		if (!this.firstTime) {
-			callback = function (json) {
-	        	that.bonusPoolData = json;
-	        	that.setMarqueenItems();
-	        	that.animateMarqueen();
-			};
-
-			app.getJackpotsGames(callback.bind(this));  //获取pt奖金池
+			this.getJackpotsGames('PT');  //获取pt奖金池
 			this.getGameCategories();
 			this.firstTime = true;
 		}
@@ -384,7 +624,7 @@
 		this.zone.fadeOut(500);
 	};
 
-	EEntertainment.prototype.bindTreeEvents = function (data) {
+	EEntertainment.prototype.bindTreeEvents = function () {
 		var index;
 		var pageUl =  this.zone.find('.bottom-left ul');
 		var stick  = this.zone.find('.bottom-left .stick');
@@ -435,6 +675,10 @@
 		var imageUl;
 		var moreGame;
 		var imgSrc;
+		var parentLi;
+		var platform;
+		var isTry;
+		var identify;
 		var middleModuleUl;
 		var that = this;
 
@@ -462,8 +706,10 @@
 		middleModuleUl.delegate('li', 'click', function () {
 			middleModuleUl.find('li').removeClass('selected');
 			$(this).addClass('selected');
-			that.isScroll = false;
+			that.isScroll   = false;
 			that.currenPage = 0;
+			that.stopAnimation();
+			that.getJackpotsGames($(this).attr('data-type'));
 			that.getGameList();
 		});
 
@@ -479,7 +725,27 @@
 				app.deleteFavoriteGame(gameId);
 			}
 		});
-		
+
+		this.zone.delegate('.start-game', 'click', function () {
+			gameId = $(this).parent().parent('li').attr('data-id');
+			that.getGameLoginUrl(gameId);
+		});
+
+		this.zone.delegate('.try-game', 'click', function () {
+			parentLi = $(this).parent().parent('li');
+			platform = parentLi.attr('data-platform');
+			isTry    = parentLi.attr('data-try');
+			identify = parentLi.attr('data-identify');
+
+			//if (platform == 'PT' && isTry == 'true') {
+				window.open('http://cache.download.banner.greatfortune88.com/casinoclient.html?mode=offline&language=zh-cn&affiliates=1&game=' + identify);
+			//} else {
+			//	alert('该游戏暂时不能试玩!');
+			//}
+			// gameId = parentLi.attr('data-id');
+			// that.getGameLaunchUrl(gameId);
+		});
+
 		$(document).scroll(function(e) {
 		    var viewH     = $('body').height();
 		    var contentH  = $('body').get(0).scrollHeight; 

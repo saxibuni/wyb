@@ -53,7 +53,7 @@
 		this.timeout = 12000;
 		this.domain  = 'http://api.vebets.com/';
 		this.imageServer = 'http://img.vebets.com/';
-		this.urls    = {
+		this.urls  = {
 			signUp: this.domain + 'api/Account/Regist',
 			signIn: this.domain + 'api/Account/Login',
 			signOut: this.domain + 'api/Account/Logout',
@@ -71,6 +71,11 @@
 			getJackpotsGames: this.domain + 'api/Game/GetJackpotsGames?',   //获取PT奖金池游戏
 			getGameCategories: this.domain + 'api/Game/GetCategories?',   //获取电子游艺游戏类型
 			getGameList: this.domain + 'api/Game/GetList?',              //获取电子游艺游戏列表
+			getGameLaunchUrl: this.domain + 'api/Game/GetGameLaunchUrl?',  //游戏试玩地址
+			getGameLoginUrl: this.domain + 'api/Game/GetGameLoginUrl?',   //登录后玩游戏的地址
+			getJackpotsByUrl: this.domain + 'api/Game/GetJackpotsByUrl',  //获取PT单个游戏jackpot基础值
+			getPtSumJackpotBaseValue: 'http://tickers.playtech.com/jackpots/new_jackpotxml.php?info=4&currency=cny&casino=greatfortune88',  //获取pt jackpot总奖池基础值
+			getJackpots: this.domain + 'api/Game/GetJackpots',  //获取MG单个游戏和总游戏jackpot基础值
 
 			getGameUrlForLogin: this.domain + 'api/Game/GetGameUrlForLogin?',
 
@@ -146,26 +151,6 @@
             }
         }).done(function (json) {
         	callback(json);
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
-	};
-
-	app.prototype.getJackpotsGames = function (callback) {
-		var that = this;
-
-        $.ajax({
-            type: 'GET',
-            url: this.urls.getJackpotsGames + 'platform=pt&pageIndex=0&pageSize=20',
-            dataType: 'json',
-            timeout: this.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	if (typeof callback === 'function') {
-        		callback(json);
-        	}
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });

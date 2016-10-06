@@ -138,7 +138,7 @@
 		this.zone.fadeIn(500);
 		this.getAds();
 		//this.addSliders();
-		this.getPtJackpot();
+		//this.getPtJackpot();
 		this.getLuckyDrawWinRecords();
 	};
 
