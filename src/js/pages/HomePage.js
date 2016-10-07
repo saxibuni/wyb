@@ -192,10 +192,12 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	if (parseInt(json.StatusCode) === 0) {
-        		that.setLuckyDrawItems(json.data);
-        	}
         	that.loader2.stop();
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+        	that.setLuckyDrawItems(json.Data);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -236,9 +238,24 @@
 
 		callback = function (data) {
 			that.zone.find('.pt-jackpot-value').text(data.Data);
+			that.startJackpotAnimation();
 		};
 
 		Service.post(opt, callback);
+	};
+
+	HomePage.prototype.startJackpotAnimation = function () {
+		var base;
+		var jackpot = this.zone.find('.pt-jackpot-value')
+		var that    = this;
+		var gap     = 35.57;
+
+		this.setInterval = setInterval(function () {
+			base = parseFloat(jackpot.text());
+			base += gap;
+			base = base.toFixed(2);
+			jackpot.text(base);
+		}, 500);
 	};
 
 	HomePage.prototype.addSliders = function (data) {

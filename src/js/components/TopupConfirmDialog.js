@@ -38,7 +38,7 @@
 												'</tr>' +
 												'<tr>' +
 													'<td class="name bookid">单号：</td>' +
-													'<td class="value bookid-value">SN00204040420332</td>' +
+													'<td class="value sncode-value">SN00204040420332</td>' +
 												'</tr>' +
 											'</tbody>' +
 										'</table>' +
@@ -100,9 +100,9 @@
 									'注：附言在部分网站上会以"备注"，"用途"等名词出现，请务必正确填写此项信息，填写错误或不填写会影响充值到账' +
 								'</p>' +
 
-								'<div class="row5">' +
-									this.button.getDom() +
-								'</div>' +
+								// '<div class="row5">' +
+								// 	this.button.getDom() +
+								// '</div>' +
 							'</div>' +
 						'</div>' +
 					'</div>' +
@@ -126,6 +126,7 @@
 
         this.zone.find('.row2 table .bank-value').text(data.PayBankName);
         this.zone.find('.row2 table .amount-value').text(data.Amount + '元');
+        this.zone.find('.row2 table .sncode-value').text(data.SNCode);
 	}
 
 	TopupConfirmDialog.prototype.hide = function(){

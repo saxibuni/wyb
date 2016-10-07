@@ -111,19 +111,25 @@
 			alert('格式不对');
 		}
 
-		var i;
 		var callback;
 		var selectedBank = this.zone.find("input[name='bank']:checked").parent('li');
-		var that = this;
-		var opt  = {
+		var selectedLi   = this.zone.find('.deposit-types li.selected');
+		var amount       = this.topupInput.getValue();
+		var userName     = app.userinfo.userName;
+		var payPlatform  = selectedLi.attr('data-platform');
+		var payMercode   = selectedLi.attr('data-mercode');
+		var bankCode     = selectedBank.attr('data-code');
+		var bankName     = selectedBank.attr('data-name');
+		var that         = this;
+		var opt          = {
 			url: app.urls.payForm,
 			data: {
-				Amount: this.topupInput.getValue(),
-				UserName: app.userinfo.userName,
-				PayPlatform: that.payPlatform,
-				PayMerCode: that.thirdPayMerCode,
-	            PayBankCode: selectedBank.attr('data-code'),
-	            PayBankName: selectedBank.attr('data-name')
+				Amount      : amount,
+				UserName    : userName,
+				PayPlatform : payPlatform,
+				PayMerCode  : payMercode,
+	            PayBankCode : bankCode,
+	            PayBankName : bankName
 			}
 		};
 
@@ -143,27 +149,52 @@
 	};
 
 	TopUp.prototype.submit2 = function() {
-		var selectedBank = this.zone.find("input[name='bank']:checked").parent('li');
-
 		if (!this.topupInput.isPass()) {
 			alert('格式不对');
-			return;
 		}
 
-		if (!this.topupConfirmDialog) {
-			this.topupConfirmDialog = new TopupConfirmDialog();
-			$('.app').append(this.topupConfirmDialog.getDom());
-			this.topupConfirmDialog.bindEvents();
-		}
+		var callback;
+		var selectedBank = this.zone.find("input[name='bank']:checked").parent('li');
+		var selectedLi   = this.zone.find('.deposit-types li.selected');
+		var amount       = this.topupInput.getValue();
+		var userName     = app.userinfo.userName;
+		var payPlatform  = selectedLi.attr('data-platform');
+		var payMercode   = selectedLi.attr('data-mercode');
+		var bankCode     = selectedBank.attr('data-code');
+		var bankName     = selectedBank.attr('data-name');
+		var that         = this;
+		var opt          = {
+			url: app.urls.payForm,
+			data: {
+				Amount      : amount,
+				UserName    : userName,
+				PayPlatform : payPlatform,
+				PayMerCode  : payMercode,
+	            PayBankCode : bankCode,
+	            PayBankName : bankName
+			}
+		};
 
-		this.topupConfirmDialog.show({
-			Amount: this.topupInput.getValue(),
-			UserName: app.userinfo.userName,
-			PayPlatform: this.payPlatform,
-			PayMerCode: this.thirdPayMerCode,
-            PayBankCode: selectedBank.attr('data-code'),
-            PayBankName: selectedBank.attr('data-name')
-		});
+		callback = function (data) {
+			if (data.StatusCode) {
+				alert(data.Message);
+				//return;
+			}
+
+			if (!that.topupConfirmDialog) {
+				that.topupConfirmDialog = new TopupConfirmDialog();
+				$('.app').append(that.topupConfirmDialog.getDom());
+				that.topupConfirmDialog.bindEvents();
+			}
+
+			that.topupConfirmDialog.show({
+				Amount: amount,
+	            PayBankName: bankName,
+	            SNCode: ''
+			});
+		};
+
+		Service.post(opt, callback);
 	};
 
 	TopUp.prototype.submit3 = function() {
@@ -358,7 +389,12 @@
 		var adminBanks = data.UserGroup.AdminBanks;
 
 		for (i = 0; i < thirdPays.length; i++) {
-			temp += '<li ' + (i == 0?' class="selected"': '') + 'data-id="' + thirdPays[i].Id + '" data-type="ThirdPays" data-index="' + i + '">' +
+			temp += '<li ' + (i == 0?' class="selected"': '') + 
+								'data-id="' + thirdPays[i].Id + '" ' +
+								'data-type="ThirdPays" ' +
+								'data-index="' + i + '" ' +
+								'data-mercode="' + thirdPays[i].MerCode + '" ' +
+								'data-platform="' + thirdPays[i].ThirdPayCode +'">' +
 						'<span>' +
 							thirdPays[i].MerName +
 						'</span>' +
@@ -367,7 +403,11 @@
 
 		for (i = 0; i < autoPays.length; i++) {
 			if (autoPays[i].CustId.replace("-", "") == "DADDYPAYCARD") {
-				temp += '<li data-type="AutoPays" data-index="' + i + '">' +
+				temp += '<li ' + 	'data-id="' + autoPays[i].Id + '" ' +
+									'data-type="AutoPays" ' +
+									'data-index="' + i + '" ' +
+									'data-mercode="' + (autoPays[i].ThirdPay.MerCode || '27') + '" ' +
+									'data-platform="' + (autoPays[i].ThirdPay.ThirdPayCode || 'DADDYPAY') +'">' +
 							'<span>' +
 								autoPays[i].CustName +
 							'</span>' +

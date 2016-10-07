@@ -291,17 +291,33 @@
 		var game;
 		var win;
 		var ulFirstLi;
+		var h;
+		var top;
 		var marqueenLi1Row2;
 		var that            =  this;
 		var marqueenUl      =  this.zone.find('.left-list .marqueen ul');
 		
 		this.marqueenInterval = setInterval(function () {
+			// h         =  parseFloat(marqueenUl.children('li').css('height'));
+			// ulFirstLi =  marqueenUl.children('li:first-child');
+			// game      =  ulFirstLi.children('p:first-child').text();
+			// win       =  ulFirstLi.children('p:last-child').text();
+
+			// marqueenUl.animate({'top': (0 - h + 'px')}, 500, function () {
+			// 	ulFirstLi.remove();
+			// 	marqueenUl.css('top', '0');
+
+			// 	if (marqueenUl.children('li').length < 10) {
+			// 		that.setMarqueenItems();
+			// 	}
+			// });
+
 			h         =  parseFloat(marqueenUl.children('li').css('height'));
 			ulFirstLi =  marqueenUl.children('li:first-child');
 			game      =  ulFirstLi.children('p:first-child').text();
 			win       =  ulFirstLi.children('p:last-child').text();
-
-			marqueenUl.animate({'top': (0 - h + 'px')}, 500, function () {
+			top       -= h;
+			marqueenUl.animate({'top': (top + 'px')}, 500, function () {
 				ulFirstLi.remove();
 				marqueenUl.css('top', '0');
 
@@ -390,6 +406,7 @@
 
 		callback = function (data) {
 			that.zone.find('.top-right-module .jackpot-value').text(data.Data);
+			that.startJackpotAnimation();
 		};
 
 		Service.post(opt, callback);
@@ -427,9 +444,24 @@
 
 		callback = function (data) {
 			that.zone.find('.top-right-module .jackpot-value').text(data);
+			that.startJackpotAnimation();
 		};
 
 		Service.post(opt, callback);
+	};
+
+	EEntertainment.prototype.startJackpotAnimation = function () {
+		var base;
+		var jackpot = this.zone.find('.top-right-module .jackpot-value')
+		var that    = this;
+		var gap     = 35.57;
+
+		this.sumInterval = setInterval(function () {
+			base = parseFloat(jackpot.text());
+			base += gap;
+			base = base.toFixed(2);
+			jackpot.text(base);
+		}, 500);
 	};
 
 	/*
