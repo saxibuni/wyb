@@ -252,8 +252,6 @@
 
             that.setDepositTypes(data);
             that.userPaysData    = data;
-            that.thirdPayMerCode = data.UserGroup.ThirdPays[0].MerCode;
-            that.payPlatform     = data.UserGroup.ThirdPays[0].ThirdPayCode;
             that.setThirdAndAutoContent(data.UserGroup.ThirdPays[0].BankList);
 		};
 

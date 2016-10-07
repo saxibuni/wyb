@@ -292,7 +292,8 @@
 		var win;
 		var ulFirstLi;
 		var h;
-		var top;
+		var top = 0;
+		var count = 0;
 		var marqueenLi1Row2;
 		var that            =  this;
 		var marqueenUl      =  this.zone.find('.left-list .marqueen ul');
@@ -313,23 +314,24 @@
 			// });
 
 			h         =  parseFloat(marqueenUl.children('li').css('height'));
-			ulFirstLi =  marqueenUl.children('li:first-child');
+			ulFirstLi =  $(marqueenUl.children('li')[count]);
 			game      =  ulFirstLi.children('p:first-child').text();
 			win       =  ulFirstLi.children('p:last-child').text();
 			top       -= h;
-			marqueenUl.animate({'top': (top + 'px')}, 500, function () {
-				ulFirstLi.remove();
-				marqueenUl.css('top', '0');
+			count++;
 
-				if (marqueenUl.children('li').length < 10) {
-					that.setMarqueenItems();
-				}
-			});
-
-			marqueenLi1Row2 = $(that.zone.find('.marqueen-li1 .row')[1]);
-			marqueenLi1Row2.children('.marqueen-li1-game').text(game);
-			marqueenLi1Row2.children('.marqueen-li1-win').text(win);
-			that.animateMarqueenLi1();
+			if (count === 14) {
+				count = 0;
+				top   = 0;
+				marqueenUl.stop();
+				marqueenUl.animate({'top': top}, 0);
+			} else {
+				marqueenUl.animate({'top': (top + 'px')}, 500);
+				marqueenLi1Row2 = $(that.zone.find('.marqueen-li1 .row')[1]);
+				marqueenLi1Row2.children('.marqueen-li1-game').text(game);
+				marqueenLi1Row2.children('.marqueen-li1-win').text(win);
+				that.animateMarqueenLi1();
+			}
 		}, 5000);
 	};
 
@@ -451,16 +453,26 @@
 	};
 
 	EEntertainment.prototype.startJackpotAnimation = function () {
+		var i;
 		var base;
-		var jackpot = this.zone.find('.top-right-module .jackpot-value')
-		var that    = this;
-		var gap     = 35.57;
+		var jackpotSum = this.zone.find('.top-right-module .jackpot-value');
+		var jackpots   = this.zone.find('.jackpots-basevalue');
+		var that       = this;
+		var sumGap     = 35.57;
+		var singleGap  = 1.23;
 
 		this.sumInterval = setInterval(function () {
-			base = parseFloat(jackpot.text());
-			base += gap;
+			for (i = 0; i < jackpots.length; i++) {
+				base = parseFloat($(jackpots[i]).text());
+				base += singleGap;
+				base = base.toFixed(2);
+				$(jackpots[i]).text(base);
+			}
+
+			base = parseFloat(jackpotSum.text());
+			base += sumGap;
 			base = base.toFixed(2);
-			jackpot.text(base);
+			jackpotSum.text(base);
 		}, 500);
 	};
 
