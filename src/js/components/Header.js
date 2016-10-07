@@ -283,6 +283,11 @@
 		});
 	};
 
+	Header.prototype.setStick = function (index) {
+		var stick = this.zone.find('.pages .stick');
+		stick.css('left', index * 80 + 'px');
+	};
+
 	Header.prototype.signOut = function () {
 		var callback;
 		var that = this;

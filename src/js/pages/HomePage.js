@@ -13,7 +13,7 @@
 			content: '为了给您提供便捷的充值方式，韦易博平台于6月18日上线【微信支付】充值方式，欢迎大家体验，谢谢。'
 		});
 
-		var temp = '<div class="page home-page">' +
+		var temp = 	'<div class="page home-page">' +
 						'<div class="wrapper">' +
 							'<div class="content23">' +
 								'<div class="content2">' +
@@ -96,7 +96,6 @@
 						'</div>' +
 						
 						suspension.getDom() +
-						
 					'</div>';
 
 		this.el  = temp;
@@ -282,6 +281,22 @@
 			// 	luckyDrawTable.css('top', '0');
 			// }
 			window.open('http://www.baidu.com');
+		});
+
+		this.zone.find('.zone1-up-left-down').click(function () {
+			app.goTo('clientDownload');
+		});
+
+		this.zone.find('.zone1-up-right .info').click(function () {
+			app.goTo('eEntertainment');
+		});
+
+		this.zone.find('.zone2-up-left .info').click(function () {
+			app.goTo('sportsCompetition');
+		});
+
+		this.zone.find('.zone2-up-right .info').click(function () {
+			app.goTo('liveVideo');
 		});
 
 		this.notice.bindEvents();

@@ -214,16 +214,16 @@
 		var logoHeiht;
 		var that = this;
 		var dict = {
-			'homePage'          : {'className': HomePage,          'cssClass': 'home-page'},
-			'liveVideo'         : {'className': LiveVideo,         'cssClass': 'live-video'},
-			'eEntertainment'    : {'className': EEntertainment,    'cssClass': 'main-content'},
-			'sportsCompetition' : {'className': SportsCompetition, 'cssClass': 'sports-competition'},
-			'lotteryGame'       : {'className': LotteryGame,       'cssClass': 'lottery-game'},
-			'promoActivity'     : {'className': PromoActivity,     'cssClass': 'promo-activity'},
-			'clientDownload'    : {'className': ClientDownload,    'cssClass': 'client-download'},
-			'routeCheck'        : {'className': RouteCheck,        'cssClass': 'route-check'},
-			'personalCenter'	: {'className': PersonalCenter,    'cssClass': 'personal-center'},
-			'forgetPassword'    : {'className': ForgetPassword ,   'cssClass': 'forget-password'}
+			'homePage'          : {'className': HomePage,          'index': 0, 'cssClass': 'home-page'},
+			'liveVideo'         : {'className': LiveVideo,         'index': 1, 'cssClass': 'live-video'},
+			'eEntertainment'    : {'className': EEntertainment,    'index': 2, 'cssClass': 'main-content'},
+			'sportsCompetition' : {'className': SportsCompetition, 'index': 3, 'cssClass': 'sports-competition'},
+			'lotteryGame'       : {'className': LotteryGame,       'index': 4, 'cssClass': 'lottery-game'},
+			'promoActivity'     : {'className': PromoActivity,     'index': 5, 'cssClass': 'promo-activity'},
+			'clientDownload'    : {'className': ClientDownload,    'index': 6, 'cssClass': 'client-download'},
+			'routeCheck'        : {'className': RouteCheck,        'index': 0, 'cssClass': 'route-check'},
+			'personalCenter'	: {'className': PersonalCenter,    'index': 0, 'cssClass': 'personal-center'},
+			'forgetPassword'    : {'className': ForgetPassword ,   'index': 0, 'cssClass': 'forget-password'}
 		};
 
 		$('.page').hide();
@@ -253,8 +253,8 @@
 		// } else {
 		// 	this.footer.releaseFix();
 		// }
-
-		that[pageName].show();
+		this.header.setStick(dict[pageName].index);
+		this[pageName].show();
 	};
 
 	app.prototype.initRouter = function () {
