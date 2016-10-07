@@ -176,51 +176,37 @@
 		return this.el;
 	};
 
-	Header.prototype.addCollectGame = function () {
-		var temp2;
-		var wdscHoverItem = this.zone.find('.wdsc-float-window');
-		var temp = {
-			url:"../img/fnfrj.jpg",
-			score:4,
-			name:'古怪猴子'
-		};
-
-		if (wdscHoverItem.find('ul').children('li').length >= 10) {
-			return;
-		}
-
-		temp2 = '<li>' +
-					'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-					'<span class="red">'+temp.score+'</span><img class="collect" src="../img/sc-d.png"></p>'+
-					'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
-				'</li>';
-
-		wdscHoverItem.children('ul').append(temp2);
-		wdscHoverItem.css('top', '30px');
-	};
-
 	Header.prototype.deleteCollectGame = function (id) {
 		var ul = this.zone.find('.wdsc-float-window ul');
 		ul.children('li:last-child').remove();
 	};
 
-	Header.prototype.setCollectList = function () {
-		var html='';
-		var temp = {
-			url:"../img/fnfrj.jpg",
-			score:4,
-			name:'古怪猴子'
-		};
+	Header.prototype.setCollectList = function (data) {
+		var list = data.list;
+		var url;
+		var score;
+		var name;
+		var gameLocal;
+		var collectId;
+		var html = '';
 
-		for(var a = 0; a < 3; a++) {
-			html  +=	'<li>'+
-							'<img src='+temp.url+'><p><span class="game-name">'+temp.name+'</span>'+
-							'<span class="red">'+temp.score+'</span><img class="collect" src="../img/sc-d.png"></p>'+
+		for (i = 0; i < list.length; i++) {
+			gameLocal = list[i].GameLocal;
+			url       = app.imageServer + gameLocal.ImageUrl;
+			name      = gameLocal.Title;
+			score     = gameLocal.RecommendNo;
+			collectId = list[i].Id;
+
+			html  +=	'<li data-collectid="' + collectId + '">'+
+							'<img src=' + url + '><p><span class="game-name">'+name+'</span>'+
+							'<span class="red">'+score+'</span><img class="collect" src="../img/sc-d.png"></p>'+
 							'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
 						'</li>';
+
 		}
 
 		this.zone.find('.wdsc-float-window ul').html(html);
+		this.zone.find('.wdsc').click();
 	};
 
 	Header.prototype.getCollectList = function () {
@@ -235,8 +221,12 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	json = {"StatusCode":0,"Message":"","Data":{"count":0,"extend":null,"list":[]}};
-        	that.setCollectList(json);
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+        	that.setCollectList(json.Data);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -339,6 +329,7 @@
 		var grzxRouterValue;
 		var deleteCollectCallback;
 		var targetItem;
+		var collectId;
 		var that = this;
 
 		this.zone = $('.header');
@@ -378,7 +369,7 @@
 
 		wdscFloatWindow.delegate('.collect', 'click', function () {
 			imgSrc     = $(this).attr('src');
-			gameId     = $(this).parent().parent('li').attr('data-id');
+			collectId  = $(this).parent().parent('li').attr('data-collectid');
 			targetItem = $(this).parents('li');
 
 			deleteCollectCallback = function () {
@@ -389,7 +380,7 @@
 				}
 			};
 
-			app.deleteFavoriteGame(gameId, deleteCollectCallback.bind(this));
+			app.deleteFavoriteGame(collectId, deleteCollectCallback.bind(this));
 		});
 
 		langHoverItem.click(function () {

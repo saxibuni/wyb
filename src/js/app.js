@@ -158,8 +158,6 @@
 
 	app.prototype.addFavoriteGame = function (gameId) {
 		var that = this;
-
-		console.log('添加收藏游戏gameId = ' + gameId);
         
         $.ajax({
             type: 'POST',
@@ -167,23 +165,29 @@
             dataType: 'json',
             timeout: this.timeout,
             data: {
-            	id: gameId
+            	'': gameId
             },
             xhrFields: {
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
-        	that.header.addCollectGame();
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+        	if (json.Data) {
+        		that.header.getCollectList();
+        	} else {
+        		alert('添加失败');
+        	}
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
 	};
 
-	app.prototype.deleteFavoriteGame = function (gameId, callback) {
+	app.prototype.deleteFavoriteGame = function (collectId, callback) {
 		var that = this;
-
-		console.log('删除收藏游戏gameId = ' + gameId);
         
         $.ajax({
             type: 'POST',
@@ -191,15 +195,21 @@
             dataType: 'json',
             timeout: this.timeout,
             data: {
-            	id: gameId
+            	'': collectId
             },
             xhrFields: {
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
-        	if (typeof callback === 'function') {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+        	if (json.Data && typeof callback === 'function') {
         		callback();
+        	} else {
+        		alert('删除失败');
         	}
         }).fail(function (xhr, testStatus, error) {
             alert(error);
