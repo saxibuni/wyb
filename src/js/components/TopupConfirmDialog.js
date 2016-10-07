@@ -72,7 +72,7 @@
 												'<td class="name">账户名</td>' +
 												'<td class="value">' +
 													'<div class="left user-name-value">刘文慧</div>' +
-													'<div class="right copy">复制</div>' +
+													'<div class="right copy" data-clipboard-target=".user-name-value">复制</div>' +
 													'<div class="clear"></div>' +
 												'</td>' +
 											'</tr>' +
@@ -80,7 +80,7 @@
 												'<td class="name">收款账号</td>' +
 												'<td class="value">' +
 													'<div class="left account-value"></div>' +
-													'<div class="right copy">复制</div>' +
+													'<div class="right copy" data-clipboard-target=".account-value">复制</div>' +
 													'<div class="clear"></div>' +
 												'</td>' +
 											'</tr>' +
@@ -88,7 +88,7 @@
 												'<td class="name">附言</td>' +
 												'<td class="value">' +
 													'<div class="left postscript"></div>' +
-													'<div class="right copy">复制</div>' +
+													'<div class="right copy" data-clipboard-target=".postscript">复制</div>' +
 													'<div class="clear"></div>' +
 												'</td>' +
 											'</tr>' +
@@ -169,6 +169,8 @@
 
         this.bindOverlayEvents();
         this.button.bindEvents();
+
+        this.clipboard = new Clipboard('.copy');
 	}
 
 	window.TopupConfirmDialog = TopupConfirmDialog;

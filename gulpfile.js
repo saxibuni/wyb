@@ -68,7 +68,8 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/distpicker/dist/distpicker.data.min.js',
             './bower_components/distpicker/dist/distpicker.min.js',
             './bower_components/JavaScript-MD5/js/md5.min.js',
-            './bower_components/spin.js/spin.min.js'
+            './bower_components/spin.js/spin.min.js',
+            './bower_components/clipboard/dist/clipboard.min.js'
         ])
         .pipe(gulp.dest(src_js_lib_path));
 
@@ -90,6 +91,7 @@ gulp.task('build', function () {
             'src/lib/js/distpicker.min.js',
             'src/lib/js/md5.min.js',
             'src/lib/js/spin.min.js',
+            'src/lib/js/clipboard.min.js',
             'src/js/utils/*.js',
             'src/js/plugins/IMDialog.js',
             'src/js/plugins/*.js',
