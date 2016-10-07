@@ -108,10 +108,12 @@
         }).done(function (json) {
         	if (!json) {
         		alert('验证码错误');
+        		that.zone.find('.change-verify-code').click();
         		that.loader.stop();
         		return;
         	}
 
+        	that.zone.find('.change-verify-code').click();
         	that.login();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
@@ -237,6 +239,12 @@
 			that.commit();
 		});
 
+		this.zone.keypress(function(e) {
+		    if(e.which == 13) {
+		        that.commit();
+		    }
+		});
+		
 		this.zone.find('.change-verify-code').click(function () {
             that.zone.find('.verify-code').attr('src', 
             	app.urls.verifyImage + '?sid=' + Math.random()

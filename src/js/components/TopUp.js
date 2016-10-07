@@ -14,13 +14,6 @@
 			height: 42
 		});
 
-		this.button2 = new Button({
-			id: 'topup-button2',
-			name: '下一步',
-			width: 128,
-			height: 42
-		});
-
 		this.button3 = new Button({
 			id: 'topup-button3',
 			name: '提交订单',
@@ -30,13 +23,6 @@
 
 		this.topupInput = new Input({
 			id: 'topup-input',
-			width: 200,
-			height: 30,
-			reg: app.moneyReg
-		});
-
-		this.topupInput2 = new Input({
-			id: 'topup-input2',
 			width: 200,
 			height: 30,
 			reg: app.moneyReg
@@ -156,17 +142,6 @@
 		Service.post(opt, callback);
 	};
 
-	TopUp.prototype.submit2 = function() {
-		if (!this.topupInput2.isPass()) {
-			alert('格式不对');
-		}
-
-		if (this.userPaysData.UserGroup.AutoPays.length < 1) {
-			alert('你所在的组不能进行极速转账！');
-			return;
-		}
-	};
-
 	TopUp.prototype.submit3 = function() {
 		if (!this.topupInput3.isPass()) {
 			alert('格式不对');
@@ -270,7 +245,7 @@
 					'</div>';
 
 		this.zone.find('.content').html(temp);
-		this.bindBankCardsEvents();
+		this.bindOtherTransferEvents();
 	};
 
 	TopUp.prototype.setBankContent = function () {
@@ -284,15 +259,15 @@
 						'<tbody>' +
 							'<tr>' +
 								'<td class="bank-name">收款银行</td>' +
-								'<td class="bank-name-value">中国工商银行</td>' +
+								'<td class="bank-name-value"></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td class="user-name">账户名</td>' +
-								'<td class="user-name-value">刘文慧</td>' +
+								'<td class="user-name-value"></td>' +
 							'</tr>' +
 							'<tr>' +
 								'<td class="account">收款账号</td>' +
-								'<td class="account-value">collowzuez99@sina.com</td>' +
+								'<td class="account-value"></td>' +
 							'</tr>' +
 						'</tbody>' +
 					'</table>' +
@@ -346,6 +321,7 @@
 
 		this.zone.find('.content').html(temp);
 		this.getUserAdminBank();
+		this.bindBankTransferEvents();
 	};
 
 	TopUp.prototype.setDepositTypes = function (data) {
@@ -502,8 +478,10 @@
 		Service.get(opt, callback);
 	};
 	
-	TopUp.prototype.bindBankCardsEvents = function() {
+	TopUp.prototype.bindOtherTransferEvents = function() {
+		var that         = this;
 		var bankCardsUl  = this.zone.find('.bank-cards ul');
+		var button       = this.zone.find('#topup-button');
 
 		bankCardsUl.delegate('li','click',function() {
 			bankCardsUl.find('li').removeClass('selected');
@@ -512,21 +490,56 @@
 			$(this).find('input[type="radio"]').attr('checked',true);
 		});
 
-		this.zone.find('.more-bank-cards').click(function () {
-			ul = $(this).siblings('.bank-cards').children('ul');
-
-			if ($(this).hasClass('full')) {
-				ul.children('li:gt(7)').remove();
-				$(this).removeClass('full');
-				$(this).children('span').text('更多网银');
-				$(this).children('img').removeClass('img-rotate');
+		button.click(function () {
+			if (that.depositType === 'ThirdPays') {
+				that.submit1();
 			} else {
-				ul.append(that.addBankCards());
-				$(this).addClass('full');
-				$(this).children('span').text('收起');
-				$(this).children('img').addClass('img-rotate');
+				if (!this.topupInput2.isPass()) {
+					alert('格式不对');
+					return;
+				}
+
+				if (!that.topupConfirmDialog) {
+					that.topupConfirmDialog = new TopupConfirmDialog();
+					$('.app').append(that.topupConfirmDialog.getDom());
+					that.topupConfirmDialog.bindEvents();
+				}
+
+				that.topupConfirmDialog.show();
 			}
 		});
+
+		this.button.bindEvents();
+		this.topupInput.bindEvents();
+	};
+
+	TopUp.prototype.bindBankTransferEvents = function() {
+		var methodId;
+		var that = this;
+
+		this.zone.find('#topup-button3').unbind('click').click(function () {
+			that.submit3();
+		});
+
+		this.zone.find('#topup-province').change(function () {
+			that.getCityList(that.selectProvince.getValue());
+		});
+
+		this.zone.find('input[name="deposit-method"]').click(function () {
+			methodId = $(this).attr('id');
+			
+			if (methodId === 'topup-wyzz' || methodId === 'topup-mobile-bank') {
+				that.zone.find('.payment-counter').hide();
+			} else {
+				that.zone.find('.payment-counter').show();
+			}
+		});
+
+		this.button3.bindEvents();
+		this.topupInput3.bindEvents();
+		this.bankBranchInput.bindEvents();
+		this.selectProvince.bindEvents();
+		this.selectCity.bindEvents();
 	};
 
 	TopUp.prototype.bindDepositTypesEvents = function() {
@@ -559,7 +572,8 @@
 				}
 			}
 
-			type  = $(this).attr('data-type');
+			type = $(this).attr('data-type');
+			that.depositType = type;
 
 			if (type === 'ThirdPays') {
 				index    = $(this).attr('data-index');
@@ -576,63 +590,7 @@
 	};
 
 	TopUp.prototype.bindEvents = function() {
-		var bankCardsUl;
-		var content;
-		var contentName;
-		var ul;
-		var methodId;
-		var verifyReg     = '^[0-9]{4}$';
-		var inputEvents   = 'input';
-		var that          = this;
-
 		this.zone    = $('.top-up');
-		content      = this.zone.find('.content');
-
-		this.zone.find('input[name="deposit-method"]').click(function () {
-			methodId = $(this).attr('id');
-			
-			if (methodId === 'topup-wyzz' || methodId === 'topup-mobile-bank') {
-				that.zone.find('.payment-counter').hide();
-			} else {
-				that.zone.find('.payment-counter').show();
-			}
-		});
-
-		this.zone.find('#topup-button').click(function () {
-			that.submit1();
-		});
-
-		this.zone.find('#topup-button2').click(function () {
-			if (!that.submit2()) {
-				return;
-			}
-
-			if (!that.topupConfirmDialog) {
-				that.topupConfirmDialog = new TopupConfirmDialog();
-				$('.app').append(that.topupConfirmDialog.getDom());
-				that.topupConfirmDialog.bindEvents();
-			}
-
-			that.topupConfirmDialog.show();
-		});
-
-		this.zone.find('#topup-button3').unbind('click').click(function () {
-			that.submit3();
-		});
-
-		this.zone.find('#topup-province').change(function () {
-			that.getCityList(that.selectProvince.getValue());
-		});
-
-		this.button.bindEvents();
-		this.button2.bindEvents();
-		this.button3.bindEvents();
-		this.topupInput.bindEvents();
-		this.topupInput2.bindEvents();
-		this.topupInput3.bindEvents();
-		this.bankBranchInput.bindEvents();
-		this.selectProvince.bindEvents();
-		this.selectCity.bindEvents();
 	};
 
 	window.TopUp = TopUp;

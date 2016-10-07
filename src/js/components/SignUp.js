@@ -160,10 +160,12 @@
         }).done(function (json) {
         	if (!json || json == 'false') {
         		that.loader.stop();
+        		that.zone.find('.change-verify-code').click();
         		alert('验证码错误');
         		return;
         	}
 
+        	that.zone.find('.change-verify-code').click();
         	that.register();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
