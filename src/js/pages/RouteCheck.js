@@ -18,19 +18,7 @@
 
 							'<div class="content">' +
 								'<div class="left-content">' +
-									'<ul>' +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
-										this.createCheckItem() +
+									'<ul class="domains">' +
 									'</ul>' +
 								'</div>' +
 
@@ -119,39 +107,57 @@
 		return this.el;
 	};
 
-	RouteCheck.prototype.createCheckItem = function () {
-		var temp = 	'';
-		var data = {
-			speed: 86,
-			site: 'http://www.baidu.com'
+    RouteCheck.prototype.getRoutes = function () {
+		var callback;
+		var that       =  this; 
+		var opt        =  {
+			url: app.urls.getRouteCheckList,
+			data: {}
 		};
 
-		temp +=	'<li>' +
-					'<div class="speed">' +
-						'<span class="speed-value">' +
-							data.speed + 'ms' +
-						'</span>' +
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
 
-						'<img class="recommend" src="../img/recommend.png">' +
-					'</div>' +
+			that.setRoutes(json);
+		};
 
-					
+		Service.get(opt, callback);
+    };
 
-					'<div class="arrow">' +
-						'<img class="trend-icon-img" src="../img/arrow-right.png">' +
-					'</div>' +
+    RouteCheck.prototype.setRoutes = function (data) {
+    	var i;
+    	var temp = '';
 
-					'<div class="site">' +
-						data.site +
-					'</div>' +
+    	for (i = 0; i < data.length; i++) {
+			temp +=	'<li>' +
+						'<div class="speed">' +
+							'<span class="speed-value">' +
+								0 + 'ms' +
+							'</span>' +
 
-					'<div class="go-to-button">' +
-						'直接打开' +
-					'</div>' +
-				'</li>';
+							'<img class="recommend" src="../img/recommend.png">' +
+						'</div>' +
 
-		return temp;
-	};
+						'<div class="arrow">' +
+							'<img class="trend-icon-img" src="../img/arrow-right.png">' +
+						'</div>' +
+
+						'<div class="site">' +
+							data[i].DomainUrl +
+						'</div>' +
+
+						'<div class="go-to-button">' +
+							'直接打开' +
+						'</div>' +
+					'</li>';
+    	}
+
+    	this.zone.find('.domains').html(temp);
+    	this.bindButtonEvents();
+    };
 
 	RouteCheck.prototype.show = function () {
 		this.zone.show();
@@ -161,8 +167,19 @@
 		this.zone.hide();
 	};
 
+	RouteCheck.prototype.bindButtonEvents = function () {
+		var url;
+		var that = this;
+
+		this.zone.delegate('.go-to-button', 'click', function () {
+			url = $(this).prev('.site').text();
+			window.open(url);
+		});
+	};
+
 	RouteCheck.prototype.bindEvents = function () {
 		this.zone = $('.route-check');
+		this.getRoutes();
 	};
 
 	window.RouteCheck = RouteCheck;

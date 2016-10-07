@@ -1,5 +1,6 @@
 (function () {
 	function EEntertainment () {
+		this.favoriteGameIds = {};
 		this.initDom();
 	}
 
@@ -511,7 +512,7 @@
             }
         }).done(function (json) {
         	that.setGameTree(json);
-        	that.getGameList();
+        	that.getFavoriteGameIds();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -534,6 +535,30 @@
         	left: '60%',
         	top: '80%'
         });
+    };
+
+    EEntertainment.prototype.getFavoriteGameIds = function () {
+		var callback;
+		var platform  = this.zone.find('.middle-module li.selected').attr('data-type');
+		var that      =  this;
+		var opt       =  {
+			url: app.urls.getFavoriteGameIds,
+			data: {
+				platform: platform || ''
+			}
+		};
+
+		callback = function (data) {
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+
+			that.favoriteGameIds[platform] = data.Data.split(',');
+			that.getGameList();
+		};
+
+		Service.get(opt, callback);
     };
 
     EEntertainment.prototype.getGameList = function () {
@@ -576,12 +601,25 @@
 
 	EEntertainment.prototype.setGameList = function (data) {
 		var i;
-		var html='';
+		var html      = '';
+		var platform  = this.zone.find('.middle-module li.selected').attr('data-type');
+		var ids       = this.favoriteGameIds[platform];
 
 		for (i = 0; i < data.length; i++) {
-			html +=	'<li data-id="' + data[i].Id + '"' + ' data-identify="' + data[i].GameIdentify + '" data-try="' + data[i].IsTry + '" data-platform="' + data[i].Api.GamePlatform + '"' + '>' +
-						'<img src='+app.imageServer + data[i].ImageUrl+'><p><span class="game-name">'+data[i].Title+'</span>'+
-						'<span class="red">'+data[i].RecommendNo+'</span><img class="collect" src="../img/sc-h.png"></p>'+
+			html +=	'<li data-id="' + data[i].Id + '"' + 
+							' data-identify="' + data[i].GameIdentify + 
+							'" data-try="' + data[i].IsTry + 
+							'" data-platform="' + data[i].Api.GamePlatform + '"' +
+							'" data-collectid="' + '' + '"' + 
+							'>' +
+						'<img src='+app.imageServer + data[i].ImageUrl+'>' +
+						'<p>' +
+							'<span class="game-name">'+data[i].Title+'</span>'+
+							'<span class="red">'+data[i].RecommendNo+'</span>' +
+							'<img class="collect" src="../img/sc-' + 
+								(($.inArray(data[i].Id, ids) != -1)?'d': 'h') +
+							'.png">' +
+						'</p>'+
 						'<p id="hover-layer" class="hover-layer-none">' +
 							'<button class="start-game">开始游戏</button>' +
 							'<br/>' +
@@ -680,7 +718,7 @@
 			stick.css('top',(index * 40 + 65) + 'px');
 			that.isScroll = false;
 			that.currenPage = 0;
-			that.getGameList();
+			that.getFavoriteGameIds();
 		});
 
 		// pageUl.delegate('li','click',function(){
@@ -753,7 +791,7 @@
 			that.currenPage = 0;
 			that.stopAnimation();
 			that.getJackpotsGames($(this).attr('data-type'));
-			that.getGameList();
+			that.getFavoriteGameIds();
 		});
 
 		this.zone.delegate('.collect', 'click', function () {

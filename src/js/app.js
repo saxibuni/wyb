@@ -65,6 +65,7 @@
 			getFavoriteGames: this.domain + 'api/Game/GetFavoriteGames?', //获取所有收藏的游戏
 			addFavoriteGameById: this.domain + 'api/Game/AddFavorite',       //添加收藏游戏
 			deleteFavoriteGameById: this.domain + 'api/Game/DeleteFavorite',  //删除收藏游戏
+			getFavoriteGameIds: this.domain + 'api/Game/GetFavoriteGameIds?',
 
 			getAds: this.domain + 'api/News/GetAds?',
 
@@ -137,6 +138,8 @@
 
 			getStationLetters: this.domain + 'api/User/GetMessageList?',
 			getAnnouncements: this.domain + 'api/News/GetNotices?',
+
+			getRouteCheckList: this.domain + 'api/Config/GetSpareDomain'
 		};
 	};
 
