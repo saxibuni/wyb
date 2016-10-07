@@ -334,7 +334,7 @@
 		var adminBanks = data.UserGroup.AdminBanks;
 
 		for (i = 0; i < thirdPays.length; i++) {
-			temp += '<li data-id="' + thirdPays[i].Id + '" data-type="ThirdPays" data-index="' + i + '">' +
+			temp += '<li ' + (i == 0?' class="selected"': '') + 'data-id="' + thirdPays[i].Id + '" data-type="ThirdPays" data-index="' + i + '">' +
 						'<span>' +
 							thirdPays[i].MerName +
 						'</span>' +
