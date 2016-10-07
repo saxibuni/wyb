@@ -494,7 +494,7 @@
 			if (that.depositType === 'ThirdPays') {
 				that.submit1();
 			} else {
-				if (!this.topupInput2.isPass()) {
+				if (!that.topupInput.isPass()) {
 					alert('格式不对');
 					return;
 				}

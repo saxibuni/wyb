@@ -123,7 +123,9 @@
 	SignIn.prototype.login = function () {
 		var data;
 		var callback;
-		var that = this;
+		var userName = this.usernameInput.val();
+		var password = this.passwordInput.val();
+		var that     = this;
 
 		if (!this.allPass) {
 			return;
@@ -134,11 +136,14 @@
 			app.header.showSignedInHeader(data);
 			app.signedIn = true;
 			//app.getLoginStatus();
+			if (localStorage) {
+				localStorage.setItem('*userName', userName);
+			}
 		};
 
 		data = {
-			UserName: this.usernameInput.val(),
-			Password: this.passwordInput.val()
+			UserName: userName,
+			Password: password
 		};
 
         $.ajax({
@@ -151,14 +156,15 @@
             	withCredentials: true
             }
         }).done(function(json) {
+        	that.loader.stop();
         	if (json.StatusCode && !json.access_token) {
         		alert(json.Message);
+        		return;
         	} else {
         		app.userinfo = json;
         		app.userinfo.trueName = '王小四';
         		callback(json);
         	}
-        	that.loader.stop();
         }).fail(function(xhr, textStatus, error) {
             alert(error);
         });
@@ -270,6 +276,11 @@
 
 		this.bindOverlayEvents();
 		this.createLoader();
+
+		if (localStorage && localStorage.getItem('*userName')) {
+			this.usernameInput.val(localStorage.getItem('*userName'));
+			that.usernamePass = true;
+		}
 	};
 
 	window.SignIn = SignIn;
