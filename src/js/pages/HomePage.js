@@ -137,7 +137,7 @@
 		this.zone.fadeIn(500);
 		this.getAds();
 		//this.addSliders();
-		//this.getPtJackpot();
+		this.setPtSumBaseValue();
 		this.getLuckyDrawWinRecords();
 	};
 
@@ -222,6 +222,23 @@
 		};
 
 		Service.get(opt, callback);
+	};
+
+	HomePage.prototype.setPtSumBaseValue = function () {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpotsByUrl,
+	        data: {
+	        	'': app.urls.getPtSumJackpotBaseValue
+	        }
+		};
+
+		callback = function (data) {
+			that.zone.find('.pt-jackpot-value').text(data.Data);
+		};
+
+		Service.post(opt, callback);
 	};
 
 	HomePage.prototype.addSliders = function (data) {

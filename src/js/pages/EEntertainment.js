@@ -363,7 +363,7 @@
 
 	EEntertainment.prototype.setPtSingleBaseValue = function (url, item) {
 		var callback;
-		var that =  this; 
+		var that =  this;
 		var opt  =  {
 			url: app.urls.getJackpotsByUrl,
 	        data: {
