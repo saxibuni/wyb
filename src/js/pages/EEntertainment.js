@@ -780,13 +780,15 @@
 			isTry    = parentLi.attr('data-try');
 			identify = parentLi.attr('data-identify');
 
-			//if (platform == 'PT' && isTry == 'true') {
+			if (platform == 'PT' && isTry == 'true') {
 				window.open('http://cache.download.banner.greatfortune88.com/casinoclient.html?mode=offline&language=zh-cn&affiliates=1&game=' + identify);
-			//} else {
-			//	alert('该游戏暂时不能试玩!');
-			//}
-			// gameId = parentLi.attr('data-id');
-			// that.getGameLaunchUrl(gameId);
+			} else {
+				alert('该游戏暂时不能试玩!');
+				return;
+			}
+
+			gameId = parentLi.attr('data-id');
+			that.getGameLaunchUrl(gameId);
 		});
 
 		$(document).scroll(function(e) {
