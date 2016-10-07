@@ -554,7 +554,10 @@
 				return;
 			}
 
-			that.favoriteGameIds[platform] = data.Data.split(',');
+			if (data.Data) {
+				that.favoriteGameIds[platform] = data.Data.split(',');
+			}
+			
 			that.getGameList();
 		};
 
@@ -603,7 +606,7 @@
 		var i;
 		var html      = '';
 		var platform  = this.zone.find('.middle-module li.selected').attr('data-type');
-		var ids       = this.favoriteGameIds[platform];
+		var ids       = this.favoriteGameIds[platform] || [];
 
 		for (i = 0; i < data.length; i++) {
 			html +=	'<li data-id="' + data[i].Id + '"' + 
