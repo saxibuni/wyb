@@ -407,6 +407,7 @@
 
 		this.zone.find('.deposit-types').html(temp);
 		this.bindDepositTypesEvents();
+		this.depositType = 'ThirdPays';
 	};
 
 	TopUp.prototype.getUserAdminBank = function () {
