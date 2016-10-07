@@ -113,7 +113,7 @@
 
 		var i;
 		var callback;
-		var selectedBank = $("input[name='bank']:checked").parent('li');
+		var selectedBank = this.zone.find("input[name='bank']:checked").parent('li');
 		var that = this;
 		var opt  = {
 			url: app.urls.payForm,
@@ -140,6 +140,30 @@
 		};
 
 		Service.post(opt, callback);
+	};
+
+	TopUp.prototype.submit2 = function() {
+		var selectedBank = this.zone.find("input[name='bank']:checked").parent('li');
+
+		if (!this.topupInput.isPass()) {
+			alert('格式不对');
+			return;
+		}
+
+		if (!this.topupConfirmDialog) {
+			this.topupConfirmDialog = new TopupConfirmDialog();
+			$('.app').append(this.topupConfirmDialog.getDom());
+			this.topupConfirmDialog.bindEvents();
+		}
+
+		this.topupConfirmDialog.show({
+			Amount: this.topupInput.getValue(),
+			UserName: app.userinfo.userName,
+			PayPlatform: this.payPlatform,
+			PayMerCode: this.thirdPayMerCode,
+            PayBankCode: selectedBank.attr('data-code'),
+            PayBankName: selectedBank.attr('data-name')
+		});
 	};
 
 	TopUp.prototype.submit3 = function() {
@@ -218,9 +242,9 @@
 							'<ul>';
 
         for (i = 0; i < bankList.length; i++) {
-        	temp += 			'<li data-id="' + bankList[i].Id + '"' +
+        	temp += 			'<li data-id="' + (this.depositType==='ThirdPays'? bankList[i].Id: bankList[i].ID) + '"' +
 	        						' data-code="' + bankList[i].BankCode + '"' + 
-	        						' data-name="' + bankList[i].BankName + '"' +
+	        						' data-name="' + (this.depositType==='ThirdPays'? bankList[i].BankName: bankList[i].Name) + '"' +
 	        						'>' +
 									'<input type="radio" name="bank" />' +
 									'<span class="bankLogo ' + bankList[i].CssName + '" src="../img/bankLogo.jpg"></span>' +
@@ -494,18 +518,7 @@
 			if (that.depositType === 'ThirdPays') {
 				that.submit1();
 			} else {
-				if (!that.topupInput.isPass()) {
-					alert('格式不对');
-					return;
-				}
-
-				if (!that.topupConfirmDialog) {
-					that.topupConfirmDialog = new TopupConfirmDialog();
-					$('.app').append(that.topupConfirmDialog.getDom());
-					that.topupConfirmDialog.bindEvents();
-				}
-
-				that.topupConfirmDialog.show();
+				that.submit2();
 			}
 		});
 

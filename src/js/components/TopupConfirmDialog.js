@@ -1,6 +1,7 @@
 (function(){
 	function TopupConfirmDialog(opt){
 		IMDialog.call(this, opt || {});
+		this.opt = opt;
 		this.initDom();
 	}
 
@@ -29,15 +30,15 @@
 											'<tbody>' +
 												'<tr>' +
 													'<td class="name bank">充值银行：</td>' +
-													'<td class="value bank-value">中国工商银行</td>' +
+													'<td class="value bank-value"></td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td class="name amount">充值金额：</td>' +
-													'<td class="value amount-value">1,000.00元</td>' +
+													'<td class="value amount-value"></td>' +
 												'</tr>' +
 												'<tr>' +
-													'<td class="name amount">单号：</td>' +
-													'<td class="value amount-value">SN00204040420332</td>' +
+													'<td class="name bookid">单号：</td>' +
+													'<td class="value bookid-value">SN00204040420332</td>' +
 												'</tr>' +
 											'</tbody>' +
 										'</table>' +
@@ -65,12 +66,12 @@
 										'<tbody>' +
 											'<tr>' +
 												'<td class="name">收款银行</td>' +
-												'<td class="value">中国工商银行</td>' +
+												'<td class="value bank-name-value"></td>' +
 											'</tr>' +
 											'<tr>' +
 												'<td class="name">账户名</td>' +
 												'<td class="value">' +
-													'<div class="left user-name">刘文慧</div>' +
+													'<div class="left user-name-value">刘文慧</div>' +
 													'<div class="right copy">复制</div>' +
 													'<div class="clear"></div>' +
 												'</td>' +
@@ -78,7 +79,7 @@
 											'<tr>' +
 												'<td class="name">收款账号</td>' +
 												'<td class="value">' +
-													'<div class="left user-account">dasd1234@gmail.com</div>' +
+													'<div class="left account-value"></div>' +
 													'<div class="right copy">复制</div>' +
 													'<div class="clear"></div>' +
 												'</td>' +
@@ -86,7 +87,7 @@
 											'<tr>' +
 												'<td class="name">附言</td>' +
 												'<td class="value">' +
-													'<div class="left postscript">dasd1234@gmail.com</div>' +
+													'<div class="left postscript"></div>' +
 													'<div class="right copy">复制</div>' +
 													'<div class="clear"></div>' +
 												'</td>' +
@@ -115,13 +116,47 @@
 		return this.el;
 	}
 
-	TopupConfirmDialog.prototype.show = function(){
+	TopupConfirmDialog.prototype.show = function(data){
 		this.showOverlay();
+		
+		if (!this.firstTime) {
+			this.getUserAdminBank();
+			this.firstTime = true;
+		}
+
+        this.zone.find('.row2 table .bank-value').text(data.PayBankName);
+        this.zone.find('.row2 table .amount-value').text(data.Amount + '元');
 	}
 
 	TopupConfirmDialog.prototype.hide = function(){
 		this.hideOverlay();
 	}
+
+	TopupConfirmDialog.prototype.getUserAdminBank = function () {
+		var i;
+		var callback;
+		var that = this;
+		var opt  = {
+			url: app.urls.getUserAdminBank,
+			data: {
+				type: 1
+			}
+		};
+
+		callback = function (data) {
+            if (data && data.StatusCode) {
+                alert(data.Message);
+                return;
+            }
+
+            that.userAdminBankData = data;
+            that.zone.find('.row3 table .bank-name-value').text(data[0].Bank.BankName);
+            that.zone.find('.row3 table .user-name-value').text(data[0].AccountName);
+            that.zone.find('.row3 table .account-value').text(data[0].AccountNo);
+		};
+
+		Service.get(opt, callback);
+	};
 
 	TopupConfirmDialog.prototype.bindEvents = function(){
 		var that = this;
