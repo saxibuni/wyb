@@ -802,8 +802,7 @@
 				$(this).attr('src', '../img/sc-d.png');
 				app.addFavoriteGame(gameId);
 			} else {
-				$(this).attr('src', '../img/sc-h.png');
-				app.deleteFavoriteGame(gameId);
+				alert('请去收藏列表中取消收藏');
 			}
 		});
 
