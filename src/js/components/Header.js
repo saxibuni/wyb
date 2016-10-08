@@ -42,7 +42,7 @@
 							'<div class="balance">' +
 								'<div class="balance-item title">余额</div>' +
 								'<div class="balance-item money-icon">¥</div>' +
-								'<div class="balance-item balance-value">10000000.00</div>' +
+								'<div class="balance-item balance-value"></div>' +
 								this.switch.getDom() +
 							'</div>' +
 
@@ -181,6 +181,31 @@
 		ul.children('li:last-child').remove();
 	};
 
+	Header.prototype.getUserInfo = function() {
+		var i;
+		var callback;
+		var that = this;
+
+		var opt  = {
+			url: app.urls.getLoginInUserInfo,
+			data: {}
+		};
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			app.userTotalInfo = json;
+			that.zone.find('.balance-value').text(json.Cash);
+			that.zone.find('.grzx-float-window .username').text(json.UserName);
+			that.zone.find('.grzx-float-window .userid .id-value').text(json.Id);
+		};
+
+		Service.get(opt, callback);
+	};
+
 	Header.prototype.setCollectList = function (data) {
 		var list = data.list;
 		var url;
@@ -206,7 +231,7 @@
 		}
 
 		this.zone.find('.wdsc-float-window ul').html(html);
-		this.zone.find('.wdsc').click();
+		//this.zone.find('.wdsc').click();
 	};
 
 	Header.prototype.getCollectList = function () {
@@ -238,14 +263,13 @@
 		this.zone.find('.my-collection').show();
 		this.zone.find('.message').show();
 		this.zone.find('.signin-button, .signup-button').hide();
-		this.zone.find('.grzx-float-window .username').text(data.userName);
-		this.zone.find('.grzx-float-window .userid .id-value').text(data.userId);
 
 		if (callback && typeof callback === 'function') {
 			callback();
 		}
 
 		this.getCollectList();
+		this.getUserInfo();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 

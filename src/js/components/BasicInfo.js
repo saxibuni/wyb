@@ -93,6 +93,7 @@ $(function(){
 
 		if (!this.firstTime) {
 			this.getProvinceList();
+			this.setUserInfo();
 			this.firstTime = true;
 		}
 	};
@@ -171,27 +172,10 @@ $(function(){
 		this.zone.find('.address').val('');
 	};
 
-	BasicInfo.prototype.getUserInfo = function() {
-		var i;
-		var callback;
-		var that = this;
+	BasicInfo.prototype.setUserInfo = function() {
+		var data = app.userTotalInfo;
 
-		var opt  = {
-			url: app.urls.getLoginInUserInfo,
-			data: {}
-		};
-
-		callback = function (data) {
-			if (!data) {
-				return;
-			}
-
-			app.userTotalInfo = data;
-
-			that.realNameInput.setValue(data.TrueName);
-		};
-
-		Service.get(opt, callback);
+		this.realNameInput.setValue(data.TrueName);
 	};
 
 	BasicInfo.prototype.commit = function() {
@@ -251,8 +235,6 @@ $(function(){
 		this.button.bindEvents();
 		this.selectProvince.bindEvents();
 		this.selectCity.bindEvents();
-
-		this.getUserInfo();
 	};
 
 	window.BasicInfo = BasicInfo;
