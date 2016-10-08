@@ -246,6 +246,11 @@
 							    		margin-left: 10px;
 							    	}
 							    }
+
+							    .placeholder {
+								    display: inline-block;
+								    margin-top: 15%;
+							    }
 						    }
 						}
 
@@ -410,6 +415,12 @@
 							.table {
 								top: -130px;
 								height: 75px;
+
+								.tbody {
+								    .placeholder {
+									    margin-top: 10%;
+								    }
+								}
 							}
 						}
 					}

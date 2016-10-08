@@ -12,6 +12,7 @@
     "gulp-csslint": "^0.1.4",
     "gulp-filter": "^4.0.0",
     "gulp-flatten": "^0.2.0",
+    "gulp-gzip": "^1.4.0",
     "gulp-html-replace": "^1.5.5",
     "gulp-htmlhint": "^0.3.0",
     "gulp-htmlmin": "^1.2.0",

@@ -19,6 +19,7 @@ var watch        = require('gulp-watch');
 var sass         = require('gulp-sass');
 var flatten      = require('gulp-flatten');
 var htmlReplace  = require('gulp-html-replace');
+var gzip         = require('gulp-gzip');
 
 var src_js_lib_path     = 'src/lib/js/';
 var src_css_lib_path    = 'src/lib/css/';
@@ -87,8 +88,8 @@ gulp.task('build', function () {
             'src/lib/js/jquery.datetimepicker.js',
             'src/lib/js/jquery.history.js',
             'src/lib/js/unslider-min.js',
-            'src/lib/js/distpicker.data.min.js',
-            'src/lib/js/distpicker.min.js',
+            // 'src/lib/js/distpicker.data.min.js',
+            // 'src/lib/js/distpicker.min.js',
             'src/lib/js/md5.min.js',
             'src/lib/js/spin.min.js',
             'src/lib/js/clipboard.min.js',
@@ -100,6 +101,8 @@ gulp.task('build', function () {
             'src/js/app.js'
         ])
         .pipe(concat('app.js'))
+        //.pipe(uglify())
+        //.pipe(gzip())
         .pipe(gulp.dest('build/js'));
 
     gulp.src([
@@ -117,6 +120,7 @@ gulp.task('build', function () {
                                 'src/lib/css/unslider.css',
                                 'src/lib/css/unslider-dots.css']))
         .pipe(concat('app.css'))
+        //.pipe(cssmin())
         .pipe(gulp.dest('build/css/'));
 
     gulp.src('src/html/app.html')
@@ -124,6 +128,7 @@ gulp.task('build', function () {
             'css': '../css/app.css',
             'js': '../js/app.js'
         }))
+        .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
     /*
@@ -139,6 +144,8 @@ gulp.task('build', function () {
             'src/js/help.js'
         ])
         .pipe(concat('help.js'))
+        //.pipe(uglify())
+        //.pipe(gzip())
         .pipe(gulp.dest('build/js'));
 
     gulp.src([
@@ -152,6 +159,7 @@ gulp.task('build', function () {
         .pipe(sass())
         .pipe(flatten())
         .pipe(concat('help.css'))
+        //.pipe(cssmin())
         .pipe(gulp.dest('build/css/'));
 
     gulp.src('src/html/help.html')
@@ -159,9 +167,11 @@ gulp.task('build', function () {
             'css': '../css/help.css',
             'js': '../js/help.js'
         }))
+        .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
     gulp.src('src/html/403.html')
+        .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
     gulp.src('src/scss/403.scss')
@@ -171,6 +181,7 @@ gulp.task('build', function () {
         .pipe(gulp.dest('build/css/'));
 
     gulp.src('src/html/404.html')
+        .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
     gulp.src('src/scss/404.scss')
@@ -180,6 +191,7 @@ gulp.task('build', function () {
         .pipe(gulp.dest('build/css/'));
 
     gulp.src('src/html/500.html')
+        .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
     gulp.src('src/scss/500.scss')

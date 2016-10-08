@@ -144,36 +144,23 @@
 	};
 
 	app.prototype.getLoginStatus = function (callback) {
-        $.ajax({
-            type: 'GET',
-            url: this.urls.loginStatus,
-            dataType: 'json',
-            timeout: this.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	callback(json);
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
+		var opt  =  {
+			url: app.urls.loginStatus,
+	        data: {}
+		};
+
+		Service.get(opt, callback);
 	};
 
 	app.prototype.addFavoriteGame = function (gameId) {
 		var that = this;
-        
-        $.ajax({
-            type: 'POST',
-            url: this.urls.addFavoriteGameById,
-            dataType: 'json',
-            timeout: this.timeout,
+		var opt  =  {
+			url: app.urls.addFavoriteGameById,
             data: {
             	'': gameId
             },
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
+		};
+		var callback = function (json) {
 			if (json.StatusCode && json.StatusCode != 0) {
 				alert(json.Message);
 				return;
@@ -184,26 +171,20 @@
         	} else {
         		alert('添加失败');
         	}
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
+		};
+
+		Service.post(opt, callback);
 	};
 
 	app.prototype.deleteFavoriteGame = function (collectId, callback) {
 		var that = this;
-        
-        $.ajax({
-            type: 'POST',
-            url: this.urls.deleteFavoriteGameById,
-            dataType: 'json',
-            timeout: this.timeout,
+		var opt  =  {
+			url: app.urls.deleteFavoriteGameById,
             data: {
             	'': collectId
-            },
-            xhrFields: {
-            	withCredentials: true
             }
-        }).done(function (json) {
+		};
+		var callback = function (json) {
 			if (json.StatusCode && json.StatusCode != 0) {
 				alert(json.Message);
 				return;
@@ -214,9 +195,9 @@
         	} else {
         		alert('删除失败');
         	}
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
+		};
+
+		Service.post(opt, callback);
 	};
 
 	app.prototype.goTo = function (pageName) {
@@ -268,6 +249,7 @@
 		// }
 		this.header.setStick(dict[pageName].index);
 		this[pageName].show();
+		this.currentPage = pageName;
 	};
 
 	app.prototype.initRouter = function () {
@@ -345,10 +327,6 @@
 		this.header.bindEvents();
 		this.footer.bindEvents();
 		this.homePage.bindEvents();
-	};
-
-	app.a2jfdh22e3 = function () {
-		
 	};
 
 	window.app = new app();

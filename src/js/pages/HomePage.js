@@ -82,7 +82,7 @@
 
 											'<div class="table">' +
 												'<div class="tbody lucky-draw-tbody">' +
-													//this.createLuckyDrawItems() +
+													'<span class="placeholder">登录可查看中奖情况</span>' +
 												'</div>' +
 											'</div>' +
 
@@ -117,7 +117,7 @@
 			temp += this.createLuckyDrawItem(data);
 		}
 
-		this.zone.find('.lucky-draw-tbody').append($(temp));
+		this.zone.find('.lucky-draw-tbody').html($(temp));
 	};
 
 	HomePage.prototype.createLuckyDrawItem = function (data) {
@@ -136,9 +136,10 @@
 	HomePage.prototype.show = function () {
 		this.zone.fadeIn(500);
 		this.getAds();
-		//this.addSliders();
 		this.setPtSumBaseValue();
-		this.getLuckyDrawWinRecords();
+		if (app.signedIn) {
+			this.getLuckyDrawWinRecords();
+		}
 	};
 
 	HomePage.prototype.hide = function () {

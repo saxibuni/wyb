@@ -136,6 +136,10 @@
 			app.header.showSignedInHeader(data);
 			app.signedIn = true;
 			//app.getLoginStatus();
+			if (app.currentPage === 'homePage') {
+				app.homePage.getLuckyDrawWinRecords();
+			}
+
 			if (localStorage) {
 				localStorage.setItem('*userName', userName);
 			}
