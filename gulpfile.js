@@ -101,7 +101,7 @@ gulp.task('build', function () {
             'src/js/app.js'
         ])
         .pipe(concat('app.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         //.pipe(gzip())
         .pipe(gulp.dest('build/js'));
 
@@ -120,7 +120,7 @@ gulp.task('build', function () {
                                 'src/lib/css/unslider.css',
                                 'src/lib/css/unslider-dots.css']))
         .pipe(concat('app.css'))
-        //.pipe(cssmin())
+        .pipe(cssmin())
         .pipe(gulp.dest('build/css/'));
 
     gulp.src('src/html/app.html')
@@ -144,7 +144,7 @@ gulp.task('build', function () {
             'src/js/help.js'
         ])
         .pipe(concat('help.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         //.pipe(gzip())
         .pipe(gulp.dest('build/js'));
 
@@ -159,7 +159,7 @@ gulp.task('build', function () {
         .pipe(sass())
         .pipe(flatten())
         .pipe(concat('help.css'))
-        //.pipe(cssmin())
+        .pipe(cssmin())
         .pipe(gulp.dest('build/css/'));
 
     gulp.src('src/html/help.html')

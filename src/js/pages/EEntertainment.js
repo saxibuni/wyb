@@ -815,6 +815,11 @@
 		});
 
 		this.zone.delegate('.start-game', 'click', function () {
+			if (!app.signedIn) {
+				alert('请先登录');
+				return;
+			}
+			
 			gameId = $(this).parent().parent('li').attr('data-id');
 			that.getGameLoginUrl(gameId);
 		});

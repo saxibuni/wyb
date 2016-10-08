@@ -20,14 +20,16 @@
 		return this.el;
 	};
 
-	LiveVideo.prototype.setItems = function (opt) {
-		var temp = 	this.createItem({ className: 'img1', img: 'live-video1'}) +
-					this.createItem({ className: 'img2', img: 'live-video2'}) +
-					this.createItem({ className: 'img3', img: 'live-video3'}) +
-					this.createItem({ className: 'img4', img: 'live-video4'}) +
-					this.createItem({ className: 'img5', img: 'live-video5'}) +
-					this.createItem({ className: 'img6', img: 'live-video6'}) +
-					this.createItem({ className: 'img7', img: 'live-video7'});
+	LiveVideo.prototype.setItems = function (data) {
+		var i;
+		var temp = '';
+
+		for (i = 0; i < data.length; i++) {
+			temp += this.createItem({
+				className: 'img' + (i + 1),
+				imgUrl: app.imageServer + data[i].ImgUrl
+			});
+		}
 
 		this.zone.find('.picture-zone').html(temp);
 	};
@@ -36,7 +38,7 @@
 		var temp =	'<div class="item' + ((opt&&opt.className)?' ' + opt.className: '') + '">' +
 						'<div class="zone1">' +
 							'<div class="logo"' + (opt&&opt.width&&opt.height?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
-								'<img src="../img/' + opt.img + '.jpg"' + (opt?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
+								'<img src="' + opt.imgUrl + '">' +
 							'</div>' +
 						'</div>' +
 
@@ -63,6 +65,7 @@
 		
 		if (!this.firstTime) {
 			this.getAds();
+			this.getPictures();
 			this.firstTime = true;
 		}
 	};
@@ -134,7 +137,30 @@
 			}
 
 			that.addSliders(data);
-			that.setItems();
+		};
+
+		Service.get(opt, callback);
+	};
+
+	LiveVideo.prototype.getPictures = function () {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getAds,
+			data: {
+				type: 'pd_wyb_casino_pictures',
+				pageIndex: 0,
+				pageSize: 7
+			}
+		};
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.setItems(json.list);
 		};
 
 		Service.get(opt, callback);
