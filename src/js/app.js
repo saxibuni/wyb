@@ -327,6 +327,11 @@
 			.trigger('click');
 	};
 
+	app.prototype.showLoginNotice = function () {
+		alert('请先登录');
+		this.showSignInDialog();
+	};
+
 	app.prototype.bindEvents = function () {
 		this.header.bindEvents();
 		this.footer.bindEvents();

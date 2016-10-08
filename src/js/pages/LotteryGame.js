@@ -183,58 +183,27 @@
 		return temp;
 	};
 
-	LotteryGame.prototype.getGameUrl = function () {
-		var that = this;
-
-        $.ajax({
-            type: 'GET',
-            //url: app.urls.getGameUrlForLogin + 'gamePlatform=BBIN&gameType=lottery&gameId=&customGameUrl=',
-            url: 'http://api.lb118.com/api/Game/GetGameUrlForLogin?gamePlatform=BBIN&gameType=lottery&gameId=&customGameUrl=',
-            dataType: 'json',
-            timeout: this.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	window.open(json);
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
-	};
-
-	LotteryGame.prototype.button1Click = function () {
-		var that = this;
-
-		var callback = function (data) {
-        	// if (json === 0) {
-        	// 	that.getGameUrl();
-        	// } else if (json === 1) {
-        	// 	alert('请先登录');
-        	// } else if (json === 2) {
-        	// 	alert('已过期');
-        	// }
-        	that.getGameUrl();
+    LotteryGame.prototype.getGameLoginUrl = function (platform) {
+    	var that = this;
+    	var opt =  {
+			url: app.urls.getGameLoginUrl,
+			data: {
+				gamePlatform: platform,
+				gameType: 'lottery'
+			}
 		};
+		
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
 
-		app.getLoginStatus(callback.bind(this));
-	};
+			window.open(json);
+		}
 
-	LotteryGame.prototype.button2Click = function () {
-		var that = this;
-
-		var callback = function (data) {
-        	// if (json === 0) {
-        	// 	that.getGameUrl();
-        	// } else if (json === 1) {
-        	// 	alert('请先登录');
-        	// } else if (json === 2) {
-        	// 	alert('已过期');
-        	// }
-        	that.getGameUrl();
-		};
-
-		app.getLoginStatus(callback.bind(this));
-	};
+		Service.get(opt, callback);
+    };
 
 	LotteryGame.prototype.bindEvents = function () {
 		var that = this;
@@ -242,11 +211,19 @@
 		this.zone = $('.lottery-game');
 
 		this.zone.find('.content1 .row3 .button').click(function () {
-			that.button1Click();
+			if (app.signedIn) {
+				that.getGameLoginUrl('BBIN');
+			} else {
+				app.showLoginNotice();
+			}
 		});
 
 		this.zone.find('.content2 .row3 .button').click(function () {
-			that.button2Click();
+			if (app.signedIn) {
+				that.getGameLoginUrl('KG');
+			} else {
+				app.showLoginNotice();
+			}
 		});
 	};
 

@@ -23,19 +23,22 @@
 	LiveVideo.prototype.setItems = function (data) {
 		var i;
 		var temp = '';
+		var platfomrs = ['AG', 'PT', 'BBIN', 'MG', 'HG', 'IBC', 'T188'];
 
 		for (i = 0; i < data.length; i++) {
 			temp += this.createItem({
 				className: 'img' + (i + 1),
-				imgUrl: app.imageServer + data[i].ImgUrl
+				imgUrl: app.imageServer + data[i].ImgUrl,
+				platform: platfomrs[i]
 			});
 		}
 
 		this.zone.find('.picture-zone').html(temp);
+		this.bindItemEvents();
 	};
 
 	LiveVideo.prototype.createItem = function (opt) {
-		var temp =	'<div class="item' + ((opt&&opt.className)?' ' + opt.className: '') + '">' +
+		var temp =	'<div class="item' + ((opt&&opt.className)?' ' + opt.className: '') + '" data-platform="' + opt.platform + '">' +
 						'<div class="zone1">' +
 							'<div class="logo"' + (opt&&opt.width&&opt.height?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
 								'<img src="' + opt.imgUrl + '">' +
@@ -154,6 +157,43 @@
 		};
 
 		Service.get(opt, callback);
+	};
+
+    LiveVideo.prototype.getGameLoginUrl = function (platform) {
+    	var that = this;
+    	var opt =  {
+			url: app.urls.getGameLoginUrl,
+			data: {
+				gamePlatform: platform,
+				gameType: 'casino'
+			}
+		};
+		
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			window.open(json);
+		}
+
+		Service.get(opt, callback);
+    };
+
+	LiveVideo.prototype.bindItemEvents = function () {
+		var platform;
+		var that = this;
+
+		this.zone.find('.item').click(function () {
+			platform = $(this).attr('data-platform');
+
+			if (app.signedIn) {
+				that.getGameLoginUrl(platform);
+			} else {
+				app.showLoginNotice();
+			}
+		});
 	};
 
 	LiveVideo.prototype.bindEvents = function () {

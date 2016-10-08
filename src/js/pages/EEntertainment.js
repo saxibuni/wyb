@@ -668,7 +668,7 @@
 		
 		function callback(data) {
 			if (data == 1) {
-				alert('请先登录');
+				app.showLoginNotice();
 				return;
 			}
 
@@ -802,7 +802,7 @@
 			gameId = $(this).parent().parent('li').attr('data-id');
 
 			if (!app.signedIn) {
-				alert('请先登录');
+				app.showLoginNotice();
 				return;
 			}
 
@@ -816,7 +816,7 @@
 
 		this.zone.delegate('.start-game', 'click', function () {
 			if (!app.signedIn) {
-				alert('请先登录');
+				app.showLoginNotice();
 				return;
 			}
 			

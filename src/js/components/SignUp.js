@@ -150,7 +150,7 @@
 		if (!this.allPass) {
 			return;
 		}
-		
+
 		this.loader.play();
 
         $.ajax({
@@ -181,12 +181,16 @@
 		var callback;
 		var that = this;
 
-		callback = function (data) {
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
 			that.loader.stop();
 			that.hide();
-			app.header.showSignedInHeader(data);
+			app.header.showSignedInHeader();
 			app.signedIn = true;
-			//app.getLoginStatus();
 		};
 
 		data = {

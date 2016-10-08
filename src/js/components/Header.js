@@ -257,19 +257,13 @@
         });
 	};
 
-	Header.prototype.showSignedInHeader = function (data, callback) {
-		this.userLoginData = data;
-		this.zone.find('.money-actions, .balance, .grzx').show();
-		this.zone.find('.my-collection').show();
+	Header.prototype.showSignedInHeader = function () {
 		this.zone.find('.message').show();
+		this.zone.find('.my-collection').show();
+		this.zone.find('.money-actions, .balance, .grzx').show();
 		this.zone.find('.signin-button, .signup-button').hide();
-
-		if (callback && typeof callback === 'function') {
-			callback();
-		}
-
-		this.getCollectList();
 		this.getUserInfo();
+		this.getCollectList();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 

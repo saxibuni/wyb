@@ -98,7 +98,7 @@
 		if (!this.allPass) {
 			return;
 		}
-		
+
 		this.loader.play();
 
         $.ajax({
@@ -131,11 +131,16 @@
 		var password = this.passwordInput.val();
 		var that     = this;
 
-		callback = function (data) {
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
 			that.hide();
-			app.header.showSignedInHeader(data);
+			app.header.showSignedInHeader();
 			app.signedIn = true;
-			//app.getLoginStatus();
+
 			if (app.currentPage === 'homePage') {
 				app.homePage.getLuckyDrawWinRecords();
 			}

@@ -7,16 +7,16 @@
 		var temp =	'<div class="page sports-competition">' +
 						'<div class="wrapper">' +
 							'<div class="row1">' +
-								'<img src="">' +
+								'<img class="item" src="">' +
 							'</div>' +
 
 							'<div class="row2">' +
 								'<div class="sbty">' +
-									'<img src="">' +
+									'<img class="item" src="">' +
 								'</div>' +
 
 								'<div class="threedty">' +
-									'<img src="">' +
+									'<img class="item" src="">' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -44,12 +44,16 @@
 
 	SportsCompetition.prototype.setImages = function (data) {
 		var i;
-		var len  = data.count;
-		var arr  = data.list;
-		var imgs = this.zone.find('img');
+		var len       = data.count;
+		var arr       = data.list;
+		var imgs      = this.zone.find('img');
+		var platforms = ['BBIN', 'T188', 'IBC'];
 
 		for (i = 0; i < imgs.length; i++) {
-			$(imgs[i]).attr('src', app.imageServer + arr[i].ImgUrl );
+			$(imgs[i]).attr({
+				'src': app.imageServer + arr[i].ImgUrl,
+				'data-platform': platforms[i]
+			});
 		}
 	};
 
@@ -76,15 +80,42 @@
 		Service.get(opt, callback);
 	};
 
+    SportsCompetition.prototype.getGameLoginUrl = function (platform) {
+    	var that = this;
+    	var opt =  {
+			url: app.urls.getGameLoginUrl,
+			data: {
+				gamePlatform: platform,
+				gameType: 'sport'
+			}
+		};
+		
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			window.open(json);
+		}
+
+		Service.get(opt, callback);
+    };
+
 	SportsCompetition.prototype.bindEvents = function () {
+		var platform;
+		var that = this;
+
 		this.zone = $('.sports-competition');
 
-		this.zone.find('.sbty').click(function () {
-			window.open('http://www.baidu.com');
-		});
+		this.zone.find('.item').click(function () {
+			platform = $(this).attr('data-platform');
 
-		this.zone.find('threedty').click(function () {
-			window.open('http://www.baidu.com');
+			if (app.signedIn) {
+				that.getGameLoginUrl(platform);
+			} else {
+				app.showLoginNotice();
+			}
 		});
 	};
 
