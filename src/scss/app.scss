@@ -30,6 +30,12 @@ body {
 					width: 100%;
 				}
 			}
+
+			.unslider-nav ol li {
+				width: 12px;
+    			height: 12px;
+    			border-radius: 50%;
+			}
 		}
 
 		.main-wrapper {
@@ -58,20 +64,6 @@ body {
 @media screen and (min-width: 0px) and (max-width: 1200px) {
 	.app {
 		.main {
-			.logo-wrapper {
-				width: 100%;
-
-				.next {
-					right: -436px;
-				}
-
-				.unslider-nav {
-				    position: absolute;
-				    top: 280px;
-				    right: 100px;
-				}
-			}
-
 			.main-wrapper {
 				.page {
 					width: 997px;
