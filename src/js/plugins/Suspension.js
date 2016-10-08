@@ -53,6 +53,14 @@
         return this.el;
     };
 
+    Suspension.prototype.bindEvents = function() {
+        this.zone = $('.suspension');
+
+        this.zone.find('.online-kf .tab-text').click(function () {
+            window.open(app.liveCsUrl);
+        });
+    };
+
     window.Suspension = Suspension;
 
 }());

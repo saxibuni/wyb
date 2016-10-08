@@ -95,6 +95,10 @@
 		var that = this;
 		var url  = app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.val();
 
+		if (!this.allPass) {
+			return;
+		}
+		
 		this.loader.play();
 
         $.ajax({
@@ -126,10 +130,6 @@
 		var userName = this.usernameInput.val();
 		var password = this.passwordInput.val();
 		var that     = this;
-
-		if (!this.allPass) {
-			return;
-		}
 
 		callback = function (data) {
 			that.hide();

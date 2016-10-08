@@ -1,11 +1,11 @@
 (function () {
-	var	suspension = new Suspension();
-	
 	function HomePage () {
 		this.initDom();
 	}
 	
 	HomePage.prototype.initDom = function () {
+		this.suspension = new Suspension();
+
 		this.notice = new Notice2({
 			id: 'home-page-notice',
 			hasBtn: false,
@@ -95,7 +95,7 @@
 							'</div>' +
 						'</div>' +
 						
-						suspension.getDom() +
+						this.suspension.getDom() +
 					'</div>';
 
 		this.el  = temp;
@@ -320,12 +320,11 @@
 		luckyDrawButton  = this.zone.find('.zone2-down .lucky-draw');
 
 		luckyDrawButton.click(function () {
-			// if (luckyDrawTable.css('top') !== '-2000px') {
-			// 	luckyDrawTable.css('top', '-2000px');
-			// } else {
-			// 	luckyDrawTable.css('top', '0');
-			// }
 			window.open('http://www.baidu.com');
+		});
+
+		this.zone.find('.zone1-up-left-up').click(function () {
+			window.open(app.liveCsUrl);
 		});
 
 		this.zone.find('.zone1-up-left-down').click(function () {
@@ -345,6 +344,7 @@
 		});
 
 		this.notice.bindEvents();
+		this.suspension.bindEvents();
 		this.createLoader();
 	};
 

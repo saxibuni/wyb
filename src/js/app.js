@@ -51,8 +51,9 @@
 		this.realNameReg         =  '';
 
 		this.timeout = 12000;
-		this.domain  = 'http://api.vebets.com/';
+		this.domain      = 'http://api.vebets.com/';
 		this.imageServer = 'http://img.vebets.com/';
+		this.liveCsUrl   = 'http://www.baidu.com/';
 		this.urls  = {
 			signUp: this.domain + 'api/Account/Regist',
 			signIn: this.domain + 'api/Account/Login',
