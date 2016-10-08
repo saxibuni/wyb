@@ -264,7 +264,8 @@
 			$('.main .logo-wrapper').html(this.logoHtml);
 			$('.home-pages-sliders').unslider({
 				speed: 500,
-				delay: 3000
+				delay: 5000,
+				autoplay: true
 			});
 		}
 	};
@@ -289,7 +290,8 @@
 		$('.main .logo-wrapper').html(logoTemp);
 		$('.home-pages-sliders').unslider({
 			speed: 500,
-			delay: 3000
+			delay: 5000,
+			autoplay: true
 		});
 	};
 
