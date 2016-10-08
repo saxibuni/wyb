@@ -259,24 +259,17 @@
 		}, 500);
 	};
 
+	HomePage.prototype.showSliders = function () {
+		if (this.logoHtml) {
+			$('.main .logo-wrapper').html(this.logoHtml);
+			$('.home-pages-sliders').unslider({
+				speed: 500,
+				delay: 3000
+			});
+		}
+	};
+
 	HomePage.prototype.addSliders = function (data) {
-
-		// var images = [
-		// 	'../img/homepage-banner1.jpg',
-		// 	'../img/homepage-banner2.jpg',
-		// 	'../img/homepage-banner3.jpg'
-		// ];
-
-		// logoTemp = 	'<div class="home-pages-sliders">' +
-		// 				'<ul>';
-
-		// for (i = 0; i < images.length; i++) {
-		// 	logoTemp += 	'<li style="background: url("' + images[i] + '") 50% 50% no-repeat;"></li>';
-		// }
-
-		// logoTemp +=		'</ul>' +
-		// 			'</div>';
-		
 		var i;
 		var len = data.count;
 		var arr = data.list;
@@ -284,21 +277,20 @@
 							'<ul>';
 
 		for (i = 0; i < len; i++) {
-			logoTemp += '<li>' +
-							'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
-						'</li>';
+			logoTemp += 		'<li>' +
+									'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
+								'</li>';
 		}
 
 		logoTemp +=			'</ul>' +
 						'</div>';
 
+		this.logoHtml = logoTemp;
 		$('.main .logo-wrapper').html(logoTemp);
 		$('.home-pages-sliders').unslider({
 			speed: 500,
 			delay: 3000
 		});
-		$('.main .logo-wrapper').css('height', $('.home-pages-sliders').css('height'));
-		$('.home-pages-sliders').show();
 	};
 
 	HomePage.prototype.bindEvents = function () {

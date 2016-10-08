@@ -230,9 +230,11 @@
 		}
 
 		//没有轮播图
-		if (!that[pageName].addSliders) {
+		if (!that[pageName].showSliders) {
 			$('.main .logo-wrapper').html('');
-			$('.main .logo-wrapper').css('height', '0');
+			//$('.main .logo-wrapper').css('height', '0');
+		} else {
+			that[pageName].showSliders();
 		}
 
 		if (pageName === 'homePage') {

@@ -74,23 +74,13 @@
 		this.zone.fadeOut(500);
 	};
 
-	LiveVideo.prototype.addSliders = function (data) {
-		// var logoTemp = 	'<div class="live-video-sliders">' +
-		// 					'<ul>' +
-		// 						'<li><img src="../img/homepage-banner.jpg"></li>' +
-		// 						'<li><img src="../img/homepage-banner.jpg"></li>' +
-		// 						'<li><img src="../img/homepage-banner.jpg"></li>' +
-		// 					'</ul>' +
-		// 				'</div>';
-		
-		// $('.main .logo-wrapper').html(logoTemp);
-		// $('.live-video-sliders').unslider({
-		// 	speed: 500,
-		// 	delay: 3000
-		// });
-		// $('.live-video-sliders').show();
-		// $('.main .logo-wrapper').css('height', $('.live-video-sliders').css('height'));
+	LiveVideo.prototype.showSliders = function () {
+		if (this.logoHtml) {
+			$('.main .logo-wrapper').html(this.logoHtml);
+		}
+	};
 
+	LiveVideo.prototype.addSliders = function (data) {
 		var i;
 		var len = data.count;
 		var arr = data.list;
@@ -106,9 +96,9 @@
 		logoTemp +=			'</ul>' +
 						'</div>';
 
+		this.logoHtml = logoTemp;
 		$('.main .logo-wrapper').html(logoTemp);
-		$('.main .logo-wrapper').css('height', '260px');
-		$('.live-video-sliders').show();
+		//$('.live-video-sliders').show();
 	};
 
     LiveVideo.prototype.createLoader = function() {

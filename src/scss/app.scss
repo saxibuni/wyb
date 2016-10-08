@@ -22,72 +22,12 @@ body {
     	transition: all .3s;
 
 		.logo-wrapper {
-			height: 236px;
+			display: inline-block;
 			width: 100%;
 
-			.unslider {
-				width: $contentWidth;
-				display: inline-block;
-			}
-
-			.unslider-nav {
-			    position: absolute;
-			    top: 280px;
-			    right: 450px;
-
-			    ol {
-			    	li {
-					    width: 10px;
-					    height: 10px;
-			    	}
-			    }
-			}
-
-			.unslider-arrow {
-				cursor: pointer;
-				width: 50px;
-				height: 70px;
-				display: inline-block;
-				position: relative;
-				overflow: hidden;
-				top: -150px;
-				opacity: 0.5;
-				text-indent: 50px;
-			}
-
-			.prev:hover, .next:hover {
-				opacity: 1;
-			}
-
-			.prev {
-				left: -496px;
-				background: url('../img/left-normal.png') no-repeat;
-			}
-
-			.next {
-				right: -496px;
-				background: url('../img/right-normal.png') no-repeat;
-			}
-
-			.unslider-horizontal {
-				ul {
-					li {
-						display: inline-block;
-
-						img {
-							width: $contentWidth;
-			    			height: 236px;
-						}
-					}
-				}
-			}
-
-			.live-video-ul {
-				li {
-					img {
-						width: 100%;
-	    				height: 100%;
-					}
+			li {
+				img {
+					width: 100%;
 				}
 			}
 		}
