@@ -176,7 +176,7 @@
 		Service.post(opt, callback);
 	};
 
-	app.prototype.deleteFavoriteGame = function (collectId, callback) {
+	app.prototype.deleteFavoriteGame = function (collectId, cb) {
 		var that = this;
 		var opt  =  {
 			url: this.urls.deleteFavoriteGameById,
@@ -184,14 +184,15 @@
             	'': collectId
             }
 		};
+
 		var callback = function (json) {
 			if (json.StatusCode && json.StatusCode != 0) {
 				alert(json.Message);
 				return;
 			}
 
-        	if (json.Data && typeof callback === 'function') {
-        		callback();
+        	if (json.Data == true && typeof cb === 'function') {
+        		cb();
         	} else {
         		alert('删除失败');
         	}

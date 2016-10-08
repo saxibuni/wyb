@@ -801,6 +801,11 @@
 			imgSrc = $(this).attr('src');
 			gameId = $(this).parent().parent('li').attr('data-id');
 
+			if (!app.signedIn) {
+				alert('请先登录');
+				return;
+			}
+
 			if (imgSrc.indexOf('sc-h.png') !== -1) {
 				$(this).attr('src', '../img/sc-d.png');
 				app.addFavoriteGame(gameId);
