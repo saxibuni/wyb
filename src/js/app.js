@@ -145,7 +145,7 @@
 
 	app.prototype.getLoginStatus = function (callback) {
 		var opt  =  {
-			url: app.urls.loginStatus,
+			url: this.urls.loginStatus,
 	        data: {}
 		};
 
@@ -155,7 +155,7 @@
 	app.prototype.addFavoriteGame = function (gameId) {
 		var that = this;
 		var opt  =  {
-			url: app.urls.addFavoriteGameById,
+			url: this.urls.addFavoriteGameById,
             data: {
             	'': gameId
             },
@@ -179,7 +179,7 @@
 	app.prototype.deleteFavoriteGame = function (collectId, callback) {
 		var that = this;
 		var opt  =  {
-			url: app.urls.deleteFavoriteGameById,
+			url: this.urls.deleteFavoriteGameById,
             data: {
             	'': collectId
             }
