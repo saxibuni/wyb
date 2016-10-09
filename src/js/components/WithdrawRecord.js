@@ -119,52 +119,54 @@
 
         $.ajax({
             type: 'GET',
-            url: app.urls.topupRecords + params,
+            url: app.urls.withdrawRecords + params,
             dataType: 'json',
             timeout: app.timeout,
             xhrFields: {
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
-        	json = {"count":0,"extend":null,"list":[]};
-        	that.loader1.play();
-        	that.setData(json);
+        	that.loader1.stop();
+        	that.setData(json.list);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
 	};
 
-	WithdrawRecord.prototype.setData = function(pageIndex){
+	WithdrawRecord.prototype.setData = function(data, pageIndex){
 		var dom = '';
 		var i = 0;
 		var currentData = [];
 
-		currentData = this.withDrawData.filter(function(item, index){
-			return index >= pageIndex * 10 && index < (pageIndex + 1) * 10;
-		});
+		this.withDrawData = data;
+
+		// currentData = this.withDrawData.filter(function(item, index){
+		// 	return index >= pageIndex * 10 && index < (pageIndex + 1) * 10;
+		// });
+
+		currentData = this.withDrawData;
 		 
 		for(i = 0; i < currentData.length; i++){
 			if (i % 2 == 0) {
 				dom +=	'<tr class="odd">' +
-							'<td>' + currentData[i][0] + '</td>' +
-							'<td>' + currentData[i][1] + '</td>' +
-							'<td>' + currentData[i][2] + '</td>' +
-							'<td>' + currentData[i][3] + '</td>' +
-							'<td>' + currentData[i][4] + '</td>' +
+							'<td>' + currentData[i].CreateTime.substring(0, 10) + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
+							'<td>' + currentData[i].Amount + '</td>' +
+							'<td>' + currentData[i].StatusText + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
 						'</tr>';
-			}else{
+			} else {
 				dom +=	'<tr class="even">' +
-							'<td>' + currentData[i][0] + '</td>' +
-							'<td>' + currentData[i][1] + '</td>' +
-							'<td>' + currentData[i][2] + '</td>' +
-							'<td>' + currentData[i][3] + '</td>' +
-							'<td>' + currentData[i][4] + '</td>' +
+							'<td>' + currentData[i].CreateTime.substring(0, 10) + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
+							'<td>' + currentData[i].Amount + '</td>' +
+							'<td>' + currentData[i].StatusText + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
 						'</tr>';
 			}
 		}
 
-		return dom;
+		this.zone.find('.table-zone tbody').html(dom);
 	};
 
 	WithdrawRecord.prototype.bindData = function(pageIndex){

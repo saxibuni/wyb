@@ -305,6 +305,7 @@
 			grzxFloatWindow.css('top', '-300px');
 			that.showSignedOutHeader();
 			app.goTo('homePage');
+			//page('/homePage');
 			app.signedIn = false;
 		};
 
@@ -416,7 +417,6 @@
 			index    = $(this).index();
 			stick.css('left', index * 80 + 'px');
 			//page('/' + pageName);
-
 			app.goTo(pageName);
 		});
 

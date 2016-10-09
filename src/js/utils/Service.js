@@ -1,4 +1,4 @@
-(function () {
+$(function () {
 	function Service() {}
 
 	Service.prototype.get = function(opt, callback) {

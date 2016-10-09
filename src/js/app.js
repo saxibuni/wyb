@@ -129,6 +129,8 @@
 			withdraw: this.domain + 'api/Withdrawal/DoWithdrawal',
 			getUserBankList: this.domain + 'api/User/GetUserBankList',
 
+			getUserBankCount: this.domain + 'api/User/GetUserBankCount',
+
 			changeLoginPassword: this.domain + 'api/User/ChangePasswordByUser',
 			changeWithdrawPassword: this.domain + 'api/User/UpdateWithdrawalPwd',
 			checkWithdrawPwd: this.domain + 'api/User/CheckWithdrawPwd',
@@ -203,7 +205,6 @@
 	};
 
 	app.prototype.goTo = function (pageName) {
-		var wrapper = this.zone.find('.main-wrapper');
 		var index;
 		var tar;
 		var height;
@@ -230,10 +231,8 @@
 			that[pageName].bindEvents();
 		}
 
-		//没有轮播图
 		if (!that[pageName].showSliders) {
 			$('.main .logo-wrapper').html('');
-			//$('.main .logo-wrapper').css('height', '0');
 		} else {
 			that[pageName].showSliders();
 		}
@@ -244,13 +243,6 @@
 			$('.main-wrapper').removeClass('home');
 		}
 
-		// if (pageName === 'sportsCompetition' || 
-		// 	pageName === 'lotteryGame' || 
-		// 	pageName === 'clientDownload') {
-		// 	this.footer.fixToBottom();
-		// } else {
-		// 	this.footer.releaseFix();
-		// }
 		this.header.setStick(dict[pageName].index);
 		this[pageName].show();
 		this.currentPage = pageName;
@@ -259,19 +251,19 @@
 	app.prototype.initRouter = function () {
 		var key;
 		var index;
-		var wrapper = that.zone.find('.main-wrapper');
+		var wrapper = this.zone.find('.main-wrapper');
 		var that = this;
 		var dict = {
-			'homePage'          : HomePage,
-			'liveVideo'         : LiveVideo,
-			'eEntertainment'    : EEntertainment,
-			'sportsCompetition' : SportsCompetition,
-			'lotteryGame'       : LotteryGame,
-			'promoActivity'     : PromoActivity,
-			'clientDownload'    : ClientDownload,
-			'routeCheck'        : RouteCheck,
-			'helpPage'			: HelpPage,
-			'personalCenter'	: PersonalCenter
+			'homePage'          : {'className': HomePage,          'index': 0, 'cssClass': 'home-page'},
+			'liveVideo'         : {'className': LiveVideo,         'index': 1, 'cssClass': 'live-video'},
+			'eEntertainment'    : {'className': EEntertainment,    'index': 2, 'cssClass': 'main-content'},
+			'sportsCompetition' : {'className': SportsCompetition, 'index': 3, 'cssClass': 'sports-competition'},
+			'lotteryGame'       : {'className': LotteryGame,       'index': 4, 'cssClass': 'lottery-game'},
+			'promoActivity'     : {'className': PromoActivity,     'index': 5, 'cssClass': 'promo-activity'},
+			'clientDownload'    : {'className': ClientDownload,    'index': 6, 'cssClass': 'client-download'},
+			'routeCheck'        : {'className': RouteCheck,        'index': 0, 'cssClass': 'route-check'},
+			'personalCenter'	: {'className': PersonalCenter,    'index': 0, 'cssClass': 'personal-center'},
+			'forgetPassword'    : {'className': ForgetPassword ,   'index': 0, 'cssClass': 'forget-password'}
 		};
 
 		for (key in dict) {
@@ -280,18 +272,31 @@
 					that.zone.find('.page').hide();
 
 					if (!that[pageName]) {
-						that[pageName] = new (dict[pageName])();
-						that.zone.find('.main').append(that[pageName].getDom());
+						that[pageName] = new (dict[pageName].className)();
+						that.zone.find('.main-wrapper').append(that[pageName].getDom());
 						that[pageName].bindEvents();
 					}
 
+					if (!that[pageName].showSliders) {
+						$('.main .logo-wrapper').html('');
+					} else {
+						that[pageName].showSliders();
+					}
+
+					if (pageName === 'homePage') {
+						$('.main-wrapper').addClass('home');
+					} else {
+						$('.main-wrapper').removeClass('home');
+					}
+					
+					that.header.setStick(dict[pageName].index);
 					that[pageName].show();
+					that.currentPage = pageName;
 				}
 			})(key));
 		}
 
 		page();
-		page('/homePage');
 	};
 
 	app.prototype.showSignInDialog = function () {
@@ -340,4 +345,5 @@
 
 	window.app = new app();
 	window.app.goTo('homePage');
+	//page('/homePage');
 })();

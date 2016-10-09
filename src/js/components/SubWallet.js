@@ -6,7 +6,7 @@ $(function(){
 	}
 
 	SubWallet.prototype.initDom = function(){
-		var temp = '<div class="sub-wallet" id="' + this.opt.id + '">' +
+		var temp = '<div class="sub-wallet wallet" data-platform="' + this.opt.platform + '">' +
 						'<span>' + this.opt.walletType + '</span>' +
 						'<hr class="line">' +
 						'<span class="balance">' + this.opt.balance + '</span>' +
@@ -17,7 +17,6 @@ $(function(){
 						'</div>' +
 					'</div>';
 		this.el = temp;
-
 	}
 
 	SubWallet.prototype.getDom = function(){

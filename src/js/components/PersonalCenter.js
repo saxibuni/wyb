@@ -30,7 +30,7 @@ $(function(){
 											'<span class="username">LORENZO</span>' +
 											'<img src="../img/t01.png" />' +
 											'<span class="vip">VIP3</span>' +
-										'</div>' +	
+										'</div>' +
 										'<div class="psw-info">' +
 											'<span class="psw-intro">安全等级</span>' +
 											'<span class="psw-level-value">80%</span>' +
@@ -61,7 +61,7 @@ $(function(){
 								'</div>' +
 
 								'<div class="right-container">' +
-									'<div class="center-wallet">' +
+									'<div class="center-wallet wallet" data-platform="center">' +
 										'<img src="../img/refresh-h.png" class="refresh" />' +
 										'<span class="zxqb">中心钱包</span>' +
 										'<span class="money money-type">¥  </span><span class="money balance">100,000,000.00</span><span class="money-unit">  CNY</span>' +
@@ -72,7 +72,6 @@ $(function(){
 
 									'<div class="nav-left"><span><img src="../img/left-n.png" /></span></div>' +
 									'<div class="wallet-zone">' +
-										//this.createSubWallet() +
 									'</div>' +
 									'<div class="nav-right"><span><img src="../img/right-n.png" /></span></div>' +
 									'<div class="clear"></div>' +
@@ -106,7 +105,7 @@ $(function(){
 		return this.el;
 	};
 
-	PersonalCenter.prototype.show = function(route){
+	PersonalCenter.prototype.show = function() {
 		this.showPersonalCenterOverlay();
 		this.getCenterWalletCash();
 		this.getAllPlatforms();
@@ -116,12 +115,12 @@ $(function(){
 		this.hidePersonalCenterOverlay();
 	};
 
-	PersonalCenter.prototype.setSubWallet = function(){
+	PersonalCenter.prototype.setSubWallet = function() {
 		var temp = '';
 		var subWallet;
 		var swipperWith;
 
-		for(var i = 0; i < this.subWalletData.length; i++){
+		for(var i = 0; i < this.subWalletData.length; i++) {
 			subWallet = new SubWallet(this.subWalletData[i]);
 			this.subWallets.push(subWallet);
 			if (i % 2 == 0) 
@@ -229,7 +228,7 @@ $(function(){
 
 			for (i = 0; i < data.length; i++) {
 				temp = {
-					id: data[i].GamePlatform,
+					platform: data[i].GamePlatform,
 					walletType: data[i].GameName,
 					balance: ''
 				}
@@ -245,7 +244,7 @@ $(function(){
 			that.bindEvents();
 
 			for (i = 0; i < that.subWalletData.length; i++) {
-				that.getPlatformBalance(that.subWalletData[i].id);
+				that.getPlatformBalance(that.subWalletData[i].platform);
 			}
 
 		};
@@ -265,7 +264,7 @@ $(function(){
 		};
 
 		callback = function (data) {
-			that.zone.find('.wallet-group').find('#' + platform).children('.balance').text(data);
+			that.zone.find('.wallet-group').find('[data-platform="' + platform + '"]').children('.balance').text(data);
 		};
 
 		Service.get(opt, callback);
@@ -288,6 +287,7 @@ $(function(){
 	};
 
 	PersonalCenter.prototype.bindWalletEvents = function () {
+		var platform;
 		var that       = this;
 		var pageIndex  = 0;
 		var pageCount  = Math.round(this.subWalletData.length / 2) - 3;
@@ -306,7 +306,17 @@ $(function(){
 			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)')
 		});
 
-        walletzone.delegate('.sub-wallet','mouseover',function(){
+		this.zone.find('.turn-into').click(function () {
+			platform = $(this).parents('.wallet').attr('data-platform');
+			app.personCenterRouter(0, 1);
+		});
+
+		this.zone.find('.turn-out').click(function () {
+			platform = $(this).parents('.wallet').attr('data-platform');
+			app.personCenterRouter(0, 1);
+		});
+
+        walletzone.delegate('.sub-wallet','mouseover',function() {
         	$(this).find('.transfer-layer').show();
         });
 
@@ -315,7 +325,7 @@ $(function(){
         });
 
         walletzone.delegate('.refresh', 'click', function () {
-        	that.getPlatformBalance($(this).parents('.sub-wallet').attr('id'));
+        	that.getPlatformBalance($(this).parents('.sub-wallet').attr('data-platform'));
         });
 	};
 

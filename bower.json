@@ -27,6 +27,7 @@
     "spin.js": "https://github.com/fgnass/spin.js.git#^2.3.2",
     "flexslider": "https://github.com/woothemes/FlexSlider.git#^2.6.3",
     "OwlCarousel": "https://github.com/OwlFonk/OwlCarousel.git#^1.3.2",
-    "clipboard": "^1.5.12"
+    "clipboard": "^1.5.12",
+    "director": "https://github.com/flatiron/director.git#^1.2.8"
   }
 }

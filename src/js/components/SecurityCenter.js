@@ -4,7 +4,7 @@ $(function(){
 		this.initDom();
 	}
 
-	SecurityCenter.prototype.initDom = function(){
+	SecurityCenter.prototype.initDom = function() {
 		var temp;
 
 		temp = '<div class="security-center zhsz-info-action">' +
@@ -26,7 +26,7 @@ $(function(){
 						'<div class="row3">' +
 							'<div class="status pass"></div>' +
 							'<img src="../img/t06.png" /><span class="item">银行卡</span>' +
-							'<span class="text">已绑定<span class="card-count">2</span>张</span>' +
+							'<span class="text">已绑定<span class="card-count">--</span>张</span>' +
 							'<a class="card-manage">管理</a>' +
 						'</div>' +
 
@@ -48,14 +48,34 @@ $(function(){
 				'</div>';
 
 		this.el = temp;		
-	}
+	};
 
-	SecurityCenter.prototype.getDom = function(){
+	SecurityCenter.prototype.getDom = function() {
 		return this.el;
-	}
+	};
+
+	SecurityCenter.prototype.getUserBankCount = function () {
+		var that = this;
+		var opt  =  {
+			url: app.urls.getUserBankCount,
+	        data: {}
+		};
+
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.zone.find('.card-count').text(json);
+		};
+
+		Service.get(opt, callback);
+	};
 
 	SecurityCenter.prototype.show = function(){
 		this.zone.show();
+		this.getUserBankCount();
 	};
 
 	SecurityCenter.prototype.hide = function(){

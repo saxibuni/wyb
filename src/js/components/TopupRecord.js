@@ -151,13 +151,6 @@
 									'<th>日期</th><th>订单号</th><th>充值类型</th><th>充值金额</th><th>状态</th>' +
 								'</tr></tobdy>' +
 								'<tbody>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +									
-									// this.queryData(0) +
 								'</tobdy>' +
  							'</table>' +
  							'<div class="page-content">' +
@@ -176,11 +169,11 @@
 
 	TopupRecord.prototype.show = function(){
 		this.zone.show();
-
-		if (!this.firstTime) {
-			//this.queryData(0);
-			this.firstTime = true;
-		}
+		this.queryData(0);
+		// if (!this.firstTime) {
+		// 	this.queryData(0);
+		// 	this.firstTime = true;
+		// }
 	};
 
 	TopupRecord.prototype.hide = function(){
@@ -221,9 +214,8 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	debugger
-        	that.loader1.play();
-        	that.setData(json);
+        	that.loader1.stop();
+        	that.setData(json.list);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -234,31 +226,35 @@
 		var i = 0;
 		var currentData = [];
 
-		currentData = this.recordData.filter(function(item, index){
-			return index >= pageIndex * 10 && index < (pageIndex + 1) * 10;
-		});
+		this.withDrawData = data;
+
+		// currentData = this.withDrawData.filter(function(item, index){
+		// 	return index >= pageIndex * 10 && index < (pageIndex + 1) * 10;
+		// });
+
+		currentData = this.withDrawData;
 		 
 		for(i = 0; i < currentData.length; i++){
 			if (i % 2 == 0) {
 				dom +=	'<tr class="odd">' +
-							'<td>' + currentData[i][0] + '</td>' +
-							'<td>' + currentData[i][1] + '</td>' +
-							'<td>' + currentData[i][2] + '</td>' +
-							'<td>' + currentData[i][3] + '</td>' +
-							'<td>' + currentData[i][4] + '</td>' +
+							'<td>' + currentData[i].CreateTime.substring(0, 10) + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
+							'<td>' + currentData[i].Amount + '</td>' +
+							'<td>' + currentData[i].StatusText + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
 						'</tr>';
-			}else{
+			} else {
 				dom +=	'<tr class="even">' +
-							'<td>' + currentData[i][0] + '</td>' +
-							'<td>' + currentData[i][1] + '</td>' +
-							'<td>' + currentData[i][2] + '</td>' +
-							'<td>' + currentData[i][3] + '</td>' +
-							'<td>' + currentData[i][4] + '</td>' +
+							'<td>' + currentData[i].CreateTime.substring(0, 10) + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
+							'<td>' + currentData[i].Amount + '</td>' +
+							'<td>' + currentData[i].StatusText + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
 						'</tr>';
 			}
 		}
 
-		return dom;
+		this.zone.find('.table-zone tbody').html(dom);
 	};
 
 	TopupRecord.prototype.bindData = function(pageIndex){

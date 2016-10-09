@@ -70,7 +70,8 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/distpicker/dist/distpicker.min.js',
             './bower_components/JavaScript-MD5/js/md5.min.js',
             './bower_components/spin.js/spin.min.js',
-            './bower_components/clipboard/dist/clipboard.min.js'
+            './bower_components/clipboard/dist/clipboard.min.js',
+            './bower_components/director/build/director.js'
         ])
         .pipe(gulp.dest(src_js_lib_path));
 
@@ -85,6 +86,7 @@ gulp.task('build', function () {
     gulp.src([
             'src/lib/js/jquery.min.js',
             'src/lib/js/page.js',
+            //'src/lib/js/director.js',
             'src/lib/js/jquery.datetimepicker.js',
             'src/lib/js/jquery.history.js',
             'src/lib/js/unslider-min.js',
