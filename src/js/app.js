@@ -89,7 +89,7 @@
 			transferRecords: this.domain + 'api/Transfer/GetTransferList?',
 			withdrawRecords: this.domain + 'api/Withdrawal/GetWithdrawalList?',
 			bettingRecords: this.domain + 'api/Bet/GetBetList?',
-			dividentRecords: this.domain + '',
+			dividentRecords: this.domain + 'api/Lucky/JackpotList?',
 			queryStationLetter: this.domain + 'api/User/GetMessageList',
 			queryNotices: this.domain + 'api/News/GetNotices',
 

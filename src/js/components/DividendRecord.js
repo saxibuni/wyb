@@ -13,90 +13,9 @@
 			height: 30
 		});
 
-		this.dividendRecordData = [
-		    ['2015-01-01', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-02', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-03', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-04', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-05', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-06', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-07', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-08', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-09', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-10', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-11', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-12', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-13', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-14', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-15', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-16', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-17', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-18', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-19', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-20', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-21', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-22', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-23', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-24', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-25', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-26', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-27', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-28', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-29', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-01-30', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-01', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-02', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-03', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-04', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-05', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-06', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-07', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-08', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-09', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-10', '红利状态', '3000.00', '是', '2015-01-09', 1],	
-		    ['2015-02-02', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-03', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-04', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-05', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-06', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-07', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-08', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-09', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-10', '红利状态', '3000.00', '是', '2015-01-09', 1],	
-		    ['2015-02-02', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-03', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-04', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-05', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-06', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-07', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-08', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-09', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-10', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-02', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-03', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-04', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-05', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-06', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-07', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-08', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-09', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-10', '红利状态', '3000.00', '是', '2015-01-09', 1],	
-		    ['2015-02-02', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-03', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-04', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-05', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-06', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-07', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-08', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-09', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-10', '红利状态', '3000.00', '是', '2015-01-09', 1],
-		    ['2015-02-11', '红利状态', '3000.00', '是', '2015-01-09', 1]
-		];
-
 		this.pager = new Pager({
 			id: 'dividend-record-pager',
-			callback: this.bindData.bind(this),
-			totalCount: this.dividendRecordData.length
+			callback: this.bindData.bind(this)
 		});
 
 		temp = 		'<div class="dividend-record jyjl-money-action">' +
@@ -112,10 +31,10 @@
 								this.button.getDom() +
 
 								'<ul class="fast-date">' +
-									'<li class="selected"><span>今日</span></li>' +
-									'<li><span>昨日</span></li>' +
-									'<li><span>3日</span></li>' +
-									'<li><span>7日</span></li>' +
+									'<li class="selected" data-value="0"><span>今日</span></li>' +
+									'<li data-value="-1"><span>昨日</span></li>' +
+									'<li data-value="-3"><span>3日</span></li>' +
+									'<li data-value="-7"><span>7日</span></li>' +
 								'</ul>' +
 
 								'<div class="clear"></div>' +
@@ -133,16 +52,14 @@
 						'<div class="table-zone">' +
 							'<table>' +
 								'<thead><tr>' + 
-									'<th>申请时间</th><th>红利类型</th><th>金额</th><th>状态</th><th>发放时间</th>' +
+									'<th>中奖日期</th>' +
+									'<th>游戏名称</th>' +
+									'<th>奖项</th>' +
+									'<th>奖项类型</th>' +
+									'<th>奖品</th>' +
+									'<th>发放状态</th>' +
 								'</tr></tobdy>' +
 								'<tbody>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +									
-									this.queryData(0) +
 								'</tobdy>' +
  							'</table>' +
  							'<div class="page-content">' +
@@ -161,68 +78,132 @@
 
 	DividendRecord.prototype.show = function(){
 		this.zone.show();
-	}
+
+		if (!this.firstTime) {
+			this.firstTime = true;
+		}
+
+		this.queryData(0, true);
+	};
 
 	DividendRecord.prototype.hide = function(){
 		this.zone.hide();
-	}
+	};
 
-	DividendRecord.prototype.queryData = function(pageIndex){
+    DividendRecord.prototype.createLoader = function() {
+        var wrapper1 = this.zone.find('.table-zone tbody')[0];
+
+        this.loader1 = new Loader(wrapper1, {
+        	top: '84%',
+        	color: '#000'
+        });
+    };
+
+	DividendRecord.prototype.queryData = function(pageIndex, firstTime) {
+		var params    = '';
+		var that      = this;
+		var starttime = this.zone.find('.starttime').val();
+		var endtime   = this.zone.find('.endtime').val();
+		
+		params += 	'startDate=' + starttime +
+					'&endDate=' + endtime +
+					'&pageIndex=' + pageIndex +
+					'&pageSize=10' +
+					'&gamePlatform=' +
+					'&betType=';
+
+		this.loader1.play();
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.dividentRecords + params,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	that.loader1.stop();
+        	that.setData(json.Data);
+        	if (firstTime) {
+        		that.pager.setTotal(json.Data.count);
+        	}
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	DividendRecord.prototype.setData = function(data){
 		var dom = '';
 		var i = 0;
-		var currentData = [];
+		var currentData = data.list;
 
-		currentData = this.dividendRecordData.filter(function(item, index){
-			return index >= pageIndex * 10 && index < (pageIndex + 1) * 10;
-		});
-		 
 		for(i = 0; i < currentData.length; i++){
 			if (i % 2 == 0) {
 				dom +=	'<tr class="odd">' +
-							'<td>' + currentData[i][0] + '</td>' +
-							'<td>' + currentData[i][1] + '</td>' +
-							'<td>' + currentData[i][2] + '</td>' +
-							'<td>' + currentData[i][3] + '</td>' +
-							'<td>' + currentData[i][4] + '</td>' +
+							'<td>' + currentData[i].CreateTime + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
+							'<td>' + currentData[i].TypeText + '</td>' +
+							'<td>' + currentData[i].Amount + '</td>' +
+							'<td>' + currentData[i].StatusText + '</td>' +
 						'</tr>';
-			}else{
+			} else {
 				dom +=	'<tr class="even">' +
-							'<td>' + currentData[i][0] + '</td>' +
-							'<td>' + currentData[i][1] + '</td>' +
-							'<td>' + currentData[i][2] + '</td>' +
-							'<td>' + currentData[i][3] + '</td>' +
-							'<td>' + currentData[i][4] + '</td>' +
+							'<td>' + currentData[i].CreateTime + '</td>' +
+							'<td>' + currentData[i].OrderNo + '</td>' +
+							'<td>' + currentData[i].TypeText + '</td>' +
+							'<td>' + currentData[i].Amount + '</td>' +
+							'<td>' + currentData[i].StatusText + '</td>' +
 						'</tr>';
 			}
 		}
 
-		return dom;
-	}
+		this.zone.find('.table-zone tbody').html(dom);
+	};
 
-	DividendRecord.prototype.bindData = function(pageIndex){
+	DividendRecord.prototype.bindData = function(pageIndex) {
 		var dom = this.queryData(pageIndex);
 		this.zone.find('.table-zone  table > tbody').html(dom);
-	}
+	};
+
+	DividendRecord.prototype.setDatetime = function () {
+		var li       = this.zone.find('.fast-date .selected');
+		var interval = parseInt(li.attr('data-value'));
+		var endDay   = new Date();
+		var beginDay = Util.getIntervalDate(endDay, interval);
+
+		beginDay = beginDay.formatDate() + ' 00:00';
+        endDay   = endDay.formatDate() + ' 23:59';
+        this.zone.find('.starttime').datetimepicker({value: beginDay});
+        this.zone.find('.endtime').datetimepicker({value: endDay});
+	};
 
 	DividendRecord.prototype.bindEvents = function () {
-		var today = new Date();
-		var that = this;
 		var fastDateUl;
+		var that     = this;
+		var endDay   = new Date();
+		var beginDay = Util.getIntervalDate(endDay, 0);
 
-		this.zone = $('.dividend-record');
+		this.zone    = $('.dividend-record');
 		fastDateUl   = this.zone.find('.fast-date'); 
 
-        fastDateUl.delegate('li', 'click', function () {
-        	fastDateUl.children('li').removeClass('selected');
-        	$(this).addClass('selected');
-        });
-        
-        today = today.formatDate();
+		beginDay = beginDay.formatDate() + ' 00:00';
+        endDay   = endDay.formatDate() + ' 23:59';
+        this.zone.find('.starttime').datetimepicker({value: beginDay});
+        this.zone.find('.endtime').datetimepicker({value: endDay});
 
-        this.zone.find('.starttime').datetimepicker({value: today + ' 00:00', lang: 'en'});
-        this.zone.find('.endtime').datetimepicker({value: today + ' 23:59', lang: 'en'});
-		
+        fastDateUl.delegate('li', 'click', function () {
+			fastDateUl.children('li').removeClass('selected');
+	        $(this).addClass('selected');
+        	that.setDatetime();
+        });
+
+        this.zone.find('#dividend-record-button').click(function () {
+        	that.queryData(0, true);
+        });
+
 		this.pager.bindEvents();
+		this.createLoader();
 	};
 
 	window.DividendRecord = DividendRecord;
