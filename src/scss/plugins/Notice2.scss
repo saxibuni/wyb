@@ -6,20 +6,29 @@
 	.notice2-left {
 		display: inline-block;
 		float: left;
+		width: 80%;
+		text-align: left;
+		position: relative;
 
-		.notice2-img {
-		    margin-bottom: 10px;
-		    margin-left: 15px;
+		.notice2-img-zone {
+			display: inline-block;
+			width: 50px;
+			text-align: center;
+			vertical-align: top;
+
+			.notice2-img {
+			    margin-top: 10px;
+			}
 		}
 
 		.ul-wrapper {
 			display: inline-block;
 			height: 40px;
 			overflow: hidden;
-			width: 700px;
-			margin-left: 10px;
-			position: relative;
+			position: absolute;
 			text-align: left;
+			left: 51px;
+			right: 0;
 
 			ul {
 				color: #CDA654;
@@ -31,19 +40,21 @@
 				li {
 					cursor: pointer;
 					height: 40px;
-
-					.title {
-						display: inline-block;
-						vertical-align: top;
-					}
+					width: 100%;
+					position: relative;
 
 					.content {
 						margin-left: 10px;
 						display: inline-block;
-						width: 620px;
+						width: 100%;
 						overflow: hidden;
 						position: relative;
 						height: 40px;
+
+						.title {
+							display: inline-block;
+							vertical-align: top;
+						}
 
 						.content-wrapper {
 							height: 40px;
@@ -62,6 +73,8 @@
 	.notice2-right {
 		display: inline-block;
 		float: right;
+		width: 20%;
+		text-align: right;
 
 		.close {
 			cursor: pointer;
@@ -91,9 +104,9 @@
 			height: 40px;
 			margin-left: 10px;
 			position: relative;
-			text-align: right;
+			text-align: left;
 			overflow: hidden;
-			width: 100px;
+			width: 150px;
 
 			ul {
 				color: #CDA654;
@@ -106,7 +119,7 @@
 					cursor: pointer;
 					height: 40px;
 					line-height: 40px;
-					width: 100px;
+					width: 150px;
 				}
 			}
 		}

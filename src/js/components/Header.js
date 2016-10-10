@@ -268,7 +268,7 @@
         endtime   = endtime.formatDate() + ' 23:59';
 
 		var opt  = {
-			url: app.urls.queryStationLetterCount,
+			url: app.urls.getStationLetterCount,
 			data: {
 				startTime: begintime,
 				endTime: endtime

@@ -5,23 +5,25 @@
 		// this.moreNotice =  opt.moreNotice || false;
 		// this.close      =  opt.close || false;
 		this.initDom();
+		this.queryData();
 	}
 
 	Notice2.prototype.initDom = function () {
 		var temp =	'<div class="notice2" id="' + this.id + '">' +
 						'<div class="notice2-left">' +
-							'<img class="notice2-img" src="../img/notice.png">' +
+							'<div class="notice2-img-zone">' +
+								'<img class="notice2-img" src="../img/notice.png">' +
+							'</div>' +
+							
 							'<div class="ul-wrapper">' +
-								'<ul>' +
-									this.createContentItems() +
+								'<ul class="content-ul">' +
 								'</ul>' +
 							'</div>' +
 						'</div>' +
 
 						'<div class="notice2-right">' +
 							'<div class="ul-wrapper">' +
-								'<ul>' +
-									this.createDateItems() +
+								'<ul class="date-ul">' +
 								'</ul>' +
 							'</div>' +
 							'<div class="moreNotice">更多公告</div>' +
@@ -36,24 +38,22 @@
 		return this.el;
 	};
 
-	Notice2.prototype.createContentItems = function () {
+	Notice2.prototype.setContentItems = function (data) {
 		var i;
 		var temp = '';
-		var data = {
-			content: '为了给您提供便捷的充值方式，韦易博平台于6月18日上线【微信支付】充值方式，欢迎大家体验，谢谢',
-			title: '重要公告'
-		};
 
-		for (i = 0; i < 5; i++) {
-			temp += this.createContentItem(data);
+		for (i = 0; i < data.length; i++) {
+			temp += this.createContentItem({
+				content: data[i].Content_RemoveHtml,
+				title: data[i].Title
+			});
 		}
 
-		return temp;
+		this.zone.find('.content-ul').html(temp);
 	};
 
 	Notice2.prototype.createContentItem = function (data) {
 		var temp = 	'<li>' +
-						'<span class="title">[' + data.title + ']</span>' +
 						'<div class="content">' + 
 							'<div class="content-wrapper">' +
 								data.content + 
@@ -64,18 +64,17 @@
 		return temp;
 	};
 
-	Notice2.prototype.createDateItems = function () {
+	Notice2.prototype.setDateItems = function (data) {
 		var i;
 		var temp = '';
-		var data = {
-			date: '2016-08-08'
-		};
 
-		for (i = 0; i < 5; i++) {
-			temp += this.createDateItem(data);
+		for (i = 0; i < data.length; i++) {
+			temp += this.createDateItem({
+				date: data[i].CreateTime
+			});
 		}
 
-		return temp;
+		this.zone.find('.date-ul').html(temp);
 	};
 
 	Notice2.prototype.createDateItem = function (data) {
@@ -120,22 +119,30 @@
 		}, 3000);
 	};
 
-	Notice2.prototype.createItems = function () {
+	Notice2.prototype.queryData = function() {
 		var i;
-		var temp = '';
-		var data = {
-
+		var callback;
+		var that = this;
+		var opt  = {
+			url: app.urls.getAnnouncements,
+			data: {
+				pageIndex: 0,
+				pageSize: 10
+			}
 		};
 
-		for (i = 0; i < 20; i++) {
+		callback = function (json) {
+            if (json && json.StatusCode) {
+                alert(json.Message);
+                return;
+            }
 
-		}
+            that.setContentItems(json.list);
+            that.setDateItems(json.list);
+            that.bindLiEvents();
+		};
 
-		return temp;
-	};
-
-	Notice2.prototype.createItem = function (data) {
-		return this.el;
+		Service.get(opt, callback);
 	};
 
 	Notice2.prototype.hide = function () {
@@ -145,10 +152,9 @@
 
 	Notice2.prototype.show = function () {
 		this.zone.show();
-		this.startAnimation();
 	};
 
-	Notice2.prototype.bindEvents = function (callback) {
+	Notice2.prototype.bindLiEvents = function (callback) {
 		var contentWrapper;
 		var contentUl;
 		var dateUl;
@@ -178,8 +184,10 @@
 		this.zone.find('.moreNotice').click(function () {
 			app.personCenterRouter(3, 1);
 		});
+	};
 
-		this.startAnimation();
+	Notice2.prototype.bindEvents = function (callback) {
+		this.zone = $('#' + this.id);
 	};
 
 	window.Notice2 = Notice2;

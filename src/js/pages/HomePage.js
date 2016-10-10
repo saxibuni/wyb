@@ -8,9 +8,7 @@
 
 		this.notice = new Notice2({
 			id: 'home-page-notice',
-			hasBtn: false,
-			date: '2016-08-12',
-			content: '为了给您提供便捷的充值方式，韦易博平台于6月18日上线【微信支付】充值方式，欢迎大家体验，谢谢。'
+			hasBtn: false
 		});
 
 		var temp = 	'<div class="page home-page">' +

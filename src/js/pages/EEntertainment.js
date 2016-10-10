@@ -6,7 +6,11 @@
 
 	EEntertainment.prototype.initDom = function () {
 		this.currenPage = 0;
-		this.notice     = new Notice({date:'2016-09-05',content:'这是一个测试公告',hasBtn:true});
+
+		this.notice = new Notice2({
+			id: 'eentertainment-notice',
+			hasBtn: false
+		});
 
 		var noticeDom   = this.notice.getDom();
 
@@ -767,7 +771,6 @@
 		var that = this;
 
 		this.zone = $('.main-content');
-		this.notice.bindEvents();
 
 		$('.slider').unslider({
 			speed: 500,
@@ -857,6 +860,7 @@
 		});
 
 		this.createLoader();
+		this.notice.bindEvents();
 	};
 
 	window.EEntertainment = EEntertainment;

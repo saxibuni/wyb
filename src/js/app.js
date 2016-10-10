@@ -13,7 +13,6 @@
 	app.prototype.init = function () {
 		this.header   = new Header();
 		this.footer   = new Footer();
-		this.homePage = new HomePage();
 
 		this.el  = 	this.header.getDom() +
 					'<div class="main">' +
@@ -21,7 +20,6 @@
 						'</div>' +
 
 						'<div class="main-wrapper">' +
-							this.homePage.getDom() +
 						'</div>' +
 					'</div>' +
 
@@ -90,9 +88,9 @@
 			withdrawRecords: this.domain + 'api/Withdrawal/GetWithdrawalList?',
 			bettingRecords: this.domain + 'api/Bet/GetBetList?',
 			dividentRecords: this.domain + 'api/Lucky/JackpotList?',
-			queryStationLetter: this.domain + 'api/User/GetMessageList?',
-			queryStationLetterCount: this.domain + 'api/User/GetUnreadMessageCount?',
-			queryNotices: this.domain + 'api/News/GetNotices',
+			getStationLetters: this.domain + 'api/User/GetMessageList?',
+			getAnnouncements: this.domain + 'api/News/GetNotices?',
+			getStationLetterCount: this.domain + 'api/User/GetUnreadMessageCount?',
 
 			validateEmail: this.domain + 'api/User/ValidateEmail',     //验证邮箱
 			validatePhone: this.domain + 'api/User/ValidatePhone',     //验证手机
@@ -139,9 +137,6 @@
 			getLoginInUserInfo: this.domain + 'api/Account/GetLoginUser',
 			getInfoByUserName: this.domain + 'api/User/GetByUserName?',
 			updateUserInfo: this.domain + 'api/User/UpdateUserInfo',
-
-			getStationLetters: this.domain + 'api/User/GetMessageList?',
-			getAnnouncements: this.domain + 'api/News/GetNotices?',
 
 			getRouteCheckList: this.domain + 'api/Config/GetSpareDomain'
 		};
@@ -341,7 +336,6 @@
 	app.prototype.bindEvents = function () {
 		this.header.bindEvents();
 		this.footer.bindEvents();
-		this.homePage.bindEvents();
 	};
 
 	window.app = new app();
