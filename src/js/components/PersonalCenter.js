@@ -101,7 +101,7 @@ $(function(){
 		this.el = temp;
 	};
 
-	PersonalCenter.prototype.getDom = function(){
+	PersonalCenter.prototype.getDom = function() {
 		return this.el;
 	};
 
@@ -111,7 +111,7 @@ $(function(){
 		this.getAllPlatforms();
 	};
 
-	PersonalCenter.prototype.hide = function(){
+	PersonalCenter.prototype.hide = function() {
 		this.hidePersonalCenterOverlay();
 	};
 
@@ -326,8 +326,14 @@ $(function(){
         	$(this).find('.transfer-layer').hide();
         });
 
-        walletzone.delegate('.refresh', 'click', function () {
-        	that.getPlatformBalance($(this).parents('.sub-wallet').attr('data-platform'));
+        this.zone.delegate('.refresh', 'click', function () {
+        	platform = $(this).parents('.wallet').attr('data-platform');
+
+        	if (platform != 'center') {
+        		that.getPlatformBalance();
+        	} else {
+        		that.getCenterWalletCash();
+        	}
         });
 	};
 

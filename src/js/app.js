@@ -50,7 +50,7 @@
 		this.phoneNumberReg      =  '^[0-9]{11}$';
 		this.realNameReg         =  '';
 
-		this.timeout = 12000;
+		this.timeout     = 12000;
 		this.domain      = 'http://api.vebets.com/';
 		this.imageServer = 'http://img.vebets.com/';
 		this.liveCsUrl   = 'http://www.baidu.com/';
@@ -91,6 +91,7 @@
 			bettingRecords: this.domain + 'api/Bet/GetBetList?',
 			dividentRecords: this.domain + 'api/Lucky/JackpotList?',
 			queryStationLetter: this.domain + 'api/User/GetMessageList?',
+			queryStationLetterCount: this.domain + 'api/User/GetUnreadMessageCount?',
 			queryNotices: this.domain + 'api/News/GetNotices',
 
 			validateEmail: this.domain + 'api/User/ValidateEmail',     //验证邮箱

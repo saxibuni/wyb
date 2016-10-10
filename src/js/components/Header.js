@@ -48,7 +48,7 @@
 
 							'<div class="grzx-layer message" data-value="3 0">' +
 								'<img class="message-img" src="../img/message.png">' +
-								'<div class="dot">1</div>' +
+								'<div class="dot message-count">1</div>' +
 							'</div>' +
 
 							'<div class="grzx">' +
@@ -257,6 +257,36 @@
         });
 	};
 
+	Header.prototype.getUnreadMessageCount = function () {
+		var i;
+		var callback;
+		var that = this;
+		var endtime   = new Date();
+		var begintime = Util.getIntervalDate(endtime, -10);
+
+		begintime = begintime.formatDate() + ' 00:00';
+        endtime   = endtime.formatDate() + ' 23:59';
+
+		var opt  = {
+			url: app.urls.queryStationLetterCount,
+			data: {
+				startTime: begintime,
+				endTime: endtime
+			}
+		};
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.zone.find('.message-count').text(json);
+		};
+
+		Service.get(opt, callback);
+	};
+
 	Header.prototype.showSignedInHeader = function () {
 		this.zone.find('.message').show();
 		this.zone.find('.my-collection').show();
@@ -264,6 +294,7 @@
 		this.zone.find('.signin-button, .signup-button').hide();
 		this.getUserInfo();
 		this.getCollectList();
+		this.getUnreadMessageCount();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 

@@ -142,7 +142,7 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 				}
 
 				.dot {
-					$dotSize: 12px;
+					$dotSize: 14px;
 
 					background-color: #F00;
 					border: 0;
@@ -150,8 +150,10 @@ $headerRow2Height: $headerHeight - $headerRow1Height;
 					display: inline-block;
 					font-size: 10px;
 					height: $dotSize;
-					width: $dotSize;
-					line-height: $dotSize;
+					min-width: $dotSize;
+					width: auto;
+					padding: 0 2px;
+					line-height: 12px;
 					position: absolute;
 					left : 12px;
 					top: 4px;
