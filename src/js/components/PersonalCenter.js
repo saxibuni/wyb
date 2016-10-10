@@ -19,7 +19,7 @@ $(function(){
 
 	PersonalCenter.prototype = new IMDialog();
 
-	PersonalCenter.prototype.initDom = function(){
+	PersonalCenter.prototype.initDom = function() {
 		var temp = '<div class="personal-center">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
@@ -27,9 +27,9 @@ $(function(){
 									'<div class="user-profiles">' +
 										'<img src="../img/T0.png" class="user-img" />' +
 										'<div class="user">' +
-											'<span class="username">LORENZO</span>' +
+											'<span class="username">' + app.userTotalInfo.UserName + '</span>' +
 											'<img src="../img/t01.png" />' +
-											'<span class="vip">VIP3</span>' +
+											'<span class="vip">VIP' + app.userTotalInfo.UserLevel + '</span>' +
 										'</div>' +
 										'<div class="psw-info">' +
 											'<span class="psw-intro">安全等级</span>' +

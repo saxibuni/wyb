@@ -86,18 +86,20 @@
 		var tailnumber =  data.AccountNo.substring(accountLen - 4);
 		var nameLen    =  data.AccountName.length;
 		var tailname   =  data.AccountName[nameLen - 1];
+		var cardId     =  data.Bank.Id;
+
 		var nameStart  =  '';
 
 		for (i = 0; i < nameLen - 1; i++) {
 			nameStart += '*';
 		}
 
-		for (i = 0; i < app.bankList.length; i++) {
-			if (app.bankList[i].id == data.Bank.Id) {
-				cssName = app.bankList[i].CssName;
-				break;
-			}
-		}
+		// for (i = 0; i < app.bankList.length; i++) {
+		// 	if (app.bankList[i].id == data.Bank.Id) {
+		// 		cssName = app.bankList[i].CssName;
+		// 		break;
+		// 	}
+		// }
 
 		temp 	=	'<li ' + ((index === 0)?'class="selected" ' : '') + 'data-index="' + index + '">' +
 						'<input type="radio" name="withdrawBankRidio">' +
@@ -173,20 +175,22 @@
 		opt = {
 			url: app.urls.withdraw,
 			data: {
-				BankAccountId: that.userBanks[index].AccountNo,
+				BankAccountId: that.userBanks[index].Id,
 				Amount: this.moneyInput.getValue(),
 				WithdrawPwd: this.passwordInput.getValue()
 			}
 		};
 
-		callback = function (data) {
-			if (data.StatusCode && data.StatusCode != 0) {
-				alert(data.Message);
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
 				return;
 			}
 
-			if (data === true) {
+			if (json.Success === true) {
 				alert('取款成功');
+				that.moneyInput.setValue('');
+				that.passwordInput.setValue('');
 			} else {
 				alert('取款失败');
 			}

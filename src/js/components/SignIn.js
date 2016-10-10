@@ -118,6 +118,7 @@
         	}
 
         	that.zone.find('.change-verify-code').click();
+        	that.verifyInput.val('');
         	that.login();
         }).fail(function (xhr, testStatus, error) {
             alert(error);
@@ -176,6 +177,7 @@
         	}
         }).fail(function(xhr, textStatus, error) {
             alert(error);
+            that.loader.stop();
         });
 	};
 
