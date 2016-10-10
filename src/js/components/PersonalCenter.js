@@ -123,7 +123,7 @@ $(function(){
 		for(var i = 0; i < this.subWalletData.length; i++) {
 			subWallet = new SubWallet(this.subWalletData[i]);
 			this.subWallets.push(subWallet);
-			if (i % 2 == 0) 
+			if (i % 2 == 0)
 				temp += '<div class="wallet-group">';
 			temp += subWallet.el;
 			if (i % 2 != 0) 
@@ -193,8 +193,9 @@ $(function(){
 		return temp;
 	};
 
-	PersonalCenter.prototype.createZnx = function(){
+	PersonalCenter.prototype.createZnx = function() {
 		var temp = '';
+
 		this.znxTab = new Tab({
 			id: 'znx-tab',
 			titles: this.tabData['znx']
@@ -205,7 +206,8 @@ $(function(){
 		temp += this.znxTab.getDom() +
 				'<div class="znx-content">' +
 					this.stationLetter.getDom() +
-				'</div>';	
+				'</div>';
+				
 		return temp;
 	};
 

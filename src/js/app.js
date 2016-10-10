@@ -86,9 +86,9 @@
 			queryPromoContentById: this.domain + 'api/Promo/GetInfo',
 
 			topupRecords: this.domain + 'api/Deposit/GetDepositList?',   //获取充值列表
-			transferRecords: this.domain + 'api/Transfer/GetTransferList',
-			withdrawRecords: this.domain + 'api/Withdrawal/GetWithdrawalList',
-			bettingRecords: this.domain + 'api/Bet/GetBetList',
+			transferRecords: this.domain + 'api/Transfer/GetTransferList?',
+			withdrawRecords: this.domain + 'api/Withdrawal/GetWithdrawalList?',
+			bettingRecords: this.domain + 'api/Bet/GetBetList?',
 			dividentRecords: this.domain + '',
 			queryStationLetter: this.domain + 'api/User/GetMessageList',
 			queryNotices: this.domain + 'api/News/GetNotices',

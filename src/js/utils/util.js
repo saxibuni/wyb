@@ -64,6 +64,11 @@
         }
     };
 
+    Util.prototype.getIntervalDate = function (startDate, interval) {
+        var temp = new Date(startDate.getTime() + MILLI_SECONDS_PER_DAY*interval);
+        return temp;
+    };
+    
     /* ----- Date ----- */
     /**
      * Format a date as 'yyyy/MM/dd hh/mm'

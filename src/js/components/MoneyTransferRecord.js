@@ -37,90 +37,9 @@
 			height: 30
 		});
 
-		this.moneyTransferData = [
-		    ['2015-01-01', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-02', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-03', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-04', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-05', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-06', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-07', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-08', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-09', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-10', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-11', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-12', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-13', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-14', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-15', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-16', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-17', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-18', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-19', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-20', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-21', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-22', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-23', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-24', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-25', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-26', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-27', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-28', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-29', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-01-30', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-01', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-02', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-03', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-04', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-05', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-06', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-07', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-08', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-09', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-10', '123123', 'SG', 'PT', '3000,000.00', '是', 1],	
-		    ['2015-02-02', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-03', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-04', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-05', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-06', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-07', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-08', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-09', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-10', '123123', 'SG', 'PT', '3000,000.00', '是', 1],	
-		    ['2015-02-02', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-03', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-04', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-05', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-06', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-07', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-08', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-09', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-10', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-02', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-03', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-04', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-05', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-06', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-07', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-08', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-09', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-10', '123123', 'SG', 'PT', '3000,000.00', '是', 1],	
-		    ['2015-02-02', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-03', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-04', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-05', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-06', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-07', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-08', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-09', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-10', '123123', 'SG', 'PT', '3000,000.00', '是', 1],
-		    ['2015-02-11', '123123', 'SG', 'PT', '3000,000.00', '是', 1]
-		];
-
 		this.pager = new Pager({
 			id: 'money-transfer-pager',
-			callback: this.bindData.bind(this),
-			totalCount: this.moneyTransferData.length
+			callback: this.bindData.bind(this)
 		});
 
 		temp = 		'<div class="money-transfer-record jyjl-money-action">' +
@@ -139,10 +58,10 @@
 								this.button.getDom() +
 
 								'<ul class="fast-date">' +
-									'<li class="selected"><span>今日</span></li>' +
-									'<li><span>昨日</span></li>' +
-									'<li><span>3日</span></li>' +
-									'<li><span>7日</span></li>' +
+									'<li class="selected" data-value="0"><span>今日</span></li>' +
+									'<li data-value="-1"><span>昨日</span></li>' +
+									'<li data-value="-3"><span>3日</span></li>' +
+									'<li data-value="-7"><span>7日</span></li>' +
 								'</ul>' +
 
 								'<div class="clear"></div>' +
@@ -160,16 +79,13 @@
 						'<div class="table-zone">' +
 							'<table>' +
 								'<thead><tr>' + 
-									'<th>日期</th><th>订单号</th><th>转出账户</th><th>转入账户</th><th>金额</th><th>状态</th>' +
+									'<th>日期</th>' +
+									'<th>转账金额</th>' +
+									'<th>游戏平台</th>' +
+									'<th>类别</th>' +
+									'<th>状态</th>' +
 								'</tr></tobdy>' +
 								'<tbody>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="odd"><td></td><td></td><td></td><td></td><td></td></tr>' +
-									// '<tr class="even"><td></td><td></td><td></td><td></td><td></td></tr>' +									
-									this.queryData(0) +
 								'</tobdy>' +
  							'</table>' +
  							'<div class="page-content">' +
@@ -186,73 +102,175 @@
 		return this.el;
 	};
 
-	MoneyTransferRecord.prototype.show = function(){
+	MoneyTransferRecord.prototype.show = function() {
 		this.zone.show();
-	}
 
-	MoneyTransferRecord.prototype.hide = function(){
+		if (!this.firstTime) {
+			this.queryPlatforms();
+			this.firstTime = true;
+		}
+
+		this.queryData(0, true);
+	};
+
+	MoneyTransferRecord.prototype.hide = function() {
 		this.zone.hide();
-	}
+	};
 
-	MoneyTransferRecord.prototype.queryData = function(pageIndex){
+	MoneyTransferRecord.prototype.queryPlatforms = function() {
+		var i;
+		var callback;
+		var that = this;
+		var opt  = {
+			url: app.urls.getAllAPI,
+			data: {}
+		};
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.setPlatforms(json);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	MoneyTransferRecord.prototype.setPlatforms = function(data) {
+		var i;
+		var temp = '<option data-value="0">' +
+						'主账户' +
+					'</option>';
+
+		for (i = 0; i < data.length; i++) {
+			temp += '<option data-value="' + data[i].GamePlatform + '">' +
+						data[i].GameName +
+					'</option>';
+		}
+
+		this.selectFrom.setOptions(temp);
+		this.selectTo.setOptions(temp);
+	};
+
+    MoneyTransferRecord.prototype.createLoader = function() {
+        var wrapper1 = this.zone.find('.table-zone tbody')[0];
+
+        this.loader1 = new Loader(wrapper1, {
+        	top: '84%',
+        	color: '#000'
+        });
+    };
+
+	MoneyTransferRecord.prototype.queryData = function(pageIndex, firstTime){
+		var params    = '';
+		var that      = this;
+		var starttime = this.zone.find('.starttime').val();
+		var endtime   = this.zone.find('.endtime').val();
+		
+		params += 	'beginTime=' + starttime +
+					'&endTime=' + endtime +
+					'&pageIndex=' + pageIndex +
+					'&pageSize=10' +
+					'&type=' +
+					'&status=' +
+					'&gamePlatform=';
+
+		this.loader1.play();
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.transferRecords + params,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	that.loader1.stop();
+        	that.setData(json);
+        	if (firstTime) {
+        		that.pager.setTotal(json.count);
+        	}
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	MoneyTransferRecord.prototype.setData = function(data){
 		var dom = '';
 		var i = 0;
-		var currentData = [];
+		var currentData = data.list;	
 
-		currentData = this.moneyTransferData.filter(function(item, index){
-			return index >= pageIndex * 10 && index < (pageIndex + 1) * 10;
-		});
-		 
 		for(i = 0; i < currentData.length; i++){
 			if (i % 2 == 0) {
 				dom +=	'<tr class="odd">' +
-							'<td>' + currentData[i][0] + '</td>' +
-							'<td>' + currentData[i][1] + '</td>' +
-							'<td>' + currentData[i][2] + '</td>' +
-							'<td>' + currentData[i][3] + '</td>' +
-							'<td>' + currentData[i][4] + '</td>' +
-							'<td>' + currentData[i][5] + '</td>' +							
+							'<td>' + currentData[i].CreateTime + '</td>' +
+							'<td>' + currentData[i].Amount + '</td>' +
+							'<td>' + currentData[i].GameType + '</td>' +
+							'<td>' + currentData[i].TypeText + '</td>' +
+							'<td>' + currentData[i].StatusText + '</td>' +
 						'</tr>';
-			}else{
+			} else {
 				dom +=	'<tr class="even">' +
-							'<td>' + currentData[i][0] + '</td>' +
-							'<td>' + currentData[i][1] + '</td>' +
-							'<td>' + currentData[i][2] + '</td>' +
-							'<td>' + currentData[i][3] + '</td>' +
-							'<td>' + currentData[i][4] + '</td>' +
-							'<td>' + currentData[i][5] + '</td>' +
+							'<td>' + currentData[i].CreateTime + '</td>' +
+							'<td>' + currentData[i].Amount + '</td>' +
+							'<td>' + currentData[i].GameType + '</td>' +
+							'<td>' + currentData[i].TypeText + '</td>' +
+							'<td>' + currentData[i].StatusText + '</td>' +
 						'</tr>';
 			}
 		}
 
-		return dom;
-	}
+		this.zone.find('.table-zone tbody').html(dom);
+	};
+
+	MoneyTransferRecord.prototype.setDatetime = function () {
+		var li       = this.zone.find('.fast-date .selected');
+		var interval = parseInt(li.attr('data-value'));
+		var endDay   = new Date();
+		var beginDay = Util.getIntervalDate(endDay, interval);
+
+		beginDay = beginDay.formatDate() + ' 00:00';
+        endDay   = endDay.formatDate() + ' 23:59';
+        this.zone.find('.starttime').datetimepicker({value: beginDay});
+        this.zone.find('.endtime').datetimepicker({value: endDay});
+	};
 
 	MoneyTransferRecord.prototype.bindData = function(pageIndex){
 		var dom = this.queryData(pageIndex);
 		this.zone.find('.table-zone  table > tbody').html(dom);
-	}
+	};
 
 	MoneyTransferRecord.prototype.bindEvents = function () {
-		var today = new Date();
-		var that  = this;
 		var fastDateUl;
+		var that     = this;
+		var endDay   = new Date();
+		var beginDay = Util.getIntervalDate(endDay, 0);
 
 		this.zone    = $('.money-transfer-record');
 		fastDateUl   = this.zone.find('.fast-date'); 
 
+		beginDay = beginDay.formatDate() + ' 00:00';
+        endDay   = endDay.formatDate() + ' 23:59';
+        this.zone.find('.starttime').datetimepicker({value: beginDay});
+        this.zone.find('.endtime').datetimepicker({value: endDay});
+
         fastDateUl.delegate('li', 'click', function () {
-        	fastDateUl.children('li').removeClass('selected');
-        	$(this).addClass('selected');
+			fastDateUl.children('li').removeClass('selected');
+	        $(this).addClass('selected');
+        	that.setDatetime();
         });
 
-        today = today.formatDate();
-        this.zone.find('.starttime').datetimepicker({value: today + ' 00:00', lang: 'en'});
-        this.zone.find('.endtime').datetimepicker({value: today + ' 23:59', lang: 'en'});
+        this.zone.find('#money-transfer-record-button').click(function () {
+        	that.queryData(0, true);
+        });
 
 		this.selectFrom.bindEvents();
 		this.selectTo.bindEvents();
 		this.pager.bindEvents();
+		this.createLoader();
 	};
 
 	window.MoneyTransferRecord = MoneyTransferRecord;
