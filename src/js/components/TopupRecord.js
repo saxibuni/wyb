@@ -85,7 +85,7 @@
 							'<table>' +
 								'<thead><tr>' + 
 									'<th>日期</th><th>订单号</th><th>充值类型</th><th>充值金额</th><th>状态</th>' +
-								'</tr></tobdy>' +
+								'</tr></thead>' +
 								'<tbody>' +
 								'</tobdy>' +
  							'</table>' +

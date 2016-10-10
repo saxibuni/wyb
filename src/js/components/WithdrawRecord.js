@@ -59,7 +59,7 @@
 									'<th>行政扣款</th>' +
 									'<th>转账手续费</th>' +
 									'<th>状态</th>' +
-								'</tr></tobdy>' +
+								'</tr></thead>' +
 								'<tbody>' +
 								'</tobdy>' +
  							'</table>' +

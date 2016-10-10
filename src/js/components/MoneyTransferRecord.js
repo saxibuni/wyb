@@ -84,7 +84,7 @@
 									'<th>游戏平台</th>' +
 									'<th>类别</th>' +
 									'<th>状态</th>' +
-								'</tr></tobdy>' +
+								'</tr></thead>' +
 								'<tbody>' +
 								'</tobdy>' +
  							'</table>' +
