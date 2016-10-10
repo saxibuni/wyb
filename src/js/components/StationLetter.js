@@ -100,7 +100,7 @@ $(function(){
 
         $.ajax({
             type: 'GET',
-            url: app.urls.queryStationLetter + params,
+            url: app.urls.getStationLetters + params,
             dataType: 'json',
             timeout: app.timeout,
             xhrFields: {
