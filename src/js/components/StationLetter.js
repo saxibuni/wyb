@@ -14,90 +14,9 @@ $(function(){
 			height: 25			
 		});
 
-		this.stationLetterData = [
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11'],
-			[true, '2016-08-01奥运会活动开启，敬请关注','2016-09-09&nbsp;11:11:11']						
-		];
-
 		this.pager = new Pager({
 			id: 'station-letter-pager',
-			callback: this.bindData.bind(this),
-			totalCount: this.stationLetterData.length
+			callback: this.bindData.bind(this)
 		});
 
 		temp = '<div class="station-letter znx-info-action">' +
@@ -113,10 +32,10 @@ $(function(){
 								this.button.getDom() +
 
 								'<ul class="fast-date">' +
-									'<li class="selected"><span>今日</span></li>' +
-									'<li><span>昨日</span></li>' +
-									'<li><span>3日</span></li>' +
-									'<li><span>7日</span></li>' +
+									'<li class="selected" data-value="0"><span>今日</span></li>' +
+									'<li data-value="-1"><span>昨日</span></li>' +
+									'<li data-value="-3"><span>3日</span></li>' +
+									'<li data-value="-7"><span>7日</span></li>' +
 								'</ul>' +
 
 								'<div class="clear"></div>' +
@@ -127,45 +46,9 @@ $(function(){
 						'<div class="table-zone">' +
 							'<table>' +
 								'<thead><tr>' +
-									'<th colspan="2">通知内容</th><th>时间</th>' +
+									'<th>通知内容</th><th>时间</th>' +
 								'</tr><thead>' +
 								'<tbody>' +
-									// '<tr>' +
-									// 	'<td><input type="checkbox" checked="checked" /></td>' +
-									// 	'<td><p>2016-08-01奥运会活动开启，敬请关注</p></td>' +
-									// 	'<td>2016-09-09&nbsp;11:11:11</td>' +
-									// '</tr>' +
-
-									// '<tr class="even">' +
-									// 	'<td><input type="checkbox" checked="checked" /></td>' +
-									// 	'<td><p>2016-08-01奥运会活动开启，敬请关注</p></td>' +
-									// 	'<td>2016-09-09&nbsp;11:11:11</td>' +
-									// '</tr>' +
-
-									// 	'<tr>' +
-									// 	'<td><input type="checkbox" checked="checked" /></td>' +
-									// 	'<td><p>2016-08-01奥运会活动开启，敬请关注</p></td>' +
-									// 	'<td>2016-09-09&nbsp;11:11:11</td>' +
-									// '</tr>' +
-
-									// '<tr class="even">' +
-									// 	'<td><input type="checkbox" checked="checked" /></td>' +
-									// 	'<td><p>2016-08-01奥运会活动开启，敬请关注</p></td>' +
-									// 	'<td>2016-09-09&nbsp;11:11:11</td>' +
-									// '</tr>' +
-
-									// '<tr>' +
-									// 	'<td><input type="checkbox" checked="checked" /></td>' +
-									// 	'<td><p>2016-08-01奥运会活动开启，敬请关注</p></td>' +
-									// 	'<td>2016-09-09&nbsp;11:11:11</td>' +
-									// '</tr>' +
-
-									// '<tr class="even">' +
-									// 	'<td><input type="checkbox" checked="checked" /></td>' +
-									// 	'<td><p>2016-08-01奥运会活动开启，敬请关注</p></td>' +
-									// 	'<td>2016-09-09&nbsp;11:11:11</td>' +
-									// '</tr>' +
-									this.queryData(0) +
 								'</tbody>' +
 							'</table>' + 
 
@@ -185,96 +68,127 @@ $(function(){
 
 	StationLetter.prototype.show = function() {
 		this.zone.show();
-	}
+		this.queryData(0, true);
+	};
 
 	StationLetter.prototype.hide = function (){
 		this.zone.hide();
-	}
-
-	StationLetter.prototype.queryData = function(pageIndex){
-		var i;
-		var callback;
-		var that = this;
-		var beginTime = '';
-		var endTime = '';
-		var opt  = {
-			url: app.urls.getStationLetters,
-			data: {
-				beginTime: beginTime,
-				endTime: endTime,
-				status: '',
-				pageIndex: pageIndex,
-				pageSize: 10
-			}
-		};
-
-		callback = function (data) {
-            if (data && data.StatusCode) {
-                alert(data.Message);
-                return;
-            }
-
-            that.setData(data);
-		};
-
-		Service.get(opt, callback);
 	};
 
-	StationLetter.prototype.setData = function(pageIndex){
+    StationLetter.prototype.createLoader = function() {
+        var wrapper1 = this.zone.find('.table-zone tbody')[0];
+
+        this.loader1 = new Loader(wrapper1, {
+        	top: '84%',
+        	color: '#000'
+        });
+    };
+
+	StationLetter.prototype.queryData = function(pageIndex, firstTime) {
+		var params    = '';
+		var that      = this;
+		var starttime = this.zone.find('.starttime').val();
+		var endtime   = this.zone.find('.endtime').val();
+		
+		params += 	'beginTime=' + starttime +
+					'&endTime=' + endtime +
+					'&pageIndex=' + pageIndex +
+					'&pageSize=10' +
+					'&status=';
+
+		this.loader1.play();
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.queryStationLetter + params,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	that.loader1.stop();
+        	that.setData(json);
+        	if (firstTime) {
+        		that.pager.setTotal(json.count);
+        	}
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	StationLetter.prototype.setData = function(data){
 		var dom = '';
 		var i = 0;
-		var currentData = [];
-
-		currentData = this.stationLetterData.filter(function(item, index){
-			return index >= pageIndex * 10 && index < (pageIndex + 1) * 10;
-		});
+		var currentData = data.list;
 
 		for(i = 0; i < currentData.length; i++){
 			if (i % 2 == 0) {
 				dom +=	'<tr class="odd">' +
-							'<td><input type="checkbox" checked="checked" /></td>' +
-							'<td><p>' + currentData[i][1] + '</p></td>' +
-							'<td>' + currentData[i][2] + '</td>' +							
+							'<td>' + currentData[i].Message + '</td>' +
+							'<td>' + currentData[i].SendTime + '</td>' +
 						'</tr>';
-			}else{
+			} else {
 				dom +=	'<tr class="even">' +
-							'<td><input type="checkbox" checked="checked" /></td>' +
-							'<td><p>' + currentData[i][1] + '</p></td>' +
-							'<td>' + currentData[i][2] + '</td>' +		
+							'<td>' + currentData[i].Message + '</td>' +
+							'<td>' + currentData[i].SendTime + '</td>' +
 						'</tr>';
 			}
 		}
 
-		return dom;
-	}
+		this.zone.find('.table-zone tbody').html(dom);
+	};
 
-	StationLetter.prototype.bindData = function(pageIndex){
+	StationLetter.prototype.bindData = function(pageIndex) {
 		var dom = this.queryData(pageIndex);
 		this.zone.find('.table-zone  table > tbody').html(dom);
-	}
+	};
 
-	StationLetter.prototype.bindEvents = function(){
-		var today = new Date();
-		var that = this;
+	StationLetter.prototype.setDatetime = function () {
+		var li       = this.zone.find('.fast-date .selected');
+		var interval = parseInt(li.attr('data-value'));
+		var endDay   = new Date();
+		var beginDay = Util.getIntervalDate(endDay, interval);
+
+		beginDay = beginDay.formatDate() + ' 00:00';
+        endDay   = endDay.formatDate() + '23:59';
+        this.zone.find('.starttime').datetimepicker({value: beginDay});
+        this.zone.find('.endtime').datetimepicker({value: endDay});
+	};
+
+	StationLetter.prototype.bindEvents = function () {
 		var fastDateUl;
+		var that     = this;
+		var endDay   = new Date();
+		var beginDay = Util.getIntervalDate(endDay, 0);
 
-		this.zone = $('.station-letter');
+		this.zone    = $('.station-letter');
 		fastDateUl   = this.zone.find('.fast-date'); 
 
-        today = today.formatDate();
-
-        this.zone.find('.starttime').datetimepicker({value: today + ' 00:00', lang: 'en'});
-        this.zone.find('.endtime').datetimepicker({value: today + ' 23:59', lang: 'en'});
-		
-        fastDateUl.delegate('li', 'click', function () {
-        	fastDateUl.children('li').removeClass('selected');
-        	$(this).addClass('selected');
+		beginDay = beginDay.formatDate() + ' 00:00';;
+        endDay   = endDay.formatDate() + '23:59';
+        this.zone.find('.starttime').datetimepicker({
+        	value: beginDay,
+        	timepicker: false
         });
-        
-		this.button.bindEvents();
-		this.pager.bindEvents();
-	}
+        this.zone.find('.endtime').datetimepicker({
+        	value: endDay,
+        	timepicker: false
+        });
 
+        fastDateUl.delegate('li', 'click', function () {
+			fastDateUl.children('li').removeClass('selected');
+	        $(this).addClass('selected');
+        	that.setDatetime();
+        });
+
+        this.zone.find('#station-letter-button').click(function () {
+        	that.queryData(0, true);
+        });
+
+		this.pager.bindEvents();
+		this.createLoader();
+	};
 
 	window.StationLetter = StationLetter;
 }());

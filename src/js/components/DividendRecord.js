@@ -78,11 +78,6 @@
 
 	DividendRecord.prototype.show = function(){
 		this.zone.show();
-
-		if (!this.firstTime) {
-			this.firstTime = true;
-		}
-
 		this.queryData(0, true);
 	};
 

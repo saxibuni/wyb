@@ -16,35 +16,10 @@ $(function(){
 
 		this.pager = new Pager({
 			id: 'announcement-pager',
-			pageSize: 5,
-			callback: this.bindData.bind(this),
-			totalCount: 0
+			callback: this.bindData.bind(this)
 		});
 
 		temp = '<div class="announcement-info znx-info-action">' +
-						// '<div class="bar-zone">' +
-						// 	'<div class="up">' +
-						// 		'<div class="time-section">' +
-						// 			'<span class="title">日期</span>' +
-						// 			'<input class="starttime" type="text"/>' +
-						// 			'<span class="divider">-</span>' +
-						// 			'<input class="endtime" type="text"/>' +
-						// 		'</div>' +
-
-						// 		this.button.getDom() +
-
-						// 		'<ul>' +
-						// 			'<li class="selected"><span>今日</span></li>' +
-						// 			'<li><span>昨日</span></li>' +
-						// 			'<li><span>3日</span></li>' +
-						// 			'<li><span>7日</span></li>' +
-						// 		'</ul>' +
-
-						// 		'<div class="clear"></div>' +
-						// 	'</div>' +
-
-						// '</div>' +
-
 						'<div class="table-zone">' +
 							'<table>' +
 								'<thead><tr>' +
@@ -70,14 +45,23 @@ $(function(){
 
 	Announcement.prototype.show = function() {
 		this.zone.show();
-		this.queryData(0);
+		this.queryData(0, true);
 	}
 
 	Announcement.prototype.hide = function (){
 		this.zone.hide();
 	}
 
-	Announcement.prototype.queryData = function(pageIndex){
+    Announcement.prototype.createLoader = function() {
+        var wrapper1 = this.zone.find('.table-zone tbody')[0];
+
+        this.loader1 = new Loader(wrapper1, {
+        	top: '84%',
+        	color: '#000'
+        });
+    };
+
+	Announcement.prototype.queryData = function(pageIndex, firstTime) {
 		var i;
 		var callback;
 		var that = this;
@@ -89,23 +73,26 @@ $(function(){
 			}
 		};
 
-		callback = function (data) {
-            if (data && data.StatusCode) {
-                alert(data.Message);
+		callback = function (json) {
+            if (json && json.StatusCode) {
+                alert(json.Message);
                 return;
             }
 
-            that.announcementData = data.list;
-            that.setData();
+            that.setData(json.list);
+
+        	if (firstTime) {
+        		that.pager.setTotal(json.count);
+        	}
 		};
 
 		Service.get(opt, callback);
 	};
 
-	Announcement.prototype.setData = function(){
+	Announcement.prototype.setData = function(data){
 		var dom = '';
 		var i = 0;
-		var currentData = this.announcementData;
+		var currentData = data;
 
 		for(i = 0; i < currentData.length; i++){
 			if (i % 2 == 0) {
@@ -117,7 +104,7 @@ $(function(){
 			}else{
 				dom +=	'<tr class="even">' +
 							'<td><input type="checkbox" checked="checked" /></td>' +
-							'<td><p>' + currentData[i].Content_RemoveHtml + '</p></td>' +
+							'<td data-content="' + currentData[i].Content + '"><p>' + currentData[i].Content_RemoveHtml + '</p></td>' +
 							'<td>' + currentData[i].CreateTime + '</td>' +			
 						'</tr>';
 			}
@@ -126,24 +113,22 @@ $(function(){
 		this.zone.find('.table-zone  table > tbody').html(dom);
 	}
 
-	Announcement.prototype.bindData = function(pageIndex){
-		this.queryData(pageIndex);
-	}
+	Announcement.prototype.bindData = function(pageIndex) {
+		var dom = this.queryData(pageIndex);
+		this.zone.find('.table-zone  table > tbody').html(dom);
+	};
 
-	Announcement.prototype.bindEvents = function(){
-		var today = new Date();
-		var that = this;
+	Announcement.prototype.bindEvents = function () {
+		var that     = this;
 
-		this.zone = $('.announcement-info');
+		this.zone    = $('.announcement-info');
+        this.zone.find('#announcement-info-button').click(function () {
+        	that.queryData(0, true);
+        });
 
-        today = today.formatDate();
-
-        this.zone.find('.starttime').datetimepicker({value: today + ' 00:00', lang: 'en'});
-        this.zone.find('.endtime').datetimepicker({value: today + ' 23:59', lang: 'en'});
-		this.button.bindEvents();
 		this.pager.bindEvents();
-	}
-
+		this.createLoader();
+	};
 
 	window.Announcement = Announcement;
 }());

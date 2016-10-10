@@ -96,21 +96,16 @@
 				}
 
 				td:nth-child(1){
-					width: 10%;
+					cursor: pointer;
+					text-align: left;
+					padding-left: 10%;
 				}
+
 				td:nth-child(2){
-					width: 70%;
 					color: #424242;
 					text-align: left;
 					font-weight: bold;
-
-					p{
-						padding: 5px;
-					}
-				}
-				td:nth-child(3){
-					width: 20%;
-					color: #424242;
+					text-align: center;
 				}
 			}
 		}
