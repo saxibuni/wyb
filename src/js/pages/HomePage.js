@@ -254,7 +254,7 @@
 			base += gap;
 			base = base.toFixed(2);
 			jackpot.text(base);
-		}, 500);
+		}, 1000);
 	};
 
 	HomePage.prototype.showSliders = function () {

@@ -331,7 +331,7 @@
 				marqueenUl.stop();
 				marqueenUl.animate({'top': top}, 0);
 			} else {
-				marqueenUl.animate({'top': (top + 'px')}, 500);
+				marqueenUl.animate({'top': (top + 'px')}, 1000);
 				marqueenLi1Row2 = $(that.zone.find('.marqueen-li1 .row')[1]);
 				marqueenLi1Row2.children('.marqueen-li1-game').text(game);
 				marqueenLi1Row2.children('.marqueen-li1-win').text(win);
@@ -463,8 +463,8 @@
 		var jackpotSum = this.zone.find('.top-right-module .jackpot-value');
 		var jackpots   = this.zone.find('.jackpots-basevalue');
 		var that       = this;
-		var sumGap     = 35.57;
-		var singleGap  = 1.23;
+		var sumGap     = 1.37;
+		var singleGap  = 1.11;
 
 		this.sumInterval = setInterval(function () {
 			for (i = 0; i < jackpots.length; i++) {
@@ -478,7 +478,7 @@
 			base += sumGap;
 			base = base.toFixed(2);
 			jackpotSum.text(base);
-		}, 500);
+		}, 1000);
 	};
 
 	/*
@@ -544,8 +544,8 @@
     EEntertainment.prototype.getFavoriteGameIds = function () {
 		var callback;
 		var platform  = this.zone.find('.middle-module li.selected').attr('data-type');
-		var that      =  this;
-		var opt       =  {
+		var that      = this;
+		var opt       = {
 			url: app.urls.getFavoriteGameIds,
 			data: {
 				platform: platform || ''
@@ -553,11 +553,13 @@
 		};
 
 		callback = function (data) {
-			if (data.StatusCode && data.StatusCode != 0 && data.Message == '未登录') {
-				that.favoriteGameIds[platform] = [];
-			} else {
-				alert(data.Message);
-				return;
+			if (data.StatusCode && data.StatusCode != 0) {
+				if (data.Message == '未登录') {
+					that.favoriteGameIds[platform] = [];
+				} else {
+					alert(data.Message);
+					return;
+				}
 			}
 
 			if (data.Data) {

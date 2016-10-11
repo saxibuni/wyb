@@ -107,8 +107,12 @@ $(function(){
 
 	PersonalCenter.prototype.show = function() {
 		this.showPersonalCenterOverlay();
-		this.getCenterWalletCash();
-		this.getAllPlatforms();
+
+		if (!this.firstTime) {
+			this.getCenterWalletCash();
+			this.getAllPlatforms();
+			this.firstTime = true;
+		}
 	};
 
 	PersonalCenter.prototype.hide = function() {
@@ -330,7 +334,7 @@ $(function(){
         	platform = $(this).parents('.wallet').attr('data-platform');
 
         	if (platform != 'center') {
-        		that.getPlatformBalance();
+        		that.getPlatformBalance(platform);
         	} else {
         		that.getCenterWalletCash();
         	}
