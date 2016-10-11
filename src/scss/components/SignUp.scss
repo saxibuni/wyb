@@ -9,57 +9,38 @@
 		top: 50%;
 
 		.dialog {
-			@include dialog(320px, 700px);
+			@include dialog(420px, 650px);
 
-			background-color: #2F2F2C;
+			background-color: $theme-background-color;
 			font-size: 14px;
 			padding: 0 20px;
 			border-radius: 0;
 
 			.text {
-				color: #666666;
-				height: 25px;
-				line-height: 25px;
-				text-align: left;
-			}
-
-			.input-outer {
-				border: 1px solid #555555;
+				display: inline-block;
+				width: 60px;
+				color: $theme-font-color;
 				height: 30px;
 				line-height: 30px;
-				padding: 0 10px;
-				width: 280px;
+				text-align: left;
+				vertical-align: top;
+			}
 
-				input {
-					background-color: transparent;
-					border: 0;
-					color: #FFF;
-					display: inline-block;
-					float: left;
-					height: 28px;
-					line-height: 28px;
-					width: 90%;
-				}
+			.star {
+				display: inline-block;
+				width: 20px;
+				color: #F00;
+				height: 35px;
+				line-height: 35px;
+				text-align: center;
+				vertical-align: top;
+			}
 
-				.pass {
-					display: none;
-					float: right;
-					position: relative;
-					height: 15px;
-					width: 15px;
-					top: 7px;
-					right: 0;
-				}
-
-				.warning {
-					display: none;
-					float: right;
-					position: relative;
-					height: 15px;
-					width: 15px;
-					top: 7px;
-					right: 0;
-				}
+			.row {
+				height: 50px;
+				margin-top: 5px;
+				width: 100%;
+				text-align: left;
 			}
 
 			.row1 {
@@ -71,7 +52,7 @@
 				.logo {
 				    width: 70px;
 				    position: relative;
-				    top: 30px;
+				    top: 20px;
 				}
 				
 				.close {
@@ -80,82 +61,35 @@
 					right: -5px;
 					top: 0px;
 					font-size: 25px;
-					color: #999999;
+					color: #736981;
 				}
 			}
 
-			.row2 {
-				height: 50px;
-				width: 100%;
-			}
-
-			.row3 {
-				height: 50px;
-				margin-top: 15px;
-				width: 100%;
-			}
-
-			.row4 {
-				height: 30px;
-				margin-top: 30px;
-				width: 100%;
-			}
-
-			.row45 {
-				height: 50px;
-				margin-top: 15px;
-				width: 100%;
-			}
-
-			.row46 {
-				height: 50px;
-				margin-top: 15px;
-				width: 100%;
-			}
-
-			.row47 {
-				height: 50px;
-				margin-top: 15px;
-				width: 100%;
-			}
-
-			.row5 {
-				height: 50px;
-				margin-top: 15px;
-				width: 100%;
-			}
-
-			.row6 {
-				height: 80px;
-				width: 100%;
-				margin-top: 30px;
-
-				.verify-input-outer {
-					display: inline-block;
-					width: 133px;
+			.verify-row {
+				.verify-code {
+					height: 30px;
+    				margin-left: 20px;
 				}
 
-				img {
-				    height: 30px;
-				    margin-left: 20px;
-				    position: relative;
-				    bottom: 0;
-				}
-
-				span {
+				.change-verify-code {
+					color: $theme-font-color;
 					cursor: pointer;
-					display: inline-block;
-				    height: 35px;
-				    line-height: 35px;
-				    margin-left: 20px;
-					position: relative;
-    				bottom: 11px;
-					color: #555555;
+					margin-left: 20px;
+					height: 30px;
+					line-height: 30px;
+					vertical-align: top;
 
 					&:hover {
-						color: #DCAD4B;
+						color: #FFF;
 					}
 				}
+			}
+
+			.agree-row {
+				height: 30px;
+				text-align: left;
+				margin-left: 60px;
+				margin-top: 0;
 
 				.agree {
 					label {
@@ -171,18 +105,21 @@
 				}
 			}
 
-			.row7 {
+			.button-row {
 				height: 60px;
 				width: 100%;
+				text-align: right;
+				margin-top: 10px;
 
 				.button {
-					background-color: #4B4B42;
-					color: #222222;
+					background-color: #3B3243;
+					color: #180F20;
 					cursor: pointer;
-					width: 280px;
+					width: 300px;
 					height: 35px;
 					line-height: 35px;
 					text-align: center;
+					margin-right: 20px;
 
 					&:hover {
 						color: #DCAD4B;
@@ -190,7 +127,7 @@
 				}
 
 				.active {
-					background-color: #DCAD4B;
+					background-color: #257C51;
 					color: #FFF;
 				}
 				
@@ -201,6 +138,7 @@
 					height: 20px;
 					line-height: 20px;
 					text-align: right;
+					margin-top: 5px;
 
 					&:hover {
 						color: #DCAD4B;

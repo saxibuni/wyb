@@ -7,6 +7,77 @@
 	SignUp.prototype = new IMDialog();
 
 	SignUp.prototype.initDom = function () {
+		var inputWidth  = 300;
+		var inputHeihgt = 30;
+
+		this.userNameInput = new Input({
+			id: 'sign-up-username-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.usernameReg,
+			placeholder: '用户名由3-12位数字和字母组成'
+		});
+
+		this.passwordInput = new Input({
+			id: 'sign-up-password-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.passwordReg,
+			placeholder: '密码由6-12位数字和字母组成，不含字符',
+			type: 'password'
+		});
+
+		this.comfirmPasswordInput = new Input({
+			id: 'sign-up-comfirm-password-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.passwordReg,
+			placeholder: '请再次输入您的密码',
+			type: 'password'
+		});
+
+		this.emailInput = new Input({
+			id: 'sign-up-email-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.emailReg,
+			placeholder: '请输入您的邮箱地址'
+		});
+
+		this.phoneInput = new Input({
+			id: 'sign-up-phone-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.phoneNumberReg,
+			placeholder: '请输入您的手机号码'
+		});
+
+		this.trueNameInput = new Input({
+			id: 'sign-truename-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.chineseNameReg,
+			placeholder: '请输入您的真实姓名'
+		});
+
+		this.popularInput = new Input({
+			id: 'sign-popular-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.chineseNameReg,
+			placeholder: '请输入推广码，如无请留空'
+		});
+
+		this.verifyInput = new Input({
+			id: 'sign-vefiry-input',
+			width: 155,
+			height: 30,
+			reg: app.chineseNameReg,
+			placeholder: '请输入验证码'
+		});
+
+		var filler = '&nbsp;&nbsp;&nbsp;&nbsp;';
+
 		var temp =	'<div class="sign-up">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
@@ -15,89 +86,66 @@
 									'<div class="close">×</div>' +
 								'</div>' +
 
-								'<div class="row2">' +
+								'<div class="row">' +
 									'<div class="text">用户名</div>' +
-									'<div class="input-outer">' +
-										'<input type="text" placeholder="用户名由3-12位数字和字母组成">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+									this.userNameInput.getDom() +
+									'<div class="star">*</div>' +
 								'</div>' +
 
-								'<div class="row3">' +
-									'<div class="text">密码</div>' +
-									'<div class="input-outer">' +
-										'<input type="password" placeholder="密码由6-12位数字和字母组成，不含字符">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+								'<div class="row">' +
+									'<div class="text">密' + filler + '码</div>' +
+									this.passwordInput.getDom() +
+									'<div class="star">*</div>' +
 								'</div>' +
 
-								'<div class="row4">' +
-									'<div class="input-outer">' +
-										'<input type="password" placeholder="再次输入密码">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+								'<div class="row">' +
+									'<div class="text">&nbsp;</div>' +
+									this.comfirmPasswordInput.getDom() +
+									'<div class="star">*</div>' +
 								'</div>' +
 
-								'<div class="row45">' +
-									'<div class="text">真实姓名</div>' +
-									'<div class="input-outer">' +
-										'<input type="text" placeholder="请输入您的真实姓名">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+								'<div class="row">' +
+									'<div class="text">邮' + filler + '箱</div>' +
+									this.emailInput.getDom() +
+									'<div class="star">*</div>' +
 								'</div>' +
 
-								'<div class="row46">' +
-									'<div class="text">电话号码</div>' +
-									'<div class="input-outer">' +
-										'<input type="text" placeholder="请输入您的手机号码">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+								'<div class="row">' +
+									'<div class="text">手机号</div>' +
+									this.phoneInput.getDom() +
+									'<div class="star">*</div>' +
 								'</div>' +
 
-								'<div class="row47">' +
-									'<div class="text">电子邮箱</div>' +
-									'<div class="input-outer">' +
-										'<input type="text" placeholder="请输入您的邮箱地址">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+								'<div class="row">' +
+									'<div class="text">姓' + filler + '名</div>' +
+									this.trueNameInput.getDom() +
+									'<div class="star">*</div>' +
 								'</div>' +
 
-								'<div class="row5">' +
+								'<div class="row">' +
 									'<div class="text">推广码</div>' +
-									'<div class="input-outer">' +
-										'<input type="text" placeholder="请输入推广码，如无请留空">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+									this.popularInput.getDom() +
 								'</div>' +
 
-								'<div class="row6">' +
-									'<div class="input-outer verify-input-outer">' +
-										'<input type="text" placeholder="请输入验证码">' +
-									'</div>' +
+								'<div class="row verify-row">' +
+									'<div class="text">验证码</div>' +
+
+									this.verifyInput.getDom() +
+
 									'<img class="verify-code" src="' + app.urls.verifyImage + '">' +
+									
 									'<span class="change-verify-code">换一个</span>' +
+								'</div>' +
+
+								'<div class="row agree-row">' +
 									'<div class="agree">' +
 										'<input type="checkbox" id="remember-checkbox" checked="checked">' +
 										'<label for="remember-checkbox">我已届满合法博彩年龄，且同意各项开户条约</label>' +
 									'</div>' +
 								'</div>' +
 
-								'<div class="row7">' +
-									'<div class="button">' +
+								'<div class="row button-row">' +
+									'<div class="button register">' +
 										'快速注册' +
 									'</div>' +
 									'<div class="button-info signin-now">' +
@@ -109,6 +157,109 @@
 					'</div>' +
 
 					'<div class="overlay overlay3"></div>';
+
+		// var temp =	'<div class="sign-up">' +
+		// 				'<div class="dialog-wrapper">' +
+		// 					'<div class="dialog">' +
+		// 						'<div class="row1">' +
+		// 							'<img class="logo" src="../img/logo-sands-macao.png">' +
+		// 							'<div class="close">×</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row2">' +
+		// 							'<div class="text">用户名</div>' +
+		// 							'<div class="input-outer">' +
+		// 								'<input type="text" placeholder="用户名由3-12位数字和字母组成">' +
+		// 								'<img class="pass" src="../img/pass.png">' +
+		// 								'<img class="warning" src="../img/warning.png">' +
+		// 								'<div class="clear"></div>' +
+		// 							'</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row3">' +
+		// 							'<div class="text">密码</div>' +
+		// 							'<div class="input-outer">' +
+		// 								'<input type="password" placeholder="密码由6-12位数字和字母组成，不含字符">' +
+		// 								'<img class="pass" src="../img/pass.png">' +
+		// 								'<img class="warning" src="../img/warning.png">' +
+		// 								'<div class="clear"></div>' +
+		// 							'</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row4">' +
+		// 							'<div class="input-outer">' +
+		// 								'<input type="password" placeholder="再次输入密码">' +
+		// 								'<img class="pass" src="../img/pass.png">' +
+		// 								'<img class="warning" src="../img/warning.png">' +
+		// 								'<div class="clear"></div>' +
+		// 							'</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row45">' +
+		// 							'<div class="text">真实姓名</div>' +
+		// 							'<div class="input-outer">' +
+		// 								'<input type="text" placeholder="请输入您的真实姓名">' +
+		// 								'<img class="pass" src="../img/pass.png">' +
+		// 								'<img class="warning" src="../img/warning.png">' +
+		// 								'<div class="clear"></div>' +
+		// 							'</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row46">' +
+		// 							'<div class="text">电话号码</div>' +
+		// 							'<div class="input-outer">' +
+		// 								'<input type="text" placeholder="请输入您的手机号码">' +
+		// 								'<img class="pass" src="../img/pass.png">' +
+		// 								'<img class="warning" src="../img/warning.png">' +
+		// 								'<div class="clear"></div>' +
+		// 							'</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row47">' +
+		// 							'<div class="text">电子邮箱</div>' +
+		// 							'<div class="input-outer">' +
+		// 								'<input type="text" placeholder="请输入您的邮箱地址">' +
+		// 								'<img class="pass" src="../img/pass.png">' +
+		// 								'<img class="warning" src="../img/warning.png">' +
+		// 								'<div class="clear"></div>' +
+		// 							'</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row5">' +
+		// 							'<div class="text">推广码</div>' +
+		// 							'<div class="input-outer">' +
+		// 								'<input type="text" placeholder="请输入推广码，如无请留空">' +
+		// 								'<img class="pass" src="../img/pass.png">' +
+		// 								'<img class="warning" src="../img/warning.png">' +
+		// 								'<div class="clear"></div>' +
+		// 							'</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row6">' +
+		// 							'<div class="input-outer verify-input-outer">' +
+		// 								'<input type="text" placeholder="请输入验证码">' +
+		// 							'</div>' +
+		// 							'<img class="verify-code" src="' + app.urls.verifyImage + '">' +
+		// 							'<span class="change-verify-code">换一个</span>' +
+		// 							'<div class="agree">' +
+		// 								'<input type="checkbox" id="remember-checkbox" checked="checked">' +
+		// 								'<label for="remember-checkbox">我已届满合法博彩年龄，且同意各项开户条约</label>' +
+		// 							'</div>' +
+		// 						'</div>' +
+
+		// 						'<div class="row7">' +
+		// 							'<div class="button">' +
+		// 								'快速注册' +
+		// 							'</div>' +
+		// 							'<div class="button-info signin-now">' +
+		// 								'已有账户？立即登录' +
+		// 							'</div>' +
+		// 						'</div>' +
+		// 					'</div>' +
+		// 				'</div>' +
+		// 			'</div>' +
+
+		// 			'<div class="overlay overlay3"></div>';
 		
 		this.el  = temp;
 	};
@@ -126,14 +277,18 @@
 	};
 
 	SignUp.prototype.checkInputPass = function () {
-		if (this.usernamePass && this.passwordPass && this.repeatPass
-			&& this.verifyPass && this.realNamePass && this.phoneNumberPass
-			&& this.emailPass) {
+		if (this.userNameInput.isPass() && 
+			this.passwordInput.isPass() &&
+			this.comfirmPasswordInput.isPass() &&
+			this.emailInput.isPass() &&
+			this.phoneInput.isPass() &&
+			this.trueNameInput.isPass() &&
+			this.verifyInput.isPass()) {
 
-			this.zone.find('.row7 .button').addClass('active');
+			this.zone.find('.register').addClass('active');
 			this.allPass = true;
 		} else {
-			this.zone.find('.row7 .button').removeClass('active');
+			this.zone.find('.register').removeClass('active');
 			this.allPass = false;
 		}
 	};
@@ -145,7 +300,7 @@
 
 	SignUp.prototype.commit = function () {
 		var that = this;
-		var url = app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.val();
+		var url = app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.getValue();
 
 		if (!this.allPass) {
 			return;
@@ -194,12 +349,12 @@
 		};
 
 		data = {
-			UserName: this.usernameInput.val(),
-			Password: this.passwordInput.val(),
-			TrueName: this.realNameInput.val(),
-			ExtendCode: this.popularizeInput.val() || '',
-			Phone: this.phoneNumberInput.val(),
-			Email: this.emailInput.val()
+			UserName: this.userNameInput.getValue(),
+			Password: this.passwordInput.getValue(),
+			TrueName: this.trueNameInput.getValue(),
+			ExtendCode: this.popularInput.getValue() || '',
+			Phone: this.phoneInput.getValue(),
+			Email: this.emailInput.getValue()
 		};
 
         $.ajax({
@@ -230,177 +385,11 @@
 	SignUp.prototype.bindEvents = function () {
 		var close;
 		var button;
-		var value;
-		var value2;
-		var usernameReg    = app.usernameReg;
-		var passwordReg    = app.passwordReg;
-		var repeatReg      = app.passwordReg;
-		var popularizeReg  = app.popularizeReg;
-		var realNameReg    = app.realNameReg;
-		var verifyReg      = app.verifyReg;
-		var phoneNumberReg = app.phoneNumberReg;
-		var emailReg       = app.emailReg;
-		var inputEvents    = 'input';
-		var that           = this;
+		var that  = this;
 
-		this.usernamePass   = false;
-		this.passwordPass   = false;
-		this.repeatPass     = false;
-		this.usernamePass   = false;
-		this.popularizePass = false;
-		this.realNamePass   = false;
-		this.allPass        = false;
-
-		this.zone             = $('.sign-up');
-		this.usernameInput    = this.zone.find('.row2 input:text');
-		this.passwordInput    = this.zone.find('.row3 input:password');
-		this.repeatInput      = this.zone.find('.row4 input:password');
-		this.realNameInput    = this.zone.find('.row45 input:text');
-		this.phoneNumberInput = this.zone.find('.row46 input:text');
-		this.emailInput       = this.zone.find('.row47 input:text');
-		this.popularizeInput  = this.zone.find('.row5 input:text');
-		this.verifyInput      = this.zone.find('.row6 input:text');
-		close                 = this.zone.find('.close');
-		button                = this.zone.find('.row7 .button');
-
-		this.usernameInput.bind(inputEvents, function () {
-			value = $(this).val();
-
-			if (!value.match(usernameReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.usernamePass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.usernamePass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.passwordInput.bind(inputEvents, function () {
-			value = $(this).val();
-
-			if (!value.match(passwordReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.passwordPass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.passwordPass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.repeatInput.bind(inputEvents, function () {
-			value  = $(this).val();
-
-			if (!value.match(repeatReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.repeatPass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.repeatPass = true;
-			}
-
-			that.checkInputPass();
-		}).blur(function () {
-			value  = that.passwordInput.val();
-			value2 = that.repeatInput.val();
-
-			if (value !== value2) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.repeatPass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.repeatPass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.verifyInput.bind(inputEvents, function () {
-			value = $(this).val();
-
-			if (!value.match(verifyReg)) {
-				that.verifyPass = false;
-			} else {
-				that.verifyPass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.popularizeInput.bind(inputEvents, function () {
-			value  = $(this).val();
-
-			if (!value.match(popularizeReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.popularizePass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.popularizePass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.realNameInput.bind(inputEvents, function () {
-			value  = $(this).val();
-
-			if (!value.match(realNameReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.realNamePass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.realNamePass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.phoneNumberInput.bind(inputEvents, function () {
-			value  = $(this).val();
-
-			if (!value.match(phoneNumberReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.phoneNumberPass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.phoneNumberPass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.emailInput.bind(inputEvents, function () {
-			value  = $(this).val();
-
-			if (!value.match(emailReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.emailPass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.emailPass = true;
-			}
-
-			that.checkInputPass();
-		});
+		this.zone = $('.sign-up');
+		close     = this.zone.find('.close');
+		button    = this.zone.find('.register');
 
 		close.click(function () {
 			that.hide();
@@ -430,6 +419,15 @@
 
 		this.bindOverlayEvents();
 		this.createLoader();
+
+		this.userNameInput.bindEvents(this.checkInputPass.bind(this));
+		this.passwordInput.bindEvents(this.checkInputPass.bind(this));
+		this.comfirmPasswordInput.bindEvents(this.checkInputPass.bind(this));
+		this.emailInput.bindEvents(this.checkInputPass.bind(this));
+		this.phoneInput.bindEvents(this.checkInputPass.bind(this));
+		this.trueNameInput.bindEvents(this.checkInputPass.bind(this));
+		this.popularInput.bindEvents(this.checkInputPass.bind(this));
+		this.verifyInput.bindEvents(this.checkInputPass.bind(this));
 	};
 
 	window.SignUp = SignUp;

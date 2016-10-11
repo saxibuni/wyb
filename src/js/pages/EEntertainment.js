@@ -286,7 +286,7 @@
 						'</div>';
 
 		row1.animate({'top': '-30px'});
-		row2.animate({'top': '0'}, 500, function () {
+		row2.animate({'top': '0'}, 1000, function () {
 			row1.remove();
 			wrapper.append(temp);
 		});

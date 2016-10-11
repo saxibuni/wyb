@@ -46,6 +46,7 @@
 		this.moneyReg            =  '^[0-9]+(.[0-9]{1,2})?$';
 		this.phoneNumberReg      =  '^[0-9]{11}$';
 		this.realNameReg         =  '';
+		this.chineseNameReg      =  '';
 
 		this.timeout     = 12000;
 		this.domain      = 'http://api.vebets.com/';
