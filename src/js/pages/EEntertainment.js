@@ -553,7 +553,9 @@
 		};
 
 		callback = function (data) {
-			if (data.StatusCode && data.StatusCode != 0) {
+			if (data.StatusCode && data.StatusCode != 0 && data.Message == '未登录') {
+				that.favoriteGameIds[platform] = [];
+			} else {
 				alert(data.Message);
 				return;
 			}
@@ -586,6 +588,7 @@
 		};
 
 		callback = function (data) {
+
 			if (data.StatusCode && data.StatusCode != 0) {
 				alert(data.Message);
 				return;

@@ -348,7 +348,6 @@ $(function(){
 		this.zone = $('.personal-center');
 		menuUl = this.zone.find('.tree > ul');
 		stick = this.zone.find('.stick');
-		
 
         menuUl.delegate('li','click',function(){
             index = $(this).index();
