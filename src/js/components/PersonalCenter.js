@@ -66,8 +66,8 @@ $(function(){
 										'<span class="zxqb">中心钱包</span>' +
 										'<span class="money money-type">¥  </span><span class="money balance">100,000,000.00</span><span class="money-unit">  CNY</span>' +
 										'<hr class="line">' +
-										'<a href="javascript:void(0);" class="btn turn-into">转出</a>' +
-										'<a href="javascript:void(0);" class="btn turn-out">转入</a>' +									
+										'<a href="javascript:void(0);" class="btn turn-out">转出</a>' +
+										'<a href="javascript:void(0);" class="btn turn-in">转入</a>' +									
 									'</div>' +
 
 									'<div class="nav-left"><span><img src="../img/left-n.png" /></span></div>' +
@@ -300,33 +300,35 @@ $(function(){
 		var swiper     = this.zone.find('.swiper');
 		var walletzone = this.zone.find('.wallet-zone');
 
-		this.zone.delegate('.nav-left','click',function(){
+		this.zone.delegate('.nav-left','click',function() {
 			if (pageIndex == 0) return;
 			pageIndex--;
 			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)');
 		});
 
-		this.zone.delegate('.nav-right','click',function(){
+		this.zone.delegate('.nav-right','click',function() {
 			if (pageIndex == pageCount - 1) return;
 			pageIndex++;
-			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)')
+			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)');
 		});
 
-		this.zone.find('.turn-into').click(function () {
+		this.zone.find('.turn-in').click(function () {
 			platform = $(this).parents('.wallet').attr('data-platform');
 			app.personCenterRouter(0, 1);
+    		//that.zz.toSelect.setValueById(platform);
 		});
 
 		this.zone.find('.turn-out').click(function () {
 			platform = $(this).parents('.wallet').attr('data-platform');
 			app.personCenterRouter(0, 1);
+			//that.zz.fromSelect.setValueById(platform);
 		});
 
         walletzone.delegate('.sub-wallet','mouseover',function() {
         	$(this).find('.transfer-layer').show();
         });
 
-        walletzone.delegate('.sub-wallet','mouseout',function(){
+        walletzone.delegate('.sub-wallet','mouseout',function() {
         	$(this).find('.transfer-layer').hide();
         });
 

@@ -85,8 +85,8 @@ gulp.task('prepare', ['clean'], function () {
 gulp.task('build', function () {
     gulp.src([
             'src/lib/js/jquery.min.js',
-            'src/lib/js/page.js',
-            //'src/lib/js/director.js',
+            //'src/lib/js/page.js',
+            'src/lib/js/director.js',
             'src/lib/js/jquery.datetimepicker.js',
             'src/lib/js/jquery.history.js',
             'src/lib/js/unslider-min.js',
@@ -125,7 +125,7 @@ gulp.task('build', function () {
         .pipe(cssmin())
         .pipe(gulp.dest('build/css/'));
 
-    gulp.src('src/html/app.html')
+    gulp.src('src/html/index.html')
         .pipe(htmlReplace({
             'css': '../css/app.css',
             'js': '../js/app.js'

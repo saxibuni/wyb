@@ -28,7 +28,6 @@
 		this.zone.append(this.el);
 		this.bindEvents();
 		this.initRegs();
-		//this.initRouter();
 	};
 	
 	app.prototype.initRegs = function () {
@@ -245,6 +244,9 @@
 	};
 
 	app.prototype.initRouter = function () {
+		var hash;
+		var page;
+		var pos;
 		var key;
 		var index;
 		var wrapper = this.zone.find('.main-wrapper');
@@ -262,8 +264,10 @@
 			'forgetPassword'    : {'className': ForgetPassword ,   'index': 0, 'cssClass': 'forget-password'}
 		};
 
+		var routes = {};
+
 		for (key in dict) {
-			page('/' + key, (function (pageName) {
+			routes['/' + key] =  (function (pageName) {
 				return function () {
 					that.zone.find('.page').hide();
 
@@ -289,10 +293,21 @@
 					that[pageName].show();
 					that.currentPage = pageName;
 				}
-			})(key));
+			})(key);
 		}
 
-		page();
+      	this.router = Router(routes);
+      	this.router.init();
+
+      	hash = window.location.hash;
+      	pos  = hash.indexOf('#/');
+      	page = hash.substring(pos + 2);
+
+      	if (pos == -1) {
+      		this.router.setRoute('/homePage');
+      	} else {
+      		this.router.setRoute(page);
+      	}
 	};
 
 	app.prototype.showSignInDialog = function () {
@@ -339,6 +354,5 @@
 	};
 
 	window.app = new app();
-	window.app.goTo('homePage');
-	//page('/homePage');
+	window.app.initRouter();
 })();

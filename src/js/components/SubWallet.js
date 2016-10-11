@@ -12,8 +12,8 @@ $(function(){
 						'<span class="balance">' + this.opt.balance + '</span>' +
 						'<div class="transfer-layer">' +
 							'<img src="../img/refresh-h.png" class="refresh" />' +
-							'<a href="javascript:void(0);" class="btn turn-into">转出</a>' +
-							'<a href="javascript:void(0);" class="btn turn-out">转入</a>' +									
+							'<a href="javascript:void(0);" class="btn turn-out">转出</a>' +
+							'<a href="javascript:void(0);" class="btn turn-in">转入</a>' +									
 						'</div>' +
 					'</div>';
 		this.el = temp;

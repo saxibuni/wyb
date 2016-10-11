@@ -434,7 +434,7 @@
 		});
 
 		langHoverItem.click(function () {
-			if (langFloatWindow.css('top') === '30px')  {
+			if (langFloatWindow.css('top') === '30px') {
 				langFloatWindow.css('top', '-300px');
 			} else {
 				langFloatWindow.css('top', '30px');
@@ -447,8 +447,8 @@
 			pageName = $(this).attr('data-value');
 			index    = $(this).index();
 			stick.css('left', index * 80 + 'px');
-			//page('/' + pageName);
-			app.goTo(pageName);
+			app.router.setRoute('/' + pageName);
+			//app.goTo(pageName);
 		});
 
 		grzxNav.click(function(){
