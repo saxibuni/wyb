@@ -635,7 +635,7 @@
 						'<p id="hover-layer" class="hover-layer-none">' +
 							'<button class="start-game">开始游戏</button>' +
 							'<br/>' +
-							'<button class="try-game">免费试玩</button>' +
+							(data[i].IsTry?'<button class="try-game">免费试玩</button>' : '') +
 						'</p>' +
 					'</li>';
 		}
