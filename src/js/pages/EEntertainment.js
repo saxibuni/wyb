@@ -801,7 +801,7 @@
 			that.isScroll   = false;
 			that.currenPage = 0;
 			that.stopAnimation();
-			that.getJackpotsGames($(this).attr('data-type'));
+			//that.getJackpotsGames($(this).attr('data-type'));
 			that.getFavoriteGameIds();
 		});
 
