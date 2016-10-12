@@ -7,6 +7,7 @@
 	SignUp.prototype = new IMDialog();
 
 	SignUp.prototype.initDom = function () {
+		var filler = '&nbsp;&nbsp;&nbsp;&nbsp;';
 		var inputWidth  = 300;
 		var inputHeihgt = 30;
 
@@ -69,14 +70,12 @@
 		});
 
 		this.verifyInput = new Input({
-			id: 'sign-vefiry-input',
+			id: 'sign-up-vefiry-input',
 			width: 155,
 			height: 30,
 			reg: app.chineseNameReg,
 			placeholder: '请输入验证码'
 		});
-
-		var filler = '&nbsp;&nbsp;&nbsp;&nbsp;';
 
 		var temp =	'<div class="sign-up">' +
 						'<div class="dialog-wrapper">' +
@@ -129,11 +128,8 @@
 
 								'<div class="row verify-row">' +
 									'<div class="text">验证码</div>' +
-
 									this.verifyInput.getDom() +
-
 									'<img class="verify-code" src="' + app.urls.verifyImage + '">' +
-									
 									'<span class="change-verify-code">换一个</span>' +
 								'</div>' +
 

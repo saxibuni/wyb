@@ -7,6 +7,35 @@
 	SignIn.prototype = new IMDialog();
 
 	SignIn.prototype.initDom = function () {
+		var filler = '&nbsp;&nbsp;&nbsp;&nbsp;';
+		var inputWidth  = 250;
+		var inputHeihgt = 30;
+
+		this.userNameInput = new Input({
+			id: 'sign-in-username-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.usernameReg,
+			placeholder: '请输入您的用户名'
+		});
+
+		this.passwordInput = new Input({
+			id: 'sign-in-password-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.passwordReg,
+			placeholder: '请输入您的密码',
+			type: 'password'
+		});
+
+		this.verifyInput = new Input({
+			id: 'sign-in-vefiry-input',
+			width: 115,
+			height: 30,
+			reg: app.chineseNameReg,
+			placeholder: '请输入验证码'
+		});
+
 		var temp =	'<div class="sign-in">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
@@ -15,36 +44,25 @@
 									'<div class="close">×</div>' +
 								'</div>' +
 
-								'<div class="row2">' +
+								'<div class="row">' +
 									'<div class="text">用户名</div>' +
-									'<div class="input-outer">' +
-										'<input type="text" placeholder="请输入您的用户名">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+									this.userNameInput.getDom() +
 								'</div>' +
 
-								'<div class="row3">' +
-									'<div class="text">密码</div>' +
-									'<div class="input-outer">' +
-										'<input type="password" placeholder="请输入您的密码">' +
-										'<img class="pass" src="../img/pass.png">' +
-										'<img class="warning" src="../img/warning.png">' +
-										'<div class="clear"></div>' +
-									'</div>' +
+								'<div class="row">' +
+									'<div class="text">密' + filler + '码</div>' +
+									this.passwordInput.getDom() +
 								'</div>' +
 
-								'<div class="row4">' +
-									'<div class="input-outer verify-input-outer">' +
-										'<input type="text" placeholder="请输入验证码">' +
-									'</div>' +
+								'<div class="row verify-row">' +
+									'<div class="text">验证码</div>' +
+									this.verifyInput.getDom() +
 									'<img class="verify-code" src="' + app.urls.verifyImage + '">' +
 									'<span class="change-verify-code">换一个</span>' +
 								'</div>' +
 
-								'<div class="row5">' +
-									'<div class="button">' +
+								'<div class="row button-row">' +
+									'<div class="button login">' +
 										'快速登录' +
 									'</div>' +
 									'<div class="button-info">' +
@@ -77,23 +95,25 @@
 	};
 
 	SignIn.prototype.checkInputPass = function () {
-		if (this.usernamePass && this.passwordPass && this.verifyPass) {
-			this.zone.find('.row5 .button').addClass('active');
+		if (this.userNameInput.isPass() && 
+			this.passwordInput.isPass() &&
+			this.verifyInput.isPass()) {
+
+			this.zone.find('.login').addClass('active');
 			this.allPass = true;
 		} else {
-			this.zone.find('.row5 .button').removeClass('active');
+			this.zone.find('.login').removeClass('active');
 			this.allPass = false;
 		}
 	};
 
     SignIn.prototype.createLoader = function() {
         var wrapper = this.zone.find('.dialog')[0];
-        this.loader = new Loader(wrapper);
     };
 
 	SignIn.prototype.commit = function () {
 		var that = this;
-		var url  = app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.val();
+		var url  = app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.getValue();
 
 		if (!this.allPass) {
 			return;
@@ -128,8 +148,8 @@
 	SignIn.prototype.login = function () {
 		var data;
 		var callback;
-		var userName = this.usernameInput.val();
-		var password = this.passwordInput.val();
+		var userName = this.usernameInput.getValue();
+		var password = this.passwordInput.getValue();
 		var that     = this;
 
 		callback = function (json) {
@@ -181,72 +201,22 @@
         });
 	};
 
+	SignIn.prototype.setDefaultUserName = function () {
+		if (localStorage && localStorage.getItem('*userName')) {
+			this.userNameInput.setValue(localStorage.getItem('*userName'));
+			this.usernamePass = true;
+		}
+	};
+
 	SignIn.prototype.bindEvents = function () {
 		var close;
 		var button;
 		var value;
-		var value2;
-		var usernameReg   = app.usernameReg;
-		var passwordReg   = app.passwordReg;
-		var verifyReg     = app.verifyReg;
-		var inputEvents   = 'input';
-		var that          = this;
+		var that   = this;
 
-		this.usernamePass   = false;
-		this.passwordPass   = false;
-		this.verifyPass     = false;
-		this.allPass        = false;
-
-		this.zone       = $('.sign-in');
-		this.usernameInput   = this.zone.find('.row2 input:text');
-		this.passwordInput   = this.zone.find('.row3 input:password');
-		this.verifyInput     = this.zone.find('.row4 input:text');
-		close           = this.zone.find('.close');
-		button          = this.zone.find('.row5 .button');
-
-		this.usernameInput.bind(inputEvents, function () {
-			value = $(this).val();
-
-			if (!value.match(usernameReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.usernamePass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.usernamePass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.passwordInput.bind(inputEvents, function () {
-			value = $(this).val();
-
-			if (!value.match(passwordReg)) {
-				$(this).siblings('.warning').show();
-				$(this).siblings('.pass').hide();
-				that.passwordPass = false;
-			} else {
-				$(this).siblings('.warning').hide();
-				$(this).siblings('.pass').show();
-				that.passwordPass = true;
-			}
-
-			that.checkInputPass();
-		});
-
-		this.verifyInput.bind(inputEvents, function () {
-			value = $(this).val();
-
-			if (!value.match(verifyReg)) {
-				that.verifyPass = false;
-			} else {
-				that.verifyPass = true;
-			}
-
-			that.checkInputPass();
-		});
+		this.zone  = $('.sign-in');
+		close      = this.zone.find('.close');
+		button     = this.zone.find('.row5 .button');
 
 		close.click(function () {
 			that.hide();
@@ -287,11 +257,10 @@
 
 		this.bindOverlayEvents();
 		this.createLoader();
-
-		if (localStorage && localStorage.getItem('*userName')) {
-			this.usernameInput.val(localStorage.getItem('*userName'));
-			that.usernamePass = true;
-		}
+		this.userNameInput.bindEvents(this.checkInputPass.bind(this));
+		this.passwordInput.bindEvents(this.checkInputPass.bind(this));
+		this.verifyInput.bindEvents(this.checkInputPass.bind(this));
+		this.setDefaultUserName();
 	};
 
 	window.SignIn = SignIn;

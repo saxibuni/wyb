@@ -10,7 +10,7 @@
 	Input.prototype.initDom = function() {
 		var temp =	'<div class="input" id="' + this.id + '">' +
 						'<input type="' + (this.opt.type?this.opt.type: 'text') + '" placeholder="' + (this.opt.placeholder? this.opt.placeholder: '') + '">' +
-						'<img class="pass" src="../img/pass.png">' +
+						//'<img class="pass" src="../img/pass.png">' +
 						'<img class="warning" src="../img/warning.png">' +
 						'<div class="clear"></div>' +
 					'</div>';
@@ -52,7 +52,7 @@
 		if (!value.match(this.opt.reg)) {
 			this.showWarning();
 		} else {
-			this.showPass();
+			//this.showPass();
 		}
 	};
 

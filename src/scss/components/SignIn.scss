@@ -4,62 +4,34 @@
 	@include dialog-frame;
 
 	.dialog-wrapper {	
-		@include dialog-wrapper(320px);
+		@include dialog-wrapper(364px, 374px);
 		z-index: 150;
 		top: 50%;
+		padding: 7px;
+		background-color: rgba(6,6,8,.6);
 
 		.dialog {
-			@include dialog(320px, 430px);
-
-			background-color: #2F2F2C;
+			@include dialog(350px, 360px);
+			background-color: $theme-background-color;
+			border-radius: 0;
 			font-size: 14px;
 			padding: 0 20px;
-			border-radius: 0;
 
 			.text {
-				color: #666666;
-				height: 25px;
-				line-height: 25px;
-				text-align: left;
-			}
-
-			.input-outer {
-				border: 1px solid #555555;
+				display: inline-block;
+				width: 60px;
+				color: $theme-font-color;
 				height: 30px;
 				line-height: 30px;
-				padding: 0 10px;
-				width: 277px;
+				text-align: left;
+				vertical-align: top;
+			}
 
-				input {
-					background-color: transparent;
-					border: 0;
-					color: #FFF;
-					display: inline-block;
-					float: left;
-					height: 28px;
-					line-height: 28px;
-					width: 90%;
-				}
-
-				.pass {
-					display: inline-block;
-					float: right;
-					position: relative;
-					height: 15px;
-					width: 15px;
-					top: 7px;
-					right: 0;
-				}
-
-				.warning {
-					display: none;
-					float: right;
-					position: relative;
-					height: 15px;
-					width: 15px;
-					top: 7px;
-					right: 0;
-				}
+			.row {
+				height: 50px;
+				margin-top: 5px;
+				width: 100%;
+				text-align: left;
 			}
 
 			.row1 {
@@ -71,79 +43,54 @@
 				.logo {
 				    width: 70px;
 				    position: relative;
-				    top: 30px;
+				    top: 20px;
 				}
-
+				
 				.close {
 					cursor: pointer;
 					position: absolute;
 					right: -5px;
 					top: 0px;
 					font-size: 25px;
-					color: #999999;
+					color: #736981;
 				}
 			}
 
-			.row2 {
-				height: 50px;
-				margin-top: 15px;
-				width: 100%;
-			}
-
-			.row3 {
-				height: 50px;
-				margin-top: 15px;
-				width: 100%;
-			}
-
-			.row4 {
-				height: 80px;
-				line-height: 80px;
-				width: 100%;
-				margin-top: 30px;
-
-				.verify-input-outer {
-					display: inline-block;
-					width: 128px;
-				}
-
-				img {
+			.verify-row {
+				.verify-code {
 					height: 30px;
-					margin-left: 25px;
-					color: black;
-					position: relative;
-					bottom: 0;
+    				margin-left: 15px;
 				}
 
-				span {
+				.change-verify-code {
+					color: $theme-font-color;
 					cursor: pointer;
-					display: inline-block;
-				    height: 35px;
-				    line-height: 35px;
-				    margin-left: 20px;
-					color: #555555;
-				    position: relative;
-				    bottom: 10px;
+					margin-left: 14px;
+					height: 30px;
+					line-height: 30px;
+					vertical-align: top;
 
 					&:hover {
-						color: #DCAD4B;
+						color: #FFF;
 					}
 				}
 			}
 
-			.row5 {
+			.button-row {
 				height: 60px;
 				width: 100%;
+				text-align: right;
+				margin-top: 20px;
 
 				.button {
-					background-color: #4B4B42;
-					color: #222222;
+					background-color: #3B3243;
+					color: #180F20;
 					cursor: pointer;
-					width: 280px;
+					width: 310px;
 					height: 35px;
 					line-height: 35px;
 					text-align: center;
-					transition: all .5s;
+					margin-right: 18px;
 
 					&:hover {
 						color: #DCAD4B;
@@ -151,54 +98,39 @@
 				}
 
 				.active {
-					background-color: #DCAD4B;
+					background-color: #257C51;
 					color: #FFF;
-
-					&:hover {
-						color: #000;
-					}
 				}
-
+				
 				.button-info {
 					color: #555555;
 					cursor: pointer;
 					font-size: 12px;
 					height: 20px;
 					line-height: 20px;
-					margin-top: 10px;
 					text-align: right;
+					margin-top: 5px;
 
-					input {
-						float: left;
+					&:hover {
+						color: #DCAD4B;
 					}
+				}
 
-					label {
-						cursor: pointer;
-						float: left;
+				.find-password {
+					float: right;
 
-						&:hover {
-							color: #DCAD4B;
-						}
+					&:hover {
+						color: #DCAD4B;
 					}
+				}
 
-					.find-password {
-						float: right;
+				.signup-now {	
+					display: inline-block;
+					float: left;
 
-						&:hover {
-							color: #DCAD4B;
-						}
+					&:hover {
+						color: #DCAD4B;
 					}
-
-					.signup-now {	
-						display: inline-block;
-						float: right;
-						margin-right: 10px;
-
-						&:hover {
-							color: #DCAD4B;
-						}
-					}
-
 				}
 			}
 		}

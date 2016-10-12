@@ -4,17 +4,18 @@
 	@include dialog-frame;
 
 	.dialog-wrapper {
-		@include dialog-wrapper(320px);
+		@include dialog-wrapper(434px, 664px);
 		z-index: 150;
 		top: 50%;
+		padding: 7px;
+		background-color: rgba(6,6,8,.6);
 
 		.dialog {
 			@include dialog(420px, 650px);
-
 			background-color: $theme-background-color;
+			border-radius: 0;
 			font-size: 14px;
 			padding: 0 20px;
-			border-radius: 0;
 
 			.text {
 				display: inline-block;
