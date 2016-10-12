@@ -6,7 +6,7 @@
 
 .main-content{
 	$baseL                  :    1200;
-	$baseWidth              :    1200px;
+	$baseWidth              :    1300px;
 	$topLeftModuleWidth     :    $baseWidth * 260 / $baseL;
 	$topMiddleModuleWidth   :    $baseWidth * 640 / $baseL;
 	$topRightModuleWidth    :    $baseWidth * 280 / $baseL;
@@ -648,7 +648,7 @@
 	}
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
 	.main-content{
 		$baseL                  :    1200;
 		$baseWidth              :    997px;
