@@ -16,6 +16,14 @@
 							'<div class="sliders"></div>' +
 
 							'<div class="content">' +
+								'<ul class="page-nav">' +
+								'</ul>' +
+
+								'<div class="bottom-left">' +
+								'</div>' +
+
+								'<div class="bottom-right">' +
+								'</div>' +
 							'</div>' +
 						'</div>' +
 						
