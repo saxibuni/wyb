@@ -46,13 +46,22 @@
 		this.pass = false;
 	};
 
+	Input.prototype.hideWarning = function() {
+		this.zone.children('.warning').hide();
+		this.pass = true;
+	};
+
+	Input.prototype.setPass = function(val) {
+		this.pass = val;
+	};
+
 	Input.prototype.checkInput = function() {
 		var value = this.getValue();
 
 		if (!value.match(this.opt.reg)) {
 			this.showWarning();
 		} else {
-			//this.showPass();
+			this.hideWarning();
 		}
 	};
 

@@ -71,7 +71,7 @@
 
 		this.verifyInput = new Input({
 			id: 'sign-up-vefiry-input',
-			width: 155,
+			width: 150,
 			height: 30,
 			reg: app.chineseNameReg,
 			placeholder: '请输入验证码'
@@ -88,37 +88,43 @@
 								'<div class="row">' +
 									'<div class="text">用户名</div>' +
 									this.userNameInput.getDom() +
-									'<div class="star">*</div>' +
 								'</div>' +
 
 								'<div class="row">' +
 									'<div class="text">密' + filler + '码</div>' +
 									this.passwordInput.getDom() +
-									'<div class="star">*</div>' +
 								'</div>' +
 
 								'<div class="row">' +
 									'<div class="text">&nbsp;</div>' +
 									this.comfirmPasswordInput.getDom() +
-									'<div class="star">*</div>' +
 								'</div>' +
 
-								'<div class="row">' +
+								'<div class="row has-notice">' +
 									'<div class="text">邮' + filler + '箱</div>' +
 									this.emailInput.getDom() +
-									'<div class="star">*</div>' +
+									'<div class="error-notice">' +
+										'<span class="star">*</span>' +
+										'<span>电子邮箱是您找回密码的重要途径,请填写您的常用邮箱</span>' +
+									'</div>' +
 								'</div>' +
 
-								'<div class="row">' +
+								'<div class="row  has-notice">' +
 									'<div class="text">手机号</div>' +
 									this.phoneInput.getDom() +
-									'<div class="star">*</div>' +
+									'<div class="error-notice">' +
+										'<span class="star">*</span>' +
+										'<span>手机号是您找回密码的重要途径,请填写您的常用邮箱</span>' +
+									'</div>' +
 								'</div>' +
 
-								'<div class="row">' +
+								'<div class="row  has-notice">' +
 									'<div class="text">姓' + filler + '名</div>' +
 									this.trueNameInput.getDom() +
-									'<div class="star">*</div>' +
+									'<div class="error-notice">' +
+										'<span class="star">*</span>' +
+										'<span>姓名关系到您是否能投注，请填写您的真实姓名</span>' +
+									'</div>' +
 								'</div>' +
 
 								'<div class="row">' +
@@ -163,6 +169,7 @@
 
 	SignUp.prototype.show = function () {
 		this.showOverlay();
+		this.zone.find('.change-verify-code').click();
 	};
 
 	SignUp.prototype.hide = function () {
@@ -192,8 +199,9 @@
     };
 
 	SignUp.prototype.commit = function () {
+		var opt;
+		var callback;
 		var that = this;
-		var url = app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.getValue();
 
 		if (!this.allPass) {
 			return;
@@ -201,15 +209,12 @@
 
 		this.loader.play();
 
-        $.ajax({
-            type: 'GET',
-            url: url,
-            dataType: 'json',
-            timeout: app.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
+		opt = {
+			url: app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.getValue(),
+			data: {}
+		}
+
+		callback = function (json) {
         	if (!json || json == 'false') {
         		that.loader.stop();
         		that.zone.find('.change-verify-code').click();
@@ -218,10 +223,11 @@
         	}
 
         	that.zone.find('.change-verify-code').click();
+        	that.verifyInput.setValue('');
         	that.register();
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
+		};
+
+		Service.get(opt, callback);
 	};
 
 	SignUp.prototype.register = function () {

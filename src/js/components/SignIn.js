@@ -88,6 +88,7 @@
 
 	SignIn.prototype.show = function () {
 		this.showOverlay();
+		this.zone.find('.change-verify-code').click();
 	};
 
 	SignIn.prototype.hide = function () {
@@ -109,11 +110,13 @@
 
     SignIn.prototype.createLoader = function() {
         var wrapper = this.zone.find('.dialog')[0];
+        this.loader = new Loader(wrapper);
     };
 
 	SignIn.prototype.commit = function () {
+		var opt;
+		var callback;
 		var that = this;
-		var url  = app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.getValue();
 
 		if (!this.allPass) {
 			return;
@@ -121,34 +124,31 @@
 
 		this.loader.play();
 
-        $.ajax({
-            type: 'GET',
-            url: url,
-            dataType: 'json',
-            timeout: app.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	if (!json) {
-        		alert('验证码错误');
-        		that.zone.find('.change-verify-code').click();
+		opt = {
+			url: app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.getValue(),
+			data: {}
+		}
+
+		callback = function (json) {
+        	if (!json || json == 'false') {
         		that.loader.stop();
+        		that.zone.find('.change-verify-code').click();
+        		alert('验证码错误');
         		return;
         	}
 
         	that.zone.find('.change-verify-code').click();
-        	that.verifyInput.val('');
+        	that.verifyInput.setValue('');
         	that.login();
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
+		};
+
+		Service.get(opt, callback);
 	};
 
 	SignIn.prototype.login = function () {
 		var data;
 		var callback;
-		var userName = this.usernameInput.getValue();
+		var userName = this.userNameInput.getValue();
 		var password = this.passwordInput.getValue();
 		var that     = this;
 
@@ -204,7 +204,7 @@
 	SignIn.prototype.setDefaultUserName = function () {
 		if (localStorage && localStorage.getItem('*userName')) {
 			this.userNameInput.setValue(localStorage.getItem('*userName'));
-			this.usernamePass = true;
+			this.userNameInput.setPass(true);
 		}
 	};
 
@@ -212,11 +212,11 @@
 		var close;
 		var button;
 		var value;
-		var that   = this;
+		var that  = this;
 
-		this.zone  = $('.sign-in');
-		close      = this.zone.find('.close');
-		button     = this.zone.find('.row5 .button');
+		this.zone = $('.sign-in');
+		close     = this.zone.find('.close');
+		button    = this.zone.find('.login');
 
 		close.click(function () {
 			that.hide();

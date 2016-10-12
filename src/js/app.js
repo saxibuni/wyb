@@ -15,6 +15,7 @@
 		this.footer   = new Footer();
 
 		this.el  = 	this.header.getDom() +
+
 					'<div class="main">' +
 						'<div class="logo-wrapper">' +
 						'</div>' +

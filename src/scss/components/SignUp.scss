@@ -4,14 +4,14 @@
 	@include dialog-frame;
 
 	.dialog-wrapper {
-		@include dialog-wrapper(434px, 664px);
+		@include dialog-wrapper(414px, 664px);
 		z-index: 150;
 		top: 50%;
 		padding: 7px;
 		background-color: rgba(6,6,8,.6);
 
 		.dialog {
-			@include dialog(420px, 650px);
+			@include dialog(400px, 650px);
 			background-color: $theme-background-color;
 			border-radius: 0;
 			font-size: 14px;
@@ -27,14 +27,24 @@
 				vertical-align: top;
 			}
 
-			.star {
-				display: inline-block;
-				width: 20px;
-				color: #F00;
-				height: 35px;
-				line-height: 35px;
-				text-align: center;
+			.error-notice {
+				display: none;
+				width: 100%;
+				color: $theme-font-color;
+				font-size: 12px;
+				height: 20px;
+				line-height: 20px;
+				text-align: left;
 				vertical-align: top;
+				margin-top: -5px;
+
+				.star {
+					color: #F00;
+					margin-left: 60px;
+				    position: relative;
+				    top: 4px;
+				    margin-right: 4px;
+				}
 			}
 
 			.row {
@@ -42,6 +52,9 @@
 				margin-top: 5px;
 				width: 100%;
 				text-align: left;
+			}
+
+			.has-notice {
 			}
 
 			.row1 {
