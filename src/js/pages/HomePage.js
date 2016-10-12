@@ -1,6 +1,6 @@
 (function () {
 	function HomePage () {
-		//this.initDom();
+		this.initDom();
 	}
 	
 	HomePage.prototype.initDom = function () {
@@ -13,83 +13,9 @@
 
 		var temp = 	'<div class="page home-page">' +
 						'<div class="wrapper">' +
-							'<div class="content23">' +
-								'<div class="content2">' +
-									this.notice.getDom() +
-								'</div>' +
+							'<div class="sliders"></div>' +
 
-								'<div class="picture-zone">' +
-									'<div class="picture-zone1">' +
-										'<div class="zone1-up">' +
-											'<div class="zone1-up-left">' +
-												'<div class="zone1-up-left-up">' +
-													'<img class="picture-bg" src="../img/sy-kf.jpg">' +
-													'<div class="info">' +
-														'<img class="icon" src="../img/kf-icon.png">' +
-														'<span>在线客服</span>' +
-													'</div>' +
-												'</div>' +
-
-												'<div class="zone1-up-left-down">' +
-													'<img class="picture-bg" src="../img/sy-xz.jpg">' +
-													'<div class="info">' +
-														'<img class="icon" src="../img/xz-icon.png">' +
-														'<span>客户端下载</span>' +
-													'</div>' +
-												'</div>' +
-											'</div>' +
-
-											'<div class="zone1-up-right">' +
-												'<img class="picture-bg" src="../img/bg-eEntertainment.jpg">' +
-												
-												'<div class="info">' +
-													'电子游艺' +
-												'</div>' +
-											'</div>' +
-										'</div>' +
-
-										'<div class="zone1-down">' +
-											'<img class="picture-bg" src="../img/jackpot.png">' +
-											'<div class="info">' +
-												'<span class="pt-jackpot-value"></span>' +
-											'</div>' +
-										'</div>' +
-									'</div>' +
-
-									'<div class="picture-zone2">' +
-										'<div class="zone2-up">' +
-											'<div class="zone2-up-left">' +
-												'<img class="picture-bg" src="../img/bg-sports.jpg">' +
-
-												'<div class="info">' +
-													'体育赛事' +
-												'</div>' +
-											'</div>' +
-
-											'<div class="zone2-up-right">' +
-												'<img class="picture-bg" src="../img/bg-video.jpg">' +
-												
-												'<div class="info">' +
-													'视讯直播' +
-												'</div>' +
-											'</div>' +
-										'</div>' +
-
-										'<div class="zone2-down">' +
-											'<img class="picture-bg" src="../img/md.png">' +
-
-											'<div class="table">' +
-												'<div class="tbody lucky-draw-tbody">' +
-													'<span class="placeholder">登录可查看中奖情况</span>' +
-												'</div>' +
-											'</div>' +
-
-											'<div class="lucky-draw">' +
-												'立即抽奖' +
-											'</div>' +
-										'</div>' +
-									'</div>' +
-								'</div>' +
+							'<div class="content">' +
 							'</div>' +
 						'</div>' +
 						
@@ -134,10 +60,10 @@
 	HomePage.prototype.show = function () {
 		this.zone.fadeIn(500);
 		this.getAds();
-		this.setPtSumBaseValue();
-		if (app.signedIn) {
-			this.getLuckyDrawWinRecords();
-		}
+		// this.setPtSumBaseValue();
+		// if (app.signedIn) {
+		// 	this.getLuckyDrawWinRecords();
+		// }
 	};
 
 	HomePage.prototype.hide = function () {
@@ -145,13 +71,10 @@
 	};
 
     HomePage.prototype.createLoader = function() {
-        var wrapper1 = this.zone.find('.zone1-down')[0];
-        var wrapper2 = this.zone.find('.zone2-down .table')[0];
-
+        var wrapper1 = this.zone.find('.sliders')[0];
         this.loader1 = new Loader(wrapper1, {
-        	left: '72%'
+        	top: '35%'
         });
-        this.loader2 = new Loader(wrapper2);
     };
 
     HomePage.prototype.setJackpotValue = function () {
@@ -214,12 +137,14 @@
 			}
 		};
 
+		this.loader1.play();
 		callback = function (data) {
 			if (!data) {
 				return;
 			}
-
+			debugger
 			that.addSliders(data);
+			this.loader1.stop();
 		};
 
 		Service.get(opt, callback);
@@ -280,21 +205,19 @@
 		var i;
 		var len = data.count;
 		var arr = data.list;
-		var logoTemp = 	'<div class="home-pages-sliders">' +
-							'<ul>';
+		var logoTemp = 	'<ul>';
 
 		for (i = 0; i < len; i++) {
-			logoTemp += 		'<li>' +
-									'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
-								'</li>';
+			logoTemp += 	'<li>' +
+								'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
+							'</li>';
 		}
 
-		logoTemp +=			'</ul>' +
-						'</div>';
+		logoTemp +=		'</ul>';
 
 		this.logoHtml = logoTemp;
-		$('.main .logo-wrapper').html(logoTemp);
-		$('.home-pages-sliders').unslider({
+		this.zone.find('.sliders').html(logoTemp);
+		this.zone.find('.sliders').unslider({
 			speed: 500,
 			delay: 5000,
 			autoplay: true,

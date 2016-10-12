@@ -15,8 +15,8 @@
 								'<ul>' +
 									'<li class="li-logo left">' +
 										'<div class="icon logo-icon-small"></div>' +
-										'<div class="icon menu-icon"></div>' +
-										'<span class="text main-menu-text">主菜单</span>' +
+										'<div class="icon menu menu-icon"></div>' +
+										'<span class="text menu main-menu-text">主菜单</span>' +
 									'</li>' +
 
 									'<li class="li-language">' +

@@ -23,8 +23,8 @@
 						'<div class="main-wrapper">' +
 						'</div>' +
 					'</div>' +
-					'';
-					//this.footer.getDom();
+
+					this.footer.getDom();
 
 		this.zone.append(this.el);
 		this.bindEvents();
@@ -201,50 +201,6 @@
 		Service.post(opt, callback);
 	};
 
-	app.prototype.goTo = function (pageName) {
-		var index;
-		var tar;
-		var height;
-		var logoHeiht;
-		var that = this;
-		var dict = {
-			'homePage'          : {'className': HomePage,          'index': 0, 'cssClass': 'home-page'},
-			'liveVideo'         : {'className': LiveVideo,         'index': 1, 'cssClass': 'live-video'},
-			'eEntertainment'    : {'className': EEntertainment,    'index': 2, 'cssClass': 'main-content'},
-			'sportsCompetition' : {'className': SportsCompetition, 'index': 3, 'cssClass': 'sports-competition'},
-			'lotteryGame'       : {'className': LotteryGame,       'index': 4, 'cssClass': 'lottery-game'},
-			'promoActivity'     : {'className': PromoActivity,     'index': 5, 'cssClass': 'promo-activity'},
-			'clientDownload'    : {'className': ClientDownload,    'index': 6, 'cssClass': 'client-download'},
-			'routeCheck'        : {'className': RouteCheck,        'index': 0, 'cssClass': 'route-check'},
-			'personalCenter'	: {'className': PersonalCenter,    'index': 0, 'cssClass': 'personal-center'},
-			'forgetPassword'    : {'className': ForgetPassword ,   'index': 0, 'cssClass': 'forget-password'}
-		};
-
-		$('.page').hide();
-
-		if (!that[pageName]) {
-			that[pageName] = new (dict[pageName].className)();
-			that.zone.find('.main-wrapper').append(that[pageName].getDom());
-			that[pageName].bindEvents();
-		}
-
-		if (!that[pageName].showSliders) {
-			$('.main .logo-wrapper').html('');
-		} else {
-			that[pageName].showSliders();
-		}
-
-		if (pageName === 'homePage') {
-			$('.main-wrapper').addClass('home');
-		} else {
-			$('.main-wrapper').removeClass('home');
-		}
-
-		this.header.setStick(dict[pageName].index);
-		this[pageName].show();
-		this.currentPage = pageName;
-	};
-
 	app.prototype.initRouter = function () {
 		var hash;
 		var page;
@@ -279,17 +235,11 @@
 						that[pageName].bindEvents();
 					}
 
-					if (!that[pageName].showSliders) {
-						$('.main .logo-wrapper').html('');
-					} else {
-						that[pageName].showSliders();
-					}
-
-					if (pageName === 'homePage') {
-						$('.main-wrapper').addClass('home');
-					} else {
-						$('.main-wrapper').removeClass('home');
-					}
+					// if (!that[pageName].showSliders) {
+					// 	$('.main .logo-wrapper').html('');
+					// } else {
+					// 	that[pageName].showSliders();
+					// }
 					
 					that.header.setStick(dict[pageName].index);
 					that[pageName].show();
