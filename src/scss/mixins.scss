@@ -1,9 +1,19 @@
 $contentWidth              :   1200px;
 $headerHeight              :   85px;
 $footerHeight              :   100px;
+
+$headerRow1Height          :   40px;
+$headerRow2Height          :   60px;
 $theme-background-color    :   #170E1F;
 $theme-font-color          :   #514859;
+$theme-font-hover-color    :   #FFFEFD;
 $sign-input-border-color   :   #605768;
+$green                     :   #26995E;
+$header-font-color         :   #B5B3B6;
+
+$common-icon-top1          :   -10px;
+$common-icon-top2          :   -64px;
+$common-icon-top3          :   -96px;
 
 @mixin page-property {
     background-color: #000000;

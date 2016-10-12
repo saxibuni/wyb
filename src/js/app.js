@@ -23,8 +23,8 @@
 						'<div class="main-wrapper">' +
 						'</div>' +
 					'</div>' +
-
-					this.footer.getDom();
+					'';
+					//this.footer.getDom();
 
 		this.zone.append(this.el);
 		this.bindEvents();

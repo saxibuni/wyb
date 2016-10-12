@@ -1,6 +1,6 @@
 (function () {
 	function HomePage () {
-		this.initDom();
+		//this.initDom();
 	}
 	
 	HomePage.prototype.initDom = function () {

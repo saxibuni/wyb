@@ -7,165 +7,160 @@
 		var temp = '';
 
 		this.switch = new Switch({id: 'money-switch'});
-		this.lxkfButton = new Button({
-			id: 'header-lxkf',
-			className: 'header-button lxkf-button',
-			name: '在线客服',
-			width: 70,
-			height: 22
-		});
 
 		temp =	'<div class="header">' +
 					'<div class="wrapper">' +
 						'<div class="row1">' +
-							'<div class="language">' +
-								'<img src="../img/zh-lang.png">' +
-								'<span>CHN</span>' +
-							'</div>' +
+							'<div class="row1-wrapper">' +
+								'<ul>' +
+									'<li class="li-logo left">' +
+										'<div class="icon logo-icon-small"></div>' +
+										'<div class="icon menu-icon"></div>' +
+										'<span class="text main-menu-text">主菜单</span>' +
+									'</li>' +
 
-							'<div class="bzzx top-item nav-page" data-value="helpPage">' +
-								'帮助中心' +
-							'</div>' +
+									'<li class="li-language">' +
+										'<span class="text">CHN</span>' +
+										'<div class="icon down-icon"></div>' +
+									'</li>' +
 
-							'<div class="wdsc top-item">' +
-								'<span class="my-collection">我的收藏</span>' +
-							'</div>' +
+									'<li class="li-time-value">' +
+										'<span class="text">10:09:09</span>' +
+									'</li>' +
 
-							'<div class="money-actions">' +
-							 	'<div class="wrapper">' +
-									'<div class="grzx-layer action" data-value="0 0"><span>充值</span></div>' +
-									'<div class="grzx-layer action" data-value="0 2"><span>提款</span></div>' +
-									'<div class="grzx-layer action" data-value="0 1"><span>转账</span></div>' +
+									'<li class="li-bzzx">' +
+										'<div class="icon bzzx-icon"></div>' +
+									'</li>' +
+
+									'<li class="li-wdsc">' +
+										'<div class="icon wdsc-icon"></div>' +
+									'</li>' +
+
+									'<li class="li-signin-signup">' +
+										'<div class="sign-button signin-button">登录</div>' +
+										'<div class="sign-button signup-button">注册</div>' +
+									'</li>' +
+
+									'<li class="li-money-actions">' +
+										'<ul>' +
+											'<li class="grzx-layer action" data-value="0 0">充值</li>' +
+											'<li class="grzx-layer action" data-value="0 2">提款</li>' +
+											'<li class="grzx-layer action" data-value="0 1">转账</li>' +
+										'</ul>' +
+									'</li>' +
+
+									'<li class="li-balance">' +
+										'<div class="icon refresh-icon"></div>' +
+										'<div class="balance-item money-icon">¥</div>' +
+										'<div class="balance-item balance-value">12345678.00</div>' +
+										'<div class="icon down-icon"></div>' +
+										this.switch.getDom() +
+									'</li>' +
+
+									'<li class="li-grzx">' +
+										'<div class="grzx-layer message" data-value="3 0">' +
+											'<div class="icon message-icon"></div>' +
+											'<div class="dot message-count">1</div>' +
+										'</div>' +
+
+										'<div class="title nav-page grzx" data-value="personalCenter">' +
+											'<span>个人中心</span>' +
+											'<div class="icon down-icon"></div>' +
+										'</div>' +
+									'</li>' +
+
+									'<div class="clear"></div>' +
+								'</ul>' +
+
+								'<div class="grzx-float-window">' +
+									'<div class="title">' +
+										'<div class="username">LORENZO</div>' +
+										'<div class="userid">' +
+											'<span class="text">ID:</span>' +
+											'<span class="id-value">2678899511</span>' +
+										'</div>' +
+									'</div>' +
+
+									'<ul>' +
+										'<li class="grzx-layer" data-value="0 0"><span>资金管理</span></li>' +
+										'<li class="grzx-layer" data-value="1 3"><span>投注记录</span></li>' +
+										'<li class="grzx-layer" data-value="1 0"><span>充值记录</span></li>' +
+										'<li class="grzx-layer" data-value="2 1"><span>修改密码</span></li>' +
+										'<li class="signout"><span>退出</span></li>' +
+									'</ul>' +
 								'</div>' +
-							'</div>' +
 
-							'<div class="balance">' +
-								'<div class="balance-item title">余额</div>' +
-								'<div class="balance-item money-icon">¥</div>' +
-								'<div class="balance-item balance-value"></div>' +
-								this.switch.getDom() +
-							'</div>' +
-
-							'<div class="grzx-layer message" data-value="3 0">' +
-								'<img class="message-img" src="../img/message.png">' +
-								'<div class="dot message-count">1</div>' +
-							'</div>' +
-
-							'<div class="grzx">' +
-								'<div class="title nav-page" data-value="personalCenter">' +
-									'个人中心' +
-								'</div>' +
-							'</div>' +
-
-							'<div class="time">' +
-								'<div class="time-zone">' +
-									'GMT +8' +
+								'<div class="language-float-window">' +
+									'<ul>' +
+										'<li><span>中文</span></li>' +
+										'<li><span>English</span></li>' +
+									'</ul>' +
 								'</div>' +
 
-								'<div class="time-value">' +
-									'12:15:30' +
+								'<div class="wdsc-float-window">' +
+									'<ul>' +
+									'</ul>' +
+									'<div class="close-wdsc">' +
+										'<img src="../img/pack-up-arrow.png">' +
+									'</div>' +
 								'</div>' +
-
-								'<div class="clear"></div>' +
-							'</div>' +
-
-							'<div class="menu">' +
-								'<img src="../img/menu.png">' +
 							'</div>' +
 						'</div>' +
 
 						'<div class="row2">' +
-							'<div class="header-logo">' +
-								'<img src="../img/logo-sands-macao.png">' +
-							'</div>' +
-
-							'<div class="buttons-zone">' +
-								'<div class="header-button signin-button">' +
-									'登录' +
+							'<div class="row2-wrapper">' +
+								'<div class="header-logo">' +
+									'<div class="icon logo-icon-big"></div>' +
 								'</div>' +
 
-								'<div class="header-button signup-button">' +
-									'注册' +
+								'<div class="button-zone">' +
+									'<div class="lxkf-button">联系客服</div>' +
 								'</div>' +
 
-								this.lxkfButton.getDom() +
-							'</div>' +
+								'<ul class="pages">' +
+									'<li data-value="homePage">首页</li>' +
+									'<li data-value="liveVideo">真人视讯</li>' +
+									'<li data-value="eEntertainment">电子游艺</li>' +
+									'<li data-value="sportsCompetition">体育竞技</li>' +
+									'<li data-value="lotteryGame">彩票游戏</li>' +
+									'<li data-value="promoActivity">优惠活动</li>' +
+									'<li data-value="clientDownload">客户端</li>' +
+									'<div class="stick"></div>' +
+								'</ul>' +
 
-							'<ul class="pages">' +
-								'<li data-value="homePage">首页</li>' +
-								'<li data-value="liveVideo">真人视讯</li>' +
-								'<li data-value="eEntertainment">电子游艺</li>' +
-								'<li data-value="sportsCompetition">体育竞技</li>' +
-								'<li data-value="lotteryGame">彩票游戏</li>' +
-								'<li data-value="promoActivity">优惠活动</li>' +
-								'<li data-value="clientDownload">客户端</li>' +
-								'<div class="stick"></div>' +
-							'</ul>' +
-
-							'<div class="clear"></div>' +
-						'</div>' +
-
-						'<div class="grzx-float-window">' +
-							'<div class="title">' +
-								'<div class="username">LORENZO</div>' +
-								'<div class="userid">' +
-									'<span class="text">ID:</span>' +
-									'<span class="id-value">2678899511</span>' +
-								'</div>' +
-							'</div>' +
-
-							'<ul>' +
-								'<li class="grzx-layer" data-value="0 0"><span>资金管理</span></li>' +
-								'<li class="grzx-layer" data-value="1 3"><span>投注记录</span></li>' +
-								'<li class="grzx-layer" data-value="1 0"><span>充值记录</span></li>' +
-								'<li class="grzx-layer" data-value="2 1"><span>修改密码</span></li>' +
-								'<li class="signout"><span>退出</span></li>' +
-							'</ul>' +
-						'</div>' +
-
-						'<div class="wdsc-float-window">' +
-							'<ul>' +
-							'</ul>' +
-							'<div class="close-wdsc">' +
-								'<img src="../img/pack-up-arrow.png">' +
+								'<div class="clear"></div>' +
 							'</div>' +
 						'</div>' +
 
-						'<div class="language-float-window">' +
-							'<ul>' +
-								'<li><span>中文</span></li>' +
-								'<li><span>English</span></li>' +
+						'<div class="header-float-window">' +
+							'<ul class="ul dzyy">' +
+								'<li>' +
+									'<img src="../img/dzyy-float-img1.png">' +
+								'</li>' +
+
+								'<li>' +
+									'<img src="../img/dzyy-float-img2.png">' +
+								'</li>' +
+
+								'<li>' +
+									'<img src="../img/dzyy-float-img3.png">' +
+								'</li>' +
+							'</ul>' +
+
+							'<ul class="ul ty">' +
+								'<li>' +
+									'<img src="../img/ty-float-img1.png">' +
+								'</li>' +
+
+								'<li>' +
+									'<img src="../img/ty-float-img2.png">' +
+								'</li>' +
+
+								'<li>' +
+									'<img src="../img/ty-float-img3.png">' +
+								'</li>' +
 							'</ul>' +
 						'</div>' +
-					'</div>' +
-					'<div class="header-float-window">' +
-						'<ul class="ul dzyy">' +
-							'<li>' +
-								'<img src="../img/dzyy-float-img1.png">' +
-							'</li>' +
-
-							'<li>' +
-								'<img src="../img/dzyy-float-img2.png">' +
-							'</li>' +
-
-							'<li>' +
-								'<img src="../img/dzyy-float-img3.png">' +
-							'</li>' +
-						'</ul>' +
-
-						'<ul class="ul ty">' +
-							'<li>' +
-								'<img src="../img/ty-float-img1.png">' +
-							'</li>' +
-
-							'<li>' +
-								'<img src="../img/ty-float-img2.png">' +
-							'</li>' +
-
-							'<li>' +
-								'<img src="../img/ty-float-img3.png">' +
-							'</li>' +
-						'</ul>' +
 					'</div>' +
 				'</div>';
 		
@@ -382,13 +377,14 @@
 		var collectId;
 		var that = this;
 
-		this.zone = $('.header');
+		this.zone         = $('.header');
 		pagesUl           = this.zone.find('.pages');
 		pagesUl2          = this.zone.find('.row1');
 		headRow2          = this.zone.find('.row2');
-		langHoverItem     = this.zone.find('.language, .language-float-window');
-		grzxHoverItem     = this.zone.find('.grzx, .grzx-float-window');
-		wdscHoverItem     = this.zone.find('.wdsc');
+		langHoverItem     = this.zone.find('.li-language, .language-float-window');
+
+		grzxHoverItem     = this.zone.find('.li-grzx .grzx, .grzx-float-window');
+		wdscHoverItem     = this.zone.find('.li-wdsc');
 		grzxFloatWindow   = this.zone.find('.grzx-float-window');
 		wdscFloatWindow   = this.zone.find('.wdsc-float-window');
 		closeWdsc         = wdscFloatWindow.find('.close-wdsc');
@@ -402,16 +398,16 @@
 		balance           = this.zone.find('.balance-value');
 
 		grzxHoverItem.mouseover(function () {
-			grzxFloatWindow.css('top', '30px');
+			grzxFloatWindow.css('top', '40px');
 		}).mouseout(function () {
 			grzxFloatWindow.css('top', '-300px');
 		});
 
 		wdscHoverItem.click(function () {
-			if (wdscFloatWindow.css('top') === '30px') {
+			if (wdscFloatWindow.css('top') === '40px') {
 				wdscFloatWindow.css('top', '-600px');
 			} else {
-				wdscFloatWindow.css('top', '30px');
+				wdscFloatWindow.css('top', '40px');
 			}
 
 			langFloatWindow.css('top', '-300px');
@@ -434,10 +430,10 @@
 		});
 
 		langHoverItem.click(function () {
-			if (langFloatWindow.css('top') === '30px') {
+			if (langFloatWindow.css('top') === '40px') {
 				langFloatWindow.css('top', '-300px');
 			} else {
-				langFloatWindow.css('top', '30px');
+				langFloatWindow.css('top', '40px');
 			}
 
 			wdscFloatWindow.css('top', '-600px');
@@ -496,7 +492,7 @@
 					'height': '0',
 					'opacity': '0'
 				});
-				$('.app .main').css('margin-top', '30px');
+				$('.app .main').css('margin-top', '40px');
 			} else {
 				headRow2.css({
 					'height': '55px',
@@ -510,7 +506,7 @@
 			wdscFloatWindow.css('top', '-600px');
 		});
 
-		this.zone.find('.header-button').click(function () {
+		this.zone.find('.sign-button').click(function () {
 			if ($(this).hasClass('signin-button')) {
 				if (!app.signInDialog) {
 					app.signInDialog = new SignIn();
@@ -536,20 +532,20 @@
 			balance.toggle();
 		});
 
-		this.zone.find('#header-lxkf').click(function () {
-			window.open('http://www.baidu.com');
+		this.zone.find('.lxkf-button').click(function () {
+			window.open(app.liveCsUrl);
 		});
 
 		$(document).scroll(function(e) {
 			that.hideHeaderFloatWindow();
 
-			if (document.body.scrollTop > 30) {
+			if (document.body.scrollTop > 40) {
 				headRow2.css({
 					'height': '0',
 					'opacity':'0'
 				});
 				that.zone.addClass('fixed-header');
-				$('.app .main').css('margin-top', '30px');
+				$('.app .main').css('margin-top', '40px');
 			} else {
 				headRow2.css({
 					'height': '55px',
@@ -560,9 +556,8 @@
 			}
 		});
 
-		this.showSignedOutHeader();
+		//this.showSignedOutHeader();
 		//this.showSignedInHeader();
-		this.lxkfButton.bindEvents();
 	};
 
 	window.Header = Header;

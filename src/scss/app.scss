@@ -6,7 +6,8 @@ body {
 }
 
 .app {
-	background-color: $theme-background-color;
+	height: 100%;
+	background: radial-gradient(#342840, #150A1A, #070C12);
 	display: inline-block;
 	width: 100%;
 	text-align: center;
