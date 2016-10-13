@@ -231,7 +231,7 @@
 		return temp;
 	};
 
-	HomePage.prototype.setJackpotstable = function (data) {
+	HomePage.prototype.setJackpotsTable = function (data) {
 		var i;
 		var temp = '';
 
@@ -240,7 +240,8 @@
 				game        : data[i].Title,
 				platform    : data[i].Api.GamePlatform,         //取MG基础值的时候用
 				id          : data[i].Id,                       //取MG基础值的时候用
-				jackpotsUrl : app.formatJackpotsUrl(data[i])    //取PT基础值的时候用
+				jackpotsUrl : app.formatJackpotsUrl(data[i]),   //取PT基础值的时候用
+				className   : (i%2 === 0? 'odd': 'even')
 			});
 		}
 
@@ -248,7 +249,7 @@
 	};
 
 	HomePage.prototype.createJackpotsTr = function (data) {
-		var temp = 	'<div class="tr jackpots-basevalue" ' +
+		var temp = 	'<div class="tr jackpots-basevalue ' + data.className + '" ' +
 							'data-url="' + data.jackpotsUrl + '" ' +
 							'data-id="' + data.id + '" ' +
 							'data-platform="' + data.platform + '">' +
@@ -359,7 +360,7 @@
 				return;
 			}
 
-			that.setJackpotstable(json);
+			that.setJackpotsTable(json);
 			that.resfreshBaseValues('PT');
 		};
 
