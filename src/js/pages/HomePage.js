@@ -211,10 +211,19 @@
 		var i
 		var lis = this.zone.find('.tab-ul li');
 
+		data = this.promoTabData || data;
+
 		for (i = 0; i < data.length; i++) {
 			$(lis[i]).children('.time').text(data[i].StartTime.substring(0, 10) + '至' + data[i].EndTime.substring(0, 10));
 			$(lis[i]).children('.info').text(data[i].Title);
 		}
+
+		this.promoTabData = data;
+		this.recommendTabData = [
+		];
+
+		this.activityTabData = [
+		];
 	};
 
 	HomePage.prototype.createJackpotsTable = function () {
@@ -459,7 +468,14 @@
 		}
 	};
 
-	HomePage.prototype.setTabUl = function () {
+	HomePage.prototype.setTabUl = function (index) {
+		if (index === 0) {
+			this.setPromoTabUl();
+		} else if (index === 1) {
+
+		} else if (index === 2) {
+
+		}
 	};
 
 	HomePage.prototype.setPtSumBaseValue = function () {
@@ -545,7 +561,7 @@
 			index = $(this).index();
 			stick.css('left', index*100 + 'px');
 			that.getAds2(type);
-			that.setTabUl();
+			that.setTabUl(index);
 		});
 
 		this.notice.bindEvents();
