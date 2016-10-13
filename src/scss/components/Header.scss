@@ -61,7 +61,6 @@
 	transition: top .5s;
 
 	.wrapper {
-		background-color: #201F1D;
 		position: relative;
 		height: 100%;
 		width: 100%;
@@ -69,8 +68,8 @@
 		transition: width .5s;
 
 		.row1 {
-			background-color: #170E1F;
-			color: $header-font-color;
+			background-color: $purple1;
+			color: $font-color1;
 			height: $headerRow1Height;
 
 			.row1-wrapper {
@@ -121,13 +120,14 @@
 					.li-signin-signup {
 						.sign-button {
 							border: 1px solid $green;
-							border-radius: 1px;
 							cursor: pointer;
 							display: inline-block;
-							height: 30px;
-							line-height: 30px;
+							height: 26px;
+							line-height: 26px;
 							text-align: center;
 							width: 100px;
+							position: relative;
+							top: 1px;
 						}
 
 						.signin-button {
@@ -156,7 +156,7 @@
 								line-height: $actionsHeight;
 
 								&:hover {
-									color: $theme-font-hover-color;
+									color: $font-color2;
 								}
 
 								&:nth-child(2) {
@@ -192,21 +192,22 @@
 							line-height: $headerRow1Height;
 
 							.dot {
-								$dotSize: 14px;
+								$dotSize: 12px;
 
-								background-color: #F00;
+								background-color: #A80B42;
 								border: 0;
 								border-radius: 50%;
+								color: #FFF;
 								display: inline-block;
 								font-size: 10px;
 								height: $dotSize;
 								min-width: $dotSize;
 								width: auto;
 								padding: 0 2px;
-								line-height: 12px;
+								line-height: $dotSize;
 								position: absolute;
 								left: 22px;
-								top: 6px;
+								top: 8px;
 							}
 						}
 
@@ -433,8 +434,8 @@
 		}
 
 		.row2 {
-			background-color: #342840;
-			color: $header-font-color;
+			background-color: $purple2;
+			color: $font-color1;
 			height: $headerRow2Height;
 			line-height: $headerRow2Height;
 			position: relative;
@@ -476,7 +477,7 @@
 					    width: 100px;
 
 						&:hover {
-							color: $theme-font-hover-color;
+							color: $font-color2;
 						}
 					}
 				}

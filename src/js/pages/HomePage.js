@@ -17,12 +17,47 @@
 
 							'<div class="content">' +
 								'<ul class="page-nav">' +
+									this.createPageNav() +
 								'</ul>' +
 
 								'<div class="bottom-left">' +
+									'<ul class="home-tab">' +
+										this.createHomeTab() +
+										'<div class="stick"></div>' +
+									'</ul>' +
+
+									'<div class="tab-content">' +
+										'<div class="tab-sliders">' +
+											this.createTabSliders() +
+										'</div>' +
+
+										'<ul class="tab-ul">' +
+											this.createTabUl() +
+										'</ul>' +
+									'</div>' +
 								'</div>' +
 
 								'<div class="bottom-right">' +
+									'<div class="title">' +
+										'<div class="cup-icon"></div>' +
+										'<span>超级彩金</span>' +
+ 									'</div>' +
+
+ 									'<div class="jackpot">' +
+ 										'<ul class="jackpot-vendor">' +
+ 											'<li>' +
+		 										'<div class="ag-icon"></div>' +
+		 										'<span>PT电子游戏(TOP6)</span>' +
+ 											'</li>' +
+ 										'</ul>' +
+
+ 										'<div class="jackpot-value">' +
+ 											'<span>JACKPOT</span>' +
+ 											'<span class="pt-jackpot-value"></span>' +
+ 										'</div>' +
+
+ 										this.createJackpotsTable() +
+ 									'</div>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -37,29 +72,198 @@
 		return this.el;
 	};
 
-	HomePage.prototype.setLuckyDrawItems = function (data) {
+	HomePage.prototype.createPageNav = function () {
 		var i;
 		var temp = '';
-		var data = {
-			name: 'dong62192******',
-			gift: 'Macbook Pro'
-		};
+		var arr  = [
+			{
+				name: '电子游艺',
+				title: '立即游戏',
+				className: 'home-casino-icon',
+				pageName: 'eEntertainment'
+			},
+			{
+				name: '真人视讯',
+				title: '立即游戏',
+				className: 'home-video-icon',
+				pageName: 'liveVideo'
+			},
+			{
+				name: '体育赛事',
+				title: '立即游戏',
+				className: 'home-sports-icon',
+				pageName: 'sportsCompetition'
+			},
+			{
+				name: '彩票游戏',
+				title: '立即游戏',
+				className: 'home-lottery-icon',
+				pageName: 'lotteryGame'
+			},
+			{
+				name: '免费开户',
+				title: '立即注册',
+				className: 'home-signup-icon',
+				pageName: 'eEntertainment'
+			},
+			{
+				name: 'VIP计划',
+				title: '立即加入',
+				className: 'home-vip-icon'
+			}
+		];
 
-		for (i = 0; i < 100; i++) {
-			temp += this.createLuckyDrawItem(data);
+		for (i = 0; i < arr.length; i++) {
+			temp +=	'<li data-page="' + (arr[i].pageName || '') + '">' +
+						'<div class="li-zone1">' +
+							'<div class="home-icon ' + arr[i].className + '"></div>' +
+							'<div class="li-name">' + arr[i].name + '</div>' +
+
+							'<div class="overlay"></div>' +
+						'</div>' +
+
+						'<div class="li-zone2">' +
+							arr[i].title +
+						'</div>' +
+					'</li>';
 		}
 
-		this.zone.find('.lucky-draw-tbody').html($(temp));
+		return temp;
 	};
 
-	HomePage.prototype.createLuckyDrawItem = function (data) {
-		var temp =	'<div class="tr">' +
-						'<span class="td1">' +
-							data.name +
-						'</span>' +
-						'<span class="td2">' +
-							data.gift +
-						'</span>' +
+	HomePage.prototype.createHomeTab = function () {
+		var i;
+		var temp = '';
+		var arr  = [
+			{
+				title: '优惠活动',
+				tabId: '1',
+				value: 'pd_wyb_index_promo_ads'
+			},
+			{
+				title: '热门推荐',
+				tabId: '2',
+				value: 'pd_wyb_index_recommend_ads'
+			},
+			{
+				title: '活动宣传',
+				tabId: '3',
+				value: 'pd_wyb_index_activity_ads'
+			}
+		];
+
+		for (i = 0; i < arr.length; i++) {
+			temp +=	'<li data-tab="' + arr[i].tabId + '" data-value="' + arr[i].value + '">' +
+						'<div class="tab-title">' + arr[i].title + '</div>' +
+						'<div class="dot"></div>' +
+					'</li>';
+		}
+
+		return temp;
+	};
+
+	HomePage.prototype.createTabSliders = function () {
+		var i;
+		var temp = 	'<ul>';
+
+		for (i = 0; i < 6; i++) {
+			temp += 	'<li>' +
+							'<img src="">' +
+						'</li>';
+		}
+
+		temp +=		'</ul>';
+
+		return temp;
+	};
+
+	HomePage.prototype.initTabSliders = function () {
+		this.zone.find('.tab-sliders').unslider({
+			speed: 500,
+			delay: 5000,
+			autoplay: true,
+			arrows: false
+		});
+	};
+
+	HomePage.prototype.createTabUl = function () {
+		var i;
+		var temp =	'<ul>';
+
+		for (i = 0; i < 5; i++) {
+			if (i % 2 === 0) {
+				temp +=	'<li class="odd">';
+			} else {
+				temp +=	'<li class="even">';
+			}
+
+			temp +=			'<div class="time">' +
+								'2016-09-20 15:50:46' +
+							'</div>' +
+
+							'<div class="info">' +
+								'电子游戏-百万富翁全新上线' +
+							'</div>' +
+						'</li>';
+		}
+
+		temp +=		'</ul>';
+
+		return temp;
+	};
+
+	HomePage.prototype.createJackpotsTable = function () {
+		var i;
+		var temp =	'<div class="table jackpots-table">' +
+						'<div class="thead">' +
+							'<div class="tr">' +
+								'<div class="td td1">时间</div>' +
+								'<div class="td td2">游戏名称</div>' +
+								'<div class="td td3">奖金</div>' +
+							'</div>' +
+						'</div>' +
+
+						'<div class="tbody">' +
+							'<span>暂无数据</span>' +
+						'</div>' +
+					'</div>';
+
+		return temp;
+	};
+
+	HomePage.prototype.setJackpotstable = function (data) {
+		var i;
+		var temp = '';
+
+		for (i = 0; i < data.length; i++) {
+			temp += this.createJackpotsTr({
+				game        : data[i].Title,
+				platform    : data[i].Api.GamePlatform,         //取MG基础值的时候用
+				id          : data[i].Id,                       //取MG基础值的时候用
+				jackpotsUrl : app.formatJackpotsUrl(data[i])    //取PT基础值的时候用
+			});
+		}
+
+		this.zone.find('.jackpots-table .tbody').html(temp);
+	};
+
+	HomePage.prototype.createJackpotsTr = function (data) {
+		var temp = 	'<div class="tr jackpots-basevalue" ' +
+							'data-url="' + data.jackpotsUrl + '" ' +
+							'data-id="' + data.id + '" ' +
+							'data-platform="' + data.platform + '">' +
+
+						'<div class="td td1">' +
+							'--' +
+						'</div>' +
+
+						'<div class="td td2">' +
+							data.game +
+						'</div>' +
+
+						'<div class="td td3">' +
+							'--' +
+						'</div>' +
 					'</div>';
 
 		return temp;
@@ -68,10 +272,9 @@
 	HomePage.prototype.show = function () {
 		this.zone.fadeIn(500);
 		this.getAds();
-		// this.setPtSumBaseValue();
-		// if (app.signedIn) {
-		// 	this.getLuckyDrawWinRecords();
-		// }
+		this.getAds2();
+		this.getJackpots();
+		this.setPtSumBaseValue();
 	};
 
 	HomePage.prototype.hide = function () {
@@ -80,58 +283,21 @@
 
     HomePage.prototype.createLoader = function() {
         var wrapper1 = this.zone.find('.sliders')[0];
+        var wrapper2 = this.zone.find('.tab-sliders')[0];
+        var wrapper3 = this.zone.find('.jackpots-table .tbody')[0];
+        
         this.loader1 = new Loader(wrapper1, {
-        	top: '35%'
+        	top: '20%'
+        });
+
+        this.loader2 = new Loader(wrapper2, {
+        	top: '45%'
+        });
+
+        this.loader3 = new Loader(wrapper3, {
+        	top: '20%'
         });
     };
-
-    HomePage.prototype.setJackpotValue = function () {
-    	this.zone.find('.pt-jackpot-value').text('509,456,228.88');
-    };
-
-	HomePage.prototype.getPtJackpot = function () {
-		var that = this;
-
-		var callback = function (data) {
-			that.loader1.stop();
-			that.setJackpotValue(data);
-		};
-
-		this.loader1.play();
-		app.getJackpotsGames(callback.bind(this));
-	};
-
-	HomePage.prototype.getLuckyDrawWinRecords = function () {
-		var url;
-		var that = this;
-		var today = new Date();
-
-		this.loader2.play();
-
-		today = today.formatDate();
-		url  = 	app.urls.luckyDrawWinRecords +
-				'?beginTime=20150101&endTime=' + today + 
-				'&status=1&pageIndex=0&pageSize=4';
-
-        $.ajax({
-            type: 'GET',
-            url: url,
-            dataType: 'json',
-            timeout: app.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	that.loader2.stop();
-			if (json.StatusCode && json.StatusCode != 0) {
-				alert(json.Message);
-				return;
-			}
-        	that.setLuckyDrawItems(json.Data);
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
-	};
 
 	HomePage.prototype.getAds = function () {
 		var callback;
@@ -150,12 +316,117 @@
 			if (!data) {
 				return;
 			}
-			debugger
+			
 			that.addSliders(data);
-			this.loader1.stop();
+			that.loader1.stop();
 		};
 
 		Service.get(opt, callback);
+	};
+
+	HomePage.prototype.getAds2 = function (type) {
+		var callback;
+		var that  =  this;
+		var opt   =  {
+			url: app.urls.getAds,
+			data: {
+				type: type || 'pd_wyb_index_promo_ads',
+				pageIndex: 0,
+				pageSize: 6
+			}
+		};
+
+		this.loader2.play();
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+			
+			that.setSliders2(json.list);
+			that.loader2.stop();
+		};
+
+		Service.get(opt, callback);
+	};
+
+	HomePage.prototype.getJackpots = function () {
+		var that = this;
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.setJackpotstable(json);
+			that.resfreshBaseValues('PT');
+		};
+
+		app.getJackpotsGames('PT', 6, callback.bind(this));
+	};
+
+	HomePage.prototype.resfreshBaseValues = function (parentPlatform) {
+		var i;
+		var item;
+		var items;
+		var platform;
+		var gameId;
+		var url;
+
+		items = this.zone.find('.jackpots-table .jackpots-basevalue');
+		
+		for (i = 0; i < items.length; i++) {
+			item     = $(items[i]);
+			platform = item.attr('data-platform');
+			gameId   = item.attr('data-id');
+			url      = item.attr('data-url');
+
+			if (platform === 'MG') {
+				this.setMgSingleBaseValue(platform, gameId, item);
+			} else if (platform === 'PT') {
+				this.setPtSingleBaseValue(item.attr('data-url'), item);
+			} else {
+
+			}
+		}
+
+		if (parentPlatform === 'MG') {
+			this.setMgSumBaseValue('MG');
+		} else if (parentPlatform === 'PT') {
+			this.setPtSumBaseValue();
+		} else {
+			
+		}
+	};
+
+	HomePage.prototype.setPtSingleBaseValue = function (url, item) {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpotsByUrl,
+	        data: {
+	        	url: url
+	        }
+		};
+
+		callback = function (data) {
+			item.children('.td3').text(data.Data);
+		};
+
+		Service.post(opt, callback);
+	};
+
+	HomePage.prototype.setSliders2 = function (data) {
+		var i;
+		var images = this.zone.find('.tab-sliders img');
+
+		for (i = 0; i < data.length; i++) {
+			$(images[i]).attr('src', app.imageServer + data[i].ImgUrl);
+		}
+	};
+
+	HomePage.prototype.setTabUl = function () {
 	};
 
 	HomePage.prototype.setPtSumBaseValue = function () {
@@ -190,25 +461,6 @@
 		}, 1000);
 	};
 
-	HomePage.prototype.showSliders = function () {
-		if (this.logoHtml) {
-			$('.main .logo-wrapper').html(this.logoHtml);
-			$('.home-pages-sliders').unslider({
-				speed: 500,
-				delay: 5000,
-				autoplay: true,
-				arrows: {
-					prev: 	'<a class="unslider-arrow prev" style="margin-top: -15%">' +
-								'<img src="../img/left-normal.png">' +
-							'</a>',
-					next: 	'<a class="unslider-arrow next" style="margin-top: -15%">' +
-								'<img src="../img/right-normal.png">' +
-							'</a>'
-				}
-			});
-		}
-	};
-
 	HomePage.prototype.addSliders = function (data) {
 		var i;
 		var len = data.count;
@@ -241,40 +493,31 @@
 	};
 
 	HomePage.prototype.bindEvents = function () {
-		var luckyDrawButton;
-		var luckyDrawTable;
+		var pageName;
+		var type;
+		var stick;
+		var index;
 
 		this.zone        = $('.home-page');
-		luckyDrawTable   = this.zone.find('.zone2-down .table .tbody');
-		luckyDrawButton  = this.zone.find('.zone2-down .lucky-draw');
+		stick            = this.zone.find('.home-tab .stick');
 
-		luckyDrawButton.click(function () {
-			window.open('http://www.baidu.com');
+		this.zone.find('.page-nav').delegate('li', 'click', function () {
+			pageName = $(this).attr('data-page');
+			app.router.setRoute('/' + pageName);	
 		});
 
-		this.zone.find('.zone1-up-left-up').click(function () {
-			window.open(app.liveCsUrl);
-		});
-
-		this.zone.find('.zone1-up-left-down').click(function () {
-			app.goTo('clientDownload');
-		});
-
-		this.zone.find('.zone1-up-right .info').click(function () {
-			app.goTo('eEntertainment');
-		});
-
-		this.zone.find('.zone2-up-left .info').click(function () {
-			app.goTo('sportsCompetition');
-		});
-
-		this.zone.find('.zone2-up-right .info').click(function () {
-			app.goTo('liveVideo');
+		this.zone.find('.home-tab').delegate('li', 'click', function () {
+			type  = $(this).attr('data-value');
+			index = $(this).index();
+			stick.css('left', index*100 + 'px');
+			that.getAds2(type);
+			that.setTabUl();
 		});
 
 		this.notice.bindEvents();
 		this.suspension.bindEvents();
 		this.createLoader();
+		this.initTabSliders();
 	};
 
 	window.HomePage = HomePage;

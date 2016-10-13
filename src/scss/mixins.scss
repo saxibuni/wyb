@@ -6,17 +6,22 @@ $headerRow1Height          :   40px;
 $headerRow2Height          :   60px;
 $theme-background-color    :   #170E1F;
 $theme-font-color          :   #514859;
-$theme-font-hover-color    :   #FFFEFD;
+$font-color1               :   #B5B3B6;
+$font-color2               :   #FFFEFD;
 $sign-input-border-color   :   #605768;
 $green                     :   #26995E;
+$purple1                   :   #170E1F;
+$purple2                   :   #342840;
+$yellow                    :   #988950;
+$red                       :   #A80B42;
 $header-font-color         :   #B5B3B6;
+$footer-background-color   :   #070C12;
 
 $common-icon-top1          :   -10px;
 $common-icon-top2          :   -64px;
 $common-icon-top3          :   -96px;
 
 @mixin page-property {
-    background-color: #000000;
     color: #FFF;
     display: none;
     position: relative;

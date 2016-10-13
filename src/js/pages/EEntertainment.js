@@ -159,44 +159,6 @@
 	/*
 	** Marqueen
 	*/
-	EEntertainment.prototype.formatJackpotsUrl = function (data) {
-        var jackpotsUrl;
-        var jackpotCode;
-		var _jackpotInfoType = {
-            CASINOBASED    : '2',
-            CASINOSTOTAL   : '4',
-            GAMEBASED      : '1',
-            GAMEGROUPTOTAL : '5',
-            GAMETOTAL      : '3'
-        };
-
-	    if (data.ShowJackpots) {
-	        jackpotsUrl = data.Api.LoginUrl2 + "?info=" + data.JackpotsInfo + "&currency=cny";
-
-	        if (data.JackpotsInfo == _jackpotInfoType.GAMEBASED) {
-	            jackpotCode = data.GameIdentify;
-
-	            if (data.JackpotsParams.length > 0) {
-	                jackpotCode = data.JackpotsParams;
-	            }
-
-	            jackpotsUrl += "&casino=playtech&game=" + jackpotCode;
-	        } else if ( data.JackpotsInfo == _jackpotInfoType.CASINOBASED || 
-	        			data.JackpotsInfo == _jackpotInfoType.CASINOSTOTAL) {
-	            jackpotsUrl += "&casino=playtech";
-	        } else if (data.JackpotsInfo == _jackpotInfoType.GAMEGROUPTOTAL) {
-	            jackpotCode = data.GameIdentify;
-
-	            if (data.JackpotsParams.length > 0) {
-	                jackpotCode = data.JackpotsParams;
-	            }
-
-	            jackpotsUrl += "&casino=playtech&group=" + jackpotCode;
-	        }
-	    }
-
-	    return jackpotsUrl;
-	};
 
 	EEntertainment.prototype.createMarqueenLi1 = function (data) {
 		var temp =	'<div class="marqueen-li1">' +
@@ -251,7 +213,7 @@
 				game        : data[i].Title,
 				platform    : data[i].Api.GamePlatform,         //取MG基础值的时候用
 				id          : data[i].Id,                       //取MG基础值的时候用
-				jackpotsUrl : this.formatJackpotsUrl(data[i])   //取PT基础值的时候用
+				jackpotsUrl : app.formatJackpotsUrl(data[i])    //取PT基础值的时候用
 			});
 		}
 

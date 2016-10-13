@@ -234,12 +234,6 @@
 						that.zone.find('.main-wrapper').append(that[pageName].getDom());
 						that[pageName].bindEvents();
 					}
-
-					// if (!that[pageName].showSliders) {
-					// 	$('.main .logo-wrapper').html('');
-					// } else {
-					// 	that[pageName].showSliders();
-					// }
 					
 					that.header.setStick(dict[pageName].index);
 					that[pageName].show();
@@ -295,6 +289,75 @@
 			.trigger('click');
 	};
 
+	app.prototype.getJackpotsGames = function (platform, n, cb) {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: this.urls.getJackpotsGames,
+	        data: {
+	        	platform: platform,
+	        	pageIndex: 0,
+	        	pageSize: n
+	        }
+		};
+
+		if (platform !== 'PT' && platform !== 'MG') {
+			return;
+		}
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			if (typeof cb === 'function') {
+				cb(json);
+			}
+		};
+
+		Service.get(opt, callback);
+	};
+
+	app.prototype.formatJackpotsUrl = function (data) {
+        var jackpotsUrl;
+        var jackpotCode;
+		var _jackpotInfoType = {
+            CASINOBASED    : '2',
+            CASINOSTOTAL   : '4',
+            GAMEBASED      : '1',
+            GAMEGROUPTOTAL : '5',
+            GAMETOTAL      : '3'
+        };
+
+	    if (data.ShowJackpots) {
+	        jackpotsUrl = data.Api.LoginUrl2 + "?info=" + data.JackpotsInfo + "&currency=cny";
+
+	        if (data.JackpotsInfo == _jackpotInfoType.GAMEBASED) {
+	            jackpotCode = data.GameIdentify;
+
+	            if (data.JackpotsParams.length > 0) {
+	                jackpotCode = data.JackpotsParams;
+	            }
+
+	            jackpotsUrl += "&casino=playtech&game=" + jackpotCode;
+	        } else if ( data.JackpotsInfo == _jackpotInfoType.CASINOBASED || 
+	        			data.JackpotsInfo == _jackpotInfoType.CASINOSTOTAL) {
+	            jackpotsUrl += "&casino=playtech";
+	        } else if (data.JackpotsInfo == _jackpotInfoType.GAMEGROUPTOTAL) {
+	            jackpotCode = data.GameIdentify;
+
+	            if (data.JackpotsParams.length > 0) {
+	                jackpotCode = data.JackpotsParams;
+	            }
+
+	            jackpotsUrl += "&casino=playtech&group=" + jackpotCode;
+	        }
+	    }
+
+	    return jackpotsUrl;
+	};
+	
 	app.prototype.showLoginNotice = function () {
 		alert('请先登录');
 		this.showSignInDialog();

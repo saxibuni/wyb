@@ -1,11 +1,12 @@
 @import "../mixins.scss";
 
 .footer {
-	background-color: $theme-background-color;
+	background-color: $footer-background-color;
 	position: relative;
 	height: $footerHeight;
 	font-size: 14px;
 	text-align: center;
+	margin-top: 20px;
 	width: 100%;
 
 	.wrapper { 

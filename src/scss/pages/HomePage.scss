@@ -1,16 +1,419 @@
 @import "../mixins.scss";
 
+$homepage-icon-top1      :   -15px;
+$homepage-icon-top2      :   -70px;
+$homepage-icon-top3      :   -126px;
+
 .home-page {
 	@include page-property;
 
+	background-color: rgba(0, 0, 0, 0.3);
+
+	$baseL                       :    1300;
+	$baseWidth                   :    1300px;
+	$pageNavGap                  :    $baseWidth * 10 / $baseL;
+	$pageNavLiWidth              :    $baseWidth * 205 / $baseL;
+	$pageNavLiHeight             :    $baseWidth * 190 / $baseL;
+	$pageNavLiZone1Height        :    $baseWidth * 150 / $baseL;
+	$pageNavLiZone2Height        :    $baseWidth * 40 / $baseL;
+	$home-icon-top-gap           :    $baseWidth * 40 / $baseL;
+	$bottom-left-width           :    $baseWidth * 750 / $baseL;
+	$bottom-right-width          :    $baseWidth * 520 / $baseL;
+	$bottom-module-height        :    $baseWidth * 305 / $baseL;
+	$bottom-left-height1         :    $baseWidth * 45 / $baseL;
+	$bottom-left-height2         :    $baseWidth * 260 / $baseL;
+	$bottom-sliders-width        :    $baseWidth * 430 / $baseL;
+	$bottom-sliders-info-width   :    $baseWidth * 320 / $baseL;
+
+	$bottom-right-height1        :    $bottom-left-height1;
+	$bottom-right-height2        :    $bottom-left-height1;
+	$bottom-table-height         :    $bottom-module-height - $bottom-right-height1 - $bottom-right-height2;
+	$bottom-table-row-height     :    $bottom-table-height / 7;
+
 	.wrapper {
-		background-color: #CCCCCC;
+		width: $contentWidth;
+
+		.sliders {
+			min-height: 318px;
+
+			& ~ .unslider-nav {
+				display: none;
+			}
+		}
+
+		.content {
+			text-align: left;
+			padding-bottom: $pageNavGap;
+
+			.page-nav {
+				padding-top: $pageNavGap;
+				margin-bottom: $pageNavGap;
+				text-align: left;
+
+				li {
+					cursor: pointer;
+					display: inline-block;
+					height: $pageNavLiHeight;
+					margin-left: $pageNavGap;
+					width: $pageNavLiWidth;
+
+					.li-zone1 {
+						background-color: $purple2;
+						color: $font-color1;
+						height: $pageNavLiZone1Height;
+						position: relative;
+						text-align: center;
+						width: 100%;
+
+						.home-icon {
+							background-image: url("../img/homepage-icons.png");
+							display: inline-block;
+							height: 45px;
+							margin-top: $home-icon-top-gap;
+							width: 50px;
+						}
+
+						.home-casino-icon {
+							background-position: -10px $homepage-icon-top1;
+						}
+
+						.home-video-icon {
+							background-position: -83px $common-icon-top1;
+						}
+
+						.home-sports-icon {
+							background-position: -155px $common-icon-top1;
+						}
+
+						.home-lottery-icon {
+							background-position: -225px $common-icon-top1;
+						}
+
+						.home-signup-icon {
+							background-position: -365px $common-icon-top1;
+						}
+
+						.home-vip-icon {
+							background-position: -442px $common-icon-top1;
+						}
+
+						.li-name {
+							display: inline-block;
+							height: 20px;
+							line-height: 20px;
+							width: 100%;
+						}
+					}
+
+					.li-zone2 {
+						background-color: $purple1;
+						color: $font-color1;
+						height: $pageNavLiZone2Height;
+						line-height: $pageNavLiZone2Height;
+						text-align: center;
+						width: 100%;
+					}
+
+					&:hover {
+						.li-zone1 {
+							background-image:-webkit-linear-gradient(to bottom right, $purple2, $purple1);
+							background-image:linear-gradient(to bottom right, $purple2, $purple1);
+							color: $font-color2;
+
+							.home-casino-icon {
+								background-position: -10px $homepage-icon-top2;
+							}
+
+							.home-video-icon {
+								background-position: -83px $common-icon-top2;
+							}
+
+							.home-sports-icon {
+								background-position: -155px $common-icon-top2;
+							}
+
+							.home-lottery-icon {
+								background-position: -225px $common-icon-top2;
+							}
+
+							.home-signup-icon {
+								background-position: -365px $common-icon-top2;
+							}
+
+							.home-vip-icon {
+								background-position: -442px $common-icon-top2;
+							}
+						}
+
+						.li-zone2 {
+							background-color: $red;
+							color: #FFF;
+						}
+					}
+				}
+			}
+
+			.bottom-left {
+				display: inline-block;
+				height: $bottom-module-height;
+				width: $bottom-left-width;
+				margin: 0 $pageNavGap;
+				vertical-align: top;
+
+				.home-tab {
+					background-color: $purple1;
+					color: $font-color1;
+					height: $bottom-left-height1;
+					text-align: left;
+					position: relative;
+					width: 100%;
+
+					li {
+						border-right: 1px solid $purple2;
+						cursor: pointer;
+						display: inline-block;
+						height: $bottom-left-height1;
+						line-height: $bottom-left-height1;
+						text-align: center;
+						width: 100px;
+
+						&:lkast-child {
+							border: 0;
+						}
+
+						&:hover {
+							color: $font-color2;
+						}
+					}
+
+					.stick {
+						background-color: $red;
+						width: 100px;
+						height: 3px;
+						left: 0;
+						position: absolute;
+						bottom: 0px;
+
+						transition: left 0.5s;
+						-moz-transition: left 0.5s; 
+						-webkit-transition: left 0.5s;
+						-o-transition: left 0.5s;
+					}
+				}
+
+				.tab-content {
+					background-color: $purple2;
+					height: $bottom-left-height2;
+					width: 100%;
+
+					.unslider {
+						display: inline-block;
+						vertical-align: top;
+					}
+
+					.tab-sliders {
+						background-color: $purple1;
+						display: inline-block;
+						height: $bottom-left-height2;
+						vertical-align: top;
+						width: $bottom-sliders-width;
+
+						& ~ .unslider-nav {
+							display: none;
+						}
+					}
+
+					.tab-ul {
+						display: inline-block;
+						height: $bottom-left-height2;
+						vertical-align: top;
+						width: $bottom-sliders-info-width;
+
+						li {
+							font-size: 12px;
+							color: $font-color1;
+							height: $bottom-left-height2 / 5;
+							line-height: $bottom-left-height2 / 5;
+							padding-left: 20px;
+						    display: inline-block;
+						    width: 100%;
+
+							.time {
+								color: #504A54;
+								height: $bottom-left-height2 / 12;
+								line-height: $bottom-left-height2 / 12;
+								margin-top: $bottom-left-height2 / 60; 
+							}
+
+							.info {
+								height: $bottom-left-height2 / 12;
+								line-height: $bottom-left-height2 / 12;
+							}
+						}
+
+						.odd {
+							background-color: #211B27;
+						}
+
+						.even {
+							background-color: #1B1320;
+						}
+					}
+				}
+			}
+
+			.bottom-right {
+				display: inline-block;
+				height: $bottom-module-height;
+				width: $bottom-right-width;
+				vertical-align: top;
+
+				.title {
+					background-color: $purple1;
+					color: $font-color1;
+					height: $bottom-right-height1;
+					line-height: $bottom-right-height1;
+					text-align: left;
+					width: 100%;
+
+					.cup-icon {
+						background-image: url("../img/homepage-icons.png");
+						background-position: -10px $homepage-icon-top3;
+						display: inline-block;
+						height: 17px;
+						margin-left: $pageNavGap + 10px;
+						margin-right: $pageNavGap;
+						margin-top: ($bottom-right-height1 - 17px) / 2;
+						width: 17px;
+					}
+
+					span {
+						display: inline-block;
+						vertical-align: top;
+					}
+				}
+
+				.jackpot {
+					background-color: $purple2;
+					color: $font-color1;
+					height: $bottom-right-height2;
+					text-align: left;
+					width: 100%;
+
+					.jackpot-vendor {
+						display: inline-block;
+						height: $bottom-right-height2;
+						vertical-align: top;
+						width: 40%;
+
+						li {
+							height: $bottom-right-height2;
+							line-height: $bottom-right-height2;
+							width: 200px;
+
+							.ag-icon {
+								background-image: url("../img/homepage-icons.png");
+								background-position: -50px -122px;
+								display: inline-block;
+								height: 28px;
+								margin-left: $pageNavGap + 8px;
+								margin-right: $pageNavGap;
+								margin-top: ($bottom-right-height1 - 28px) / 2;
+								width: 30px;
+							}
+
+							span {
+								vertical-align: top;
+							}
+						}
+					}
+
+					.jackpot-value {
+						color: $yellow;
+						display: inline-block;
+						height: $bottom-right-height2;
+						line-height: $bottom-right-height2;
+						text-align: right;
+						vertical-align: top;
+						width: 60%;
+
+						span {
+							vertical-align: top;
+						}
+
+						.pt-jackpot-value {
+							margin: 0 $pageNavGap;
+						}
+					}
+				}
+
+				.table {
+					height: $bottom-table-height;
+					width: 100%;
+
+					.thead {
+						background-color: $purple1;
+						height: $bottom-table-row-height;
+
+						.tr {
+							height: $bottom-table-row-height;
+							line-height: $bottom-table-row-height;
+							width: 100%;
+						}
+					}
+
+					.tbody {
+						height: $bottom-table-row-height * 6;
+						line-height: $bottom-table-row-height * 6;
+						text-align: center;
+
+						.tr {
+							height: $bottom-table-row-height;
+							line-height: $bottom-table-row-height;
+							width: 100%;
+						}
+
+						.odd {
+							background-color: #211B27;
+						}
+
+						.even {
+							background-color: #1B1320;
+						}
+
+						span {
+							vertical-align: center;
+						}
+					}
+
+					.td {
+						display: inline-block;
+						height: $bottom-table-row-height;
+						line-height: $bottom-table-row-height;
+						text-align: center;
+					}
+
+					.td1 {
+						width: 20%;
+					}
+
+					.td2 {
+						width: 60%;
+					}
+
+					.td3 {
+						width: 20%;
+					}
+				}
+			}
+		}
 	}
 }
 
 @media screen and (max-width: 1300px) {
 	.home-page {
 		.wrapper {
+
 		}
 	}
 }

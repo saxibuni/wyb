@@ -7,13 +7,13 @@ body {
 
 .app {
 	height: 100%;
-	background: radial-gradient(#342840, #150A1A, #070C12);
+	background-image: -webkit-radial-gradient(circle at top, #562d60 35%, #070C12);
+	background-image: radial-gradient(circle at top, #562d60 35%, #070C12);
 	display: inline-block;
 	width: 100%;
 	text-align: center;
 
 	.main {
-		background-color: $theme-background-color;
 		margin-top: $headerHeight;
 		font-size: 14px;
 		text-align: center;
@@ -41,7 +41,6 @@ body {
 		}
 
 		.main-wrapper {
-			background-color: #000000;
 			width: 100%;
 			position: relative;
 			left: 0;
