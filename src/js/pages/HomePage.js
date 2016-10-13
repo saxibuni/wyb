@@ -231,7 +231,7 @@
 		var temp =	'<div class="table jackpots-table">' +
 						'<div class="thead">' +
 							'<div class="tr">' +
-								'<div class="td td1">时间</div>' +
+								// '<div class="td td1">时间</div>' +
 								'<div class="td td2">游戏名称</div>' +
 								'<div class="td td3">奖金</div>' +
 							'</div>' +
@@ -268,9 +268,9 @@
 							'data-id="' + data.id + '" ' +
 							'data-platform="' + data.platform + '">' +
 
-						'<div class="td td1">' +
-							'--' +
-						'</div>' +
+						// '<div class="td td1">' +
+						// 	'--' +
+						// '</div>' +
 
 						'<div class="td td2">' +
 							data.game +
