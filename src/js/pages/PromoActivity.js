@@ -184,7 +184,7 @@
 		});	
 
 		pull.click(function () {
-			that.loadImages();	
+			that.loadImages();
 		});
 
 		this.createLoader();

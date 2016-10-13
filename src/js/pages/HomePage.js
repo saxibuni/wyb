@@ -197,19 +197,24 @@
 				temp +=	'<li class="even">';
 			}
 
-			temp +=			'<div class="time">' +
-								'2016-09-20 15:50:46' +
-							'</div>' +
-
-							'<div class="info">' +
-								'电子游戏-百万富翁全新上线' +
-							'</div>' +
+			temp +=			'<div class="time">--</div>' +
+							'<div class="info">--</div>' +
 						'</li>';
 		}
 
 		temp +=		'</ul>';
 
 		return temp;
+	};
+
+	HomePage.prototype.setPromoTabUl = function (data) {
+		var i
+		var lis = this.zone.find('.tab-ul li');
+
+		for (i = 0; i < data.length; i++) {
+			$(lis[i]).children('.time').text(data[i].StartTime.substring(0, 10) + '至' + data[i].EndTime.substring(0, 10));
+			$(lis[i]).children('.info').text(data[i].Title);
+		}
 	};
 
 	HomePage.prototype.createJackpotsTable = function () {
@@ -276,6 +281,7 @@
 		this.getAds2();
 		this.getJackpots();
 		this.setPtSumBaseValue();
+		this.queryPromoListsByType(6); //搜热门优惠活动
 	};
 
 	HomePage.prototype.hide = function () {
@@ -401,6 +407,32 @@
 		}
 	};
 
+	HomePage.prototype.queryPromoListsByType = function (type) {
+		var url;
+		var that = this;
+
+		url = app.urls.queryPromoListByType + '?type=' + type + '&pageIndex=0&pageSize=5'; 
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+			
+        	that.setPromoTabUl(json.list);
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
 	HomePage.prototype.setPtSingleBaseValue = function (url, item) {
 		var callback;
 		var that =  this;
@@ -498,6 +530,7 @@
 		var type;
 		var stick;
 		var index;
+		var that = this;
 
 		this.zone        = $('.home-page');
 		stick            = this.zone.find('.home-tab .stick');
