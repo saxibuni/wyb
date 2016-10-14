@@ -14,13 +14,32 @@
 		line-height: 40px;
 		margin-top: 5px;
 		text-align: center;
+		position: relative;
 		width: 40px;
 
     	$cs-icon-left1: -10px;
     	$cs-icon-left2: -53px;
 
+    	.slipper {
+    		border: 1px solid $red;
+    		border-radius: 20px;
+    		border-right: 0;
+    		color: $red;
+    		cursor: pointer;
+    		display: none;
+    		padding-left: 10px;
+    		height: 40px;
+    		line-height: 40px;
+    		position: absolute;
+    		top: 0;
+    		text-align: left;
+    		right: 0;
+    		width: 150px;
+    	}
+
     	.icon {
 			background-image: url("../img/cs.png");
+			cursor: pointer;
 			display: inline-block;
 			height: 25px;
 			margin-top: 9px;
@@ -33,14 +52,26 @@
 
     	.phone-icon {
     		background-position: $cs-icon-left1 -60px;
+
+    		& ~ .slipper {
+    			width: 150px;
+    		}
     	}
 
     	.qq-icon {
     		background-position: $cs-icon-left1 -105px;
+
+    		& ~ .slipper {
+    			width: 160px;
+    		}
     	}
 
     	.wechat-icon {
     		background-position: $cs-icon-left1 -152px;
+
+    		& ~ .slipper {
+    			width: 100px;
+    		}
     	}
 
     	.compass-icon {
@@ -53,6 +84,10 @@
 
     	&:hover {
     		border: 1px solid $red;
+
+    		.slipper {
+    			display: inline-block;
+    		}
 
 	    	.qrcode-icon {
 	    		background-position: $cs-icon-left2 -15px;
