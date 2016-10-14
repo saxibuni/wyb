@@ -1,37 +1,46 @@
+@import "../mixins.scss";
+
 .notice2 {
-	background:#2C2C2C;
-	height: 40px;
-	line-height: 40px;
+	$height: 30px;
+
+	background: rgba(0, 0, 0, .3);
+	height: $height;
+	line-height: $height;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
 
 	.notice2-left {
 		display: inline-block;
+		font-size: 12px;
 		float: left;
 		width: 75%;
 		text-align: left;
 		position: relative;
 
-		.notice2-img-zone {
+		.speaker-icon {
+			background-image: url("../img/common.png");
+			cursor: pointer;
 			display: inline-block;
-			width: 50px;
-			text-align: center;
-			vertical-align: top;
-
-			.notice2-img {
-			    margin-top: 10px;
-			}
+		    height: 25px;
+		    background-position: -320px -70px;
+			width: 25px;
+			margin-left: 10px;
 		}
 
 		.ul-wrapper {
 			display: inline-block;
-			height: 40px;
+			height: $height;
 			overflow: hidden;
 			position: absolute;
 			text-align: left;
-			left: 51px;
+			left: 33px;
 			right: 0;
 
 			ul {
-				color: #CDA654;
+				color: $font-color1;
 				display: inline-block;
 				width: 100%;
 				position: absolute;
@@ -39,7 +48,7 @@
 
 				li {
 					cursor: pointer;
-					height: 40px;
+					height: $height;
 					width: 100%;
 					position: relative;
 
@@ -49,7 +58,7 @@
 						width: 100%;
 						overflow: hidden;
 						position: relative;
-						height: 40px;
+						height: $height;
 
 						.title {
 							display: inline-block;
@@ -57,8 +66,8 @@
 						}
 
 						.content-wrapper {
-							height: 40px;
-							line-height: 40px;
+							height: $height;
+							line-height: $height;
 							width: 10000px;
 							position: absolute;
 							top: 0;
@@ -73,43 +82,47 @@
 	.notice2-right {
 		display: inline-block;
 		float: right;
+		font-size: 12px;
 		width: 25%;
 		text-align: right;
 
 		.close {
 			cursor: pointer;
+			color: $font-color1;
 			display: inline-block;
+			font-size: 18px;
 			vertical-align: top;
 			padding: 0 10px;
-			font-size: 24px;
+			font-size: 18px;
 
 			&:hover {
-				color: #CDA654;
+				color: $font-color2;
 			}
 		}
 
 		.moreNotice {
 			cursor: pointer;
+			color: $font-color1;
 			display: inline-block;
     		vertical-align: top;
     		padding: 0 10px;
 
 			&:hover {
-				color: #CDA654;
+				color: $font-color2;
 			}
 		}
 
 		.ul-wrapper {
 			display: inline-block;
-			height: 40px;
+			height: $height;
 			margin-left: 10px;
 			position: relative;
 			text-align: left;
 			overflow: hidden;
-			width: 150px;
+			width: 120px;
 
 			ul {
-				color: #CDA654;
+				color: $font-color1;
 				display: inline-block;
 				position: absolute;
 				top: 0;
@@ -117,8 +130,8 @@
 
 				li {
 					cursor: pointer;
-					height: 40px;
-					line-height: 40px;
+					height: $height;
+					line-height: $height;
 					width: 150px;
 				}
 			}

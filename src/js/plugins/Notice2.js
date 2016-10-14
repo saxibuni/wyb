@@ -11,9 +11,7 @@
 	Notice2.prototype.initDom = function () {
 		var temp =	'<div class="notice2" id="' + this.id + '">' +
 						'<div class="notice2-left">' +
-							'<div class="notice2-img-zone">' +
-								'<img class="notice2-img" src="../img/notice.png">' +
-							'</div>' +
+							'<div class="speaker-icon"></div>' +
 							
 							'<div class="ul-wrapper">' +
 								'<ul class="content-ul">' +
@@ -27,7 +25,7 @@
 								'</ul>' +
 							'</div>' +
 							'<div class="moreNotice">更多公告</div>' +
-							// '<div class="close">×</div>' +
+							'<div class="close">×</div>' +
 						'</div>' +
 					'</div>';
 

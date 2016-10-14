@@ -449,6 +449,7 @@
    			.row2-wrapper {
 				margin: 0 auto;
 				width: $contentWidth;
+				position: relative;
 
 				.header-logo {
 					float: left;
@@ -488,14 +489,16 @@
 					display: inline-block;
 					height: $headerRow2Height;
 					line-height: $headerRow2Height;
-					position: relative;
-					margin-left: 20px;
+					position: absolute;
+					left: 270px;
+					right: 140px;
+					top: 0;
 
 					li {
 						cursor: pointer;
 						font-size: 14px;
 						display: inline-block;
-						width: 80px;
+						width: 14.285%;
 						text-align: center;
 
 						&:hover {
@@ -505,7 +508,7 @@
 
 					.stick {
 						background-color: $red;
-						width: 80px;
+						width: 14.285%;
 						height: 2px;
 						left: 0;
 						position: absolute;
@@ -522,33 +525,6 @@
 					}
 				}
    			}
-		}
-
-		.row2-signin {
-			height: $headerRow1Height;
-			line-height: $headerRow1Height;
-
-			.row2-wrapper {
-				.header-logo {
-					display: none;
-				}
-
-				.pages {
-					height: $headerRow1Height;
-					line-height: $headerRow1Height;
-					margin-left: 300px;
-				}
-
-				.button-zone {
-					height: $headerRow1Height;
-					line-height: $headerRow1Height;
-
-					.lxkf-button {
-					    margin-top: 5px;
-					    width: 100px;
-					}
-				}
-			}
 		}
 	}
 

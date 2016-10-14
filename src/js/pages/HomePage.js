@@ -13,6 +13,8 @@
 
 		var temp = 	'<div class="page home-page">' +
 						'<div class="wrapper">' +
+							this.notice.getDom() +
+							
 							'<div class="sliders"></div>' +
 
 							'<div class="content">' +
