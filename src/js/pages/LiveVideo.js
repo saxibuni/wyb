@@ -6,8 +6,36 @@
 	LiveVideo.prototype.initDom = function () {
 		var temp =	'<div class="page live-video">' +
 						'<div class="wrapper">' +
+							'<div class="sliders"></div>' +
+
 							'<div class="content">' +
-								'<div class="picture-zone">' +
+								'<div class="picture picture1" data-value="BBIN">' +
+									'<img>' +
+									'<div class="info">' +
+										'<p></p>' +
+										'<div class="players">' +
+										'</div>' +								
+									'</div>' +
+								'</div>' +
+
+								'<div class="picture picture2" data-value="AG">' +
+									'<img>' +
+									'<div class="info"></div>' +
+								'</div>' +
+
+								'<div class="picture picture3" data-value="AB">' +
+									'<img>' +
+									'<div class="info"></div>' +
+								'</div>' +
+
+								'<div class="picture picture4" data-value="OG">' +
+									'<img>' +
+									'<div class="info"></div>' +
+								'</div>' +
+
+								'<div class="picture picture5">' +
+									'<img>' +
+									'<div class="info"></div>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -21,51 +49,11 @@
 	};
 
 	LiveVideo.prototype.setItems = function (data) {
-		var i;
-		var temp = '';
-		var platfomrs = ['AG', 'PT', 'BBIN', 'MG', 'HG', 'IBC', 'T188'];
-
-		for (i = 0; i < data.length; i++) {
-			temp += this.createItem({
-				className: 'img' + (i + 1),
-				imgUrl: app.imageServer + data[i].ImgUrl,
-				platform: platfomrs[i]
-			});
-		}
-
-		this.zone.find('.picture-zone').html(temp);
-		this.bindItemEvents();
-	};
-
-	LiveVideo.prototype.createItem = function (opt) {
-		var temp =	'<div class="item' + ((opt&&opt.className)?' ' + opt.className: '') + '" data-platform="' + opt.platform + '">' +
-						'<div class="zone1">' +
-							'<div class="logo"' + (opt&&opt.width&&opt.height?(' style="width:' + opt.width + ';height:' + opt.height + '"'): '') + '>' +
-								'<img src="' + opt.imgUrl + '">' +
-							'</div>' +
-						'</div>' +
-
-						'<div class="zone2">' +
-							'<p class="title">' +
-								'AG国际厅，实时显示赢家排行胜率，百家乐，龙虎，轮盘...' +
-							'</p>' +
-
-							'<div class="quantity">' +
-								'<img class="message-img" src="../img/eye.png">' +
-								'<span>2022</span>' +
-							'</div>' +
-						'</div>' +
-
-						'<div class="item-overlay">' +
-						'</div>' +
-					'</div>';
-
-		return temp;
 	};
 
 	LiveVideo.prototype.show = function () {
 		this.zone.fadeIn(500);
-		
+
 		if (!this.firstTime) {
 			this.getAds();
 			this.getPictures();
@@ -83,34 +71,37 @@
 		}
 	};
 
+    LiveVideo.prototype.createLoader = function() {
+        var wrapper = this.zone.find('.sliders')[0];
+
+        this.loader1 = new Loader(wrapper, {
+        	top: '50%'
+        });
+    };
+
 	LiveVideo.prototype.addSliders = function (data) {
 		var i;
 		var len = data.count;
 		var arr = data.list;
-		var logoTemp = 	'<div class="live-video-sliders">' +
-							'<ul class="live-video-ul">';
+		var logoTemp = 	'<ul>';
 
 		for (i = 0; i < len; i++) {
-			logoTemp += 		'<li>' +
-									'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
-								'</li>';
+			logoTemp += 	'<li>' +
+								'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
+							'</li>';
 		}
 
-		logoTemp +=			'</ul>' +
-						'</div>';
+		logoTemp +=		'</ul>';
 
 		this.logoHtml = logoTemp;
-		$('.main .logo-wrapper').html(logoTemp);
-		//$('.live-video-sliders').show();
+		this.zone.find('.sliders').html(logoTemp);
+		this.zone.find('.sliders').unslider({
+			speed: 500,
+			delay: 5000,
+			autoplay: true,
+			arrows: false
+		});
 	};
-
-    LiveVideo.prototype.createLoader = function() {
-        var wrapper = this.zone.find('.content')[0];
-
-        this.loader = new Loader(wrapper, {
-        	top: '50%'
-        });
-    };
 
 	LiveVideo.prototype.getAds = function () {
 		var callback;
@@ -120,7 +111,7 @@
 			data: {
 				type: 'pd_wyb_casino_ads',
 				pageIndex: 0,
-				pageSize: 10
+				pageSize: 1
 			}
 		};
 
@@ -129,10 +120,21 @@
 				return;
 			}
 
+			that.loader1.stop();
 			that.addSliders(data);
 		};
 
+		this.loader1.play();
 		Service.get(opt, callback);
+	};
+
+	LiveVideo.prototype.setPictures = function (data) {
+		var i;
+		var imgs = this.zone.find('.picture img');
+
+		for (i = 0; i < imgs.length; i++) {
+			$(imgs[i]).attr('src', app.imageServer + data[i].ImgUrl);
+		}
 	};
 
 	LiveVideo.prototype.getPictures = function () {
@@ -143,7 +145,7 @@
 			data: {
 				type: 'pd_wyb_casino_pictures',
 				pageIndex: 0,
-				pageSize: 7
+				pageSize: 5
 			}
 		};
 
@@ -153,7 +155,7 @@
 				return;
 			}
 
-			that.setItems(json.list);
+			that.setPictures(json.list);
 		};
 
 		Service.get(opt, callback);

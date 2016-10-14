@@ -318,8 +318,11 @@
 	};
 
 	Header.prototype.setStick = function (index) {
-		var stick = this.zone.find('.pages .stick');
+		var stick    = this.zone.find('.pages .stick');
+		
 		stick.css('left', index * 80 + 'px');
+		this.zone.find('.pages li').removeClass('selected');
+		this.zone.find('.pages li:nth-child(' + (index + 1) + ')').addClass('selected');
 	};
 
 	Header.prototype.signOut = function () {
@@ -440,11 +443,13 @@
 		});
 
 		pagesUl.delegate('li', 'click', function () {
+			pagesUl.children('li').removeClass('selected');
+			$(this).addClass('selected');
+
 			pageName = $(this).attr('data-value');
 			index    = $(this).index();
 			stick.css('left', index * 80 + 'px');
 			app.router.setRoute('/' + pageName);
-			//app.goTo(pageName);
 		});
 
 		grzxNav.click(function(){
