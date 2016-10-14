@@ -16,6 +16,7 @@
 		$info-height             :       $baseWidth * 100 / $baseL;
 		$left1                   :       $baseWidth * 45 / $baseL;
 		$left2                   :       $baseWidth * 14 / $baseL;
+		$button-right            :       $baseWidth * 20 / $baseL;
 
 		.unslider {
 			overflow: hidden;
@@ -51,6 +52,7 @@
 				height: $picture-height;
 				position: relative;
 				overflow: hidden;
+				transition: all .3s;
 
 				img {
 					width: 100%;
@@ -104,7 +106,7 @@
 					    height: 35px;
 					    line-height: 35px;
 					    position: absolute;
-					    right: 20px;
+					    right: $button-right;
 					    bottom: 10px;
 					    width: 120px;
 
@@ -155,8 +157,84 @@
 	}
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
 	.live-video {
+		.wrapper {
+			$baseL                   :       1300;
+			$baseWidth               :       1000px;
+			$picture-height          :       $baseWidth * 330 / $baseL;
+			$picture1-width          :       $baseWidth * 864 / $baseL;
+			$picture2-width          :       $baseWidth * 426 / $baseL;
+			$picture3-width          :       $baseWidth * 426 / $baseL;
+			$picture4-width          :       $baseWidth * 427 / $baseL;
+			$picture5-width          :       $baseWidth * 427 / $baseL;
+			$live-gap                :       $baseWidth * 10 / $baseL;
+			$info-height             :       $baseWidth * 100 / $baseL;
+			$left1                   :       $baseWidth * 45 / $baseL;
+			$left2                   :       $baseWidth * 14 / $baseL;
+			$button-right            :       $baseWidth * 20 / $baseL;
 
+			.content {
+				margin-top: $live-gap - 2px;
+
+				.picture {
+					height: $picture-height;
+
+					.info {
+						height: $info-height;
+
+						p {
+							height: $info-height / 2;
+							line-height: $info-height / 2;
+							padding-left: $left2;
+						}
+
+						.players {
+						    left: $left2;
+						}
+
+						.button {
+						    right: $button-right;
+						}
+					}
+				}
+
+				.picture1 {
+					width: $picture1-width;
+
+					.info {
+						p {
+							padding-left: $left1;
+						}
+
+						.players {
+						    left: $left1;
+						}
+					}
+				}
+
+				.picture2 {
+					margin-left: $live-gap;
+					width: $picture2-width;
+				}
+
+				.picture3 {
+					width: $picture3-width;
+					margin-top: $live-gap - 2px;
+				}
+
+				.picture4 {
+					margin-left: $live-gap;
+					margin-top: $live-gap - 2px;
+					width: $picture4-width;
+				}
+
+				.picture5 {
+					margin-left: $live-gap;
+					margin-top: $live-gap - 2px;
+					width: $picture5-width;
+				}
+			}
+		}
 	}
 }
