@@ -542,14 +542,15 @@
 			speed: 500,
 			delay: 5000,
 			autoplay: true,
-			arrows: {
-				prev: 	'<a class="unslider-arrow prev" style="margin-top: -15%">' +
-							'<img src="../img/left-normal.png">' +
-						'</a>',
-				next: 	'<a class="unslider-arrow next" style="margin-top: -15%">' +
-							'<img src="../img/right-normal.png">' +
-						'</a>'
-			}
+			// arrows: {
+			// 	prev: 	'<a class="unslider-arrow prev" style="margin-top: -15%">' +
+			// 				'<img src="../img/left-normal.png">' +
+			// 			'</a>',
+			// 	next: 	'<a class="unslider-arrow next" style="margin-top: -15%">' +
+			// 				'<img src="../img/right-normal.png">' +
+			// 			'</a>'
+			// },
+			arrows: false
 		});
 	};
 

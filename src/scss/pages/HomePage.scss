@@ -33,17 +33,29 @@ $homepage-icon-top3      :   -126px;
 	.wrapper {
 		width: $contentWidth;
 
-		.sliders {
-			min-height: 228px;
+		.unslider {
+			overflow: hidden;
+		    position: relative;
 
-			& ~ .unslider-nav {
-				display: none;
+			.sliders {
+				min-height: 228px;
+
+				li {
+					img {
+						width: 100%;
+					}
+				}
 			}
 
-			li {
-				img {
-					width: 100%;
-				}
+			.unslider-nav {
+			    position: absolute;
+			    bottom: 10px;
+			    left: 20px;
+
+			    li {
+			    	height: 10px;
+				    width: 10px;
+			    }
 			}
 		}
 
