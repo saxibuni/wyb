@@ -52,7 +52,7 @@ body {
 				width: $contentWidth;
 				text-align: center;
 				vertical-align: top;
-				margin-top: 20px;
+				margin-top: 10px;
 			}
 		}
 
@@ -67,10 +67,10 @@ body {
 		.main {
 			.main-wrapper {
 				.page {
-					width: 997px;
+					width: 1000px;
 
 					.wrapper {
-						width: 997px;
+						width: 1000px;
 					}
 				}
 			}
@@ -78,7 +78,7 @@ body {
 	}
 }
 
-@media screen and (min-width: 0px) and (max-width: 996px) {
+@media screen and (min-width: 0px) and (max-width: 1000px) {
 	body {
 		overflow-x: auto;	
 	}

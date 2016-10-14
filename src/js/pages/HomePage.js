@@ -166,7 +166,7 @@
 		var i;
 		var temp = 	'<ul>';
 
-		for (i = 0; i < 6; i++) {
+		for (i = 0; i < 5; i++) {
 			temp += 	'<li>' +
 							'<img src="">' +
 						'</li>';
@@ -178,11 +178,18 @@
 	};
 
 	HomePage.prototype.initTabSliders = function () {
-		this.zone.find('.tab-sliders').unslider({
+		var that = this;
+
+		this.tabSlider = this.zone.find('.tab-sliders').unslider({
 			speed: 500,
 			delay: 5000,
 			autoplay: true,
 			arrows: false
+		});
+
+		this.tabSlider.on('unslider.change', function(event, index, slide) {
+			that.zone.find('.tab-ul li').removeClass('active');
+			that.zone.find('.tab-ul li:nth-child(' + (parseInt(index) + 1) + ')').addClass('active');
 		});
 	};
 
@@ -192,14 +199,18 @@
 
 		for (i = 0; i < 5; i++) {
 			if (i % 2 === 0) {
-				temp +=	'<li class="odd">';
+				if (i === 0) {
+					temp +=	'<li class="odd active">';
+				} else {
+					temp +=	'<li class="odd">';
+				}
 			} else {
-				temp +=	'<li class="even">';
+				temp +=		'<li class="even">';
 			}
 
-			temp +=			'<div class="time">--</div>' +
-							'<div class="info">--</div>' +
-						'</li>';
+			temp +=				'<div class="time">--</div>' +
+								'<div class="info">--</div>' +
+							'</li>';
 		}
 
 		temp +=		'</ul>';
@@ -335,6 +346,7 @@
 			
 			that.addSliders(data);
 			that.loader1.stop();
+			$('body').scrollTop(0);
 		};
 
 		Service.get(opt, callback);
@@ -348,7 +360,7 @@
 			data: {
 				type: type || 'pd_wyb_index_promo_ads',
 				pageIndex: 0,
-				pageSize: 6
+				pageSize: 5
 			}
 		};
 

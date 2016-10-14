@@ -283,20 +283,20 @@
 	};
 
 	Header.prototype.showSignedInHeader = function () {
-		this.zone.find('.message').show();
-		this.zone.find('.my-collection').show();
-		this.zone.find('.money-actions, .balance, .grzx').show();
-		this.zone.find('.signin-button, .signup-button').hide();
+		this.zone.find('.li-money-actions').show();
+		this.zone.find('.li-balance').show();
+		this.zone.find('.li-grzx').show();
+		this.zone.find('.li-signin-signup').hide();
 		this.getUserInfo();
 		this.getCollectList();
 		this.getUnreadMessageCount();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 
-		this.zone.find('.money-actions, .balance, .grzx').hide();
-		this.zone.find('.my-collection').hide();
-		this.zone.find('.message').hide();
-		this.zone.find('.signin-button, .signup-button').show();
+		this.zone.find('.li-money-actions').hide();
+		this.zone.find('.li-balance').hide();
+		this.zone.find('.li-grzx').hide();
+		this.zone.find('.li-signin-signup').show();
 	};
 
 	Header.prototype.showHeaderFloatWindow = function () {
@@ -486,22 +486,6 @@
 			}
 		});
 
-		menu.click(function () {
-			if (parseInt(headRow2.css('height')) !== 0) {
-				headRow2.css({
-					'height': '0',
-					'opacity': '0'
-				});
-				$('.app .main').css('margin-top', '40px');
-			} else {
-				headRow2.css({
-					'height': '55px',
-					'opacity':'1'
-				});
-				$('.app .main').css('margin-top', '85px');
-			}
-		});
-
 		closeWdsc.click(function () {
 			wdscFloatWindow.css('top', '-600px');
 		});
@@ -539,25 +523,23 @@
 		$(document).scroll(function(e) {
 			that.hideHeaderFloatWindow();
 
-			if (document.body.scrollTop > 40) {
-				headRow2.css({
-					'height': '0',
-					'opacity':'0'
-				});
+			if (document.body.scrollTop > 0) {
 				that.zone.addClass('fixed-header');
-				$('.app .main').css('margin-top', '40px');
 			} else {
-				headRow2.css({
-					'height': '55px',
-					'opacity':'1'
-				});
 				that.zone.removeClass('fixed-header');
-				$('.app .main').css('margin-top', '85px');
+				headRow2.show();
 			}
 		});
 
-		//this.showSignedOutHeader();
-		//this.showSignedInHeader();
+		menu.click(function () {
+			if (headRow2.css('display') !== 'none') {
+				headRow2.hide();
+			} else {
+				headRow2.show();
+			}
+		});
+
+		this.showSignedOutHeader();
 	};
 
 	window.Header = Header;

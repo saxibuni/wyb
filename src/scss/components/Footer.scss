@@ -171,16 +171,16 @@
 
 .fix-bottom {
 	position: absolute;
-	bottom: 0;	
+	bottom: 0;
 }
 
-@media screen and (min-width: 0px) and (max-width: 1200px) {
+@media screen and (min-width: 0px) and (max-width: 1300px) {
 	.footer {
 		.wrapper {
-			width: 997px;
+			width: 1000px;
 
 			.footer-middle {
-				left: 600px;
+				left: 650px;
 			}
 		}
 	}
