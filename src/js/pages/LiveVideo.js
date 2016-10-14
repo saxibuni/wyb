@@ -88,6 +88,7 @@
 		if (!this.firstTime) {
 			this.getAds();
 			this.getPictures();
+			this.getGameLoginUrls();
 			this.firstTime = true;
 		}
 	};
@@ -192,7 +193,17 @@
 		Service.get(opt, callback);
 	};
 
-    LiveVideo.prototype.getGameLoginUrl = function (platform) {
+	LiveVideo.prototype.getGameLoginUrls = function () {
+		var i;
+		var platforms = ['BBIN', 'AG', 'AB', 'OG'];
+		var imgs      = this.zone.find('.picture');
+		
+		for (i = 0; i < platforms.length; i++) {
+			this.getGameLoginUrl(platforms[i], $(imgs[i]));
+		}
+	};
+
+    LiveVideo.prototype.getGameLoginUrl = function (platform, item) {
     	var that = this;
     	var opt =  {
 			url: app.urls.getGameLoginUrl,
@@ -208,29 +219,36 @@
 				return;
 			}
 
-			window.open(json);
+			item.attr('data-url', json);
 		}
 
 		Service.get(opt, callback);
     };
 
-	LiveVideo.prototype.bindItemEvents = function () {
+	LiveVideo.prototype.bindEvents = function () {
 		var platform;
+		var picture;
+		var url;
 		var that = this;
 
-		this.zone.find('.item').click(function () {
-			platform = $(this).attr('data-platform');
-
-			if (app.signedIn) {
-				that.getGameLoginUrl(platform);
-			} else {
-				app.showLoginNotice();
-			}
-		});
-	};
-
-	LiveVideo.prototype.bindEvents = function () {
 		this.zone = $('.live-video');
+
+		this.zone.find('.button').click(function () {
+			picture = $(this).parents('.picture');
+			url     = picture.attr('data-url');
+
+			if (!app.signedIn) {
+				app.showLoginNotice();
+				return;
+			}
+
+			if (!url) {
+				return;
+			}
+
+			window.open(url);
+		});
+
 		this.createLoader();
 	};
 

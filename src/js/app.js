@@ -359,7 +359,6 @@
 	};
 	
 	app.prototype.showLoginNotice = function () {
-		alert('请先登录');
 		this.showSignInDialog();
 	};
 
