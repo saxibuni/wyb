@@ -1,3 +1,5 @@
+@import "../mixins.scss";
+
 .suspension {
 	width: 40px;
     width: 40px;
@@ -5,150 +7,76 @@
     top: 30%;
     right: 20px;
     
-	i, em {
-		display: inline-block;
-		font-style: normal;
-	}
-	a {
-		display: block;
-		width: 100%;
-		height: 40px;
-		position: relative;
-	}
-
-	.qrcode ,
-	.activity,
-	.qq-kf ,
-	.phone-kf,
-	.online-kf {
-		background-color: #48463a;
-		border-top: solid 1px #fff;
-	}
-
-	.arrow .tab-icon,
-	.qrcode .tab-icon,
-	.activity .tab-icon,
-	.qq-kf .tab-icon,
-	.phone-kf .tab-icon,
-	.online-kf .tab-icon {
-		cursor: pointer;
-		width: 40px;
-		height: 40px;
-		position: relative;
-	}
-
-	.qrcode .tab-text,
-	.activity .tab-text,
-	.qq-kf .tab-text,
-	.phone-kf .tab-text,
-	.online-kf .tab-text {
-		cursor: pointer;
-		display: none;
-		position: absolute;
+    li {
+    	border: 1px solid #636572;
+    	border-radius: 50%;
 		height: 40px;
 		line-height: 40px;
-		background-color: #cda654;
-		top: 0;
-		color: #fff;
-	}
+		margin-top: 5px;
+		text-align: center;
+		width: 40px;
 
-	.arrow {
-		.tab-icon {
-			background: url('../img/up-normal.png') no-repeat center center;
-		}
-		a:hover {
-			.tab-icon {
-				background: url('../img/up-hover.png') no-repeat center center;
-			}
-		}
-	}
+    	$cs-icon-left1: -10px;
+    	$cs-icon-left2: -53px;
 
-	.qrcode {
-		.tab-icon {
-			background: url('../img/qrcode-icon.png') no-repeat center center;
-		}
+    	.icon {
+			background-image: url("../img/cs.png");
+			display: inline-block;
+			height: 25px;
+			margin-top: 9px;
+			width: 25px;
+    	}
 
-		.tab-text {
-			width: 60px;
-		 	left: -60px;
-		}
-		a:hover {
-			background-color: #cda654;
-			.tab-text {
-				display: block;
-			}
-		}
-	}
+    	.qrcode-icon {
+    		background-position: $cs-icon-left1 -15px;
+    	}
 
-	.activity {
-		.tab-icon {
-			background: url('../img/activity.png')  no-repeat center center;
-		}
-		.tab-text {
-			width: 100px;
-			left: -100px;
-		}
-		a:hover {
-			background-color: #cda654;
-			.tab-text {
-				display: block;
-			}
-		}
-	}
+    	.phone-icon {
+    		background-position: $cs-icon-left1 -60px;
+    	}
 
-	.qq-kf {
-		.tab-icon {
-			background: url('../img/qq-kf.png')  no-repeat center center;
-		}
-		.tab-text {
-			width: 90px;
-			left: -90px;
-		}
-		a:hover {
-			background-color: #cda654;
-			.tab-text {
-				display: block;
-			}
-		}
-	}
+    	.qq-icon {
+    		background-position: $cs-icon-left1 -105px;
+    	}
 
-	.phone-kf {
-		.tab-icon {
-			background: url('../img/phone-kf.png')  no-repeat center center;
-		}
-		.tab-text {
-			width: 120px;
-			left: -120px;
-		}
-		a:hover {
-			background-color: #cda654;
-			.tab-text {
-				display: block;
-			}
-		}
-	}
+    	.wechat-icon {
+    		background-position: $cs-icon-left1 -152px;
+    	}
 
-	.online-kf {
-		.tab-icon {
-			background: url('../img/online-kf.png') no-repeat center center;
-		}
-		.tab-text {
-			width: 100px;
-			left: -100px;
-		}
-		a:hover {
-			background-color: #cda654;
-			.tab-text {
-				display: block;
-			}
-		}
-	}
+    	.compass-icon {
+    		background-position: $cs-icon-left1 -195px;
+    	}
 
-	/*.qrcode {
-		.tab-icon {
-			width: 50px;
-			height: 50px;
-			backgroung: '../img/qrcode-icon.png';
-		}
-	}*/
+    	.top-icon {
+    		background-position: $cs-icon-left1 -240px;
+    	}
+
+    	&:hover {
+    		border: 1px solid $red;
+
+	    	.qrcode-icon {
+	    		background-position: $cs-icon-left2 -15px;
+	    	}
+
+	    	.phone-icon {
+	    		background-position: $cs-icon-left2 -60px;
+	    	}
+
+	    	.qq-icon {
+	    		background-position: $cs-icon-left2 -105px;
+	    	}
+
+	    	.wechat-icon {
+	    		background-position: $cs-icon-left2 -152px;
+	    	}
+
+	    	.compass-icon {
+	    		background-position: $cs-icon-left2 -195px;
+	    	}
+
+	    	.top-icon {
+	    		background-position: $cs-icon-left2 -240px;
+	    	}
+    	}
+    }
 }

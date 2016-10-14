@@ -8,43 +8,26 @@
     }
 
     Suspension.prototype.initDom = function() {
-        var temp =  '<div class="suspension">' +
-                        '<div class="arrow">' +
-                            '<a>' +
-                                '<i class="tab-icon"></i>' +
-                            '</a>' +
-                        '</div>' +
-                        '<div class="qrcode">' +
-                            '<a>' +
-                                '<i class="tab-icon"></i>' +
-                                '<em class="tab-text">二维码</em>' +
-                            '</a>' +
-                        '</div>' +
-                        '<div class="activity">' +
-                            '<a >' +
-                                '<i class="tab-icon"></i>' +
-                                '<em class="tab-text">参与最新优惠</em>' +
-                            '</a>' +
-                        '</div>' +
-                        '<div class="qq-kf">' +
-                            '<a>' +
-                                '<i class="tab-icon"></i>' +
-                                '<em class="tab-text">947856321</em>' +
-                            '</a>' +
-                        '</div>' +
-                        '<div class="phone-kf">' +
-                                '<a>' +
-                                    '<i class="tab-icon"></i>' +
-                                    '<em class="tab-text">+639157158888</em>' +
-                                '</a>' +
-                        '</div>' +
-                        '<div class="online-kf">' +
-                                '<a>' +
-                                    '<i class="tab-icon"></i>' +
-                                    '<em class="tab-text">24H在线客服</em>' +
-                                '</a>' +
-                        '</div>' +
-                    '</div>';
+        var temp =  '<ul class="suspension">' +
+                        '<li>' +
+                            '<div class="icon qrcode-icon"></div>' +
+                        '</li>' +
+                        '<li>' +
+                            '<div class="icon phone-icon"></div>' +
+                        '</li>' +
+                        '<li>' +
+                            '<div class="icon qq-icon"></div>' +
+                        '</li>' +
+                        '<li>' +
+                            '<div class="icon wechat-icon"></div>' +
+                        '</li>' +
+                        '<li>' +
+                            '<div class="icon compass-icon"></div>' +
+                        '</li>' +
+                        '<li>' +
+                            '<div class="icon top-icon"></div>' +
+                        '</li>' +
+                    '</ul>';
 
         this.el = temp;
     };
