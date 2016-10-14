@@ -12,30 +12,61 @@
 								'<div class="picture picture1" data-value="BBIN">' +
 									'<img>' +
 									'<div class="info">' +
-										'<p></p>' +
+										'<p>为全球博彩爱好者提供最优惠的赔率和最优质的服务, 每一位玩家都能尽情享受博彩所带来的无限乐趣</p>' +
 										'<div class="players">' +
-										'</div>' +								
+											'<img src="../img/people.png" >' +
+											'<span>693358</span>' +
+ 										'</div>' +
+ 										'<div class="button">' +
+ 											'进入游戏' +
+ 										'</div>' +
 									'</div>' +
 								'</div>' +
 
 								'<div class="picture picture2" data-value="AG">' +
 									'<img>' +
-									'<div class="info"></div>' +
+									'<div class="info">' +
+										'<p>欧式荷官现场助阵画面极致操作简单</p>' +
+										'<div class="players">' +
+											'<img src="../img/people.png" >' +
+											'<span>693358</span>' +
+ 										'</div>' +
+ 										'<div class="button">' +
+ 											'进入游戏' +
+ 										'</div>' +
+									'</div>' +
 								'</div>' +
 
 								'<div class="picture picture3" data-value="AB">' +
 									'<img>' +
-									'<div class="info"></div>' +
+									'<div class="info">' +
+										'<p>亚洲最具代表地位的网络博彩娱乐集团</p>' +
+										'<div class="players">' +
+											'<img src="../img/people.png" >' +
+											'<span>693358</span>' +
+ 										'</div>' +
+ 										'<div class="button">' +
+ 											'进入游戏' +
+ 										'</div>' +
+									'</div>' +
 								'</div>' +
 
 								'<div class="picture picture4" data-value="OG">' +
 									'<img>' +
-									'<div class="info"></div>' +
+									'<div class="info">' +
+										'<p>增长最快的真人荷官平台提供商</p>' +
+										'<div class="players">' +
+											'<img src="../img/people.png" >' +
+											'<span>693358</span>' +
+ 										'</div>' +
+ 										'<div class="button">' +
+ 											'进入游戏' +
+ 										'</div>' +
+									'</div>' +
 								'</div>' +
 
 								'<div class="picture picture5">' +
 									'<img>' +
-									'<div class="info"></div>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -130,7 +161,7 @@
 
 	LiveVideo.prototype.setPictures = function (data) {
 		var i;
-		var imgs = this.zone.find('.picture img');
+		var imgs = this.zone.find('.picture > img');
 
 		for (i = 0; i < imgs.length; i++) {
 			$(imgs[i]).attr('src', app.imageServer + data[i].ImgUrl);

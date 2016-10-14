@@ -23,7 +23,6 @@
     	.slipper {
     		border: 1px solid $red;
     		border-radius: 20px;
-    		border-right: 0;
     		color: $red;
     		cursor: pointer;
     		display: none;
@@ -83,7 +82,7 @@
     	}
 
     	&:hover {
-    		border: 1px solid $red;
+    		border: 0;
 
     		.slipper {
     			display: inline-block;

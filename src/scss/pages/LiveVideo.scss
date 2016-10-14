@@ -13,6 +13,9 @@
 		$picture4-width          :       $baseWidth * 427 / $baseL;
 		$picture5-width          :       $baseWidth * 427 / $baseL;
 		$live-gap                :       $baseWidth * 10 / $baseL;
+		$info-height             :       $baseWidth * 100 / $baseL;
+		$left1                   :       $baseWidth * 45 / $baseL;
+		$left2                   :       $baseWidth * 14 / $baseL;
 
 		.unslider {
 			overflow: hidden;
@@ -46,14 +49,85 @@
 			.picture {
 				display: inline-block;
 				height: $picture-height;
+				position: relative;
+				overflow: hidden;
 
 				img {
 					width: 100%;
+				}
+
+				.info {
+					height: $info-height;
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					width: 100%; 
+					text-align: left;
+
+					p {
+						height: $info-height / 2;
+						line-height: $info-height / 2;
+						width: 100%;
+						white-space: nowrap;
+						padding-left: $left2;
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+
+					.players {
+					    display: inline-block;
+					    position: absolute;
+					    left: $left2;
+					    bottom: 10px;
+
+						img {
+							width: 20px;
+						}
+
+						span {
+							color: #5A466E;
+						    display: inline-block;
+						    font-size: 12px;
+						    margin-left: 5px;
+							position: absolute;
+							top: 2px;
+						}
+					}
+
+					.button {
+						background-color: rgba(168, 11, 66, .5);
+						border: none;
+						border-radius: 20px;
+						color: #FFF;
+					    display: inline-block;
+					    font-weight: normal;
+					    height: 35px;
+					    line-height: 35px;
+					    position: absolute;
+					    right: 20px;
+					    bottom: 10px;
+					    width: 120px;
+
+					    &:hover {
+					    	background-color: $red;
+					    	color: #FFF;
+					    }
+					}
 				}
 			}
 
 			.picture1 {
 				width: $picture1-width;
+
+				.info {
+					p {
+						padding-left: $left1;
+					}
+
+					.players {
+					    left: $left1;
+					}
+				}
 			}
 
 			.picture2 {
