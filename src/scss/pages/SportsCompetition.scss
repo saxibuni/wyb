@@ -10,6 +10,10 @@
 		$picture1-width          :       $baseWidth * 645 / $baseL;
 		$picture2-width          :       $baseWidth * 645 / $baseL;
 		$sports-gap              :       $baseWidth * 10 / $baseL;
+		$info-height             :       $baseWidth * 100 / $baseL;
+		$left1                   :       $baseWidth * 45 / $baseL;
+		$left2                   :       $baseWidth * 45 / $baseL;
+		$button-right            :       $baseWidth * 20 / $baseL;
 
 		.unslider {
 			overflow: hidden;
@@ -50,6 +54,54 @@
 				img {
 					width: 100%;
 				}
+
+				.info {
+					height: $info-height;
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					width: 100%; 
+					text-align: left;
+
+					p {
+						height: $info-height / 2;
+						line-height: $info-height / 2;
+						width: 100%;
+						white-space: nowrap;
+						padding-left: $left2;
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+
+					.title {
+						color: $red;
+						font-size: 16px;
+						font-weight: bold;
+						left: $left2;
+						position: absolute;
+						bottom: 20px;
+					}
+
+					.button {
+						background-color: rgba(168, 11, 66, .5);
+						border: none;
+						border-radius: 20px;
+						color: #FFF;
+					    display: inline-block;
+					    font-weight: normal;
+					    height: 35px;
+					    line-height: 35px;
+					    position: absolute;
+					    right: $button-right;
+					    bottom: 10px;
+					    width: 120px;
+
+					    &:hover {
+					    	background-color: $red;
+					    	color: #FFF;
+					    }
+					}
+				}
 			}
 
 			.picture1 {
@@ -73,12 +125,34 @@
 			$picture1-width          :       $baseWidth * 645 / $baseL;
 			$picture2-width          :       $baseWidth * 645 / $baseL;
 			$sports-gap              :       $baseWidth * 10 / $baseL;
+			$info-height             :       $baseWidth * 100 / $baseL;
+			$left1                   :       $baseWidth * 45 / $baseL;
+			$left2                   :       $baseWidth * 45 / $baseL;
+			$button-right            :       $baseWidth * 20 / $baseL;
 
 			.content {
 				margin-top: $sports-gap - 2px;
 
 				.picture {
 					height: $picture-height;
+
+					.info {
+						height: $info-height;
+
+						p {
+							height: $info-height / 2;
+							line-height: $info-height / 2;
+							padding-left: $left2;
+						}
+
+						.title {
+							left: $left2;
+						}
+
+						.button {
+						    right: $button-right;
+						}
+					}
 				}
 
 				.picture1 {

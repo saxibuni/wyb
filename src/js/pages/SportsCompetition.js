@@ -11,10 +11,24 @@
 							'<div class="content">' +
 								'<div class="picture picture1" data-value="BBIN">' +
 									'<img>' +
+									'<div class="info">' +
+ 										'<p>各种体育赛事投注，玩法多样，1.2%反水，尽享游戏畅快体验</p>' +
+ 										'<div class="title">BBIN体育</div>' +
+ 										'<div class="button">' +
+ 											'进入游戏' +
+ 										'</div>' +
+									'</div>' +
 								'</div>' +
 
 								'<div class="picture picture2" data-value="SB">' +
 									'<img>' +
+									'<div class="info">' +
+ 										'<p>各种体育赛事投注，玩法多样，1.2%反水，尽享游戏畅快体验</p>' +
+ 										'<div class="title">沙巴体育</div>' +
+ 										'<div class="button">' +
+ 											'进入游戏' +
+ 										'</div>' +
+									'</div>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
