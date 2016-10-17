@@ -1,11 +1,12 @@
 @import "mixins.scss";
 
 body {
-	background-color: #000;
+	background-color: $purple1;
 }
 
 .app {
-	background-color: $theme-background-color;
+	background-image: -webkit-radial-gradient(circle at top, #562d60 35%, #070C12);
+	background-image: radial-gradient(circle at top, #562d60 35%, #070C12);
 	display: inline-block;
 	width: 100%;
 	text-align: center;

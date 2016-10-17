@@ -480,7 +480,7 @@
 			that.hideHeaderFloatWindow();
 		});
 
-		pagesUl2.delegate('.bzzx','click',function(){
+		pagesUl2.delegate('.li-bzzx','click',function(){
 			pageName = $(this).attr('data-value');
 			window.open('help.html');
 		});
