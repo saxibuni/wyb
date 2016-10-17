@@ -148,7 +148,9 @@
 
 	SportsCompetition.prototype.getGameLoginUrls = function () {
 		var i;
-		var platforms = ['BBIN', 'SB'];
+		var platforms = ['BBIN', 'OW'];  
+		//IBC: 沙巴旧接口，经过东方汇的
+		//OW:  沙巴新接口，直接对接沙巴平台的
 		var imgs      = this.zone.find('.picture');
 		
 		for (i = 0; i < platforms.length; i++) {
