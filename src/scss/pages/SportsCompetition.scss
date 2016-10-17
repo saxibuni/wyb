@@ -14,6 +14,8 @@
 		$left1                   :       $baseWidth * 45 / $baseL;
 		$left2                   :       $baseWidth * 45 / $baseL;
 		$button-right            :       $baseWidth * 20 / $baseL;
+		$title-bottom            :       $baseWidth * 20 / $baseL;   
+		$button-bottom           :       $baseWidth * 10 / $baseL; 
 
 		.unslider {
 			overflow: hidden;
@@ -79,7 +81,7 @@
 						font-weight: bold;
 						left: $left2;
 						position: absolute;
-						bottom: 20px;
+						bottom: $title-bottom;
 					}
 
 					.button {
@@ -93,7 +95,7 @@
 					    line-height: 35px;
 					    position: absolute;
 					    right: $button-right;
-					    bottom: 10px;
+					    bottom: $button-bottom;
 					    width: 120px;
 
 					    &:hover {
@@ -129,7 +131,9 @@
 			$left1                   :       $baseWidth * 45 / $baseL;
 			$left2                   :       $baseWidth * 45 / $baseL;
 			$button-right            :       $baseWidth * 20 / $baseL;
-
+			$title-bottom            :       $baseWidth * 20 / $baseL;   
+			$button-bottom           :       $baseWidth * 10 / $baseL; 
+		
 			.content {
 				margin-top: $sports-gap - 2px;
 
@@ -147,10 +151,12 @@
 
 						.title {
 							left: $left2;
+							bottom: $title-bottom;
 						}
 
 						.button {
 						    right: $button-right;
+						    bottom: $button-bottom;
 						}
 					}
 				}

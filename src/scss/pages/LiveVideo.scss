@@ -17,6 +17,7 @@
 		$left1                   :       $baseWidth * 45 / $baseL;
 		$left2                   :       $baseWidth * 14 / $baseL;
 		$button-right            :       $baseWidth * 20 / $baseL;
+		$button-bottom           :       $baseWidth * 10 / $baseL; 
 
 		.unslider {
 			overflow: hidden;
@@ -80,7 +81,7 @@
 					    display: inline-block;
 					    position: absolute;
 					    left: $left2;
-					    bottom: 10px;
+					    bottom: $button-bottom;
 
 						img {
 							width: 20px;
@@ -107,7 +108,7 @@
 					    line-height: 35px;
 					    position: absolute;
 					    right: $button-right;
-					    bottom: 10px;
+					    bottom: $button-bottom;
 					    width: 120px;
 
 					    &:hover {
@@ -173,6 +174,7 @@
 			$left1                   :       $baseWidth * 45 / $baseL;
 			$left2                   :       $baseWidth * 14 / $baseL;
 			$button-right            :       $baseWidth * 20 / $baseL;
+			$button-bottom           :       $baseWidth * 10 / $baseL;
 
 			.content {
 				margin-top: $live-gap - 2px;
@@ -191,10 +193,12 @@
 
 						.players {
 						    left: $left2;
+						    bottom: $button-bottom;
 						}
 
 						.button {
 						    right: $button-right;
+						    bottom: $button-bottom;
 						}
 					}
 				}
