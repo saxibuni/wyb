@@ -93,6 +93,12 @@
 
 	SignIn.prototype.hide = function () {
 		this.hideOverlay();
+		this.clearInputs();
+	};
+
+	SignIn.prototype.clearInputs = function () {
+		this.passwordInput.setValue('');
+		this.verifyInput.setValue('');
 	};
 
 	SignIn.prototype.checkInputPass = function () {

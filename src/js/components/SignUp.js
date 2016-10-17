@@ -174,6 +174,18 @@
 
 	SignUp.prototype.hide = function () {
 		this.hideOverlay();
+		this.clearInputs();
+	};
+
+	SignUp.prototype.clearInputs = function () {
+		this.userNameInput.setValue('');
+		this.passwordInput.setValue('');
+		this.comfirmPasswordInput.setValue('');
+		this.emailInput.setValue('');
+		this.phoneInput.setValue('');
+		this.trueNameInput.setValue('');
+		this.popularInput.setValue('');
+		this.verifyInput.setValue('');
 	};
 
 	SignUp.prototype.checkInputPass = function () {
