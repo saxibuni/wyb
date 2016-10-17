@@ -20,6 +20,11 @@ var sass         = require('gulp-sass');
 var flatten      = require('gulp-flatten');
 var htmlReplace  = require('gulp-html-replace');
 var gzip         = require('gulp-gzip');
+var imageMin     = require('gulp-image');
+var imagemin     = require('gulp-imagemin');
+var pngquant     = require('imagemin-pngquant');
+var jpegtran     = require('imagemin-jpegtran');
+var tinypng      = require('gulp-tinypng');
 
 var src_js_lib_path     = 'src/lib/js/';
 var src_css_lib_path    = 'src/lib/css/';
@@ -78,8 +83,17 @@ gulp.task('prepare', ['clean'], function () {
     gulp.src('./bower_components/bootstrap/dist/fonts/*')
         .pipe(gulp.dest('build/fonts/'));
 
-    gulp.src(['src/img/*', './bower_components/Gallery/img/*'])
+    gulp.src(['src/img/*.{jpg,svg}', './bower_components/Gallery/img/*.{jpg,svg}'])
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],//不要移除svg的viewbox属性
+            use: [jpegtran()] //使用pngquant深度压缩png图片的imagemin插件
+        }))
         .pipe(gulp.dest('build/img/'));
+
+    // gulp.src(['src/img/*.png', './bower_components/Gallery/img/*.png'])
+    //     .pipe(tinypng('ep-DdwBGWdntDVYb7GnqrfkWOAQMBdj2'))
+    //     .pipe(gulp.dest('build/img/'));
 });
 
 gulp.task('build', function () {
@@ -200,6 +214,16 @@ gulp.task('build', function () {
         .pipe(sass())
         .pipe(flatten())
         .pipe(concat('500.css'))
+        .pipe(gulp.dest('build/css/'));
+
+    gulp.src('src/html/maintainance.html')
+        .pipe(htmlmin())
+        .pipe(gulp.dest(build_html_path));
+
+    gulp.src('src/scss/maintainance.scss')
+        .pipe(sass())
+        .pipe(flatten())
+        .pipe(concat('maintainance.css'))
         .pipe(gulp.dest('build/css/'));
 
     gulp.src('src/locales/**/*.json')

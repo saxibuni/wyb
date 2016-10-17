@@ -29,6 +29,7 @@
     "gulp-sass": "^2.1.0",
     "gulp-scsslint": "0.0.5",
     "gulp-shell": "^0.5.1",
+    "gulp-tinypng": "^1.0.2",
     "gulp-uglify": "^1.5.1",
     "gulp-useref": "^3.1.0",
     "gulp-util": "^3.0.7",
@@ -47,5 +48,11 @@
     "oTMS"
   ],
   "author": "mirek@infinitesys.my",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "gulp-image": "^2.7.2",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-pngquant": "^5.0.0",
+    "pngquant": "^1.1.1"
+  }
 }

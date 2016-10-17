@@ -132,7 +132,7 @@
 	*/
 	EEntertainment.prototype.getJackpotsGames = function (platform) {
 		var callback;
-		var that =  this; 
+		var that =  this;
 		var opt  =  {
 			url: app.urls.getJackpotsGames,
 	        data: {
@@ -790,7 +790,7 @@
 				return;
 			}
 			
-			gameId = $(this).parent().parent('li').attr('data-id');
+			gameId = $(this).parent().parent('li').attr('data-identify');
 			that.getGameLoginUrl(gameId);
 		});
 
