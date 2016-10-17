@@ -35,7 +35,7 @@
 								'<span class="text">尊敬的</span>' +
 								'<span class="username value">DOMO001</span>' +
 								'<span class="text">，目前账户可用提现余额：</span>' +
-								'<span class="balance value">9998.25</span>' +
+								'<span class="balance value">' + app.userTotalInfo.Cash + '</span>' +
 								'<span class="text">元</span>' +
 							'</div>' +
 
@@ -50,7 +50,6 @@
 						'<div class="content">' +
 							'<div class="row1">' +
 								'<div class="title">请选择收款银行卡</div>' +
-
 								'<ul class="user-banks"></ul>' +
 							'</div>' +
 
@@ -59,7 +58,14 @@
 								this.moneyInput.getDom() +
 								'<div class="text unit">元</div>' +
 								'<div class="input-notice">' +
-									'充值额度限定： 最低100元，最高150000元' +
+									'<span>单次提现额度限定： 最低</span>' +
+									'<span class="min-single-withdraw">' +
+										app.userTotalInfo.SingleMinWithdraw +
+									'</span>' +
+									'<span>元，最高</span>' +
+									'<span class="max-single-withdraw">' +
+										app.userTotalInfo.SingleMaxWithdraw +
+									'</span>元' +
 								'</div>' +
 							'</div>' +
 

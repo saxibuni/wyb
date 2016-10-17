@@ -288,7 +288,14 @@
 							this.topupInput.getDom() +
 							'<div class="text unit">元</div>' +
 							'<div class="input-notice">' +
-								'充值额度限定： 最低2.00元，最高45000.00元' +
+								'<span>充值额度限定： 最低</span>' +
+								'<span class="min-deposit">' +
+									app.userTotalInfo.MinDeposit +
+								'</span>' +
+								'<span>元，最高</span>' +
+								'<span class="max-deposit">' +
+									app.userTotalInfo.MaxDeposit +
+								'</span><span>元</span>' +
 							'</div>' +
 						'</div>' +
 

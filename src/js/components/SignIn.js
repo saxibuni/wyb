@@ -193,8 +193,6 @@
         		alert(json.Message);
         		return;
         	} else {
-        		app.userinfo = json;
-        		app.userinfo.trueName = '王小四';
         		callback(json);
         	}
         }).fail(function(xhr, textStatus, error) {
