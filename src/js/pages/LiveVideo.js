@@ -88,7 +88,7 @@
 		if (!this.firstTime) {
 			this.getAds();
 			this.getPictures();
-			this.getGameLoginUrls();
+			//this.getGameLoginUrls();
 			this.firstTime = true;
 		}
 	};

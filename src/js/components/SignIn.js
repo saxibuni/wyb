@@ -164,6 +164,8 @@
 
 			if (app.currentPage === 'homePage') {
 				app.homePage.getLuckyDrawWinRecords();
+			} else if (app.currentPage === 'liveVideo') {
+				app.liveVideo.getGameLoginUrls();
 			}
 
 			if (localStorage) {
