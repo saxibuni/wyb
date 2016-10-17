@@ -160,7 +160,7 @@
 
     SportsCompetition.prototype.getGameLoginUrl = function (platform, item) {
     	var that = this;
-    	var opt =  {
+    	var opt  =  {
 			url: app.urls.getGameLoginUrl,
 			data: {
 				gamePlatform: platform,
