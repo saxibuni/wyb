@@ -222,7 +222,7 @@
 
 		close.click(function () {
 			that.hide();
-		})
+		});
 
 		button.click(function () {
 			that.commit();
