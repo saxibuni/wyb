@@ -166,6 +166,8 @@
 				app.homePage.getLuckyDrawWinRecords();
 			} else if (app.currentPage === 'liveVideo') {
 				app.liveVideo.getGameLoginUrls();
+			} else if (app.currentPage === 'sportsCompetition') {
+				app.sportsCompetition.getGameLoginUrls();
 			}
 
 			if (localStorage) {

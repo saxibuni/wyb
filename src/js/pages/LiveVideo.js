@@ -79,9 +79,6 @@
 		return this.el;
 	};
 
-	LiveVideo.prototype.setItems = function (data) {
-	};
-
 	LiveVideo.prototype.show = function () {
 		this.zone.fadeIn(500);
 
@@ -97,12 +94,6 @@
 		this.zone.fadeOut(500);
 	};
 
-	LiveVideo.prototype.showSliders = function () {
-		if (this.logoHtml) {
-			$('.main .logo-wrapper').html(this.logoHtml);
-		}
-	};
-
     LiveVideo.prototype.createLoader = function() {
         var wrapper = this.zone.find('.sliders')[0];
 
@@ -113,8 +104,8 @@
 
 	LiveVideo.prototype.addSliders = function (data) {
 		var i;
-		var len = data.count;
 		var arr = data.list;
+		var len = arr.length;
 		var logoTemp = 	'<ul>';
 
 		for (i = 0; i < len; i++) {

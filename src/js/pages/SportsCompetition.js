@@ -6,17 +6,15 @@
 	SportsCompetition.prototype.initDom = function () {
 		var temp =	'<div class="page sports-competition">' +
 						'<div class="wrapper">' +
-							'<div class="row1">' +
-								'<img class="item" src="">' +
-							'</div>' +
+							'<div class="sliders"></div>' +
 
-							'<div class="row2">' +
-								'<div class="sbty">' +
-									'<img class="item" src="">' +
+							'<div class="content">' +
+								'<div class="picture picture1" data-value="BBIN">' +
+									'<img>' +
 								'</div>' +
 
-								'<div class="threedty">' +
-									'<img class="item" src="">' +
+								'<div class="picture picture2" data-value="SB">' +
+									'<img>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -34,6 +32,8 @@
 
 		if (!this.firstTime) {
 			this.getAds();
+			this.getPictures();
+			//this.getGameLoginUrls();
 			this.firstTime = true;
 		}
 	};
@@ -42,19 +42,36 @@
 		this.zone.fadeOut(500);
 	};
 
-	SportsCompetition.prototype.setImages = function (data) {
-		var i;
-		var len       = data.count;
-		var arr       = data.list;
-		var imgs      = this.zone.find('img');
-		var platforms = ['BBIN', 'T188', 'IBC'];
+    SportsCompetition.prototype.createLoader = function() {
+        var wrapper = this.zone.find('.sliders')[0];
 
-		for (i = 0; i < imgs.length; i++) {
-			$(imgs[i]).attr({
-				'src': app.imageServer + arr[i].ImgUrl,
-				'data-platform': platforms[i]
-			});
+        this.loader1 = new Loader(wrapper, {
+        	top: '50%'
+        });
+    };
+
+	SportsCompetition.prototype.addSliders = function (data) {
+		var i;
+		var arr = data.list;
+		var len = arr.length;
+		var logoTemp = 	'<ul>';
+
+		for (i = 0; i < len; i++) {
+			logoTemp += 	'<li>' +
+								'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
+							'</li>';
 		}
+
+		logoTemp +=		'</ul>';
+
+		this.logoHtml = logoTemp;
+		this.zone.find('.sliders').html(logoTemp);
+		this.zone.find('.sliders').unslider({
+			speed: 500,
+			delay: 5000,
+			autoplay: true,
+			arrows: false
+		});
 	};
 
 	SportsCompetition.prototype.getAds = function () {
@@ -65,7 +82,7 @@
 			data: {
 				type: 'pd_wyb_sports_ads',
 				pageIndex: 0,
-				pageSize: 10
+				pageSize: 1
 			}
 		};
 
@@ -74,13 +91,58 @@
 				return;
 			}
 
-			that.setImages(data);
+			that.loader1.stop();
+			that.addSliders(data);
+		};
+
+		this.loader1.play();
+		Service.get(opt, callback);
+	};
+
+	SportsCompetition.prototype.setPictures = function (data) {
+		var i;
+		var imgs = this.zone.find('.picture > img');
+
+		for (i = 0; i < imgs.length; i++) {
+			$(imgs[i]).attr('src', app.imageServer + data[i].ImgUrl);
+		}
+	};
+
+	SportsCompetition.prototype.getPictures = function () {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getAds,
+			data: {
+				type: 'pd_wyb_sports_pictures',
+				pageIndex: 0,
+				pageSize: 2
+			}
+		};
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.setPictures(json.list);
 		};
 
 		Service.get(opt, callback);
 	};
 
-    SportsCompetition.prototype.getGameLoginUrl = function (platform) {
+	SportsCompetition.prototype.getGameLoginUrls = function () {
+		var i;
+		var platforms = ['BBIN', 'SB'];
+		var imgs      = this.zone.find('.picture');
+		
+		for (i = 0; i < platforms.length; i++) {
+			this.getGameLoginUrl(platforms[i], $(imgs[i]));
+		}
+	};
+
+    SportsCompetition.prototype.getGameLoginUrl = function (platform, item) {
     	var that = this;
     	var opt =  {
 			url: app.urls.getGameLoginUrl,
@@ -96,7 +158,7 @@
 				return;
 			}
 
-			window.open(json);
+			item.attr('data-url', json);
 		}
 
 		Service.get(opt, callback);
@@ -117,6 +179,8 @@
 				app.showLoginNotice();
 			}
 		});
+
+		this.createLoader();
 	};
 
 	window.SportsCompetition = SportsCompetition;
