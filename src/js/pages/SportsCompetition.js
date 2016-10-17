@@ -180,18 +180,26 @@
 
 	SportsCompetition.prototype.bindEvents = function () {
 		var platform;
+		var picture;
+		var url;
 		var that = this;
 
 		this.zone = $('.sports-competition');
 
-		this.zone.find('.item').click(function () {
-			platform = $(this).attr('data-platform');
+		this.zone.find('.button').click(function () {
+			picture = $(this).parents('.picture');
+			url     = picture.attr('data-url');
 
-			if (app.signedIn) {
-				that.getGameLoginUrl(platform);
-			} else {
+			if (!app.signedIn) {
 				app.showLoginNotice();
+				return;
 			}
+
+			if (!url) {
+				return;
+			}
+
+			window.open(url);
 		});
 
 		this.createLoader();
