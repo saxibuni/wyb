@@ -26,13 +26,11 @@
 					'</div>' +
 
 					this.footer.getDom() +
-
 					this.suspension.getDom();
 
-
 		this.zone.append(this.el);
-		this.bindEvents();
 		this.initRegs();
+		this.bindEvents();
 	};
 	
 	app.prototype.initRegs = function () {

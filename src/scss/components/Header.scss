@@ -50,7 +50,6 @@
 }
 
 .header {
-	background-color: $theme-background-color;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -525,6 +524,12 @@
 					}
 				}
    			}
+		}
+
+		.notice2 {
+			position: relative;
+			width: $contentWidth;
+			margin: 0 auto; 
 		}
 	}
 

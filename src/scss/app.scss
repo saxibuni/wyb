@@ -45,13 +45,13 @@ body {
 			left: 0;
 			text-align: center;
 			transition: left .5s;
+			margin-top: 25px;
 
 			.page {
 				display: inline-block;
 				width: $contentWidth;
 				text-align: center;
 				vertical-align: top;
-				margin-top: 10px;
 			}
 		}
 

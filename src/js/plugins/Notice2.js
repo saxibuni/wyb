@@ -1,10 +1,16 @@
 (function () {
 	function Notice2 (opt) {
-		this.opt        =  opt;
-		this.id       	=  opt.id;
+		var that = this;
+		this.opt =  opt;
+		this.id  =  opt.id;
 		// this.moreNotice =  opt.moreNotice || false;
 		// this.close      =  opt.close || false;
 		this.initDom();
+
+		var timeout = setTimeout(function () {
+			that.queryData();
+			clearTimeout(timeout);
+		}, 3000);
 	}
 
 	Notice2.prototype.initDom = function () {

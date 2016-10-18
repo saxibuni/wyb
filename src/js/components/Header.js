@@ -351,7 +351,6 @@
 		this.getUserInfo();
 		this.getCollectList();
 		this.getUnreadMessageCount();
-		this.notice.queryData();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 
