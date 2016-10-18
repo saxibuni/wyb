@@ -318,8 +318,15 @@
 	};
 
 	Header.prototype.setStick = function (index) {
-		var stick    = this.zone.find('.pages .stick');
-		
+		var stick = this.zone.find('.pages .stick');
+
+		if (index === -1) {
+			this.zone.find('.pages li').removeClass('selected');
+			stick.hide();
+			return;
+		}
+
+		stick.show();
 		stick.css('left', index * 14.285 + '%');
 		this.zone.find('.pages li').removeClass('selected');
 		this.zone.find('.pages li:nth-child(' + (index + 1) + ')').addClass('selected');

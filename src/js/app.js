@@ -48,6 +48,8 @@
 		this.phoneNumberReg      =  '^[0-9]{11}$';
 		this.realNameReg         =  '';
 		this.chineseNameReg      =  '';
+		this.qqReg               =  '';
+		this.urlReg              =  '';
 
 		this.timeout     = 12000;
 		this.domain      = 'http://api.vebets.com/';
@@ -55,6 +57,7 @@
 		this.liveCsUrl   = 'http://www.baidu.com/';
 		this.urls  = {
 			signUp: this.domain + 'api/Account/Regist',
+			agentSignUp: this.domain + 'api/Account/RegistAgent',
 			signIn: this.domain + 'api/Account/Login',
 			signOut: this.domain + 'api/Account/Logout',
 			verifyImage: this.domain + 'api/AuthCode/CreateImageCode',
@@ -217,9 +220,10 @@
 			'lotteryGame'       : {'className': LotteryGame,       'index': 4, 'cssClass': 'lottery-game'},
 			'promoActivity'     : {'className': PromoActivity,     'index': 5, 'cssClass': 'promo-activity'},
 			'clientDownload'    : {'className': ClientDownload,    'index': 6, 'cssClass': 'client-download'},
-			'routeCheck'        : {'className': RouteCheck,        'index': 0, 'cssClass': 'route-check'},
-			'personalCenter'	: {'className': PersonalCenter,    'index': 0, 'cssClass': 'personal-center'},
-			'forgetPassword'    : {'className': ForgetPassword ,   'index': 0, 'cssClass': 'forget-password'}
+			'routeCheck'        : {'className': RouteCheck,        'index': -1, 'cssClass': 'route-check'},
+			'personalCenter'	: {'className': PersonalCenter,    'index': -1, 'cssClass': 'personal-center'},
+			'forgetPassword'    : {'className': ForgetPassword ,   'index': -1, 'cssClass': 'forget-password'},
+			'agentSignup'       : {'className': AgentSignup,       'index': -1, 'cssClass': 'agent-signup'}
 		};
 
 		var routes = {};

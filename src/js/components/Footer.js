@@ -15,6 +15,8 @@
 										'<li data-value="faq"><span>常见问题</span></li>' +
 										'<li data-value="partner"><span>合作伙伴</span></li>' +
 										'<li data-value="routeCheck"><span>线路检测</span></li>' +
+										'<li data-value="agentLogin"><span>代理登录</span></li>' +
+										'<li data-value="agentSignup"><span>代理注册</span></li>' +
 									'</ul>' +
 								'</div>' +
 								'<div class="row2">' +
@@ -126,8 +128,11 @@
 
 		featureUl.delegate('li', 'click', function () {
 			pageName = $(this).attr('data-value');
-			if (pageName === 'routeCheck') {
-				app.goTo(pageName);
+			if (pageName === 'routeCheck' ||
+				pageName === 'agentSignup') {
+				app.router.setRoute(pageName);
+			} else if (pageName === 'agentLogin') {
+				window.open('http://at.vebets.com/home/login?redirectUrl=http%3a%2f%2fat.vebets.com%2fhome%2findex');
 			} else {
 				window.open('help.html?item=' + pageName);
 			}

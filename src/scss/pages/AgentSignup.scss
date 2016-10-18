@@ -1,0 +1,191 @@
+@import "../mixins.scss";
+
+.agent-signup {
+	@include page-property;
+	padding: 20px;
+
+	.wrapper {
+		position: relative;
+		width: $contentWidth;
+
+		.text {
+			display: inline-block;
+			width: 60px;
+			color: $font-color1;
+			height: 30px;
+			line-height: 30px;
+			text-align: left;
+			vertical-align: top;
+		}
+
+		.error-notice {
+			display: none;
+			width: 100%;
+			color: $theme-font-color;
+			font-size: 12px;
+			height: 20px;
+			line-height: 20px;
+			text-align: left;
+			vertical-align: top;
+			margin-top: -5px;
+
+			.star {
+				color: #F00;
+				margin-left: 60px;
+			    position: relative;
+			    top: 4px;
+			    margin-right: 4px;
+			}
+		}
+
+		.row {
+			height: 50px;
+			margin-top: 5px;
+			width: 100%;
+			text-align: center;
+
+			.input {
+				background-color: $purple1;
+				color: $purple2;
+			}
+		}
+
+		.up {
+			.up-left {
+				border-right: 1px solid #605768;
+				display: inline-block;
+				vertical-align: top;
+				width: 50%;
+
+				.title {
+				    height: 60px;
+				    line-height: 60px;
+				    border-bottom: 1px solid #605768;
+				    width: 80%;
+				    margin: 0 auto;
+				    margin-bottom: 30px;
+				}
+			}
+
+			.up-right {
+				display: inline-block;
+				vertical-align: top;
+				width: 50%;
+
+				.title {
+				    height: 60px;
+				    line-height: 60px;
+				    border-bottom: 1px solid #605768;
+				    width: 80%;
+				    margin: 0 auto;
+				    margin-bottom: 30px;
+				}
+
+				textarea {
+					background-color: $purple1;
+					color: #999;
+					box-sizing: border-box;
+					height: 300px;
+					width: 300px;
+				}
+			}
+		}
+
+		.down {
+			margin: 0 auto;
+			margin-top: 90px;
+			width: 380px;
+
+			.verify-row {
+				text-align: left;
+
+				.verify-code {
+					height: 30px;
+    				margin-left: 20px;
+				}
+
+				.change-verify-code {
+					color: $theme-font-color;
+					cursor: pointer;
+					margin-left: 20px;
+					height: 30px;
+					line-height: 30px;
+					vertical-align: top;
+
+					&:hover {
+						color: #FFF;
+					}
+				}
+			}
+
+			.agree-row {
+				height: 30px;
+				text-align: left;
+				margin-top: 0;
+
+				.agree {
+					label {
+						color: #555555;
+						cursor: pointer;
+					    font-size: 12px;
+					    height: 18px;
+					    line-height: 18px;
+					    margin-left: 5px;
+						position: relative;
+						bottom: 2px;
+					}
+				}
+			}
+
+			.button-row {
+				height: 60px;
+				width: 100%;
+				text-align: left;
+				margin-top: 10px;
+
+				.button {
+					background-color: $purple2;
+					color: $purple1;
+					cursor: pointer;
+					width: 45%;
+					height: 35px;
+					line-height: 35px;
+					text-align: center;
+
+					&:hover {
+						background-color: #257C51;
+						color: #FFF;
+					}
+				}
+
+				.ok {
+					width: 45%;
+				}
+
+				.reset {
+					margin-left: 5%;
+					width: 45%;
+				}
+
+				.active {
+					background-color: #257C51;
+					color: #FFF;
+				}
+				
+				.button-info {
+					color: #555555;
+					cursor: pointer;
+					font-size: 12px;
+					height: 20px;
+					line-height: 20px;
+					text-align: right;
+					margin-top: 5px;
+
+					&:hover {
+						color: #DCAD4B;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,18 +1,15 @@
 (function () {
-	function SignUp (opt) {
-		IMDialog.call(this, opt || {});
+	function AgentSignup () {
 		this.initDom();
 	}
 	
-	SignUp.prototype = new IMDialog();
-
-	SignUp.prototype.initDom = function () {
-		var filler = '&nbsp;&nbsp;&nbsp;&nbsp;';
+	AgentSignup.prototype.initDom = function () {
+		var filler      = '&nbsp;&nbsp;&nbsp;&nbsp;';
 		var inputWidth  = 300;
 		var inputHeihgt = 30;
 
 		this.userNameInput = new Input({
-			id: 'sign-up-username-input',
+			id: 'agent-username-input',
 			width: inputWidth,
 			height: inputHeihgt,
 			reg: app.usernameReg,
@@ -20,7 +17,7 @@
 		});
 
 		this.passwordInput = new Input({
-			id: 'sign-up-password-input',
+			id: 'agent-password-input',
 			width: inputWidth,
 			height: inputHeihgt,
 			reg: app.passwordReg,
@@ -29,7 +26,7 @@
 		});
 
 		this.comfirmPasswordInput = new Input({
-			id: 'sign-up-comfirm-password-input',
+			id: 'agent-comfirm-password-input',
 			width: inputWidth,
 			height: inputHeihgt,
 			reg: app.passwordReg,
@@ -38,7 +35,7 @@
 		});
 
 		this.emailInput = new Input({
-			id: 'sign-up-email-input',
+			id: 'agent-email-input',
 			width: inputWidth,
 			height: inputHeihgt,
 			reg: app.emailReg,
@@ -46,7 +43,7 @@
 		});
 
 		this.phoneInput = new Input({
-			id: 'sign-up-phone-input',
+			id: 'agent-phone-input',
 			width: inputWidth,
 			height: inputHeihgt,
 			reg: app.phoneNumberReg,
@@ -54,84 +51,109 @@
 		});
 
 		this.trueNameInput = new Input({
-			id: 'sign-truename-input',
+			id: 'agent-truename-input',
 			width: inputWidth,
 			height: inputHeihgt,
 			reg: app.chineseNameReg,
 			placeholder: '请输入您的真实姓名'
 		});
 
-		this.popularInput = new Input({
-			id: 'sign-popular-input',
+		this.qqInput = new Input({
+			id: 'agent-qq-input',
 			width: inputWidth,
 			height: inputHeihgt,
-			reg: app.chineseNameReg,
-			placeholder: '请输入推广码，如无请留空'
+			reg: app.qqReg,
+			placeholder: '请输入您的qq号'
+		});
+
+		this.urlInput = new Input({
+			id: 'agent-url-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.urlReg,
+			placeholder: '输入您的网址时不必输入http://, 仅填写网址即可'
 		});
 
 		this.verifyInput = new Input({
-			id: 'sign-up-vefiry-input',
+			id: 'agent-vefiry-input',
 			width: 150,
 			height: 30,
 			reg: app.verifyReg,
 			placeholder: '请输入验证码'
 		});
 
-		var temp =	'<div class="sign-up">' +
-						'<div class="dialog-wrapper">' +
-							'<div class="dialog">' +
-								'<div class="row1">' +
-									'<img class="logo" src="../img/logo-sands-macao.png">' +
-									'<div class="close">×</div>' +
-								'</div>' +
+		var temp =	'<div class="page agent-signup">' +
+						'<div class="wrapper">' +
+							'<div class="up">' +
+								'<div class="up-left">' +
+									'<div class="title">基本信息</div>' +
 
-								'<div class="row">' +
-									'<div class="text">用户名</div>' +
-									this.userNameInput.getDom() +
-								'</div>' +
+									'<div class="input-array">' +
+										'<div class="row">' +
+											'<div class="text">用户名</div>' +
+											this.userNameInput.getDom() +
+										'</div>' +
 
-								'<div class="row">' +
-									'<div class="text">密' + filler + '码</div>' +
-									this.passwordInput.getDom() +
-								'</div>' +
+										'<div class="row">' +
+											'<div class="text">密' + filler + '码</div>' +
+											this.passwordInput.getDom() +
+										'</div>' +
 
-								'<div class="row">' +
-									'<div class="text">&nbsp;</div>' +
-									this.comfirmPasswordInput.getDom() +
-								'</div>' +
+										'<div class="row">' +
+											'<div class="text">&nbsp;</div>' +
+											this.comfirmPasswordInput.getDom() +
+										'</div>' +
 
-								'<div class="row has-notice">' +
-									'<div class="text">邮' + filler + '箱</div>' +
-									this.emailInput.getDom() +
-									'<div class="error-notice">' +
-										'<span class="star">*</span>' +
-										'<span>电子邮箱是您找回密码的重要途径,请填写您的常用邮箱</span>' +
+										'<div class="row has-notice">' +
+											'<div class="text">邮' + filler + '箱</div>' +
+											this.emailInput.getDom() +
+											'<div class="error-notice">' +
+												'<span class="star">*</span>' +
+												'<span>电子邮箱是您找回密码的重要途径,请填写您的常用邮箱</span>' +
+											'</div>' +
+										'</div>' +
+
+										'<div class="row  has-notice">' +
+											'<div class="text">手机号</div>' +
+											this.phoneInput.getDom() +
+											'<div class="error-notice">' +
+												'<span class="star">*</span>' +
+												'<span>手机号是您找回密码的重要途径,请填写您的常用邮箱</span>' +
+											'</div>' +
+										'</div>' +
+
+										'<div class="row  has-notice">' +
+											'<div class="text">姓' + filler + '名</div>' +
+											this.trueNameInput.getDom() +
+											'<div class="error-notice">' +
+												'<span class="star">*</span>' +
+												'<span>姓名关系到您是否能投注，请填写您的真实姓名</span>' +
+											'</div>' +
+										'</div>' +
+
+										'<div class="row  has-notice">' +
+											'<div class="text">' + filler + 'qq</div>' +
+											this.qqInput.getDom() +
+										'</div>' +
 									'</div>' +
 								'</div>' +
 
-								'<div class="row  has-notice">' +
-									'<div class="text">手机号</div>' +
-									this.phoneInput.getDom() +
-									'<div class="error-notice">' +
-										'<span class="star">*</span>' +
-										'<span>手机号是您找回密码的重要途径,请填写您的常用邮箱</span>' +
+								'<div class="up-right">' +
+									'<div class="title">渠道信息</div>' +
+									'<div class="input-array">' +
+										'<div class="row">' +
+											'<div class="text">您的网址</div>' +
+											this.urlInput.getDom() +
+										'</div>' +
+
+										'<div class="row">' +
+											'<div class="text">推广说明</div>' +
+											'<textarea></textarea>' +
+										'</div>' +
 									'</div>' +
 								'</div>' +
-
-								'<div class="row  has-notice">' +
-									'<div class="text">姓' + filler + '名</div>' +
-									this.trueNameInput.getDom() +
-									'<div class="error-notice">' +
-										'<span class="star">*</span>' +
-										'<span>姓名关系到您是否能投注，请填写您的真实姓名</span>' +
-									'</div>' +
-								'</div>' +
-
-								'<div class="row">' +
-									'<div class="text">推广码</div>' +
-									this.popularInput.getDom() +
-								'</div>' +
-
+							'</div>' +
+							'<div class="down">' +
 								'<div class="row verify-row">' +
 									'<div class="text">验证码</div>' +
 									this.verifyInput.getDom() +
@@ -147,48 +169,47 @@
 								'</div>' +
 
 								'<div class="row button-row">' +
-									'<div class="button register">' +
-										'快速注册' +
+									'<div class="button ok">' +
+										'确认' +
 									'</div>' +
-									'<div class="button-info signin-now">' +
-										'已有账户？立即登录' +
+									'<div class="button reset">' +
+										'重设' +
 									'</div>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
-					'</div>' +
-
-					'<div class="overlay overlay3"></div>';
+					'</div>';
 		
 		this.el  = temp;
 	};
 
-	SignUp.prototype.getDom = function () {
+	AgentSignup.prototype.getDom = function () {
 		return this.el;
 	};
 
-	SignUp.prototype.show = function () {
-		this.showOverlay();
-		this.zone.find('.change-verify-code').click();
-	};
-
-	SignUp.prototype.hide = function () {
-		this.hideOverlay();
+	AgentSignup.prototype.show = function () {
+		this.zone.fadeIn(500);
 		this.clearInputs();
 	};
 
-	SignUp.prototype.clearInputs = function () {
+	AgentSignup.prototype.hide = function () {
+		this.zone.fadeOut(500);
+	};
+
+	AgentSignup.prototype.clearInputs = function () {
 		this.userNameInput.setValue('');
 		this.passwordInput.setValue('');
 		this.comfirmPasswordInput.setValue('');
 		this.emailInput.setValue('');
 		this.phoneInput.setValue('');
 		this.trueNameInput.setValue('');
-		this.popularInput.setValue('');
 		this.verifyInput.setValue('');
+		this.qqInput.setValue('');
+		this.urlInput.setValue('');
+		this.zone.find('textarea').val('');
 	};
 
-	SignUp.prototype.checkInputPass = function () {
+	AgentSignup.prototype.checkInputPass = function () {
 		if (this.userNameInput.isPass() && 
 			this.passwordInput.isPass() &&
 			this.comfirmPasswordInput.isPass() &&
@@ -197,20 +218,20 @@
 			this.trueNameInput.isPass() &&
 			this.verifyInput.isPass()) {
 
-			this.zone.find('.register').addClass('active');
+			this.zone.find('.ok, .reset').addClass('active');
 			this.allPass = true;
 		} else {
-			this.zone.find('.register').removeClass('active');
+			this.zone.find('.ok, .reset').removeClass('active');
 			this.allPass = false;
 		}
 	};
 
-    SignUp.prototype.createLoader = function() {
+    AgentSignup.prototype.createLoader = function() {
         var wrapper = this.zone.find('.dialog')[0];
         this.loader = new Loader(wrapper);
     };
 
-	SignUp.prototype.commit = function () {
+	AgentSignup.prototype.commit = function () {
 		var opt;
 		var callback;
 		var that = this;
@@ -229,7 +250,7 @@
 		opt = {
 			url: app.urls.checkVerifyImage + 'securityCode=' + this.verifyInput.getValue(),
 			data: {}
-		}
+		};
 
 		callback = function (json) {
         	if (!json || json == 'false') {
@@ -247,7 +268,7 @@
 		Service.get(opt, callback);
 	};
 
-	SignUp.prototype.register = function () {
+	AgentSignup.prototype.register = function () {
 		var data;
 		var callback;
 		var that = this;
@@ -268,14 +289,16 @@
 			UserName: this.userNameInput.getValue(),
 			Password: this.passwordInput.getValue(),
 			TrueName: this.trueNameInput.getValue(),
-			ExtendCode: this.popularInput.getValue() || '',
 			Phone: this.phoneInput.getValue(),
-			Email: this.emailInput.getValue()
+			Email: this.emailInput.getValue(),
+			QQ: this.qqInput.getValue(),
+			Domain: this.urlInput.getValue(),
+			ExtendDesc: this.zone.find('textarea').val()
 		};
 
         $.ajax({
             type: 'POST',
-            url: app.urls.signUp,
+            url: app.urls.agentSignUp,
             dataType: 'json',
             timeout: app.timeout,
             data: data,
@@ -289,49 +312,26 @@
         		alert(json.Message);
         		return;
         	}
-        	
+
             callback(json);
         }).fail(function(xhr, textStatus, error) {
             alert('register request failed');
         });
 	};
 
-	SignUp.prototype.bindEvents = function () {
-		var close;
-		var button;
-		var that  = this;
+	AgentSignup.prototype.bindEvents = function () {
+		var that = this;
 
-		this.zone = $('.sign-up');
-		close     = this.zone.find('.close');
-		button    = this.zone.find('.register');
+		this.zone = $('.agent-signup');
 
-		close.click(function () {
-			that.hide();
-		})
-
-		button.click(function () {
+		this.zone.find('.ok').click(function () {
 			that.commit();
 		});
 
-		this.zone.find('.change-verify-code').click(function () {
-            that.zone.find('.verify-code').attr('src', 
-            	app.urls.verifyImage + '?sid=' + Math.random()
-            );
+		this.zone.find('.reset').click(function () {
+			that.clearInputs();
 		});
 
-		this.zone.find('.signin-now').click(function () {
-			that.hide();
-
-			if (!app.signInDialog) {
-				app.signInDialog = new SignIn();
-				$('.app').append(app.signInDialog.getDom());
-				app.signInDialog.bindEvents();
-			}
-
-			app.signInDialog.show();
-		});
-
-		this.bindOverlayEvents();
 		this.createLoader();
 
 		this.userNameInput.bindEvents(this.checkInputPass.bind(this));
@@ -340,9 +340,10 @@
 		this.emailInput.bindEvents(this.checkInputPass.bind(this));
 		this.phoneInput.bindEvents(this.checkInputPass.bind(this));
 		this.trueNameInput.bindEvents(this.checkInputPass.bind(this));
-		this.popularInput.bindEvents(this.checkInputPass.bind(this));
 		this.verifyInput.bindEvents(this.checkInputPass.bind(this));
+		this.qqInput.bindEvents();
+		this.urlInput.bindEvents();
 	};
 
-	window.SignUp = SignUp;
+	window.AgentSignup = AgentSignup;
 }());
