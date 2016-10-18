@@ -51,10 +51,11 @@
 		this.qqReg               =  '';
 		this.urlReg              =  '';
 
-		this.timeout     = 12000;
-		this.domain      = 'http://api.vebets.com/';
-		this.imageServer = 'http://img.vebets.com/';
-		this.liveCsUrl   = 'http://www.baidu.com/';
+		this.timeout       = 12000;
+		this.domain        = 'http://api.vebets.com/';
+		this.imageServer   = 'http://img.vebets.com/';
+		this.liveCsUrl     = 'http://www.baidu.com/';
+		this.agentLoginUrl = 'http://at.vebets.com/home/login?redirectUrl=http%3a%2f%2fat.vebets.com%2fhome%2findex';
 		this.urls  = {
 			signUp: this.domain + 'api/Account/Regist',
 			agentSignUp: this.domain + 'api/Account/RegistAgent',

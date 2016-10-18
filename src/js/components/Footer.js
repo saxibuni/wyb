@@ -132,7 +132,7 @@
 				pageName === 'agentSignup') {
 				app.router.setRoute(pageName);
 			} else if (pageName === 'agentLogin') {
-				window.open('http://at.vebets.com/home/login?redirectUrl=http%3a%2f%2fat.vebets.com%2fhome%2findex');
+				window.open(app.agentLoginUrl);
 			} else {
 				window.open('help.html?item=' + pageName);
 			}

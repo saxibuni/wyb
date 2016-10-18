@@ -274,15 +274,15 @@
 		var that = this;
 
 		callback = function (json) {
-			if (json.StatusCode && json.StatusCode != 0) {
-				alert(json.Message);
-				return;
-			}
-
 			that.loader.stop();
-			that.hide();
-			app.header.showSignedInHeader();
-			app.signedIn = true;
+
+			if (json == -1) {
+				alert('代理注册失败');
+				return;
+			} else {
+				alert('注册成功');
+				window.open(app.agentLoginUrl);
+			}
 		};
 
 		data = {
@@ -323,6 +323,12 @@
 		var that = this;
 
 		this.zone = $('.agent-signup');
+
+		this.zone.find('.change-verify-code').click(function () {
+            that.zone.find('.verify-code').attr('src', 
+            	app.urls.verifyImage + '?sid=' + Math.random()
+            );
+		});
 
 		this.zone.find('.ok').click(function () {
 			that.commit();
