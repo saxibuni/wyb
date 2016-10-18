@@ -454,8 +454,8 @@
 			transition: all .5s;
 
 			.selected{
- 			 	color: #63563c;
- 			 	background-color: #cda654;
+ 			 	color: $red;
+ 			 	background-color: $purple2;
  		 	}
 
  		 	ul {
@@ -485,9 +485,9 @@
 			}
 
 			ul li:hover{
-				color: #63563c;
 				cursor: pointer;
-				background-color: #cda654;
+ 			 	color: $red;
+ 			 	background-color: $purple2;
 			}
 
 			.stick{
