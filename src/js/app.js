@@ -11,8 +11,9 @@
 	}
 
 	app.prototype.init = function () {
-		this.header   = new Header();
-		this.footer   = new Footer();
+		this.suspension = new Suspension();
+		this.header     = new Header();
+		this.footer     = new Footer();
 
 		this.el  = 	this.header.getDom() +
 
@@ -24,7 +25,10 @@
 						'</div>' +
 					'</div>' +
 
-					this.footer.getDom();
+					this.footer.getDom() +
+
+					this.suspension.getDom();
+
 
 		this.zone.append(this.el);
 		this.bindEvents();
@@ -54,7 +58,7 @@
 		this.timeout       = 12000;
 		this.domain        = 'http://api.vebets.com/';
 		this.imageServer   = 'http://img.vebets.com/';
-		this.liveCsUrl     = 'http://www.baidu.com/';
+		this.liveCsUrl     = 'https://server.iad.liveperson.net/hc/63269832/?cmd=file&amp;file=preChatSurveyContent&amp;site=63269832&amp;sessionkey=H2423850037524059158-b3de96a250df4028b9d87d2aded38e6dK13065169&amp;survey=Pre-Chat';
 		this.agentLoginUrl = 'http://at.vebets.com/home/login?redirectUrl=http%3a%2f%2fat.vebets.com%2fhome%2findex';
 		this.urls  = {
 			signUp: this.domain + 'api/Account/Regist',
@@ -368,6 +372,7 @@
 	};
 
 	app.prototype.bindEvents = function () {
+		this.suspension.bindEvents();
 		this.header.bindEvents();
 		this.footer.bindEvents();
 	};

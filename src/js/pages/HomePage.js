@@ -63,8 +63,6 @@
 								'</div>' +
 							'</div>' +
 						'</div>' +
-						
-						this.suspension.getDom() +
 					'</div>';
 
 		this.el  = temp;
@@ -572,7 +570,6 @@
 		});
 
 		this.notice.bindEvents();
-		this.suspension.bindEvents();
 		this.createLoader();
 		this.initTabSliders();
 	};
