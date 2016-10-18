@@ -4,17 +4,8 @@
 	}
 	
 	HomePage.prototype.initDom = function () {
-		this.suspension = new Suspension();
-
-		this.notice = new Notice2({
-			id: 'home-page-notice',
-			hasBtn: false
-		});
-
 		var temp = 	'<div class="page home-page">' +
 						'<div class="wrapper">' +
-							this.notice.getDom() +
-							
 							'<div class="sliders"></div>' +
 
 							'<div class="content">' +
@@ -569,7 +560,6 @@
 			that.setTabUl(index);
 		});
 
-		this.notice.bindEvents();
 		this.createLoader();
 		this.initTabSliders();
 	};

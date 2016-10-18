@@ -7,13 +7,6 @@
 	EEntertainment.prototype.initDom = function () {
 		this.currenPage = 0;
 
-		this.notice = new Notice2({
-			id: 'eentertainment-notice',
-			hasBtn: false
-		});
-
-		var noticeDom   = this.notice.getDom();
-
 		var topLeftModule=	'<div class="left top-left-module">'+
 								'<div class="head-img">' +
 									this.createMarqueenLi1() +
@@ -103,7 +96,7 @@
 
 
 		var bottomModule='<div class="bottom-module">'+bottomLeftModule+bottomRightModule+'</div>';
-		var mainConent='<div class="page e-entertainment main-content"><div class="wrapper">'+noticeDom+topModule+
+		var mainConent='<div class="page e-entertainment main-content"><div class="wrapper">'+topModule+
 						 		   middleNavModule+bottomModule+'</div></div>';
 
 		this.el  = mainConent;
@@ -826,7 +819,6 @@
 		});
 
 		this.createLoader();
-		this.notice.bindEvents();
 	};
 
 	window.EEntertainment = EEntertainment;

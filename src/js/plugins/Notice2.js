@@ -5,7 +5,6 @@
 		// this.moreNotice =  opt.moreNotice || false;
 		// this.close      =  opt.close || false;
 		this.initDom();
-		this.queryData();
 	}
 
 	Notice2.prototype.initDom = function () {

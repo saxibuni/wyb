@@ -6,6 +6,11 @@
 	Header.prototype.initDom = function () {
 		var temp = '';
 
+		this.notice = new Notice2({
+			id: 'app-notice',
+			hasBtn: false
+		});
+
 		this.switch = new Switch({id: 'money-switch'});
 
 		temp =	'<div class="header">' +
@@ -131,6 +136,8 @@
 								'<div class="clear"></div>' +
 							'</div>' +
 						'</div>' +
+
+						this.notice.getDom() +
 
 						'<div class="header-float-window">' +
 							this.createHeaderFloatWindow() +
@@ -344,6 +351,7 @@
 		this.getUserInfo();
 		this.getCollectList();
 		this.getUnreadMessageCount();
+		this.notice.queryData();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 
@@ -618,6 +626,7 @@
 		});
 
 		this.showSignedOutHeader();
+		this.notice.bindEvents();
 	};
 
 	window.Header = Header;
