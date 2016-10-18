@@ -16,7 +16,6 @@
 
 		var topLeftModule=	'<div class="left top-left-module">'+
 								'<div class="head-img">' +
-									'<img src="../img/cj.jpg"/>' +
 									this.createMarqueenLi1() +
 								'</div>'+
 
@@ -93,7 +92,7 @@
 										// '<li><img src="../img/v07-n.png" /><span>我的收藏</span><div></div></li>'+
 									'</ul>'+
 
-									'<div class="stick"></div>'+
+									//'<div class="stick"></div>'+
 								'</div>';
 
 	  	var bottomRightModule='<div class="bottom-right">'+

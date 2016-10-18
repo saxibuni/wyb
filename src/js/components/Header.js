@@ -133,33 +133,7 @@
 						'</div>' +
 
 						'<div class="header-float-window">' +
-							'<ul class="ul dzyy">' +
-								'<li>' +
-									'<img src="../img/dzyy-float-img1.png">' +
-								'</li>' +
-
-								'<li>' +
-									'<img src="../img/dzyy-float-img2.png">' +
-								'</li>' +
-
-								'<li>' +
-									'<img src="../img/dzyy-float-img3.png">' +
-								'</li>' +
-							'</ul>' +
-
-							'<ul class="ul ty">' +
-								'<li>' +
-									'<img src="../img/ty-float-img1.png">' +
-								'</li>' +
-
-								'<li>' +
-									'<img src="../img/ty-float-img2.png">' +
-								'</li>' +
-
-								'<li>' +
-									'<img src="../img/ty-float-img3.png">' +
-								'</li>' +
-							'</ul>' +
+							this.createHeaderFloatWindow() +
 						'</div>' +
 					'</div>' +
 				'</div>';
@@ -174,6 +148,86 @@
 	Header.prototype.deleteCollectGame = function (id) {
 		var ul = this.zone.find('.wdsc-float-window ul');
 		ul.children('li:last-child').remove();
+	};
+
+	Header.prototype.createHeaderFloatWindow = function (pageName) {
+		var i;
+		var key;
+		var arr;
+		var temp = '';
+		var dict = {
+			liveVideo: [
+				{
+					image: 'zrsx-float-img1.png',
+					name: 'BBIN国际厅'
+				}, {
+					image: 'zrsx-float-img2.png',
+					name: 'AG欧洲厅'
+				}, {
+					image: 'zrsx-float-img3.png',
+					name: 'AB亚洲厅'
+				}, {
+					image: 'zrsx-float-img4.png',
+					name: 'OG美洲厅'
+				}
+			],
+			eEntertainment: [
+				{
+					image: 'dzyy-float-img1.png',
+					name: 'PT'
+				}, {
+					image: 'dzyy-float-img2.png',
+					name: 'BBIN'
+				}, {
+					image: 'dzyy-float-img3.png',
+					name: 'MG'
+				}, {
+					image: 'dzyy-float-img4.png',
+					name: 'AG'
+				},{
+					image: 'dzyy-float-img5.png',
+					name: 'TTG'
+				}, {
+					image: 'dzyy-float-img6.png',
+					name: 'MT'
+				}
+			],
+			sportsCompetition: [
+				{
+					image: 'tyjj-float-img1.png',
+					name: 'BBIN体育'
+				}, {
+					image: 'tyjj-float-img2.png',
+					name: '沙巴体育'
+				}
+			],
+			lotteryGame: [
+				{
+					image: 'cpyx-float-img1.png',
+					name: 'KENO彩票'
+				}, {
+					image: 'cpyx-float-img2.png',
+					name: 'BBIN彩票'
+				}
+			]
+		};
+
+		for (key in dict) {
+			arr = dict[key];
+
+			temp +=	'<ul class="ul ' + key + '" data-value="' + key + '">';
+
+			for (i = 0; i < arr.length; i++) {
+				temp +=	'<li>' +
+							'<img src="../img/' + arr[i].image + '">' +
+							'<span>' + arr[i].name + '</span>' +
+						'</li>';
+			}
+
+			temp += '</ul>';
+		}
+
+		return temp;
 	};
 
 	Header.prototype.getUserInfo = function() {
@@ -255,7 +309,7 @@
 	Header.prototype.getUnreadMessageCount = function () {
 		var i;
 		var callback;
-		var that = this;
+		var that      = this;
 		var endtime   = new Date();
 		var begintime = Util.getIntervalDate(endtime, -10);
 
@@ -466,23 +520,35 @@
 
 		headerFloatItem.mouseover(function () {
 			var parent = $(this).parent('ul');
-			
-			if (parent && parent.hasClass('pages') && $(this).attr('data-value') === 'eEntertainment') {
-				headerFloatWindow.children('ul').hide();
-				headerFloatWindow.children('.dzyy').show();
-				that.showHeaderFloatWindow();
-			} else if (parent && parent.hasClass('pages') && $(this).attr('data-value') === 'sportsCompetition') {
-				headerFloatWindow.children('ul').hide();
-				headerFloatWindow.children('.ty').show();
-				that.showHeaderFloatWindow();
-			} else if (parent && parent.hasClass('pages') 
-							  && $(this).attr('data-value') !== 'eEntertainment'
-							  && $(this).attr('data-value') !== 'sportsCompetition') {
+			pageName   = $(this).attr('data-value');
 
-				that.hideHeaderFloatWindow();
+			if (headerFloatWindow.children('.' + pageName).length > 0) {
+				headerFloatWindow.children('ul').hide();
+				headerFloatWindow.children('.' + pageName).show();
+				that.showHeaderFloatWindow();
 			} else {
 				that.showHeaderFloatWindow();
 			}
+		}).mouseout(function () {
+			that.hideHeaderFloatWindow();
+		});
+
+		this.zone.find('.pages li').mouseover(function () {
+			pageName   = $(this).attr('data-value');
+
+			if (headerFloatWindow.children('.' + pageName).length > 0) {
+				headerFloatWindow.children('ul').hide();
+				headerFloatWindow.children('.' + pageName).show();
+				that.showHeaderFloatWindow();
+			} else {
+				that.hideHeaderFloatWindow();
+			}
+		}).mouseout(function () {
+			that.hideHeaderFloatWindow();
+		});
+
+		this.zone.find('.header-float-window').mouseover(function () {
+		    that.showHeaderFloatWindow();
 		}).mouseout(function () {
 			that.hideHeaderFloatWindow();
 		});
