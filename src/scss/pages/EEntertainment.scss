@@ -131,7 +131,7 @@
       		list-style: none;
       		height: $marqueenLiHeight;
       		line-height: $marqueenLiHeight;
-      		border-bottom: 1px solid #515151;
+      		border-bottom: 1px solid $border-color1;
     	}
 
 		.left-list li p {
@@ -143,7 +143,7 @@
 		}
 	
 		.left-list li:first-child{
-	        border-top: 1px solid #515151;
+	        border-top: 1px solid $border-color1;
 	    }
 	}
 
@@ -198,12 +198,10 @@
 
 		.prev {
 			left: -299px;
-			background: url('../img/left-normal.png') no-repeat;
 		}
 
 		.next {
 			left: 307px;
-			background: url('../img/right-normal.png') no-repeat;
 		}
 	}
 
@@ -281,19 +279,20 @@
 		}
 
 		button {
-			background: url(../img/ks.jpg);
+			background: $green;
+			border-radius: 20px;
+			color: #FFF;
 			cursor: pointer;
 			font-size: 16px;
 			height: 30px;
 			line-height: 30px;
 			font-weight: 500;
-			color: #fff;
 			width: 182px;
 			margin-bottom: 14px;
 		}
 
 		button:hover{
-			color:#cda654;
+			color: $font-color2;
 		}
 	}
 
@@ -468,7 +467,7 @@
 				display: inline-block;
 				width: 100%;
 				color: #b4b4b4;
-				border-bottom: 1px solid #535250;
+				border-bottom: 1px solid $border-color1;
 				text-align:center;
 
 				img {
@@ -481,7 +480,7 @@
 			}
 
 			ul li:first-child{
-				border-top:1px solid #535250;
+				border-top:1px solid $border-color1;
 			}
 
 			ul li:hover{
@@ -639,472 +638,12 @@
 				text-align:center;
 				margin-top: 15px;
 				padding: 10px 0;
-				border:1px solid #535250;
-				color:#535250;
+				border:1px solid $border-color1;
+				color: $border-color1;
 			}
 		}
 	}
 }
 
 @media screen and (max-width: 1300px) {
-	.main-content{
-		$baseL                  :    1200;
-		$baseWidth              :    997px;
-		$topLeftModuleWidth     :    $baseWidth * 260 / $baseL;
-		$topMiddleModuleWidth   :    $baseWidth * 640 / $baseL;
-		$topRightModuleWidth    :    $baseWidth * 280 / $baseL;
-		$topModuleGap           :    $baseWidth * 10 / $baseL;
-		$topModuleHeight        :    $baseWidth * 330 / $baseL;
-		$marqueenImageHeight    :    $baseWidth * 94 / $baseL;
-		$marqueenHeight         :    $topModuleHeight - $marqueenImageHeight;
-		$marqueenLiHeight       :    $marqueenHeight / 7;
-		$bottomLeftModuleWidth  :    $baseWidth * 220 / $baseL;
-		$bottomRightModuleWidth :    $baseWidth - $bottomLeftModuleWidth;
-		$gameImageWidth         :    $baseWidth * 145 / $baseL;
-		$gameImageHeight        :    $baseWidth * 150 / $baseL;
-		$gameImageGap           :    ($bottomRightModuleWidth - $gameImageWidth * 6) / 7;
-
-		width: $baseWidth;
-		margin: 0 auto;
-		height: auto;
-
-		.wrapper {
-			position: relative;
-			width: $contentWidth;
-		}
-		
-		.red {
-			color: #C6281E;
-		}
-
-		.left {
-			float:left;
-		}
-
-		.notice {
-			margin-bottom: 10px;
-		}
-
-		.top-left-module{
-			width: $topLeftModuleWidth;
-			height: 100%;
-
-			.marqueen{
-				height: $marqueenHeight ;
-				overflow: hidden;
-			}
-
-			.left-list{
-				background: #424242;
-			}
-
-			.head-img{
-				width: 100%;
-				height: $marqueenImageHeight;
-
-				img{
-					width:100%;
-					height:100%;
-				}
-
-				.marqueen-li1 {
-					font-size: 16px;
-					top: 47px;
-				}
-			}
-
-			.left-list li{
-	      		list-style: none;
-	      		height: $marqueenLiHeight;
-	      		line-height: $marqueenLiHeight;
-	      		border-bottom: 1px solid #515151;
-	    	}
-
-			.left-list li p {
-				display:inline-block;
-				width:50%;
-				text-align: center;
-				color:#ccc;
-				font-size: 12px;
-			}
-		
-			.left-list li:first-child{
-		        border-top: 1px solid #515151;
-		    }
-		}
-
-		.middle-banner{
-			width: $topMiddleModuleWidth;
-	    	height: 100%;
-			margin: 0 $topModuleGap;
-			float: left;
-
-
-			.unslider-nav {
-				position: relative;
-				top: -125px;
-
-				ol {
-					width: 100px;
-					margin-right: 51px;
-					float: right;
-
-					li {
-						display: inline-block;
-						width: 18px;
-						height: 10px;
-						overflow: hidden;
-						text-indent: 50px;
-						background-color: #ccc;
-						margin: 0 5px;
-						border-radius: 3px;
-					}
-				}
-			}
-
-			.unslider-nav ol li.unslider-active {
-				background-color: #fff;
-			}
-
-			.prev, .next {
-				position: relative;
-				top: -164px;
-				width: 50px;
-				height: 70px;
-				overflow: hidden;
-				opacity: 0.5;
-				text-indent: 50px;
-				display: inline-block;
-			}
-
-			.prev:hover, .next:hover {
-				opacity: 1;
-			}
-
-			.prev {
-				left: -249px;
-				background: url('../img/left-normal.png') no-repeat;
-			}
-
-			.next {
-				left: 257px;
-				background: url('../img/right-normal.png') no-repeat;
-			}
-		}
-
-		.slider{
-			width: $topMiddleModuleWidth;
-	    	height: $topModuleHeight;
-
-			ul {
-				height: 100%;
-				position: relative;
-				width:600px;
-				overflow:hidden;
-				li {
-					height: 100%;
-					float: left;
-					list-style: none;
-					img {
-						width: 100%;
-						height: 100%;
-					}
-				}
-			}
-		}
-
-		.top-right-module{
-			background: #48463A;
-	    	float: left;
-	    	height: 100%;
-	    	width: $topRightModuleWidth;
-			
-			.amount-info {
-				margin: 0 0 10px;
-				background: url(../img/jp.jpg) no-repeat;
-				color: #cda654;
-				font-size: 16px;
-				font-weight: 600;
-				text-align: center;
-				background-size: contain;
-				height: 130px;
-				width: 100%;
-
-				p {
-					position:relative;
-				    top: 76px;
-				    font-size: 24px;
-				}
-			}
-
-			.user-info {
-				margin: 10px 0;
-				color: #fff;
-				text-align: center;
-				margin-top: 0;
-
-				p {
-					width: 100%;
-					height: 20px;
-					line-height: 20px;
-					.userName{
-						color: #cda654;
-						margin-left: 5px;
-					}
-				}
-				h3{
-					margin: 10px 0;
-					font-size: 16px;
-					font-weight: 600;
-				}
-			}
-
-			button {
-				background: url(../img/ks.jpg);
-				font-size: 16px;
-				height: 30px;
-				line-height: 30px;
-				font-weight: 500;
-				color: #fff;
-				width: 182px;
-				margin-bottom: 14px;
-			}
-
-			button:hover{
-				color:#cda654;
-			}
-		}
-
-		.top-module{
-			width: 100%;
-			height: $topModuleHeight;
-		}
-
-		.middle-module{
-			width: $baseWidth;
-		}
-
-		.middle-right-module{
-			margin-top: 10px;
-			background:#48463A;
-			line-height:50px;
-			width:152px;
-			margin-left:2px;
-			border-left:1px solid #48463A;
-			height:50px;
-			float:left;
-			li{
-				float:left;
-				height:100%;
-				width:45px;
-				background-size:cover;
-			}
-			.li-item1{
-				background: url("../img/v08-n.png") no-repeat 10px;
-			}
-			.li-item1:hover{
-				background: url("../img/v08-d.png") no-repeat 10px;
-			}
-			.li-item2{
-				background: url("../img/v09-n.png") no-repeat 10px;
-			}
-			.li-item2:hover{
-				background: url("../img/v09-d.png") no-repeat 10px;
-			}
-			.li-item3{
-				background: url("../img/v10-n.png") no-repeat 10px;
-			}
-			.li-item3:hover{
-				background: url("../img/v10-d.png") no-repeat 10px;
-			}
-		}
-
-		.bottom-module{
-			 width: 100%;
-			 background: #2C2C2C;
-			 display: inline-block;
-	    	 vertical-align: top;
-
-			.bottom-left {
-				width: $bottomLeftModuleWidth;
-				background-color: #2C2C2C;
-				float: left;
-				position: relative;
-				border-right: 1px solid #535250;
-				height:100%;
-
-				.selected{
-	 			 	color: #63563c;
-	 			 	background-color: #cda654;
-	 		 	}
-
-	 		 	ul {
-	 		 		margin-top: $gameImageGap;
-	 		 	}
-
-				ul li{
-					height: 40px;
-					line-height: 40px;
-					display: inline-block;
-					width: 100%;
-					color: #b4b4b4;
-					border-bottom: 1px solid #535250;
-					text-align:center;
-
-					img {
-						width: 24px;
-					    height: 24px;
-					    position: relative;
-					    bottom: 2px;
-					    right: 15px;
-					}
-				}
-
-				ul li:first-child{
-					border-top:1px solid #535250;
-				}
-
-				ul li:hover{
-					color: #63563c;
-					cursor: pointer;
-					background-color: #cda654;
-				}
-
-				.stick{
-					height: 38px;
-					width: 3px;
-					position: absolute;
-					background-color: #cda654;
-					top: 65px;
-					left: 0px;
-					transition: top 0.5s;
-					-moz-transition: top 0.5s;
-					-webkit-transition: top 0.5s;
-				}
-
-				.search-box{
-					border: 1px solid #cda654;
-					height: 30px;
-					line-height: 30px;
-					margin: 0 auto;
-					margin-top: 20px;
-					width: 160px;
-					border-radius: 2px;
-					background-color: #000;
-				}
-
-				.search-box .search-btn{
-					position:relative;
-					left:5px;
-				}
-
-				.search-box input{
-					width:120px;
-					background-color: transparent;
-					border: 0;
-					color: #FFF;
-					display: inline-block;
-					float: left;
-					height: 25px;
-					line-height: 25px;
-					padding: 2px 5px;
-				}
-			}
-
-			.bottom-right {
-				float: left;
-				color: #b4b4b4;
-				width: $bottomRightModuleWidth;
-
-				ul {
-					float:left;
-					height: auto;
-		    		overflow: hidden;
-
-					li {
-						list-style:none;
-						float:left;
-						border:1px solid #535250;
-						position:relative;
-						width: $gameImageWidth + 2px;
-						margin-left: $gameImageGap;
-						margin-top: $gameImageGap;
-
-						img {
-							width: $gameImageWidth;
-							height: $gameImageHeight;
-						}
-
-						.hover-layer-none{
-							display:none;
-						}
-
-						p {
-							height:30px;
-							line-height:30px;
-							padding:0 5px;
-
-							button{
-								top:60px;
-								width:60px;
-								height:25px;
-							}
-
-							button:first-child{
-								background:#cda654;
-								color:black;
-								margin-top:60px;
-							}
-
-							button:last-child{
-								background:black;
-								color:#cda654;
-							}
-
-							.game-name{
-								display:inline-block;
-								float:left;
-								width: 80px;
-	    						text-align: left;
-							}
-
-							img{
-								width: 15px;
-								height: 15px;
-								margin-bottom: 2px;
-							}
-						}
-					}
-
-					li:hover {
-						border:1px solid #cda654;
-					}
-
-					.hover-layer{
-						z-index: 300;
-						position: absolute;
-						top: 60px;
-						left: 24px;
-						width: 100%;
-						height: 79%;
-						position: absolute;
-						left: 0;
-						top: 0;
-						background-color: rgba(0, 0, 0, 0.5);
-					}
-				}
-
-				.more-game{
-					float: left;
-	    			width: $bottomRightModuleWidth - $gameImageGap * 2;
-	    			margin-left: $gameImageGap;
-					text-align:center;
-					margin-top: 15px;
-					padding: 10px 0;
-					border:1px solid #535250;
-					color:#535250;
-				}
-			}
-		}
-	}
 }
