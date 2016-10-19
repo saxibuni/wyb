@@ -13,7 +13,7 @@
 			width: 100%;
 
 			ul {
-				background-color: #48463A;
+				background-color: $purple3;
 				height: 50px;
 				width: 100%;
 				position: relative;
@@ -32,12 +32,12 @@
 					}
 
 					&:hover {
-						color: #DCAD4B;
+						color: $red;
 					}
 				}
 
 				.stick {
-					background-color: #DCAD4B;
+					background-color: $red;
 					position: absolute;
 					left: 0;
 					top: 48px;

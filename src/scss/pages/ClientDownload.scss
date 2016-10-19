@@ -2,14 +2,13 @@
 
 .client-download {
 	@include page-property;
-	padding: 20px;
 
 	.wrapper {
 		position: relative;
 		width: $contentWidth - 40px;
 
 		.title {
-			background-color: #48463A;
+			background-color: $purple3;
 			height: 50px;
 			display: inline-block;
 			line-height: 50px;
@@ -21,7 +20,7 @@
 			.title-ul {
 				height: 50px;
 				width: 100%;
-				
+
 				li {
 					cursor: pointer;
 					float:left;;
@@ -32,7 +31,7 @@
 					z-index: 20;
 
 					.img {
-						background: url("../img/merchants-logo.png");
+						background: url("../img/platform.png");
 						display: inline-block;
 						width: 50px;
 						height: 100%;
@@ -48,71 +47,99 @@
 					}
 
 					&:hover {
-						background-color:#cda654;
+						background-color: $purple1;
 
 						.pt-img {
-							background-position: 5px 60px;
+							background-position: 0 $platform-icon-top2;
 						}
 
 						.bbin-img {
-							background-position: 191px 60px;
-						}
-
-						.ag-img {
-							background-position: 127px 60px;
+							background-position: -45px $platform-icon-top2;
 						}
 
 						.mg-img {
-							background-position: 60px 60px;
+							background-position: -90px $platform-icon-top2;
+						}
+
+						.ag-img {
+							background-position: -133px $platform-icon-top2;
+						}
+
+						.ttg-img {
+							background-position: -177px $platform-icon-top2;
+						}
+
+						.mt-img {
+							background-position: -220px $platform-icon-top2;
 						}
 					}
 				}
 
 				.pt-li{
 					.img {
-						background-position: 5px 6px;
+						background-position: 0 $platform-icon-top1;
 					}
 				}
 
 				.bbin-li{
 					.img {
-						background-position: 191px 6px;
-					}
-				}
-
-				.ag-li{
-					.img {
-						background-position: 127px 6px;
+						background-position: -45px $platform-icon-top1;
 					}
 				}
 
 				.mg-li{
 					.img {
-						background-position: 60px 6px;
+						background-position: -90px $platform-icon-top1;
 					}
 				}
-				
+
+				.ag-li{
+					.img {
+						background-position: -133px $platform-icon-top1;
+					}
+				}
+
+				.ttg-li{
+					.img {
+						background-position: -177px $platform-icon-top1;
+					}
+				}
+
+				.mt-li {
+					.img {
+						background-position: -220px $platform-icon-top1;
+					}
+				}
+
 				.selected {
-					background-color:#cda654;
+					background-color: $purple1;
 
 					.name {
 						display: inline-block;
 					}
 
 					.pt-img {
-						background-position: 5px 60px;
+						background-position: 0 $platform-icon-top2;
 					}
 
 					.bbin-img {
-						background-position: 191px 60px;
-					}
-
-					.ag-img {
-						background-position: 127px 60px;
+						background-position: -45px $platform-icon-top2;
 					}
 
 					.mg-img {
-						background-position: 60px 60px;
+						background-position: -90px $platform-icon-top2;
+					}
+
+					.ag-img {
+						background-position: -133px $platform-icon-top2;
+					}
+
+					.ttg-img {
+						background-position: -177px $platform-icon-top2;
+					}
+
+					.mt-img {
+						background-position: -220px $platform-icon-top2;
 					}
 				}
 			}
@@ -120,7 +147,7 @@
 
 		.content {
 			background-color: #171716;
-			border: 1px solid #636157;
+			border: 1px solid $border-color1;
 			border-top: 0;
 			display: inline-block;
 			width: $contentWidth - 42px;
@@ -128,7 +155,7 @@
 			transition: all .5s;
 
 			.content-up {
-				border-bottom: 1px solid #555555;
+				border-bottom: 1px solid $border-color1;
 				height: 250px;
 				width: 90%;
 				margin: 0 auto;
@@ -170,8 +197,8 @@
 						    height: 40px;
 						    line-height: 40px;
 						    width: 150px;
-						    background-color: #CDA654;
-						    color: #FFF;
+						    background-color: $purple2;
+						    color: $font-color1;
 						    text-align: center;
 						    margin-top: 10px;
 
@@ -209,8 +236,8 @@
 					    height: 40px;
 					    line-height: 40px;
 					    width: 142px;
-					    background-color: #CDA654;
-					    color: #FFF;
+					    background-color: $purple2;
+					    color: $font-color1;
 					    text-align: center;
 					    position: relative;
 					    margin-top: 20px;
