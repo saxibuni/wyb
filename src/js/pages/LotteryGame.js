@@ -6,54 +6,61 @@
 	LotteryGame.prototype.initDom = function () {
 		var temp =	'<div class="page lottery-game">' +
 						'<div class="wrapper">' +
-							'<div class="content1">' +
-								'<div class="left">' +
-									'<div class="row1">' +
-										'<img src="../img/keno-logo.png">' +
-									'</div>' +
+							'<div class="item">' +
+								'<div class="up">' +
+									'<div class="left">' +
+										'<div class="row1">' +
+											'<div class="lottery-icon keno-icon"></div>' +
+										'</div>' +
 
-									'<div class="row2">' +
-										'<div class="text">' +
-											'KENO拥有专业的游戏研发及顶尖的设计团队为后盾，' +
-											'团队不间断的运用创新技术，逐渐构建亚洲最大的网络博彩娱乐事业体' +
+										'<div class="row2">' +
+											'<div class="text">' +
+												'KENO拥有专业的游戏研发及顶尖的设计团队为后盾，' +
+												'团队不间断的运用创新技术，逐渐构建亚洲最大的网络博彩娱乐事业体' +
+											'</div>' +
+										'</div>' +
+
+										'<div class="row3">' +
+											'<div class="button">' +
+												'立即投注' +
+											'</div>' +
 										'</div>' +
 									'</div>' +
 
-									'<div class="row3">' +
-										'<div class="button">' +
-											'立即投注' +
-										'</div>' +
-									'</div>' +
+									'<div class="right"></div>' +
 								'</div>' +
 
-								'<div class="right">' +
+								'<div class="down">' +
 									this.createLotteryItem(1) +
 								'</div>' +
 							'</div>' +
 
-							'<div class="content2">' +
-								'<div class="left">' +
-									this.createLotteryItem(2) +
+							'<div class="item">' +
+								'<div class="up">' +
+									'<div class="left">' +
+										'<div class="row1">' +
+											'<div class="lottery-icon bbin-icon"></div>' +
+										'</div>' +
+
+										'<div class="row2">' +
+											'<div class="text">' +
+												'BBIN成立于1999年，为亚洲具代表地位的网络博彩娱乐集团，' +
+												'致力于在线博弈游戏软件研发并提供整合平台服务' +
+											'</div>' +
+										'</div>' +
+
+										'<div class="row3">' +
+											'<div class="button">' +
+												'立即投注' +
+											'</div>' +
+										'</div>' +
+									'</div>' +
+
+									'<div class="right"></div>' +
 								'</div>' +
 
-								'<div class="right">' +
-									'<div class="row1">' +
-										'<img src="../img/bbin-normal.png">' +
-										'<span>彩票</span>' +
-									'</div>' +
-
-									'<div class="row2">' +
-										'<div class="text">' +
-											'BBIN成立于1999年，为亚洲最具代表地位的网络博彩娱乐集团，' +
-											'在线博弈游戏软件研发并提供整合平台服务' +
-										'</div>' +
-									'</div>' +
-
-									'<div class="row3">' +
-										'<div class="button">' +
-											'立即投注' +
-										'</div>' +
-									'</div>' +
+								'<div class="down">' +
+									this.createLotteryItem(2) +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -76,109 +83,24 @@
 
 	LotteryGame.prototype.createLotteryItem = function (type) {
 		var i;
-		var data;
-		var temp;
+		var arr;
+		var temp = '';
 		var dict = {
-			1: [
-				{
-					'subtitle': 'BBIN',
-					'title': '秒秒彩'
-				},
-				{
-					'subtitle': 'BBIN',
-					'title': '分分彩'
-				},
-				{
-					'subtitle': 'BBIN',
-					'title': '五分彩'
-				},
-				{
-					'subtitle': '江西',
-					'title': '11选5'
-				},
-				{
-					'subtitle': '北京',
-					'title': 'PK10'
-				},
-				{
-					'subtitle': '3D',
-					'title': '福彩'
-				}
-			],
-			
-			2: [
-				{
-					'subtitle': '新疆',
-					'title': '时时彩'
-				},
-				{
-					'subtitle': 'BBIN',
-					'title': '秒秒彩'
-				},
-				{
-					'subtitle': 'BBIN',
-					'title': '分分彩'
-				},
-				{
-					'subtitle': '广东',
-					'title': '11选5'
-				},
-				{
-					'subtitle': '江西',
-					'title': '11选5'
-				},
-				{
-					'subtitle': '北京',
-					'title': 'PK10'
-				}
-			]
+			1: ['KENO真人彩票', 'KENO时时彩', 'KENO分分彩', '重庆时时彩', 
+				'北京PK10',     '新疆时时彩', '广东11选5',  '江西11选5'],
+			2: ['BBIN真人彩票', 'BBIN时时彩', 'BBIN分分彩', 'BBIN秒秒彩',
+				'重庆时时彩',   '北京PK10',   '新疆时时彩', '广东11选5', '江西11选5']
+		};
+
+		arr = dict[type];
+
+		temp +=	'<ul class="down">';
+
+		for (i = 0; i < arr.length; i++) {
+			temp +=	'<li>' + arr[i] + '</li>';
 		}
 
-		data = dict[type];
-		temp =	'<table>' +
-					'<tbody>';
-
-		for (i = 0; i < data.length; i++) {
-			if (i === 0 || i === 3) {
-				temp +=	'<tr>' +
-							'<td>' +
-								'<div class="item">' +
-									'<i class="subtitle">' +
-										data[i].subtitle +
-									'</i>' +
-									'<i class="title">' +
-										data[i].title +
-									'</i>' +
-								'</div>' +
-							'</td>';
-			} else if (i === 2 || i === 5) {
-				temp +=	    '<td>' +
-								'<div class="item">' +
-									'<i class="subtitle">' +
-										data[i].subtitle +
-									'</i>' +
-									'<i class="title">' +
-										data[i].title +
-									'</i>' +
-								'</div>' +
-							'</td>' +
-						'</tr>';
-			} else {
-				temp +=	    '<td>' +
-								'<div class="item">' +
-									'<i class="subtitle">' +
-										data[i].subtitle +
-									'</i>' +
-									'<i class="title">' +
-										data[i].title +
-									'</i>' +
-								'</div>' +
-							'</td>';
-			}
-		}
-
-		temp +=		'</tbody>' +
-				'</table>';
+		temp +=	'</ul>';
 
 		return temp;
 	};
