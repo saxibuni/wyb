@@ -236,9 +236,8 @@
 		.amount-info {
 			margin: 0 0 10px;
 			background: url(../img/jp.jpg) no-repeat;
-			color: #cda654;
+			color: #FFF;
 			font-size: 16px;
-			font-weight: 600;
 			text-align: center;
 			background-size: 100%;
 			height: 150px;
@@ -247,8 +246,8 @@
 
 			p {
 				position:relative;
-			    top: 90px;
-			    font-size: 30px;
+			    top: 92px;
+			    font-size: 24px;
 			}
 
 			.spinner {
@@ -674,4 +673,119 @@
 }
 
 @media screen and (max-width: 1300px) {
+	.main-content{
+		$baseL                  :    1200;
+		$baseWidth              :    1000px;
+		$topLeftModuleWidth     :    $baseWidth * 260 / $baseL;
+		$topMiddleModuleWidth   :    $baseWidth * 640 / $baseL;
+		$topRightModuleWidth    :    $baseWidth * 280 / $baseL;
+		$topModuleGap           :    $baseWidth * 10 / $baseL;
+		$topModuleHeight        :    $baseWidth * 330 / $baseL;
+		$marqueenImageHeight    :    $baseWidth * 94 / $baseL;
+		$marqueenHeight         :    $topModuleHeight - $marqueenImageHeight;
+		$marqueenLiHeight       :    $marqueenHeight / 7;
+
+		$bottomLeftModuleWidth  :    $baseWidth * 220 / $baseL;
+		$bottomRightModuleWidth :    $baseWidth - $bottomLeftModuleWidth;
+		$gameImageWidth         :    $baseWidth * 145 / $baseL;
+		$gameImageHeight        :    $baseWidth * 150 / $baseL;
+		$gameImageGap           :    ($bottomRightModuleWidth - $gameImageWidth * 6) / 7;
+
+		width: $baseWidth;
+		margin: 0 auto;
+		height: auto;
+
+		.wrapper {
+			width: $contentWidth;
+		}
+
+		.top-left-module{
+			width: $topLeftModuleWidth;
+
+			.marqueen{
+				height: $marqueenHeight;
+			}
+
+			.head-img{
+				height: $marqueenImageHeight;
+
+				.marqueen-li1 {
+					top: 40px;
+				}
+			}
+
+			.left-list li{
+	      		height: $marqueenLiHeight;
+	      		line-height: $marqueenLiHeight;
+	    	}
+		}
+
+		.middle-banner{
+			width: $topMiddleModuleWidth;
+			margin: 0 $topModuleGap;
+		}
+
+		.slider{
+			width: $topMiddleModuleWidth;
+	    	height: $topModuleHeight;
+		}
+
+		.top-right-module{
+	    	width: $topRightModuleWidth;
+			
+			.amount-info {
+				p {
+				    top: 67px;
+				}
+
+				.spinner {
+					top: 52%;
+				}
+			}
+
+			.user-info {
+				margin-top: -30px;
+			}
+		}
+
+		.top-module{
+			height: $topModuleHeight;
+		}
+
+		.middle-module{
+			width: $baseWidth;
+		}
+
+		.bottom-module{
+			.bottom-left {
+				width: $bottomLeftModuleWidth;
+
+	 		 	ul {
+	 		 		margin-top: $gameImageGap;
+	 		 	}
+			}
+
+			.bottom-right {
+				width: $bottomRightModuleWidth;
+
+				ul {
+					li {
+						width: $gameImageWidth + 2px;
+						margin-left: $gameImageGap;
+						margin-top: $gameImageGap;
+
+						img {
+							width: $gameImageWidth;
+							height: $gameImageHeight;
+						}
+					}
+				}
+
+				.more-game{
+	    			width: $bottomRightModuleWidth - $gameImageGap * 2;
+	    			margin-left: $gameImageGap;
+				}
+			}
+		}
+	}
 }

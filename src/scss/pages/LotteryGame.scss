@@ -14,14 +14,20 @@
 		$height2            : $baseWidth * 55 / $baseL;
 		$width1             : $baseWidth * 650 / $baseL;
 		$width2             : $baseWidth * 650 / $baseL;
+		$leftPadding        : $baseWidth * 90 / $baseL;
+		$row1Top            : $baseWidth * 20 / $baseL;
+		$row3Top            : $baseWidth * 50 / $baseL;
+		$item2Top           : $baseWidth * 20 / $baseL;
 
 		.item {
 			height: $itemHeight;
 			width: $baseWidth;
 
 			.up {
+				background-color: rgba(0, 0, 0, .3);
 				height: $height1;
 				width: 100%;
+				transition: all .3s;
 
 				.left {
 					display: inline-block;
@@ -29,10 +35,11 @@
 					width: $width1;
 					text-align: left;
 					vertical-align: top;
-					transition: all .5s;
+					transition: all .3s;
 
 					.row1 {
-						padding-left: 20px;
+						padding-left: $leftPadding;
+						margin-top: $row1Top;
 
 						.lottery-icon {
 							background-image: url("../img/lottery.png");
@@ -51,7 +58,7 @@
 					}
 
 					.row2 {
-						padding: 0 20px;
+						padding-left: $leftPadding;
 
 						.text {
 							text-align: left;
@@ -61,12 +68,11 @@
 					}
 
 					.row3 {
-						padding-left: 20px;
-						height: 40px;
-						line-height: 40px;
+						padding-left: $leftPadding;
+						display: inline-block;
 						width: 100%;
 						text-align: left;
-	    				margin-top: 50px;
+	    				margin-top: $row3Top;
 
 						.button {
 							background-color: rgba(168, 11, 66, .5);
@@ -95,6 +101,7 @@
 					height: $height1;
 					width: $width2;
 					vertical-align: top;
+					transition: all .3s;
 				}
 			}
 
@@ -104,6 +111,7 @@
 				height: $height2;
 				line-height: $height2;
 				width: 100%;
+				transition: all .3s;
 
 				li {
 					display: inline-block;
@@ -119,8 +127,9 @@
 			}
 
 			&:nth-child(2) {
-				margin-top: 20px;
-				
+				margin-top: $item2Top;
+				margin-bottom: 100px;
+
 				.down {
 					li {
 						width: 11.11%;
@@ -132,4 +141,63 @@
 }
 
 @media screen and (max-width: 1300px) {
+	.lottery-game {
+		.wrapper {
+			$baseL              : 1300;
+			$baseWidth          : 1000px;
+			$itemHeight         : $baseWidth * 305 / $baseL;
+			$height1            : $baseWidth * 250 / $baseL;
+			$height2            : $baseWidth * 55 / $baseL;
+			$width1             : $baseWidth * 650 / $baseL;
+			$width2             : $baseWidth * 650 / $baseL;
+			$leftPadding        : $baseWidth * 90 / $baseL;
+			$row1Top            : $baseWidth * 20 / $baseL;
+			$row3Top            : $baseWidth * 50 / $baseL;
+			$item2Top           : $baseWidth * 20 / $baseL;
+
+			width: $baseWidth;
+
+			.item {
+				height: $itemHeight;
+				width: $baseWidth;
+
+				.up {
+					height: $height1;
+
+					.left {
+						height: $height1;
+						width: $width1;
+
+						.row1 {
+							padding-left: $leftPadding;
+							margin-top: 5px;
+						}
+
+						.row2 {
+							padding-left: $leftPadding;
+						}
+
+						.row3 {
+							padding-left: $leftPadding;
+		    				margin-top: $row3Top;
+						}
+					}
+
+					.right {
+						height: $height1;
+						width: $width2;
+					}
+				}
+
+				.down {
+					height: $height2;
+					line-height: $height2;
+				}
+
+				&:nth-child(2) {
+					margin-top: $item2Top;
+				}
+			}
+		}
+	}
 }
