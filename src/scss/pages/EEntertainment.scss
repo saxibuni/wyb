@@ -541,11 +541,11 @@
 			}
 
 			.search-box .search-btn {
-				background-image: url("../img/search-star.png");
-				background-position: -45px -111px;
-				display: inline-block;
-				height: 25px;
-				width: 20px;
+			    background-image: url(../img/search-star.png);
+			    background-position: -10px -113px;
+			    display: inline-block;
+			    height: 30px;
+			    width: 25px;
 			}
 
 			.search-box input{
@@ -628,6 +628,7 @@
 						.collect {
 							background-image: url("../img/search-star.png");
 							background-position: -45px -2px;
+							cursor: pointer;
 							display: inline-block;
 							height: 23px;
 							width: 20px;
