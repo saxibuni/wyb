@@ -15,7 +15,7 @@
 	$marqueenImageHeight    :    $baseWidth * 94 / $baseL;
 	$marqueenHeight         :    $topModuleHeight - $marqueenImageHeight;
 	$marqueenLiHeight       :    $marqueenHeight / 7;
- 
+
 	$bottomLeftModuleWidth  :    $baseWidth * 220 / $baseL;
 	$bottomRightModuleWidth :    $baseWidth - $bottomLeftModuleWidth;
 	$gameImageWidth         :    $baseWidth * 145 / $baseL;
@@ -320,7 +320,7 @@
 			z-index: 20;
 
 			.img {
-				background: url("../img/merchants-logo.png");
+				background: url("../img/platform.png");
 				display: inline-block;
 				width: 50px;
 				height: 100%;
@@ -339,47 +339,67 @@
 				background-color: $purple1;
 
 				.pt-img {
-					background-position: 5px 60px;
+					background-position: 0 $platform-icon-top2;
 				}
 
 				.bbin-img {
-					background-position: 191px 60px;
-				}
-
-				.ag-img {
-					background-position: 127px 60px;
+					background-position: -45px $platform-icon-top2;
 				}
 
 				.mg-img {
-					background-position: 60px 60px;
+					background-position: -90px $platform-icon-top2;
+				}
+
+				.ag-img {
+					background-position: -133px $platform-icon-top2;
+				}
+
+				.ttg-img {
+					background-position: -177px $platform-icon-top2;
+				}
+
+				.mt-img {
+					background-position: -220px $platform-icon-top2;
 				}
 			}
 		}
 
 		.pt-li{
 			.img {
-				background-position: 5px 6px;
+				background-position: 0 $platform-icon-top1;
 			}
 		}
 
 		.bbin-li{
 			.img {
-				background-position: 191px 6px;
-			}
-		}
-
-		.ag-li{
-			.img {
-				background-position: 127px 6px;
+				background-position: -45px $platform-icon-top1;
 			}
 		}
 
 		.mg-li{
 			.img {
-				background-position: 60px 6px;
+				background-position: -90px $platform-icon-top1;
 			}
 		}
-		
+
+		.ag-li{
+			.img {
+				background-position: -133px $platform-icon-top1;
+			}
+		}
+
+		.ttg-li{
+			.img {
+				background-position: -177px $platform-icon-top1;
+			}
+		}
+
+		.mt-li {
+			.img {
+				background-position: -220px $platform-icon-top1;
+			}
+		}
+
 		.selected {
 			background-color: $purple1;
 
@@ -388,19 +408,27 @@
 			}
 
 			.pt-img {
-				background-position: 5px 60px;
+				background-position: 0 $platform-icon-top2;
 			}
 
 			.bbin-img {
-				background-position: 191px 60px;
-			}
-
-			.ag-img {
-				background-position: 127px 60px;
+				background-position: -45px $platform-icon-top2;
 			}
 
 			.mg-img {
-				background-position: 60px 60px;
+				background-position: -90px $platform-icon-top2;
+			}
+
+			.ag-img {
+				background-position: -133px $platform-icon-top2;
+			}
+
+			.ttg-img {
+				background-position: -177px $platform-icon-top2;
+			}
+
+			.mt-img {
+				background-position: -220px $platform-icon-top2;
 			}
 		}
 	}
@@ -453,8 +481,8 @@
 			transition: all .5s;
 
 			.selected{
- 			 	color: $red;
- 			 	background-color: $purple2;
+ 			 	color: #FFF;
+ 			 	border-bottom: 2px solid $red;
  		 	}
 
  		 	ul {
@@ -468,7 +496,8 @@
 				width: 100%;
 				color: #b4b4b4;
 				border-bottom: 1px solid $border-color1;
-				text-align:center;
+				text-align: left;
+				padding-left: 40px;
 
 				img {
 					width: 24px;
@@ -485,8 +514,7 @@
 
 			ul li:hover{
 				cursor: pointer;
- 			 	color: $red;
- 			 	background-color: $purple2;
+ 			 	color: #FFF;
 			}
 
 			.stick{
@@ -502,7 +530,7 @@
 			}
 
 			.search-box{
-				border: 1px solid #cda654;
+				border: 1px solid $border-color1;
 				height: 30px;
 				line-height: 30px;
 				margin: 0 auto;

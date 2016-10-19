@@ -56,12 +56,20 @@
 									'<span class="img bbin-img"></span>' +
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
+								'<li class="mg-li" data-type="MG">' +
+									'<span class="img mg-img"></span>' +
+									'<span class="name">真人、老虎机</span>' +
+								'</li>'+
 								'<li class="ag-li" data-type="AG">' +
 									'<span class="img ag-img"></span>' +
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
-								'<li class="mg-li" data-type="MG">' +
-									'<span class="img mg-img"></span>' +
+								'<li class="ttg-li" data-type="TTG">' +
+									'<span class="img ttg-img"></span>' +
+									'<span class="name">真人、老虎机</span>' +
+								'</li>'+
+								'<li class="mt-li" data-type="MT">' +
+									'<span class="img mt-img"></span>' +
 									'<span class="name">真人、老虎机</span>' +
 								'</li>'+
 							'</ul>'+
@@ -76,13 +84,6 @@
 									'</div>'+
 
 									'<ul class="game-tree">'+
-										// '<li class="selected"><img src="../img/v01-d.png" /><span>热门游戏</span><div></div></li>'+
-										// '<li><img src="../img/v02-n.png" /><span>全部游戏</span><div></div></li>'+
-										// '<li><img src="../img/v03-n.png" /><span>经典游戏</span><div></div></li>'+
-										// '<li><img src="../img/v04-n.png" /><span>奖金游戏</span><div></div></li>'+
-										// '<li><img src="../img/v05-n.png" /><span>视频扑克</span><div></div></li>'+
-										// '<li><img src="../img/v06-n.png" /><span>免费游戏</span><div></div></li>'+
-										// '<li><img src="../img/v07-n.png" /><span>我的收藏</span><div></div></li>'+
 									'</ul>'+
 
 									//'<div class="stick"></div>'+
@@ -93,7 +94,6 @@
 														'</ul>'+
 														'<div class="more-game">更多游戏</div>'+
 												'</div>'
-
 
 		var bottomModule='<div class="bottom-module">'+bottomLeftModule+bottomRightModule+'</div>';
 		var mainConent='<div class="page e-entertainment main-content"><div class="wrapper">'+topModule+
@@ -106,11 +106,6 @@
 				delay: 3000
 			});
 		}
-
-		// $(".left-list").myScroll({
-		// 	speed:40, //数值越大，速度越慢
-		// 	rowHeight:30 //li的高度
-		// });
 
 		$('.slider').data('run', true);
 	};
