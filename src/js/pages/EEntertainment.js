@@ -79,14 +79,12 @@
 		var bottomLeftModule=	'<div class="bottom-left">' +
 									'<div class="search-box">' +
 										'<input type="text" placeholder="快速查找本平台游戏">'+
-										'<img class="search-btn" src="../img/search.png">'+
+										'<div class="search-btn"></div>' +
 										'<div class="clear"></div>'+
 									'</div>'+
 
 									'<ul class="game-tree">'+
 									'</ul>'+
-
-									//'<div class="stick"></div>'+
 								'</div>';
 
 	  	var bottomRightModule='<div class="bottom-right">'+
@@ -575,11 +573,11 @@
 							'>' +
 						'<img src='+app.imageServer + data[i].ImageUrl+'>' +
 						'<p>' +
-							'<span class="game-name">'+data[i].Title+'</span>'+
-							'<span class="red">'+data[i].RecommendNo+'</span>' +
-							'<img class="collect" src="../img/sc-' + 
-								(($.inArray(data[i].Id, ids) != -1)?'d': 'h') +
-							'.png">' +
+							'<span class="game-name">' + data[i].Title + '</span>'+
+							'<span class="red">' + data[i].RecommendNo + '</span>' +
+							'<span class="collect' +
+								(($.inArray(data[i].Id, ids) != -1)?' collected': '') +
+							'"></span>' +
 						'</p>'+
 						'<p id="hover-layer" class="hover-layer-none">' +
 							'<button class="start-game">开始游戏</button>' +

@@ -8,7 +8,7 @@
 						'<div class="wrapper">' +
 							'<div class="item">' +
 								'<div class="up">' +
-									'<div class="left">' +
+									'<div class="left">'+
 										'<div class="row1">' +
 											'<div class="lottery-icon keno-icon"></div>' +
 										'</div>' +
