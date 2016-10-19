@@ -1,5 +1,7 @@
 (function () {
 	function LiveVideo () {
+		this.firstShow = true;
+		this.firstSignedQuery = true;
 		this.initDom();
 	}
 	
@@ -82,11 +84,15 @@
 	LiveVideo.prototype.show = function () {
 		this.zone.fadeIn(500);
 
-		if (!this.firstTime) {
+		if (this.firstShow) {
 			this.getAds();
 			this.getPictures();
-			//this.getGameLoginUrls();
-			this.firstTime = true;
+			this.firstShow = false;
+		}
+
+		if (app.signedIn && this.firstSignedQuery) {
+			this.getGameLoginUrls();
+			this.firstSignedQuery = false;
 		}
 	};
 

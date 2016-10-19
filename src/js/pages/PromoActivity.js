@@ -1,6 +1,7 @@
 (function () {
 	function PromoActivity (opt) {
 		IMDialog.call(this, opt || {});
+		this.firstShow = true;
 		this.initDom();
 	}
 	
@@ -49,9 +50,9 @@
 	PromoActivity.prototype.show = function () {
 		this.zone.show();
 
-		if (!this.firstTime) {
+		if (this.firstShow) {
 			this.queryPromoTypes();
-			this.firstTime = true;
+			this.firstShow = false;
 		}
 	};
 

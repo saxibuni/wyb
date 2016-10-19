@@ -21,7 +21,7 @@
             .left-container {
                 width: 144px;
                 height: auto;
-                background-color: #48463a;
+                background-color: $purple1;
                 float: left;
                 font-size: 14px;
 
@@ -89,10 +89,11 @@
                         }
                     }
                 }
+                
                 .tree {
                     width: 144px;
                     height: 325px;
-                    background-color: #48463A;
+                    background-color: $purple1;
                     float: left;
                     position: relative;
                     border-top: 1px solid #535250;

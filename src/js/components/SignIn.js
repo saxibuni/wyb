@@ -174,6 +174,8 @@
 				app.liveVideo.getGameLoginUrls();
 			} else if (app.currentPage === 'sportsCompetition') {
 				app.sportsCompetition.getGameLoginUrls();
+			} else if (app.currentPage === 'lotteryGame') {
+				app.lotteryGame.getGameLoginUrls();
 			}
 
 			if (localStorage) {

@@ -1,5 +1,6 @@
 (function () {
 	function LotteryGame () {
+		this.firstSignedQuery = true;
 		this.initDom();
 	}
 	
@@ -75,6 +76,11 @@
 
 	LotteryGame.prototype.show = function () {
 		this.zone.fadeIn(500);
+
+		if (this.firstSignedQuery && app.signedIn) {
+			this.getGameLoginUrls();
+			this.firstSignedQuery = false;
+		}
 	};
 
 	LotteryGame.prototype.hide = function () {
@@ -105,7 +111,17 @@
 		return temp;
 	};
 
-    LotteryGame.prototype.getGameLoginUrl = function (platform) {
+	LotteryGame.prototype.getGameLoginUrls = function () {
+		var i;
+		var platforms = ['KG', 'BBIN'];
+		var imgs      = this.zone.find('.button');
+		
+		for (i = 0; i < platforms.length; i++) {
+			this.getGameLoginUrl(platforms[i], $(imgs[i]));
+		}
+	};
+
+    LotteryGame.prototype.getGameLoginUrl = function (platform, item) {
     	var that = this;
     	var opt =  {
 			url: app.urls.getGameLoginUrl,
@@ -121,31 +137,31 @@
 				return;
 			}
 
-			window.open(json);
+			item.attr('data-url', json);
 		}
 
 		Service.get(opt, callback);
     };
 
 	LotteryGame.prototype.bindEvents = function () {
+		var url;
 		var that = this;
 
 		this.zone = $('.lottery-game');
 
-		this.zone.find('.content1 .row3 .button').click(function () {
-			if (app.signedIn) {
-				that.getGameLoginUrl('BBIN');
-			} else {
-				app.showLoginNotice();
-			}
-		});
+		this.zone.find('.item .button').click(function () {
+			url = $(this).attr('data-url');
 
-		this.zone.find('.content2 .row3 .button').click(function () {
-			if (app.signedIn) {
-				that.getGameLoginUrl('KG');
-			} else {
+			if (!app.signedIn) {
 				app.showLoginNotice();
+				return;
 			}
+
+			if (!url) {
+				return;
+			}
+
+			window.open(url);
 		});
 	};
 

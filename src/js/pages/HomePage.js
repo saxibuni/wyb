@@ -1,5 +1,6 @@
 (function () {
 	function HomePage () {
+		this.firstShow = true;
 		this.initDom();
 	}
 	
@@ -288,11 +289,15 @@
 
 	HomePage.prototype.show = function () {
 		this.zone.fadeIn(500);
-		this.getAds();
-		this.getAds2();
-		this.getJackpots();
-		this.setPtSumBaseValue();
-		this.queryPromoListsByType(6); //搜热门优惠活动
+
+		if (this.firstShow) {
+			this.getAds();
+			this.getAds2();
+			this.getJackpots();
+			this.setPtSumBaseValue();
+			this.queryPromoListsByType(6);
+			this.firstShow = false;
+		}
 	};
 
 	HomePage.prototype.hide = function () {

@@ -12,10 +12,10 @@
 										'<span class="img pt-img"></span>' +
 										'<span class="name">真人、老虎机</span>' +
 									'</li>'+
-									'<li class="bbin-li" data-type="BBIN">' +
-										'<span class="img bbin-img"></span>' +
-										'<span class="name">真人、老虎机</span>' +
-									'</li>'+
+									// '<li class="bbin-li" data-type="BBIN">' +
+									// 	'<span class="img bbin-img"></span>' +
+									// 	'<span class="name">真人、老虎机</span>' +
+									// '</li>'+
 									'<li class="mg-li" data-type="MG">' +
 										'<span class="img mg-img"></span>' +
 										'<span class="name">真人、老虎机</span>' +
@@ -24,14 +24,14 @@
 										'<span class="img ag-img"></span>' +
 										'<span class="name">真人、老虎机</span>' +
 									'</li>'+
-									'<li class="ttg-li" data-type="TTG">' +
-										'<span class="img ttg-img"></span>' +
-										'<span class="name">真人、老虎机</span>' +
-									'</li>'+
-									'<li class="mt-li" data-type="MT">' +
-										'<span class="img mt-img"></span>' +
-										'<span class="name">真人、老虎机</span>' +
-									'</li>'+
+									// '<li class="ttg-li" data-type="TTG">' +
+									// 	'<span class="img ttg-img"></span>' +
+									// 	'<span class="name">真人、老虎机</span>' +
+									// '</li>'+
+									// '<li class="mt-li" data-type="MT">' +
+									// 	'<span class="img mt-img"></span>' +
+									// 	'<span class="name">真人、老虎机</span>' +
+									// '</li>'+
 								'</ul>' +
 							'</div>' +
 
