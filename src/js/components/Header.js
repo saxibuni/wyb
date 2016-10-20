@@ -428,6 +428,7 @@
 	};
 
 	Header.prototype.bindEvents = function () {
+		var left;
 		var index;
 		var pagesUl;
 		var pagesUl2;
@@ -473,7 +474,11 @@
 		balance           = this.zone.find('.balance-value');
 
 		grzxHoverItem.mouseover(function () {
-			grzxFloatWindow.css('top', '40px');
+			left = that.zone.find('.li-grzx').position().left;
+			grzxFloatWindow.css({
+				'top': '40px',
+				'left': left
+			});
 		}).mouseout(function () {
 			grzxFloatWindow.css('top', '-300px');
 		});

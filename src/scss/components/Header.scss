@@ -268,7 +268,6 @@
 					width: 150px; 	
 					position: absolute;
 					top: -300px;
-					right: 536px;
 					z-index: 95;
 					text-align: left;
 					transition: top .5s;
@@ -325,7 +324,7 @@
 					width: 100%;
 					height: auto;
 					position: absolute;
-					top: -300px;
+					top: -600px;
 					z-index: 95;
 					text-align: left;
 					transition: top .5s;
@@ -655,10 +654,6 @@
 						li {
 							padding: 0 5px;
 						}
-					}
-
-					.grzx-float-window {
-						right: 436px;
 					}
 				}
 			}
