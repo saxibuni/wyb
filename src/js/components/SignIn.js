@@ -40,7 +40,7 @@
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
 								'<div class="row1">' +
-									'<img class="logo" src="../img/logo-sands-macao.png">' +
+									'<div class="icon logo-icon-small"></div>' +
 									'<div class="close">×</div>' +
 								'</div>' +
 
