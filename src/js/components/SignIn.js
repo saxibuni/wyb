@@ -165,18 +165,7 @@
 			}
 
 			that.hide();
-			app.header.showSignedInHeader();
-			app.signedIn = true;
-
-			if (app.currentPage === 'homePage') {
-				app.homePage.getLuckyDrawWinRecords();
-			} else if (app.currentPage === 'liveVideo') {
-				app.liveVideo.getGameLoginUrls();
-			} else if (app.currentPage === 'sportsCompetition') {
-				app.sportsCompetition.getGameLoginUrls();
-			} else if (app.currentPage === 'lotteryGame') {
-				app.lotteryGame.getGameLoginUrls();
-			}
+			app.signedInProcedures();
 
 			if (localStorage) {
 				localStorage.setItem('*userName', userName);

@@ -72,45 +72,58 @@
 				name: '电子游艺',
 				title: '立即游戏',
 				className: 'home-casino-icon',
-				pageName: 'eEntertainment'
+				pageName: 'eEntertainment',
+				liClassName: 'home-casino-li'
 			},
 			{
 				name: '真人视讯',
 				title: '立即游戏',
 				className: 'home-video-icon',
-				pageName: 'liveVideo'
+				pageName: 'liveVideo',
+				liClassName: 'home-video-li'
 			},
 			{
 				name: '体育赛事',
 				title: '立即游戏',
 				className: 'home-sports-icon',
-				pageName: 'sportsCompetition'
+				pageName: 'sportsCompetition',
+				liClassName: 'home-sports-li'
 			},
 			{
 				name: '彩票游戏',
 				title: '立即游戏',
 				className: 'home-lottery-icon',
-				pageName: 'lotteryGame'
+				pageName: 'lotteryGame',
+				liClassName: 'home-lottery-li'
+			},
+			{
+				name: '马上充值',
+				title: '立即充值',
+				className: 'home-deposit-icon',
+				pageName: 'deposit',
+				liClassName: 'home-deposit-li hide'
 			},
 			{
 				name: '免费开户',
 				title: '立即注册',
 				className: 'home-signup-icon',
-				pageName: 'eEntertainment'
+				pageName: 'signup',
+				liClassName: 'home-signup-li'
 			},
 			{
 				name: 'VIP计划',
 				title: '立即加入',
-				className: 'home-vip-icon'
+				className: 'home-vip-icon',
+				pageName: 'promoActivity',
+				liClassName: 'home-vip-li'
 			}
 		];
 
 		for (i = 0; i < arr.length; i++) {
-			temp +=	'<li data-page="' + (arr[i].pageName || '') + '">' +
+			temp +=	'<li class="' + arr[i].liClassName + '" data-page="' + (arr[i].pageName || '') + '">' +
 						'<div class="li-zone1">' +
 							'<div class="home-icon ' + arr[i].className + '"></div>' +
 							'<div class="li-name">' + arr[i].name + '</div>' +
-
 							'<div class="overlay"></div>' +
 						'</div>' +
 
@@ -298,10 +311,26 @@
 			this.queryPromoListsByType(6);
 			this.firstShow = false;
 		}
+
+		if (app.signedIn) {
+			this.showDepositLi();
+		} else {
+			this.hideDepositLi();
+		}
 	};
 
 	HomePage.prototype.hide = function () {
 		this.zone.fadeOut(500);
+	};
+
+	HomePage.prototype.showDepositLi = function () {
+		this.zone.find('.home-deposit-li').removeClass('hide');
+		this.zone.find('.home-signup-li').addClass('hide');
+	};
+
+	HomePage.prototype.hideDepositLi = function () {
+		this.zone.find('.home-deposit-li').addClass('hide');
+		this.zone.find('.home-signup-li').removeClass('hide');
 	};
 
     HomePage.prototype.createLoader = function() {
@@ -336,12 +365,13 @@
 
 		this.loader1.play();
 		callback = function (data) {
+			that.loader1.stop();
+			
 			if (!data) {
 				return;
 			}
 			
 			that.addSliders(data);
-			that.loader1.stop();
 			$('body').scrollTop(0);
 		};
 
@@ -363,13 +393,14 @@
 		this.loader2.play();
 
 		callback = function (json) {
+			that.loader2.stop();
+
 			if (json.StatusCode && json.StatusCode != 0) {
 				alert(json.Message);
 				return;
 			}
 			
 			that.setSliders2(json.list);
-			that.loader2.stop();
 		};
 
 		Service.get(opt, callback);
@@ -549,12 +580,19 @@
 		var index;
 		var that = this;
 
-		this.zone        = $('.home-page');
-		stick            = this.zone.find('.home-tab .stick');
+		this.zone  = $('.home-page');
+		stick      = this.zone.find('.home-tab .stick');
 
 		this.zone.find('.page-nav').delegate('li', 'click', function () {
 			pageName = $(this).attr('data-page');
-			app.router.setRoute('/' + pageName);	
+
+			if ($(this).hasClass('home-signup-li')) {
+				app.showSignUpDialog();
+			} else if ($(this).hasClass('home-deposit-li')) {
+				app.personCenterRouter(0, 0);
+			} else {
+				app.router.setRoute('/' + pageName);
+			}
 		});
 
 		this.zone.find('.home-tab').delegate('li', 'click', function () {

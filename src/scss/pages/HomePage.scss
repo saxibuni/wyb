@@ -107,6 +107,10 @@ $homepage-icon-top3      :   -126px;
 							background-position: -225px $common-icon-top1;
 						}
 
+						.home-deposit-icon {
+							background-position: -295px $common-icon-top1;
+						}
+
 						.home-signup-icon {
 							background-position: -365px $common-icon-top1;
 						}
@@ -154,6 +158,10 @@ $homepage-icon-top3      :   -126px;
 								background-position: -225px $common-icon-top2;
 							}
 
+							.home-deposit-icon {
+								background-position: -295px $common-icon-top2;
+							}
+
 							.home-signup-icon {
 								background-position: -365px $common-icon-top2;
 							}
@@ -168,6 +176,10 @@ $homepage-icon-top3      :   -126px;
 							color: #FFF;
 						}
 					}
+				}
+
+				.hide {
+					display: none;
 				}
 			}
 

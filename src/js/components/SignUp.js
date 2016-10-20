@@ -253,15 +253,15 @@
 		var that = this;
 
 		callback = function (json) {
+			that.loader.stop();
+
 			if (json.StatusCode && json.StatusCode != 0) {
 				alert(json.Message);
 				return;
 			}
 
-			that.loader.stop();
+			app.signedInProcedures();
 			that.hide();
-			app.header.showSignedInHeader();
-			app.signedIn = true;
 		};
 
 		data = {

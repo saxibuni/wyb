@@ -145,11 +145,12 @@
 		};
 
 		callback = function (data) {
+			that.loader1.stop();
+
 			if (!data) {
 				return;
 			}
-
-			that.loader1.stop();
+			
 			that.addSliders(data);
 		};
 

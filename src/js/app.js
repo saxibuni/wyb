@@ -273,6 +273,41 @@
 		this.signInDialog.show();
 	};
 
+	app.prototype.showSignUpDialog = function () {
+		if (!this.signUpDialog) {
+			this.signUpDialog = new SignUp();
+			$('.app').append(this.signUpDialog.getDom());
+			this.signUpDialog.bindEvents();
+		}
+
+		this.signUpDialog.show();
+	};
+
+	app.prototype.signedInProcedures = function () {
+		this.signedIn = true;
+		this.header.showSignedInHeader();
+
+		if (this.currentPage === 'homePage') {
+			this.homePage.showDepositLi();
+			//this.homePage.getLuckyDrawWinRecords();
+		} else if (this.currentPage === 'liveVideo') {
+			this.liveVideo.getGameLoginUrls();
+		} else if (this.currentPage === 'sportsCompetition') {
+			this.sportsCompetition.getGameLoginUrls();
+		} else if (this.currentPage === 'lotteryGame') {
+			this.lotteryGame.getGameLoginUrls();
+		}
+	};
+
+	app.prototype.signedOutProcedures = function () {
+		this.signedIn = false;
+		this.header.showSignedOutHeader();
+
+		if (this.currentPage === 'homePage') {
+			this.homePage.hideDepositLi();
+		}
+	};
+
 	app.prototype.personCenterRouter = function (mainRouter, subRouter) {
 		if (!this.signedIn) {
 			this.showSignInDialog();

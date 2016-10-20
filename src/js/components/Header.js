@@ -400,10 +400,7 @@
 
 		callback = function () {
 			grzxFloatWindow.css('top', '-300px');
-			that.showSignedOutHeader();
-			app.goTo('homePage');
-			//page('/homePage');
-			app.signedIn = false;
+			app.signedOutProcedures();
 		};
 
         $.ajax({

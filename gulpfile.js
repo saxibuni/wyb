@@ -83,17 +83,17 @@ gulp.task('prepare', ['clean'], function () {
     gulp.src('./bower_components/bootstrap/dist/fonts/*')
         .pipe(gulp.dest('build/fonts/'));
 
-    gulp.src(['src/img/*', './bower_components/Gallery/img/*'])
-        // .pipe(imagemin({
-        //     progressive: true,
-        //     svgoPlugins: [{removeViewBox: false}],//不要移除svg的viewbox属性
-        //     use: [jpegtran()] //使用pngquant深度压缩png图片的imagemin插件
-        // }))
+    gulp.src(['src/img/*.jpg', './bower_components/Gallery/img/*.jpg'])
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],//不要移除svg的viewbox属性
+            use: [jpegtran()] //使用pngquant深度压缩png图片的imagemin插件
+        }))
         .pipe(gulp.dest('build/img/'));
 
-    // gulp.src(['src/img/*.png', './bower_components/Gallery/img/*.png'])
-    //     .pipe(tinypng('ep-DdwBGWdntDVYb7GnqrfkWOAQMBdj2'))
-    //     .pipe(gulp.dest('build/img/'));
+    gulp.src(['src/img/*.png', './bower_components/Gallery/img/*.png'])
+        .pipe(tinypng('ep-DdwBGWdntDVYb7GnqrfkWOAQMBdj2'))
+        .pipe(gulp.dest('build/img/'));
 });
 
 gulp.task('build', function () {
