@@ -18,7 +18,7 @@
                         '</li>' +
                         '<li>' +
                             '<div class="icon qq-icon"></div>' +
-                            '<div class="slipper">客服qq 87611136</div>' +
+                            '<div class="slipper">客服QQ 87611136</div>' +
                         '</li>' +
                         '<li class="cs-online">' +
                             '<div class="icon wechat-icon"></div>' +

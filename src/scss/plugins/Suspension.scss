@@ -22,9 +22,9 @@
     	$cs-icon-left2: -53px;
 
     	.slipper {
-    		border: 1px solid $red;
+    		border: 1px solid $green;
     		border-radius: 20px;
-    		color: $red;
+    		color: $green;
     		cursor: pointer;
     		display: none;
     		padding-left: 10px;
@@ -113,5 +113,13 @@
 	    		background-position: $cs-icon-left2 -240px;
 	    	}
     	}
+
+        &:first-child:hover {
+            border: 1px solid $green;
+        }
+
+        &:last-child:hover {
+            border: 1px solid $green;
+        }
     }
 }
