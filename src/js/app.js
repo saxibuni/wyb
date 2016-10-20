@@ -16,7 +16,6 @@
 		this.footer     = new Footer();
 
 		this.el  = 	this.header.getDom() +
-
 					'<div class="main">' +
 						'<div class="logo-wrapper">' +
 						'</div>' +
@@ -256,7 +255,7 @@
       	pos  = hash.indexOf('#/');
       	page = hash.substring(pos + 2);
 
-      	if (pos == -1) {
+      	if (pos == -1 || !dict[page]) {
       		this.router.setRoute('/homePage');
       	} else {
       		this.router.setRoute(page);
