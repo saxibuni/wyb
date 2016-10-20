@@ -11,6 +11,7 @@
         var temp =  '<ul class="suspension">' +
                         '<li>' +
                             '<div class="icon qrcode-icon"></div>' +
+                            '<img class="qrcode" src="../img/qrcode.png">' +
                         '</li>' +
                         '<li>' +
                             '<div class="icon phone-icon"></div>' +

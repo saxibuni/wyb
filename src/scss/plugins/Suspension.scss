@@ -82,6 +82,13 @@
     		background-position: $cs-icon-left1 -240px;
     	}
 
+        .qrcode {
+            position: absolute;
+            right: 45px;
+            top: -50px;
+            display: none;
+        }
+
     	&:hover {
     		border: 0;
 
@@ -116,6 +123,10 @@
 
         &:first-child:hover {
             border: 1px solid $green;
+
+            .qrcode {
+                display: block;
+            }
         }
 
         &:last-child:hover {
