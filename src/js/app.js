@@ -172,7 +172,7 @@
 			}
 
         	if (json.Data) {
-        		that.header.getCollectList();
+        		that.header.getCollectList(true);
         	} else {
         		alert('添加失败');
         	}

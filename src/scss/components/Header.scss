@@ -317,7 +317,7 @@
 						}
 					}
 				}
-						
+
 				.wdsc-float-window {
 				    background-color: #000;
 				    opacity: 0.9;
@@ -334,9 +334,12 @@
 						display: inline-block;
 
 						li {
+							display: inline-block;
+							height: auto;
 							list-style:none;
 							float:left;
 							border:1px solid #535250;
+							padding: 0;
 							position:relative;
 							width: 150px;
 							margin: 10px;
@@ -391,6 +394,19 @@
 									&:hover {
 										transform: scale(1.5);
 									}
+								}
+
+								.collect {
+									background-image: url("../img/search-star.png");
+									background-position: -45px -2px;
+									cursor: pointer;
+									display: inline-block;
+									height: 23px;
+									width: 20px;
+								}
+
+								.collected {
+									background-position: -45px -111px;
 								}
 							}
 						}

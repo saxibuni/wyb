@@ -262,7 +262,7 @@
 		Service.get(opt, callback);
 	};
 
-	Header.prototype.setCollectList = function (data) {
+	Header.prototype.setCollectList = function (data, flag) {
 		var list = data.list;
 		var url;
 		var score;
@@ -279,18 +279,25 @@
 			collectId = list[i].Id;
 
 			html  +=	'<li data-collectid="' + collectId + '">'+
-							'<img src=' + url + '><p><span class="game-name">'+name+'</span>'+
-							'<span class="red">'+score+'</span><img class="collect" src="../img/sc-d.png"></p>'+
+							'<img src=' + url + '>' +
+							'<p>' +
+								'<span class="game-name">'+name+'</span>'+
+								'<span class="red">'+score+'</span>' +
+								'<span class="collect collected"></span>' +
+							'</p>'+
 							'<p id="hover-layer" class="hover-layer-none"><button>开始游戏</button><br/><button>免费试玩</button></p>'+
 						'</li>';
 
 		}
 
 		this.zone.find('.wdsc-float-window ul').html(html);
-		//this.zone.find('.wdsc').click();
+
+		if (flag) {
+			this.zone.find('.wdsc-float-window').css('top', '40px');
+		}
 	};
 
-	Header.prototype.getCollectList = function () {
+	Header.prototype.getCollectList = function (flag) {
 		var that = this;
 
         $.ajax({
@@ -307,7 +314,7 @@
 				return;
 			}
 
-        	that.setCollectList(json.Data);
+        	that.setCollectList(json.Data, flag);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -349,7 +356,7 @@
 		this.zone.find('.li-grzx').show();
 		this.zone.find('.li-signin-signup').hide();
 		this.getUserInfo();
-		this.getCollectList();
+		this.getCollectList(false);
 		this.getUnreadMessageCount();
 	};
 
@@ -595,7 +602,7 @@
 		});
 
 		this.switch.bindEvents(function () {
-			balance.toggle();
+			that.zone.find('.li-balance .balance-item, .li-balance .refresh-icon').toggle();
 		});
 
 		this.zone.find('.lxkf-button').click(function () {

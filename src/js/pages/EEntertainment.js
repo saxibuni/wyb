@@ -768,7 +768,6 @@
 		});
 
 		this.zone.delegate('.collect', 'click', function () {
-			imgSrc = $(this).attr('src');
 			gameId = $(this).parent().parent('li').attr('data-id');
 
 			if (!app.signedIn) {
@@ -776,11 +775,11 @@
 				return;
 			}
 
-			if (imgSrc.indexOf('sc-h.png') !== -1) {
-				$(this).attr('src', '../img/sc-d.png');
-				app.addFavoriteGame(gameId);
-			} else {
+			if ($(this).hasClass('collected')) {
 				alert('请去收藏列表中取消收藏');
+			} else {
+				$(this).addClass('collected');
+				app.addFavoriteGame(gameId);
 			}
 		});
 

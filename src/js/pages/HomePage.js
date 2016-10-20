@@ -224,7 +224,7 @@
 	};
 
 	HomePage.prototype.setPromoTabUl = function (data) {
-		var i
+		var i;
 		var lis = this.zone.find('.tab-ul li');
 
 		data = this.promoTabData || data;
@@ -235,12 +235,44 @@
 		}
 
 		this.promoTabData = data;
+	};
+
+	HomePage.prototype.setRecommendTabUl = function () {
+		var i;
+		var data;
+		var lis = this.zone.find('.tab-ul li');
+
 		this.recommendTabData = [
+			{
+				englishName: 'FEI CUI GONG ZHU',
+				chineseName: '翡翠公主'
+			},
+			{
+				englishName: 'IRON MAN2',
+				chineseName: '钢铁侠'
+			},
+			{
+				englishName: 'Highway Kings',
+				chineseName: '高速公路之王'
+			},
+			{
+				englishName: 'Funky Monkey',
+				chineseName: '古怪猴子'
+			},
+			{
+				englishName: 'Vacation Station',
+				chineseName: '开心假期'
+			}
 		];
 
-		this.activityTabData = [
-		];
+		data = this.recommendTabData;
+
+		for (i = 0; i < data.length; i++) {
+			$(lis[i]).children('.time').text(data[i].englishName);
+			$(lis[i]).children('.info').text(data[i].chineseName);
+		}
 	};
+
 
 	HomePage.prototype.createJackpotsTable = function () {
 		var i;
@@ -511,7 +543,7 @@
 		if (index === 0) {
 			this.setPromoTabUl();
 		} else if (index === 1) {
-
+			this.setRecommendTabUl();
 		} else if (index === 2) {
 
 		}
@@ -599,6 +631,12 @@
 			type  = $(this).attr('data-value');
 			index = $(this).index();
 			stick.css('left', index*100 + 'px');
+
+			if (index === 2) {
+				window.open('http://race.vebets.com/');
+				return;
+			}
+
 			that.getAds2(type);
 			that.setTabUl(index);
 		});
