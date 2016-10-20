@@ -622,29 +622,44 @@
 		var platform   = platformUl.children('li.selected').attr('data-type');
 		var that       =  this;
 		
-		function callback(data) {
-			if (data == 1) {
-				app.showLoginNotice();
-				return;
+		// function callback(data) {
+		// 	if (data == 1) {
+		// 		app.showLoginNotice();
+		// 		return;
+		// 	}
+
+		// 	opt =  {
+		// 		url: app.urls.getGameLoginUrl,
+		// 		data: {
+		// 			gamePlatform: platform,
+		// 			gameType: 'slot',
+		// 			gameId: gameId
+		// 		}
+		// 	};
+
+		// 	callback = function (data) {
+		// 		window.open(data);
+		// 	};
+
+		// 	Service.get(opt, callback);
+		// }
+
+		// app.getLoginStatus(callback.bind(this));
+
+		opt =  {
+			url: app.urls.getGameLoginUrl,
+			data: {
+				gamePlatform: platform,
+				gameType: 'slot',
+				gameId: gameId
 			}
+		};
 
-			opt =  {
-				url: app.urls.getGameLoginUrl,
-				data: {
-					gamePlatform: platform,
-					gameType: 'slot',
-					gameId: gameId
-				}
-			};
+		callback = function (data) {
+			window.open(data);
+		};
 
-			callback = function (data) {
-				window.open(data);
-			};
-
-			Service.get(opt, callback);
-		}
-
-		app.getLoginStatus(callback.bind(this));
+		Service.get(opt, callback);
     };
 
 	EEntertainment.prototype.show = function () {

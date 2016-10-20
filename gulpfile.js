@@ -29,7 +29,7 @@ var tinypng      = require('gulp-tinypng');
 var src_js_lib_path     = 'src/lib/js/';
 var src_css_lib_path    = 'src/lib/css/';
 var src_scss_path       = 'src/scss/';
-var build_html_path     = 'build/html/';
+var build_html_path     = 'build/';
 var build_js_path       = 'build/js/';
 var build_css_path      = 'build/css/';
 
@@ -139,10 +139,10 @@ gulp.task('build', function () {
         .pipe(cssmin())
         .pipe(gulp.dest('build/css/'));
 
-    gulp.src('src/html/index.html')
+    gulp.src('src/index.html')
         .pipe(htmlReplace({
-            'css': '../css/app.css',
-            'js': '../js/app.js'
+            'css': 'css/app.css',
+            'js': 'js/app.js'
         }))
         .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
@@ -160,7 +160,7 @@ gulp.task('build', function () {
             'src/js/help.js'
         ])
         .pipe(concat('help.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         //.pipe(gzip())
         .pipe(gulp.dest('build/js'));
 
@@ -178,15 +178,15 @@ gulp.task('build', function () {
         .pipe(cssmin())
         .pipe(gulp.dest('build/css/'));
 
-    gulp.src('src/html/help.html')
+    gulp.src('src/help.html')
         .pipe(htmlReplace({
-            'css': '../css/help.css',
-            'js': '../js/help.js'
+            'css': 'css/help.css',
+            'js': 'js/help.js'
         }))
         .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
-    gulp.src('src/html/403.html')
+    gulp.src('src/403.html')
         .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
@@ -196,7 +196,7 @@ gulp.task('build', function () {
         .pipe(concat('403.css'))
         .pipe(gulp.dest('build/css/'));
 
-    gulp.src('src/html/404.html')
+    gulp.src('src/404.html')
         .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
@@ -206,7 +206,7 @@ gulp.task('build', function () {
         .pipe(concat('404.css'))
         .pipe(gulp.dest('build/css/'));
 
-    gulp.src('src/html/500.html')
+    gulp.src('src/500.html')
         .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
@@ -216,7 +216,7 @@ gulp.task('build', function () {
         .pipe(concat('500.css'))
         .pipe(gulp.dest('build/css/'));
 
-    gulp.src('src/html/maintainance.html')
+    gulp.src('src/maintainance.html')
         .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
