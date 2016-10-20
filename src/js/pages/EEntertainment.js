@@ -359,7 +359,7 @@
 		};
 
 		callback = function (data) {
-			that.zone.find('.top-right-module .jackpot-value').text(data.Data);
+			that.zone.find('.top-right-module .jackpot-value').text(window.Util.formatNumToCur(data.Data));
 			that.startJackpotAnimation();
 		};
 
@@ -415,16 +415,16 @@
 
 		this.sumInterval = setInterval(function () {
 			for (i = 0; i < jackpots.length; i++) {
-				base = parseFloat($(jackpots[i]).text());
+				base = window.Util.formatCurToNum( $(jackpots[i]).text() );
 				base += singleGap;
 				base = base.toFixed(2);
-				$(jackpots[i]).text(base);
+				$(jackpots[i]).text(window.Util.formatNumToCur(base));
 			}
 
-			base = parseFloat(jackpotSum.text());
+			base = window.Util.formatCurToNum( jackpotSum.text() );
 			base += sumGap;
 			base = base.toFixed(2);
-			jackpotSum.text(base);
+			jackpotSum.text(window.Util.formatNumToCur(base));
 		}, 1000);
 	};
 

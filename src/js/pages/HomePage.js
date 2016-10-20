@@ -560,7 +560,7 @@
 		};
 
 		callback = function (data) {
-			that.zone.find('.pt-jackpot-value').text(data.Data);
+			that.zone.find('.pt-jackpot-value').text(window.Util.formatNumToCur(data.Data));
 			that.startJackpotAnimation();
 		};
 
@@ -569,15 +569,15 @@
 
 	HomePage.prototype.startJackpotAnimation = function () {
 		var base;
-		var jackpot = this.zone.find('.pt-jackpot-value')
+		var jackpot = this.zone.find('.pt-jackpot-value');
 		var that    = this;
-		var gap     = 35.57;
+		var gap     = 1.37;
 
 		this.setInterval = setInterval(function () {
-			base = parseFloat(jackpot.text());
+			base = window.Util.formatCurToNum( jackpot.text() );
 			base += gap;
 			base = base.toFixed(2);
-			jackpot.text(base);
+			jackpot.text(window.Util.formatNumToCur(base));
 		}, 1000);
 	};
 

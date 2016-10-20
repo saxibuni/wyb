@@ -68,6 +68,29 @@
         var temp = new Date(startDate.getTime() + MILLI_SECONDS_PER_DAY*interval);
         return temp;
     };
+
+    Util.prototype.formatNumToCur = function(num) {
+        var sign;
+        var cents;
+        var i;
+        num = num.toString().replace(/\$|\,/g,'');
+        if(isNaN(num))
+            num = "0";
+        sign = (num == (num = Math.abs(num)));
+        num = Math.floor(num*100+0.50000000001);
+        cents = num%100;
+        num = Math.floor(num/100).toString();
+        if(cents<10)
+        cents = "0" + cents;
+        for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+        num = num.substring(0,num.length-(4*i+3))+','+
+        num.substring(num.length-(4*i+3));
+        return (((sign)?'':'-') + num + '.' + cents);
+    };
+
+    Util.prototype.formatCurToNum = function(num) {
+        return parseFloat(num.replace(/\,/g, ''));
+    };
     
     /* ----- Date ----- */
     /**
