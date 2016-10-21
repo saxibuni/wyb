@@ -207,9 +207,11 @@
 	};
 
 	app.prototype.initRouter = function () {
+		var temp;
 		var hash;
 		var page;
 		var pos;
+		var pos2;
 		var key;
 		var index;
 		var wrapper = this.zone.find('.main-wrapper');
@@ -248,12 +250,33 @@
 			})(key);
 		}
 
-      	this.router = Router(routes);
-      	this.router.init();
+      	this.router = Router(routes).init();
+
+      	this.router.on('/promoActivity/:mainRouter/:subRouter', function (mainRouter, subRouter) {
+			that.zone.find('.page').hide();
+			var pageName = 'promoActivity';
+
+			if (!that[pageName]) {
+				that[pageName] = new (dict[pageName].className)();
+				that.zone.find('.main-wrapper').append(that[pageName].getDom());
+				that[pageName].bindEvents();
+			}
+			
+			that.header.setStick(dict[pageName].index);
+			that[pageName].show(mainRouter, subRouter);
+			that.currentPage = pageName;
+      	});
 
       	hash = window.location.hash;
       	pos  = hash.indexOf('#/');
-      	page = hash.substring(pos + 2);
+      	temp = hash.substring(pos + 2);
+      	pos2 = temp.indexOf('/');
+
+      	if (pos2 !== -1) {
+      		page = temp.substring(0, pos2);
+      	} else {
+      		page = temp;
+      	}
 
       	if (pos == -1 || !dict[page]) {
       		this.router.setRoute('/homePage');

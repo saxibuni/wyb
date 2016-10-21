@@ -1,6 +1,7 @@
 (function () {
 	function HomePage () {
-		this.firstShow = true;
+		this.firstShow  = true;
+		this.currentTab = 0;
 		this.initDom();
 	}
 	
@@ -230,6 +231,7 @@
 		data = this.promoTabData || data;
 
 		for (i = 0; i < data.length; i++) {
+			$(lis[i]).attr('data-route', '0 ' + i);
 			$(lis[i]).children('.time').text(data[i].StartTime.substring(0, 10) + '至' + data[i].EndTime.substring(0, 10));
 			$(lis[i]).children('.info').text(data[i].Title);
 		}
@@ -624,6 +626,7 @@
 		var type;
 		var stick;
 		var index;
+		var route;
 		var that = this;
 
 		this.zone  = $('.home-page');
@@ -642,9 +645,10 @@
 		});
 
 		this.zone.find('.home-tab').delegate('li', 'click', function () {
-			type  = $(this).attr('data-value');
-			index = $(this).index();
-			stick.css('left', index*100 + 'px');
+			type            = $(this).attr('data-value');
+			index           = $(this).index();
+			that.currentTab = index;
+			stick.css('left', index * 100 + 'px');
 
 			if (index === 2) {
 				window.open('http://race.vebets.com/');
@@ -653,6 +657,13 @@
 
 			that.getAds2(type);
 			that.setTabUl(index);
+		});
+
+		this.zone.find('.tab-ul').delegate('li', 'click', function () {
+			if (that.currentTab === 0) {
+				route = $(this).attr('data-route').split(' ');
+				app.router.setRoute('/promoActivity/' + route[0] + '/' + route[1]);
+			}
 		});
 
 		this.createLoader();

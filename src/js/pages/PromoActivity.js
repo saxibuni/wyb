@@ -47,10 +47,12 @@
 		imageUl.append(temp);
 	};
 
-	PromoActivity.prototype.show = function () {
+	PromoActivity.prototype.show = function (mainRouter, subRouter) {
 		this.zone.show();
+		this.mainRouter = mainRouter || 0;  //mainRouter: 标签的index值
+		this.subRouter  = subRouter || -1;  //subRouter: 标签的index值, -1表示子广告不展开
 
-		if (this.firstShow) {
+		if (this.firstShow || mainRouter) {
 			this.queryPromoTypes();
 			this.firstShow = false;
 		}
@@ -98,6 +100,10 @@
 		}
 
 		this.zone.find('.content ul').html(temp);
+
+		if (this.subRouter !== -1) {
+			this.zone.find('.content ul li:nth-child(' + (parseInt(this.subRouter) + 1) + ') .activity-content').slideDown();
+		}
 	};
 
 	PromoActivity.prototype.queryPromoTypes = function () {
@@ -115,7 +121,7 @@
             }
         }).done(function (json) {
         	that.setTitle(json);
-        	that.queryPromoListsByType(json[0].Id);
+        	that.queryPromoListsByType(json[that.mainRouter].Id);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -125,7 +131,7 @@
 		var url;
 		var that = this;
 
-		url = app.urls.queryPromoListByType + '?type=' + type + '&pageIndex=0&pageSize=10'; 
+		url = app.urls.queryPromoListByType + '?type=' + type + '&pageIndex=0&pageSize=10';
 
         $.ajax({
             type: 'GET',
@@ -136,8 +142,8 @@
             	withCredentials: true
             }
         }).done(function (json) {
-        	that.setPromoList(json.list);
         	that.loader1.stop();
+        	that.setPromoList(json.list);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
@@ -157,6 +163,7 @@
 			stick.css('left', left);
 
 			type = $(this).attr('data-type');
+			that.subRouter = -1;
 			that.queryPromoListsByType(type);
 		});
 	};
