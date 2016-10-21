@@ -583,12 +583,21 @@
 
 	HomePage.prototype.addSliders = function (data) {
 		var i;
-		var len = data.count;
-		var arr = data.list;
+		var pageName;
+		var len  = data.count;
+		var arr  = data.list;
+		var arr2 = [
+			'liveVideo',
+			'eEntertainment',
+			'sportsCompetition',
+			'lotteryGame',
+			'promoActivity'
+		];
+
 		var logoTemp = 	'<ul>';
 
 		for (i = 0; i < len; i++) {
-			logoTemp += 	'<li>' +
+			logoTemp += 	'<li data-value="' + arr2[i] + '">' +
 								'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
 							'</li>';
 		}
@@ -602,6 +611,11 @@
 			delay: 5000,
 			autoplay: true,
 			arrows: false
+		});
+
+		this.zone.find('.sliders .unslider-carousel').delegate('li', 'click', function () {
+			pageName = $(this).attr('data-value');
+			app.router.setRoute(pageName);
 		});
 	};
 
