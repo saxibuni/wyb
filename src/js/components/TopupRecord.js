@@ -214,8 +214,8 @@
 
 		beginDay = beginDay.formatDate() + ' 00:00';
         endDay   = endDay.formatDate() + ' 23:59';
-        this.zone.find('.starttime').datetimepicker({value: beginDay});
-        this.zone.find('.endtime').datetimepicker({value: endDay});
+        this.zone.find('.starttime').datetimepicker({value: beginDay, timepicker: false});
+        this.zone.find('.endtime').datetimepicker({value: endDay, timepicker: false});
 
         fastDateUl.delegate('li', 'click', function () {
 			fastDateUl.children('li').removeClass('selected');

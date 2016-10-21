@@ -234,7 +234,7 @@
 		});
 		
 		this.zone.find('.change-verify-code').click(function () {
-            that.zone.find('.verify-code').attr('src', 
+            that.zone.find('.verify-code').attr('src',
             	app.urls.verifyImage + '?sid=' + Math.random()
             );
 		});

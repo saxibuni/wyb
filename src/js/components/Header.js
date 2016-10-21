@@ -365,6 +365,7 @@
 		this.zone.find('.li-balance').hide();
 		this.zone.find('.li-grzx').hide();
 		this.zone.find('.li-signin-signup').show();
+		this.zone.find('.wdsc-float-window ul').empty();
 	};
 
 	Header.prototype.showHeaderFloatWindow = function () {
