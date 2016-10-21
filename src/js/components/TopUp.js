@@ -115,7 +115,7 @@
 		var selectedBank = this.zone.find("input[name='bank']:checked").parent('li');
 		var selectedLi   = this.zone.find('.deposit-types li.selected');
 		var amount       = this.topupInput.getValue();
-		var userName     = app.userinfo.userName;
+		var userName     = app.userTotalInfo.userName;
 		var payPlatform  = selectedLi.attr('data-platform');
 		var payMercode   = selectedLi.attr('data-mercode');
 		var bankCode     = selectedBank.attr('data-code');
@@ -157,7 +157,7 @@
 		var selectedBank = this.zone.find("input[name='bank']:checked").parent('li');
 		var selectedLi   = this.zone.find('.deposit-types li.selected');
 		var amount       = this.topupInput.getValue();
-		var userName     = app.userinfo.userName;
+		var userName     = app.userTotalInfo.userName;
 		var payPlatform  = selectedLi.attr('data-platform');
 		var payMercode   = selectedLi.attr('data-mercode');
 		var bankCode     = selectedBank.attr('data-code');
@@ -210,8 +210,8 @@
 		var opt       = {
 			url: app.urls.addDeposit,
 			data: {
-				UserName: app.userinfo.userName,
-				TrueName: app.userinfo.trueName,
+				UserName: app.userTotalInfo.userName,
+				TrueName: app.userTotalInfo.trueName,
 				BankId: this.zone.find('.bank-topup table .account-value').text(),
 				Amount: this.topupInput3.getValue(),
 				DepositType: 0,

@@ -239,10 +239,6 @@ $(function(){
 					balance: ''
 				}
 
-				if (temp.walletType === '沙巴体育(新)') {
-					temp.id = 'sb-sports';
-				}
-
 				that.subWalletData.push(temp);
 			}
 

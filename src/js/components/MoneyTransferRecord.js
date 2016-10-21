@@ -10,24 +10,14 @@
 			id: 'money-transfer-select-from',
 			width: 60,
 			height: 25,
-			data: [
-				{
-					'text': '全部',
-					'value': '0'
-				}
-			]
+			data: []
 		});
 
 		this.selectTo = new Select({
 			id: 'money-transfer-select-to',
 			width: 60,
 			height: 25,
-			data: [
-				{
-					'text': 'PT',
-					'value': '0'
-				}
-			]
+			data: []
 		})
 
 		this.button = new Button({
@@ -46,6 +36,7 @@
 						'<div class="bar-zone">' +
 							'<div class="up">' +
 								this.selectFrom.getDom() +
+								'<span class="text">转到</span>' +
 								this.selectTo.getDom() +
 
 								'<div class="time-section">' +
@@ -140,9 +131,8 @@
 
 	MoneyTransferRecord.prototype.setPlatforms = function(data) {
 		var i;
-		var temp = '<option data-value="0">' +
-						'主账户' +
-					'</option>';
+		var temp = 	'<option data-value="-1">全部</option>' +
+					'<option data-value="0">主账户</option>';
 
 		for (i = 0; i < data.length; i++) {
 			temp += '<option data-value="' + data[i].GamePlatform + '">' +
@@ -164,18 +154,42 @@
     };
 
 	MoneyTransferRecord.prototype.queryData = function(pageIndex, firstTime){
-		var params    = '';
-		var that      = this;
-		var starttime = this.zone.find('.starttime').val();
-		var endtime   = this.zone.find('.endtime').val();
-		
+		var gamePlatform = '';
+		var type         = '';
+		var params       = '';
+		var that         = this;
+		var starttime    = this.zone.find('.starttime').val();
+		var endtime      = this.zone.find('.endtime').val();
+		var from         = this.selectFrom.getValue();
+		var to           = this.selectTo.getValue();
+
+		if (from == 0) {
+			type = 0;
+
+			if (to == -1) {
+				gamePlatform = '';
+			} else {
+				gamePlatform = to;
+			}
+		}
+
+		if (to == 0) {
+			type = 1;
+
+			if (from == -1) {
+				gamePlatform = '';
+			} else {
+				gamePlatform = from;
+			}
+		}
+
 		params += 	'beginTime=' + starttime +
 					'&endTime=' + endtime +
 					'&pageIndex=' + pageIndex +
 					'&pageSize=10' +
-					'&type=' +
+					'&type=' + type + 
 					'&status=' +
-					'&gamePlatform=';
+					'&gamePlatform=' + gamePlatform;
 
 		this.loader1.play();
 
@@ -244,6 +258,8 @@
 	};
 
 	MoneyTransferRecord.prototype.bindEvents = function () {
+		var value1;
+		var value2;
 		var fastDateUl;
 		var that     = this;
 		var endDay   = new Date();
@@ -266,6 +282,32 @@
 
         this.zone.find('#money-transfer-record-button').click(function () {
         	that.queryData(0, true);
+        });
+
+        this.zone.find('#money-transfer-select-from' ).change(function () {
+        	value1 = that.selectFrom.getValue();
+        	value2 = that.selectTo.getValue();
+
+        	if (value1 == 0 && value2 == 0) {
+        		that.selectTo.setValue('全部');
+        	}
+
+        	if (value1 != 0 && value1 != -1) {
+        		that.selectTo.setValue('主账户');
+        	}
+        });
+
+        this.zone.find('#money-transfer-select-to' ).change(function () {
+        	value1 = that.selectFrom.getValue();
+        	value2 = that.selectTo.getValue();
+
+        	if (value2 == 0 && value1 == 0) {
+        		that.selectFrom.setValue('全部');
+        	}
+
+        	if (value2 != 0 && value2 != -1) {
+        		that.selectFrom.setValue('主账户');
+        	}
         });
 
 		this.selectFrom.bindEvents();

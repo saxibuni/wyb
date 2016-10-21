@@ -21,14 +21,14 @@
 			reg: app.moneyReg
 		});
 
-		this.fromSelect = new Select({
-			id: 'money-transfer-from-select',
+		this.selectFrom = new Select({
+			id: 'money-transfer-select-from',
 			width: 150,
 			height: 36
 		});
 
-		this.toSelect = new Select({
-			id: 'money-transfer-to-select',
+		this.selectTo = new Select({
+			id: 'money-transfer-select-to',
 			width: 150,
 			height: 36
 		});
@@ -38,7 +38,7 @@
 							'<div class="row1">' +
 								'<div class="text">从</div>' +
 
-								this.fromSelect.getDom() +
+								this.selectFrom.getDom() +
 
 								'<div class="from-balance">' +
 									'<span class="from-balance-value"></span>' +
@@ -49,7 +49,7 @@
 							'<div class="row2">' +
 								'<div class="text">转账到</div>' +
 
-								this.toSelect.getDom() +
+								this.selectTo.getDom() +
 
 								'<div class="to-balance">' +
 									'<span class="to-balance-value"></span>' +
@@ -90,7 +90,7 @@
 
 	MoneyTransfer.prototype.setSelects = function() {
 		var i;
-		var temp = ''
+		var temp = '';
 
 		for (i = 0; i < this.selectData.length; i++) {
 			temp += '<option data-value="' + this.selectData[i].id + '">' +
@@ -98,8 +98,9 @@
 					'</option>';
 		}
 
-		this.fromSelect.setOptions(temp);
-		this.toSelect.setOptions(temp);
+		this.selectFrom.setOptions(temp);
+		this.selectTo.setOptions(temp);
+		this.selectTo.setValue('PT');
 	};
 
 	MoneyTransfer.prototype.getAllPlatforms = function () {
@@ -128,15 +129,12 @@
 					name: data[i].GameName
 				}
 
-				if (temp.walletType === '沙巴体育(新)') {
-					temp.id = 'sb-sports';
-				}
-
 				that.selectData.push(temp);
 			}
 
 			that.setSelects();
-			that.getCenterWalletCash('all');
+			that.getCenterWalletCash('from');
+			that.getPlatformBalance('to');
 		};
 
 		Service.get(opt, callback);
@@ -191,8 +189,8 @@
 	};
 
 	MoneyTransfer.prototype.submit = function() {
-		var from = this.fromSelect.getValue();
-		var to   = this.toSelect.getValue();
+		var from = this.selectFrom.getValue();
+		var to   = this.selectTo.getValue();
 
 		if (!this.moneyTransferInput.isPass()) {
 			alert('格式不对');
@@ -220,11 +218,11 @@
 		var callback;
 		var that     = this;
 		var amount   = $.trim(this.moneyTransferInput.getValue());
-		var to       = this.toSelect.getValue();
+		var to       = this.selectTo.getValue();
 		var opt      = {
 			url: app.urls.transferToPlatform,
 			data: {
-				UserName: app.userinfo.userName,
+				UserName: app.userTotalInfo.userName,
 				Amount: amount,
 				GamePlatform: to
 			}
@@ -251,11 +249,11 @@
 		var callback;
 		var that     = this;
 		var amount   = $.trim(this.moneyTransferInput.getValue());
-		var from     = this.fromSelect.getValue();
+		var from     = this.selectFrom.getValue();
 		var opt      = {
 			url: app.urls.transferToAccount,
 			data: {
-				UserName: app.userinfo.userName,
+				UserName: app.userTotalInfo.userName,
 				Amount: amount,
 				GamePlatform: from
 			}
@@ -279,6 +277,8 @@
 
 	MoneyTransfer.prototype.bindEvents = function() {
 		var value;
+		var value1;
+		var value2;
 		var that  = this;
 
 		this.zone = $('.money-transfer');
@@ -287,21 +287,43 @@
 			that.submit();
 		});
 
-		this.zone.find('#money-transfer-from-select').change(function () {
-			value = that.fromSelect.getValue();
+		this.zone.find('#money-transfer-select-from').change(function () {
+			value1 = that.selectFrom.getValue();
+			value2 = that.selectTo.getValue();
 
-			if (parseInt(value) !== 0) {
-				that.getPlatformBalance(value, 'from');
+			if (value1 != 0) {
+				that.selectTo.setValue('主账户');
+				that.getCenterWalletCash('to');
+			}
+
+			if (value1 == 0 && value2 == 0) {
+				that.selectTo.setValue('PT');
+				that.getPlatformBalance('to');
+			}
+
+			if (value1 != 0) {
+				that.getPlatformBalance(value1, 'from');
 			} else {
 				that.getCenterWalletCash('from');
 			}
 		});
 
-		this.zone.find('#money-transfer-to-select').change(function () {
-			value = that.toSelect.getValue();
-			
-			if (parseInt(value) !== 0) {
-				that.getPlatformBalance(value, 'to');
+		this.zone.find('#money-transfer-select-to').change(function () {
+			value1 = that.selectFrom.getValue();
+			value2 = that.selectTo.getValue();
+
+			if (value2 != 0) {
+				that.selectFrom.setValue('主账户');
+				that.getCenterWalletCash('from');
+			}
+
+			if (value1 == 0 && value2 == 0) {
+				that.selectFrom.setValue('PT');
+				that.getPlatformBalance('from');
+			}
+
+			if (value2 != 0) {
+				that.getPlatformBalance(value2, 'to');
 			} else {
 				that.getCenterWalletCash('to');
 			}
@@ -309,8 +331,8 @@
 
 		this.button.bindEvents();
 		this.moneyTransferInput.bindEvents();
-		this.fromSelect.bindEvents();
-		this.toSelect.bindEvents();
+		this.selectFrom.bindEvents();
+		this.selectTo.bindEvents();
 	}
 
 	window.MoneyTransfer = MoneyTransfer;

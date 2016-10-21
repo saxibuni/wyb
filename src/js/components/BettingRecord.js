@@ -10,12 +10,7 @@
 			id: 'betting-record-select',
 			width: 100,
 			height: 25,
-			data: [
-				{
-					'text': '游戏类型',
-					'value': '0'
-				}
-			]
+			data: []
 		});
 
 		this.button = new Button({
@@ -131,7 +126,7 @@
 
 	BettingRecord.prototype.setPlatforms = function(data) {
 		var i;
-		var temp = '';
+		var temp = '<option data-value="-1">游戏类型</option>';
 
 		for (i = 0; i < data.length; i++) {
 			temp += '<option data-value="' + data[i].GamePlatform + '">' +
@@ -152,16 +147,22 @@
     };
 
 	BettingRecord.prototype.queryData = function(pageIndex, firstTime){
-		var params    = '';
-		var that      = this;
-		var starttime = this.zone.find('.starttime').val();
-		var endtime   = this.zone.find('.endtime').val();
+		var gamePlatform = '';
+		var params       = '';
+		var that         = this;
+		var starttime    = this.zone.find('.starttime').val();
+		var endtime      = this.zone.find('.endtime').val();
+		var val          = this.select.getValue();
+
+		if (val != -1) {
+			gamePlatform = val;
+		}
 		
 		params += 	'startTime=' + starttime +
 					'&endTime=' + endtime +
 					'&pageIndex=' + pageIndex +
 					'&pageSize=10' +
-					'&gamePlatform=';
+					'&gamePlatform=' + gamePlatform;
 
 		this.loader1.play();
 

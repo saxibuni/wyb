@@ -37,13 +37,17 @@
 		return this.zone.find('option:selected').attr('data-value');
 	};
 
-	Select.prototype.setValueById = function(Id) {
-		this.zone.val(Id);
+	Select.prototype.setValue = function(text) {
+		this.zone.val(text);
 	};
 
-	Select.prototype.setValueByName = function(name) {
-		this.zone.find('option[text="' + name + '"]').attr("selected", true); 
-	};
+	// Select.prototype.setValueById = function(Id) {
+	// 	this.zone.val(Id);
+	// };
+
+	// Select.prototype.setValueByName = function(name) {
+	// 	this.zone.find('option[text="' + name + '"]').attr("selected", true); 
+	// };
 
 	Select.prototype.bindEvents = function() {
 		var that = this;
