@@ -195,6 +195,7 @@
 			fastDateUl.children('li').removeClass('selected');
 	        $(this).addClass('selected');
         	that.setDatetime();
+        	that.queryData(0, true);
         });
 
         this.zone.find('#withdraw-record-button').click(function () {

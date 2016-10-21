@@ -221,6 +221,7 @@
 			fastDateUl.children('li').removeClass('selected');
 	        $(this).addClass('selected');
         	that.setDatetime();
+        	that.queryData(0, true);
         });
 
         this.zone.find('#topup-record-button').click(function () {

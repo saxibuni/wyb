@@ -167,10 +167,12 @@ $(function(){
 
 		beginDay = beginDay.formatDate() + ' 00:00';;
         endDay   = endDay.formatDate() + '23:59';
+        
         this.zone.find('.starttime').datetimepicker({
         	value: beginDay,
         	timepicker: false
         });
+
         this.zone.find('.endtime').datetimepicker({
         	value: endDay,
         	timepicker: false
@@ -180,6 +182,7 @@ $(function(){
 			fastDateUl.children('li').removeClass('selected');
 	        $(this).addClass('selected');
         	that.setDatetime();
+        	that.queryData(0, true);
         });
 
         this.zone.find('#station-letter-button').click(function () {
