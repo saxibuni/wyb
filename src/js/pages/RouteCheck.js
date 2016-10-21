@@ -77,21 +77,21 @@
 										'</div>' +
 
 										'<ul>' +
-											'<li>' +
-												'<img src="../img/ie-light.png">' +
-												'<span>IE9.0+</span>' +
-											'</li>' +
-											'<li>' +
+											'<li data-value="chrome">' +
 												'<img src="../img/chrome-light.png">' +
 												'<span>Chrome</span>' +
 											'</li>' +
-											'<li>' +
-												'<img src="../img/safari-light.png">' +
-												'<span>Safari</span>' +
-											'</li>' +
-											'<li>' +
+											// '<li>' +
+											// 	'<img src="../img/safari-light.png">' +
+											// 	'<span>Safari</span>' +
+											// '</li>' +
+											'<li data-value="firefox">' +
 												'<img src="../img/firefox-light.png">' +
 												'<span>Firefox</span>' +
+											'</li>' +
+											'<li data-value="ie">' +
+												'<img src="../img/ie-light.png">' +
+												'<span>IE10.0+</span>' +
 											'</li>' +
 										'</ul>' +
 									'</div>' +
@@ -178,7 +178,27 @@
 	};
 
 	RouteCheck.prototype.bindEvents = function () {
+		var downLoadUl;
+		var that  = this;
+
 		this.zone = $('.route-check');
+
+		downLoadUl = this.zone.find('.right-content .row3 ul');
+
+		downLoadUl.delegate('li', 'click', function () {
+			browserName = $(this).attr('data-value');
+
+			if (browserName === 'ie') {
+				window.open('https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads');
+			} else if (browserName === 'chrome') {
+				window.open('https://www.google.com/intl/zh-CN/chrome/browser/desktop/index.html');
+			} else if (browserName === 'safari') {
+
+			} else if (browserName === 'firefox') {
+				window.open('http://www.firefox.com.cn/download/');
+			}
+		});
+
 		this.getRoutes();
 	};
 

@@ -72,13 +72,14 @@
 											'<span>Firefox</span>' +
 										'</li>' +
 										
-										'<li data-value="safari">' +
-											'<img src="../img/safari-gray.png">' +
-											'<span>Safari</span>' +
-										'</li>' +
+										// '<li data-value="safari">' +
+										// 	'<img src="../img/safari-gray.png">' +
+										// 	'<span>Safari</span>' +
+										// '</li>' +
+										
 										'<li data-value="ie">' +
 											'<img src="../img/ie-gray.png">' +
-											'<span>IE9.0+</span>' +
+											'<span>IE10.0+</span>' +
 										'</li>' +
 									'</ul>' +
 								'</div>' +

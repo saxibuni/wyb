@@ -5,17 +5,15 @@
 
 	.wrapper {
 		position: relative;
-		width: $contentWidth - 40px;
+		width: $contentWidth;
 		height: 100%;
-		margin: 0 20px;
 		margin-bottom: 60px;
 
 		.title {
-			background-color: #48463A;
+			background-color: $purple3;
 			height: 50px;
 			line-height: 50px;
 			text-align: left;
-			padding-left: 20px;
 			transition: all .5s;
 
 			.trend-icon {
@@ -37,11 +35,11 @@
 		}
 
 		.content {
-			background-color: #171716;
-			border: 1px solid #636157;
+			background-color: rgba(0,0,0,.3);
+			border: 0;
 			border-top: 0;
 			display: inline-block;
-			width: $contentWidth - 42px;
+			width: $contentWidth;
 			padding-bottom: 20px;
 
 			.left-content {
@@ -105,9 +103,9 @@
 						}
 
 						.go-to-button {
-							background-color: #CDA654;
+						    background-color: $purple2;
+						    color: $font-color1;
 							cursor: pointer;
-							color: #FFF;
 							display: inline-block;
 							text-align: center;
 							width: 100px;
@@ -172,6 +170,7 @@
 						font-size: 12px;
 						
 						li {
+							cursor: pointer;
 							display: inline-block;
 							margin-right: 10px;
 
