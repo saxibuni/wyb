@@ -30,9 +30,9 @@
 
 		this.verifyInput = new Input({
 			id: 'sign-in-vefiry-input',
-			width: 115,
+			width: 125,
 			height: 30,
-			reg: app.chineseNameReg,
+			reg: app.verifyReg,
 			placeholder: '请输入验证码'
 		});
 
@@ -140,6 +140,7 @@
         		that.loader.stop();
         		that.zone.find('.change-verify-code').click();
         		alert('验证码错误');
+        		that.zone.find('.login').removeClass('active');
         		return;
         	}
 
@@ -161,6 +162,7 @@
 		callback = function (json) {
 			if (json.StatusCode && json.StatusCode != 0) {
 				alert(json.Message);
+				that.zone.find('.login').removeClass('active');
 				return;
 			}
 
@@ -239,7 +241,7 @@
 
 		this.zone.find('.find-password').click(function () {
 			that.hide();
-			app.goTo('forgetPassword');
+			app.router.setRoute('/forgetPassword');
 		});
 
 		this.zone.find('.signup-now').click(function () {
