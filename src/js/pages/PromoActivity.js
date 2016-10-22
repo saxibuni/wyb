@@ -62,6 +62,14 @@
 		this.zone.hide();
 	};
 
+	PromoActivity.prototype.setStick = function () {
+		var gap     = 14.286;
+		var titleUl = this.zone.find('.title ul');
+		var stick   = titleUl.children('.stick');
+
+		stick.css('left', gap * parseFloat(this.mainRouter) + '%');
+	};
+
     PromoActivity.prototype.createLoader = function() {
         var wrapper1 = this.zone.find('.content')[0];
 
@@ -84,6 +92,7 @@
 
 		this.zone.find('.title ul').html(temp);
 		this.bindTitleEvents();
+		this.setStick();
 	};
 
 	PromoActivity.prototype.setPromoList = function (data) {

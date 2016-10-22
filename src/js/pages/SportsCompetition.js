@@ -92,6 +92,10 @@
 			autoplay: true,
 			arrows: false
 		});
+
+		this.zone.find('.sliders .unslider-carousel li').click(function () {
+			app.router.setRoute('/promoActivity/3/-1');
+		});
 	};
 
 	SportsCompetition.prototype.getAds = function () {

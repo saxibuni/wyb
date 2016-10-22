@@ -9,6 +9,7 @@
 
 		var topLeftModule=	'<div class="left top-left-module">'+
 								'<div class="head-img">' +
+									'<span class="title">超级彩金</span>' +
 									this.createMarqueenLi1() +
 								'</div>'+
 
@@ -170,28 +171,6 @@
 		var jackpotsUrl;
 		var temp   = '';
 		var data   = this.bonusPoolData;
-		var values = [
-			'79,983.22',
-			'11,223,64.75',
-			'1,342,624.02',
-			'3264.75',
-			'939,264.75',
-			'11,264.75',
-			'32,222.23',
-			'234,627.42',
-			'192,638.91',
-			'847,173.88',
-			'3,854.29',
-			'42,332.30',
-			'25,285.52',
-			'76,947.44',
-			'984,220.76',
-			'112,034.49',
-			'583,097.95',
-			'98,802.63',
-			'3,230.82',
-			'45,338.01'
-		];
 
 		for (i = 0; i < data.length; i++) {
 			temp += this.createMarqueenItem({
@@ -251,20 +230,6 @@
 		var marqueenUl      =  this.zone.find('.left-list .marqueen ul');
 		
 		this.marqueenInterval = setInterval(function () {
-			// h         =  parseFloat(marqueenUl.children('li').css('height'));
-			// ulFirstLi =  marqueenUl.children('li:first-child');
-			// game      =  ulFirstLi.children('p:first-child').text();
-			// win       =  ulFirstLi.children('p:last-child').text();
-
-			// marqueenUl.animate({'top': (0 - h + 'px')}, 500, function () {
-			// 	ulFirstLi.remove();
-			// 	marqueenUl.css('top', '0');
-
-			// 	if (marqueenUl.children('li').length < 10) {
-			// 		that.setMarqueenItems();
-			// 	}
-			// });
-
 			h         =  parseFloat(marqueenUl.children('li').css('height'));
 			ulFirstLi =  $(marqueenUl.children('li')[count]);
 			game      =  ulFirstLi.children('p:first-child').text();
@@ -567,7 +532,8 @@
 		for (i = 0; i < data.length; i++) {
 			html +=	'<li data-id="' + data[i].Id + '"' + 
 							' data-identify="' + data[i].GameIdentify + 
-							'" data-try="' + data[i].IsTry + 
+							'" data-try="' + data[i].IsTry +
+							'" data-gametype="' + data[i].GameTypeText_EN +
 							'" data-platform="' + data[i].Api.GamePlatform + '"' +
 							'" data-collectid="' + '' + '"' + 
 							'>' +
@@ -615,53 +581,6 @@
 		Service.get(opt, callback);
     };
 
-    EEntertainment.prototype.getGameLoginUrl = function (gameId) {
-    	var opt;
-		var callback;
-		var platformUl = this.zone.find('.middle-module');
-		var platform   = platformUl.children('li.selected').attr('data-type');
-		var that       =  this;
-		
-		// function callback(data) {
-		// 	if (data == 1) {
-		// 		app.showLoginNotice();
-		// 		return;
-		// 	}
-
-		// 	opt =  {
-		// 		url: app.urls.getGameLoginUrl,
-		// 		data: {
-		// 			gamePlatform: platform,
-		// 			gameType: 'slot',
-		// 			gameId: gameId
-		// 		}
-		// 	};
-
-		// 	callback = function (data) {
-		// 		window.open(data);
-		// 	};
-
-		// 	Service.get(opt, callback);
-		// }
-
-		// app.getLoginStatus(callback.bind(this));
-
-		opt =  {
-			url: app.urls.getGameLoginUrl,
-			data: {
-				gamePlatform: platform,
-				gameType: 'slot',
-				gameId: gameId
-			}
-		};
-
-		callback = function (data) {
-			window.open(data);
-		};
-
-		Service.get(opt, callback);
-    };
-
 	EEntertainment.prototype.show = function () {
 		var callback;
 		var that = this;
@@ -694,34 +613,6 @@
 			that.currenPage = 0;
 			that.getFavoriteGameIds();
 		});
-
-		// pageUl.delegate('li','click',function(){
-		// 	index = $(this).index();
-		// 	imgIndex=index+1;
-		// 	var path="../img/v0"+imgIndex+"-d.png";
-		// 	var tt=$(".selected").find("img").attr("src").replace("-d","-n");
-		// 	$(".selected").find("img").attr("src",tt);
-		// 	$(".bottom-left").find("li").removeClass("selected");
-		// 	$(this).addClass("selected");
-		// 	$(this).find("img").attr("src",path);
-		// 	stick.css('top',(index * 40 + 65) + 'px');
-		// });
-
-		// pageUl.delegate('li','mouseover',function(){
-		// 	index = $(this).index();
-		// 	imgIndex=index+1;
-		// 	var path="../img/v0"+imgIndex+"-d.png";
-		// 	$(this).find("img").attr("src",path);
-		// });
-
-		// pageUl.delegate('li','mouseout',function(){
-		// 	index = $(this).index();
-		// 	imgIndex=index+1;
-		// 	var path="../img/v0"+imgIndex+"-n.png";
-		// 	if(!$(this).hasClass("selected")){
-		// 		$(this).find("img").attr("src",path);
-		// 	}
-		// });
 	};
 
 	EEntertainment.prototype.bindEvents = function () {
@@ -732,8 +623,10 @@
 		var imgSrc;
 		var parentLi;
 		var platform;
-		var isTry;
+		var gameType;
 		var identify;
+		var isTry;
+		var li;
 		var middleModuleUl;
 		var that = this;
 
@@ -788,9 +681,13 @@
 				app.showLoginNotice();
 				return;
 			}
-			
-			gameId = $(this).parent().parent('li').attr('data-identify');
-			that.getGameLoginUrl(gameId);
+
+			li       = $(this).parent().parent('li');
+			identify = li.attr('data-identify');
+			platform = li.attr('data-platform');
+			gameType = li.attr('data-gametype');
+
+			app.getGameLoginUrl(platform, gameType, identify);
 		});
 
 		this.zone.delegate('.try-game', 'click', function () {

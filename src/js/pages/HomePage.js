@@ -255,7 +255,7 @@
 			},
 			{
 				englishName: 'Highway Kings',
-				chineseName: '高速公路之王'
+				chineseName: '漂移之王专业版'
 			},
 			{
 				englishName: 'Funky Monkey',
@@ -274,7 +274,6 @@
 			$(lis[i]).children('.info').text(data[i].chineseName);
 		}
 	};
-
 
 	HomePage.prototype.createJackpotsTable = function () {
 		var i;
@@ -455,6 +454,48 @@
 		app.getJackpotsGames('PT', 6, callback.bind(this));
 	};
 
+	HomePage.prototype.getHotGameInfos = function () {
+		var name;
+		var lis = this.zone.find('.tab-ul li');
+
+		for (i = 0; i < lis.length; i++) {
+			name = $(lis[i]).children('.info').text();
+			this.getHotGameInfo(name, $(lis[i]));
+		}
+	};
+
+	HomePage.prototype.getHotGameInfo = function (name, item) {
+		var opt;
+		var i;
+		var callback;
+		var tabUl  = this.zone.find('.tab-ul');
+		var that   =  this;
+
+		opt  =  {
+			url: app.urls.getGameList,
+			data: {
+				title: name,
+				pageIndex: 0,
+				pageSize: 1
+			}
+		};
+
+		callback = function (data) {
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+
+			item.attr({
+				'data-identify': data.list[0].GameIdentify,
+				'data-platform': data.list[0].Api.GamePlatform,
+				'data-gametype': data.list[0].GameTypeText_EN
+			});
+		};
+
+		Service.get(opt, callback);
+	};
+
 	HomePage.prototype.resfreshBaseValues = function (parentPlatform) {
 		var i;
 		var item;
@@ -585,7 +626,7 @@
 
 	HomePage.prototype.addSliders = function (data) {
 		var i;
-		var pageName;
+		var route;
 		var len  = data.count;
 		var arr  = data.list;
 		var arr2 = [
@@ -599,7 +640,7 @@
 		var logoTemp = 	'<ul>';
 
 		for (i = 0; i < len; i++) {
-			logoTemp += 	'<li data-value="' + arr2[i] + '">' +
+			logoTemp += 	'<li data-route="' + (i + 1) + ' -1">' +
 								'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
 							'</li>';
 		}
@@ -616,17 +657,21 @@
 		});
 
 		this.zone.find('.sliders .unslider-carousel').delegate('li', 'click', function () {
-			pageName = $(this).attr('data-value');
-			app.router.setRoute(pageName);
+			route = $(this).attr('data-route').split(' ');
+			app.router.setRoute('/promoActivity/' + route[0] + '/' + route[1]);
 		});
 	};
 
 	HomePage.prototype.bindEvents = function () {
+		var platform;
+		var gameType;
+		var gameIdentify;
 		var pageName;
 		var type;
 		var stick;
 		var index;
 		var route;
+		var tabUlItem;
 		var that = this;
 
 		this.zone  = $('.home-page');
@@ -657,12 +702,30 @@
 
 			that.getAds2(type);
 			that.setTabUl(index);
+
+			if (index === 1) {
+				tabUlItem = $(that.zone.find('.tab-ul li')[0]);
+
+				if (!tabUlItem.attr('data-identify')) {
+					that.getHotGameInfos();
+				}
+			}
 		});
 
 		this.zone.find('.tab-ul').delegate('li', 'click', function () {
 			if (that.currentTab === 0) {
 				route = $(this).attr('data-route').split(' ');
 				app.router.setRoute('/promoActivity/' + route[0] + '/' + route[1]);
+			} else if (that.currentTab === 1) {
+				if (!app.signedIn) {
+					app.showLoginNotice();
+					return;
+				}
+				
+				gameIdentify = $(this).attr('data-identify');
+				platform     = $(this).attr('data-platform');
+				gameType     = $(this).attr('data-gametype');
+				app.getGameLoginUrl(platform, gameType, gameIdentify);
 			}
 		});
 

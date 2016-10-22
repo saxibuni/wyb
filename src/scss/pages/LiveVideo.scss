@@ -28,12 +28,14 @@
 
 				li {
 					img {
+						cursor: pointer;
 						width: 100%;
 					}
 				}
 			}
 
 			.unslider-nav {
+				display: none;
 			    position: absolute;
 			    bottom: 10px;
 			    left: 20px;

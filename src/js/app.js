@@ -157,6 +157,27 @@
 		Service.get(opt, callback);
 	};
 
+    app.prototype.getGameLoginUrl = function (platform, type, gameIdentify, cb) {
+		var opt =  {
+			url: this.urls.getGameLoginUrl,
+			data: {
+				gamePlatform: platform,
+				gameType: type,
+				gameId: gameIdentify
+			}
+		};
+
+		var callback = function (data) {
+			if (typeof cb === 'function') {
+				cb(data);
+			} else {
+				window.open(data);
+			}
+		};
+
+		Service.get(opt, callback);
+    };
+
 	app.prototype.addFavoriteGame = function (gameId) {
 		var that = this;
 		var opt  =  {

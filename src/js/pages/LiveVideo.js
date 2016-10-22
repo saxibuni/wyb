@@ -130,6 +130,10 @@
 			autoplay: true,
 			arrows: false
 		});
+
+		this.zone.find('.sliders .unslider-carousel li').click(function () {
+			app.router.setRoute('/promoActivity/1/-1');
+		});
 	};
 
 	LiveVideo.prototype.getAds = function () {
