@@ -28,12 +28,18 @@
 					color:#fff;
 					height:100%;
 					display: inline-block;
+					padding-left: 20px;
+					margin-left: 20px;
 					z-index: 20;
+
+					&:first-child {
+						margin-left: 0;
+					}
 
 					.img {
 						background: url("../img/platform.png");
 						display: inline-block;
-						width: 50px;
+						width: 33px;
 						height: 100%;
 						overflow: hidden;
 					}
@@ -43,71 +49,69 @@
 						width: 100px;
 						height:100%;
 						vertical-align: top;
-						text-align: left;
+						text-align: center;
 					}
 
 					&:hover {
-						background-color: $purple1;
-
 						.pt-img {
-							background-position: 0 $platform-icon-top2;
+							background-position: -8px $platform-icon-top2;
 						}
 
 						.bbin-img {
-							background-position: -45px $platform-icon-top2;
+							background-position: -53px $platform-icon-top2;
 						}
 
 						.mg-img {
-							background-position: -90px $platform-icon-top2;
+							background-position: -98px $platform-icon-top2;
 						}
 
 						.ag-img {
-							background-position: -133px $platform-icon-top2;
+							background-position: -141px $platform-icon-top2;
 						}
 
 						.ttg-img {
-							background-position: -177px $platform-icon-top2;
+							background-position: -185px $platform-icon-top2;
 						}
 
 						.mt-img {
-							background-position: -220px $platform-icon-top2;
+							background-position: -231px $platform-icon-top2;
 						}
 					}
 				}
 
 				.pt-li{
 					.img {
-						background-position: 0 $platform-icon-top1;
+						background-position: -8px $platform-icon-top1;
 					}
 				}
 
 				.bbin-li{
 					.img {
-						background-position: -45px $platform-icon-top1;
+						background-position: -53px $platform-icon-top1;
 					}
 				}
 
 				.mg-li{
 					.img {
-						background-position: -90px $platform-icon-top1;
+						background-position: -98px $platform-icon-top1;
 					}
 				}
 
 				.ag-li{
 					.img {
-						background-position: -133px $platform-icon-top1;
+						background-position: -141px $platform-icon-top1;
 					}
 				}
 
 				.ttg-li{
 					.img {
-						background-position: -177px $platform-icon-top1;
+						background-position: -185px $platform-icon-top1;
 					}
 				}
 
 				.mt-li {
 					.img {
-						background-position: -220px $platform-icon-top1;
+						background-position: -231px $platform-icon-top1;
 					}
 				}
 
@@ -119,27 +123,27 @@
 					}
 
 					.pt-img {
-						background-position: 0 $platform-icon-top2;
+						background-position: -8px $platform-icon-top2;
 					}
 
 					.bbin-img {
-						background-position: -45px $platform-icon-top2;
+						background-position: -53px $platform-icon-top2;
 					}
 
 					.mg-img {
-						background-position: -90px $platform-icon-top2;
+						background-position: -98px $platform-icon-top2;
 					}
 
 					.ag-img {
-						background-position: -133px $platform-icon-top2;
+						background-position: -141px $platform-icon-top2;
 					}
 
 					.ttg-img {
-						background-position: -177px $platform-icon-top2;
+						background-position: -185px $platform-icon-top2;
 					}
 
 					.mt-img {
-						background-position: -220px $platform-icon-top2;
+						background-position: -231px $platform-icon-top2;
 					}
 				}
 			}

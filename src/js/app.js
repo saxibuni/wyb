@@ -148,36 +148,6 @@
 		};
 	};
 
-	app.prototype.getLoginStatus = function (callback) {
-		var opt  =  {
-			url: this.urls.loginStatus,
-	        data: {}
-		};
-
-		Service.get(opt, callback);
-	};
-
-    app.prototype.getGameLoginUrl = function (platform, type, gameIdentify, cb) {
-		var opt =  {
-			url: this.urls.getGameLoginUrl,
-			data: {
-				gamePlatform: platform,
-				gameType: type,
-				gameId: gameIdentify
-			}
-		};
-
-		var callback = function (data) {
-			if (typeof cb === 'function') {
-				cb(data);
-			} else {
-				window.open(data);
-			}
-		};
-
-		Service.get(opt, callback);
-    };
-
 	app.prototype.addFavoriteGame = function (gameId) {
 		var that = this;
 		var opt  =  {
@@ -186,6 +156,7 @@
             	'': gameId
             },
 		};
+
 		var callback = function (json) {
 			if (json.StatusCode && json.StatusCode != 0) {
 				alert(json.Message);
@@ -240,7 +211,7 @@
 		var dict = {
 			'homePage'          : {'className': HomePage,          'index': 0, 'cssClass': 'home-page'},
 			'liveVideo'         : {'className': LiveVideo,         'index': 1, 'cssClass': 'live-video'},
-			'eEntertainment'    : {'className': EEntertainment,    'index': 2, 'cssClass': 'main-content'},
+			'eEntertainment'    : {'className': EEntertainment,    'index': 2, 'cssClass': 'e-entertainment'},
 			'sportsCompetition' : {'className': SportsCompetition, 'index': 3, 'cssClass': 'sports-competition'},
 			'lotteryGame'       : {'className': LotteryGame,       'index': 4, 'cssClass': 'lottery-game'},
 			'promoActivity'     : {'className': PromoActivity,     'index': 5, 'cssClass': 'promo-activity'},
@@ -257,6 +228,12 @@
 			routes['/' + key] =  (function (pageName) {
 				return function () {
 					that.zone.find('.page').hide();
+
+			      	if (pageName === 'eEntertainment') {
+			      		$('.app').addClass('entertainment-bg');
+			      	} else {
+			      		$('.app').removeClass('entertainment-bg');
+			      	}
 
 					if (!that[pageName]) {
 						that[pageName] = new (dict[pageName].className)();
@@ -303,6 +280,12 @@
       		this.router.setRoute('/homePage');
       	} else {
       		this.router.setRoute(page);
+      	}
+
+      	if (page === 'eEntertainment') {
+      		$('.app').addClass('entertainment-bg');
+      	} else {
+      		$('.app').removeClass('entertainment-bg');
       	}
 	};
 

@@ -2,7 +2,7 @@
 	function Header () {
 		this.initDom();
 	}
-	
+
 	Header.prototype.initDom = function () {
 		var temp = '';
 

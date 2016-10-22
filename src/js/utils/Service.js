@@ -72,5 +72,35 @@ $(function () {
         });
 	};
 
+    Service.prototype.getLoginStatus = function (callback) {
+        var opt  =  {
+            url: this.urls.loginStatus,
+            data: {}
+        };
+
+        this.get(opt, callback);
+    };
+
+    Service.prototype.getGameLoginUrl = function (platform, type, gameIdentify, cb) {
+        var opt =  {
+            url: this.urls.getGameLoginUrl,
+            data: {
+                gamePlatform: platform,
+                gameType: type,
+                gameId: gameIdentify
+            }
+        };
+
+        var callback = function (data) {
+            if (typeof cb === 'function') {
+                cb(data);
+            } else {
+                window.open(data);
+            }
+        };
+
+        this.get(opt, callback);
+    };
+
 	window.Service = new Service();
 }());

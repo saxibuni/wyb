@@ -629,13 +629,6 @@
 		var route;
 		var len  = data.count;
 		var arr  = data.list;
-		var arr2 = [
-			'liveVideo',
-			'eEntertainment',
-			'sportsCompetition',
-			'lotteryGame',
-			'promoActivity'
-		];
 
 		var logoTemp = 	'<ul>';
 
@@ -725,7 +718,7 @@
 				gameIdentify = $(this).attr('data-identify');
 				platform     = $(this).attr('data-platform');
 				gameType     = $(this).attr('data-gametype');
-				app.getGameLoginUrl(platform, gameType, gameIdentify);
+				Service.getGameLoginUrl(platform, gameType, gameIdentify);
 			}
 		});
 

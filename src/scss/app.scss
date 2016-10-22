@@ -3,6 +3,7 @@
 body {
 	background-color: $purple1;
 	overflow-x: hidden;	
+	overflow-y: scroll;
 }
 
 .app {
@@ -59,6 +60,11 @@ body {
 			background-color: #CCCCCC;
 		}
 	}
+}
+
+.entertainment-bg {
+	background-color: $purple4;
+	background-image: none;
 }
 
 @media screen and (min-width: 0px) and (max-width: 1300px) {

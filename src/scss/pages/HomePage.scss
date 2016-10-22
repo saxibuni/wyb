@@ -55,8 +55,14 @@ $homepage-icon-top3      :   -126px;
 			    left: 20px;
 
 			    li {
-			    	height: 10px;
-				    width: 10px;
+			    	background-color: #FFF;
+			    	opacity: 0.3;
+			    	height: 8px;
+				    width: 8px;
+			    }
+
+			    .unslider-active {
+			    	opacity: 0.5;
 			    }
 			}
 		}

@@ -7,106 +7,98 @@
 	EEntertainment.prototype.initDom = function () {
 		this.currenPage = 0;
 
-		var topLeftModule=	'<div class="left top-left-module">'+
-								'<div class="head-img">' +
-									'<span class="title">超级彩金</span>' +
-									this.createMarqueenLi1() +
-								'</div>'+
-
-								'<div class="left-list">' +
-									'<div class="marqueen">' +
-										'<ul></ul>'+
+		var topLeftModule 	=	'<div class="left top-left-module">' +
+									'<div class="czcj-head">' +
+										'<span class="title">超级彩金</span>' +
+										this.createMarqueenLi1() +
 									'</div>' +
-								'</div>' +
-							'</div>';
 
-	  	var topBannerModule='<div class="middle-banner">' +
-								'<div class="slider">'+
-									'<ul>' +
-										'<li><img src="../img/eGame-banner.jpg"></li>' +
-										'<li><img src="../img/eGame-banner.jpg"></li>' +
-										'<li><img src="../img/eGame-banner.jpg"></li>' +
-									'</ul>' +
-								'</div>' +
-							'</div>';
-
-		var topRightModule='<div class="left top-right-module">'+
-								'<div class="amount-info"><p class="jackpot-value"></p></div>'+
-								'<div class="user-info">'+
-									'<p><span class="red">恭喜</span><span class="userName">Wang **</span></p>'+
-									'<h3>于BBIN平台-连环夺宝</h3>'+
-									'<p>获得<span>3,456,456.20</span></p>'+
-								'</div>'+
-								'<button>快速游戏</button>'+
-							'</div>'+
-
-							'<div class="clear"></div>';
-
-		var topModule   =	'<div class="top-module">' +
-								topLeftModule + 
-								topBannerModule + 
-								topRightModule + 
-							'</div>';
-	  	
-	  	var middleNavModule='<ul class="middle-module">'+
-								'<li class="pt-li selected" data-type="PT">' +
-									'<span class="img pt-img"></span>' +
-									'<span class="name">真人、老虎机</span>' +
-								'</li>'+
-								'<li class="bbin-li" data-type="BBIN">' +
-									'<span class="img bbin-img"></span>' +
-									'<span class="name">真人、老虎机</span>' +
-								'</li>'+
-								'<li class="mg-li" data-type="MG">' +
-									'<span class="img mg-img"></span>' +
-									'<span class="name">真人、老虎机</span>' +
-								'</li>'+
-								'<li class="ag-li" data-type="AG">' +
-									'<span class="img ag-img"></span>' +
-									'<span class="name">真人、老虎机</span>' +
-								'</li>'+
-								'<li class="ttg-li" data-type="TTG">' +
-									'<span class="img ttg-img"></span>' +
-									'<span class="name">真人、老虎机</span>' +
-								'</li>'+
-								'<li class="mt-li" data-type="MT">' +
-									'<span class="img mt-img"></span>' +
-									'<span class="name">真人、老虎机</span>' +
-								'</li>'+
-							'</ul>'+
-
-							'<div class="clear"></div>';
-
-		var bottomLeftModule=	'<div class="bottom-left">' +
-									'<div class="search-box">' +
-										'<input type="text" placeholder="快速查找本平台游戏">'+
-										'<div class="search-btn"></div>' +
-										'<div class="clear"></div>'+
-									'</div>'+
-
-									'<ul class="game-tree">'+
-									'</ul>'+
+									'<div class="left-list">' +
+										'<div class="marqueen">' +
+											'<ul></ul>' +
+										'</div>' +
+									'</div>' +
 								'</div>';
 
-	  	var bottomRightModule='<div class="bottom-right">'+
-														'<ul>'+
-														'</ul>'+
-														'<div class="more-game">更多游戏</div>'+
-												'</div>'
+	  	var topBannerModule	=	'<div class="middle-banner">' +
+									'<div class="sliders"></div>' +
+								'</div>';
 
-		var bottomModule='<div class="bottom-module">'+bottomLeftModule+bottomRightModule+'</div>';
-		var mainConent='<div class="page e-entertainment main-content"><div class="wrapper">'+topModule+
-						 		   middleNavModule+bottomModule+'</div></div>';
+		var topRightModule 	= 	'<div class="left top-right-module">' +
+									'<div class="jackpots-title">JACKPOT</div>' +
+									'<div class="amount-info jackpot-value"></div>' +
+									'<div class="user-info">' +
+										'<p><span class="red">恭喜</span><span class="userName">Wang **</span></p>' +
+										'<h3>于BBIN平台-连环夺宝</h3>' +
+										'<p>获得<span>3,456,456.20</span></p>' +
+									'</div>' +
+									'<div class="button">快速游戏</div>' +
+								'</div>';
+
+		var bottomLeftModule =	'<div class="bottom-left">' +
+									'<div class="search-box">' +
+										'<input type="text" placeholder="快速查找本平台游戏">' +
+										'<div class="search-btn"></div>' +
+										'<div class="clear"></div>' +
+									'</div>'+
+
+									'<ul class="game-tree"></ul>' +
+								'</div>';
+
+	  	var bottomRightModule =	'<div class="bottom-right">' +
+									'<ul></ul>' +
+									'<div class="more-game">更多游戏</div>' +
+								'</div>';
+
+		var topModule   =		'<div class="top-module">' +
+									topLeftModule +
+									topBannerModule +
+									topRightModule +
+									'<div class="clear"></div>' +
+								'</div>';
+	  	
+	  	var middleNavModule	=	'<ul class="middle-module">'+
+									'<li class="pt-li selected" data-type="PT">' +
+										'<span class="img pt-img"></span>' +
+										'<span class="name">PT电子</span>' +
+									'</li>'+
+									'<li class="bbin-li" data-type="BBIN">' +
+										'<span class="img bbin-img"></span>' +
+										'<span class="name">BBIN电子</span>' +
+									'</li>'+
+									'<li class="mg-li" data-type="MG">' +
+										'<span class="img mg-img"></span>' +
+										'<span class="name">MG电子</span>' +
+									'</li>'+
+									'<li class="ag-li" data-type="AG">' +
+										'<span class="img ag-img"></span>' +
+										'<span class="name">AG电子</span>' +
+									'</li>'+
+									'<li class="ttg-li" data-type="TTG">' +
+										'<span class="img ttg-img"></span>' +
+										'<span class="name">TTG电子</span>' +
+									'</li>'+
+									'<li class="mt-li" data-type="MT">' +
+										'<span class="img mt-img"></span>' +
+										'<span class="name">MT电子</span>' +
+									'</li>'+
+								'</ul>';
+
+		var bottomModule   =	'<div class="bottom-module">' +
+									bottomLeftModule +
+									bottomRightModule +
+									'<div class="clear"></div>' +
+								'</div>';
+
+		var mainConent     =	'<div class="page e-entertainment">' +
+									'<div class="wrapper">' +
+										topModule +
+						 		   		middleNavModule +
+						 		   		bottomModule +
+						 		   	'</div>' +
+						 		'</div>';
 
 		this.el  = mainConent;
-		if(!$('.slider').data('run')) {
-			$('.slider').unslider({
-				speed: 500,
-				delay: 3000
-			});
-		}
-
-		$('.slider').data('run', true);
 	};
 
 	EEntertainment.prototype.getDom = function () {
@@ -140,6 +132,64 @@
 		};
 
 		Service.get(opt, callback);
+	};
+
+	/*
+	**  获取轮播图图片
+	*/
+	EEntertainment.prototype.getAds = function () {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getAds,
+			data: {
+				type: 'pd_wyb_slot_ads',
+				pageIndex: 0,
+				pageSize: 10
+			}
+		};
+
+		this.loader4.play();
+		callback = function (data) {
+			that.loader4.stop();
+			
+			if (!data) {
+				return;
+			}
+			
+			that.addSliders(data);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	EEntertainment.prototype.addSliders = function (data) {
+		var i;
+		var route;
+		var len  = data.count;
+		var arr  = data.list;
+		var logoTemp = 	'<ul>';
+
+		for (i = 0; i < len; i++) {
+			logoTemp += 	'<li data-route=2 -1">' +
+								'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
+							'</li>';
+		}
+
+		logoTemp +=		'</ul>';
+
+		this.zone.find('.sliders').html(logoTemp);
+		this.zone.find('.sliders').unslider({
+			speed: 500,
+			delay: 5000,
+			autoplay: true,
+			arrows: false
+		});
+
+		this.zone.find('.sliders .unslider-carousel').delegate('li', 'click', function () {
+			route = $(this).attr('data-route').split(' ');
+			app.router.setRoute('/promoActivity/' + route[0] + '/' + route[1]);
+		});
 	};
 
 	/*
@@ -442,7 +492,8 @@
     	var wrapper1 = this.zone.find('.top-left-module .marqueen')[0];
         var wrapper2 = this.zone.find('.top-right-module .amount-info')[0];
         var wrapper3 = this.zone.find('.bottom-right')[0];
-        
+        var wrapper4 = this.zone.find('.sliders')[0];
+
         this.loader1 = new Loader(wrapper1);
         this.loader2 = new Loader(wrapper2, {
         	top: '74%'
@@ -450,6 +501,9 @@
         this.loader3 = new Loader(wrapper3, {
         	left: '60%',
         	top: '80%'
+        });
+        this.loader4 = new Loader(wrapper1, {
+        	top: '20%'
         });
     };
 
@@ -540,7 +594,7 @@
 						'<img src='+app.imageServer + data[i].ImageUrl+'>' +
 						'<p>' +
 							'<span class="game-name">' + data[i].Title + '</span>'+
-							'<span class="red">' + data[i].RecommendNo + '</span>' +
+							'<span class="recommend-no">' + data[i].RecommendNo + '</span>' +
 							'<span class="collect' +
 								(($.inArray(data[i].Id, ids) != -1)?' collected': '') +
 							'"></span>' +
@@ -588,6 +642,7 @@
 		this.zone.fadeIn(500);
 
 		if (!this.firstTime) {
+			this.getAds();
 			this.getJackpotsGames('PT');  //获取pt奖金池
 			this.getGameCategories();
 			this.firstTime = true;
@@ -630,12 +685,7 @@
 		var middleModuleUl;
 		var that = this;
 
-		this.zone = $('.main-content');
-
-		$('.slider').unslider({
-			speed: 500,
-			delay: 3000
-		});
+		this.zone = $('.e-entertainment');
 
 		imgUl          =  this.zone.find('.bottom-right ul');
 		marqueeList    =  this.zone.find('.top-left-module');
@@ -687,7 +737,7 @@
 			platform = li.attr('data-platform');
 			gameType = li.attr('data-gametype');
 
-			app.getGameLoginUrl(platform, gameType, identify);
+			Service.getGameLoginUrl(platform, gameType, identify);
 		});
 
 		this.zone.delegate('.try-game', 'click', function () {
