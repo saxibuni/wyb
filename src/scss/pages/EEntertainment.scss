@@ -450,9 +450,14 @@
 					.search-btn {
 					    background-image: url(../img/search-star.png);
 					    background-position: -10px -74px;
+					    cursor: pointer;
 					    display: inline-block;
 					    height: $searchBoxHeight;
 					    width: 25px;
+
+					    &:hover {
+					    	background-position: -10px -34px;
+					    }
 					}
 
 					input{

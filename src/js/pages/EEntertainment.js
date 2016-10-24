@@ -195,7 +195,6 @@
 	/*
 	** Marqueen
 	*/
-
 	EEntertainment.prototype.createMarqueenLi1 = function (data) {
 		var temp =	'<div class="marqueen-li1">' +
 						'<div class="marqueen-li1-wrapper">' +
@@ -556,7 +555,6 @@
 		};
 
 		callback = function (data) {
-
 			if (data.StatusCode && data.StatusCode != 0) {
 				alert(data.Message);
 				return;
@@ -572,6 +570,40 @@
         	}
 		};
 
+		this.loader3.play();
+		Service.get(opt, callback);
+    };
+
+    EEntertainment.prototype.getGameListByName = function () {
+    	var that = this;
+    	var name = this.zone.find('.search-box input').val();
+		var opt  = {
+			url: app.urls.getGameList,
+			data: {
+				title: name,
+				pageIndex: 0,
+				pageSize: 1000
+			}
+		};
+
+		var callback = function (data) {
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+
+        	that.loader3.stop();
+        	that.setGameList(data.list);
+
+        	if (data.list.length < 1000) {
+        		that.zone.find('.bottom-right .more-game').text('没有更多');
+        	} else {
+        		that.zone.find('.bottom-right .more-game').text('加载更多');
+        	}
+		};
+
+    	this.isScroll = false;
+    	this.currenPage = 0;
 		this.loader3.play();
 		Service.get(opt, callback);
     };
@@ -682,10 +714,12 @@
 		var isTry;
 		var li;
 		var middleModuleUl;
+		var lastScrollTop = 0;
+		var direction;
+		var st;
 		var that = this;
 
 		this.zone = $('.e-entertainment');
-
 		imgUl          =  this.zone.find('.bottom-right ul');
 		marqueeList    =  this.zone.find('.top-left-module');
 		moreGame       =  this.zone.find('.bottom-right .more-game');
@@ -756,9 +790,16 @@
 			that.getGameLaunchUrl(gameId);
 		});
 
-		var lastScrollTop = 0;
-		var direction;
-		var st;
+		this.zone.find('.search-btn').click(function () {
+	    	that.getGameListByName();
+		});
+
+		this.zone.find('.search-box input').keypress(function(e) {
+		    if(e.which == 13) {
+		        that.getGameListByName();
+		    }
+		});
+		
 		$(document).scroll(function(e) {
 		    var viewH     = $('body').height();
 		    var contentH  = $('body').get(0).scrollHeight; 
@@ -774,10 +815,7 @@
 
 			lastScrollTop = st;
 
-		    if (direction === 'down' &&
-		    	contentH - viewH - scrollTop <= 10 && 
-		    	moreGame.text() !== '没有更多') {
-
+		    if (direction === 'down' && contentH - viewH - scrollTop <= 10 && moreGame.text() !== '没有更多') {
 		    	moreGame.text('加载中...');
 		    	that.isScroll = true;
 		    	that.currenPage++;
