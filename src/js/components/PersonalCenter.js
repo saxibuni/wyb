@@ -156,7 +156,7 @@ $(function(){
 		}
 		if (this.subWalletData.length % 2 != 0)  temp += '</div>';
 
-		swipperWith = 122 *  Math.round(this.subWalletData.length / 2);
+		swipperWith = 172 *  Math.round(this.subWalletData.length / 2);
 		temp = '<div class="swiper" style="width:' + swipperWith + 'px">' + temp;
 		temp += '</div>';
 		
@@ -287,7 +287,7 @@ $(function(){
 		};
 
 		callback = function (data) {
-			that.zone.find('.wallet-group').find('[data-platform="' + platform + '"]').children('.balance').text(data);
+			that.zone.find('.wallet-group').find('[data-platform="' + platform + '"]').find('.balance').text(data.toFixed(2));
 		};
 
 		Service.get(opt, callback);
@@ -338,14 +338,6 @@ $(function(){
 			platform = $(this).parents('.wallet').attr('data-platform');
 			app.personCenterRouter(0, 1);
 		});
-
-        walletzone.delegate('.sub-wallet','mouseover',function() {
-        	$(this).find('.transfer-layer').show();
-        });
-
-        walletzone.delegate('.sub-wallet','mouseout',function() {
-        	$(this).find('.transfer-layer').hide();
-        });
 
         this.zone.delegate('.refresh', 'click', function () {
         	platform = $(this).parents('.wallet').attr('data-platform');

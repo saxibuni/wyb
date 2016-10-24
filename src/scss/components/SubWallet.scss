@@ -1,63 +1,62 @@
 @import "../mixins.scss";
 
 .sub-wallet{
-    background-color:#ebe9e1;
-    width: 88px;
-    height: 54px;
+    border-right: 1px solid $purple5;
+    color: $font-color1;
+    width: 170px;
+    height: 60px;
     position: relative;
-    color: #535353;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 10px;
     margin-top: 7px;
+    padding: 0 15px;
+    text-align: left;
 
-	& > span{
-		margin-top: 4px;
-    	display: inline-block;
-	}
-	
-	hr{
-	    height: 1px;
-	    border: none;
-	    border-top: 1px solid #cda654;
-	    width: 90%;
-	    margin: 4px;   	
-	}
-
-	.transfer-layer{
-		position:absolute;
-		top:0px;
-		left: 0px;
+	.row1 {
+		height: 30px;
+		line-height: 30px;
 		width: 100%;
-		height: 100%;
-		background: rgba(125,124,121,0.7);
-		display: none;
 
-		.refresh{
-	        position: absolute;
-	        right: 3px;
-	        top: 2px;
-	        cursor: pointer;
-	        opacity: 0.7;
-	        width: 16px;
-	    }
+		.balance {
+			float: left;
+			font-size: 16px;
+		}
 
-        .btn{
-	        width: 32px;
-	        height: 16px;
-	        line-height: 16px;
-	        font-size: 10px;
-	        border:1px solid #cda654;
-	        color:#fdfbf9;
-	        display: inline-block;
-	        margin-top: 20px;
-	        &:hover{
-	            background-color:#cda654;
-	        }
-	    }
+        .refresh-icon {
+            background-image: url(../img/common.png);
+            background-position: -132px -77px;
+            cursor: pointer;
+            display: inline-block;
+            float: right;
+            height: 15px;
+            margin-top: 7px;
+            width: 19px;
 
-	    .turn-out{
-	        margin-left: 10px;
-	    }
+            &:hover {
+                background-position: -132px -110px;
+            }
+        }
 	}
 
+	.row2 {
+		height: 30px;
+		line-height: 30px;
+		width: 100%;
+
+		.platform {
+			float: left;
+			font-size: 14px;
+		}
+
+		.btn-transfer {
+			cursor: pointer;
+			float: right;
+			font-size: 14px;
+
+			&:hover {
+				color: $font-color2;
+				text-decoration: underline;
+			}
+		}
+	}
 }

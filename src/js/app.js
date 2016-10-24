@@ -484,5 +484,5 @@
 
 	window.app = new app();
 	window.app.initRouter();
-	window.app.showPersonalCenter();
+	//window.app.showPersonalCenter();
 })();

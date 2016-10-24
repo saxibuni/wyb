@@ -7,13 +7,16 @@ $(function(){
 
 	SubWallet.prototype.initDom = function(){
 		var temp = '<div class="sub-wallet wallet" data-platform="' + this.opt.platform + '">' +
-						'<span>' + this.opt.walletType + '</span>' +
-						'<hr class="line">' +
-						'<span class="balance">' + this.opt.balance + '</span>' +
-						'<div class="transfer-layer">' +
-							'<img src="../img/refresh-h.png" class="refresh" />' +
-							'<a href="javascript:void(0);" class="btn turn-out">转出</a>' +
-							'<a href="javascript:void(0);" class="btn turn-in">转入</a>' +									
+						'<div class="row1">' +
+							'<span class="balance">' + this.opt.balance + '</span>' +
+							'<span class="pc-icon refresh-icon refresh"></span>' +
+							'<span class="clear"></span>' +
+						'</div>' +
+
+						'<div class="row2">' +
+							'<span class="platform">' + this.opt.walletType + '</span>' +
+							'<a class="btn-transfer">转账</a>' +
+							'<span class="clear"></span>' +
 						'</div>' +
 					'</div>';
 		this.el = temp;

@@ -87,12 +87,6 @@
             width: 15px;
         }
 
-        .refresh-icon {
-            background-position: -273px $pc-icon-top3;
-            height: 15px;
-            width: 15px;
-        }
-
         .dialog {
             min-width: 950px;
             max-width: $baseWidth + 30px;
@@ -416,17 +410,22 @@
                     box-sizing: border-box;
                     overflow: hidden;
                     transition: all .3s;
+                    text-align: center;
                     
-                    .swiper{
+                    .swiper {
                         height: 100%;
                         @include transition(0.4s);
                     }
 
                     .wallet-group{
                         height: 100%;
-                        width: 96px;
+                        width: 170px;
                         margin: 0 1px;
                         float: left;
+
+                        .sub-wallet {
+                            margin-top: 17px;
+                        }
                     }
                 }
 
