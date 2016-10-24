@@ -22,9 +22,9 @@
 	$middleItemWidth        :    $baseWidth * 152 / $baseL;
 
 	$bottomLeftModuleWidth  :    $baseWidth * 270 / $baseL;
-	$bottomRightModuleWidth :    $baseWidth - $bottomLeftModuleWidth - $gap;
+	$bottomRightModuleWidth :    $baseWidth - $bottomLeftModuleWidth;
 
-	$gameImageWidth         :    ($baseWidth - $bottomLeftModuleWidth - 6 * $gap) / 6;
+	$gameImageWidth         :    ($bottomRightModuleWidth - 6 * $gap) / 6 - 2px;
 	$gameImageHeight        :    $gameImageWidth * 190 / 149;
 	$gameNameWidth          :    $baseWidth * 105 / $baseL;
 
@@ -37,13 +37,17 @@
 	$jackpotsButtonHeight   :    $baseWidth * 42 / $baseL;
 	$jackpotsButtonWidth    :    $baseWidth * 250 / $baseL;
 
+	$searchBoxHeight        :    $baseWidth * 40 / $baseL;
+	$treeLiPaddingLeft      :    $baseWidth * 60 / $baseL;
+	$treeLiHeight           :    $baseWidth * 45 / $baseL;
+
 	@include page-property;
 	width: $baseWidth;
 	margin: 0 auto;
 	height: auto;
 
 	.left {
-		float:left;
+		float: left;
 	}
 
 	.wrapper {
@@ -423,96 +427,96 @@
 		}
 
 		.bottom-module{
-			 width: 100%;
-			 display: inline-block;
-	    	 vertical-align: top;
-	    	 
+			display: inline-block;
+			vertical-align: top;
+			width: 100%; 
+			
 			.bottom-left {
 				width: $bottomLeftModuleWidth;
 				float: left;
 				position: relative;
-				height:100%;
+				height: 100%;
 				transition: all .5s;
 
-				.selected{
-	 			 	color: #FFF;
-	 			 	border-bottom: 2px solid $red;
-	 		 	}
-
-	 		 	ul {
-	 		 		margin-top: $gap;
-	 		 	}
-
-				ul li{
-					height: 40px;
-					line-height: 40px;
-					display: inline-block;
+				.search-box {
+					border: 1px solid $border-color1;
+					border-radius: 2px;
+					height: $searchBoxHeight;
+					line-height: $searchBoxHeight;
+					margin: 0 auto;
+					margin-top: $gap;
 					width: 100%;
-					color: #b4b4b4;
-					border-bottom: 1px solid $border-color1;
-					text-align: left;
-					padding-left: 40px;
 
-					img {
-						width: 24px;
-					    height: 24px;
-					    position: relative;
-					    top: 6px;
-					    right: 15px;
+					.search-btn {
+					    background-image: url(../img/search-star.png);
+					    background-position: -10px -74px;
+					    display: inline-block;
+					    height: $searchBoxHeight;
+					    width: 25px;
+					}
+
+					input{
+						width: 80%;
+						background-color: transparent;
+						border: 0;
+						color: #FFF;
+						display: inline-block;
+						float: left;
+						height: $searchBoxHeight - 6px;
+						line-height: $searchBoxHeight - 6px;
+						padding: 2px 0;
+						padding-left: 20px;
 					}
 				}
 
-				ul li:first-child{
-					border-top:1px solid $border-color1;
-				}
+	 		 	ul {
+	 		 		margin-top: $gap;
 
-				ul li:hover{
-					cursor: pointer;
-	 			 	color: #FFF;
-				}
+					li {
+						height: $treeLiHeight;
+						line-height: $treeLiHeight;
+						display: inline-block;
+						width: 100%;
+						color: #b4b4b4;
+						border-bottom: 1px solid $border-color1;
+						text-align: left;
+						padding-left: $treeLiPaddingLeft;
 
-				.stick{
-					height: 38px;
-					width: 3px;
-					position: absolute;
-					background-color: #cda654;
-					top: 65px;
-					left: 0px;
-					transition: top 0.5s;
-					-moz-transition: top 0.5s;
-					-webkit-transition: top 0.5s;
-				}
+						img {
+							width: 24px;
+						    height: 24px;
+						    position: relative;
+						    top: 6px;
+						    right: 15px;
+						}
 
-				.search-box{
-					border: 1px solid $border-color1;
-					height: 30px;
-					line-height: 30px;
-					margin: 0 auto;
-					margin-top: 20px;
-					width: 160px;
-					border-radius: 2px;
-					background-color: #000;
-				}
+						&:first-child {
+							border-top: 0;
+						}
 
-				.search-box .search-btn {
-				    background-image: url(../img/search-star.png);
-				    background-position: -10px -113px;
-				    display: inline-block;
-				    height: 30px;
-				    width: 25px;
-				}
+						&:hover {
+							cursor: pointer;
+			 			 	color: #FFF;
+						}
+					}
 
-				.search-box input{
-					width:120px;
-					background-color: transparent;
-					border: 0;
-					color: #FFF;
-					display: inline-block;
-					float: left;
-					height: 25px;
-					line-height: 25px;
-					padding: 2px 5px;
-				}
+					.selected {
+		 			 	color: #FFF;
+		 			 	border-bottom: 2px solid $red;
+		 		 	}
+
+					.stick{
+						height: 38px;
+						width: 3px;
+						position: absolute;
+						background-color: #cda654;
+						top: 65px;
+						left: 0px;
+						transition: top 0.5s;
+						-moz-transition: top 0.5s;
+						-webkit-transition: top 0.5s;
+					}
+	 		 	}
 			}
 
 			.bottom-right {
@@ -616,17 +620,14 @@
 						border:1px solid #cda654;
 					}
 
-					.hover-layer{
-						z-index: 100;
-						position: absolute;
-						top: 60px;
-						left: 24px;
+					.hover-layer {
+						background-color: rgba(0, 0, 0, 0.5);
 						width: 100%;
-						height: 82%;
+						height: $gameImageHeight;
 						position: absolute;
 						left: 0;
 						top: 0;
-						background-color: rgba(0, 0, 0, 0.5);
+						z-index: 100;
 
 						button {
 							cursor: pointer;
@@ -634,16 +635,288 @@
 					}
 				}
 
-				.more-game{
-					display: none;
+				.more-game {
 					float: left;
 	    			width: $bottomRightModuleWidth - $gap * 2;
 	    			margin-left: $gap;
 					text-align:center;
 					margin-top: 15px;
 					padding: 10px 0;
-					border:1px solid $border-color1;
+					border: 1px solid $border-color1;
 					color: $border-color1;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	.e-entertainment {
+		$baseL                  :    1300;
+		$baseWidth              :    1000px;
+		$gap                    :    $baseWidth * 10 / $baseL;
+		$topModuleGap           :    $baseWidth * 10 / $baseL;
+		$topLeftModuleWidth     :    $baseWidth * 270 / $baseL;
+		$topMiddleModuleWidth   :    $baseWidth * 740 / $baseL;
+		$topRightModuleWidth    :    $baseWidth * 270 / $baseL;
+		$topModuleHeight        :    $baseWidth * 330 / $baseL;
+
+		$topLeftHeadHeight      :    $baseWidth * 90 / $baseL;
+		$topLeftUlHeight        :    $baseWidth * 240 / $baseL;
+		$topLeftLiHeight        :    $topLeftUlHeight / 8;
+
+		$topRightTitleHeight    :    $baseWidth * 72 / $baseL;
+		$topRightMoneyHeight    :    $baseWidth * 77 / $baseL;
+		$topRightDrawHeight     :    $baseWidth * 181 / $baseL;
+
+		$middleHeight           :    $baseWidth * 56 / $baseL;
+		$middleItemWidth        :    $baseWidth * 152 / $baseL;
+
+		$bottomLeftModuleWidth  :    $baseWidth * 270 / $baseL;
+		$bottomRightModuleWidth :    $baseWidth - $bottomLeftModuleWidth;
+
+		$gameImageWidth         :    ($bottomRightModuleWidth - 6 * $gap) / 6 - 2px;
+		$gameImageHeight        :    $gameImageWidth * 190 / 149;
+		$gameNameWidth          :    $baseWidth * 105 / $baseL;
+
+		$czcjHeadTopGap         :    $baseWidth * 8 / $baseL;
+		$czcjLi1Top             :    $baseWidth * 52 / $baseL;
+		$jackpotsHeadHeight     :    $baseWidth * 73 / $baseL;
+		$amountInfoWidth        :    $baseWidth * 260 / $baseL;
+		$amountInfoHeight       :    $baseWidth * 84 / $baseL;
+		$jackpotsGap            :    $baseWidth * 15 / $baseL;
+		$jackpotsButtonHeight   :    $baseWidth * 42 / $baseL;
+		$jackpotsButtonWidth    :    $baseWidth * 250 / $baseL;
+
+		$searchBoxHeight        :    $baseWidth * 40 / $baseL;
+		$treeLiPaddingLeft      :    $baseWidth * 60 / $baseL;
+		$treeLiHeight           :    $baseWidth * 45 / $baseL;
+
+		@include page-property;
+		width: $baseWidth;
+
+		.wrapper {
+			width: $contentWidth;
+
+			.top-module {
+				height: $topModuleHeight;
+
+				.top-left-module {
+					width: $topLeftModuleWidth;
+
+					.czcj-head {
+						height: $topLeftHeadHeight;
+
+						.title {
+							color: $yellow2;
+							margin-top: $czcjHeadTopGap;
+						}
+
+						.marqueen-li1 {
+							top: $czcjLi1Top;
+						}
+					}
+
+					.left-list{
+						height: $topLeftUlHeight;
+
+						.marqueen{
+							height: $topLeftUlHeight;
+
+							ul {
+								li {
+						      		height: $topLeftLiHeight;
+						      		line-height: $topLeftLiHeight;
+						    	}
+							}
+						}
+					}
+				}
+
+				.middle-banner{
+					width: $topMiddleModuleWidth;
+			    	height: 100%;
+					margin: 0 $topModuleGap;
+					float: left;
+					transition: all .5s;
+					overflow: hidden;
+
+					.unslider {
+						overflow: hidden;
+					    position: relative;
+
+						.sliders {
+							min-height: 228px;
+
+							li {
+								cursor: pointer;
+								
+								img {
+									width: 100%;
+								}
+							}
+						}
+
+						.unslider-nav {
+						    position: absolute;
+						    bottom: 10px;
+						    left: 20px;
+
+						    li {
+						    	background-color: #FFF;
+						    	opacity: 0.3;
+						    	height: 8px;
+							    width: 8px;
+						    }
+
+						    .unslider-active {
+						    	opacity: 0.5;
+						    }
+						}
+					}
+				}
+
+				.top-right-module{
+					background: $purple2;
+			    	float: left;
+			    	height: 100%;
+			    	width: $topRightModuleWidth;
+			    	transition: all .5s;
+					
+					.jackpots-title {
+						border-top: 3px solid $yellow2;
+						color: $yellow2;
+						font-size: 42px;
+						font-weight: 700;
+						height: $jackpotsHeadHeight;
+						line-height: $jackpotsHeadHeight;
+						text-align: center;
+					}
+
+					.amount-info {
+						background-image: url(../img/jackpot-money-bk.png);
+						background-repeat: no-repeat;
+					    background-size: 100%;
+						color: #FFF;
+						font-size: 16px;
+						text-align: center;
+						background-size: 100%;
+						font-size: 27px;
+						height: $amountInfoHeight;
+						line-height: $amountInfoHeight;
+						width: $amountInfoWidth;
+						margin: 0 auto;
+						position: relative;
+						text-align: center;
+
+						.spinner {
+							top: 72%;
+						}
+					}
+
+					.user-info {
+						margin-bottom: $jackpotsGap;
+						margin-top: $jackpotsGap - 3px;
+						color: #fff;
+						text-align: center;
+
+						p {
+							font-size: 14px;
+							height: 20px;
+							line-height: 20px;
+							width: 100%;
+							
+							.userName {
+								margin-left: 5px;
+							}
+						}
+
+						h3 {
+							margin: 10px 0;
+							font-size: 14px;
+							font-weight: normal;
+						}
+					}
+
+					.button {
+						background: $green;
+						border-radius: 20px;
+						color: #FFF;
+						cursor: pointer;
+						font-size: 16px;
+						font-weight: bold;
+						height: $jackpotsButtonHeight;
+						line-height: $jackpotsButtonHeight;
+						width: $jackpotsButtonWidth;
+						margin-bottom: 14px;
+					}
+
+					button:hover{
+						color: $font-color2;
+					}
+				}
+			}
+
+			.middle-module{
+				width: $baseWidth;
+			}
+
+			.bottom-module{
+				.bottom-left {
+					width: $bottomLeftModuleWidth;
+
+					.search-box {
+						height: $searchBoxHeight;
+						line-height: $searchBoxHeight;
+						margin-top: $gap;
+
+						.search-btn {
+						    height: $searchBoxHeight;
+						}
+
+						input{
+							height: $searchBoxHeight - 6px;
+							line-height: $searchBoxHeight - 6px;
+						}
+					}
+
+		 		 	ul {
+		 		 		margin-top: $gap;
+
+						li {
+							height: $treeLiHeight;
+							line-height: $treeLiHeight;
+							padding-left: $treeLiPaddingLeft;
+						}
+		 		 	}
+				}
+
+				.bottom-right {
+					width: $bottomRightModuleWidth;
+
+					ul {
+						li {
+							width: $gameImageWidth + 2px;
+							margin-left: $gap;
+							margin-top: $gap;
+
+							img {
+								width: $gameImageWidth;
+								height: $gameImageHeight;
+							}
+
+							p {
+								.game-name{
+									width: $gameNameWidth;
+								}
+							}
+						}
+					}
+
+					.more-game{
+		    			width: $bottomRightModuleWidth - $gap * 2;
+		    			margin-left: $gap;
+					}
 				}
 			}
 		}

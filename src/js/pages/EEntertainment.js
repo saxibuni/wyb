@@ -57,31 +57,31 @@
 									'<div class="clear"></div>' +
 								'</div>';
 	  	
-	  	var middleNavModule	=	'<ul class="middle-module">'+
+	  	var middleNavModule	=	'<ul class="middle-module">' +
 									'<li class="pt-li selected" data-type="PT">' +
 										'<span class="img pt-img"></span>' +
 										'<span class="name">PT电子</span>' +
-									'</li>'+
+									'</li>' +
 									'<li class="bbin-li" data-type="BBIN">' +
 										'<span class="img bbin-img"></span>' +
 										'<span class="name">BBIN电子</span>' +
-									'</li>'+
+									'</li>' +
 									'<li class="mg-li" data-type="MG">' +
 										'<span class="img mg-img"></span>' +
 										'<span class="name">MG电子</span>' +
-									'</li>'+
+									'</li>' +
 									'<li class="ag-li" data-type="AG">' +
 										'<span class="img ag-img"></span>' +
 										'<span class="name">AG电子</span>' +
-									'</li>'+
+									'</li>' +
 									'<li class="ttg-li" data-type="TTG">' +
 										'<span class="img ttg-img"></span>' +
 										'<span class="name">TTG电子</span>' +
-									'</li>'+
+									'</li>' +
 									'<li class="mt-li" data-type="MT">' +
 										'<span class="img mt-img"></span>' +
 										'<span class="name">MT电子</span>' +
-									'</li>'+
+									'</li>' +
 								'</ul>';
 
 		var bottomModule   =	'<div class="bottom-module">' +
@@ -565,11 +565,10 @@
         	that.loader3.stop();
         	that.setGameList(data.list);
 
-        	if (data.list.length < 1) {
+        	if (data.list.length < 24) {
         		that.zone.find('.bottom-right .more-game').text('没有更多');
-        		that.zone.find('.bottom-right .more-game').show();
         	} else {
-        		that.zone.find('.bottom-right .more-game').hide();
+        		that.zone.find('.bottom-right .more-game').text('加载更多');
         	}
 		};
 
@@ -696,7 +695,7 @@
 			  $(this).find("#hover-layer").removeClass("hover-layer-none").addClass("hover-layer");
 		});
 
-		imgUl.delegate('li','mouseout',function(){
+		imgUl.delegate('li', 'mouseout', function() {
 			  $(this).find("#hover-layer").removeClass("hover-layer").addClass("hover-layer-none");
 		});
 
@@ -757,15 +756,29 @@
 			that.getGameLaunchUrl(gameId);
 		});
 
+		var lastScrollTop = 0;
+		var direction;
+		var st;
 		$(document).scroll(function(e) {
 		    var viewH     = $('body').height();
 		    var contentH  = $('body').get(0).scrollHeight; 
 		    var scrollTop = $('body').scrollTop();
 
-		    if (contentH - viewH - scrollTop <= 10) {
-		    	moreGame.html('加载中...');
-		    	moreGame.show();
+			st = $(this).scrollTop();
 
+			if (st > lastScrollTop) {
+				direction = 'down';
+			} else {
+				direction = 'up';
+			}
+
+			lastScrollTop = st;
+
+		    if (direction === 'down' &&
+		    	contentH - viewH - scrollTop <= 10 && 
+		    	moreGame.text() !== '没有更多') {
+
+		    	moreGame.text('加载中...');
 		    	that.isScroll = true;
 		    	that.currenPage++;
 		    	that.getGameList();
