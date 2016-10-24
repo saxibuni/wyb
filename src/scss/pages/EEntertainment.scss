@@ -26,7 +26,6 @@
 
 	$gameImageWidth         :    ($bottomRightModuleWidth - 6 * $gap) / 6 - 2px;
 	$gameImageHeight        :    $gameImageWidth * 190 / 149;
-	$gameNameWidth          :    $baseWidth * 105 / $baseL;
 
 	$czcjHeadTopGap         :    $baseWidth * 8 / $baseL;
 	$czcjLi1Top             :    $baseWidth * 52 / $baseL;
@@ -40,6 +39,7 @@
 	$searchBoxHeight        :    $baseWidth * 40 / $baseL;
 	$treeLiPaddingLeft      :    $baseWidth * 60 / $baseL;
 	$treeLiHeight           :    $baseWidth * 45 / $baseL;
+	$moreGameHeight         :    $baseWidth * 35 / $baseL;
 
 	@include page-property;
 	width: $baseWidth;
@@ -100,9 +100,8 @@
 									display: inline-block;
 									float: left;
 									color: #FFF;
-									width: 45%;
-									text-align: right;
-									margin-right: 10%;
+									width: 50%;
+									text-align: center;
 									white-space: nowrap;
 									text-overflow: ellipsis;
 									overflow: hidden;
@@ -112,7 +111,7 @@
 									display: inline-block;
 									float: left;
 									color: #FFF;
-									width: 45%;
+									width: 50%;
 									text-align: center;
 								}
 
@@ -595,13 +594,13 @@
 							.game-name {
 								display:inline-block;
 								float: left;
-								height:30px;
-								width: $gameNameWidth;
+								height: 30px;
 	    						text-align: left;
 	    						overflow: hidden;
 	    						white-space: nowrap;
 	    						text-overflow: ellipsis;
 	    						vertical-align: top;
+	    						max-width: 100px;
 							}
 
 							.recommend-no {
@@ -624,7 +623,7 @@
 							}
 
 							.collected {
-								background-position: -45px -111px;
+								background-position: -45px -113px;
 							}
 
 							img{
@@ -659,11 +658,12 @@
 
 				.more-game {
 					float: left;
-	    			width: $bottomRightModuleWidth - $gap * 2;
+	    			width: $bottomRightModuleWidth - $gap;
 	    			margin-left: $gap;
 					text-align:center;
 					margin-top: 15px;
-					padding: 10px 0;
+					height: $moreGameHeight;
+					line-height: $moreGameHeight;
 					border: 1px solid $border-color1;
 					color: $border-color1;
 				}
@@ -699,7 +699,6 @@
 
 		$gameImageWidth         :    ($bottomRightModuleWidth - 6 * $gap) / 6 - 2px;
 		$gameImageHeight        :    $gameImageWidth * 190 / 149;
-		$gameNameWidth          :    $baseWidth * 105 / $baseL;
 
 		$czcjHeadTopGap         :    $baseWidth * 8 / $baseL;
 		$czcjLi1Top             :    $baseWidth * 52 / $baseL;
@@ -713,6 +712,7 @@
 		$searchBoxHeight        :    $baseWidth * 40 / $baseL;
 		$treeLiPaddingLeft      :    $baseWidth * 60 / $baseL;
 		$treeLiHeight           :    $baseWidth * 45 / $baseL;
+		$moreGameHeight         :    $baseWidth * 35 / $baseL;
 
 		width: $baseWidth;
 
@@ -763,7 +763,7 @@
 			    	width: $topRightModuleWidth;
 					
 					.jackpots-title {
-						font-size: 32px;
+						font-size: 30px;
 						height: $jackpotsHeadHeight;
 						line-height: $jackpotsHeadHeight;
 					}
@@ -852,7 +852,7 @@
 
 							p {
 								.game-name {
-									width: $gameNameWidth;
+									max-width: 70px;
 								}
 							}
 						}
@@ -863,8 +863,10 @@
 					}
 
 					.more-game {
-		    			width: $bottomRightModuleWidth - $gap * 2;
+		    			width: $bottomRightModuleWidth - $gap;
 		    			margin-left: $gap;
+						height: $moreGameHeight;
+						line-height: $moreGameHeight;
 					}
 				}
 			}
