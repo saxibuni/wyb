@@ -12,7 +12,7 @@
 
 	$topLeftHeadHeight      :    $baseWidth * 90 / $baseL;
 	$topLeftUlHeight        :    $baseWidth * 240 / $baseL;
-	$topLeftLiHeight        :    $topLeftUlHeight / 8;
+	$topLeftLiHeight        :    $topLeftUlHeight / 7;
 
 	$topRightTitleHeight    :    $baseWidth * 72 / $baseL;
 	$topRightMoneyHeight    :    $baseWidth * 77 / $baseL;
@@ -96,13 +96,16 @@
 								position: absolute;
 								width: 100%;
 
-								.marqueen-li1-game {	
+								.marqueen-li1-game {
 									display: inline-block;
 									float: left;
 									color: #FFF;
 									width: 45%;
 									text-align: right;
 									margin-right: 10%;
+									white-space: nowrap;
+									text-overflow: ellipsis;
+									overflow: hidden;
 								}
 
 								.marqueen-li1-win {
@@ -224,6 +227,7 @@
 					height: $jackpotsHeadHeight;
 					line-height: $jackpotsHeadHeight;
 					text-align: center;
+					transition: all .3s;
 				}
 
 				.amount-info {
@@ -241,6 +245,7 @@
 					margin: 0 auto;
 					position: relative;
 					text-align: center;
+					transition: all .3s;
 
 					.spinner {
 						top: 72%;
@@ -461,7 +466,7 @@
 					}
 
 					input{
-						width: 80%;
+						width: 75%;
 						background-color: transparent;
 						border: 0;
 						color: #FFF;
@@ -546,12 +551,22 @@
 						margin-top: $gap;
 						transition: all .5s;
 
+						&:hover {
+							border:1px solid #cda654;
+
+							p {
+								.game-name {
+									color: #cda654;
+								}
+							}
+						}
+
 						img {
 							width: $gameImageWidth;
 							height: $gameImageHeight;
 						}
 
-						.hover-layer-none{
+						.hover-layer-none {
 							display:none;
 						}
 
@@ -560,44 +575,50 @@
 							line-height:30px;
 							padding:0 5px;
 
-							button{
+							button {
 								top:60px;
 								width:60px;
 								height:25px;
 							}
 
-							button:first-child{
+							button:first-child {
 								background:#cda654;
 								color:black;
 								margin-top:60px;
 							}
 
-							button:last-child{
+							button:last-child {
 								background:black;
 								color:#cda654;
 							}
 
-							.game-name{
+							.game-name {
 								display:inline-block;
-								float:left;
+								float: left;
 								height:30px;
 								width: $gameNameWidth;
 	    						text-align: left;
 	    						overflow: hidden;
 	    						white-space: nowrap;
 	    						text-overflow: ellipsis;
+	    						vertical-align: top;
 							}
 
 							.recommend-no {
 								color: #999999;
+								display: inline-block;
 								font-weight: bold;
+								float: right;
+								margin-right: 3px;
+								vertical-align: top;
 							}
 
 							.collect {
 								background-image: url("../img/search-star.png");
-								background-position: -45px -2px;
+								background-position: -45px -4px;
 								cursor: pointer;
 								display: inline-block;
+								float: right;
 								height: 23px;
 								width: 20px;
 							}
@@ -619,10 +640,6 @@
 								}
 							}
 						}
-					}
-
-					li:hover {
-						border:1px solid #cda654;
 					}
 
 					.hover-layer {
@@ -668,7 +685,7 @@
 
 		$topLeftHeadHeight      :    $baseWidth * 90 / $baseL;
 		$topLeftUlHeight        :    $baseWidth * 240 / $baseL;
-		$topLeftLiHeight        :    $topLeftUlHeight / 8;
+		$topLeftLiHeight        :    $topLeftUlHeight / 7;
 
 		$topRightTitleHeight    :    $baseWidth * 72 / $baseL;
 		$topRightMoneyHeight    :    $baseWidth * 77 / $baseL;
@@ -697,7 +714,6 @@
 		$treeLiPaddingLeft      :    $baseWidth * 60 / $baseL;
 		$treeLiHeight           :    $baseWidth * 45 / $baseL;
 
-		@include page-property;
 		width: $baseWidth;
 
 		.wrapper {
@@ -713,12 +729,12 @@
 						height: $topLeftHeadHeight;
 
 						.title {
-							color: $yellow2;
+							font-size: 20px;
 							margin-top: $czcjHeadTopGap;
 						}
 
 						.marqueen-li1 {
-							top: $czcjLi1Top;
+							top: $czcjLi1Top - 3px;
 						}
 					}
 
@@ -740,133 +756,52 @@
 
 				.middle-banner{
 					width: $topMiddleModuleWidth;
-			    	height: 100%;
 					margin: 0 $topModuleGap;
-					float: left;
-					transition: all .5s;
-					overflow: hidden;
-
-					.unslider {
-						overflow: hidden;
-					    position: relative;
-
-						.sliders {
-							min-height: 228px;
-
-							li {
-								cursor: pointer;
-								
-								img {
-									width: 100%;
-								}
-							}
-						}
-
-						.unslider-nav {
-						    position: absolute;
-						    bottom: 10px;
-						    left: 20px;
-
-						    li {
-						    	background-color: #FFF;
-						    	opacity: 0.3;
-						    	height: 8px;
-							    width: 8px;
-						    }
-
-						    .unslider-active {
-						    	opacity: 0.5;
-						    }
-						}
-					}
 				}
 
 				.top-right-module{
-					background: $purple2;
-			    	float: left;
-			    	height: 100%;
 			    	width: $topRightModuleWidth;
-			    	transition: all .5s;
 					
 					.jackpots-title {
-						border-top: 3px solid $yellow2;
-						color: $yellow2;
-						font-size: 42px;
-						font-weight: 700;
+						font-size: 32px;
 						height: $jackpotsHeadHeight;
 						line-height: $jackpotsHeadHeight;
-						text-align: center;
 					}
 
 					.amount-info {
-						background-image: url(../img/jackpot-money-bk.png);
-						background-repeat: no-repeat;
-					    background-size: 100%;
-						color: #FFF;
-						font-size: 16px;
-						text-align: center;
-						background-size: 100%;
-						font-size: 27px;
+						font-size: 22px;
 						height: $amountInfoHeight;
 						line-height: $amountInfoHeight;
 						width: $amountInfoWidth;
-						margin: 0 auto;
-						position: relative;
-						text-align: center;
-
-						.spinner {
-							top: 72%;
-						}
 					}
 
 					.user-info {
 						margin-bottom: $jackpotsGap;
 						margin-top: $jackpotsGap - 3px;
-						color: #fff;
-						text-align: center;
 
 						p {
-							font-size: 14px;
-							height: 20px;
-							line-height: 20px;
-							width: 100%;
-							
-							.userName {
-								margin-left: 5px;
-							}
+							font-size: 12px;
 						}
 
 						h3 {
-							margin: 10px 0;
-							font-size: 14px;
-							font-weight: normal;
+							font-size: 12px;
 						}
 					}
 
 					.button {
-						background: $green;
-						border-radius: 20px;
-						color: #FFF;
-						cursor: pointer;
-						font-size: 16px;
-						font-weight: bold;
+						font-size: 14px;
 						height: $jackpotsButtonHeight;
 						line-height: $jackpotsButtonHeight;
 						width: $jackpotsButtonWidth;
-						margin-bottom: 14px;
-					}
-
-					button:hover{
-						color: $font-color2;
 					}
 				}
 			}
 
-			.middle-module{
+			.middle-module {
 				width: $baseWidth;
 			}
 
-			.bottom-module{
+			.bottom-module {
 				.bottom-left {
 					width: $bottomLeftModuleWidth;
 
@@ -876,7 +811,12 @@
 						margin-top: $gap;
 
 						.search-btn {
+						    background-position: -10px -78px;
 						    height: $searchBoxHeight;
+
+						    &:hover {
+						    	background-position: -10px -38px;
+						    }
 						}
 
 						input{
@@ -911,14 +851,18 @@
 							}
 
 							p {
-								.game-name{
+								.game-name {
 									width: $gameNameWidth;
 								}
 							}
 						}
+
+						.hover-layer {
+							height: $gameImageHeight;
+						}
 					}
 
-					.more-game{
+					.more-game {
 		    			width: $bottomRightModuleWidth - $gap * 2;
 		    			margin-left: $gap;
 					}

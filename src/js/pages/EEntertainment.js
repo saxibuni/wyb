@@ -625,10 +625,11 @@
 						'<img src='+app.imageServer + data[i].ImageUrl+'>' +
 						'<p>' +
 							'<span class="game-name">' + data[i].Title + '</span>'+
-							'<span class="recommend-no">' + data[i].RecommendNo + '</span>' +
 							'<span class="collect' +
 								(($.inArray(data[i].Id, ids) != -1)?' collected': '') +
 							'"></span>' +
+							'<span class="recommend-no">' + data[i].RecommendNo + '</span>' +
+							'<span class="clear"></span>' +
 						'</p>'+
 						'<p id="hover-layer" class="hover-layer-none">' +
 							'<button class="start-game">开始游戏</button>' +
@@ -799,7 +800,7 @@
 		        that.getGameListByName();
 		    }
 		});
-		
+
 		$(document).scroll(function(e) {
 		    var viewH     = $('body').height();
 		    var contentH  = $('body').get(0).scrollHeight; 
