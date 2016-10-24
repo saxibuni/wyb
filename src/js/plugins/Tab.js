@@ -9,6 +9,7 @@ $(function(){
 	Tab.prototype.initDom = function() {
 		var temp = 	'<ul class="tab" id="' + this.id + '">' +
 						this.createTitle() +
+						'<li class="stick"></li>' +
 					'</ul>';
 
 		this.el = temp;
@@ -35,13 +36,19 @@ $(function(){
 	}
 
 	Tab.prototype.bindEvents = function() {
+		var index;
+		var stick;
 		var that = this;
 
 		this.zone = $('#' + this.id);
+		stick     = this.zone.find('.stick');
 
 		this.zone.find('li').click(function () {
+			index = $(this).index();
+
 			that.zone.find('li').removeClass('selected');
 			$(this).addClass('selected');
+			stick.css('left', 150 * index + 'px');
 		});
 	}
 

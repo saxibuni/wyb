@@ -22,14 +22,14 @@
 
 	//给個人中心用的
 	IMDialog.prototype.showPersonalCenterOverlay = function () {
-		this.zone.removeClass('pc-modal-dialog-deactive');
-		this.zone.addClass('pc-modal-dialog-active');
+		// this.zone.removeClass('pc-modal-dialog-deactive');
+		// this.zone.addClass('pc-modal-dialog-active');
 	};
 
 	//给個人中心用的
 	IMDialog.prototype.hidePersonalCenterOverlay = function () {
-		this.zone.removeClass('pc-modal-dialog-active');
-		this.zone.addClass('pc-modal-dialog-deactive');
+		// this.zone.removeClass('pc-modal-dialog-active');
+		// this.zone.addClass('pc-modal-dialog-deactive');
 	};
 
 	IMDialog.prototype.bindOverlayEvents = function () {

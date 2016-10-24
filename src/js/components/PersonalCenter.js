@@ -2,16 +2,16 @@ $(function(){
 	function PersonalCenter(opt) {
 		this.mainWalletData  = {
 			moneyType: '¥',
-			balance: '100,000,000.00',
+			balance: '0.00',
 			moneyUnit: 'CNY'
 		};
 
 		this.tabData = {
 		    'zjgl': ['充值','转账','提现'],
-		    'jyjl':['充值记录','转账记录','提款记录','投注记录','红利记录'],
-		   	'zhsz':['基本信息','安全中心'],
-		   	'znx':['站内信','通知公告'],
-		}
+		    'jyjl': ['充值记录','转账记录','提款记录','投注记录','红利记录'],
+		   	'zhsz': ['基本信息','安全中心'],
+		   	'znx' : ['站内信','通知公告'],
+		};
 
 		IMDialog.call(this, opt || {});
 		this.initDom();
@@ -25,36 +25,53 @@ $(function(){
 							'<div class="dialog">' +
 								'<div class="left-container">' +
 									'<div class="user-profiles">' +
-										'<img src="../img/T0.png" class="user-img" />' +
 										'<div class="user">' +
-											'<span class="username">' + app.userTotalInfo.UserName + '</span>' +
-											'<img src="../img/t01.png" />' +
-											'<span class="vip">VIP' + app.userTotalInfo.UserLevel + '</span>' +
+											'<div class="username">' +
+												'<span>Hi, &nbsp;</span>' + 
+												'<span>' +
+													app.userTotalInfo.UserName +
+												'</span>' +
+											'</div>' +
+											
+											'<div class="user-level">' +
+												'<span class="pc-icon crown-icon"></span>' +
+												'<span class="vip">VIP' + app.userTotalInfo.UserLevel + '</span>' +
+											'</div>' +
 										'</div>' +
+
 										'<div class="psw-info">' +
 											'<span class="psw-intro">安全等级</span>' +
 											'<span class="psw-level-value">80%</span>' +
-											'<div class="psw-level">' +
-												'<div>' +
-													'<div class="psw-line-value">' +
-													'</div>' +
-												'</div>' +
-												'<span>提升</span>' +
-												'<div class="menu-ico">' +
-													'<img src="../img/a01-h.png" />' +
-													'<img src="../img/a02-n.png" />' +
-													'<img src="../img/a03-n.png" />' +
-												'</div>' +	
-											'</div>' +
+											'<a>提升</a>' +
+											'<span class="clear"></span>' +
 										'</div>' +
+
+										'<ul class="menu-ico">' +
+											'<li><span class="pc-icon bankcard-icon"></span></li>' +
+											'<li class="binded"><span class="pc-icon mailbox-icon"></span></li>' +
+											'<li class="binded"><span class="pc-icon phone-icon"></span></li>' +
+										'</ul>' +
 									'</div>' +
 
 									'<div class="tree">' +
 										'<ul>' +
-	                                    	'<li><span>资金管理</span><div></div></li>' +
-	                                    	'<li><span>交易记录</span><div></div></li>' +
-	                                    	'<li><span>账户设置</span><div></div></li>' +
-	                                    	'<li><span>站内信</span><span class="letter-count">(2)</span><div></div></li>' +
+	                                    	'<li class="selected">' +
+	                                    		'<span class="pc-icon dollar-icon"></span>' +
+	                                    		'<span>资金管理</span>' +
+	                                    	'</li>' +
+	                                    	'<li>' +
+	                                    		'<span class="pc-icon file-icon"></span>' +
+	                                    		'<span>交易记录</span>' +
+	                                    	'</li>' +
+	                                    	'<li>' +
+	                                    		'<span class="pc-icon setting-icon"></span>' +
+	                                    		'<span>账户设置</span>' +
+	                                    	'</li>' +
+	                                    	'<li>' +
+	                                    		'<span class="pc-icon station-mail-icon"></span>' +
+	                                    		'<span>站内信</span>' +
+	                                    		'<span class="letter-count">(2)</span>' +
+	                                    	'</li>' +
 										'</ul>' +
 										'<div class="stick"></div>' +
 									'</div>' +
@@ -62,18 +79,22 @@ $(function(){
 
 								'<div class="right-container">' +
 									'<div class="center-wallet wallet" data-platform="center">' +
-										'<img src="../img/refresh-h.png" class="refresh" />' +
-										'<span class="zxqb">中心钱包</span>' +
-										'<span class="money money-type">¥  </span><span class="money balance">100,000,000.00</span><span class="money-unit">  CNY</span>' +
-										'<hr class="line">' +
-										'<a href="javascript:void(0);" class="btn turn-out">转出</a>' +
-										'<a href="javascript:void(0);" class="btn turn-in">转入</a>' +									
+										'<div class="title">中心钱包</div>' +
+
+										'<div class="center-balance">' +
+											'<span class="money money-type">¥&nbsp;</span><span class="money balance">100,000,000.00</span><span class="money-unit">元</span>' +	
+											'<span class="pc-icon refresh-icon refresh"></span>' +
+											'<span class="clear"></span>' +
+										'</div>' +
+
+										'<div class="actions">'	+
+											'<a href="javascript:void(0);" class="btn btn-deposit">充值</a>' +
+											'<a href="javascript:void(0);" class="btn btn-transfer">转账</a>' +	
+											'<span class="clear"></span>' +
+										'</div>' +					
 									'</div>' +
 
-									'<div class="nav-left"><span><img src="../img/left-n.png" /></span></div>' +
-									'<div class="wallet-zone">' +
-									'</div>' +
-									'<div class="nav-right"><span><img src="../img/right-n.png" /></span></div>' +
+									'<div class="wallet-zone"></div>' +
 									'<div class="clear"></div>' +
 
 									'<div class="tab-container">' +
@@ -308,16 +329,14 @@ $(function(){
 			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)');
 		});
 
-		this.zone.find('.turn-in').click(function () {
+		this.zone.find('.btn-deposit').click(function () {
 			platform = $(this).parents('.wallet').attr('data-platform');
-			app.personCenterRouter(0, 1);
-    		//that.zz.toSelect.setValueById(platform);
+			app.personCenterRouter(0, 0);
 		});
 
-		this.zone.find('.turn-out').click(function () {
+		this.zone.find('.btn-transfer').click(function () {
 			platform = $(this).parents('.wallet').attr('data-platform');
 			app.personCenterRouter(0, 1);
-			//that.zz.fromSelect.setValueById(platform);
 		});
 
         walletzone.delegate('.sub-wallet','mouseover',function() {
@@ -351,9 +370,11 @@ $(function(){
 		menuUl = this.zone.find('.tree > ul');
 		stick = this.zone.find('.stick');
 
-        menuUl.delegate('li','click',function(){
+        menuUl.delegate('li','click',function() {
+        	menuUl.children('li').removeClass('selected');
+        	$(this).addClass('selected');
             index = $(this).index();
-            stick.css('top',(index * 32) + 'px');
+            stick.css('top',(index * 50) + 'px');
             tabZone = that.zone.find('[menu-index="' + index +'"]');
 
             if (tabZone.html() == '') {

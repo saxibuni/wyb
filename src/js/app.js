@@ -430,6 +430,52 @@
 		this.showSignInDialog();
 	};
 
+	app.prototype.showPersonalCenter = function () {
+		this.userTotalInfo = {
+		    "Id": 39,
+		    "UserName": "mirek2016013",
+		    "UserLevel": 4,
+		    "UserLevelName": "四级会员",
+		    "TrueName": "王小四",
+		    "Cash": 1999997126.98,
+		    "Email": "",
+		    "EmailValidateStatus": false,
+		    "Phone": "123",
+		    "PhoneValidateStatus": false,
+		    "Birthday": "2016-10-03 00:00:00",
+		    "MaxDeposit": 500000,
+		    "MinDeposit": 100,
+		    "MaxWithdraw": 1000000,
+		    "MinWithdraw": 0,
+		    "SingleMaxWithdraw": 500000,
+		    "SingleMinWithdraw": 100,
+		    "ThirdPayDepositSingleMax": 50000,
+		    "ThirdPayDepositSingleMin": 50,
+		    "HasWithdrawalPassword": true,
+		    "CreateTime": "2016-10-04 01:31:20",
+		    "AliPayMaxAmount": 500,
+		    "AliPayMinAmount": 10,
+		    "WXMaxAmount": 500,
+		    "WXMinAmount": 10,
+		    "UserGroup": {
+		        "Id": 3,
+		        "GroupName": "大客户组",
+		        "ThirdPays": null,
+		        "AutoPays": null,
+		        "AdminBanks": null
+		    },
+		    "LastLoginTime": "2016-10-23 23:33:47"
+		};
+
+		if (!this.personCenterDialog) {
+			this.personCenterDialog = new PersonalCenter();
+			$('.app').append(this.personCenterDialog.getDom());
+			this.personCenterDialog.bindEvents();
+		}
+
+		this.personCenterDialog.show();
+	};
+
 	app.prototype.bindEvents = function () {
 		this.suspension.bindEvents();
 		this.header.bindEvents();
@@ -438,4 +484,5 @@
 
 	window.app = new app();
 	window.app.initRouter();
+	window.app.showPersonalCenter();
 })();
