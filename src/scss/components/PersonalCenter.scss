@@ -18,6 +18,9 @@
         $rightContainerWidth    :    $baseWidth - $leftContainerWidth;
         $centerWalletWidth      :    $baseWidth * 270 / $baseL;
         $walletZoneWidth        :    $baseWidth * 780 / $baseL;
+        $subWalletWidth         :    $baseWidth * 170 / $baseL;
+        $swiperNavWidth         :    ($walletZoneWidth - $subWalletWidth * 4) / 2;
+
         $centerWalletHeight     :    170px;
         $userProfileHeight      :    140px;
         $userProfileHeight1     :    26px;
@@ -28,6 +31,11 @@
         $CWHeight1              :    50px;
         $CWHeight2              :    70px;
         $CWHeight3              :    50px;
+
+        $tabContainerTop        :    $centerWalletHeight + $gap + $gap2;
+        $tabContainerLeft       :    $gap2;
+        $tabContainerBottom     :    $gap2;
+        $tabContainerRight      :    $gap2;
 
         $pc-icon-top1           :   -9px;
         $pc-icon-top2           :   -47px;
@@ -84,6 +92,18 @@
         .station-mail-icon {
             background-position: -273px $pc-icon-top3;
             height: 15px;
+            width: 15px;
+        }
+
+        .left-icon {
+            background-position: -305px $pc-icon-top1;
+            height: 35px;
+            width: 15px;
+        }
+
+        .right-icon {
+            background-position: -335px $pc-icon-top1;
+            height: 35px;
             width: 15px;
         }
 
@@ -287,9 +307,11 @@
                 background-color: $purple5;
                 float: right;
                 box-sizing: border-box;
+                overflow: hidden;
                 width: $rightContainerWidth;
                 height: 100%;
                 padding: $gap2;
+                position: relative;
 
                 .center-wallet {
                     background-color: $purple1;
@@ -354,6 +376,7 @@
                     .actions {
                         height: $CWHeight3;
                         line-height: $CWHeight3;
+                        text-align: center;
 
                         .btn {
                             background-color: $purple6;
@@ -371,75 +394,127 @@
                         }
 
                         .btn-deposit {
-                            float: left;
+                            margin-right: 30px;
                         }
-
-                        .btn-transfer {
-                            float: right;
-                        }
-                    }
-                }
-
-                .nav-left,.nav-right{
-                    height: 128px;
-                    width: 16px;
-                    margin:0 4px;
-                    float: left;
-                    display:table;
-                    text-align:center;
-                    position: absolute;
-
-                    span{
-                        display:table-cell;
-                        vertical-align:middle;
-                        cursor: pointer;
-                    }
-
-                    img{
-                        vertical-align: middle;
                     }
                 }
 
                 .wallet-zone {
                     background-color: $purple1;
-                    height: $centerWalletHeight;
-                    width: $walletZoneWidth;
-                    margin-left: $gap;
-                    float: left;
-                    padding-left: 2px;
                     box-sizing: border-box;
+                    float: left;
+                    height: $centerWalletHeight;
+                    margin-left: $gap;
                     overflow: hidden;
-                    transition: all .3s;
+                    position: relative;
                     text-align: center;
-                    
-                    .swiper {
+                    transition: all .3s;
+                    width: $walletZoneWidth;
+
+                    .wallet-left-nav {
+                        cursor: pointer;
+                        display: inline-block;
                         height: 100%;
-                        @include transition(0.4s);
+                        position: relative;
+                        vertical-align: top;
+                        width: $swiperNavWidth;
+
+                        .left-icon {
+                            position: absolute;
+                            left: 0;
+                            top: 50%;
+                            margin-top: -18px;
+                        }
+
+                        &:hover {
+                            .left-icon {
+                                background-position: -305px -45px;
+                            }
+                        }
                     }
 
-                    .wallet-group{
+                    .wallet-right-nav {
+                        cursor: pointer;
+                        display: inline-block;
                         height: 100%;
-                        width: 170px;
-                        margin: 0 1px;
-                        float: left;
+                        position: relative;
+                        vertical-align: top;
+                        width: $swiperNavWidth;
 
-                        .sub-wallet {
-                            margin-top: 17px;
+                        .right-icon {
+                            position: absolute;
+                            right: 0;
+                            top: 50%;
+                            margin-top: -18px;
+                        }
+
+                        &:hover {
+                            .right-icon {
+                                background-position: -335px -45px;
+                            }
+                        }
+                    }
+
+                    .swiper-container {
+                        display: inline-block;
+                        height: 100%;
+                        overflow: hidden;
+                        width: $subWalletWidth * 4;
+
+                        .swiper {
+                            height: 100%;
+                            @include transition(0.4s);
+                            width: 10000px;
+
+                            .wallet-group {
+                                height: 100%;
+                                width: $subWalletWidth;
+                                margin: 0 1px;
+                                float: left;
+
+                                .sub-wallet {
+                                    margin-top: 17px;
+                                }
+                            }
                         }
                     }
                 }
 
-                .tab-container{
-                    margin-top: $gap;
-                    text-align: left;
-                    width: 100%;
+                ::-webkit-scrollbar
+                {
+                    width: 10px;
+                    height: 10px;
+                    background-color: $purple1;
+                }
+                 
+                /*定义滚动条轨道 内阴影+圆角*/
+                ::-webkit-scrollbar-track
+                {
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                    border-radius: 10px;
+                    background-color: $purple1;
+                }
+                
+                /*定义滑块 内阴影+圆角*/
+                ::-webkit-scrollbar-thumb
+                {
+                    border-radius: 10px;
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                    background-color: $purple2;
+                }
 
-                    & > div > div > div {
-                        transform: scale(0.8);
-                        transform-origin: 0 0;
-                        width: 125%;
-                        max-height: 452px;
-                        overflow-y: auto;
+                .tab-container {
+                    background-color: $purple1;
+                    bottom: $tabContainerBottom;
+                    position: absolute;
+                    text-align: left;
+                    top: $tabContainerTop;
+                    left: $tabContainerLeft;
+                    right: $tabContainerRight;
+                    overflow: auto;
+
+                    .tab-container-item {
+                        width: 100%;
                     }
                 }
             }
@@ -454,14 +529,9 @@
                 cursor: pointer;
 
                 &:hover {
-                    color: #DCAD4B;
+                    color: $font-color2;
                 }
             }
-        }
-
-        .scale {
-            transform: scale(1.2) !important;
-            transition: transform .5s;
         }
     }
 }

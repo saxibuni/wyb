@@ -16,19 +16,30 @@
 		line-height: 40px;
 		width: 150px;
 		text-align: center;
+
+		&:hover {
+			color: $font-color2;
+		}
 	}
 
     .stick {
         height: 3px;
         width: 150px;
         position: absolute;
-        background-color: $red;
+        background-color: none;
         bottom: 0px;
         left: 0px;
         transition: left 0.5s;
         -moz-transition: left 0.5s;
         -webkit-transition: left 0.5s;
         -o-transition: left 0.5s;
+
+        .filler {
+        	background-color: $red;
+        	height: 100%;
+        	margin: 0 auto;
+        	width: 88px;
+        }
     }
 
 	.selected {

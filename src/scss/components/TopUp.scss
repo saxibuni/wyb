@@ -1,4 +1,5 @@
 @import "../mixins.scss";
+
 .top-up {
 	@include tab-page;
 	display:block;
@@ -6,14 +7,12 @@
 	.row1 {
 		ul {
 			li {
-				border: 1px solid #CCCCCC;
 				cursor: pointer;
-				color: #999999;
+				color: font-color1;
 				display: inline-block;
 				height: 32px;
 				line-height: 32px;
 				width: 120px;
-				background-color: #F9FBFF;
 				text-align: center;
 
 				&:first-child {

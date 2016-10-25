@@ -6,7 +6,7 @@ $headerRow1Height          :   40px;
 $headerRow2Height          :   60px;
 $theme-background-color    :   #170E1F;
 $theme-font-color          :   #514859;
-$font-color1               :   #B5B3B6;
+$font-color1               :   #52495a;
 $font-color2               :   #FFFEFD;
 $font-color3               :   #B1A9B8;
 $sign-input-border-color   :   #605768;
@@ -49,12 +49,12 @@ $platform-icon-top2        :   -140px;
     }
 }
 
-@mixin tab-page{
+@mixin tab-page {
+    background-color: $purple1;
     display: none;
     height: 100%;
     width: 100%;
-    border: 1px solid #CDA654;
-    padding: 18px 30px;
+    padding: 20px;
     box-sizing: border-box;
 }
 

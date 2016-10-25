@@ -9,7 +9,9 @@ $(function(){
 	Tab.prototype.initDom = function() {
 		var temp = 	'<ul class="tab" id="' + this.id + '">' +
 						this.createTitle() +
-						'<li class="stick"></li>' +
+						'<li class="stick">' +
+							'<div class="filler"></div>' +
+						'</li>' +
 					'</ul>';
 
 		this.el = temp;

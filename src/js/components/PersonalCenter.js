@@ -99,7 +99,7 @@ $(function(){
 
 									'<div class="tab-container">' +
 										'<div class="tab-container-item zjgl-zone" menu-index="0">' +
-											this.createZjgl() +	
+											this.createZjgl() +
 										'</div>' +
 										'<div class="tab-container-item jyjl-zone" menu-index="1">' +
 											// this.createJyjl() +
@@ -154,11 +154,22 @@ $(function(){
 			if (i % 2 != 0) 
 				temp += '</div>';
 		}
+
 		if (this.subWalletData.length % 2 != 0)  temp += '</div>';
 
-		swipperWith = 172 *  Math.round(this.subWalletData.length / 2);
-		temp = '<div class="swiper" style="width:' + swipperWith + 'px">' + temp;
-		temp += '</div>';
+		temp =	'<div class="wallet-left-nav">' +
+					'<div class="pc-icon left-icon"></div>' +
+				'</div>' +
+
+				'<div class="swiper-container">' +
+					'<div class="swiper">' +
+						temp +
+					'</div>' +
+				'</div>' +
+
+				'<div class="wallet-right-nav">' +
+					'<div class="pc-icon right-icon"></div>' +
+				'</div>';
 		
 		this.zone.find('.wallet-zone').html(temp);
 
@@ -311,22 +322,25 @@ $(function(){
 
 	PersonalCenter.prototype.bindWalletEvents = function () {
 		var platform;
+		var walletWidth;
 		var that       = this;
 		var pageIndex  = 0;
 		var pageCount  = Math.round(this.subWalletData.length / 2) - 3;
 		var swiper     = this.zone.find('.swiper');
 		var walletzone = this.zone.find('.wallet-zone');
 
-		this.zone.delegate('.nav-left','click',function() {
+		this.zone.delegate('.wallet-left-nav','click',function() {
+			walletWidth = swiper.find('.wallet-group').width();
 			if (pageIndex == 0) return;
 			pageIndex--;
-			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)');
+			swiper.css('transform', 'translateX(' + (0 - walletWidth * pageIndex) + 'px)');
 		});
 
-		this.zone.delegate('.nav-right','click',function() {
+		this.zone.delegate('.wallet-right-nav','click',function() {
+			walletWidth = swiper.find('.wallet-group').width();
 			if (pageIndex == pageCount - 1) return;
 			pageIndex++;
-			swiper.css('transform', 'translateX(' + (0 - 98 * pageIndex) + 'px)');
+			swiper.css('transform', 'translateX(' + (0 - walletWidth * pageIndex) + 'px)');
 		});
 
 		this.zone.find('.btn-deposit').click(function () {
@@ -484,12 +498,13 @@ $(function(){
 
         	if (index === 0) {
         		that.stationLetter.show();
-        	}else if(index === 1){
+        	}else if(index === 1) {
         		if (!that.announcement ) {
 	        		that.announcement = new Announcement();
 	        		that.zone.find('.znx-content').append(that.announcement.getDom());
-	        		that.announcement.bindEvents();       			
+	        		that.announcement.bindEvents();
         		}
+
         		that.announcement.show();
         	}
         });

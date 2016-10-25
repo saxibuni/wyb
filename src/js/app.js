@@ -476,10 +476,37 @@
 		this.personCenterDialog.show();
 	};
 
+	app.prototype.GetLoginStatus = function (cb) {
+		var that = this;
+
+        $.ajax({
+            type: 'GET',
+            url: this.urls.loginStatus,
+            dataType: 'json',
+            timeout: this.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			if (json == 0) {
+				that.signedInProcedures();
+				that.showPersonalCenter();
+			}
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
 	app.prototype.bindEvents = function () {
 		this.suspension.bindEvents();
 		this.header.bindEvents();
 		this.footer.bindEvents();
+		this.GetLoginStatus();
 	};
 
 	window.app = new app();

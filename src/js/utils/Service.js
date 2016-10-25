@@ -74,7 +74,7 @@ $(function () {
 
     Service.prototype.getLoginStatus = function (callback) {
         var opt  =  {
-            url: this.urls.loginStatus,
+            url: app.urls.loginStatus,
             data: {}
         };
 
