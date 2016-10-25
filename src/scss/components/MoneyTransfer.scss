@@ -47,19 +47,8 @@
 			text-align: left;
 
 			.button {
-				margin-left: 67px;
-	            background-color: $purple6;
-	            border-radius: 20px;
-	            color: $font-color1;
-	            display: inline-block;
-	            font-size: 14px;
-	            height: 30px;
-	            line-height: 30px;
-	            width: 130px;
-
-	            &:hover{
-	                color: $font-color2;
-	            }
+				margin-left: 58px;
+	            @include button1;
 			}
 		}
 

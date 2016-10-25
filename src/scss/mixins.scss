@@ -193,6 +193,21 @@ $platform-icon-top2        :   -140px;
     }
 }
 
+@mixin button1 {
+    background-color: $purple6;
+    border-radius: 20px;
+    color: $font-color1;
+    display: inline-block;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    width: 130px;
+
+    &:hover{
+        color: $font-color2;
+    }
+}
+
 
 .clear {
     clear:both; 

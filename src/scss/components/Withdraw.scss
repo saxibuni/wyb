@@ -3,19 +3,24 @@
 .withdraw {
 	@include tab-page;
 
+    $baseL                  :    1300;
+    $baseWidth              :    1300px;
+    $bankWidth              :    400px;
+    $bankHeight             :    45px;
+
 	.title {
-		background-color: #E8E9E1;
+		background: none;
+		color: $font-color1;
 		height: 30px;
 		line-height: 30px;
 	    width: 95%;
-	    padding: 0 20px;
 
 		.text {
-			color: #494A5C;
+			color: $font-color1;
 		}
 
 		.value {
-			color: #494A5C;
+			color: $font-color1;
 		}
 
 		.left {
@@ -35,7 +40,7 @@
 				background: none;
 			    height: 30px;
 			    line-height: 30px;
-			    color: #333333;
+			    color: $font-color1;
 			    margin-top: 20px;
 			    padding-left: 0;
 			}
@@ -44,53 +49,56 @@
 				margin-top: 10px;
 
 				li {
-					border: 1px solid #DBDBDB;
+					background-color: #FFF;
 					cursor: pointer;
-					height: 35px;
-					line-height: 35px;
-					width: 340px;
+					display: inline-block;
+				    height: $bankHeight;
+				    line-height: $bankHeight;
+				    width: $bankWidth;
+					margin-right: 20px;
 					margin-top: 20px;
+					text-align: center;
 					overflow: hidden;
+					position: relative;
 
-					&:hover{
-						border: 1px solid red;
-					}
-
-					input {
-					    vertical-align: top;
-					    position: relative;
-					    top: 7px;
-					    left: 10px;
-					    cursor: pointer;
+					&:hover {
+						.card-overlay {
+							display: none;
+						}
 					}
 
 					.text {
-						vertical-align: top;
-						color: #494A5C;
-					}
-
-					.value {
-						vertical-align: top;
-						color: #494A5C;
+						display: inline-block;
 					}
 
 					.logo {
-						display: inline-block;
-						width: 150px;
-						text-align: center;
+						margin-right: 20px;
 					}
 
-					&:first-child {
-						margin-top: 0px;
+					input[type='radio'] {
+						position: absolute;
+						top: 14px;
+						left: 9px;
 					}
 
-					img {
-						position: relative;
+					.bankLogo {
+						margin-top: 5px;
+					}
+
+					.card-overlay {
+						background: rgba(0, 0, 0, .5);
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						left: 0;
+						right: 0;
 					}
 				}
 
-				.selected{
-					border: 1px solid red;
+				.selected {
+					.card-overlay {
+						display: none;
+					}
 				}
 			}
 		}
@@ -99,11 +107,11 @@
 			margin-top: 20px;
 
 			.text {
-				color: #333333;
+				color: $font-color1;
 				display: inline-block;
 				height: 30px;
 				line-height: 30px;
-				bottom: 12px;
+				bottom: 8px;
 				position: relative;
 				margin-right: 10px;
 			}
@@ -113,7 +121,7 @@
 			}
 
 			.input-notice {
-				color: #999999;
+				color: $font-color1;
 				font-size: 12px;
 				height: 20px;
 				line-height: 20px;
@@ -125,8 +133,8 @@
 			margin-top: 28px;
 
 			.button {
-				position: relative;
-				left: 68px;
+				margin-left: 67px;
+				@include button1;
 			}
 		}
 	}

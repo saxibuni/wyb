@@ -33,16 +33,16 @@
 						'<div class="title">' +
 							'<div class="left">' +
 								'<span class="text">尊敬的</span>' +
-								'<span class="username value">DOMO001</span>' +
+								'<span class="username value">' + app.userTotalInfo.UserName + '</span>' +
 								'<span class="text">，目前账户可用提现余额：</span>' +
 								'<span class="balance value">' + app.userTotalInfo.Cash + '</span>' +
 								'<span class="text">元</span>' +
 							'</div>' +
 
-							'<div class="right">' +
-								'<span class="text">今日提现次数：</span>' +
-								'<span class="withdraw-times value">5/5</span>' +
-							'</div>' +
+							// '<div class="right">' +
+							// 	'<span class="text">今日提现次数：</span>' +
+							// 	'<span class="withdraw-times value">5/5</span>' +
+							// '</div>' +
 
 							'<div class="clear"></div>' +
 						'</div>' +
@@ -118,6 +118,7 @@
 						'<span class="text">[' + nameStart + '</span>' +
 						'<span class="value tailname">' + tailname +'</span>' +
 						'<span class="text">]</span>' +
+						'<div class="card-overlay"></div>' +
 					'</li>';
 
 		this.zone.find('.user-banks').append(temp);
