@@ -2,7 +2,12 @@
 
 .top-up {
 	@include tab-page;
-	display:block;
+	display: block;
+
+    $baseL                  :    1300;
+    $baseWidth              :    1300px;
+    $bankWidth              :    180px;
+    $bankHeight             :    45px;
 
 	.row1 {
 		ul {
@@ -16,14 +21,6 @@
 				line-height: 32px;
 				width: 120px;
 				text-align: center;
-
-				&:first-child {
-					border-right: none;
-				}
-
-				&:last-child {
-					border-left: none;	
-				}
 			}
 
 			.selected {
@@ -35,7 +32,6 @@
 
 	.content {
 		.fast-topup {
-
 		}
 
 		.superfast-topup {
@@ -133,49 +129,62 @@
 		margin-top: 20px;
 
 		.title {
-			color: #999999;
+			color: $font-color1;
 			height: 30px;
 			line-height: 30px;
 		}
 
 		ul {
 			li {
+				background-color: #FFF;
 				color: #999999;
 				cursor: pointer;
-				border: 1px solid #DBDBDB;
 				display: inline-block;
-			    height: 36px;
-			    line-height: 35px;
-				width: 150px;
+			    height: $bankHeight;
+			    line-height: $bankHeight;
+			    width: $bankWidth;
 				margin-right: 20px;
-				margin-top: 10px;
-				text-align: right;
+				margin-top: 20px;
+				text-align: center;
 				overflow: hidden;
 				position: relative;
 
-				&:hover{
-					border: 1px solid #CDA654;
+				&:hover {
+					.card-overlay {
+						display: none;
+					}
 				}
-	
+
 				input[type='radio'] {
 					position: absolute;
-					top: 8px;
+					top: 14px;
 					left: 9px;
 				}
 
-				img {
-					position: relative;
+				.bankLogo {
+					margin-top: 5px;
+				}
+
+				.card-overlay {
+					background: rgba(0, 0, 0, .5);
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					left: 0;
+					right: 0;
 				}
 			}
 
-			.selected{
-				border: 1px solid #CDA654;
+			.selected {
+				.card-overlay {
+					display: none;
+				}
 			}
 		}
 	}
 
 	.more-bank-cards {
-		color: #0088CC;
+		color: $font-color1;
 		cursor: pointer;
 		height: 30px;
 		line-height: 30px;
@@ -190,7 +199,7 @@
 		margin-top: 20px;
 
 		.text {
-			color: #333333;
+			color: $font-color1;
 			display: inline-block;
 			height: 30px;
 			line-height: 30px;
@@ -200,11 +209,12 @@
 		}
 
 		.unit {
+			color: $font-color1;
 			margin-left: 10px;
 		}
 
 		.input-notice {
-			color: #999999;
+			color: $font-color1;
 			font-size: 12px;
 			height: 20px;
 			line-height: 20px;
@@ -217,6 +227,18 @@
 
 		.button {
 			margin-left: 67px;
+            background-color: $purple6;
+            border-radius: 20px;
+            color: $font-color1;
+            display: inline-block;
+            font-size: 14px;
+            height: 30px;
+            line-height: 30px;
+            width: 130px;
+
+            &:hover{
+                color: $font-color2;
+            }
 		}
 	}
 }

@@ -109,6 +109,7 @@
 	TopUp.prototype.submit1 = function() {
 		if (!this.topupInput.isPass()) {
 			alert('格式不对');
+			return;
 		}
 
 		var callback;
@@ -277,6 +278,7 @@
 	        						'>' +
 									'<input type="radio" name="bank" />' +
 									'<span class="bankLogo ' + bankList[i].CssName + '" src="../img/bankLogo.jpg"></span>' +
+									'<div class="card-overlay"></div>' +
 								'</li>';
         }
 
