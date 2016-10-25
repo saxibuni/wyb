@@ -480,41 +480,56 @@
                     }
                 }
 
-                ::-webkit-scrollbar
-                {
-                    width: 10px;
-                    height: 10px;
-                    background-color: $purple1;
-                }
-                 
-                /*定义滚动条轨道 内阴影+圆角*/
-                ::-webkit-scrollbar-track
-                {
-                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-                    border-radius: 10px;
-                    background-color: $purple1;
-                }
-                
-                /*定义滑块 内阴影+圆角*/
-                ::-webkit-scrollbar-thumb
-                {
-                    border-radius: 10px;
-                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-                    background-color: $purple2;
-                }
-
                 .tab-container {
-                    background-color: $purple1;
                     bottom: $tabContainerBottom;
                     position: absolute;
                     text-align: left;
                     top: $tabContainerTop;
                     left: $tabContainerLeft;
                     right: $tabContainerRight;
-                    overflow: auto;
+                    overflow: hidden;
 
                     .tab-container-item {
+                        height: 100%;
+                        position: relative;
                         width: 100%;
+
+                        ul {
+                            margin-bottom: $gap / 2;
+
+                            & + div {
+                                background-color: $purple1;
+                                position: absolute;
+                                top: $gap / 2 + 40px;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                                overflow: auto;
+                            }
+                        }
+
+                        ::-webkit-scrollbar
+                        {
+                            width: 5px;
+                            height: 5px;
+                            background-color: $purple1;
+                        }
+                        
+                        /*定义滚动条轨道 内阴影+圆角*/
+                        ::-webkit-scrollbar-track
+                        {
+                            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                            border-radius: 10px;
+                            background-color: $purple1;
+                        }
+                        
+                        /*定义滑块 内阴影+圆角*/
+                        ::-webkit-scrollbar-thumb
+                        {
+                            border-radius: 10px;
+                            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                            background-color: $font-color1;
+                        }
                     }
                 }
             }

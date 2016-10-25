@@ -7,9 +7,11 @@
 	.row1 {
 		ul {
 			li {
+				background-color: $purple5;
 				cursor: pointer;
-				color: font-color1;
+				color: $font-color1;
 				display: inline-block;
+				font-size: 14px;
 				height: 32px;
 				line-height: 32px;
 				width: 120px;
@@ -25,7 +27,7 @@
 			}
 
 			.selected {
-				background-color: #0088CC;
+				background-color: #4C3F57;
 				color: #FFF;
 			}
 		}

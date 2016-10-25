@@ -374,7 +374,7 @@ $(function(){
 
 		this.zone = $('.personal-center');
 		menuUl = this.zone.find('.tree > ul');
-		stick = this.zone.find('.stick');
+		stick = this.zone.find('.tree .stick');
 
         menuUl.delegate('li','click',function() {
         	menuUl.children('li').removeClass('selected');
