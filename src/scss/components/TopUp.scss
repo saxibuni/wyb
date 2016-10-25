@@ -52,33 +52,38 @@
 			}
 
 			table {
-				border-top: 1px solid #CCCCCC;
-				border-left: 1px solid #CCCCCC;
-				width: 400px;
-				margin-top: 10px;
+				border-top: 1px solid $border-color1;
+				border-left: 1px solid $border-color1;
+				width: 480px;
+				margin-top: 18px;
 
 				tr {
 					height: 30px;
 					line-height: 30px;
 
 					td {
+						color: $font-color1;
 						text-align: center;
-						border-right: 1px solid #CCCCCC;
-						border-bottom: 1px solid #CCCCCC;
+						border-right: 1px solid $border-color1;
+						border-bottom: 1px solid $border-color1;
+					}
+
+					.td1 {
+						width: 33.33%;
 					}
 				}
 			}
 
 			.deposit-method {
-				margin-top: 10px;
+				margin-top: 18px;
 
 				.title {
-					color: #0097BD;
+					color: $font-color1;
 				}
 
 				ul {
 					display: inline-block;
-					margin-left: 10px;
+					margin-left: 18px;
 
 					li {
 						cursor: pointer;
@@ -86,6 +91,7 @@
 						margin-left: 10px;
 
 						label {
+							color: $font-color1;
 							cursor: pointer;
 							font-size: 12px;
 						}

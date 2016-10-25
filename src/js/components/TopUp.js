@@ -320,15 +320,15 @@
 					'<table>' +
 						'<tbody>' +
 							'<tr>' +
-								'<td class="bank-name">收款银行</td>' +
+								'<td class="td1 bank-name">收款银行</td>' +
 								'<td class="bank-name-value"></td>' +
 							'</tr>' +
 							'<tr>' +
-								'<td class="user-name">账户名</td>' +
+								'<td class="td1 user-name">账户名</td>' +
 								'<td class="user-name-value"></td>' +
 							'</tr>' +
 							'<tr>' +
-								'<td class="account">收款账号</td>' +
+								'<td class="td1 account">收款账号</td>' +
 								'<td class="account-value"></td>' +
 							'</tr>' +
 						'</tbody>' +
