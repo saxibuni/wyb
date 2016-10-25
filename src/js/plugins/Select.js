@@ -7,9 +7,12 @@
 	}
 
 	Select.prototype.initDom = function() {
-		var temp =	'<select class="select' + (this.opt.className?(' ' +this.opt.className): '') + '"' + ((this.opt.id)?(' id="' + this.opt.id + '"'):'') + '>' +
-						this.createOptions() +
-					'</select>';
+		var temp =	'<div class="select' + (this.opt.className?(' ' +this.opt.className): '') + '"' + ((this.opt.id)?(' id="' + this.opt.id + '"'):'') + '>' +
+						'<select>' +
+							this.createOptions() +
+						'</select>' +
+						'<div class="icon down-icon selet-down-icon"></div>' +
+					'</div>';
 
 		this.el = temp;
 	};
@@ -30,24 +33,16 @@
 	};
 
 	Select.prototype.setOptions = function(temp) {
-		this.zone.html(temp);
+		this.zone.children('select').html(temp);
 	};
 
 	Select.prototype.getValue = function() {
-		return this.zone.find('option:selected').attr('data-value');
+		return this.zone.find('select option:selected').attr('data-value');
 	};
 
 	Select.prototype.setValue = function(text) {
-		this.zone.val(text);
+		this.zone.children('select').val(text);
 	};
-
-	// Select.prototype.setValueById = function(Id) {
-	// 	this.zone.val(Id);
-	// };
-
-	// Select.prototype.setValueByName = function(name) {
-	// 	this.zone.find('option[text="' + name + '"]').attr("selected", true); 
-	// };
 
 	Select.prototype.bindEvents = function() {
 		var that = this;

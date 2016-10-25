@@ -44,7 +44,6 @@
 		this.selectProvince = new Select({
 			id: 'topup-province',
 			width: 100,
-			height: 36,
 			data:[
 				{
 					'text': '省',
@@ -56,13 +55,18 @@
 		this.selectCity = new Select({
 			id: 'topup-city',
 			width: 100,
-			height: 36,
 			data:[
 				{
 					'text': '市',
 					'value': '-1'	
 				}
 			]
+		});
+
+		this.selectAdminBank = new Select({
+			id: 'topup-user-admin-bank',
+			width: 210,
+			data:[]
 		});
 
 		temp = 		'<div class="top-up grzx-money-action">' +
@@ -103,7 +107,8 @@
 					'</option>';
 		}
 
-		this.zone.find('.user-admin-banks-select').append(temp);
+		//this.zone.find('.user-admin-banks-select').append(temp);
+		this.selectAdminBank.setOptions(temp);
 	};
 
 	TopUp.prototype.submit1 = function() {
@@ -314,8 +319,9 @@
 		var temp = '';
 
 		temp += '<div class="content-item bank-topup">' +
-					'<select class="user-admin-banks-select">' +
-					'</select>' +
+					// '<select class="user-admin-banks-select">' +
+					// '</select>' +
+					this.selectAdminBank.getDom() +
 
 					'<table>' +
 						'<tbody>' +
@@ -601,6 +607,7 @@
 		this.bankBranchInput.bindEvents();
 		this.selectProvince.bindEvents();
 		this.selectCity.bindEvents();
+		this.selectAdminBank.bindEvents();
 	};
 
 	TopUp.prototype.bindDepositTypesEvents = function() {
@@ -651,7 +658,7 @@
 	};
 
 	TopUp.prototype.bindEvents = function() {
-		this.zone    = $('.top-up');
+		this.zone = $('.top-up');
 	};
 
 	window.TopUp = TopUp;

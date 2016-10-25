@@ -3,29 +3,22 @@
 	@include tab-page;
 
 	.wrapper {
-		width: 600px;
-    	margin: 20px 140px 30px;
+		width: 100%;
         position: relative;
 
 		.text {
-			color: #333333;
+			color: $font-color1;
 			display: inline-block;
 			text-align: right;
-			width: 100px;
 			position: relative;
-			right: 5px;;
-		}
-
-		select {
-			height: 30px;
-			line-height: 30px;
-			width: 200px;
+			margin-right: 10px;
 		}
 
 		.row1 {
 			margin-top: 20px;
 
 			.from-balance {
+				color: $font-color1;
 				display: inline-block;
 				margin-left: 20px;
 			}
@@ -35,6 +28,7 @@
 			margin-top: 20px;
 
 			.to-balance {
+				color: $font-color1;
 				display: inline-block;
 				margin-left: 20px;
 			}
@@ -53,8 +47,19 @@
 			text-align: left;
 
 			.button {
-			    position: relative;
-			    left: 17%;
+				margin-left: 67px;
+	            background-color: $purple6;
+	            border-radius: 20px;
+	            color: $font-color1;
+	            display: inline-block;
+	            font-size: 14px;
+	            height: 30px;
+	            line-height: 30px;
+	            width: 130px;
+
+	            &:hover{
+	                color: $font-color2;
+	            }
 			}
 		}
 

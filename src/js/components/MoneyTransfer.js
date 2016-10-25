@@ -16,27 +16,25 @@
 
 		this.moneyTransferInput = new Input({
 			id: 'money-transfer-input',
-			width: 150,
+			width: 210,
 			height: 30,
 			reg: app.moneyReg
 		});
 
 		this.selectFrom = new Select({
 			id: 'money-transfer-select-from',
-			width: 150,
-			height: 36
+			width: 210
 		});
 
 		this.selectTo = new Select({
 			id: 'money-transfer-select-to',
-			width: 150,
-			height: 36
+			width: 210
 		});
 
 		temp = 		'<div class="money-transfer grzx-money-action">' +
 						'<div class="wrapper">' +
 							'<div class="row1">' +
-								'<div class="text">从</div>' +
+								'<div class="text">转出：</div>' +
 
 								this.selectFrom.getDom() +
 
@@ -47,7 +45,7 @@
 							'</div>' +
 
 							'<div class="row2">' +
-								'<div class="text">转账到</div>' +
+								'<div class="text">转入：</div>' +
 
 								this.selectTo.getDom() +
 
@@ -58,7 +56,7 @@
 							'</div>' +
 
 							'<div class="row3">' +
-								'<div class="text">转账金额</div>' +
+								'<div class="text">金额：</div>' +
 								this.moneyTransferInput.getDom() +
 							'</div>' +
 
@@ -287,7 +285,7 @@
 			that.submit();
 		});
 
-		this.zone.find('#money-transfer-select-from').change(function () {
+		this.zone.find('#money-transfer-select-from select').change(function () {
 			value1 = that.selectFrom.getValue();
 			value2 = that.selectTo.getValue();
 
@@ -308,7 +306,7 @@
 			}
 		});
 
-		this.zone.find('#money-transfer-select-to').change(function () {
+		this.zone.find('#money-transfer-select-to select').change(function () {
 			value1 = that.selectFrom.getValue();
 			value2 = that.selectTo.getValue();
 

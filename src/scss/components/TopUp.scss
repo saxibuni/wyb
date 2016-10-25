@@ -8,6 +8,7 @@
     $baseWidth              :    1300px;
     $bankWidth              :    180px;
     $bankHeight             :    45px;
+    $gap                    :    20px;
 
 	.row1 {
 		ul {
@@ -38,24 +39,15 @@
 		}
 
 		.bank-topup {
-			.user-admin-banks-select {
-				height: 40px;
-				margin-top: 15px;
-				width: 200px;
-
-				option {
-					display: block;
-					white-space: pre;
-					height: 40px;
-					padding: 0px 2px 1px;
-				}
+			.select {
+				margin-top: $gap;
 			}
 
 			table {
 				border-top: 1px solid $border-color1;
 				border-left: 1px solid $border-color1;
 				width: 480px;
-				margin-top: 18px;
+				margin-top: $gap;
 
 				tr {
 					height: 30px;
@@ -75,7 +67,7 @@
 			}
 
 			.deposit-method {
-				margin-top: 18px;
+				margin-top: $gap;
 
 				.title {
 					color: $font-color1;
@@ -83,7 +75,7 @@
 
 				ul {
 					display: inline-block;
-					margin-left: 18px;
+					margin-left: $gap;
 
 					li {
 						cursor: pointer;
@@ -104,7 +96,7 @@
 				margin: 10px 0;
 				
 				.text {
-					color: #333333;
+					color: $font-color1;
 					display: inline-block;
 					height: 30px;
 					line-height: 30px;
@@ -113,7 +105,7 @@
 					margin-right: 10px;
 				}
 
-				select {
+				.select {
 					width: 150px;
 					margin-left: 5px;
 
@@ -209,9 +201,9 @@
 			display: inline-block;
 			height: 30px;
 			line-height: 30px;
-			bottom: 12px;
+			bottom: 8px;
 			position: relative;
-			margin-right: 10px;
+			margin-right: 38px;
 		}
 
 		.unit {
@@ -224,7 +216,7 @@
 			font-size: 12px;
 			height: 20px;
 			line-height: 20px;
-			margin-left: 70px;
+			margin-left: 102px;
 		}
 	}
 
@@ -232,7 +224,7 @@
 		margin-top: 28px;
 
 		.button {
-			margin-left: 67px;
+			margin-left: 100px;
             background-color: $purple6;
             border-radius: 20px;
             color: $font-color1;
