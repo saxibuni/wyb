@@ -9,8 +9,9 @@
 		this.button = new Button({
 			id: 'withdraw-record-button',
 			name: '查询',
-			width: 80,
-			height: 30
+			search: true,
+			width: 90,
+			height: 28
 		});
 
 		this.pager = new Pager({
@@ -24,7 +25,7 @@
 								'<div class="time-section">' +
 									'<span class="title">日期</span>' +
 									'<input class="starttime" type="text"/>' +
-									'<span class="divider">-</span>' +
+									'<span class="divider">至</span>' +
 									'<input class="endtime" type="text"/>' +
 								'</div>' +
 
@@ -50,7 +51,7 @@
 						'</div>' +
 
 						'<div class="table-zone">' +
-							'<table>' +
+							'<table cellspacing="0">' +
 								'<thead><tr>' + 
 									'<th>日期</th>' +
 									'<th>申请额度</th>' +
@@ -202,6 +203,7 @@
         	that.queryData(0, true);
         });
 
+        this.button.bindEvents();
         this.pager.bindEvents();
         this.createLoader();
 	};

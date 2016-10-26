@@ -1,42 +1,68 @@
 @import "../mixins.scss";
+
 .pager {
+    $height    :   45px;
+
+    background-color: #170F20;
+    color: $font-color1;
+    font-size: 12px;
+    height: $height;
+    line-height: $height;
+    padding: 0 20px;
+
     .left {
         float: left;
+        height: $height;
+        line-height: $height;
+
+        span {
+            vertical-align: top;
+        }
     }
+
     .right {
         float: right;
+        height: $height;
+        line-height: $height;
+
         .prev {
-        	background: url("../img/left-n.png");
-		    width: 7px;
-		    height: 11px;
-		    background-size: 100% 100%;
-			margin: 0 10px;
-			cursor: pointer;
-        }
-        .next {
-        	background: url("../img/right-n.png");
-		    width: 7px;
-		    height: 11px;
-		    background-size: 100% 100%;
-			margin: 0 10px;
-			cursor: pointer; 
+            background-image: url("../img/common.png");
+            background-position: -398px -70px;
+            cursor: pointer;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
         }
 
-        div {
+        .next {
+            background-image: url("../img/common.png");
+            background-position: -365px -70px;
+            cursor: pointer;
             display: inline-block;
+            height: 20px;
+            width: 20px;
+        }
+
+        .page-item {
+            display: inline-block;
+            height: $height;
+            line-height: $height;
+            vertical-align: top;
+
             span {
-                background-color: #fff;
-                color: #717785;
-                width: 16px;
-                text-align: center;
-                margin: 0 3px;
-                border-radius: 3px;
+                border-radius: 50%;
+                color: $font-color1;
                 cursor: pointer;
+                display: inline-block;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+                margin: 0 10px;
+                width: 20px;
             }
 
             .selected{
-                background-color: #717785;
-                color: #fff;
+                background-color: #211B27;
             }
         }
     }

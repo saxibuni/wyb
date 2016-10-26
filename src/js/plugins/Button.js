@@ -7,7 +7,7 @@
 
 	Button.prototype.initDom = function() {
 		var temp = 	'<div class="button' + (this.opt.className? (' ' + this.opt.className):'') + '" id="' + this.id + '">' +
-						(this.opt.imgName? '<img src="../img/"' + this.opt.imgName + '.png>':'') +
+						(this.opt.search?'<span class="pc-serach-icon"></span>': '') +
 						'<span>' +
 							this.opt.name +
 						'</span>' +

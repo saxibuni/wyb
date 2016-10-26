@@ -9,15 +9,16 @@
 		this.select = new Select({
 			id: 'betting-record-select',
 			width: 100,
-			height: 25,
+			height: 32,
 			data: []
 		});
 
 		this.button = new Button({
 			id: 'betting-record-button',
 			name: '查询',
-			width: 80,
-			height: 30
+			search: true,
+			width: 90,
+			height: 28
 		});
 
 		this.pager = new Pager({
@@ -28,12 +29,15 @@
 		temp = 		'<div class="betting-record jyjl-money-action">' +
 						'<div class="bar-zone">' +
 							'<div class="up">' +
-								this.select.getDom() +
+								'<div class="select-zone">' +
+									'<span class="title">游戏类型</span>' +
+									this.select.getDom() +
+								'</div>' +
 
 								'<div class="time-section">' +
 									'<span class="title">日期</span>' +
 									'<input class="starttime" type="text"/>' +
-									'<span class="divider">-</span>' +
+									'<span class="divider">至</span>' +
 									'<input class="endtime" type="text"/>' +
 								'</div>' +
 
@@ -62,7 +66,7 @@
 						'</div>' +
 
 						'<div class="table-zone">' +
-							'<table>' +
+							'<table cellspacing="0">' +
 								'<thead><tr>' + 
 									'<th>日期</th>' +
 									'<th>游戏平台</th>' +
@@ -255,6 +259,7 @@
         	that.queryData(0, true);
         });
 
+        this.button.bindEvents();
 		this.select.bindEvents();
 		this.pager.bindEvents();
 		this.createLoader();

@@ -8,23 +8,24 @@
 
 		this.selectFrom = new Select({
 			id: 'money-transfer-select-from',
-			width: 60,
-			height: 25,
+			width: 100,
+			height: 32,
 			data: []
 		});
 
 		this.selectTo = new Select({
 			id: 'money-transfer-select-to',
-			width: 60,
-			height: 25,
+			width: 100,
+			height: 32,
 			data: []
 		})
 
 		this.button = new Button({
 			id: 'money-transfer-record-button',
 			name: '查询',
-			width: 80,
-			height: 30
+			search: true,
+			width: 90,
+			height: 28
 		});
 
 		this.pager = new Pager({
@@ -35,14 +36,15 @@
 		temp = 		'<div class="money-transfer-record jyjl-money-action">' +
 						'<div class="bar-zone">' +
 							'<div class="up">' +
+								'<span class="text">从</span>' +
 								this.selectFrom.getDom() +
-								'<span class="text">转到</span>' +
+								'<span class="text">至</span>' +
 								this.selectTo.getDom() +
 
 								'<div class="time-section">' +
 									'<span class="title">日期</span>' +
 									'<input class="starttime" type="text"/>' +
-									'<span class="divider">-</span>' +
+									'<span class="divider">至</span>' +
 									'<input class="endtime" type="text"/>' +
 								'</div>' +
 
@@ -68,7 +70,7 @@
 						'</div>' +
 
 						'<div class="table-zone">' +
-							'<table>' +
+							'<table cellspacing="0">' +
 								'<thead><tr>' + 
 									'<th>日期</th>' +
 									'<th>转账金额</th>' +
@@ -310,6 +312,7 @@
         	}
         });
 
+        this.button.bindEvents();
 		this.selectFrom.bindEvents();
 		this.selectTo.bindEvents();
 		this.pager.bindEvents();

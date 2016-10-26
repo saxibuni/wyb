@@ -2,14 +2,14 @@
 	function TopupRecord () {
 		this.initDom();
 	}
-	
+
 	TopupRecord.prototype.initDom = function () {
 		var temp;
 
 		this.select = new Select({
 			id: 'topup-record-select',
 			width: 100,
-			height: 25,
+			height: 32,
 			data: [
 				{
 					'text': '充值类型',
@@ -37,11 +37,10 @@
 		this.button = new Button({
 			id: 'topup-record-button',
 			name: '查询',
-			width: 80,
-			height: 30
+			search: true,
+			width: 90,
+			height: 28
 		});
-
-		//日期、订单号、充值类型、充值金额、状态
 
 		this.pager = new Pager({
 			id: 'topUp-record-pager',
@@ -56,7 +55,7 @@
 								'<div class="time-section">' +
 									'<span class="title">日期</span>' +
 									'<input class="starttime" type="text"/>' +
-									'<span class="divider">-</span>' +
+									'<span class="divider">至</span>' +
 									'<input class="endtime" type="text"/>' +
 								'</div>' +
 
@@ -82,10 +81,16 @@
 						'</div>' +
 
 						'<div class="table-zone">' +
-							'<table>' +
-								'<thead><tr>' + 
-									'<th>日期</th><th>订单号</th><th>充值类型</th><th>充值金额</th><th>状态</th>' +
-								'</tr></thead>' +
+							'<table cellspacing="0">' +
+								'<thead>' +
+									'<tr>' + 
+										'<th>日期</th>' +
+										'<th>订单号</th>' +
+										'<th>充值类型</th>' +
+										'<th>充值金额</th>' +
+										'<th>状态</th>' +
+									'</tr>' +
+								'</thead>' +
 								'<tbody>' +
 								'</tobdy>' +
  							'</table>' +
@@ -228,6 +233,7 @@
         	that.queryData(0, true);
         });
 
+        this.button.bindEvents();
 		this.select.bindEvents();
 		this.pager.bindEvents();
 		this.createLoader();

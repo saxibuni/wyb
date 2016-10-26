@@ -82,7 +82,9 @@ $(function(){
 										'<div class="title">中心钱包</div>' +
 
 										'<div class="center-balance">' +
-											'<span class="money money-type">¥&nbsp;</span><span class="money balance">100,000,000.00</span><span class="money-unit">元</span>' +	
+											'<span class="money money-type">¥&nbsp;</span>' +
+											'<span class="money balance">' + app.userTotalInfo.Cash + '</span>' +
+											'<span class="money-unit">元</span>' +	
 											'<span class="pc-icon refresh-icon refresh"></span>' +
 											'<span class="clear"></span>' +
 										'</div>' +
@@ -333,14 +335,14 @@ $(function(){
 			walletWidth = swiper.find('.wallet-group').width();
 			if (pageIndex == 0) return;
 			pageIndex--;
-			swiper.css('transform', 'translateX(' + (0 - walletWidth * pageIndex) + 'px)');
+			swiper.css('transform', 'translateX(' + (0 - (walletWidth + 2) * pageIndex) + 'px)');
 		});
 
 		this.zone.delegate('.wallet-right-nav','click',function() {
 			walletWidth = swiper.find('.wallet-group').width();
 			if (pageIndex == pageCount - 1) return;
 			pageIndex++;
-			swiper.css('transform', 'translateX(' + (0 - walletWidth * pageIndex) + 'px)');
+			swiper.css('transform', 'translateX(' + (0 - (walletWidth + 2) * pageIndex) + 'px)');
 		});
 
 		this.zone.find('.btn-deposit').click(function () {
