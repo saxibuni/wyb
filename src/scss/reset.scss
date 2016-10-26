@@ -11,6 +11,9 @@ textarea:focus {
     outline: none;
 }
 
+input::-ms-clear { display: none; } 
+input::-ms-reveal { display: none; }
+
 div,
 article,
 aside,
