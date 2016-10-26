@@ -1,127 +1,17 @@
 @import "../mixins.scss";
+
 .announcement-info{
 	@include tab-page;
-	display:block;
-	font-size:12px;
 
-	.bar-zone {
-		width: 100%;
-
-		.up {
-			color: #333333;
-			height: 27px;
-			line-height: 27px;
-			padding-top: 2px;
-
-			select {
-				float: left;
-				height: 25px;
-				width: 100px;
-			}
-
-			.time-section {
-				display: inline-block;
-				float: left;
-				height: 25px;
-				line-height: 25px;
-
-				input {
-					height: 20px;
-					width: 120px;
-					border: 1px solid #AAAAAA;
-					text-align: center;
-				}
-
-				.title {
-					margin-right: 10px;
-				}
-
-				.divider {
-					padding: 0 10px;
-				}
-			}
-
-			ul {
-				display: inline-block;
-				float: right;
-				margin-right: 10px;
-
-				li {
-					background-color: #EBE9E1;
-					cursor: pointer;
-					display: inline-block;
-					padding: 0 5px;
-					margin: 0 5px;
-				}
-
-				.selected {
-					background-color: #717785;
-					color: #FFF;
-				}
-			}
-
-			.button {
-				float: right;
-				padding: 0 10px;
-			}
-		}
-
-	}
+	display: block;
+	font-size: 14px;
+	padding: 25px 0;
 
 	.table-zone {
 		width: 100%;
-		margin-top: 20px;
-		table{
-			width: 100%;
-			border:1px solid #cccdd0;
-			text-align: center;
-			border-collapse:collapse;
-			thead{
-				background-color:#555;
-				color: #fff;
-			}
-			tbody{
-				.odd{
-					background-color:#fff;
-				}
-				.even{
-					background-color:#ebe9e1;
-				}
-			}
-			tr{
-				height: 30px;
-				border:none;
-				td{
-					border:none;
-				}
 
-				td:nth-child(1){
-					width: 10%;
-				}
-				td:nth-child(2){
-					width: 70%;
-					color: #424242;
-					text-align: left;
-					font-weight: bold;
-
-					p{
-						padding: 5px;
-					}
-				}
-				td:nth-child(3){
-					width: 20%;
-					color: #424242;
-				}
-			}
-		}
-
-		.page-content{
-			color:#717785;
-			padding: 8px 0px;
-			span{
-				display: inline-block;
-			}
+		table {
+			@include table;
 		}
 	}
-
 }
