@@ -21,7 +21,7 @@ $(function(){
 
 		temp = '<div class="announcement-info znx-info-action">' +
 						'<div class="table-zone">' +
-							'<table>' +
+							'<table cellspacing="0">' +
 								'<thead><tr>' +
 									'<th colspan="2">通知内容</th><th>时间</th>' +
 								'</tr><thead>' +
