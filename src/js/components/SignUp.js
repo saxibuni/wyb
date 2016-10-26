@@ -236,13 +236,13 @@
 		callback = function (json) {
         	if (!json || json == 'false') {
         		that.loader.stop();
-        		that.zone.find('.change-verify-code').click();
         		alert('验证码错误');
         		that.zone.find('.register').removeClass('active');
+        		that.verifyInput.setValue('');
+        		that.zone.find('.change-verify-code').click();
         		return;
         	}
 
-        	that.zone.find('.change-verify-code').click();
         	that.verifyInput.setValue('');
         	that.register();
 		};
@@ -257,13 +257,15 @@
 
 		callback = function (json) {
 			that.loader.stop();
+			that.verifyInput.setValue('');
+			that.zone.find('.change-verify-code').click();
 
 			if (json.StatusCode && json.StatusCode != 0) {
 				alert(json.Message);
 				that.zone.find('.register').removeClass('active');
 				return;
 			}
-
+			
 			app.signedInProcedures();
 			that.hide();
 		};

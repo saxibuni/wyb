@@ -10,8 +10,9 @@ $(function(){
 		this.button = new Button({
 			id: 'station-letter-button',
 			name: '查询',
-			width: 60,
-			height: 25			
+			search: true,
+			width: 90,
+			height: 28	
 		});
 
 		this.pager = new Pager({
@@ -25,7 +26,7 @@ $(function(){
 								'<div class="time-section">' +
 									'<span class="title">日期</span>' +
 									'<input class="starttime" type="text"/>' +
-									'<span class="divider">-</span>' +
+									'<span class="divider">至</span>' +
 									'<input class="endtime" type="text"/>' +
 								'</div>' +
 
@@ -40,11 +41,10 @@ $(function(){
 
 								'<div class="clear"></div>' +
 							'</div>' +
-
 						'</div>' +
 
 						'<div class="table-zone">' +
-							'<table>' +
+							'<table cellspacing="0">' +
 								'<thead><tr>' +
 									'<th>通知内容</th><th>时间</th>' +
 								'</tr><thead>' +
@@ -189,6 +189,7 @@ $(function(){
         	that.queryData(0, true);
         });
 
+        this.button.bindEvents();
 		this.pager.bindEvents();
 		this.createLoader();
 	};

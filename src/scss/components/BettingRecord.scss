@@ -8,7 +8,7 @@
 	$buttonLeftGap          :      35px;
 
 	display: block;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 25px 0;
 
 	.bar-zone {
@@ -79,6 +79,10 @@
 
 			.value {
 				color: $font-color1;
+			}
+
+			span {
+				display: inline-block;
 			}
 		}
 	}
