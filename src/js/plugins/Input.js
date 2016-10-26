@@ -9,9 +9,10 @@
 
 	Input.prototype.initDom = function() {
 		var temp =	'<div class="input" id="' + this.id + '">' +
-						'<input type="' + (this.opt.type?this.opt.type: 'text') + '" placeholder="' + (this.opt.placeholder? this.opt.placeholder: '') + '">' +
+						'<input value="" type="' + (this.opt.type?this.opt.type: 'text') + '" placeholder="' + (this.opt.placeholder? this.opt.placeholder: '') + '">' +
 						//'<img class="pass" src="../img/pass.png">' +
-						'<img class="warning" src="../img/warning.png">' +
+						//'<img class="warning" src="../img/warning.png">' +
+						'<span class="warning-icon"></span>' +
 						'<div class="clear"></div>' +
 					'</div>';
 
@@ -35,19 +36,19 @@
 	};
 
 	Input.prototype.showPass = function() {
-		this.zone.children('.pass').show();
-		this.zone.children('.warning').hide();
+		//this.zone.children('.pass').show();
+		this.zone.children('.warning-icon').hide();
 		this.pass = true;
 	};
 
 	Input.prototype.showWarning = function() {
-		this.zone.children('.warning').show();
-		this.zone.children('.pass').hide();
+		this.zone.children('.warning-icon').show();
+		//this.zone.children('.pass').hide();
 		this.pass = false;
 	};
 
 	Input.prototype.hideWarning = function() {
-		this.zone.children('.warning').hide();
+		this.zone.children('.warning-icon').hide();
 		this.pass = true;
 	};
 

@@ -6,6 +6,7 @@
 	line-height: 30px;
 	padding: 0 10px;
 	display: inline-block;
+	position: relative;
 
 	input {
 		background-color: transparent;
@@ -28,13 +29,15 @@
 		right: 0;
 	}
 
-	.warning {
+	.warning-icon {
+		background-image: url(../img/common.png);
+		background-position: -324px -108px;
+		height: 18px;
+		cursor: pointer;
 		display: none;
-		float: right;
-		position: relative;
-		height: 15px;
-		width: 15px;
-		top: 7px;
-		right: 0;
+		position: absolute;
+		right: 10px;
+		top: 4px;
+		width: 18px;
 	}
 }
