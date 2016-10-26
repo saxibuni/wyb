@@ -10,8 +10,6 @@
 	Input.prototype.initDom = function() {
 		var temp =	'<div class="input" id="' + this.id + '">' +
 						'<input value="" type="' + (this.opt.type?this.opt.type: 'text') + '" placeholder="' + (this.opt.placeholder? this.opt.placeholder: '') + '">' +
-						//'<img class="pass" src="../img/pass.png">' +
-						//'<img class="warning" src="../img/warning.png">' +
 						'<span class="warning-icon"></span>' +
 						'<div class="clear"></div>' +
 					'</div>';
