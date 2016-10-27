@@ -1,7 +1,8 @@
 @import "../mixins.scss";
+
 .money-transfer {
 	@include tab-page;
-
+	
 	.wrapper {
 		width: 100%;
         position: relative;
@@ -69,5 +70,11 @@
 		    left: 350px;
 		    top: 36px;
 		}
+	}
+}
+
+@media screen and (max-width: 1350px) {
+	.money-transfer {
+		font-size: 14px;
 	}
 }

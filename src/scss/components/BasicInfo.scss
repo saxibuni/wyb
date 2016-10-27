@@ -1,6 +1,6 @@
 @import "../mixins.scss";
 
-.basic-info{
+.basic-info {
 	@include tab-page;
 	display: block;
 
@@ -92,5 +92,11 @@
 				@include button1;
 			}
 		}
+	}
+}
+
+@media screen and (max-width: 1350px) {
+	.basic-info {
+		font-size: 13px;
 	}
 }

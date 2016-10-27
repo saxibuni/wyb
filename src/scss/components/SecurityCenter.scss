@@ -8,7 +8,7 @@
     $baseL           :    1300;
     $baseWidth       :    1300px;
 	$gap             :    20px;
-	$itemRight       :	  $baseWidth * 250 / $baseL;
+	$itemRight       :	  $baseWidth * 300 / $baseL;
 
 	.wrapper {
 		width: 100%;
@@ -78,6 +78,23 @@
 
 			.security-mail-icon {
 				background-position: -686px -10px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1350px) {
+	.security-center {
+	    $baseL           :    1300;
+	    $baseWidth       :    1000px;
+		$itemRight       :	  $baseWidth * 300 / $baseL;
+		font-size: 13px;
+
+		.wrapper {
+			& > div {
+				.item {
+					margin-right: $itemRight;
+				}
 			}
 		}
 	}

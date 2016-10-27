@@ -96,3 +96,39 @@
 		}
 	}
 }
+
+@media screen and (max-width: 1350px) {
+	.money-transfer-record {
+		$buttonLeftGap          :      15px;
+
+		.bar-zone {
+			padding-left: 10px;
+			padding-right: 10px;
+
+			.up {
+				.select {
+					width: 65px !important;
+				}
+
+				.time-section {
+					margin-left: 10px;
+
+					input {
+						width: 110px;
+					}
+				}
+
+				ul {
+					li {
+					    margin: 0 2px;
+					    width: 50px;
+					}
+				}
+				
+				.button {
+					margin-left: $buttonLeftGap;
+				}
+			}
+		}
+	}
+}

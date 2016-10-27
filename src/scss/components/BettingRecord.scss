@@ -101,3 +101,35 @@
 		}
 	}
 }
+
+@media screen and (max-width: 1350px) {
+	.betting-record {
+		$buttonLeftGap          :      10px;
+
+		.bar-zone {
+			padding-left: 10px;
+			padding-right: 10px;
+
+			.up {
+				.time-section {
+					margin-left: 10px;
+
+					input {
+						width: 110px;
+					}
+				}
+
+				ul {
+					li {
+					    margin: 0 2px;
+					    width: 50px;
+					}
+				}
+
+				.button {
+					margin-left: $buttonLeftGap;
+				}
+			}
+		}
+	}
+}
