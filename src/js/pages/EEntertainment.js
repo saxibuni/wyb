@@ -320,7 +320,7 @@
 		var url;
 
 		items = this.zone.find('.marqueen ul .jackpots-basevalue');
-		
+
 		for (i = 0; i < items.length; i++) {
 			item     = $(items[i]);
 			platform = item.attr('data-platform');
@@ -351,7 +351,7 @@
 		var opt  =  {
 			url: app.urls.getJackpotsByUrl,
 	        data: {
-	        	url: url
+	        	'': url
 	        }
 		};
 
