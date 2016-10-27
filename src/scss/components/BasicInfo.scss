@@ -4,7 +4,7 @@
 	@include tab-page;
 	display: block;
 
-	$gap         :   20px;
+	$gap         :   30px;
 	$textWidth   :   90px;
 
 	.wrapper {
@@ -79,7 +79,7 @@
 			    border: 1px solid $border-color1;
 			    color: $font-color1;
 				height: 100px;
-				width: 415px;
+				width: 425px;
 			}
 		}
 

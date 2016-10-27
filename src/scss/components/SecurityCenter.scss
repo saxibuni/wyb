@@ -1,71 +1,83 @@
 @import "../mixins.scss";
-.security-center{
+
+.security-center {
 	@include tab-page;
 	display: block;
+	fon-size: 14px;
 
-	.wrapper{
+    $baseL           :    1300;
+    $baseWidth       :    1300px;
+	$gap             :    20px;
+	$itemRight       :	  $baseWidth * 250 / $baseL;
+
+	.wrapper {
 		width: 100%;
-		padding: 20px 30px;
 		position: relative;
 		box-sizing: border-box;
-		padding: 0 20px;
-		box-sizing: border-box;
 		
-
 		& > div {
-			height: 35px;
-			border-bottom: 1px solid #cfd0d2;
+			border-bottom: 1px solid $purple5;
+			color: $font-color1;
+			height: 100px;
+			line-height: 100px;
 			position: relative;
-			margin-top: 20px;
+			width: 100%;
 
-			.status{
-				width: 30px;
-				height: 30px;
+			.pc-icon {
+				float: left;
+			    margin-top: 39px;
+			    margin-right: $gap;
+			    background-image: url(../img/pc.png);
+			    display: inline-block;
+				height: 27px;
+				width: 20px;
+			}
+
+			.item {
+				float: left;
+				margin-right: $itemRight;
+				text-align: left;
+				width: 100px;
+			}
+
+			.text {
+				float: left;
+			}
+
+			.security-level {
+				float: left;
+			}
+
+			a {
 				display: inline-block;
-				margin-left: 30px;		
-			}
-			.pass{
-				background: url('../img/pass.png');
-				background-size: 100% 100%;
-			}
-
-			.warn{
-				background: url('../img/warning.png');
-				background-size: 100% 100%;				
-			}
-
-			img{
-				position: absolute;
-				top: 3px;
-				margin-left: 60px;
-			}
-
-			.item{
-				color: #000;
-				font-weight: bold;
-				position:absolute;
-				top: 5px;
-				margin-left: 85px;
-			}
-
-			.text{
-				color: #858585;
-				position:absolute;
-				top: 5px;
-				margin-left: 250px;
-			}
-
-			.security-level{
-				margin-left: 325px;
-			}
-
-			a{
-				display: inline-block;
-				color: #79adde;
 				float: right;
-				margin-top: 5px;
-				margin-right: 30px;
+				margin-right: $gap;
 				cursor: pointer;
+				text-decoration: underline;
+
+				&:hover {
+					color: $font-color2;
+				}
+			}
+
+			.security-lock-icon {
+				background-position: -535px -10px;
+			}
+
+			.security-key-icon {
+				background-position: -570px -10px;
+			}
+
+			.security-card-icon {
+				background-position: -608px -10px;
+			}
+
+			.security-phone-icon {
+				background-position: -646px -10px;
+			}
+
+			.security-mail-icon {
+				background-position: -686px -10px;
 			}
 		}
 	}
