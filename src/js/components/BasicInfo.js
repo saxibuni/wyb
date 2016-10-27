@@ -6,24 +6,24 @@ $(function(){
 
 	BasicInfo.prototype.initDom = function(){
 		var temp;
+		var filler = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
 		this.button = new Button({
 			id: 'basic-info-button',
 			name: '提交',
-			width: 120,
-			height: 42
+			width: 120
 		});
 
 		this.realNameInput = new Input({
 			id: 'real-name-input',
-			width: 178,
+			width: 200,
 			height: 30
 		});
 
 		this.selectProvince = new Select({
 			id: 'basic-info-province',
-			width: 100,
-			height: 36,
+			width: 200,
+			height: 30,
 			data:[
 				{
 					'text': '省',
@@ -34,8 +34,8 @@ $(function(){
 
 		this.selectCity = new Select({
 			id: 'basic-info-city',
-			width: 100,
-			height: 36,
+			width: 200,
+			height: 30,
 			data:[
 				{
 					'text': '市',
@@ -46,32 +46,24 @@ $(function(){
 
 		temp = '<div class="basic-info zhsz-info-action">' +
 					'<div class="wrapper">' +
-						'<div class="row1">' +
+						'<div class="row row1">' +
 							'<div class="text">真实姓名</div>' +
 							this.realNameInput.getDom() +
 						'</div>' +
 
-						// '<div class="row2">' +
-						// 	'<div class="text">性别</div>' +
-  				// 			'<input type="radio" name="sex" class="male" />' +
-						// 	'<label for="male">男</label>' +
-	  			// 			'<input type="radio" name="sex" class="female" />' +
-						// 	'<label for="male">女</label>' +						
-						// '</div>' +
-
-						'<div class="row3">' +
-							'<div class="text">生日</div>' +
+						'<div class="row row3">' +
+							'<div class="text">生' + filler + '日</div>' +
 							'<input class="birthday" type="text" />' +
 						'</div>' + 
 
-						'<div class="row4">' +
-							'<div class="text">地址</div>' +
+						'<div class="row row4">' +
+							'<div class="text">地' + filler + '址</div>' +
 
 							this.selectProvince.getDom() +
 							this.selectCity.getDom() +
 						'</div>' +
 
-						'<div class="row5">' +
+						'<div class="row row5">' +
 							'<div class="text">详细地址</div>' +
 							'<textarea class="address"></textarea>' +
 						'</div>' +

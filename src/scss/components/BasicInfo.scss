@@ -1,78 +1,96 @@
 @import "../mixins.scss";
+
 .basic-info{
 	@include tab-page;
 	display: block;
 
-	.wrapper{
+	$gap         :   20px;
+	$textWidth   :   90px;
+
+	.wrapper {
 		width: 100%;
-		padding: 20px 30px;
 		position: relative;
 		box-sizing: border-box;
 
-		.text{
-			color: #333333;
+		.row {
+			height: 30px;
+			line-height: 30px;
+		}
+
+		.text {
+			color: $font-color1;
 			display: inline-block;
-			width: 110px;
-			position: relative;
-			right: 5px;;
-			text-indent: 37px;
+			text-align: left;
+			vertical-align: top;
+			width: $textWidth;
 		}
 
 		.row1 {
-			margin-top: 20px;
-			.text{
+			.text {
 				bottom: 12px;
 			}
 		}
 
 		.row2 {
-			margin-top: 20px;
+			margin-top: $gap;
 			
-			label{
+			label {
 				margin-right: 10px;
-				color: #333;
+				color: $font-color1;
 			}
 
 		}
 
 		.row3 {
-			margin-top: 20px;
+			margin-top: $gap;
 
-			.birthday{
-				border: 1px solid #AAAAAA;
-				height: 30px;
-				line-height: 30px;
-				text-align: center;
+			.birthday {
+				background: transparent;
+			    border: 1px solid $border-color1;
+			    box-sizing: border-box;
+			    color: $font-color1;
+			    height: 27px;
+			    line-height: 27px;
+			    padding: 0 10px;
+			    text-align: left;
+			    width: 200px;
 			}
 		}
 
-		.row4{
-			margin-top: 20px;
+		.row4 {
+			margin-top: $gap;
 
-			select {
-			    width: 173px;
-			    margin-right: 20px;
+			.select {
+				margin-right: $gap;
 			}
 		}
 
-		.row5{
-			margin-top: 20px;
-			.text{
+		.row5 {
+			height: 100px;
+			line-height: 100px;
+			margin-top: $gap;
+
+			.text {
 				bottom: 50px;
 			}
-			textarea{
-				border: 1px solid #AAAAAA;
-				width: 500px;
+
+			textarea {
+				background: transparent;
+			    border: 1px solid $border-color1;
+			    color: $font-color1;
 				height: 100px;
+				width: 415px;
 			}
 		}
 
-		.row6{
-			margin-top: 20px;
-			margin-left: 100px;
+		.row6 {
+			margin-top: $gap;
+			padding-left: $textWidth;
+			width: 100%;
+
+			.button {
+				@include button1;
+			}
 		}
-
-
 	}
-
 }

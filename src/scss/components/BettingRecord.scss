@@ -79,10 +79,16 @@
 
 			.value {
 				color: $font-color1;
+				margin-right: 55px;
+				margin-left: 3px
 			}
 
 			span {
 				display: inline-block;
+
+				&:first-child {
+					margin-left: -160px;
+				}
 			}
 		}
 	}

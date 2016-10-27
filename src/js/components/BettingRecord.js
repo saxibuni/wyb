@@ -58,9 +58,9 @@
 								'<span class="value total-bet">10,000</span>' +
 								'<span class="text">有效投注：</span>' +
 								'<span class="value effect-bet">20.00</span>' +
-								'<span class="text">单量:</span>' +
+								'<span class="text">单量：</span>' +
 								'<span class="value single-amount">100</span>' +
-								'<span class="text">派奖</span>' +
+								'<span class="text">派奖：</span>' +
 								'<span class="value return-money">1999</span>' +
 							'</div>' +				
 						'</div>' +
