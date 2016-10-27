@@ -621,7 +621,6 @@
                                 height: 24px;
                                 line-height: 24px;
                                 width: 80px;
-                                transition: all .3s;
                             }
 
                             .btn-deposit {
@@ -631,80 +630,23 @@
                     }
 
                     .wallet-zone {
-                        background-color: $purple1;
-                        box-sizing: border-box;
-                        float: left;
                         margin-left: $gap;
-                        overflow: hidden;
-                        position: relative;
-                        text-align: center;
-                        transition: all .3s;
                         width: $walletZoneWidth;
 
                         .wallet-left-nav {
-                            cursor: pointer;
-                            display: inline-block;
-                            height: 100%;
-                            position: relative;
-                            vertical-align: top;
                             width: $swiperNavWidth;
-
-                            .left-icon {
-                                position: absolute;
-                                left: 0;
-                                top: 50%;
-                                margin-top: -18px;
-                            }
-
-                            &:hover {
-                                .left-icon {
-                                    background-position: -305px -45px;
-                                }
-                            }
                         }
 
                         .wallet-right-nav {
-                            cursor: pointer;
-                            display: inline-block;
-                            height: 100%;
-                            position: relative;
-                            vertical-align: top;
                             width: $swiperNavWidth;
-
-                            .right-icon {
-                                position: absolute;
-                                right: 0;
-                                top: 50%;
-                                margin-top: -18px;
-                            }
-
-                            &:hover {
-                                .right-icon {
-                                    background-position: -335px -45px;
-                                }
-                            }
                         }
 
                         .swiper-container {
-                            display: inline-block;
-                            height: 100%;
-                            overflow: hidden;
                             width: $subWalletWidth * 4;
 
                             .swiper {
-                                height: 100%;
-                                @include transition(0.4s);
-                                width: 10000px;
-
                                 .wallet-group {
-                                    height: 100%;
                                     width: $subWalletWidth;
-                                    margin: 0 1px;
-                                    float: left;
-
-                                    .sub-wallet {
-                                        margin-top: 17px;
-                                    }
                                 }
                             }
                         }
@@ -712,45 +654,18 @@
 
                     .tab-container {
                         bottom: $tabContainerBottom;
-                        position: absolute;
-                        text-align: left;
                         top: $tabContainerTop;
                         left: $tabContainerLeft;
-                        overflow: hidden;
 
                         .tab-container-item {
-                            height: 100%;
-                            position: relative;
-                            width: 100%;
-
                             ul {
                                 margin-bottom: $gap / 2;
 
                                 & + div {
-                                    background-color: $purple1;
-                                    position: absolute;
                                     top: $gap / 2 + 40px;
-                                    bottom: 0;
-                                    left: 0;
-                                    right: 0;
-                                    overflow: auto;
                                 }
                             }
                         }
-                    }
-                }
-
-                .close {
-                    color: $font-color1;
-                    font-size: 20px;
-                    top: 12px;
-                    right: 20px;
-                    position: absolute;
-                    z-index: 20;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: $font-color2;
                     }
                 }
             }
