@@ -1,12 +1,12 @@
 (function(){
-	function SetPhonenumberDialog(opt){
+	function SetPhonenumberDialog(opt) {
 		IMDialog.call(this, opt || {});
 		this.initDom();
 	}
 
 	SetPhonenumberDialog.prototype = new IMDialog();
 
-	SetPhonenumberDialog.prototype.initDom = function(){
+	SetPhonenumberDialog.prototype.initDom = function() {
 		this.step1PhonenumberInput = new Input({
 			id: 'spd-step1-phonenumber-input',
 			width: 220,
@@ -187,19 +187,23 @@
 		this.el = temp;
 	};
 
-	SetPhonenumberDialog.prototype.getDom = function(){
+	SetPhonenumberDialog.prototype.getDom = function() {
 		return this.el;
 	};
 
-	SetPhonenumberDialog.prototype.show = function(){
+	SetPhonenumberDialog.prototype.show = function() {
 		this.showOverlay();
 	};
 
-	SetPhonenumberDialog.prototype.hide = function(){
+	SetPhonenumberDialog.prototype.hide = function() {
 		this.hideOverlay();
 	};
 
-	SetPhonenumberDialog.prototype.bindEvents = function(){
+	SetPhonenumberDialog.prototype.resetDialog = function() {
+		this.step1PhonenumberInput.setValue(app.userTotalInfo.Phone);
+	};
+
+	SetPhonenumberDialog.prototype.bindEvents = function() {
 		var steps;
 		var contentName;
 		var that = this;
@@ -246,7 +250,7 @@
 		this.step2OkButton.bindEvents();
 		this.step2CancelButton.bindEvents();
 		this.step3Button.bindEvents();
-
+		this.resetDialog();
         this.bindOverlayEvents();
 	};
 

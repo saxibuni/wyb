@@ -1,13 +1,16 @@
 @import "../mixins.scss";
 
 .sub-wallet{
+    $baseL                  :    1300;
+    $baseWidth              :    1300px;
+    $itemWidth              :    $baseWidth * 170 / $baseL;
+
     border-right: 1px solid $purple5;
     color: $font-color1;
-    width: 170px;
+    width: $itemWidth;
     height: 60px;
     position: relative;
     font-weight: normal;
-    font-size: 10px;
     margin-top: 7px;
     padding: 0 15px;
     text-align: left;
@@ -56,6 +59,32 @@
 			&:hover {
 				color: $font-color2;
 				text-decoration: underline;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1350px) {
+	.sub-wallet{
+	    $baseL                  :    1300;
+	    $baseWidth              :    1000px;
+	    $itemWidth              :    $baseWidth * 170 / $baseL;
+
+	    width: $itemWidth;
+
+		.row1 {
+			.balance {
+				font-size: 12px;
+			}
+		}
+
+		.row2 {
+			.platform {
+				font-size: 12px;
+			}
+
+			.btn-transfer {
+				font-size: 12px;
 			}
 		}
 	}

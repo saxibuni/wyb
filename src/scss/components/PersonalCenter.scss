@@ -123,6 +123,7 @@
                 height: 100%;
                 float: left;
                 font-size: 14px;
+                transition: all .3s;
 
                 .user-profiles {
                     box-sizing: border-box;
@@ -312,6 +313,7 @@
                 height: 100%;
                 padding: $gap2;
                 position: relative;
+                transition: all .3s;
 
                 .center-wallet {
                     background-color: $purple1;
@@ -550,12 +552,207 @@
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1350px) {
     .personal-center {
         .dialog-wrapper {
-            .dialog{
-                -webkit-transform: rotateX(-90deg) scale(1.2);
-                transform: rotateX(-90deg) scale(1.2);
+            $baseL                  :    1300;
+            $baseWidth              :    1000px;
+            $gap                    :    $baseWidth * 10 / $baseL;
+            $gap2                   :    $baseWidth * 20 / $baseL;
+            $leftContainerWidth     :    $baseWidth * 200 / $baseL;
+            $rightContainerWidth    :    $baseWidth - $leftContainerWidth;
+            $centerWalletWidth      :    $baseWidth * 270 / $baseL;
+            $walletZoneWidth        :    $baseWidth * 780 / $baseL;
+            $subWalletWidth         :    $baseWidth * 170 / $baseL;
+            $swiperNavWidth         :    ($walletZoneWidth - $subWalletWidth * 4) / 2;
+            $centerWalletHeight     :    170px;
+            $tabContainerTop        :    $centerWalletHeight + $gap + $gap2;
+            $tabContainerLeft       :    $gap2;
+            $tabContainerBottom     :    $gap2;
+            $tabContainerRight      :    $gap2;
+
+            .dialog {
+                max-width: $baseWidth + 30px;
+
+                .left-container {
+                    width: $leftContainerWidth;
+
+                    .user-profiles {
+                        padding: $gap2;
+
+                        .psw-info {
+                            .psw-level-value {
+                                margin-left: $gap;
+                            }
+                        }
+                    }
+                }
+
+                .right-container {
+                    width: $rightContainerWidth;
+                    padding: $gap2;
+
+                    .center-wallet {
+                        width: $centerWalletWidth;
+                        padding: 0 $gap;
+
+                        .title {
+                            font-size: 14px;
+                        }
+
+                        .center-balance {  
+                            .money-unit {
+                                font-size: 12px;
+                            }
+
+                            .money-type {
+                                font-size: 17px;
+                            }
+
+                            .balance {
+                                font-size: 17px;
+                                margin-right: 5px;
+                            }
+                        }
+
+                        .actions {
+                            .btn {
+                                font-size: 12px;
+                                height: 24px;
+                                line-height: 24px;
+                                width: 80px;
+                                transition: all .3s;
+                            }
+
+                            .btn-deposit {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+
+                    .wallet-zone {
+                        background-color: $purple1;
+                        box-sizing: border-box;
+                        float: left;
+                        margin-left: $gap;
+                        overflow: hidden;
+                        position: relative;
+                        text-align: center;
+                        transition: all .3s;
+                        width: $walletZoneWidth;
+
+                        .wallet-left-nav {
+                            cursor: pointer;
+                            display: inline-block;
+                            height: 100%;
+                            position: relative;
+                            vertical-align: top;
+                            width: $swiperNavWidth;
+
+                            .left-icon {
+                                position: absolute;
+                                left: 0;
+                                top: 50%;
+                                margin-top: -18px;
+                            }
+
+                            &:hover {
+                                .left-icon {
+                                    background-position: -305px -45px;
+                                }
+                            }
+                        }
+
+                        .wallet-right-nav {
+                            cursor: pointer;
+                            display: inline-block;
+                            height: 100%;
+                            position: relative;
+                            vertical-align: top;
+                            width: $swiperNavWidth;
+
+                            .right-icon {
+                                position: absolute;
+                                right: 0;
+                                top: 50%;
+                                margin-top: -18px;
+                            }
+
+                            &:hover {
+                                .right-icon {
+                                    background-position: -335px -45px;
+                                }
+                            }
+                        }
+
+                        .swiper-container {
+                            display: inline-block;
+                            height: 100%;
+                            overflow: hidden;
+                            width: $subWalletWidth * 4;
+
+                            .swiper {
+                                height: 100%;
+                                @include transition(0.4s);
+                                width: 10000px;
+
+                                .wallet-group {
+                                    height: 100%;
+                                    width: $subWalletWidth;
+                                    margin: 0 1px;
+                                    float: left;
+
+                                    .sub-wallet {
+                                        margin-top: 17px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .tab-container {
+                        bottom: $tabContainerBottom;
+                        position: absolute;
+                        text-align: left;
+                        top: $tabContainerTop;
+                        left: $tabContainerLeft;
+                        overflow: hidden;
+
+                        .tab-container-item {
+                            height: 100%;
+                            position: relative;
+                            width: 100%;
+
+                            ul {
+                                margin-bottom: $gap / 2;
+
+                                & + div {
+                                    background-color: $purple1;
+                                    position: absolute;
+                                    top: $gap / 2 + 40px;
+                                    bottom: 0;
+                                    left: 0;
+                                    right: 0;
+                                    overflow: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .close {
+                    color: $font-color1;
+                    font-size: 20px;
+                    top: 12px;
+                    right: 20px;
+                    position: absolute;
+                    z-index: 20;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $font-color2;
+                    }
+                }
             }
         }
     }

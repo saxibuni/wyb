@@ -35,14 +35,18 @@ $(function() {
 							'<span class="pc-icon security-phone-icon"></span>' +
 							'<span class="item">手机号码</span>' +
 							'<span class="text">128******63</span>' +
-							'<a class="set-phonenumber">修改</a>' +
+							'<a class="set-phonenumber">' + 
+								(app.userTotalInfo.PhoneValidateStatus? '修改':'验证') +
+							'</a>' +
 						'</div>' +
 
 						'<div class="row5">' +
 							'<span class="pc-icon security-mail-icon"></span>' +
 							'<span class="item">电子邮箱</span>' +
 							'<span class="text">立即绑定</span>' +
-							'<a class="set-email">修改</a>' +
+							'<a class="set-email">' +
+								(app.userTotalInfo.EmailValidateStatus? '修改':'验证') +
+							'</a>' +
 						'</div>' +
 
 					'</div>' +								

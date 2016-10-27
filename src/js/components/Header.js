@@ -252,7 +252,7 @@
 				alert(json.Message);
 				return;
 			}
-
+			
 			app.userTotalInfo = json;
 			that.zone.find('.balance-value').text(window.Util.formatNumToCur(json.Cash));
 			that.zone.find('.grzx-float-window .username').text(json.UserName);
