@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
 	function PersonalCenter(opt) {
 		this.mainWalletData  = {
 			moneyType: '¥',
@@ -129,7 +129,7 @@ $(function(){
 	};
 
 	PersonalCenter.prototype.show = function() {
-		this.showPersonalCenterOverlay();
+		this.showOverlay();
 
 		if (!this.firstTime) {
 			this.getCenterWalletCash();
@@ -139,7 +139,7 @@ $(function(){
 	};
 
 	PersonalCenter.prototype.hide = function() {
-		this.hidePersonalCenterOverlay();
+		this.hideOverlay();
 	};
 
 	PersonalCenter.prototype.setSubWallet = function() {
@@ -514,6 +514,8 @@ $(function(){
         this.zone.find('.close').click(function () {
         	that.hide();
         });
+
+        this.bindOverlayEvents();
 	};
 
 	window.PersonalCenter = PersonalCenter;
