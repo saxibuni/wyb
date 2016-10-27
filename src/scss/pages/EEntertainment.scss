@@ -155,7 +155,7 @@
 									display: inline-block;
 									width: 50%;
 									text-align: center;
-									color: #ccc;
+									color: $font-color0;
 									font-size: 12px;
 								}
 
@@ -233,7 +233,7 @@
 					background-image: url(../img/jackpot-money-bk.png);
 					background-repeat: no-repeat;
 				    background-size: 100%;
-					color: #FFF;
+					color: $font-color0;
 					font-size: 16px;
 					text-align: center;
 					background-size: 100%;
@@ -254,7 +254,7 @@
 				.user-info {
 					margin-bottom: $jackpotsGap;
 					margin-top: $jackpotsGap - 3px;
-					color: #fff;
+					color: $font-color0;
 					text-align: center;
 
 					p {
@@ -286,6 +286,10 @@
 					line-height: $jackpotsButtonHeight;
 					width: $jackpotsButtonWidth;
 					margin-bottom: 14px;
+
+					&:hover {
+						background: #2b8d5d;
+					}
 				}
 
 				button:hover{
@@ -486,7 +490,7 @@
 						line-height: $treeLiHeight;
 						display: inline-block;
 						width: 100%;
-						color: #b4b4b4;
+						color: $font-color0;
 						border-bottom: 1px solid $border-color1;
 						text-align: left;
 						padding-left: $treeLiPaddingLeft;
@@ -530,7 +534,7 @@
 
 			.bottom-right {
 				float: left;
-				color: #b4b4b4;
+				color: $font-color0;
 				width: $bottomRightModuleWidth;
 				transition: all .5s;
 				padding-bottom: 20px;
@@ -555,7 +559,7 @@
 
 							p {
 								.game-name {
-									color: #cda654;
+									color: $font-color0;
 								}
 							}
 						}
@@ -604,7 +608,7 @@
 							}
 
 							.recommend-no {
-								color: #999999;
+								color: $font-color0;
 								display: inline-block;
 								font-weight: bold;
 								float: right;
@@ -665,7 +669,7 @@
 					height: $moreGameHeight;
 					line-height: $moreGameHeight;
 					border: 1px solid $border-color1;
-					color: $border-color1;
+					color: $font-color0;
 				}
 			}
 		}

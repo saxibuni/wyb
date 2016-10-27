@@ -68,7 +68,7 @@
 
 		.row1 {
 			background-color: $purple1;
-			color: $font-color1;
+			color: #C2C2C2;
 			height: $headerRow1Height;
 
 			.row1-wrapper {
@@ -450,7 +450,7 @@
 
 		.row2 {
 			background-color: $purple2;
-			color: $font-color1;
+			color: #FFF;
 			height: $headerRow2Height;
 			line-height: $headerRow2Height;
 			position: relative;
@@ -487,6 +487,7 @@
 					    background-color: #241B2E;
 					    border-radius: 20px;
 					    cursor: pointer;
+					    color: #C2C2C2;
 					    height: 30px;
 					    line-height: 30px;
 					    margin-top: 15px;
