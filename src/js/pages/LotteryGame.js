@@ -103,7 +103,13 @@
 		temp +=	'<ul class="down">';
 
 		for (i = 0; i < arr.length; i++) {
-			temp +=	'<li>' + arr[i] + '</li>';
+			temp +=	'<li>' + 
+						'<span>' +
+							arr[i] +
+						'</span>' +
+
+						'<span class="slash">/</span>' +
+					'</li>';
 		}
 
 		temp +=	'</ul>';
