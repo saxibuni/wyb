@@ -110,8 +110,6 @@ $(function(){
 			return;
 		}
 
-		callback;
-		that = this;
 		opt  = {
 			url: app.urls.changeLoginPassword,
 			

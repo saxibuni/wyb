@@ -1,92 +1,69 @@
 @import "../mixins.scss";
 
-.change-withdraw-pwd-dialog{
+.change-withdraw-pwd-dialog {
 	@include dialog-frame;
 
 	.dialog-wrapper {
+		$gap  :  20px;
+
 		@include dialog-wrapper(320px);
-		z-index: 180;
+		z-index: 170;
 		top: 50%;
 
 		.dialog {
-			@include dialog(320px, 230px);
-			background-color: #2F2F2C;
+			@include dialog(380px, 280px);
+			background-color: $purple1;
 			font-size: 14px;
-			padding: 30px 20px 20px 20px;
 
-			.input-outer{
-				border: 1px solid #555555;
-				height: 30px;
-				line-height: 30px;
-				padding: 0 10px;
-				width: 277px;
+			.row0 {
+				border-bottom: 1px solid $border-color1;
+				color: $font-color0;
+				height: 40px;
+				line-height: 40px;
+				width: 100%;
+				text-align: center;
+			}
 
-				img{
+			.row {
+				color: $font-color1;
+				height: 35px;
+				margin-top: $gap;
+				width: 100%;
+				text-align: center;
+
+				.title {
 					display: inline-block;
-					float: left;
-					position: relative;
-					height: 15px;
-					width: 15px;
-					top: 7px;
-					right: 0;
+					height: 35px;
+					line-height: 35px;
+					width: 70px;
+				    vertical-align: top;
+				    position: relative;
+				    bottom: 2px;
 				}
 
 				input {
-					background-color: transparent;
-					border: 0;
-					color: #FFF;
-					display: inline-block;
-					float: left;
-					height: 28px;
-					line-height: 28px;
-				    width: 80%;
-				    margin-left: 20px;
+					color: $font-color1;
 				}
 			}
 
-			.row0{
-				height: 50px;
+			.btn-row {
+				margin-top: $gap;
 				width: 100%;
-				position: relative;
-				text-align: center;
-			}
-
-			.row1{
-				height: 50px;
-				width: 100%;
-				position: relative;
-				text-align: center;
-			}
-
-			.row2{
-				height: 50px;
-				width: 100%;
-				position: relative;
-				text-align: center;
-			}
-
-			.row3{
-				height: 50px;
-				width: 100%;
-				position: relative;
 				text-align: center;
 
 				.button {
-					background-color: #4B4B42;
-					color: #222222;
-					cursor: pointer;
-					width: 80px;
-					height: 30px;
-					line-height: 30px;
-					text-align: center;
-
-					&:hover {
-						color: #DCAD4B;
+					@include button1;
+					height: 35px;
+					line-height: 35px;
+					
+					&:first-child {
+						margin-right: $gap;
 					}
 				}
 
-				.button:nth-child(2){
-					margin-left: 50px;
+				.active {
+					background-color: $green;
+					color: #FFF;
 				}
 			}
 		}

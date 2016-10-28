@@ -7,31 +7,59 @@ $(function(){
 	ChangeWithdrawPwdDialog.prototype = new IMDialog();
 
 	ChangeWithdrawPwdDialog.prototype.initDom = function() {
+		var inputWidth  = 280;
+		var inputHeihgt = 30;
+
+		this.oldPasswordInput = new Input({
+			id: 'cwp-old-password-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.passwordReg,
+			placeholder: '请输入您的旧密码',
+			type: 'password'
+		});
+
+		this.newPasswordInput = new Input({
+			id: 'cwp-new-password-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.passwordReg,
+			placeholder: '请输入您的新密码',
+			type: 'password'
+		});
+
+		this.verifyPasswordInput = new Input({
+			id: 'cwp-verify-password-input',
+			width: inputWidth,
+			height: inputHeihgt,
+			reg: app.passwordReg,
+			placeholder: '请再次输入您的新密码',
+			type: 'password'
+		});
+
 		var temp = '<div class="change-withdraw-pwd-dialog">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
 								'<div class="row0">' +
-									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
-										'<input type="password" class="old-psw" placeholder="请输入您的旧密码" />' +
-									'</div>' +
+									'修改密码' +
 								'</div>' +
 
-								'<div class="row1">' +
-									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
-										'<input type="password" class="new-psw" placeholder="请输入您的资金密码" />' +
-									'</div>' +
+								'<div class="row">' +
+									'<span class="title">旧密码</span>' +
+									this.oldPasswordInput.getDom() +
 								'</div>' +
 
-								'<div class="row2">' +
-									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
-										'<input type="password" class="confirm-psw" placeholder="请再次输入您的资金密码" />' +
-									'</div>' +
+								'<div class="row">' +
+									'<span class="title">新密码</span>' +
+									this.newPasswordInput.getDom() +
 								'</div>' +
 
-								'<div class="row3">' +
+								'<div class="row">' +
+									'<span class="title">新密码</span>' +
+									this.verifyPasswordInput.getDom() +
+								'</div>' +
+
+								'<div class="btn-row">' +
 									'<div class="button ok">' +
 										'确定' +
 									'</div>' +
@@ -46,115 +74,99 @@ $(function(){
 					'<div class="overlay overlay5"></div>';
 
 		this.el = temp;
-	}
+	};
 
-	ChangeWithdrawPwdDialog.prototype.getDom = function() {
+	ChangeWithdrawPwdDialog.prototype.getDom = function(){
 		return this.el;
 	};
 
-	ChangeWithdrawPwdDialog.prototype.show = function() {
+	ChangeWithdrawPwdDialog.prototype.show = function(){
+		this.resetDialog();
 		this.showOverlay();
-		this.oldPwdInput.val('');
-		this.newPwdInput.val('');
-		this.confirmPwdInput.val('');
-		this.checkPwd();
 	};
 
-	ChangeWithdrawPwdDialog.prototype.hide = function() {
+	ChangeWithdrawPwdDialog.prototype.hide = function(){
 		this.hideOverlay();
 	};
 
-    ChangeWithdrawPwdDialog.prototype.createLoader = function() {
-        var wrapper = this.zone.find('.dialog')[0];
-        this.loader = new Loader(wrapper);
-    };
-
-	ChangeWithdrawPwdDialog.prototype.checkPwd = function() {
-		var opt;
-		var callback;
-		var that = this;
-
-		opt = {
-			url: app.urls.checkWithdrawPwd,
-			data: {}
-		};
-
-		callback = function (data) {
-			if (data.StatusCode && data.StatusCode !== 0) {
-				alert(data.Message);
-				return;
-			}
-
-			if (data === false) {
-				alert('请先绑定银行卡, 才能修改资金密码');
-				that.hide();
-				return;
-			}
-		};
-
-		Service.get(opt, callback);
+	ChangeWithdrawPwdDialog.prototype.resetDialog = function() {
+		this.allPass = false;
+		this.oldPasswordInput.setValue('');
+		this.newPasswordInput.setValue('');
+		this.verifyPasswordInput.setValue('');
+		this.zone.find('.ok, .cancel').removeClass('active');
 	};
 
-	ChangeWithdrawPwdDialog.prototype.commit = function () {
-		var opt;
+	ChangeWithdrawPwdDialog.prototype.commit = function() {
 		var callback;
-		var that          = this;
-		var oldPwdVal     = $.trim(this.oldPwdInput.val());
-		var newPwdVal     = $.trim(this.newPwdInput.val());
-		var confirmPwdVal = $.trim(this.confirmPwdInput.val());
+		var opt;
+		var that   = this;
+		var oValue = $.trim(this.oldPasswordInput.getValue());
+		var nValue = $.trim(this.newPasswordInput.getValue());
+		var rValue = $.trim(this.verifyPasswordInput.getValue());
 
-		if (newPwdVal !== confirmPwdVal) {
-			alert('新密码与确认密码不一致');
+		if (nValue !== rValue) {
+			alert('新密码和确认密码不一样!');
 			return;
 		}
-
-		opt = {
+		
+		opt  = {
 			url: app.urls.changeWithdrawPassword,
+			
 			data: {
-				oldPwd: $.trim(this.oldPwdInput.val()),
-				newPwd: $.trim(this.newPwdInput.val())
+				oldPwd: oValue,
+				newPwd: nValue
 			}
 		};
 
 		callback = function (data) {
 			if (data.StatusCode && data.StatusCode !== 0) {
 				alert(data.Message);
+				return;
 			}
 
 			if (data === true) {
-				alert('修改成功');
+				alert('修改成功!');
 				that.hide();
+			} else {
+				alert('修改失败!');
 			}
 		};
 
 		Service.post(opt, callback);
 	};
 
+	ChangeWithdrawPwdDialog.prototype.checkInputPass = function () {
+		if (this.oldPasswordInput.isPass() && 
+			this.newPasswordInput.isPass() &&
+			this.verifyPasswordInput.isPass()) {
+
+			this.zone.find('.ok, .cancel').addClass('active');
+			this.allPass = true;
+		} else {
+			this.zone.find('.ok, .cancel').removeClass('active');
+			this.allPass = false;
+		}
+	};
+
 	ChangeWithdrawPwdDialog.prototype.bindEvents = function() {
-		var oldPwdReg         = app.passwordReg;
-		var newPwdReg         = app.passwordReg;
-		var comfirmPwdReg     = app.passwordReg;
-		var inputEvents       = 'input';
-		var that              = this;
+		var that = this;
 
-		this.oldPwdPass      = false;
-		this.newPwdPass      = false;
-		this.comfirmPwdPass  = false;
-		this.allPass         = false;
-
-		this.zone            = $('.change-withdraw-pwd-dialog');
-		this.oldPwdInput     = this.zone.find('.row0 input:password');
-		this.newPwdInput     = this.zone.find('.row1 input:password');
-		this.confirmPwdInput = this.zone.find('.row2 input:password');
+		this.zone = $('.change-withdraw-pwd-dialog');
 
 		this.zone.find('.ok').click(function () {
-			that.commit();
+			if ($(this).hasClass('active')) {
+				that.commit();
+			}
 		});
 
 		this.zone.find('.cancel').click(function () {
 			that.hide();
 		});
 
+		this.oldPasswordInput.bindEvents(this.checkInputPass.bind(this));
+		this.newPasswordInput.bindEvents(this.checkInputPass.bind(this));
+		this.verifyPasswordInput.bindEvents(this.checkInputPass.bind(this));
         this.bindOverlayEvents();
 	};
 
