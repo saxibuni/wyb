@@ -87,6 +87,11 @@
 				'height': this.opt.height + 'px',
 				'line-height': this.opt.height + 'px'
 			});
+
+			this.zone.children('input').css({
+				'height': this.opt.height + 'px',
+				'line-height': this.opt.height + 'px'
+			});
 		}
 
 		if (this.opt.width) {

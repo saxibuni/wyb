@@ -9,94 +9,101 @@
 	SetEmailDialog.prototype.initDom = function(){
 		this.step1EmailInput = new Input({
 			id: 'sed-step1-email-input',
-			width: 220,
-			height: 30,
+			width: 330,
+			height: 40,
 			reg: app.emailReg
 		});
 
 		this.step1VerifyInput = new Input({
 			id: 'sed-step1-verify-input',
-			width: 100,
-			height: 30,
-			reg: app.emailVerifyCodeReg
+			width: 165,
+			height: 40,
+			reg: app.verifyReg
 		});
 
 		this.step1VerifyCodeButton = new Button({
 			id: 'sed-step1-verify-code-button',
 			name: '获取验证码',
-			width: 100,
-			height: 30
+			width: 140,
+			height: 40
 		});
 
 		this.step1OkButton = new Button({
 			id: 'sed-step1-ok-button',
 			name: '下一步',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		this.step1CancelButton = new Button({
 			id: 'sed-step1-cancel-button',
 			name: '取消',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		this.step2EmailInput = new Input({
 			id: 'sed-step2-email-input',
-			width: 220,
-			height: 30,
+			width: 330,
+			height: 40,
 			reg: app.emailReg
 		});
 
 		this.step2VerifyInput = new Input({
 			id: 'sed-step2-verify-input',
-			width: 100,
-			height: 30,
-			reg: app.emailVerifyCodeReg
+			width: 165,
+			height: 40,
+			reg: app.verifyReg
 		});
 
 		this.step2VerifyCodeButton = new Button({
 			id: 'sed-step2-verify-code-button',
 			name: '获取验证码',
-			width: 100,
-			height: 30
+			width: 140,
+			height: 40
 		});
 
 		this.step2OkButton = new Button({
 			id: 'sed-step2-ok-button',
 			name: '下一步',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		this.step2CancelButton = new Button({
 			id: 'sed-step2-cancel-button',
 			name: '取消',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		this.step3Button = new Button({
 			id: 'sed-step3-button',
 			name: '完成',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		var temp = '<div class="set-email-dialog">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
+								'<div class="title">验证电子邮箱</div>' +
+
 								'<div class="row1">' +
 									'<ul class="steps">' +
-										'<li data-value="conten1" class="step step1 active">' +
-											'<span>1、验证邮箱</span>' +
+										'<li data-value="content1" class="step step1 active">' +
+											'<span class="number">1</span>' +
+											'<span class="text">验证邮箱</span>' +
+											'<span class="arrow">&gt;</span>' +
 										'</li>' +
-										'<li data-value="conten2" class="step step2">' +
-											'<span>2、绑定新邮箱</span' +
+										'<li data-value="content2" class="step step2">' +
+											'<span class="number">2</span>' +
+											'<span class="text">绑定邮箱</span>' +
+											'<span class="arrow">&gt;</span>' +
 										'</li>' +
-										'<li data-value="conten3" class="step step3">' +
-											'<span>3、完成</span' +
+										'<li data-value="content3" class="step step3">' +
+											'<span class="number">3</span>' +
+											'<span class="text">完成</span>' +
 										'</li>' +
 									'</ul>' +
 								'</div>' +
@@ -192,11 +199,24 @@
 	};
 
 	SetEmailDialog.prototype.show = function(){
+		this.resetDialog();
 		this.showOverlay();
 	};
 
 	SetEmailDialog.prototype.hide = function(){
 		this.hideOverlay();
+	};
+
+	SetEmailDialog.prototype.resetDialog = function() {
+		this.step1EmailInput.setValue(app.userTotalInfo.Email);
+		this.step1EmailInput.setValue('');
+		this.step1VerifyInput.setValue('');
+		this.step2EmailInput.setValue('');
+		this.step2VerifyInput.setValue('');
+		this.zone.find('.content').hide();
+		this.zone.find('.content1').show();
+		this.zone.find('.step').removeClass('active');
+		this.zone.find('.step1').addClass('active');
 	};
 
 	SetEmailDialog.prototype.bindEvents = function(){

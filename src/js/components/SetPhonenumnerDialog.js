@@ -9,94 +9,101 @@
 	SetPhonenumberDialog.prototype.initDom = function() {
 		this.step1PhonenumberInput = new Input({
 			id: 'spd-step1-phonenumber-input',
-			width: 220,
-			height: 30,
+			width: 330,
+			height: 40,
 			reg: app.phoneNumberReg
 		});
 
 		this.step1VerifyInput = new Input({
 			id: 'spd-step1-verify-input',
-			width: 100,
-			height: 30,
+			width: 165,
+			height: 40,
 			reg: app.verifyReg
 		});
 
 		this.step1VerifyCodeButton = new Button({
 			id: 'spd-step1-verify-code-button',
 			name: '获取验证码',
-			width: 100,
-			height: 30
+			width: 140,
+			height: 40
 		});
 
 		this.step1OkButton = new Button({
 			id: 'spd-step1-ok-button',
 			name: '下一步',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		this.step1CancelButton = new Button({
 			id: 'spd-step1-cancel-button',
 			name: '取消',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		this.step2PhonenumberInput = new Input({
 			id: 'spd-step2-phonenumber-input',
-			width: 220,
-			height: 30,
+			width: 330,
+			height: 40,
 			reg: app.phoneNumberReg
 		});
 
 		this.step2VerifyInput = new Input({
 			id: 'spd-step2-verify-input',
-			width: 100,
-			height: 30,
+			width: 165,
+			height: 40,
 			reg: app.verifyReg
 		});
 
 		this.step2VerifyCodeButton = new Button({
 			id: 'spd-step2-verify-code-button',
 			name: '获取验证码',
-			width: 100,
-			height: 30
+			width: 140,
+			height: 40
 		});
 
 		this.step2OkButton = new Button({
 			id: 'spd-step2-ok-button',
 			name: '下一步',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		this.step2CancelButton = new Button({
 			id: 'spd-step2-cancel-button',
 			name: '取消',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		this.step3Button = new Button({
 			id: 'spd-step3-button',
 			name: '完成',
-			width: 128,
-			height: 35
+			width: 150,
+			height: 40
 		});
 
 		var temp = '<div class="set-phonenumber-dialog">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
+								'<div class="title">验证手机号</div>' +
+
 								'<div class="row1">' +
 									'<ul class="steps">' +
-										'<li data-value="conten1" class="step step1 active">' +
-											'<span>1、验证手机号</span>' +
+										'<li data-value="content1" class="step step1 active">' +
+											'<span class="number">1</span>' +
+											'<span class="text">验证手机号</span>' +
+											'<span class="arrow">&gt;</span>' +
 										'</li>' +
-										'<li data-value="conten2" class="step step2">' +
-											'<span>2、绑定新手机号</span' +
+										'<li data-value="content2" class="step step2">' +
+											'<span class="number">2</span>' +
+											'<span class="text">绑定新手机号</span>' +
+											'<span class="arrow">&gt;</span>' +
 										'</li>' +
-										'<li data-value="conten3" class="step step3">' +
-											'<span>3、完成</span' +
+										'<li data-value="content3" class="step step3">' +
+											'<span class="number">3</span>' +
+											'<span class="text">完成</span>' +
 										'</li>' +
 									'</ul>' +
 								'</div>' +
@@ -107,7 +114,7 @@
 											'<tbody>' +
 												'<tr>' +
 													'<td class="text">' +
-														'原有手机号' +
+														'手机号' +
 													'</td>' +
 													'<td>' +
 														this.step1PhonenumberInput.getDom() +
@@ -116,7 +123,7 @@
 
 												'<tr>' +
 													'<td class="text">' +
-														'验证码：' +
+														'验证码' +
 													'</td>' +
 													'<td>' +
 														this.step1VerifyInput.getDom() +
@@ -146,7 +153,7 @@
 
 												'<tr>' +
 													'<td class="text">' +
-														'验证码：' +
+														'验证码' +
 													'</td>' +
 													'<td>' +
 														this.step2VerifyInput.getDom() +
@@ -192,6 +199,7 @@
 	};
 
 	SetPhonenumberDialog.prototype.show = function() {
+		this.resetDialog();
 		this.showOverlay();
 	};
 
@@ -201,6 +209,14 @@
 
 	SetPhonenumberDialog.prototype.resetDialog = function() {
 		this.step1PhonenumberInput.setValue(app.userTotalInfo.Phone);
+		this.step1PhonenumberInput.setValue('');
+		this.step1VerifyInput.setValue('');
+		this.step2PhonenumberInput.setValue('');
+		this.step2VerifyInput.setValue('');
+		this.zone.find('.content').hide();
+		this.zone.find('.content1').show();
+		this.zone.find('.step').removeClass('active');
+		this.zone.find('.step1').addClass('active');
 	};
 
 	SetPhonenumberDialog.prototype.bindEvents = function() {
