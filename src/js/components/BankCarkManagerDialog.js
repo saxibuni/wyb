@@ -1,25 +1,23 @@
 $(function(){
-	function BankCarkManagerDialog(opt){
+	function BankCarkManagerDialog(opt) {
 		IMDialog.call(this, opt || {});
+
+		this.firstTime = true;
 		this.initDom();
 	}
 
 	BankCarkManagerDialog.prototype = new IMDialog();
 
-	BankCarkManagerDialog.prototype.initDom = function(){
+	BankCarkManagerDialog.prototype.initDom = function() {
 		var temp = '<div class="bank-card-manager-content">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
-								'<div class="subtile">' +
-									'<div class="title-name">银行卡管理</div>' +
-									'<div class="close">×</div>' +
+								'<div class="subtitle">' +
+									'<span class="title-name">银行卡管理</span>' +
+									'<span class="close">×</span>' +
 								'</div>' +
 
 								'<div class="card-content">' +
-									'<div class="add-card-info">'+
-										'<span>添加银行卡</span>' +
-									'</div>'+
-									'<div class="clear"></div>'+
 								'</div>'+
 
 							'</div>' +
@@ -35,6 +33,23 @@ $(function(){
 		return this.el;
 	};
 
+	BankCarkManagerDialog.prototype.show = function(){
+		this.showOverlay();
+
+		if (this.firstTime) {
+			this.getUserBankList();
+			this.firstTime = false;
+		}
+	};
+
+	BankCarkManagerDialog.prototype.refresh = function(){
+		this.getUserBankList();
+	};
+
+	BankCarkManagerDialog.prototype.hide = function(){
+		this.hideOverlay();
+	};
+
 	BankCarkManagerDialog.prototype.addCardItem = function(data) {
 		var i;
 		var cssName;
@@ -45,46 +60,24 @@ $(function(){
 		var lastPart   =  data.AccountNo.substring(0, 4);
 
 		temp +=	'<div class="card-info">' +
-					'<div class="img-content">' +
-						//'<img style="top: -32px;" src="../img/bankLogo.jpg">' +
+					'<div class="bank-name">' +
 						bankName +
 					'</div>' +
+
 					'<div class="card-number">' +
 						'<span class="pre-part">' + prePart + '</span>' +
 						'<span class="starts">&nbsp;****&nbsp;****&nbsp;****</span>' +
-						'<span class="last-part">' + lastPart + '</span>'
+						'<span class="last-part">' + lastPart + '</span>' +
 					'</div>' +
 				'</div>';
 
-		this.zone.find('.card-content').prepend(temp);
+		return temp;
 	};
-
-	BankCarkManagerDialog.prototype.show = function(){
-		this.showOverlay();
-
-		if (!this.firstTime) {
-			this.getUserBankList();
-			this.firstTime = true;
-		}
-	};
-
-	BankCarkManagerDialog.prototype.refresh = function(){
-		var temp =	'<div class="add-card-info">'+
-						'<span>添加银行卡</span>' +
-					'</div>'+
-					'<div class="clear"></div>';
-
-		this.zone.find('.card-content').html(temp);
-		this.getUserBankList();
-	}
-
-	BankCarkManagerDialog.prototype.hide = function(){
-		this.hideOverlay();
-	}
 
 	BankCarkManagerDialog.prototype.getUserBankList = function() {
 		var i;
 		var callback;
+		var temp = '';
 		var that = this;
 
 		var opt  = {
@@ -99,28 +92,40 @@ $(function(){
 			}
 
 			for (i = 0; i < data.length; i++) {
-				that.addCardItem(data[i], i);
+				temp += that.addCardItem(data[i]);
 			}
 
+			temp +=	'<div class="card-info add-card">' +
+						'<div class="bank-name">+</div>' +
+						'<div class="card-number">添加银行卡</div>' +
+					'</div>';
+
+			that.zone.find('.card-content').html(temp);
+			that.bindAddCardEvents();
 			that.userBanks = data;
 		};
 
 		Service.get(opt, callback);
 	};
 
-	BankCarkManagerDialog.prototype.bindEvents = function(){
+	BankCarkManagerDialog.prototype.bindAddCardEvents = function() {
 		var that = this;
-		
-		this.zone = $('.bank-card-manager-content');
-		
-		this.zone.find('.add-card-info').click(function(){
+
+		this.zone.find('.add-card').click(function() {
 			if (!that.cardBindDiag) {
 				that.cardBindDiag = new CardBindDialog();
 				$('.app').append(that.cardBindDiag.getDom());
 				that.cardBindDiag.bindEvents();
 			}
+
 			that.cardBindDiag.show();
 		});
+	};
+
+	BankCarkManagerDialog.prototype.bindEvents = function() {
+		var that = this;
+		
+		this.zone = $('.bank-card-manager-content');
 
 		that.zone.find('.close').click(function(){
 			that.hide();
