@@ -1,18 +1,27 @@
 @import "../mixins.scss";
 
-.card-bind-content{
+.card-bind-content {
 	@include dialog-frame;
 
 	.dialog-wrapper {
-		@include dialog-wrapper(500px);   
+		@include dialog-wrapper(500px);
         z-index: 200;
         top: 50%;
 
 		.dialog{
-			@include dialog(500px, 380px);
-			background-color: #48463a;
+			@include dialog(500px, 500px);
+			
+			background-color: $purple1;
+			color: $font-color1;
 			font-size: 14px;
-			padding: 30px 20px 20px 20px;
+
+			.title {
+				font-size: 16px;
+			    height: 45px;
+			    line-height: 45px;
+			    border-bottom: 1px solid $border-color1;
+			    text-align: center;
+			}
 
 			.input-outer{
 				border: 1px solid #555555;
@@ -64,18 +73,8 @@
 				position: relative;
 				text-align: center;
 
-				.button{
-					background-color: #4B4B42;
-					color: #222222;
-					cursor: pointer;
-					width: 80px;
-					height: 30px;
-					line-height: 30px;
-					text-align: center;
-
-					&:hover {
-						color: #DCAD4B;
-					}
+				.button {
+					@include button1; 
 				}
 
 				.button:nth-child(2){

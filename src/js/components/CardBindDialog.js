@@ -46,29 +46,22 @@ $(function(){
 		var temp = '<div class="card-bind-content">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
-
+								'<div class="title">验证电子邮箱</div>' +
+								
 								'<div class="row">' +
 									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
 										this.selectBank.getDom() +
 									'</div>' + 
 								'</div>' +
 
 								'<div class="row">' +
 									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
 										'<input class="money-psw" type="password" placeholder="请输入您的资金密码" />' +
 									'</div>' +
 								'</div>' +
 
 								'<div class="row">' +
 									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
-
-										// '<div class="china-district" data-toggle="distpicker">' +
-										// 	'<select data-province="---- 选择省 ----"></select>' +
-										// 	'<select data-city="---- 选择市 ----"></select>' +
-										// '</div>' +
 										this.selectProvince.getDom() +
 										this.selectCity.getDom() +
 
@@ -78,21 +71,18 @@ $(function(){
 
 								'<div class="row">' +
 									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
 										'<input class="branch-bank" type="text" placeholder="请输入您的开户行支行" />' +
 									'</div>' +
 								'</div>' +
 
 								'<div class="row">' +
 									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
 										'<input class="bank-card-number" type="text" placeholder="请输入您的银行卡卡号" />' +
 									'</div>' +
 								'</div>' +
 
 								'<div class="row">' +
 									'<div class="input-outer">' +
-										'<img src="../img/t04.png" />' +
 										'<input class="card-owner" type="text" placeholder="请输入开户人姓名" />' +
 									'</div>' +
 								'</div>' +

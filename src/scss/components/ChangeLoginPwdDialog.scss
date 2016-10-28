@@ -6,7 +6,7 @@
 	.dialog-wrapper {
 		$gap  :  20px;
 
-		@include dialog-wrapper(320px);
+		@include dialog-wrapper(380px);
 		z-index: 170;
 		top: 50%;
 
