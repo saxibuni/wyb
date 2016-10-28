@@ -84,7 +84,7 @@
 
 		this.zone = $('.footer');
 
-		featureUl  = this.zone.find('.footer-left .row1');
+		featureUl  = this.zone.find('.footer-left .row2 ul');
 		downLoadUl = this.zone.find('.footer-right .row1 ul');
 
 		featureUl.delegate('li', 'click', function () {
