@@ -1,7 +1,7 @@
 @import "../mixins.scss";
 
 .footer {
-	background-color: $footer-background-color;
+	background-color: #070B12;
 	position: relative;
 	height: $footerHeight;
 	font-size: 14px;
@@ -24,10 +24,25 @@
 			text-align: left;
 
 			.row1 {
-				color: #9A9A9A;
-				height: 30px;
-				line-height: 30px;
-				padding-left: 10px;
+				height: 60px;
+				line-height: 60px;
+
+				.platforms-icon {
+					background-image: url("../img/common.png");
+					background-position: -10px -145px;
+					cursor: pointer;
+					display: inline-block;
+					height: $headerRow1Height;
+					vertical-align: middle;
+					width: 650px;
+					margin-left: -5px;
+				}
+			}
+
+			.row2 {
+				color: #4F4B51;
+				height: 40px;
+				line-height: 40px;
 
 				ul {
 					li {
@@ -37,12 +52,18 @@
 						line-height: 20px;
 
 						span {
-							padding: 0 15px;
-							border-right: 1px solid #FFF;
+							padding: 0 17px;
+							border-right: 1px solid #4F4B51;
 						}
 
 						&:hover {
 							color: #DCAD4B;
+						}
+
+						&:first-child {
+							span {
+								padding-left: 0;
+							}
 						}
 
 						&:last-child {
@@ -53,116 +74,66 @@
 					}
 				}
 			}
-
-			.row2 {
-				height: 30px;
-				line-height: 30px;
-				padding-left: 20px;
-
-				.span1 {
-					color: #8F8F8F;
-				}
-
-				.span2 {
-					color: #9A9A9A;
-					margin-left: 10px;
-				}
-			}
-
-			.row3 {
-				height: 40px;
-				line-height: 40px;
-				padding-left: 20px;
-
-				ul {
-					height: 40px;
-					line-height: 40px;
-					overflow: hidden;
-
-					li {
-						display: inline-block;
-						padding: 13px;
-
-						img {
-						    position: relative;
-						    bottom: 9px;
-						}
-
-						.divider {
-							background-color: #FFF;
-							display: inline-block;
-							height: 20px;
-							width: 1px;
-							position: relative;
-							bottom: 5px;
-						}
-
-						&:first-child {
-							padding-left: 0;
-
-						    img {
-						    	bottom: 7px;
-						    }						
-						}
-					}
-				}
-			}
-		}
-
-		.footer-middle {
-			position: absolute;
-			left: 800px;
-			width: 1px;
-			background-color: #686868;
-			height: 86px;
-			top: 7px;
-			transition: left .5s;
 		}
 
 		.footer-right {
-			color: #9A9A9A;
+			color: #4F4B51;
 			float: right;
 			font-size: 12px;
 			display: inline-block;
 			text-align: left;
 			height: 100%;
 
-			.title {
-			    height: 25px;
-			    line-height: 25px;
-			}
-
 			.row1 {
+				height: 60px;
+				line-height: 60px;
+
+				.title {
+					display: inline-block;
+				    height: 25px;
+				    line-height: 25px;
+				    vertical-align: middle;
+				}
+
 				ul {
+					display: inline-block;
+					vertical-align: middle;
+
 					li {
 						cursor: pointer;
 						display: inline-block;
     					margin-right: 25px;
 
-						img {
-							height: 15px;
-							width: 15px;
-							vertical-align: bottom;
-							margin-right: 5px;
-						}
+    					.icon {
+							background-image: url("../img/common.png");
+							cursor: pointer;
+							display: inline-block;
+							height: 25px;
+							width: 30px;
+							vertical-align: middle;
+    					}
+					}
+
+					.chrome-icon {
+						background-position: -103px -196px;
+					}
+
+					.firefox-icon {
+						background-position: -280px -196px;
+					}
+
+					.ie-icon {
+						background-position: -16px -196px;
 					}
 				}
 			}
 
 			.row2 {
-				margin-top: 8px;
+				height: 40px;
+				line-height: 40px;
 
-				.resolution {
-					img {
-						height: 15px;
-						width: 15px;
-    					vertical-align: bottom;
-					}
-
-					span {
-						display: inline-block;
-						margin-left: 15px;
-					}
+				.span2 {
+					margin-left: 10px;
 				}
 			}
 		}
@@ -174,13 +145,29 @@
 	bottom: 0;
 }
 
-@media screen and (min-width: 0px) and (max-width: 1300px) {
-	.footer {
-		.wrapper {
-			width: 1000px;
+@media screen and (max-width: 1300px) {
+	$contentWidth: 1000px;
 
-			.footer-middle {
-				left: 650px;
+	.footer {
+		.wrapper { 
+			width: $contentWidth;
+
+			.footer-left {
+				.row1 {
+				    transform: scale(.8);
+				    margin-left: -50px;
+				    width: 520px;
+				}
+
+				.row2 {
+					ul {
+						li {
+							span {
+								padding: 0 7px;
+							}
+						}
+					}
+				}
 			}
 		}
 	}

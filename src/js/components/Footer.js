@@ -8,6 +8,10 @@
 						'<div class="wrapper">' +
 							'<div class="footer-left">' +
 								'<div class="row1">' +
+									'<span class="platforms-icon"></span>' +
+								'</div>' +
+
+								'<div class="row2">' +
 									'<ul>' +
 										'<li data-value="aboutus"><span>关于我们</span></li>' +
 										'<li data-value="contactus"><span>联系我们</span></li>' +
@@ -19,79 +23,35 @@
 										'<li data-value="agentSignup"><span>代理注册</span></li>' +
 									'</ul>' +
 								'</div>' +
-								'<div class="row2">' +
-									'<span class="span1">Copyright © 2006 - 2016</span><span class="span2"> VEB Entertainment (伟易博) All Rights Reserved</span>' +
-								'</div>' +
-								'<div class="row3">' +
-									'<ul>' +
-										'<li>' +
-											'<img class="copyright-img li1" width="76" height="28" src="../img/copyrights1.png">' +
-										'</li>' +
-										'<li><span class="divider"></span></li>' +
-										'<li>' +
-											'<img class="copyright-img li2" width="45" height="18" src="../img/copyrights2.png">' +
-										'</li>' +
-										'<li>' +
-											'<img class="copyright-img li3" width="60" height="18" src="../img/copyrights3.png">' +
-										'</li>' +
-										'<li>' +
-											'<img class="copyright-img li4" width="18" height="18" src="../img/copyrights4.png">' +
-										'</li>' +
-										'<li>' +
-											'<img class="copyright-img li5" width="24" height="18" src="../img/copyrights5.png">' +
-										'</li>' +
-										'<li>' +
-											'<img class="copyright-img li6" width="29" height="18" src="../img/copyrights6.png">' +
-										'</li>' +
-										'<li>' +
-											'<img class="copyright-img li7" width="41" height="18" src="../img/copyrights7.png">' +
-										'</li>' +
-										'<li>' +
-											'<img class="copyright-img li8" width="14" height="18" src="../img/copyrights8.png">' +
-										'</li>' +
-									'</ul>' +
-								'</div>' +
-							'</div>' +
-
-							'<div class="footer-middle">' +
 							'</div>' +
 							
 							'<div class="footer-right">' +
 								'<div class="row1">' +
 									'<div class="title">' +
-										'推荐浏览器' +
+										'推荐：' +
 									'</div>' +
 
 									'<ul>' +
 										'<li data-value="chrome">' +
-											'<img src="../img/chrome-gray.png">' +
+											'<span class="icon chrome-icon"></span>' +
 											'<span>Chrome</span>' +
 										'</li>' +
+
 										'<li data-value="firefox">' +
-											'<img src="../img/firefox-gray.png">' +
+											'<span class="icon firefox-icon"></span>' +
 											'<span>Firefox</span>' +
 										'</li>' +
-										
-										// '<li data-value="safari">' +
-										// 	'<img src="../img/safari-gray.png">' +
-										// 	'<span>Safari</span>' +
-										// '</li>' +
-										
+
 										'<li data-value="ie">' +
-											'<img src="../img/ie-gray.png">' +
+											'<span class="icon ie-icon"></span>' +
 											'<span>IE10.0+</span>' +
 										'</li>' +
 									'</ul>' +
 								'</div>' +
+
 								'<div class="row2">' +
 									'<div class="title">' +
-										'最佳分辨率' +
-									'</div>' +
-
-									'<div class="resolution">' +
-										'<img src="../img/resolution.png">' +
-										'<span>1366 × 768</span>' +
-										'<span>1920 × 1080</span>' +
+										'<span class="span1">Copyright © 2006 - 2016</span><span class="span2"> VEB Entertainment (伟易博) All Rights Reserved</span>' +
 									'</div>' +
 								'</div>' +
 							'</div>' +
