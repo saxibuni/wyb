@@ -1,20 +1,20 @@
-$(function(){
-	function CardBindDialog(opt){
+$(function() {
+	function CardBindDialog(opt) {
 		IMDialog.call(this, opt || {});
 		this.initDom();
 	}
 
 	CardBindDialog.prototype = new IMDialog();
 
-	CardBindDialog.prototype.initDom = function(){
+	CardBindDialog.prototype.initDom = function() {
 		this.selectBank = new Select({
 			id: 'card-bind-bank',
-			width: 380,
-			height: 36,
+			width: 450,
+			height: 40,
 			data:[
 				{
 					'text': '请选择您的开户银行',
-					'value': '-1'	
+					'value': '-1'
 				}
 			]
 		});
@@ -26,7 +26,7 @@ $(function(){
 			data:[
 				{
 					'text': '省',
-					'value': '-1'	
+					'value': '-1'
 				}
 			]
 		});
@@ -38,53 +38,69 @@ $(function(){
 			data:[
 				{
 					'text': '市',
-					'value': '-1'	
+					'value': '-1'
 				}
 			]
+		});
+
+		this.moneyPwdInput = new Input({
+			id: 'cbd-money-pwd-input',
+			width: 450,
+			height: 40,
+			placeholder: '请输入您的资金密码',
+			type: 'password'
+		});
+
+		this.branchBankInput = new Input({
+			id: 'cbd-branch-bank-input',
+			width: 450,
+			height: 40,
+			placeholder: '请选择您的开户银行',
+		});
+
+		this.cardNumberInput = new Input({
+			id: 'cbd-card-number-input',
+			width: 450,
+			height: 40,
+			placeholder: '请输入您的银行卡卡号',
+		});
+
+		this.cardOwnerInput = new Input({
+			id: 'cbd-card-owner-input',
+			width: 450,
+			height: 40,
+			placeholder: '请输入开户人姓名',
 		});
 
 		var temp = '<div class="card-bind-content">' +
 						'<div class="dialog-wrapper">' +
 							'<div class="dialog">' +
-								'<div class="title">验证电子邮箱</div>' +
-								
+								'<div class="title">绑定银行卡</div>' +
+
 								'<div class="row">' +
-									'<div class="input-outer">' +
-										this.selectBank.getDom() +
-									'</div>' + 
+									this.selectBank.getDom() +
 								'</div>' +
 
 								'<div class="row">' +
-									'<div class="input-outer">' +
-										'<input class="money-psw" type="password" placeholder="请输入您的资金密码" />' +
-									'</div>' +
+									this.selectProvince.getDom() +
+									this.selectCity.getDom() +
+									'<span>* 请选择您的开户银行所在地</span>' +
 								'</div>' +
 
 								'<div class="row">' +
-									'<div class="input-outer">' +
-										this.selectProvince.getDom() +
-										this.selectCity.getDom() +
-
-										'<span>* 请选择您的开户银行所在地</span>' +									
-									'</div>' +
+									this.moneyPwdInput.getDom() +
 								'</div>' +
 
 								'<div class="row">' +
-									'<div class="input-outer">' +
-										'<input class="branch-bank" type="text" placeholder="请输入您的开户行支行" />' +
-									'</div>' +
+									this.branchBankInput.getDom() +
 								'</div>' +
 
 								'<div class="row">' +
-									'<div class="input-outer">' +
-										'<input class="bank-card-number" type="text" placeholder="请输入您的银行卡卡号" />' +
-									'</div>' +
+									this.cardNumberInput.getDom() +
 								'</div>' +
 
 								'<div class="row">' +
-									'<div class="input-outer">' +
-										'<input class="card-owner" type="text" placeholder="请输入开户人姓名" />' +
-									'</div>' +
+									this.cardOwnerInput.getDom() +
 								'</div>' +
 
 								'<div class="row">' +
@@ -94,8 +110,7 @@ $(function(){
 									'<div class="button cancel">' +
 										'取消' +
 									'</div>' +
-								'</div>' +	
-
+								'</div>' +
 							'</div>' +
 						'</div>' +
 					'</div>'+
@@ -224,14 +239,14 @@ $(function(){
 	CardBindDialog.prototype.bindCard = function() {
 		var callback;
 		var opt;
-		var that = this;
+		var that       = this;
 		var bankId     = this.selectBank.getValue();
 		var provinceId = this.selectProvince.getValue();
 		var cityId     = this.selectCity.getValue();
-		var moneyPwd   = this.zone.find('.money-psw').val();
-		var branchBank = this.zone.find('.branch-bank').val();
-		var bankNumber = this.zone.find('.bank-card-number').val();
-		var owner      = this.zone.find('.card-owner').val();
+		var moneyPwd   = this.moneyPwdInput.getValue();
+		var branchBank = this.branchBankInput.getValue();
+		var bankNumber = this.cardNumberInput.getValue();
+		var owner      = this.cardOwnerInput.getValue();
 
 		if (!(bankId && provinceId && cityId && moneyPwd && branchBank && bankNumber && owner)) {
 			alert('请完成相关信息!');
@@ -283,11 +298,13 @@ $(function(){
 			that.getCityList(that.selectProvince.getValue());
 		});
 
-		//this.zone.find('.china-district').distpicker();
-
 		this.selectBank.bindEvents();
 		this.selectProvince.bindEvents();
 		this.selectCity.bindEvents();
+		this.moneyPwdInput.bindEvents();
+		this.branchBankInput.bindEvents();
+		this.cardNumberInput.bindEvents();
+		this.cardOwnerInput.bindEvents();
         this.bindOverlayEvents();
 	};
 

@@ -4,11 +4,13 @@
 	@include dialog-frame;
 
 	.dialog-wrapper {
+		$gap     :     18px;
+
 		@include dialog-wrapper(500px);
         z-index: 200;
         top: 50%;
 
-		.dialog{
+		.dialog {
 			@include dialog(500px, 500px);
 			
 			background-color: $purple1;
@@ -23,80 +25,51 @@
 			    text-align: center;
 			}
 
-			.input-outer{
-				border: 1px solid #555555;
-				height: 40px;
-				line-height: 40px;
-				padding: 0 10px;
+			.row {
 				width: 450px;
-
-				img{
-					display: inline-block;
-					float: left;
-					position: relative;
-					height: 20px;
-					width: 20px;
-					top: 10px;
-					right: 0;
-				}
-
-				input {
-					background-color: transparent;
-					border: 0;
-					color: #FFF;
-					display: inline-block;
-					float: left;
-					height: 40px;
-					line-height: 40px;
-					width: 90%;
-					margin-left: 14px;
-				}
-
-				#card-bind-bank{
-				    background: transparent;
-				    border: none;
-				    outline: #48463a;
-				}
-
-				#card-bind-province,#card-bind-city{
-				    background: transparent;
-				    border: none;
-				    outline: #48463a;
-				    margin-left: 10px;
-				    width: 100px;
-				}
-			}
-
-			.row{
-				height: 50px;
-				width: 100%;
 				position: relative;
 				text-align: center;
+				margin: 0 auto;
+				margin-top: $gap;
 
 				.button {
-					@include button1; 
+					@include button1;
+					height: 40px;
+					line-height: 40px;
+					width: 150px;
+
+					&:nth-child(2) {
+						margin-left: 50px;
+					}
 				}
 
-				.button:nth-child(2){
-					margin-left: 50px;
+				&:nth-child(2) {
+					margin-top: 25px;
+
+					.select {
+						.selet-down-icon {
+							top: -2px;
+						}
+					}
 				}
-			}
 
-			.china-district {
-				display: inline-block;
+				&:nth-child(3) {
+					border: 1px solid $border-color1;
+					text-align: left;
 
-				select {
-					background-color: #48463a;
-					color: #A9A9A9;
-					width: 100px;
-					margin: 5px;
+					.select {
+						border: 0;
 
-					&:first-child {
-						width: 80px;
+						.selet-down-icon {
+							top: -2px;
+						}
+					}
+
+					span {
+						margin-left: 30px;
 					}
 				}
 			}
 		}
 	}
-	
 }
