@@ -4,28 +4,29 @@
 	@include dialog-frame;
 
 	.dialog-wrapper {
-		@include dialog-wrapper(420px);
+		@include dialog-wrapper(640px);
 		z-index: 170;
 		top: 50%;
 
 		.dialog {
-			@include dialog(420px, 450px);
-			background-color: #F2F2F2;
+			@include dialog(640px, 530px);
+
+			background-color: $purple1;
+			color: $font-color1;
 			font-size: 14px;
 
 			.row1 {
+				border-bottom: 1px solid $border-color1;
 				height: 50px;
 				line-height: 50px;
 				position: relative;
 
 				.title {
-					color: #000;
 					font-size: 16px;
 					text-align: center;
 				}
 
 	            .close {
-	                color: #CCCCCC;
 	                font-size: 30px;
 				    top: -5px;
 				    right: 15px;
@@ -34,77 +35,48 @@
 	                cursor: pointer;
 
 	                &:hover {
-	                    color: #DCAD4B;
+	                    color: $font-color2;
 	                }
 	            }
 			}
 
 			.row2 {
-				background-color: #FFF;
-				border: 1px solid #CCCCCC;
 				height: 100px;
 			    margin: 0 10px;
 			    font-size: 12px;
 
-				.row2-left {
-					float: left;
-					display: inline-block;
-					height: 40%;
-					width: 60%;
+				table {
+					height: 100%;
+					width: 95%;
 
-					table {
-						height: 100%;
-						width: 95%;
+					tr {
+						height: 30px;
+						line-height: 30px;
 
-						tr {
-							height: 30px;
-							line-height: 30px;
-
-							.name {
-								text-align: right;
-							}
-
-							.value {
-								text-align: left;
-							}
-						}
-					}
-				}
-
-				.row2-right {	
-					float: right;
-					display: inline-block;
-					height: 40%;
-					width: 40%;
-
-					.countdown {
-						.countdown-time {
-							color: #F44238;
-							font-size: 26px;
+						.name {
+							text-align: right;
 						}
 
-						.countdown-info {
-							border: 1px solid #CCCCCC;
-							margin: 10px;
-							height: 40px;
-							padding: 5px;
+						.value {
+							text-align: left;
 						}
 					}
 				}
 			}
 
 			.row3 {
-				.title {
-					color: #323232;
-					height: 30px;
-					line-height: 30px;
-					font-size: 16px;
-					font-weight: bold;
-				}
+				color: $red;
+				font-size: 12px;
 
+				.countdown-time {
+					margin-left: 15px;
+				}
+			}
+
+			.row4 {
 				table {
-					border-top: 1px solid #CCCCCC;
-					border-left: 1px solid #CCCCCC;
+					border-top: 1px solid $border-color1;
+					border-left: 1px solid $border-color1;
 					font-size: 12px;
 					width: 100%;
 					height: 120px;
@@ -114,8 +86,8 @@
 						line-height: 30px;
 
 						td {
-							border-bottom: 1px solid #CCCCCC;
-							border-right: 1px solid #CCCCCC;
+							border-bottom: 1px solid $border-color1;
+							border-right: 1px solid $border-color1;
 						}
 
 						.name {
@@ -152,7 +124,7 @@
 				}
 			}
 
-			.row4 {
+			.row5 {
 				font-size: 12px;
 				height: 50px;
 				border: 1px dashed #CCCCCC;
@@ -160,11 +132,6 @@
 				padding: 6px;
 				text-align: left;
 				color: #949494;
-			}
-
-			.row5 {
-				height: 50px;
-				line-height: 50px;
 			}
 		}
 	}

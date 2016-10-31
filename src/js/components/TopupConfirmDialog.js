@@ -1,5 +1,5 @@
-(function(){
-	function TopupConfirmDialog(opt){
+(function() {
+	function TopupConfirmDialog(opt) {
 		IMDialog.call(this, opt || {});
 		this.opt = opt;
 		this.initDom();
@@ -25,45 +25,36 @@
 								'</div>' +
 
 								'<div class="row2">' +
-									'<div class="row2-left">' +
-										'<table>' +
-											'<tbody>' +
-												'<tr>' +
-													'<td class="name bank">充值银行：</td>' +
-													'<td class="value bank-value"></td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td class="name amount">充值金额：</td>' +
-													'<td class="value amount-value"></td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td class="name bookid">单号：</td>' +
-													'<td class="value sncode-value">SN00204040420332</td>' +
-												'</tr>' +
-											'</tbody>' +
-										'</table>' +
-									'</div>' +
-
-									'<div class="row2-right">' +
-										'<div class="countdown">' +
-											'<div class="countdown-time">' +
-												'02:01' +
-											'</div>' +
-
-											'<p class="countdown-info">' +
-												'为保障充值成功，请在15分钟之内完成支付' +
-											'</>' +
-										'</div>' +
-									'</div>' +
+									'<table>' +
+										'<tbody>' +
+											'<tr>' +
+												'<td class="name bank">充值银行：</td>' +
+												'<td class="value bank-value"></td>' +
+											'</tr>' +
+											'<tr>' +
+												'<td class="name amount">充值金额：</td>' +
+												'<td class="value amount-value"></td>' +
+											'</tr>' +
+											'<tr>' +
+												'<td class="name bookid">订单编号：</td>' +
+												'<td class="value sncode-value">SN00204040420332</td>' +
+											'</tr>' +
+										'</tbody>' +
+									'</table>' +
 								'</div>' +
 
 								'<div class="row3">' +
-									'<div class="title">' +
-										'收款方信息确认' +
-									'</div>' +
+									'<span class="dot"></span>' +
+									'<span class="countdown-info">为保证充值成功，请在15分钟之内完成支付。截止时间：</span>' +
+									'<span class="countdown-time">10:26:30</span>' +
+								'</div>' +
 
+								'<div class="row4">' +
 									'<table>' +
 										'<tbody>' +
+											'<tr>' +
+												'<td colspan="2">收款方信息确认</td>' +
+											'</tr>' +
 											'<tr>' +
 												'<td class="name">收款银行</td>' +
 												'<td class="value bank-name-value"></td>' +
@@ -96,7 +87,7 @@
 									'</table>' +
 								'</div>' +
 
-								'<p class="row4">' +
+								'<p class="row5">' +
 									'注：附言在部分网站上会以"备注"，"用途"等名词出现，请务必正确填写此项信息，填写错误或不填写会影响充值到账' +
 								'</p>' +
 
