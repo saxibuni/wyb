@@ -170,7 +170,7 @@
 										'<ul>' +
 											'<li class="active">' +
 												'<div class="info-zone">' +
-													'<span class="pc-icon mailbox-icon"></span>' +
+													'<span class="pc-icon mailbox-icon left"></span>' +
 													'<span class="text left">通过邮箱找回登录密码</span>' +
 													'<span class="text right not-bind">(未绑定，不可用)</span>' +
 													'<div class="clear"></div>' +
@@ -196,7 +196,7 @@
 
 											'<li>' +
 												'<div class="info-zone">' +
-													'<span class="pc-icon phone-icon"></span>' +
+													'<span class="pc-icon phone-icon left"></span>' +
 													'<span class="text left">通过手机找回登录密码</span>' +
 													'<span class="text right not-bind">(未绑定，不可用)</span>' +
 													'<div class="clear"></div>' +
@@ -289,6 +289,8 @@
 		};
 
 		callback = function (data) {
+			that.zone.find('.verify-code').click();
+
 			if (!data) {
 				alert('验证码错误');
 				return;

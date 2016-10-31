@@ -48,8 +48,8 @@ $(function() {
 
 										'<ul class="menu-ico">' +
 											'<li><span class="pc-icon bankcard-icon"></span></li>' +
-											'<li class="binded"><span class="pc-icon mailbox-icon"></span></li>' +
-											'<li class="binded"><span class="pc-icon phone-icon"></span></li>' +
+											'<li class="binded"><span class="mailbox-icon"></span></li>' +
+											'<li class="binded"><span class="phone-icon"></span></li>' +
 										'</ul>' +
 									'</div>' +
 
