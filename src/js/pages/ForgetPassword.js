@@ -27,7 +27,8 @@
 			width: 330,
 			height: 40,
 			placeholder: '请输入您的邮箱',
-			reg: app.emailReg
+			reg: app.emailReg,
+			disabled: true
 		});
 
 		this.mailVerifyInput = new Input({
@@ -43,7 +44,8 @@
 			width: 330,
 			height: 40,
 			placeholder: '请输入您的手机号码',
-			reg: app.emailReg
+			reg: app.emailReg,
+			disabled: true
 		});
 
 		this.phoneVerifyInput = new Input({
@@ -82,20 +84,20 @@
 		this.step2Next = new Button({
 			id: 'forget-password-step2-next',
 			name: '下一步',
-			width: 70,
+			width: 330,
 			height: 40
 		});
 
 		this.getMailVerifyCode = new Button({
 			id: 'get-mail-verify-code',
-			name: '获取邮箱验证码',
-			width: 110,
+			name: '获取验证码',
+			width: 140,
 			height: 40
 		});
 
 		this.getPhoneVerifyCode = new Button({
 			id: 'get-phone-verify-code',
-			name: '获取手机验证码',
+			name: '获取验证码',
 			width: 110,
 			height: 40
 		});
@@ -163,7 +165,7 @@
 									'<div class="row1">' +
 										'<span class="text">您正在找回登录密码的账号是：</span>' +
 										'<span class="value username">helloworld</span>' +
-										'<span class="text">请选择您准备找回登录密码的方式</span>' +
+										'<span class="text">。请选择您准备找回登录密码的方式</span>' +
 									'</div>' +
 
 									'<div class="row2">' +
@@ -268,11 +270,53 @@
 	};
 
 	ForgetPassword.prototype.show = function () {
+		this.reset();
 		this.zone.show();
 	};
 
 	ForgetPassword.prototype.hide = function () {
 		this.zone.hide();
+	};
+
+	ForgetPassword.prototype.reset = function () {
+		this.goToStep1();
+		this.mailInput.setValue('');
+		this.phoneInput.setValue('');
+		this.verifyInput.setValue('');
+		this.phoneVerifyInput.setValue('');
+		this.mailVerifyInput.setValue('');
+	};
+
+	ForgetPassword.prototype.goToStep1 = function () {
+		var titleUl = this.zone.find('ul.title');
+		this.zone.find('.step').hide();
+		this.zone.find('.step1').show()
+		titleUl.find('li').removeClass('active');
+		titleUl.find('li:eq(0)').addClass('active');
+	};
+
+	ForgetPassword.prototype.goToStep2 = function () {
+		var titleUl = this.zone.find('ul.title');
+		this.zone.find('.step').hide();
+		this.zone.find('.step2').show()
+		titleUl.find('li').removeClass('active');
+		titleUl.find('li:eq(1)').addClass('active');
+	};
+
+	ForgetPassword.prototype.goToStep3 = function () {
+		var titleUl = this.zone.find('ul.title');
+		this.zone.find('.step').hide();
+		this.zone.find('.step3').show()
+		titleUl.find('li').removeClass('active');
+		titleUl.find('li:eq(2)').addClass('active');
+	};
+
+	ForgetPassword.prototype.goToStep4 = function () {
+		var titleUl = this.zone.find('ul.title');
+		this.zone.find('.step').hide();
+		this.zone.find('.step4').show()
+		titleUl.find('li').removeClass('active');
+		titleUl.find('li:eq(3)').addClass('active');
 	};
 
 	ForgetPassword.prototype.checkStep1 = function () {
@@ -553,6 +597,10 @@
             );
 		});
 
+		this.zone.find('.contactcs').click(function () {
+			window.open(app.liveCsUrl);
+		});
+
 		this.zone.find('#get-mail-verify-code').click(function () {
 			//email = that.mailInput.getValue();
 			//that.getEmailValidateCode(email);
@@ -568,9 +616,9 @@
 		this.usernameInput.bindEvents(step1Callback.bind(this));
 		this.verifyInput.bindEvents(step1Callback.bind(this));
 
-		//this.mailInput.bindEvents();
+		this.mailInput.bindEvents();
 		this.mailVerifyInput.bindEvents();
-		//this.phoneInput.bindEvents();
+		this.phoneInput.bindEvents();
 		this.phoneVerifyInput.bindEvents();
 		this.newPwdInput.bindEvents();
 		this.confirmPwdInput.bindEvents();
