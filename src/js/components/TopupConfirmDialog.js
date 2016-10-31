@@ -46,7 +46,7 @@
 										'</div>' +
 										'<div>' +
 											'<span class="name bookid">订单编号：</span>' +
-											'<span class="value sncode-value">SN00204040420332</span>' +
+											'<span class="value sncode-value"></span>' +
 										'</div>' +
 									'</div>' +
 
@@ -152,13 +152,19 @@
             that.userAdminBankData = data;
             that.zone.find('.row4 table .bank-name-value').text(data[0].Bank.BankName);
             that.zone.find('.row4 table .user-name-value').text(data[0].AccountName);
+            that.zone.find('.row4 table .user-name-value + .copy').attr({
+            	'data-clipboard-text' : data[0].AccountName
+            });
             that.zone.find('.row4 table .account-value').text(data[0].AccountNo);
+            that.zone.find('.row4 table .account-value + .copy').attr({
+            	'data-clipboard-text' : data[0].AccountNo
+            });
 		};
 
 		Service.get(opt, callback);
 	};
 
-	TopupConfirmDialog.prototype.bindEvents = function(){
+	TopupConfirmDialog.prototype.bindEvents = function() {
 		var that = this;
 
 		this.zone = $('.topup-confirm-dialog');
@@ -167,10 +173,9 @@
 			that.hide();
 		});
 
+		that.clipboard = new Clipboard('.copy');
         this.bindOverlayEvents();
         this.button.bindEvents();
-
-        this.clipboard = new Clipboard('.copy');
 	}
 
 	window.TopupConfirmDialog = TopupConfirmDialog;

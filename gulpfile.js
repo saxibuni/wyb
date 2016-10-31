@@ -99,13 +99,9 @@ gulp.task('prepare', ['clean'], function () {
 gulp.task('build', function () {
     gulp.src([
             'src/lib/js/jquery.min.js',
-            //'src/lib/js/page.js',
             'src/lib/js/director.js',
             'src/lib/js/jquery.datetimepicker.js',
-            //'src/lib/js/jquery.history.js',
             'src/lib/js/unslider-min.js',
-            // 'src/lib/js/distpicker.data.min.js',
-            // 'src/lib/js/distpicker.min.js',
             //'src/lib/js/md5.min.js',
             'src/lib/js/spin.min.js',
             'src/lib/js/clipboard.min.js',
