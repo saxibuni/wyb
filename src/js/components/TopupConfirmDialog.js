@@ -12,7 +12,7 @@
 		var date  = new Date();
 		var nowMs = Date.now();
 
-		ms   = nowMs + 20 * 60 * 1000;
+		ms   = nowMs + 15 * 60 * 1000;
 		date.setTime(ms);
 
 		date = 	date.getHours() + ':' + 
