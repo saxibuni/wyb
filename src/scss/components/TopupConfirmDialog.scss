@@ -9,22 +9,19 @@
 		top: 50%;
 
 		.dialog {
-			@include dialog(640px, 530px);
+			@include dialog(640px, 470px);
 
 			background-color: $purple1;
 			color: $font-color1;
 			font-size: 14px;
 
-			.row1 {
+			.title {
 				border-bottom: 1px solid $border-color1;
 				height: 50px;
 				line-height: 50px;
 				position: relative;
-
-				.title {
-					font-size: 16px;
-					text-align: center;
-				}
+				font-size: 16px;
+				text-align: center;
 
 	            .close {
 	                font-size: 30px;
@@ -40,98 +37,86 @@
 	            }
 			}
 
-			.row2 {
-				height: 100px;
-			    margin: 0 10px;
-			    font-size: 12px;
+			.content {
+				padding: 25px 40px;
 
-				table {
-					height: 100%;
-					width: 95%;
+				.row2 {
+					height: 75px;
+				    font-size: 14px;
+				    text-align: left;
 
-					tr {
-						height: 30px;
-						line-height: 30px;
-
-						.name {
-							text-align: right;
-						}
-
-						.value {
-							text-align: left;
-						}
-					}
+				    div {
+				    	height: 25px;
+				    	line-height: 25px;
+				    }
 				}
-			}
 
-			.row3 {
-				color: $red;
-				font-size: 12px;
-
-				.countdown-time {
-					margin-left: 15px;
-				}
-			}
-
-			.row4 {
-				table {
-					border-top: 1px solid $border-color1;
-					border-left: 1px solid $border-color1;
+				.row3 {
+					color: $red;
 					font-size: 12px;
-					width: 100%;
-					height: 120px;
+				    height: 40px;
+				    line-height: 40px;
+				    margin-bottom: 7px;
+					text-align: left;
+				}
 
-					tr {
-						height: 30px;
-						line-height: 30px;
+				.row4 {
+					table {
+						border-top: 1px solid $border-color1;
+						border-left: 1px solid $border-color1;
+						font-size: 12px;
+						width: 100%;
+						height: 120px;
 
-						td {
-							border-bottom: 1px solid $border-color1;
-							border-right: 1px solid $border-color1;
-						}
+						tr {
+							height: 40px;
+							line-height: 40px;
 
-						.name {
-							width: 30%;
-						}
+							td {
+								border-bottom: 1px solid $border-color1;
+								border-right: 1px solid $border-color1;
+							}
 
-						.value {
-							width: 70%;
-						}
+							.name {
+								width: 30%;
+							}
 
-						.left {
-							float: left;
-							margin-left: 10px;
-						}
+							.value {
+								width: 70%;
+							}
 
-						.right {
-							float: right;
-							margin-right: 10px;
-						}
+							.left {
+								float: left;
+								margin-left: 10px;
+							}
 
-						.copy {
-							cursor: pointer;
-							
-							&:hover {
-								color: #CDA654;
+							.right {
+								float: right;
+								margin-right: 10px;
+							}
+
+							.copy {
+								cursor: pointer;
+								
+								&:hover {
+									color: #CDA654;
+								}
+							}
+
+							.postscript, .account-value, .user-name-value {
+								position: relative;
+								left: 38%;
 							}
 						}
-
-						.postscript, .account-value, .user-name-value {
-							position: relative;
-							left: 38%;
-						}
 					}
 				}
-			}
 
-			.row5 {
-				font-size: 12px;
-				height: 50px;
-				border: 1px dashed #CCCCCC;
-				margin: 5px;
-				padding: 6px;
-				text-align: left;
-				color: #949494;
+				.row5 {
+					font-size: 12px;
+				    margin-top: 5px;
+				    text-align: left;
+				    line-height: 20px;
+				}
 			}
 		}
 	}
