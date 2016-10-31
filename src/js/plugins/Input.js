@@ -9,7 +9,10 @@
 
 	Input.prototype.initDom = function() {
 		var temp =	'<div class="input" id="' + this.id + '">' +
-						'<input value="" type="' + (this.opt.type?this.opt.type: 'text') + '" placeholder="' + (this.opt.placeholder? this.opt.placeholder: '') + '">' +
+						'<input value="" type="' + (this.opt.type?this.opt.type: 'text') + 
+									  '" placeholder="' + (this.opt.placeholder? this.opt.placeholder: '') + '"' +
+									  (this.opt.disabled?' disabled="disabled"': '') +
+									  '>' +
 						'<span class="warning-icon"></span>' +
 						'<div class="clear"></div>' +
 					'</div>';

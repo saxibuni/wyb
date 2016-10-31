@@ -118,31 +118,27 @@
 						'<div class="wrapper">' +
 							'<ul class="title">' +
 								'<li class="active">' +
-									'<div class="li-wrapper">' +
-										'<span class="number">1</span>' +
-										'<span class="text">输入用户名</span>' +
-									'</div>' +
+									'<span class="number">1</span>' +
+									'<span class="text">输入用户名</span>' +
+									'<span class="arrow">&gt;</span>' +
 								'</li>' +
 
 								'<li>' +
-									'<div class="li-wrapper">' +
-										'<span class="number">2</span>' +
-										'<span class="text">选择找回密码方式</span>' +
-									'</div>' +
+									'<span class="number">2</span>' +
+									'<span class="text">选择找回密码方式</span>' +
+									'<span class="arrow">&gt;</span>' +
 								'</li>' +
 
 								'<li>' +
-									'<div class="li-wrapper">' +
-										'<span class="number">3</span>' +
-										'<span class="text">重置密码</span>' +
-									'</div>' +
+									'<span class="number">3</span>' +
+									'<span class="text">重置密码</span>' +
+									'<span class="arrow">&gt;</span>' +
 								'</li>' +
 
 								'<li>' +
-									'<div class="li-wrapper">' +
-										'<span class="number">4</span>' +
-										'<span class="text">完成</span>' +
-									'</div>' +
+									'<span class="number">4</span>' +
+									'<span class="text">完成</span>' +
+									'<span class="arrow">&gt;</span>' +
 								'</li>' +
 							'</ul>' +
 
@@ -337,29 +333,6 @@
 		Service.get(opt, callback);
 	};
 /*
-	ForgetPassword.prototype.getEmailValidateCode = function (email) {
-		var opt;
-		var callback;
-		var that = this;
-
-		opt = {
-			url: app.urls.sendEmailValidateCode,
-			data: {
-				email: email
-			}
-		};
-
-		callback = function (data) {
-			if (data === true) {
-				that.zone.find('.step2 ul li.active .line1-5').show();
-			} else {
-				alert(data.Message);
-			}
-		};
-
-		Service.post(opt, callback);
-	};
-
 	ForgetPassword.prototype.getPhoneValidateCode = function (phone) {
 		var opt;
 		var callback;

@@ -8,7 +8,7 @@
 	Button.prototype.initDom = function() {
 		var temp = 	'<div class="button' + (this.opt.className? (' ' + this.opt.className):'') + '" id="' + this.id + '">' +
 						(this.opt.search?'<span class="pc-serach-icon"></span>': '') +
-						'<span>' +
+						'<span class="name">' +
 							this.opt.name +
 						'</span>' +
 					'</div>';
@@ -18,6 +18,10 @@
 
 	Button.prototype.getDom = function() {
 		return this.el;
+	};
+
+	Button.prototype.setName = function(name) {
+		this.zone.find('.name').text(name);
 	};
 
 	Button.prototype.bindEvents = function() {

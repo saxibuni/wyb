@@ -11,7 +11,8 @@
 			id: 'sed-step1-email-input',
 			width: 330,
 			height: 40,
-			reg: app.emailReg
+			reg: app.emailReg,
+			disabled: true
 		});
 
 		this.step1VerifyInput = new Input({
@@ -198,28 +199,142 @@
 		return this.el;
 	};
 
-	SetEmailDialog.prototype.show = function(){
+	SetEmailDialog.prototype.show = function() {
 		this.resetDialog();
 		this.showOverlay();
 	};
 
-	SetEmailDialog.prototype.hide = function(){
+	SetEmailDialog.prototype.hide = function() {
 		this.hideOverlay();
 	};
 
 	SetEmailDialog.prototype.resetDialog = function() {
 		this.step1EmailInput.setValue(app.userTotalInfo.Email);
-		this.step1EmailInput.setValue('');
 		this.step1VerifyInput.setValue('');
 		this.step2EmailInput.setValue('');
 		this.step2VerifyInput.setValue('');
+		this.step1VerifyCodeButton.setName('获取验证码');
+		this.step2VerifyCodeButton.setName('获取验证码');
 		this.zone.find('.content').hide();
 		this.zone.find('.content1').show();
 		this.zone.find('.step').removeClass('active');
 		this.zone.find('.step1').addClass('active');
+
+		if (!app.userTotalInfo.Email) {
+			this.goToStep2();
+		}
 	};
 
-	SetEmailDialog.prototype.bindEvents = function(){
+	SetEmailDialog.prototype.getVerifyCode = function(step) {
+		var opt;
+		var email;
+		var callback;
+		var that = this;
+
+		if (step == 1) {
+			email = this.step1VerifyInput.getValue();
+		} else {
+			email = this.step2VerifyInput.getValue();
+		}
+
+		opt = {
+			url: app.urls.sendEmailValidateCode,
+			data: {
+				email: email
+			}
+		};
+
+		callback = function (data) {
+			if (data === true) {
+				if (step == 1) {
+					that.step1VerifyCodeButton.setName('已发送');
+				} else {
+					that.step2VerifyCodeButton.setName('已发送');
+				}
+			} else {
+				alert(data.Message);
+			}
+		};
+
+		Service.post(opt, callback);
+	};
+
+	SetEmailDialog.prototype.commitStep1 = function() {
+		var opt;
+		var callback;
+		var that  = this;
+
+		opt = {
+			url: app.urls.validateEmail,
+			data: {
+				Id: app.userTotalInfo.Id,
+				Email: this.step1EmailInput.getValue(),
+				EmailValidateCode: this.step1VerifyInput.getValue()
+			}
+		};
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			if (json === true) {
+				this.goToStep2();
+			}
+		};
+
+		Service.post(opt, callback);
+	};
+
+	SetEmailDialog.prototype.commitStep2 = function() {
+		var opt;
+		var callback;
+		var that  = this;
+
+		opt = {
+			url: app.urls.updateUserInfo,
+			data: {
+				Email: this.step2EmailInput.getValue(),
+			}
+		};
+
+		callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			if (json === true) {
+				this.goToStep3();
+			}
+		};
+
+		Service.post(opt, callback);
+	};
+
+	SetEmailDialog.prototype.goToStep1 = function() {
+		this.zone.find('.content').hide();
+		this.zone.find('.content2').show();
+		this.zone.find('.step').removeClass('active');
+		this.zone.find('.step1').addClass('active');
+	};
+
+	SetEmailDialog.prototype.goToStep2 = function() {
+		this.zone.find('.content').hide();
+		this.zone.find('.content2').show();
+		this.zone.find('.step').removeClass('active');
+		this.zone.find('.step2').addClass('active');
+	};
+
+	SetEmailDialog.prototype.goToStep3 = function() {
+		this.zone.find('.content').hide();
+		this.zone.find('.content3').show();
+		this.zone.find('.step').removeClass('active');
+		this.zone.find('.step3').addClass('active');
+	};
+
+	SetEmailDialog.prototype.bindEvents = function() {
 		var steps;
 		var contentName;
 		var that = this;
@@ -227,28 +342,31 @@
 		this.zone = $('.set-email-dialog');
 		
 		this.zone.find('#sed-step1-ok-button').click(function () {
-			that.zone.find('.content').hide();
-			that.zone.find('.content2').show();
-			that.zone.find('.step').removeClass('active');
-			that.zone.find('.step2').addClass('active');
+			that.commitStep1();
 		});
 
 		this.zone.find('#sed-step1-cancel-button').click(function () {
 			that.hide();
 		});
 
+		this.zone.find('#sed-step1-verify-code-button').click(function () {
+			that.getVerifyCode(1);
+		});
+
 		this.zone.find('#sed-step2-ok-button').click(function () {
-			that.zone.find('.content').hide();
-			that.zone.find('.content3').show();
-			that.zone.find('.step').removeClass('active');
-			that.zone.find('.step3').addClass('active');
+			that.commitStep2();
 		});
 
 		this.zone.find('#sed-step2-cancel-button').click(function () {
-			that.zone.find('.content').hide();
-			that.zone.find('.content1').show();
-			that.zone.find('.step').removeClass('active');
-			that.zone.find('.step1').addClass('active');
+			if (app.userTotalInfo.Email) {
+				that.goToStep1();
+			} else {
+				that.hide();
+			}
+		});
+
+		this.zone.find('#sed-step2-verify-code-button').click(function () {
+			that.getVerifyCode(2);
 		});
 
 		this.zone.find('#sed-step3-button').click(function () {
@@ -271,5 +389,4 @@
 	};
 
 	window.SetEmailDialog = SetEmailDialog;
-
 }());
