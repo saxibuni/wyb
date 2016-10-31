@@ -8,48 +8,48 @@
 
 		this.usernameInput = new Input({
 			id: 'forget-password-step1-input1',
-			width: 230,
-			height: 30,
+			width: 330,
+			height: 40,
 			placeholder: '请输入您的用户名',
 			reg: app.usernameReg
 		});
 
 		this.verifyInput = new Input({
 			id: 'forget-password-step1-input2',
-			width: 150,
-			height: 30,
+			width: 245,
+			height: 40,
 			placeholder: '请输入右侧验证码',
 			reg: app.verifyReg
 		});
 
 		this.mailInput = new Input({
 			id: 'mail-input',
-			width: 280,
-			height: 30,
+			width: 330,
+			height: 40,
 			placeholder: '请输入您的邮箱',
 			reg: app.emailReg
 		});
 
 		this.mailVerifyInput = new Input({
 			id: 'mail-verify-input',
-			width: 150,
-			height: 30,
+			width: 245,
+			height: 40,
 			placeholder: '请输入邮箱验证码',
 			reg: app.emailVerifyCode
 		});
 
 		this.phoneInput = new Input({
 			id: 'phone-input',
-			width: 280,
-			height: 30,
+			width: 330,
+			height: 40,
 			placeholder: '请输入您的手机号码',
 			reg: app.emailReg
 		});
 
 		this.phoneVerifyInput = new Input({
 			id: 'phone-verify-input',
-			width: 150,
-			height: 30,
+			width: 245,
+			height: 40,
 			placeholder: '请输入手机验证码',
 			reg: app.emailVerifyCode
 		});
@@ -57,7 +57,7 @@
 		this.newPwdInput = new Input({
 			id: 'new-password',
 			width: 250,
-			height: 30,
+			height: 40,
 			placeholder: '请输入新密码',
 			reg: app.passwordReg,
 			type: 'password'
@@ -66,7 +66,7 @@
 		this.confirmPwdInput = new Input({
 			id: 'comfirm-password',
 			width: 250,
-			height: 30,
+			height: 40,
 			placeholder: '请再次输入新密码',
 			reg: app.passwordReg,
 			type: 'password'
@@ -75,43 +75,43 @@
 		this.step1Next = new Button({
 			id: 'forget-password-step1-next',
 			name: '下一步',
-			width: 128,
-			height: 42
+			width: 330,
+			height: 40
 		});
 
 		this.step2Next = new Button({
 			id: 'forget-password-step2-next',
 			name: '下一步',
 			width: 70,
-			height: 30
+			height: 40
 		});
 
 		this.getMailVerifyCode = new Button({
 			id: 'get-mail-verify-code',
 			name: '获取邮箱验证码',
 			width: 110,
-			height: 33
+			height: 40
 		});
 
 		this.getPhoneVerifyCode = new Button({
 			id: 'get-phone-verify-code',
 			name: '获取手机验证码',
 			width: 110,
-			height: 33
+			height: 40
 		});
 
 		this.updatePwd = new Button({
 			id: 'update-pwd',
 			name: '确认修改',
 			width: 130,
-			height: 30
+			height: 40
 		});
 
 		this.loginNow = new Button({
 			id: 'forget-password-login-now',
 			name: '立即登录',
 			width: 130,
-			height: 30
+			height: 40
 		});
 
 		temp =		'<div class="page forget-password">' +
@@ -138,7 +138,6 @@
 								'<li>' +
 									'<span class="number">4</span>' +
 									'<span class="text">完成</span>' +
-									'<span class="arrow">&gt;</span>' +
 								'</li>' +
 							'</ul>' +
 
