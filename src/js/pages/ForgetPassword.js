@@ -58,7 +58,7 @@
 
 		this.newPwdInput = new Input({
 			id: 'new-password',
-			width: 250,
+			width: 330,
 			height: 40,
 			placeholder: '请输入新密码',
 			reg: app.passwordReg,
@@ -67,7 +67,7 @@
 
 		this.confirmPwdInput = new Input({
 			id: 'comfirm-password',
-			width: 250,
+			width: 330,
 			height: 40,
 			placeholder: '请再次输入新密码',
 			reg: app.passwordReg,
@@ -105,14 +105,14 @@
 		this.updatePwd = new Button({
 			id: 'update-pwd',
 			name: '确认修改',
-			width: 130,
+			width: 330,
 			height: 40
 		});
 
 		this.loginNow = new Button({
 			id: 'forget-password-login-now',
 			name: '立即登录',
-			width: 130,
+			width: 200,
 			height: 40
 		});
 
@@ -237,10 +237,12 @@
 
 								'<div class="step step3">' +
 									'<div class="row3">' +
+										'<span class="text">新密码</span>' +
 										this.newPwdInput.getDom() +
 									'</div>' +
 
 									'<div class="row4">' +
+										'<span class="text">新密码</span>' +
 										this.confirmPwdInput.getDom() +
 									'</div>' +
 
@@ -567,7 +569,7 @@
 		});
 
 		this.zone.find('#forget-password-login-now').click(function () {
-			app.goTo('homePage');
+			app.router.setRoute('/homePage');
 
 			if (!app.signInDialog) {
 				app.signInDialog = new SignIn();
