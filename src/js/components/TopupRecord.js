@@ -165,7 +165,6 @@
 	};
 
 	TopupRecord.prototype.queryTotal = function() {
-		var params    = '';
 		var that      = this;
 		var type      = this.select.getValue();
 		var starttime = this.zone.find('.starttime').val();
