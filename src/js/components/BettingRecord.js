@@ -55,13 +55,13 @@
 
 							'<div class="down">' +
 								'<span class="text">总投注额：</span>' +
-								'<span class="value total-bet">10,000</span>' +
+								'<span class="value total-bet">0.00</span>' +
 								'<span class="text">有效投注：</span>' +
-								'<span class="value effect-bet">20.00</span>' +
+								'<span class="value effect-bet">0.00</span>' +
 								'<span class="text">单量：</span>' +
-								'<span class="value single-amount">100</span>' +
+								'<span class="value records-amount">0</span>' +
 								'<span class="text">派奖：</span>' +
-								'<span class="value return-money">1999</span>' +
+								'<span class="value return-money">0.00</span>' +
 							'</div>' +				
 						'</div>' +
 
@@ -101,6 +101,7 @@
 		}
 
 		this.queryData(0, true);
+		this.queryTotal();
 	}
 
 	BettingRecord.prototype.hide = function(){
@@ -189,9 +190,45 @@
         });
 	};
 
+	BettingRecord.prototype.queryTotal = function() {
+		var gamePlatform = '';
+		var params       = '';
+		var that         = this;
+		var starttime    = this.zone.find('.starttime').val();
+		var endtime      = this.zone.find('.endtime').val();
+		var val          = this.select.getValue();
+
+		if (val != -1) {
+			gamePlatform = val;
+		}
+		
+		var opt = {
+			url: app.urls.getBettingTotal,
+			data: {
+				gamePlatform: gamePlatform,
+				startTime: starttime,
+				endTime: endtime
+			}
+		};
+
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.zone.find('.bar-zone .total-bet').text(json.Bet.toFixed(2));
+			that.zone.find('.bar-zone .effect-bet').text(json.RealBet.toFixed(2));
+			that.zone.find('.bar-zone .records-amount').text(json.Num);
+			that.zone.find('.bar-zone .return-money').text(json.PayOut.toFixed(2));
+		};
+
+		Service.get(opt, callback);
+	};
+
 	BettingRecord.prototype.setData = function(data){
-		var dom = '';
-		var i = 0;
+		var i           = 0;
+		var dom         = '';
 		var currentData = data.list;	
 
 		for(i = 0; i < currentData.length; i++){
@@ -253,10 +290,12 @@
 	        $(this).addClass('selected');
         	that.setDatetime();
         	that.queryData(0, true);
+        	that.queryTotal();
         });
 
         this.zone.find('#betting-record-button').click(function () {
         	that.queryData(0, true);
+        	that.queryTotal();
         });
 
         this.button.bindEvents();
