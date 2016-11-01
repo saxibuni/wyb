@@ -338,7 +338,6 @@
 
 		if (this.firstShow) {
 			this.getAds();
-			this.getAds2();
 			this.getJackpots();
 			this.setPtSumBaseValue();
 			this.queryPromoListsByType(6);
@@ -411,13 +410,13 @@
 		Service.get(opt, callback);
 	};
 
-	HomePage.prototype.getAds2 = function (type) {
+	HomePage.prototype.getRecommendAds = function (type) {
 		var callback;
 		var that  =  this;
 		var opt   =  {
 			url: app.urls.getAds,
 			data: {
-				type: type || 'pd_wyb_index_promo_ads',
+				type: type,
 				pageIndex: 0,
 				pageSize: 5
 			}
@@ -433,7 +432,7 @@
 				return;
 			}
 			
-			that.setSliders2(json.list);
+			that.setRecommendSliders(json.list);
 		};
 
 		Service.get(opt, callback);
@@ -551,9 +550,34 @@
 			}
 			
         	that.setPromoTabUl(json.list);
+        	that.setPromoSliders(json.list);
         }).fail(function (xhr, testStatus, error) {
             alert(error);
         });
+	};
+
+	HomePage.prototype.setPromoSliders = function (d) {
+		var i;
+		var data   = this.promoSliderData || d;
+		var images = this.zone.find('.tab-sliders img');
+
+		this.promoSliderData = data;
+
+		for (i = 0; i < data.length; i++) {
+			$(images[i]).attr('src', app.imageServer + data[i].Thumbnail);
+		}
+	};
+
+	HomePage.prototype.setRecommendSliders = function (d) {
+		var i;
+		var data   = this.recommendSliderData || d;
+		var images = this.zone.find('.tab-sliders img');
+
+		this.recommendSliderData = data;
+
+		for (i = 0; i < data.length; i++) {
+			$(images[i]).attr('src', app.imageServer + data[i].ImgUrl);
+		}
 	};
 
 	HomePage.prototype.setPtSingleBaseValue = function (url, item) {
@@ -571,15 +595,6 @@
 		};
 
 		Service.post(opt, callback);
-	};
-
-	HomePage.prototype.setSliders2 = function (data) {
-		var i;
-		var images = this.zone.find('.tab-sliders img');
-
-		for (i = 0; i < data.length; i++) {
-			$(images[i]).attr('src', app.imageServer + data[i].ImgUrl);
-		}
 	};
 
 	HomePage.prototype.setTabUl = function (index) {
@@ -688,20 +703,33 @@
 			that.currentTab = index;
 			stick.css('left', index * 100 + 'px');
 
-			if (index === 2) {
-				window.open('http://race.vebets.com/');
+			if (index === 0) {
+				that.setPromoSliders();
+				that.setTabUl(index);
 				return;
 			}
 
-			that.getAds2(type);
-			that.setTabUl(index);
-
 			if (index === 1) {
+				if (!that.recommendSliderData) {
+					that.getRecommendAds(type);
+				} else {
+					that.setRecommendSliders();
+				}
+
+				that.setTabUl(index);
+
 				tabUlItem = $(that.zone.find('.tab-ul li')[0]);
 
 				if (!tabUlItem.attr('data-identify')) {
 					that.getHotGameInfos();
 				}
+
+				return;
+			}
+
+			if (index === 2) {
+				window.open('http://race.vebets.com/');
+				return;
 			}
 		});
 

@@ -170,7 +170,7 @@
 
 									'<div class="row2">' +
 										'<ul>' +
-											'<li class="active">' +
+											'<li>' +
 												'<div class="info-zone">' +
 													'<span class="fp-mailbox-icon left"></span>' +
 													'<span class="text left">通过邮箱找回登录密码</span>' +
@@ -281,6 +281,7 @@
 	};
 
 	ForgetPassword.prototype.reset = function () {
+		this.zone.find('.step2 .row2 ul li').show();
 		this.goToStep1();
 		this.mailInput.setValue('');
 		this.phoneInput.setValue('');
@@ -299,10 +300,25 @@
 
 	ForgetPassword.prototype.goToStep2 = function () {
 		var titleUl = this.zone.find('ul.title');
+
 		this.zone.find('.step').hide();
-		this.zone.find('.step2').show()
+		this.zone.find('.step2').show();
 		titleUl.find('li').removeClass('active');
 		titleUl.find('li:eq(1)').addClass('active');
+		this.zone.find('.step2 .email').text(this.userinfo.Email);
+		this.zone.find('.step2 .phone').text(this.userinfo.Phone);
+		this.zone.find('.step2 .row1 .username').text(this.userinfo.UserName);
+		this.zone.find('.step2 .row2 ul li').removeClass('active');
+
+		if (this.userinfo.PhoneValidateStatus && !this.userinfo.EmailValidateStatus) {
+			this.zone.find('.step2 .row2 ul li:nth-child(2)').addClass('active');
+			this.zone.find('.step2 .row2 ul li:nth-child(1)').hide();
+		} else if (!this.userinfo.PhoneValidateStatus && this.userinfo.EmailValidateStatus) {
+			this.zone.find('.step2 .row2 ul li:nth-child(1)').addClass('active');
+			this.zone.find('.step2 .row2 ul li:nth-child(2)').hide();
+		} else {
+			this.zone.find('.step2 .row2 ul li:nth-child(1)').addClass('active');
+		}
 	};
 
 	ForgetPassword.prototype.goToStep3 = function () {
@@ -367,14 +383,14 @@
         	}
 
 			that.userinfo = data;
-			that.zone.find('.step2 .email').text(that.userinfo.Email);
-			that.zone.find('.step2 .phone').text(that.userinfo.Phone);
 
-			that.zone.find('.step2 .row1 .username').text(userName);
-			that.zone.find('.step').hide();
-			that.zone.find('.step2').show()
-			titleUl.find('li').removeClass('active');
-			titleUl.find('li:eq(1)').addClass('active');
+			if (!that.userinfo.EmailValidateStatus && !that.userinfo.PhoneValidateStatus) {
+				alert('邮箱和手机都没有绑定，无法找回, 请联系客服!');
+				app.router.setRoute('/homePage');
+				return;
+			}
+
+			that.goToStep2();
 		};
 
 		Service.get(opt, callback);
@@ -409,7 +425,8 @@
 		opt = {
 			url: app.urls.getForgetPwdValidateCode,
 			data: {
-				ValidateType: type
+				ValidateType: type,
+				UserName: that.userinfo.UserName
 			}
 		};
 
@@ -553,6 +570,16 @@
 			that.checkStep1();
 		});
 
+		this.zone.find('.step1').keypress(function(e) {
+		    if(e.which == 13) {
+				if (!$(this).addClass('active')) {
+					return;
+				}
+
+				that.checkStep1();
+		    }
+		});
+
 		this.zone.find('.step2 .row2 ul li .info-zone').click(function () {
 			that.zone.find('.step2 .row2 ul li').removeClass('active');
 			$(this).parent('li').addClass('active');
@@ -562,6 +589,12 @@
 
 		this.zone.find('#forget-password-step2-next').click(function () {
 			that.step2Commit();
+		});
+
+		this.zone.find('.step2').keypress(function(e) {
+		    if(e.which == 13) {
+				that.step2Commit();
+		    }
 		});
 
 		this.zone.find('#update-pwd').click(function () {
