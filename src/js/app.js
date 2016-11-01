@@ -99,6 +99,7 @@
 			getStationLetterCount: this.domain + 'api/User/GetUnreadMessageCount?',
 
 			getTopUpTotal: this.domain + 'api/Deposit/GetTotalDeposit?',
+			getTransferTotal: this.domain + 'api/Transfer/GetTotalTransfer?',
 
 			validateEmail: this.domain + 'api/User/ValidateEmail',     //验证邮箱
 			validatePhone: this.domain + 'api/User/ValidatePhone',     //验证手机

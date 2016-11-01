@@ -62,9 +62,9 @@
 
 							'<div class="down">' +
 								'<span class="text">当前小计</span>' +
-								'<span class="value sub-total">2000</span>' +
+								'<span class="value sub-total">0.00</span>' +
 								'<span class="text">元，总计</span>' +
-								'<span class="value total">2000</span>' +
+								'<span class="value total">0.00</span>' +
 								'<span class="text">元</span>' +
 							'</div>' +				
 						'</div>' +
@@ -104,6 +104,7 @@
 		}
 
 		this.queryData(0, true);
+		this.queryTotal();
 	};
 
 	MoneyTransferRecord.prototype.hide = function() {
@@ -214,9 +215,63 @@
         });
 	};
 
+	MoneyTransferRecord.prototype.queryTotal = function() {
+		var gamePlatform = '';
+		var type         = '';
+		var params       = '';
+		var that         = this;
+		var starttime    = this.zone.find('.starttime').val();
+		var endtime      = this.zone.find('.endtime').val();
+		var from         = this.selectFrom.getValue();
+		var to           = this.selectTo.getValue();
+
+		if (from == 0) {
+			type = 0;
+
+			if (to == -1) {
+				gamePlatform = '';
+			} else {
+				gamePlatform = to;
+			}
+		}
+
+		if (to == 0) {
+			type = 1;
+
+			if (from == -1) {
+				gamePlatform = '';
+			} else {
+				gamePlatform = from;
+			}
+		}
+		
+		var opt = {
+			url: app.urls.getTransferTotal,
+			data: {
+				type: type,
+				status: '',
+				gamePlatform: gamePlatform,
+				beginTime: starttime,
+				endTime: endtime
+			}
+		};
+
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.zone.find('.bar-zone .total').text(json.toFixed(2));
+		};
+
+		Service.get(opt, callback);
+	};
+
 	MoneyTransferRecord.prototype.setData = function(data){
-		var dom = '';
-		var i = 0;
+		var i           = 0;
+		var dom         = '';
+		var subTotal    = 0;
 		var currentData = data.list;	
 
 		for(i = 0; i < currentData.length; i++){
@@ -237,9 +292,12 @@
 							'<td>' + currentData[i].StatusText + '</td>' +
 						'</tr>';
 			}
+
+			subTotal += currentData[i].Amount;
 		}
 
 		this.zone.find('.table-zone tbody').html(dom);
+		this.zone.find('.bar-zone .sub-total').text(subTotal.toFixed(2));
 	};
 
 	MoneyTransferRecord.prototype.setDatetime = function () {
@@ -280,10 +338,12 @@
 	        $(this).addClass('selected');
         	that.setDatetime();
         	that.queryData(0, true);
+        	that.queryTotal();
         });
 
         this.zone.find('#money-transfer-record-button').click(function () {
         	that.queryData(0, true);
+        	that.queryTotal();
         });
 
         this.zone.find('#money-transfer-select-from' ).change(function () {
