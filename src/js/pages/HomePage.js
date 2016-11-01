@@ -281,13 +281,13 @@
 						'<div class="thead">' +
 							'<div class="tr">' +
 								// '<div class="td td1">时间</div>' +
-								'<div class="td td2">游戏名称</div>' +
-								'<div class="td td3">奖金</div>' +
+								'<div class="td td2">中奖用户</div>' +
+								'<div class="td td3">奖品信息</div>' +
 							'</div>' +
 						'</div>' +
 
 						'<div class="tbody">' +
-							'<span>暂无数据</span>' +
+							'<span>登录后可查看中奖记录</span>' +
 						'</div>' +
 					'</div>';
 
@@ -298,49 +298,68 @@
 		var i;
 		var temp = '';
 
+		// for (i = 0; i < data.length; i++) {
+		// 	temp += this.createJackpotsTr({
+		// 		game        : data[i].Title,
+		// 		platform    : data[i].Api.GamePlatform,         //取MG基础值的时候用
+		// 		id          : data[i].Id,                       //取MG基础值的时候用
+		// 		jackpotsUrl : app.formatJackpotsUrl(data[i]),   //取PT基础值的时候用
+		// 		className   : (i%2 === 0? 'odd': 'even')
+		// 	});
+		// }
+
+		if (data.length === 0) {
+			this.zone.find('.jackpots-table .tbody span').text('暂无数据');
+			return;
+		}
+
 		for (i = 0; i < data.length; i++) {
-			temp += this.createJackpotsTr({
-				game        : data[i].Title,
-				platform    : data[i].Api.GamePlatform,         //取MG基础值的时候用
-				id          : data[i].Id,                       //取MG基础值的时候用
-				jackpotsUrl : app.formatJackpotsUrl(data[i]),   //取PT基础值的时候用
-				className   : (i%2 === 0? 'odd': 'even')
-			});
+			temp +=	'<div class="tr ' + (i%2 === 0? 'odd': 'even') + '">' +
+
+						'<div class="td td2">' +
+							data.User +
+						'</div>' +
+
+						'<div class="td td3">' +
+							data.UsLuckyItemer +
+						'</div>' +
+					'</div>';
 		}
 
 		this.zone.find('.jackpots-table .tbody').html(temp);
 	};
 
-	HomePage.prototype.createJackpotsTr = function (data) {
-		var temp = 	'<div class="tr jackpots-basevalue ' + data.className + '" ' +
-							'data-url="' + data.jackpotsUrl + '" ' +
-							'data-id="' + data.id + '" ' +
-							'data-platform="' + data.platform + '">' +
+	// HomePage.prototype.createJackpotsTr = function (data) {
+	// 	var temp = 	'<div class="tr jackpots-basevalue ' + data.className + '" ' +
+	// 						'data-url="' + data.jackpotsUrl + '" ' +
+	// 						'data-id="' + data.id + '" ' +
+	// 						'data-platform="' + data.platform + '">' +
 
-						// '<div class="td td1">' +
-						// 	'--' +
-						// '</div>' +
+	// 					// '<div class="td td1">' +
+	// 					// 	'--' +
+	// 					// '</div>' +
 
-						'<div class="td td2">' +
-							data.game +
-						'</div>' +
+	// 					'<div class="td td2">' +
+	// 						data.game +
+	// 					'</div>' +
 
-						'<div class="td td3">' +
-							'--' +
-						'</div>' +
-					'</div>';
+	// 					'<div class="td td3">' +
+	// 						'--' +
+	// 					'</div>' +
+	// 				'</div>';
 
-		return temp;
-	};
+	// 	return temp;
+	// };
 
 	HomePage.prototype.show = function () {
 		this.zone.fadeIn(500);
 
 		if (this.firstShow) {
+			// this.getJackpots();
+			// this.setPtSumBaseValue();
 			this.getAds();
-			this.getJackpots();
-			this.setPtSumBaseValue();
 			this.queryPromoListsByType(6);
+			//this.get3DWinRecords();
 			this.firstShow = false;
 		}
 
@@ -353,6 +372,11 @@
 
 	HomePage.prototype.hide = function () {
 		this.zone.fadeOut(500);
+	};
+
+	HomePage.prototype.reset = function () {
+		this.hideDepositLi();
+		this.zone.find('.jackpots-table .tbody span').text('登录后可查看中奖记录');
 	};
 
 	HomePage.prototype.showDepositLi = function () {
@@ -438,21 +462,6 @@
 		Service.get(opt, callback);
 	};
 
-	HomePage.prototype.getJackpots = function () {
-		var that = this;
-		var callback = function (json) {
-			if (json.StatusCode && json.StatusCode != 0) {
-				alert(json.Message);
-				return;
-			}
-
-			that.setJackpotsTable(json);
-			that.resfreshBaseValues('PT');
-		};
-
-		app.getJackpotsGames('PT', 6, callback.bind(this));
-	};
-
 	HomePage.prototype.getHotGameInfos = function () {
 		var name;
 		var lis = this.zone.find('.tab-ul li');
@@ -495,39 +504,85 @@
 		Service.get(opt, callback);
 	};
 
-	HomePage.prototype.resfreshBaseValues = function (parentPlatform) {
-		var i;
-		var item;
-		var items;
-		var platform;
-		var gameId;
-		var url;
+	HomePage.prototype.get3DWinRecords = function (d) {
+		var opt;
+		var callback;
+		var that  = this;
+		var today = new Date();
 
-		items = this.zone.find('.jackpots-table .jackpots-basevalue');
-		
-		for (i = 0; i < items.length; i++) {
-			item     = $(items[i]);
-			platform = item.attr('data-platform');
-			gameId   = item.attr('data-id');
-			url      = item.attr('data-url');
+		today = today.formatDate().replace(/\//g, '' );
 
-			if (platform === 'MG') {
-				this.setMgSingleBaseValue(platform, gameId, item);
-			} else if (platform === 'PT') {
-				this.setPtSingleBaseValue(item.attr('data-url'), item);
-			} else {
-
+		opt  =  {
+			url: app.urls.luckyDrawWinRecords,
+			data: {
+				beginTime: '20150101',
+				endTime: today,
+				status: 1,
+				pageIndex: 0,
+				pageSize: 7
 			}
-		}
+		};
 
-		if (parentPlatform === 'MG') {
-			this.setMgSumBaseValue('MG');
-		} else if (parentPlatform === 'PT') {
-			this.setPtSumBaseValue();
-		} else {
-			
-		}
+		callback = function (data) {
+			if (data.StatusCode && data.StatusCode != 0) {
+				alert(data.Message);
+				return;
+			}
+
+			that.setJackpotsTable(data.Data.list);
+		};
+
+		Service.get(opt, callback);
 	};
+
+	// HomePage.prototype.resfreshBaseValues = function (parentPlatform) {
+	// 	var i;
+	// 	var item;
+	// 	var items;
+	// 	var platform;
+	// 	var gameId;
+	// 	var url;
+
+	// 	items = this.zone.find('.jackpots-table .jackpots-basevalue');
+		
+	// 	for (i = 0; i < items.length; i++) {
+	// 		item     = $(items[i]);
+	// 		platform = item.attr('data-platform');
+	// 		gameId   = item.attr('data-id');
+	// 		url      = item.attr('data-url');
+
+	// 		if (platform === 'MG') {
+	// 			this.setMgSingleBaseValue(platform, gameId, item);
+	// 		} else if (platform === 'PT') {
+	// 			this.setPtSingleBaseValue(item.attr('data-url'), item);
+	// 		} else {
+
+	// 		}
+	// 	}
+
+	// 	if (parentPlatform === 'MG') {
+	// 		this.setMgSumBaseValue('MG');
+	// 	} else if (parentPlatform === 'PT') {
+	// 		this.setPtSumBaseValue();
+	// 	} else {
+			
+	// 	}
+	// };
+
+	// HomePage.prototype.getJackpots = function () {
+	// 	var that = this;
+	// 	var callback = function (json) {
+	// 		if (json.StatusCode && json.StatusCode != 0) {
+	// 			alert(json.Message);
+	// 			return;
+	// 		}
+
+	// 		that.setJackpotsTable(json);
+	// 		that.resfreshBaseValues('PT');
+	// 	};
+
+	// 	app.getJackpotsGames('PT', 6, callback.bind(this));
+	// };
 
 	HomePage.prototype.queryPromoListsByType = function (type) {
 		var url;
@@ -701,15 +756,17 @@
 			type            = $(this).attr('data-value');
 			index           = $(this).index();
 			that.currentTab = index;
-			stick.css('left', index * 100 + 'px');
 
 			if (index === 0) {
+				stick.css('left', index * 100 + 'px');
 				that.setPromoSliders();
 				that.setTabUl(index);
 				return;
 			}
 
 			if (index === 1) {
+				stick.css('left', index * 100 + 'px');
+
 				if (!that.recommendSliderData) {
 					that.getRecommendAds(type);
 				} else {

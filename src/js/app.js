@@ -65,7 +65,7 @@
 			verifyImage: this.domain + 'api/AuthCode/CreateImageCode',
 			checkVerifyImage: this.domain + 'api/AuthCode/CheckImageCode?',
 			loginStatus: this.domain + 'api/Account/GetLoginStatus',
-			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes',
+			luckyDrawWinRecords: this.domain + 'api/Lucky/GetPrizes?',
 			
 			getFavoriteGames: this.domain + 'api/Game/GetFavoriteGames?', //获取所有收藏的游戏
 			addFavoriteGameById: this.domain + 'api/Game/AddFavorite',       //添加收藏游戏
@@ -315,7 +315,7 @@
 
 		if (this.currentPage === 'homePage') {
 			this.homePage.showDepositLi();
-			//this.homePage.getLuckyDrawWinRecords();
+			this.homePage.get3DWinRecords();
 		} else if (this.currentPage === 'liveVideo') {
 			this.liveVideo.getGameLoginUrls();
 		} else if (this.currentPage === 'sportsCompetition') {
@@ -330,7 +330,7 @@
 		this.header.showSignedOutHeader();
 
 		if (this.currentPage === 'homePage') {
-			this.homePage.hideDepositLi();
+			this.homePage.reset();
 		}
 	};
 
