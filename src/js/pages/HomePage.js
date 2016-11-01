@@ -35,21 +35,24 @@
 								'<div class="bottom-right">' +
 									'<div class="title">' +
 										'<div class="cup-icon"></div>' +
-										'<span>超级彩金</span>' +
+										'<span>3D福彩中奖名单</span>' +
+										'<div class="go-lucky-draw">' +
+ 											'<span>参与抽奖</span>' +
+ 											'<span>&gt;&gt;</span>' +
+ 										'</div>' +
+ 										'<span class="clear"></span>' +
  									'</div>' +
 
  									'<div class="jackpot">' +
- 										'<ul class="jackpot-vendor">' +
- 											'<li>' +
-		 										'<div class="ag-icon"></div>' +
-		 										'<span>3D福彩中奖名单</span>' +
- 											'</li>' +
- 										'</ul>' +
+ 										// '<ul class="jackpot-vendor">' +
+ 										// 	'<li>' +
+		 								// 		'<div class="ag-icon"></div>' +
+		 								// 		'<span>3D福彩中奖名单</span>' +
+ 										// 	'</li>' +
+ 										// '</ul>' +
 
- 										'<div class="jackpot-value">' +
- 											'<span>JACKPOT</span>' +
- 											'<span class="pt-jackpot-value"></span>' +
- 										'</div>' +
+ 										// '<div class="jackpot-value">' +
+ 										// '</div>' +
 
  										this.createJackpotsTable() +
  									'</div>' +
@@ -279,7 +282,7 @@
 		var i;
 		var temp =	'<div class="table jackpots-table">' +
 						'<div class="thead">' +
-							'<div class="tr">' +
+							'<div class="tr even">' +
 								// '<div class="td td1">时间</div>' +
 								'<div class="td td2">中奖用户</div>' +
 								'<div class="td td3">奖品信息</div>' +

@@ -27,7 +27,7 @@ $homepage-icon-top3      :   -126px;
 
 	$bottom-right-height1        :    $bottom-left-height1;
 	$bottom-right-height2        :    $bottom-left-height1;
-	$bottom-table-height         :    $bottom-module-height - $bottom-right-height1 - $bottom-right-height2;
+	$bottom-table-height         :    $bottom-module-height - $bottom-right-height1;
 	$bottom-table-row-height     :    $bottom-table-height / 7;
 
 	.wrapper {
@@ -345,12 +345,21 @@ $homepage-icon-top3      :   -126px;
 						display: inline-block;
 						vertical-align: top;
 					}
+
+					.go-lucky-draw {
+						color: $yellow;
+						cursor: pointer;
+					    display: inline-block;
+					    float: right;
+					    vertical-align: top;
+					    margin-right: $pageNavGap + 10px;
+					}
 				}
 
 				.jackpot {
 					background-color: $purple2;
 					color: $font-color0;
-					height: $bottom-right-height2;
+					height: $bottom-table-height;
 					text-align: left;
 					width: 100%;
 
@@ -405,6 +414,14 @@ $homepage-icon-top3      :   -126px;
 					height: $bottom-table-height;
 					width: 100%;
 
+					.odd {
+						background-color: #211B27;
+					}
+
+					.even {
+						background-color: #1b1320;
+					}
+						
 					.thead {
 						background-color: $purple1;
 						height: $bottom-table-row-height;
@@ -425,14 +442,6 @@ $homepage-icon-top3      :   -126px;
 							height: $bottom-table-row-height;
 							line-height: $bottom-table-row-height;
 							width: 100%;
-						}
-
-						.odd {
-							background-color: #211B27;
-						}
-
-						.even {
-							background-color: #1B1320;
 						}
 
 						span {
@@ -484,8 +493,8 @@ $homepage-icon-top3      :   -126px;
 
 		$bottom-right-height1        :    $bottom-left-height1;
 		$bottom-right-height2        :    $bottom-left-height1;
-		$bottom-table-height         :    $bottom-module-height - $bottom-right-height1 - $bottom-right-height2;
-		$bottom-table-row-height     :    $bottom-table-height / 7;
+		$bottom-table-height         :    $bottom-module-height - $bottom-right-height1;
+		$bottom-table-row-height     :    $bottom-table-height / 8;
 
 		.wrapper {
 			width: $contentWidth;
@@ -577,6 +586,10 @@ $homepage-icon-top3      :   -126px;
 							margin-left: $pageNavGap + 10px;
 							margin-right: $pageNavGap;
 							margin-top: ($bottom-right-height1 - 17px) / 2;
+						}
+
+						.go-lucky-draw {
+						    margin-right: $pageNavGap;
 						}
 					}
 
