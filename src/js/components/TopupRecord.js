@@ -72,10 +72,10 @@
 							'</div>' +
 
 							'<div class="down">' +
-								'<span class="text">当前小计</span>' +
-								'<span class="value sub-total">2000</span>' +
+								'<span class="text">当前页小计</span>' +
+								'<span class="value sub-total">0.00</span>' +
 								'<span class="text">元，总计</span>' +
-								'<span class="value total">2000</span>' +
+								'<span class="value total">0.00</span>' +
 								'<span class="text">元</span>' +
 							'</div>' +				
 						'</div>' +
@@ -111,6 +111,7 @@
 	TopupRecord.prototype.show = function(){
 		this.zone.show();
 		this.queryData(0, true);
+		this.queryTotal();
 	};
 
 	TopupRecord.prototype.hide = function(){
@@ -163,9 +164,39 @@
         });
 	};
 
+	TopupRecord.prototype.queryTotal = function() {
+		var params    = '';
+		var that      = this;
+		var type      = this.select.getValue();
+		var starttime = this.zone.find('.starttime').val();
+		var endtime   = this.zone.find('.endtime').val();
+		
+		var opt = {
+			url: app.urls.getTopUpTotal,
+			data: {
+				status: '',
+				type: '',
+				beginTime: starttime,
+				endTime: endtime
+			}
+		};
+
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.zone.find('.bar-zone .total').text(json.toFixed(2));
+		};
+
+		Service.get(opt, callback);
+	};
+
 	TopupRecord.prototype.setData = function(data){
-		var dom = '';
-		var i = 0;
+		var i           = 0;
+		var dom         = '';
+		var subTotal    = 0;
 		var currentData = data.list;
 		 
 		for(i = 0; i < currentData.length; i++){
@@ -186,9 +217,12 @@
 							'<td>' + currentData[i].StatusText + '</td>' +
 						'</tr>';
 			}
+
+			subTotal += parseFloat(currentData[i].Amount);
 		}
 
 		this.zone.find('.table-zone tbody').html(dom);
+		this.zone.find('.bar-zone .sub-total').text(subTotal.toFixed(2));
 	};
 
 	TopupRecord.prototype.bindData = function(pageIndex) {
@@ -227,10 +261,12 @@
 	        $(this).addClass('selected');
         	that.setDatetime();
         	that.queryData(0, true);
+        	that.queryTotal();
         });
 
         this.zone.find('#topup-record-button').click(function () {
         	that.queryData(0, true);
+        	that.queryTotal();
         });
 
         this.button.bindEvents();

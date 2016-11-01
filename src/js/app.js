@@ -98,6 +98,8 @@
 			getAnnouncements: this.domain + 'api/News/GetNotices?',
 			getStationLetterCount: this.domain + 'api/User/GetUnreadMessageCount?',
 
+			getTopUpTotal: this.domain + 'api/Deposit/GetTotalDeposit?',
+
 			validateEmail: this.domain + 'api/User/ValidateEmail',     //验证邮箱
 			validatePhone: this.domain + 'api/User/ValidatePhone',     //验证手机
 			sendEmailValidateCode: this.domain + 'api/User/SendEmailValidateCode',  //发送邮箱验证码
