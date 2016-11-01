@@ -42,7 +42,7 @@ $(function() {
 										'<div class="psw-info">' +
 											'<span class="psw-intro">安全等级</span>' +
 											'<span class="psw-level-value">80%</span>' +
-											'<a>提升</a>' +
+											'<a class="improve-security">提升</a>' +
 											'<span class="clear"></span>' +
 										'</div>' +
 
@@ -490,6 +490,7 @@ $(function() {
         			that.zone.find('.zhsz-content').append(that.security.getDom());
         			that.security.bindEvents();
         		}
+        		
         		that.security.show();
         	}
         });
@@ -509,6 +510,10 @@ $(function() {
 
         		that.announcement.show();
         	}
+        });
+
+        this.zone.find('.improve-security').click(function () {
+        	app.personCenterRouter(2, 1);
         });
 
         this.zone.find('.close').click(function () {
