@@ -42,7 +42,7 @@
  										'<ul class="jackpot-vendor">' +
  											'<li>' +
 		 										'<div class="ag-icon"></div>' +
-		 										'<span>PT电子游戏(TOP6)</span>' +
+		 										'<span>3D福彩中奖名单</span>' +
  											'</li>' +
  										'</ul>' +
 
