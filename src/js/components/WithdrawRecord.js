@@ -43,9 +43,9 @@
 
 							'<div class="down">' +
 								'<span class="text">当前小计</span>' +
-								'<span class="value sub-total">2000</span>' +
+								'<span class="value sub-total">0.00</span>' +
 								'<span class="text">元，总计</span>' +
-								'<span class="value total">2000</span>' +
+								'<span class="value total">0.00</span>' +
 								'<span class="text">元</span>' +
 							'</div>' +
 						'</div>' +
@@ -78,12 +78,13 @@
 		return this.el;
 	};
 
-	WithdrawRecord.prototype.show = function(){
+	WithdrawRecord.prototype.show = function() {
 		this.zone.show();
 		this.queryData(0, true);
+		this.queryTotal();
 	};
 
-	WithdrawRecord.prototype.hide = function(){
+	WithdrawRecord.prototype.hide = function() {
 		this.zone.hide();
 	};
 
@@ -135,10 +136,9 @@
 		var endtime   = this.zone.find('.endtime').val();
 		
 		var opt = {
-			url: app.urls.getTopUpTotal,
+			url: app.urls.getWithdrawTotal,
 			data: {
 				status: '',
-				type: '',
 				beginTime: starttime,
 				endTime: endtime
 			}
@@ -157,8 +157,9 @@
 	};
 
 	WithdrawRecord.prototype.setData = function(data) {
-		var dom = '';
-		var i = 0;
+		var i           = 0;
+		var dom         = '';
+		var subTotal    = 0;
 		var currentData = data.list;
 
 		for(i = 0; i < currentData.length; i++){
@@ -183,9 +184,12 @@
 							'<td>' + currentData[i].StatusText + '</td>' +
 						'</tr>';
 			}
+
+			subTotal += currentData[i].Amount;
 		}
 
 		this.zone.find('.table-zone tbody').html(dom);
+		this.zone.find('.bar-zone .sub-total').text(subTotal.toFixed(2));
 	};
 
 	WithdrawRecord.prototype.bindData = function(pageIndex){
@@ -224,10 +228,12 @@
 	        $(this).addClass('selected');
         	that.setDatetime();
         	that.queryData(0, true);
+        	that.queryTotal();
         });
 
         this.zone.find('#withdraw-record-button').click(function () {
         	that.queryData(0, true);
+        	that.queryTotal();
         });
 
         this.button.bindEvents();
