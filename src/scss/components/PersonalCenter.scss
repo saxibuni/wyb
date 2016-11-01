@@ -12,6 +12,7 @@
         right: 0;
         bottom: 0;
         z-index: 156;
+        min-width: 1090px;
 
         $baseL                  :    1300;
         $baseWidth              :    1300px;
@@ -128,7 +129,7 @@
                 height: 100%;
                 float: left;
                 font-size: 14px;
-                transition: all .3s;
+                transition: all .5s;
 
                 .user-profiles {
                     box-sizing: border-box;
@@ -318,7 +319,7 @@
                 height: 100%;
                 padding: $gap2;
                 position: relative;
-                transition: all .3s;
+                transition: all .5s;
 
                 .center-wallet {
                     background-color: $purple1;
@@ -328,7 +329,7 @@
                     padding: 0 $gap;
                     color: #535353;
                     float: left;
-                    transition: all .3s;
+                    transition: all .5s;
 
                     .title {
                         border-bottom: 1px solid $purple5;
@@ -414,7 +415,7 @@
                     overflow: hidden;
                     position: relative;
                     text-align: center;
-                    transition: all .3s;
+                    transition: all .5s;
                     width: $walletZoneWidth;
 
                     .wallet-left-nav {
@@ -469,7 +470,7 @@
 
                         .swiper {
                             height: 100%;
-                            @include transition(0.4s);
+                            @include transition(0.5s);
                             width: 10000px;
 
                             .wallet-group {
@@ -561,7 +562,7 @@
     .personal-center {
         .dialog-wrapper {
             $baseL                  :    1300;
-            $baseWidth              :    1000px;
+            $baseWidth              :    1060px;
             $gap                    :    $baseWidth * 10 / $baseL;
             $gap2                   :    $baseWidth * 20 / $baseL;
             $leftContainerWidth     :    $baseWidth * 200 / $baseL;

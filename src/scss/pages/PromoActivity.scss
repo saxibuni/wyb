@@ -4,8 +4,11 @@
 	@include page-property;
 
 	.wrapper {
+		background-color: rgba(0, 0, 0, .3);
 		position: relative;
 		width: $contentWidth;
+		padding: 0 10px;
+		padding-bottom: 0 10px;
 		margin-bottom: 60px;
 		
 		.title {
@@ -71,6 +74,7 @@
 					}
 
 					.activity-content {
+						background-color: $purple1;
 						display: none;
 					}
 
