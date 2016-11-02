@@ -129,7 +129,7 @@
 									'<li data-value="sportsCompetition">体育竞技</li>' +
 									'<li data-value="lotteryGame">彩票游戏</li>' +
 									'<li data-value="promoActivity">优惠活动</li>' +
-									'<li data-value="clientDownload">客户端</li>' +
+									'<li data-value="clientDownload">下载中心</li>' +
 									'<div class="stick"></div>' +
 								'</ul>' +
 
@@ -161,6 +161,7 @@
 		var i;
 		var key;
 		var arr;
+		var width;
 		var temp = '';
 		var dict = {
 			liveVideo: [
@@ -220,14 +221,16 @@
 		};
 
 		for (key in dict) {
-			arr = dict[key];
-
+			arr   = dict[key];
+			width = parseFloat(100 / arr.length);
 			temp +=	'<ul class="ul ' + key + '" data-value="' + key + '">';
 
 			for (i = 0; i < arr.length; i++) {
-				temp +=	'<li>' +
-							'<img src="../img/' + arr[i].image + '">' +
-							'<span>' + arr[i].name + '</span>' +
+				temp +=	'<li style="width:' + width + '%">' +
+							'<div class="img-frame">' +
+								'<img src="../img/' + arr[i].image + '">' +
+							'</div>' +
+							'<div class="name">' + arr[i].name + '</div>' +
 						'</li>';
 			}
 
@@ -374,7 +377,7 @@
 		var headerFloatWindow = this.zone.find('.header-float-window');
 
 		headerFloatWindow.css({
-			top: '85px',
+			top: '100px',
 			opacity: '0.9'
 		});
 	};
@@ -383,7 +386,7 @@
 		var headerFloatWindow = this.zone.find('.header-float-window');
 
 		headerFloatWindow.css({
-			top: '-200px',
+			top: '-400px',
 			opacity: '0'
 		});
 	};
@@ -548,9 +551,10 @@
 			} else {
 				that.showHeaderFloatWindow();
 			}
-		}).mouseout(function () {
-			that.hideHeaderFloatWindow();
-		});
+		})
+		// .mouseout(function () {
+		// 	that.hideHeaderFloatWindow();
+		// });
 
 		this.zone.find('.pages li').mouseover(function () {
 			pageName   = $(this).attr('data-value');
@@ -562,15 +566,17 @@
 			} else {
 				that.hideHeaderFloatWindow();
 			}
-		}).mouseout(function () {
-			that.hideHeaderFloatWindow();
-		});
+		})
+		// .mouseout(function () {
+		// 	that.hideHeaderFloatWindow();
+		// });
 
 		this.zone.find('.header-float-window').mouseover(function () {
 		    that.showHeaderFloatWindow();
-		}).mouseout(function () {
-			that.hideHeaderFloatWindow();
-		});
+		})
+		// .mouseout(function () {
+		// 	that.hideHeaderFloatWindow();
+		// });
 
 		pagesUl2.delegate('.li-bzzx','click',function(){
 			pageName = $(this).attr('data-value');

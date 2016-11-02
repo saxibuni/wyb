@@ -129,6 +129,32 @@
         });
 	};
 
+	DividendRecord.prototype.queryTotal = function() {
+		var that      = this;
+		var starttime = this.zone.find('.starttime').val();
+		var endtime   = this.zone.find('.endtime').val();
+		
+		var opt = {
+			url: app.urls.getWithdrawTotal,
+			data: {
+				status: '',
+				beginTime: starttime,
+				endTime: endtime
+			}
+		};
+
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+
+			that.zone.find('.bar-zone .total').text(json.toFixed(2));
+		};
+
+		Service.get(opt, callback);
+	};
+	
 	DividendRecord.prototype.setData = function(data){
 		var dom = '';
 		var i = 0;

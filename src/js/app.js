@@ -102,6 +102,7 @@
 			getTransferTotal: this.domain + 'api/Transfer/GetTotalTransfer?',
 			getWithdrawTotal: this.domain + 'api/Withdrawal/GetTotalWithdrawal?',
 			getBettingTotal: this.domain + 'api/Bet/GetTotalBet?',
+			getDividentTotal: this.domain + '',
 
 			validateEmail: this.domain + 'api/User/ValidateEmail',     //验证邮箱
 			validatePhone: this.domain + 'api/User/ValidatePhone',     //验证手机

@@ -20,6 +20,7 @@
 			color: $font-color1;
 			height: $upHeight;
 			line-height: $upHeight;
+			margin-bottom: 20px;
 
 			.time-section {
 				display: inline-block;
@@ -60,6 +61,7 @@
 		}
 
 		.down {
+			display: none;
 			height: $downHeight;
 			line-height: $downHeight;
 			text-align: left;
