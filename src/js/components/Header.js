@@ -226,7 +226,7 @@
 			temp +=	'<ul class="ul ' + key + '" data-value="' + key + '">';
 
 			for (i = 0; i < arr.length; i++) {
-				temp +=	'<li style="width:' + width + '%">' +
+				temp +=	'<li style="width:' + width + '%" data-index="' + i + '">' +
 							'<div class="img-frame">' +
 								'<img src="../img/' + arr[i].image + '">' +
 							'</div>' +
@@ -573,6 +573,12 @@
 		    that.showHeaderFloatWindow();
 		}).mouseout(function () {
 			that.hideHeaderFloatWindow();
+		});
+
+		this.zone.find('.header-float-window ul').delegate('li img', 'click', function () {
+			pageName  = $(this).parents('li').parent('ul').attr('data-value');
+			subRouter = $(this).parents('li').attr('data-index');
+			app.router.setRoute('/' + pageName + '/' + subRouter);
 		});
 
 		pagesUl2.delegate('.li-bzzx','click',function(){

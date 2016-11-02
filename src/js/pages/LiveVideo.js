@@ -81,8 +81,10 @@
 		return this.el;
 	};
 
-	LiveVideo.prototype.show = function () {
+	LiveVideo.prototype.show = function (subRouter) {
 		this.zone.fadeIn(500);
+
+		this.subRouter = subRouter || '';
 
 		if (this.firstShow) {
 			this.getAds();
@@ -93,11 +95,37 @@
 		if (app.signedIn && this.firstSignedQuery) {
 			this.getGameLoginUrls();
 			this.firstSignedQuery = false;
+			return;
 		}
+
+		if (this.subRouter) {
+			this.trigger();
+		}
+	};
+
+	LiveVideo.prototype.trigger = function () {
+		var that = this;
+
+		if (!app.signedIn) {
+			app.showSignInDialog();
+			return;
+		}
+
+		if (this.firstSignedQuery) {
+			this.getGameLoginUrls();
+			this.firstSignedQuery = false;
+			return;
+		}
+
+		var timeout = setTimeout(function () {
+			that.zone.find('.picture' + (parseInt(that.subRouter) + 1) + ' .info .button').click();
+			clearTimeout(timeout);
+		}, 1000);	
 	};
 
 	LiveVideo.prototype.hide = function () {
 		this.zone.fadeOut(500);
+		this.subRouter = '';
 	};
 
     LiveVideo.prototype.createLoader = function() {
@@ -201,13 +229,13 @@
 		var imgs      = this.zone.find('.picture');
 		
 		for (i = 0; i < platforms.length; i++) {
-			this.getGameLoginUrl(platforms[i], $(imgs[i]));
+			this.getGameLoginUrl(platforms[i], $(imgs[i]), i);
 		}
 	};
 
-    LiveVideo.prototype.getGameLoginUrl = function (platform, item) {
-    	var that = this;
-    	var opt =  {
+    LiveVideo.prototype.getGameLoginUrl = function (platform, item, index) {
+    	var that  = this;
+    	var opt   =  {
 			url: app.urls.getGameLoginUrl,
 			data: {
 				gamePlatform: platform,
@@ -222,7 +250,11 @@
 			}
 
 			item.attr('data-url', json);
-		}
+
+			if (parseInt(that.subRouter) === index) {
+				window.open(json);
+			}
+		};
 
 		Service.get(opt, callback);
     };

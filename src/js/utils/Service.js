@@ -1,7 +1,7 @@
 $(function () {
 	function Service() {}
 
-	Service.prototype.get = function(opt, callback) {
+	Service.prototype.get = function(opt, callback, errorCallback) {
 		var i = 0;
 		var key;
 		var url = opt.url;
@@ -32,6 +32,10 @@ $(function () {
         	}
         }).fail(function (xhr, testStatus, error) {
             alert(error);
+
+            if (typeof errorCallback === 'function') {
+                errorCallback();
+            }
         });
 	};
 

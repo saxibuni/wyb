@@ -256,6 +256,21 @@
 
       	this.router = Router(routes).init();
 
+      	this.router.on('/liveVideo/:subRouter', function (subRouter) {
+			that.zone.find('.page').hide();
+			var pageName = 'liveVideo';
+
+			if (!that[pageName]) {
+				that[pageName] = new (dict[pageName].className)();
+				that.zone.find('.main-wrapper').append(that[pageName].getDom());
+				that[pageName].bindEvents();
+			}
+			
+			that.header.setStick(dict[pageName].index);
+			that[pageName].show(subRouter);
+			that.currentPage = pageName;
+      	});
+
       	this.router.on('/promoActivity/:mainRouter/:subRouter', function (mainRouter, subRouter) {
 			that.zone.find('.page').hide();
 			var pageName = 'promoActivity';
