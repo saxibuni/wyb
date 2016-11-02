@@ -36,7 +36,7 @@
 
 								'<div class="right-content">' +
 									'<div class="title">' +
-										'<span class="notice-icon"></span>' +
+										'<span class="route-check-icon notice-icon"></span>' +
 										'<span>温馨提示</span>' +
 									'</div>' +
 
@@ -55,7 +55,7 @@
 											'如果我们检测中心对您有帮助,' +
 										'</p>' +
 
-										'<ul>' +
+										'<ul class="collect-site">' +
 											'<li>1、打开IE浏览器;</li>' +
 											'<li>2、选择“工具”菜单;</li>' +
 											'<li>3、点击“Internet”选项;</li>' +
@@ -70,18 +70,24 @@
 											'推荐使用浏览器，享用更优质的服务体验' +
 										'</div>' +
 
-										'<ul>' +
+										'<ul class="recommend-browsers">' +
 											'<li data-value="chrome">' +
-												'<img src="../img/chrome-light.png">' +
-												'<span>Chrome</span>' +
+												'<div>' +
+													'<div class="route-check-icon route-chrome-icon"></div>' +
+												'</div>' +
+												'<div class="name">Chrome</div>' +
 											'</li>' +
 											'<li data-value="firefox">' +
-												'<img src="../img/firefox-light.png">' +
-												'<span>Firefox</span>' +
+												'<div>' +
+													'<div class="route-check-icon route-firefox-icon"></div>' +
+												'</div>' +
+												'<div class="name">Firefox</div>' +
 											'</li>' +
 											'<li data-value="ie">' +
-												'<img src="../img/ie-light.png">' +
-												'<span>IE10.0+</span>' +
+												'<div>' +
+													'<div class="route-check-icon route-ie-icon"></div>' +
+												'</div>' +
+												'<div class="name">IE10.0+</div>' +
 											'</li>' +
 										'</ul>' +
 									'</div>' +
@@ -124,7 +130,10 @@
     	for (i = 0; i < data.length; i++) {
 			temp +=	'<tr class="' + (i%2 === 0? 'even': 'odd') + '">' +
 						'<td class="td1">' +
-							'网址：' + data[i].DomainUrl +
+							'<span>网址：<span>' +
+							'<span class="site">' + 
+								data[i].DomainUrl + 
+							'</span>' +
 						'</td>' +
 
 						'<td class="td2">' +
@@ -151,7 +160,6 @@
     	}
 
     	this.zone.find('.left-content table tbody').html(temp);
-    	this.bindButtonEvents();
     };
 
 	RouteCheck.prototype.show = function () {
@@ -162,23 +170,16 @@
 		this.zone.hide();
 	};
 
-	RouteCheck.prototype.bindButtonEvents = function () {
-		var url;
-		var that = this;
-
-		this.zone.delegate('.go-to-button', 'click', function () {
-			url = $(this).prev('.site').text();
-			window.open(url);
-		});
-	};
-
 	RouteCheck.prototype.bindEvents = function () {
+		var site;
+		var tbody
 		var downLoadUl;
-		var that  = this;
+		var that   = this;
 
-		this.zone = $('.route-check');
+		this.zone  = $('.route-check');
 
-		downLoadUl = this.zone.find('.right-content .row3 ul');
+		downLoadUl = this.zone.find('.right-content .recommend-browsers');
+		tbody      = this.zone.find('.left-content tbody');
 
 		downLoadUl.delegate('li', 'click', function () {
 			browserName = $(this).attr('data-value');
@@ -187,11 +188,14 @@
 				window.open('https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads');
 			} else if (browserName === 'chrome') {
 				window.open('https://www.google.com/intl/zh-CN/chrome/browser/desktop/index.html');
-			} else if (browserName === 'safari') {
-
 			} else if (browserName === 'firefox') {
 				window.open('http://www.firefox.com.cn/download/');
 			}
+		});
+
+		tbody.delegate('.td3 a', 'click', function () {
+			site = $(this).parent('.td3').siblings('.td1').find('.site').text();
+			window.open(site);
 		});
 
 		this.getRoutes();

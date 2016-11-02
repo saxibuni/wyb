@@ -1,5 +1,38 @@
 @import "../mixins.scss";
 
+.route-check-icon {
+	background-image: url("../img/route-check.png");
+	cursor: pointer;
+	display: inline-block;
+	height: $headerRow1Height;
+	margin-right: 10px;
+}
+
+.notice-icon {
+	background-position: -10px -10px;
+	height: 18px;
+	width: 18px;
+	vertical-align: middle;
+}
+
+.route-chrome-icon {
+	background-position: -85px -9px;
+	height: 25px;
+	width: 25px;
+}
+
+.route-firefox-icon {
+	background-position: -125px -9px;
+	height: 25px;
+	width: 25px;
+}
+
+.route-ie-icon {
+	background-position: -40px -9px;
+	height: 25px;
+    width: 30px;
+}
+
 .route-check {
 	@include page-property;
 
@@ -30,7 +63,7 @@
 			.text1 {
 				color: #FFF;
 				display: inline-block;
-				font-size: 20px;
+				font-size: 18px;
 				font-weight: bold;
 				margin: 0 15px;
 			}
@@ -57,6 +90,7 @@
 			display: inline-block;
 			width: $contentWidth;
 			padding-bottom: 20px;
+			text-align: left;
 
 			.left-content {
 				display: inline-block;
@@ -123,6 +157,7 @@
 						color: #FFF;
 						font-size: 14px;
 						width: 30%;
+						text-align: center;
 
 						a {
 							cursor: pointer;
@@ -143,7 +178,7 @@
 				.title {
 					border-bottom: 1px solid $border-color1;
 					color: #FFF;
-					font-size: 20px;
+					font-size: 18px;
 					font-weight: bold;
 					height: 50px;
 					line-height: 50px;
@@ -155,24 +190,49 @@
 					.subtitle {
 						color: #aaaaaa;
 						font-size: 14px;
+						margin-bottom: 5px;
 					}
 
 					.text {
-						color: $font-color0;
+						color: #917994;
 						font-size: 12px;
-						height: 30px;
 						line-height: 30px;
 					}
 
-					ul {
+					.collect-site {
 						width: 100%;
 
 						li {
-							color: $font-color0;
+							color: #917994;
+							font-size: 12px;
+							height: 24px;
+							line-height: 24px;
+						}
+					}
+
+					.recommend-browsers {
+						margin-top: 15px;
+						width: 85%;
+
+						li {
+							color: #917994;
+							display: inline-block;
 							font-size: 12px;
 							height: 24px;
 							line-height: 24px;
 							width: 33.33%;
+
+							&:nth-child(1) {
+								text-align: left;
+							}
+
+							&:nth-child(2) {
+								text-align: center;
+							}
+
+							&:nth-child(3) {
+								text-align: right;
+							}
 						}
 					}
 				}
@@ -182,4 +242,63 @@
 }
 
 @media screen and (max-width: 1300px) {
+	.route-check {
+		@include page-property;
+
+		$baseL                  :    1300;
+		$baseWidth              :    1000px;
+		$gap                    :    $baseWidth * 25 / $baseL;
+		$titleHeight            :    $baseWidth * 100 / $baseL;
+		$stickHeight            :    $baseWidth * 35 / $baseL;
+		$stickTop               :    ($titleHeight - $stickHeight) / 2;
+		$leftWidth              :    $baseWidth * 885 / $baseL;
+		$rightWidth             :    $baseWidth * 375 / $baseL;
+		$gap2                   :    $baseWidth - $leftWidth - $rightWidth;
+		$rowHeight              :    60px;
+
+		.wrapper {
+			width: $contentWidth;
+
+			.title {
+				height: $titleHeight ;
+				line-height: $titleHeight;
+
+				.stick {
+					height: $stickHeight;
+					top: $stickTop;
+				}
+			}
+
+			.content {
+				width: $contentWidth;
+
+				.left-content {
+					width: $leftWidth;
+
+					table {
+						thead {
+							tr {
+								height: $rowHeight * 2 / 3;
+							}
+						}
+
+						tbody {
+							tr {
+								height: $rowHeight;
+							}
+						}
+					}
+				}
+
+				.right-content {
+					margin-left: $gap2;
+					width: $rightWidth;
+
+					.item {
+						margin-top: $gap;
+					}
+				}
+			}
+		}
+	}
 }
