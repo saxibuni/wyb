@@ -184,7 +184,7 @@
 		callback = function (data) {
 			if (data.StatusCode) {
 				alert(data.Message);
-				//return;
+				return;
 			}
 
 			if (!that.topupConfirmDialog) {

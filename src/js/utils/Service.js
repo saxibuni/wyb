@@ -83,7 +83,7 @@ $(function () {
 
     Service.prototype.getGameLoginUrl = function (platform, type, gameIdentify, cb) {
         var opt =  {
-            url: this.urls.getGameLoginUrl,
+            url: app.urls.getGameLoginUrl,
             data: {
                 gamePlatform: platform,
                 gameType: type,
