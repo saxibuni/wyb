@@ -3,39 +3,55 @@
 .route-check {
 	@include page-property;
 
+	$baseL                  :    1300;
+	$baseWidth              :    1300px;
+	$gap                    :    $baseWidth * 25 / $baseL;
+	$titleHeight            :    $baseWidth * 100 / $baseL;
+	$stickHeight            :    $baseWidth * 35 / $baseL;
+	$stickTop               :    ($titleHeight - $stickHeight) / 2;
+	$leftWidth              :    $baseWidth * 885 / $baseL;
+	$rightWidth             :    $baseWidth * 375 / $baseL;
+	$gap2                   :    $baseWidth - $leftWidth - $rightWidth;
+	$rowHeight              :    60px;
+
 	.wrapper {
+		background-color: rgba(0,0,0,.3);
 		position: relative;
 		width: $contentWidth;
-		height: 100%;
-		margin-bottom: 60px;
+		min-height: 730px;
 
 		.title {
-			background-color: $purple3;
-			height: 50px;
-			line-height: 50px;
+			height: $titleHeight ;
+			line-height: $titleHeight;
+			position: relative;
 			text-align: left;
 			transition: all .5s;
 
-			.trend-icon {
+			.text1 {
+				color: #FFF;
 				display: inline-block;
-				margin-right: 10px;
-
-				.trend-icon-img {
-					width: 20px;
-					height: 20px;
-				    vertical-align: middle;
-				    margin-bottom: 3px;
-				}
+				font-size: 20px;
+				font-weight: bold;
+				margin: 0 15px;
 			}
 
-			.text {
-				color: #D8CC82;
+			.text2 {
+				color: #84827C;
 				display: inline-block;
+				font-size: 14px;
+			}
+
+			.stick {
+				background-color: $red;
+				height: $stickHeight;
+				position: absolute;
+				top: $stickTop;
+				left: 0;
+				width: 3px;
 			}
 		}
 
 		.content {
-			background-color: rgba(0,0,0,.3);
 			border: 0;
 			border-top: 0;
 			display: inline-block;
@@ -44,142 +60,119 @@
 
 			.left-content {
 				display: inline-block;
-				float: left;
-				width: 55%;
-				text-align: left;
-				padding-left: 20px;
-				padding-top: 20px;
+				vertical-align: top;
+				width: $leftWidth;
 				transition: all .5s;
 
-				ul {
-					li {
-						height: 32px;
-						line-height: 32px;
-						margin-bottom: 10px;
-						position: relative;
+				table {
+					font-size: 12px;
+					width: 100%;
 
-						.speed {
-							background-color: #2C2C2C;
-							color: #FFF;
-							display: inline-block;
-						    width: 100px;
-						    margin-right: 20px;
-						    text-align: right;
-						    padding-right: 10px;
-
-						    .speed-value {
-								margin-left: 30px;
-							    display: inline-block;
-						    }
+					thead {
+						tr {
+							background-color: #170F20;
+							height: $rowHeight * 2 / 3;
 						}
+					}
 
-						.recommend {
-							position: absolute;
-							left: 0;
-						}
+					tbody {
+						tr {
+							height: $rowHeight;
 
-						.arrow {
-							display: inline-block;
-							height: 30px;
-							line-height: 30px;
-							margin-right: 40px;
-							margin-left: 20px;
-							vertical-align: middle;
+							ul {
+								display: inline-block;
 
-							img {
-								height: 16px;
-								width: 22px;
+								li {
+									background-color: #4d4952;
+									border-radius: 50%;
+									display: inline-block;
+									height: 8px;
+									margin-right: 5px;
+									width: 8px;
+								}
+
+								.active {
+									background-color: $green;
+								}
 							}
 						}
 
-						.site {
-							background-color: #2C2C2C;
-							color: #FFF;
-							cursor: pointer;
-							display: inline-block;
-							width: 250px;
-							margin-right: 20px;
-							text-align: center;
+						.even {
+							background-color: #1A131F;
 						}
 
-						.go-to-button {
-						    background-color: $purple2;
-						    color: $font-color1;
-							cursor: pointer;
-							display: inline-block;
-							text-align: center;
-							width: 100px;
-							margin-left: 30px;
-
-							&:hover {
-								color: #000;
-							}
+						.odd {
+							background-color: #170F20;
 						}
+					}
+
+					.td1 {
+						color: #AAAAAA;
+						text-align: left;
+						padding-left: 20px;
+						width: 30%;
+					}
+
+					.td2 {
+						color: #4f4b51;
+						text-align: center;
+						width: 40%;
+					}
+
+					.td3 {
+						color: #FFF;
+						font-size: 14px;
+						width: 30%;
+
+						a {
+							cursor: pointer;
+							text-decoration: underline;
+						}	
 					}
 				}
 			}
 
 			.right-content {
 				display: inline-block;
-				float: right;
-				padding-top: 20px;
-				width: 45%;
+				margin-left: $gap2;
+				vertical-align: top;
+				width: $rightWidth;
 				transition: all .5s;
+				text-align: left;
 
 				.title {
-					background: none;
-					height: 25px;
-					line-height: 25px;
-					color: #BAB179;
-					text-align: left;
-					padding: 0;
-				}
-
-				.text {
-					height: 25px;
-					line-height: 25px;
+					border-bottom: 1px solid $border-color1;
 					color: #FFF;
-					text-align: left;
+					font-size: 20px;
+					font-weight: bold;
+					height: 50px;
+					line-height: 50px;
 				}
 
-				.row {
-					border: 1px solid #636157;
-					font-size: 13px;
-					display: inline-block;
-					width: 80%;
-					padding: 20px;
-				}
+				.item {
+					margin-top: $gap;
 
-				.row1 {
-					height: 140px;
-					margin-bottom: 20px;
-				}
+					.subtitle {
+						color: #aaaaaa;
+						font-size: 14px;
+					}
 
-				.row2 {
-					height: 220px;
-					margin-bottom: 20px;
-				}
-
-				.row3 {
-					height: 100px;
-					color: #FFF;
-					text-align: left;
+					.text {
+						color: $font-color0;
+						font-size: 12px;
+						height: 30px;
+						line-height: 30px;
+					}
 
 					ul {
-						margin-top: 20px;
-						font-size: 12px;
-						
-						li {
-							cursor: pointer;
-							display: inline-block;
-							margin-right: 10px;
+						width: 100%;
 
-							img {
-							    height: 18px;
-							    width: 18px;
-							    vertical-align: bottom;
-							    margin-right: 3px;
-							}
+						li {
+							color: $font-color0;
+							font-size: 12px;
+							height: 24px;
+							line-height: 24px;
+							width: 33.33%;
 						}
 					}
 				}
@@ -188,57 +181,5 @@
 	}
 }
 
-@media screen and (max-width: 1200px) {
-	$baseWidth: 997px;
-
-	.route-check {
-		width: $baseWidth !important;
-
-		.wrapper {
-			width: $baseWidth - 40px !important;
-
-			.title {
-				width: $baseWidth - 42px;
-			}
-
-			.content {
-				width: $baseWidth - 42px;
-
-				.left-content {
-					ul {
-						li {
-							.speed {
-								background-color: #2C2C2C;
-								color: #FFF;
-								display: inline-block;
-							    width: 80px;
-							    margin-right: 20px;
-							    text-align: right;
-							    padding-right: 10px;
-
-							    .speed-value {
-									margin-left: 30px;
-								    display: inline-block;
-							    }
-							}
-
-							.arrow {
-								margin-right: 20px;
-								margin-left: 0;
-							}
-
-							.site {
-								width: 220px;
-								margin-right: 20px;
-							}
-
-							.go-to-button {
-								margin-left: 20px;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+@media screen and (max-width: 1300px) {
 }

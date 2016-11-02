@@ -7,72 +7,66 @@
 		var temp =	'<div class="page route-check">' +
 						'<div class="wrapper">' +
 							'<div class="title">' +
-								'<div class="trend-icon">' +
-									'<img class="trend-icon-img" src="../img/trend-icon.png">' +
+								'<div class="text1">' +
+									'线路测速' +
 								'</div>' +
 
-								'<div class="text">' +
-									'线路检测 LINE VILOCITY MEASUREMENT' +
+								'<div class="text2">' +
+									'LINE VILOCITY MEASUREMENT' +
 								'</div>' +
+
+								'<div class="stick"></div>' +
 							'</div>' +
 
 							'<div class="content">' +
 								'<div class="left-content">' +
-									'<ul class="domains">' +
-									'</ul>' +
+									'<table cellspacing="0" cellpadding="0">' +
+										'<thead>' +
+											'<tr>' +
+												'<th class="td1">网址</th>' +
+												'<th class="td2">访问速度</th>' +
+												'<th class="td3">操作</th>' +
+											'</tr>' +
+										'</thead>' +
+
+										'<tbody>' +
+										'</tbody>' +
+									'</table>' +
 								'</div>' +
 
 								'<div class="right-content">' +
-									'<div class="row row1">' +
-										'<div class="title">' +
-											'温馨提示：访问速度越小, 打开的速度越快' +
-										'</div>' +
+									'<div class="title">' +
+										'<span class="notice-icon"></span>' +
+										'<span>温馨提示</span>' +
+									'</div>' +
 
-										'<div class="text">' +
+									'<div class="item">' +
+										'<p class="subtitle">' +
 											'访问速度越小, 打开的速度越快' +
-										'</div>' +
+										'</p>' +
 
-										'<div class="text">' +
+										'<p class="text">' +
+											'如果我们检测中心对您有帮助，请按“Ctrl+D”进行收藏' +
+										'</p>' +
+									'</div>' +
+
+									'<div class="item">' +
+										'<p class="subtitle">' +
 											'如果我们检测中心对您有帮助,' +
-										'</div>' +
+										'</p>' +
 
-										'<div class="text">' +
-											'请按“Ctrl+D”进行收藏' +
-										'</div>' +
+										'<ul>' +
+											'<li>1、打开IE浏览器;</li>' +
+											'<li>2、选择“工具”菜单;</li>' +
+											'<li>3、点击“Internet”选项;</li>' +
+											'<li>4、选择“删除浏览记录”选项</li>' +
+											'<li>5、点击“删除”按钮;</li>' +
+											'<li>6、关闭IE浏览器，再重新打开IE浏览器即可</li>' +
+										'</ul>' +
 									'</div>' +
 
-									'<div class="row row2">' +
-										'<div class="title">' +
-											'如果检测后还不能登录，请参考以下操作，' +
-										'</div>' +
-
-										'<div class="text">' +
-											'1. 打开浏览器;' +
-										'</div>' +
-
-										'<div class="text">' +
-											'2. 选择“工具”菜单;' +
-										'</div>' +
-
-										'<div class="text">' +
-											'3. 点击“internet”选项;' +
-										'</div>' +
-
-										'<div class="text">' +
-											'4. 选择“删除浏览记录”选项' +
-										'</div>' +
-
-										'<div class="text">' +
-											'5. 点击“删除”按钮;' +
-										'</div>' +
-
-										'<div class="text">' +
-											'6. 关闭IE浏览器，再重新打开浏览器即可;' +
-										'</div>' +
-									'</div>' +
-
-									'<div class="row row3">' +
-										'<div class="title">' +
+									'<div class="item">' +
+										'<div class="subtitle">' +
 											'推荐使用浏览器，享用更优质的服务体验' +
 										'</div>' +
 
@@ -81,10 +75,6 @@
 												'<img src="../img/chrome-light.png">' +
 												'<span>Chrome</span>' +
 											'</li>' +
-											// '<li>' +
-											// 	'<img src="../img/safari-light.png">' +
-											// 	'<span>Safari</span>' +
-											// '</li>' +
 											'<li data-value="firefox">' +
 												'<img src="../img/firefox-light.png">' +
 												'<span>Firefox</span>' +
@@ -132,30 +122,35 @@
     	var temp = '';
 
     	for (i = 0; i < data.length; i++) {
-			temp +=	'<li>' +
-						'<div class="speed">' +
-							'<span class="speed-value">' +
-								0 + 'ms' +
-							'</span>' +
+			temp +=	'<tr class="' + (i%2 === 0? 'even': 'odd') + '">' +
+						'<td class="td1">' +
+							'网址：' + data[i].DomainUrl +
+						'</td>' +
 
-							'<img class="recommend" src="../img/recommend.png">' +
-						'</div>' +
+						'<td class="td2">' +
+							'<ul>' +
+								'<li></li>' +
+								'<li></li>' +
+								'<li></li>' +
+								'<li></li>' +
+								'<li></li>' +
+								'<li></li>' +
+								'<li></li>' +
+								'<li></li>' +
+								'<li></li>' +
+								'<li></li>' +
+							'</ul>' +
 
-						'<div class="arrow">' +
-							'<img class="trend-icon-img" src="../img/arrow-right.png">' +
-						'</div>' +
+							'<span>395毫秒</span>' +
+						'</td>' +
 
-						'<div class="site">' +
-							data[i].DomainUrl +
-						'</div>' +
-
-						'<div class="go-to-button">' +
-							'直接打开' +
-						'</div>' +
-					'</li>';
+						'<td class="td3">' +
+							'<a>直接访问</a>' +
+						'</td>' +
+					'</tr>';
     	}
 
-    	this.zone.find('.domains').html(temp);
+    	this.zone.find('.left-content table tbody').html(temp);
     	this.bindButtonEvents();
     };
 
