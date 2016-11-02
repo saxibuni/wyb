@@ -667,17 +667,27 @@
 		Service.get(opt, callback);
     };
 
-	EEntertainment.prototype.show = function () {
+	EEntertainment.prototype.show = function (subRouter) {
+		var timeout;
 		var callback;
 		var that = this;
 
 		this.zone.fadeIn(500);
+
+		this.subRouter = subRouter || '';
 
 		if (!this.firstTime) {
 			this.getAds();
 			this.getJackpotsGames('PT');  //获取pt奖金池
 			this.getGameCategories();
 			this.firstTime = true;
+		}
+
+		if (this.subRouter) {
+			timeout = setTimeout(function () {
+				$(that.zone.find('.middle-module li')[that.subRouter]).click();
+				clearTimeout(timeout);
+			}, 1000);		
 		}
 	};
 
