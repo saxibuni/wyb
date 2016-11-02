@@ -9,6 +9,7 @@ $(function () {
             type: 'GET',
             dataType: 'json',
             timeout: app.timeout,
+            crossDomain: true,
             xhrFields: {
             	withCredentials: true
             }

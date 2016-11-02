@@ -129,10 +129,15 @@
 									background-color: $green;
 								}
 							}
+
+							.speed {
+							    display: inline-block;
+							    width: 70px;
+							}
 						}
 
 						.even {
-							background-color: #1A131F;
+							background-color: #211b27;
 						}
 
 						.odd {

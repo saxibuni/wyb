@@ -76,7 +76,8 @@ gulp.task('prepare', ['clean'], function () {
             './bower_components/JavaScript-MD5/js/md5.min.js',
             './bower_components/spin.js/spin.min.js',
             './bower_components/clipboard/dist/clipboard.min.js',
-            './bower_components/director/build/director.js'
+            './bower_components/director/build/director.js',
+            './bower_components/network-js/dist/network.min.js'
         ])
         .pipe(gulp.dest(src_js_lib_path));
 

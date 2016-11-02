@@ -1,5 +1,6 @@
 (function () {
 	function RouteCheck () {
+		this.firstTime = true;
 		this.initDom();
 	}
 	
@@ -150,7 +151,8 @@
 								'<li></li>' +
 							'</ul>' +
 
-							'<span>395毫秒</span>' +
+							'<span class="speed"></span>' +
+							'<div class="speed-image"></div>' +
 						'</td>' +
 
 						'<td class="td3">' +
@@ -160,14 +162,94 @@
     	}
 
     	this.zone.find('.left-content table tbody').html(temp);
+    	this.checkSpeeds();
     };
+
+	RouteCheck.prototype.checkSpeeds = function () {
+		var i;
+		var site;
+		var item;
+		var sites      = this.zone.find('.left-content .td1 .site');
+		var speedItems = this.zone.find('.left-content .td2 .speed');
+
+		for (i = 0; i < sites.length; i++) {
+			site = $(sites[i]).text();
+			item = $(speedItems[i]);
+			this.checkSpeed(site, item);
+		}
+	};
+
+	RouteCheck.prototype.checkSpeed = function (site, item) {
+		var before;
+		var later;
+		var duration;
+		var that  = this;
+		var image = new Image();
+
+		image.width         =  '1';
+		image.height        =  '1';
+		image.style.display =  'none';
+		image.src           =  site + '/?' + new Date().getTime();
+
+		before = new Date().getTime();
+
+		image.onerror = function () {
+			later    = new Date().getTime();
+			duration = later - before;
+			item.text(duration + 'ms');
+			that.setSpeedLevel(item.prev('ul'), duration);
+		};
+
+		item.next('.speed-image').append(image);
+	};
+
+	RouteCheck.prototype.setSpeedLevel = function (ul, duration) {
+		var i;
+		var star = 0;
+		var lis  = ul.children('li');
+
+		if (duration <= 100) {
+			star = 9;
+		} else if (duration > 100 && duration <= 300) {
+			star = 8;
+		} else if (duration > 300 && duration <= 500) {
+			star = 7;
+		} else if (duration > 500 && duration <= 700) {
+			star = 6;
+		} else if (duration > 700 && duration <= 900) {
+			star = 5;
+		} else if (duration > 900 && duration <= 2000) {
+			star = 4;
+		} else if (duration > 2000 && duration <= 4000) {
+			star = 3;
+		} else if (duration > 4000 && duration <= 6000) {
+			star = 2;
+		} else if (duration > 6000) {
+			star = 1;
+		}
+
+		for (i = 0; i < star; i++) {
+			$(lis[i]).addClass('active');
+		}
+	};
 
 	RouteCheck.prototype.show = function () {
 		this.zone.show();
+
+		if (this.firstTime) {
+			this.getRoutes();
+		} else {
+			this.checkSpeeds();
+		}
 	};
 
 	RouteCheck.prototype.hide = function () {
 		this.zone.hide();
+		this.reset();
+	};
+
+	RouteCheck.prototype.reset = function () {
+		this.zone.find('.td2 ul li').removeClass('active');
 	};
 
 	RouteCheck.prototype.bindEvents = function () {
@@ -197,8 +279,6 @@
 			site = $(this).parent('.td3').siblings('.td1').find('.site').text();
 			window.open(site);
 		});
-
-		this.getRoutes();
 	};
 
 	window.RouteCheck = RouteCheck;
