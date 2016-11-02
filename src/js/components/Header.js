@@ -551,10 +551,9 @@
 			} else {
 				that.showHeaderFloatWindow();
 			}
-		})
-		// .mouseout(function () {
-		// 	that.hideHeaderFloatWindow();
-		// });
+		}).mouseout(function () {
+			that.hideHeaderFloatWindow();
+		});
 
 		this.zone.find('.pages li').mouseover(function () {
 			pageName   = $(this).attr('data-value');
@@ -566,17 +565,15 @@
 			} else {
 				that.hideHeaderFloatWindow();
 			}
-		})
-		// .mouseout(function () {
-		// 	that.hideHeaderFloatWindow();
-		// });
+		}).mouseout(function () {
+			that.hideHeaderFloatWindow();
+		});
 
 		this.zone.find('.header-float-window').mouseover(function () {
 		    that.showHeaderFloatWindow();
-		})
-		// .mouseout(function () {
-		// 	that.hideHeaderFloatWindow();
-		// });
+		}).mouseout(function () {
+			that.hideHeaderFloatWindow();
+		});
 
 		pagesUl2.delegate('.li-bzzx','click',function(){
 			pageName = $(this).attr('data-value');
