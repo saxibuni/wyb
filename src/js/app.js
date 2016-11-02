@@ -271,6 +271,51 @@
 			that.currentPage = pageName;
       	});
 
+      	this.router.on('/eEntertainment/:subRouter', function (subRouter) {
+			that.zone.find('.page').hide();
+			var pageName = 'eEntertainment';
+
+			if (!that[pageName]) {
+				that[pageName] = new (dict[pageName].className)();
+				that.zone.find('.main-wrapper').append(that[pageName].getDom());
+				that[pageName].bindEvents();
+			}
+			
+			that.header.setStick(dict[pageName].index);
+			that[pageName].show(subRouter);
+			that.currentPage = pageName;
+      	});
+      	
+      	this.router.on('/sportsCompetition/:subRouter', function (subRouter) {
+			that.zone.find('.page').hide();
+			var pageName = 'sportsCompetition';
+
+			if (!that[pageName]) {
+				that[pageName] = new (dict[pageName].className)();
+				that.zone.find('.main-wrapper').append(that[pageName].getDom());
+				that[pageName].bindEvents();
+			}
+			
+			that.header.setStick(dict[pageName].index);
+			that[pageName].show(subRouter);
+			that.currentPage = pageName;
+      	});
+
+      	this.router.on('/lotteryGame/:subRouter', function (subRouter) {
+			that.zone.find('.page').hide();
+			var pageName = 'lotteryGame';
+
+			if (!that[pageName]) {
+				that[pageName] = new (dict[pageName].className)();
+				that.zone.find('.main-wrapper').append(that[pageName].getDom());
+				that[pageName].bindEvents();
+			}
+			
+			that.header.setStick(dict[pageName].index);
+			that[pageName].show(subRouter);
+			that.currentPage = pageName;
+      	});
+
       	this.router.on('/promoActivity/:mainRouter/:subRouter', function (mainRouter, subRouter) {
 			that.zone.find('.page').hide();
 			var pageName = 'promoActivity';

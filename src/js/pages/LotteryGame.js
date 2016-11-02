@@ -74,13 +74,39 @@
 		return this.el;
 	};
 
-	LotteryGame.prototype.show = function () {
+	LotteryGame.prototype.show = function (subRouter) {
 		this.zone.fadeIn(500);
+
+		this.subRouter = subRouter || '';
 
 		if (this.firstSignedQuery && app.signedIn) {
 			this.getGameLoginUrls();
 			this.firstSignedQuery = false;
 		}
+
+		if (this.subRouter) {
+			this.trigger();
+		}
+	};
+
+	LotteryGame.prototype.trigger = function () {
+		var that = this;
+
+		if (!app.signedIn) {
+			app.showSignInDialog();
+			return;
+		}
+
+		if (this.firstSignedQuery) {
+			this.getGameLoginUrls();
+			this.firstSignedQuery = false;
+			return;
+		}
+
+		var timeout = setTimeout(function () {
+			$(that.zone.find('.item .button')[that.subRouter]).click();
+			clearTimeout(timeout);
+		}, 1000);	
 	};
 
 	LotteryGame.prototype.hide = function () {
@@ -123,11 +149,11 @@
 		var imgs      = this.zone.find('.button');
 		
 		for (i = 0; i < platforms.length; i++) {
-			this.getGameLoginUrl(platforms[i], $(imgs[i]));
+			this.getGameLoginUrl(platforms[i], $(imgs[i]), i);
 		}
 	};
 
-    LotteryGame.prototype.getGameLoginUrl = function (platform, item) {
+    LotteryGame.prototype.getGameLoginUrl = function (platform, item, index) {
     	var that = this;
     	var opt =  {
 			url: app.urls.getGameLoginUrl,
@@ -144,6 +170,10 @@
 			}
 
 			item.attr('data-url', json);
+
+			if (parseInt(that.subRouter) === index) {
+				window.open(json);
+			}
 		}
 
 		Service.get(opt, callback);
