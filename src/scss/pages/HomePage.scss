@@ -1,7 +1,7 @@
 @import "../mixins.scss";
 
-$homepage-icon-top1      :   -15px;
-$homepage-icon-top2      :   -70px;
+$homepage-icon-top1      :   -12px;
+$homepage-icon-top2      :   -68px;
 $homepage-icon-top3      :   -126px;
 
 .home-page {
@@ -104,27 +104,27 @@ $homepage-icon-top3      :   -126px;
 						}
 
 						.home-video-icon {
-							background-position: -83px $common-icon-top1;
+							background-position: -83px $homepage-icon-top1;
 						}
 
 						.home-sports-icon {
-							background-position: -155px $common-icon-top1;
+							background-position: -155px $homepage-icon-top1;
 						}
 
 						.home-lottery-icon {
-							background-position: -225px $common-icon-top1;
+							background-position: -225px $homepage-icon-top1;
 						}
 
 						.home-deposit-icon {
-							background-position: -295px $common-icon-top1;
+							background-position: -295px $homepage-icon-top1;
 						}
 
 						.home-signup-icon {
-							background-position: -365px $common-icon-top1;
+							background-position: -365px $homepage-icon-top1;
 						}
 
 						.home-vip-icon {
-							background-position: -442px $common-icon-top1;
+							background-position: -442px $homepage-icon-top1;
 						}
 
 						.li-name {
@@ -155,27 +155,27 @@ $homepage-icon-top3      :   -126px;
 							}
 
 							.home-video-icon {
-								background-position: -83px $common-icon-top2;
+								background-position: -83px $homepage-icon-top2;
 							}
 
 							.home-sports-icon {
-								background-position: -155px $common-icon-top2;
+								background-position: -155px $homepage-icon-top2;
 							}
 
 							.home-lottery-icon {
-								background-position: -225px $common-icon-top2;
+								background-position: -225px $homepage-icon-top2;
 							}
 
 							.home-deposit-icon {
-								background-position: -295px $common-icon-top2;
+								background-position: -295px $homepage-icon-top2;
 							}
 
 							.home-signup-icon {
-								background-position: -365px $common-icon-top2;
+								background-position: -365px $homepage-icon-top2;
 							}
 
 							.home-vip-icon {
-								background-position: -442px $common-icon-top2;
+								background-position: -442px $homepage-icon-top2;
 							}
 						}
 

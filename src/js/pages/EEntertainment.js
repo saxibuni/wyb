@@ -672,22 +672,21 @@
 		var callback;
 		var that = this;
 
-		this.zone.fadeIn(500);
-
 		this.subRouter = subRouter || '';
+
+		if (this.subRouter) {
+			this.zone.fadeIn(500, function () {
+				$(that.zone.find('.middle-module li')[that.subRouter]).click();
+			});
+		} else {
+			this.zone.fadeIn(500);
+		}
 
 		if (!this.firstTime) {
 			this.getAds();
 			this.getJackpotsGames('PT');  //获取pt奖金池
 			this.getGameCategories();
 			this.firstTime = true;
-		}
-
-		if (this.subRouter) {
-			timeout = setTimeout(function () {
-				$(that.zone.find('.middle-module li')[that.subRouter]).click();
-				clearTimeout(timeout);
-			}, 1000);		
 		}
 	};
 

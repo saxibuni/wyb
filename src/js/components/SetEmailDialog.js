@@ -247,9 +247,9 @@
 		callback = function (data) {
 			if (data === true) {
 				if (step == 1) {
-					that.step1VerifyCodeButton.setName('已发送');
+					that.step1VerifyCodeButton.setName('验证码已发送');
 				} else {
-					that.step2VerifyCodeButton.setName('已发送');
+					that.step2VerifyCodeButton.setName('验证码已发送');
 				}
 			} else {
 				alert(data.Message);
@@ -351,6 +351,14 @@
 
 		this.zone.find('#sed-step1-verify-code-button').click(function () {
 			that.getVerifyCode(1);
+		});
+
+		this.zone.find('#sed-step1-verify-input input').focus(function () {
+			that.step1VerifyCodeButton.setName('获取验证码');			
+		});
+
+		this.zone.find('#sed-step2-verify-input input').focus(function () {
+			that.step2VerifyCodeButton.setName('获取验证码');			
 		});
 
 		this.zone.find('#sed-step2-ok-button').click(function () {
