@@ -15,7 +15,11 @@
     				'<div class="help-center">' + 
     					'<div class="wrapper">' +
                             '<div class="tree">' +
-                                '<div class="title">澳门金沙娱乐</div>' +
+                                '<div class="title">' +
+                                    '<div class="text1">帮助中心</div>' +
+                                    '<div class="text2">help center</div>' +
+                                '</div>' +
+                                
                                 '<ul>' + 
                                     '<li data-value="aboutus"><span>关于我们</span><div></div></li>' +
                                     '<li data-value="contactus"><span>联系我们</span><div></div></li>' +
@@ -340,12 +344,12 @@
         } else {
             name = url.substring(pos + 5);
         }
-        debugger;
+
         this.zone.find('.content-item').hide();
         this.zone.find('.' + name).show();
         this.zone.find('.tree ul li[data-value=' + name + ']').addClass('selected');
         this.zone.find('.tree').height(this.zone.find('.container').outerHeight());
-    }
+    };
 
     Help.prototype.hide = function() {
         this.zone.hide();

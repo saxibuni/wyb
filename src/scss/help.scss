@@ -1,7 +1,7 @@
 @import "mixins.scss";
 
 body {
-	background-color: $purple1;
+	background-color: $purple1;	
 }
 
 .app {
@@ -30,17 +30,18 @@ body {
 		@include page-property;
 		display: inline-block;
 		margin-top: 30px;
-		width: 1200px;
+		width: 1300px;
 		margin: 0 atuo;
 
 		.wrapper{
 			padding: 10px 17px;
 			width: 100%;
 
-			.tree{
+			.tree {
 				width: 20%;
 				height: 500px;
-				background-color: #48463A;
+				background-color: $purple1;
+				color: $font-color0;
 				float: left;
 				position: relative;
 
@@ -49,45 +50,41 @@ body {
 	    			line-height: 50px;
 	    			font-size: 20px;
 	    			font-weight: bold;
-	    			color: #cda654;
 				}
 
 				ul{
 					width: 100%;
-					border-top: 1px solid #535250;
+					border-top: 1px solid $border-color1;
 					
 					li{
+						border-bottom: 1px solid $border-color1;
+						cursor: pointer;
 						height: 40px;
 						line-height: 40px;
 						display: inline-block;
 						width: 100%;
-						color: #b4b4b4;
-						border-bottom: 1px solid #535250;
-
-						span{
+						
+						span {
 							margin-left: -50px;
 						}
 
-						div{
+						div {
 							width: 40px;
 							height: 40px;
 						}
 
 						&:hover{
-							color: #63563c;
-							cursor: pointer;
-							background-color:#cda654;
+							color: #FFF;
 						}
 					}
 
 					.selected {
-						color: #63563c;
-						background-color:#cda654;
+						color: #FFF;
+						background-color: #2b1f37;
 					}
-
 				}
 
-				.stick{
+				.stick {
 					height: 39px;
 					width: 3px;
 					position: absolute;
@@ -106,9 +103,9 @@ body {
 			.container{
 				width: 75%;
 				min-height: 600px;
-				background-color:#2B2A26;
+				background-color: $purple1;
 				float: right;
-				color: #757575;
+				color: $font-color0;
 				padding-bottom: 30px;
 
 				.title{
@@ -116,14 +113,14 @@ body {
 	    			line-height: 50px;
 	    			font-size: 20px;
 	    			font-weight: bold;
-	    			color: #cda654;
+	    			color: #FFF;
 	    			text-align: center;
 				}
 
 				hr{
 					height: 2px;
 					border: none;
-					border-top: 2px solid #cda654;
+					border-top: 2px solid $border-color1;
 					width: 100%;
 				}
 
@@ -162,9 +159,9 @@ body {
 					    height: 25px;
 					    margin: 20px 10%;
 					    text-align: left;
-					    border-bottom: 1px solid #48463a;
+					    border-bottom: 1px solid $border-color1;
 						
-						span{
+						span {
 							display: inline-block;
 						    background: #48463A;
 						    width: 90px;

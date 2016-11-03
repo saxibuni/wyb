@@ -4,331 +4,250 @@
 	@include page-property;
 
 	.wrapper {
-		position: relative;
-		width: $contentWidth;
+		$baseL                   :       1300;
+		$baseWidth               :       1300px;
+		$gap                     :       $baseWidth * 10 / $baseL;
+		$treeWidth               :       $baseWidth * 200 / $baseL;
+		$downloadContentWidth    :       $baseWidth - $gap - $treeWidth;
 
-		.title {
-			background-color: $purple3;
-			height: 50px;
-			display: inline-block;
-			line-height: 50px;
-			text-align: left;
-			padding-left: 0px;
-			width: $contentWidth;
-			transition: all .5s;
+		$contentHeight           :       620px;
+		$treeHeaderHeight        :       110px;
+		$treeItemHeight          :       50px;
+		$downloadItemHeight      :       ($contentHeight - 3px) / 2;
+		$itemLeftWidth           :       $baseWidth * 320 / $baseL;
+		$itemRightWidth          :       $downloadContentWidth - $itemLeftWidth;
+		$circleLeft              :       $baseWidth * 70 / $baseL;
+ 
+		.unslider {
+			overflow: hidden;
+		    position: relative;
 
-			.title-ul {
-				height: 50px;
-				width: 100%;
+			.sliders {
+				min-height: 100px;
 
 				li {
-					cursor: pointer;
-					float:left;;
-					list-style: none;
-					color:#fff;
-					height:100%;
-					display: inline-block;
-					padding-left: 20px;
-					margin-left: 20px;
-					z-index: 20;
-
-					&:first-child {
-						margin-left: 0;
-					}
-
-					.img {
-						background: url("../img/platform.png");
-						display: inline-block;
-						width: 33px;
-						height: 100%;
-						overflow: hidden;
-					}
-
-					.name {
-						display: none;
-						width: 100px;
-						height:100%;
-						vertical-align: top;
-						text-align: center;
-					}
-
-					&:hover {
-						.pt-img {
-							background-position: -8px $platform-icon-top2;
-						}
-
-						.bbin-img {
-							background-position: -53px $platform-icon-top2;
-						}
-
-						.mg-img {
-							background-position: -98px $platform-icon-top2;
-						}
-
-						.ag-img {
-							background-position: -141px $platform-icon-top2;
-						}
-
-						.ttg-img {
-							background-position: -185px $platform-icon-top2;
-						}
-
-						.mt-img {
-							background-position: -231px $platform-icon-top2;
-						}
+					img {
+						cursor: pointer;
+						width: 100%;
 					}
 				}
+			}
 
-				.pt-li{
-					.img {
-						background-position: -8px $platform-icon-top1;
-					}
-				}
+			.unslider-nav {
+				display: none;
+			    position: absolute;
+			    bottom: 10px;
+			    left: 20px;
 
-				.bbin-li{
-					.img {
-						background-position: -53px $platform-icon-top1;
-					}
-				}
-
-				.mg-li{
-					.img {
-						background-position: -98px $platform-icon-top1;
-					}
-				}
-
-				.ag-li{
-					.img {
-						background-position: -141px $platform-icon-top1;
-					}
-				}
-
-				.ttg-li{
-					.img {
-						background-position: -185px $platform-icon-top1;
-					}
-				}
-
-				.mt-li {
-					.img {
-						background-position: -231px $platform-icon-top1;
-					}
-				}
-
-				.selected {
-					background-color: $purple1;
-
-					.name {
-						display: inline-block;
-					}
-
-					.pt-img {
-						background-position: -8px $platform-icon-top2;
-					}
-
-					.bbin-img {
-						background-position: -53px $platform-icon-top2;
-					}
-
-					.mg-img {
-						background-position: -98px $platform-icon-top2;
-					}
-
-					.ag-img {
-						background-position: -141px $platform-icon-top2;
-					}
-
-					.ttg-img {
-						background-position: -185px $platform-icon-top2;
-					}
-
-					.mt-img {
-						background-position: -231px $platform-icon-top2;
-					}
-				}
+			    li {
+			    	height: 10px;
+				    width: 10px;
+			    }
 			}
 		}
 
 		.content {
-			background-color: rgba(0,0,0,.3);
-			border: 0;
-			border-top: 0;
-			display: inline-block;
-			width: $contentWidth;
-			padding-bottom: 20px;
-			transition: all .5s;
+			height: $contentHeight;
+			margin-top: $gap - 5px;
 
-			.content-up {
-				border-bottom: 1px solid $border-color1;
-				height: 250px;
-				width: 90%;
-				margin: 0 auto;
+			.tree {
+				background-color: $purple1;
+				display: inline-block;
+				height: 100%;
+				vertical-align: top;
+				width: $treeWidth;
 
-				.left {
+				.tree-title {
+					border-bottom: 1px solid $border-color2;
 					display: inline-block;
-					width: 30%;
-					height: 100%;
-					text-align: center;
-					vertical-align: top;
+					height: $treeHeaderHeight;
+				    text-align: left;
+				    padding-left: 30px;
+				    width: 100%;
 
-					img {
-						position: relative;
-						top: 60px;
+					.cn-title {
+						color: $font-color3;
+						font-size: 20px;
+						margin-top: 25px;
+						height: 30px;
+						line-height: 30px;
+					}
+
+					.en-title {
+						font-size: 12px;
+						color: #ababab;
+						height: 30px;
+						line-height: 30px;
 					}
 				}
 
-				.right {
+				ul {
 					display: inline-block;
-					width: 70%;
-					height: 100%;
-					text-align: center;
-					vertical-align: top;
+					position: relative;
+					width: 100%;
 
-					.right-wrapper {
-						display: inline-block;
-						text-align: left;
-						height: 95%;
-						width: 300px;
-						margin-top: 60px;
+					li {
+						border-bottom: 1px solid $border-color2;
+						cursor: pointer;
+						height: $treeItemHeight;
+						line-height: $treeItemHeight;
+						text-align: center;
+						transition: top 0s;
 
-						.text {
-						    height: 30px;
-						    line-height: 30px;
+						.download-icon {
+							background-image: url("../img/download.png");
+							background-repeat: no-repeat;
+							display: inline-block;
+							height: 25px;
+							vertical-align: top;
+							margin-top: ($treeItemHeight - 25px) / 2;
+							width: 150px;
 						}
 
-						.button {
-							cursor: pointer;
-						    height: 40px;
-						    line-height: 40px;
-						    width: 150px;
-						    background-color: $purple2;
-						    color: $font-color1;
-						    text-align: center;
-						    margin-top: 10px;
-
-						    img {
-							    position: relative;
-							    bottom: 13px;
-							    vertical-align: middle;
-						    }
-
-						    span {
-							    display: inline-block;
-							    vertical-align: text-bottom;
-							    margin-left: 10px;
-						    }
-
-							&:hover {
-								color: #000;
-							}
+						&:hover {
+							background-color: $border-color2;
 						}
+					}
+
+					.active {
+						background-color: $border-color2;
+					}
+
+					.stick {
+						background-color: $red;
+						position: absolute;
+						width: 3px;
+						height: $treeItemHeight;
+						left: 0;
+						top: 0;
+						transition: all .3s;
 					}
 				}
 			}
 
-			.content-down {
-				height: 250px;
-				width: 90%;
-				margin: 0 auto;
+			.download-content {
+				background-color: rgba(0, 0, 0, .3);
+				display: inline-block;
+				height: 100%;
+				margin-left: $gap;
+				text-align: left;
+				vertical-align: top;
+				width: $downloadContentWidth;
 
-				.zone-wrapper {
-    				padding-top: 35px;
-    				height: 90%;
+				.download-item {
+					background-color: rgba(0, 0, 0, .3);
+					display: inline-block;
+					height: $downloadItemHeight;
+					text-align: left;
+					width: 100%;
 
-					.button {
-						cursor: pointer;
-					    height: 40px;
-					    line-height: 40px;
-					    width: 142px;
-					    background-color: $purple2;
-					    color: $font-color1;
-					    text-align: center;
-					    position: relative;
-					    margin-top: 20px;
+					.item-title {
+						height: 30px;
+						line-height: 30px;
+						margin-top: 24px;
+						margin-bottom: 40px;
+						position: relative;
+						text-align: left;
+						padding-left: 20px;
+						width: 100%;
 
-					    span {
-						    display: inline-block;
-						    vertical-align: top;
-						    margin-left: 10px;
-					    }
-
-					    img {
-						    position: relative;
-						    top: 4px;
-					    }
-					    
-						&:hover {
-							color: #000;
+						.title-stick {
+							background-color: $red;
+							width: 3px;
+							height: 30px;
+							position: absolute;
+							left: 0;
+							top: 0;
 						}
 					}
-				}
 
-				.zone1 {
-					width: 30%;
-					display: inline-block;
-				    vertical-align: top;
-				    height: 100%;
+					.item-left {
+						height: $downloadItemHeight - 120px;
+						padding-left: $circleLeft;
+						width: $itemLeftWidth;
+						
+						.circle {
+							border-radius: 50%;
+							border: 2px solid #2b312e;
+							height: 160px;
+							line-height: 160px;
+							width: 160px;
+							text-align: center;
 
-					img {
-					    vertical-align: middle;
-					    position: relative;
-					    top: 55px;
+							img {
+								display: inline-block;
+								position: relative;
+								top: 12px;
+								left: -5px;
+								vertical-align: top;
+							}
+						}
 					}
-				}
 
-				.zone2 {
-					width: 23%;
-					display: inline-block;
-				    vertical-align: top;
-				    height: 100%;
-				    text-align: left;
-				}
+					.item-right {
+						height: $downloadItemHeight - 120px;
+						width: $itemRightWidth;
+					}
 
-				.zone3 {
-					width: 23%;
-					display: inline-block;
-				    vertical-align: top;
-				    height: 100%;
-				    text-align: left;
-				}
-
-				.zone4 {
-					width: 23%;
-					display: inline-block;
-				    vertical-align: top;
-				    height: 100%;
-				    text-align: left;
+					&:last-child {
+						margin-top: 3px;
+					}
 				}
 			}
 		}
 	}
 }
 
-
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
 	.client-download {
-
-		$baseWidth: 997px;
+		@include page-property;
 
 		.wrapper {
-			position: relative;
-			width: $baseWidth - 40px;
+			$baseL                   :       1300;
+			$baseWidth               :       1000px;
+			$gap                     :       $baseWidth * 10 / $baseL;
+			$treeWidth               :       $baseWidth * 200 / $baseL;
+			$downloadContentWidth    :       $baseWidth - $gap - $treeWidth;
 
-			.title {
-				width: $baseWidth - 42px;
-			}
+			$contentHeight           :       620px;
+			$treeHeaderHeight        :       110px;
+			$treeItemHeight          :       50px;
+			$downloadItemHeight      :       ($contentHeight - 3px) / 2;
+			$itemLeftWidth           :       $baseWidth * 320 / $baseL;
+			$itemRightWidth          :       $downloadContentWidth - $itemLeftWidth;
+			$circleLeft              :       $baseWidth * 70 / $baseL;
 
 			.content {
-				width: $baseWidth - 42px;
+				height: $contentHeight;
+				margin-top: $gap - 5px;
 
-				.content-up {
-					.left {
-						width: 30%;
+				.tree {
+					width: $treeWidth;
+
+					.tree-title {
+						height: $treeHeaderHeight;
+					    padding-left: 12px;
 					}
 
-					.right {
-						width: 70%;
+					ul {
+						li {
+							height: $treeItemHeight;
+							line-height: $treeItemHeight;
+
+							.download-icon {
+								width: 133px;
+							}
+						}
+
+						.stick {
+							height: $treeItemHeight;
+						}
 					}
+				}
+
+				.download-content {
+					margin-left: $gap;
+					width: $downloadContentWidth;
 				}
 			}
 		}

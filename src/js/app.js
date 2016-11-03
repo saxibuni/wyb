@@ -150,7 +150,9 @@
 			getInfoByUserName: this.domain + 'api/User/GetByUserName?',
 			updateUserInfo: this.domain + 'api/User/UpdateUserInfo',
 
-			getRouteCheckList: this.domain + 'api/Config/GetSpareDomain'
+			getRouteCheckList: this.domain + 'api/Config/GetSpareDomain',
+
+			getWebPageByKey: this.domain + 'api/News/GetNewsByKey?'
 		};
 	};
 

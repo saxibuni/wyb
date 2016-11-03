@@ -1,5 +1,6 @@
 (function () {
 	function ClientDownload () {
+		this.firstShow = true;
 		this.initDom();
 	}
 	
@@ -8,82 +9,48 @@
 						'<div class="wrapper">' +
 							'<div class="sliders"></div>' +
 
-							'<div class="title">' +
-								'<ul class="title-ul">' +
-									'<li class="pt-li selected" data-type="PT">' +
-										'<span class="img pt-img"></span>' +
-									'</li>'+
-									'<li class="mg-li" data-type="MG">' +
-										'<span class="img mg-img"></span>' +
-									'</li>'+
-									'<li class="ag-li" data-type="AG">' +
-										'<span class="img ag-img"></span>' +
-									'</li>'+
-								'</ul>' +
-							'</div>' +
-
 							'<div class="content">' +
-								'<div class="content-up">' +
-									'<div class="left">' +
-										'<img src="../img/download-computer.png">' +
-									'</div>' +
-									'<div class="right">' +
-										'<div class="right-wrapper">' +
-											'<div class="text">' +
-												'<span class="version">版本号：</span>' +
-												'<span class="version-value">2.1.5.2</span>' +
-											'</div>' +
-											'<div class="text">' +
-												'<span class="version">系统：</span>' +
-												'<span class="version-value">WIN XP/2000/2003/7X/8X</span>' +
-											'</div>' +
-											'<div class="button">' +
-												'<img class="down" src="../img/windows.png">' +
-												'<span>桌面版下载</span>' +
-											'</div>' +
+								'<div class="tree">' +
+									'<div class="tree-title">' +
+										'<div class="cn-title">' +
+											'下载中心' +
+										'</div>' +
+
+										'<div class="en-title">' +
+											'DOWNLOAD CENTER' +
 										'</div>' +
 									'</div>' +
+
+									'<ul>' +
+										this.createTreeItems() +
+									'</ul>' +
 								'</div>' +
 
-								'<div class="content-down">' +
-									'<div class="zone1">' +
-										'<img src="../img/download-mobile.png">' +
-									'</div>' +
+								'<div class="download-content">' +
+									'<div class="download-item pc">' +
+										'<div class="item-title">' +
+											'<span class="platform">MG</span>' +
+											'<span>平台客户端下载</span>' +
+											'<div class="title-stick"></div>' +
+										'</div>' +
 
-									'<div class="zone2">' +
-										'<div class="zone-wrapper">' +
-											'<img src="../img/qrcode.png">' +
-											'<div class="button">' +
-												'<img class="down" src="../img/android.png">' +
-												'<span>Android下载</span>' +
+										'<div class="item-left">' +
+											'<div class="circle">' +
+												'<img src="../img/download-computer.png">' +
 											'</div>' +
+										'</div>' +
+
+										'<div class="item-right">' +
 										'</div>' +
 									'</div>' +
 
-									'<div class="zone3">' +
-										'<div class="zone-wrapper">' +
-											'<img src="../img/qrcode.png">' +
-											'<div class="button">' +
-												'<img class="down" src="../img/apple.png">' +
-												'<span>IOS下载</span>' +
-											'</div>' +
-										'</div>' +
-									'</div>' +
-
-									'<div class="zone4">' +
-										'<div class="zone-wrapper">' +
-											'<img src="../img/qrcode.png">' +
-											'<div class="button">' +
-												'<img class="down" src="../img/windows.png">' +
-												'<span>windows下载</span>' +
-											'</div>' +
-										'</div>' +
+									'<div class="download-item mobile">' +
 									'</div>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
 					'</div>';
-		
+
 		this.el  = temp;
 	};
 
@@ -93,23 +60,181 @@
 
 	ClientDownload.prototype.show = function () {
 		this.zone.fadeIn(500);
+
+		if (this.firstShow) {
+			this.getAds();
+			this.getWebPageByKey('new_edit');
+			this.firstShow = false;
+		}
 	};
 
 	ClientDownload.prototype.hide = function () {
 		this.zone.fadeOut(500);
 	};
 
+	ClientDownload.prototype.createTreeItems = function () {
+		var i;
+		var temp = '';
+		var arr  = [
+			{
+				//downloadKey: 'download-pt',
+				downloadKey: 'new_identity',
+				left: -3,
+				top: -5
+			},
+			{
+				//downloadKey: 'download-mg',
+				downloadKey: 'new_description',
+				left: -3,
+				top: -56
+			},
+			{
+				//downloadKey: 'download-ab',
+				downloadKey: 'new_transfer',
+				left: -3,
+				top: -106
+			},
+			{
+				//downloadKey: 'download-bbin',
+				downloadKey: 'new_edit',
+				left: -3,
+				top: -160
+			},
+			{
+				//downloadKey: 'download-kg',
+				downloadKey: 'new_withdraw',
+				left: -3,
+				top: -210
+			},
+			{
+				downloadKey: 'download-ag',
+				left: -3,
+				top: -262
+			},	
+			{
+				downloadKey: 'download-mt',
+				left: -3,
+				top: -312
+			}
+		];
+
+		for (i = 0; i < arr.length; i++) {
+			temp +=	'<li ' + (i === 0?'class="active" ': '') + 'data-download="' + arr[i].downloadKey + '">' +
+						'<span class="download-icon" style="background-position:' +
+							arr[i].left + 'px ' + arr[i].top + 'px' + ';">' +
+					'</li>';
+		}
+
+		temp += '<div class="stick"></div>';
+
+		return temp;
+	};
+
+    ClientDownload.prototype.createLoader = function() {
+        var wrapper = this.zone.find('.sliders')[0];
+
+        this.loader1 = new Loader(wrapper, {
+        	top: '50%'
+        });
+    };
+
+	ClientDownload.prototype.getAds = function () {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getAds,
+			data: {
+				type: 'pd_wyb_download_ads',
+				pageIndex: 0,
+				pageSize: 1
+			}
+		};
+
+		callback = function (data) {
+			that.loader1.stop();
+
+			if (!data) {
+				return;
+			}
+			
+			that.addSliders(data);
+		};
+
+		this.loader1.play();
+		Service.get(opt, callback);
+	};
+
+	ClientDownload.prototype.getWebPageByKey = function (key) {
+		var callback;
+		var that    =  this;
+		var opt     =  {
+			url: app.urls.getWebPageByKey,
+			data: {
+				key: key
+			}
+		};
+
+		callback = function (data) {
+			that.zone.find('.download-content').html(data.Content);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	ClientDownload.prototype.addSliders = function (data) {
+		var i;
+		var arr = data.list;
+		var len = arr.length;
+		var logoTemp = 	'<ul>';
+
+		for (i = 0; i < len; i++) {
+			logoTemp += 	'<li>' +
+								'<img src="' + app.imageServer + arr[i].ImgUrl + '">' +
+							'</li>';
+		}
+
+		logoTemp +=		'</ul>';
+
+		this.logoHtml = logoTemp;
+		this.zone.find('.sliders').html(logoTemp);
+		this.zone.find('.sliders').unslider({
+			speed: 500,
+			delay: 5000,
+			autoplay: true,
+			arrows: false
+		});
+
+		this.zone.find('.sliders .unslider-carousel li').click(function () {
+			app.router.setRoute('/promoActivity/1/-1');
+		});
+	};
+
 	ClientDownload.prototype.bindEvents = function () {
+		var tree;
+		var stick;
+		var index;
+		var top;
+		var key;
+		var h    = 50;
 		var that = this;
-		var titleUl;
 
 		this.zone = $('.client-download');
-		titleUl = this.zone.find('.title-ul');
+		tree      = this.zone.find('.tree ul');
+		stick     = tree.children('.stick');
 
-		titleUl.delegate('li', 'click', function () {
-			titleUl.find('li').removeClass('selected');
-			$(this).addClass('selected');
+		tree.delegate('li', 'click', function () {
+			index = $(this).index();
+			top   = h * index + 'px';
+			stick.css('top', top);
+
+			tree.find('li').removeClass('active');
+			$(this).addClass('active');
+
+			key = $(this).attr('data-download');
+			that.getWebPageByKey(key);
 		});
+
+		this.createLoader();
 	};
 
 	window.ClientDownload = ClientDownload;
