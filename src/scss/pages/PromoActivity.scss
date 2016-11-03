@@ -8,8 +8,7 @@
 		position: relative;
 		width: $contentWidth;
 		padding: 0 10px;
-		padding-bottom: 0 10px;
-		margin-bottom: 60px;
+		padding-bottom: 10px;
 		
 		.title {
 			height: 50px;
@@ -35,8 +34,13 @@
 					}
 
 					&:hover {
-						color: $red;
+						color: #FFF;
 					}
+				}
+
+				.active {
+					background-color: $purple2;
+					color: #FFF;
 				}
 
 				.stick {

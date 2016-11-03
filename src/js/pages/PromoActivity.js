@@ -12,16 +12,12 @@
 						'<div class="wrapper">' +
 							'<div class="title">' +
 								'<ul>'  +
-									'<div class="stick"></div>' +
+									//'<div class="stick"></div>' +
 								'</ul>' +
 							'</div>' +
 
 							'<div class="content">' +
 								'<ul></ul>' +
-
-								// '<div class="pull">' +
-								// 	'<img src="../img/pull.png">' +
-								// '</div>' +
 							'</div>' +
 						'</div>' +
 					'</div>';
@@ -88,11 +84,11 @@
 					'</li>';
 		}
 
-		temp += '<div class="stick"></div>';
+		//temp += '<div class="stick"></div>';
 
 		this.zone.find('.title ul').html(temp);
 		this.bindTitleEvents();
-		this.setStick();
+		//this.setStick();
 	};
 
 	PromoActivity.prototype.setPromoList = function (data) {
@@ -167,9 +163,8 @@
 		var stick   = titleUl.children('.stick');
 
 		titleUl.delegate('li', 'click', function () {
-			index = $(this).index();
-			left  = index*gap + '%';
-			stick.css('left', left);
+			titleUl.children('li').removeClass('active');
+			$(this).addClass('active');
 
 			type = $(this).attr('data-type');
 			that.subRouter = -1;

@@ -12,17 +12,19 @@
 			@include dialog(870px, 480px);
 
 			background-color: $purple1;
+			border-radius: 0;
 			color: $font-color1;
 			font-size: 16px;
 
 			.subtitle {
 			    height: 45px;
 			    line-height: 45px;
-			    border-bottom: 1px solid $border-color1;
+			    border-bottom: 1px solid #2b1f35;
 			    position: relative;
 			    text-align: center;
 
 				.title-name {
+					color: $font-color3;
 					font-size: 16px;
 				}
 
