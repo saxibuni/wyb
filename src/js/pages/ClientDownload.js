@@ -27,25 +27,25 @@
 								'</div>' +
 
 								'<div class="download-content">' +
-									'<div class="download-item pc">' +
-										'<div class="item-title">' +
-											'<span class="platform">MG</span>' +
-											'<span>平台客户端下载</span>' +
-											'<div class="title-stick"></div>' +
-										'</div>' +
+									// '<div class="download-item pc">' +
+									// 	'<div class="item-title">' +
+									// 		'<span class="platform">MG</span>' +
+									// 		'<span>平台客户端下载</span>' +
+									// 		'<div class="title-stick"></div>' +
+									// 	'</div>' +
 
-										'<div class="item-left">' +
-											'<div class="circle">' +
-												'<img src="../img/download-computer.png">' +
-											'</div>' +
-										'</div>' +
+									// 	'<div class="item-left">' +
+									// 		'<div class="circle">' +
+									// 			'<img src="../img/download-computer.png">' +
+									// 		'</div>' +
+									// 	'</div>' +
 
-										'<div class="item-right">' +
-										'</div>' +
-									'</div>' +
+									// 	'<div class="item-right">' +
+									// 	'</div>' +
+									// '</div>' +
 
-									'<div class="download-item mobile">' +
-									'</div>' +
+									// '<div class="download-item mobile">' +
+									// '</div>' +
 								'</div>' +
 							'</div>' +
 						'</div>' +
@@ -63,7 +63,7 @@
 
 		if (this.firstShow) {
 			this.getAds();
-			this.getWebPageByKey('new_edit');
+			this.getWebPageByKey('download-pt');
 			this.firstShow = false;
 		}
 	};
@@ -77,32 +77,27 @@
 		var temp = '';
 		var arr  = [
 			{
-				//downloadKey: 'download-pt',
-				downloadKey: 'new_identity',
+				downloadKey: 'download-pt',
 				left: -3,
 				top: -5
 			},
 			{
-				//downloadKey: 'download-mg',
-				downloadKey: 'new_description',
+				downloadKey: 'download-mg',
 				left: -3,
 				top: -56
 			},
 			{
-				//downloadKey: 'download-ab',
-				downloadKey: 'new_transfer',
+				downloadKey: 'download-ab',
 				left: -3,
 				top: -106
 			},
 			{
-				//downloadKey: 'download-bbin',
-				downloadKey: 'new_edit',
+				downloadKey: 'download-bbin',
 				left: -3,
 				top: -160
 			},
 			{
-				//downloadKey: 'download-kg',
-				downloadKey: 'new_withdraw',
+				downloadKey: 'download-kg',
 				left: -3,
 				top: -210
 			},
