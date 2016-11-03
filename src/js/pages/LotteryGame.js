@@ -126,7 +126,7 @@
 
 		arr = dict[type];
 
-		temp +=	'<ul class="down">';
+		temp +=	'<ul class="down-ul">';
 
 		for (i = 0; i < arr.length; i++) {
 			temp +=	'<li>' + 

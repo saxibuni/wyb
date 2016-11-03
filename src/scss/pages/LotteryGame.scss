@@ -9,15 +9,15 @@
 
 		$baseL              : 1300;
 		$baseWidth          : 1300px;
-		$itemHeight         : $baseWidth * 305 / $baseL;
-		$height1            : $baseWidth * 250 / $baseL;
+		$itemHeight         : $baseWidth * 355 / $baseL;
+		$height1            : $baseWidth * 300 / $baseL;
 		$height2            : $baseWidth * 55 / $baseL;
 		$width1             : $baseWidth * 650 / $baseL;
 		$width2             : $baseWidth * 650 / $baseL;
 		$leftPadding        : $baseWidth * 90 / $baseL;
-		$row1Top            : $baseWidth * 20 / $baseL;
+		$row1Top            : $baseWidth * 45 / $baseL;
 		$row3Top            : $baseWidth * 50 / $baseL;
-		$item2Top           : $baseWidth * 20 / $baseL;
+		$item2Top           : $baseWidth * 10 / $baseL;
 
 		.item {
 			height: $itemHeight;
@@ -114,22 +114,26 @@
 				width: 100%;
 				transition: all .3s;
 
-				li {
-					display: inline-block;
-					font-size: 12px;
-					color: #5b4b5e;
-					position: relative;
-					text-align: center;
+				ul {
+					padding: 0 56px;
 
-					.slash {
-						position: absolute;
-						top: 0;
-						right: -1px;
-					}
+					li {
+						display: inline-block;
+						font-size: 12px;
+						color: #5b4b5e;
+						position: relative;
+						text-align: center;
 
-					&:last-child {
 						.slash {
-							display: none;
+							position: absolute;
+							top: 0;
+							right: -1px;
+						}
+
+						&:last-child {
+							.slash {
+								display: none;
+							}
 						}
 					}
 				}
@@ -145,7 +149,12 @@
 
 			&:nth-child(2) {
 				margin-top: $item2Top;
-				margin-bottom: 100px;
+
+				.up {
+					.right {
+						background-image: url("../img/lottery-b2.png");
+					}
+				}
 
 				.down {
 					li {
@@ -162,15 +171,15 @@
 		.wrapper {
 			$baseL              : 1300;
 			$baseWidth          : 1000px;
-			$itemHeight         : $baseWidth * 305 / $baseL;
-			$height1            : $baseWidth * 250 / $baseL;
+			$itemHeight         : $baseWidth * 355 / $baseL;
+			$height1            : $baseWidth * 300 / $baseL;
 			$height2            : $baseWidth * 55 / $baseL;
 			$width1             : $baseWidth * 650 / $baseL;
 			$width2             : $baseWidth * 650 / $baseL;
 			$leftPadding        : $baseWidth * 90 / $baseL;
-			$row1Top            : $baseWidth * 20 / $baseL;
+			$row1Top            : $baseWidth * 45 / $baseL;
 			$row3Top            : $baseWidth * 50 / $baseL;
-			$item2Top           : $baseWidth * 20 / $baseL;
+			$item2Top           : $baseWidth * 10 / $baseL;
 
 			width: $baseWidth;
 
@@ -187,7 +196,7 @@
 
 						.row1 {
 							padding-left: $leftPadding;
-							margin-top: 5px;
+							margin-top: 22px;
 						}
 
 						.row2 {
