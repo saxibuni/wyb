@@ -723,6 +723,7 @@
 		var identify;
 		var isTry;
 		var li;
+		var cb;
 		var middleModuleUl;
 		var lastScrollTop = 0;
 		var direction;
@@ -780,7 +781,15 @@
 			platform = li.attr('data-platform');
 			gameType = li.attr('data-gametype');
 
-			Service.getGameLoginUrl(platform, gameType, identify);
+			if (!app.win || app.win.closed) {
+				app.win = window.open("loading.html");
+			}
+
+			cb = function (data) {
+				app.win.location.href = data;
+			};
+
+			Service.getGameLoginUrl(platform, gameType, identify, cb.bind(this));
 		});
 
 		this.zone.delegate('.try-game', 'click', function () {

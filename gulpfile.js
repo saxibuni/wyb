@@ -183,6 +183,10 @@ gulp.task('build', function () {
         .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
 
+    gulp.src('src/loading.html')
+        .pipe(htmlmin())
+        .pipe(gulp.dest(build_html_path));
+
     gulp.src('src/403.html')
         .pipe(htmlmin())
         .pipe(gulp.dest(build_html_path));
