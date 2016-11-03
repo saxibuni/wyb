@@ -411,6 +411,7 @@ $homepage-icon-top3      :   -126px;
 				}
 
 				.table {
+					font-size: 12px;
 					height: $bottom-table-height;
 					width: 100%;
 
@@ -453,7 +454,7 @@ $homepage-icon-top3      :   -126px;
 						display: inline-block;
 						height: $bottom-table-row-height;
 						line-height: $bottom-table-row-height;
-						text-align: center;
+						text-align: left;
 					}
 
 					.td1 {
@@ -462,10 +463,12 @@ $homepage-icon-top3      :   -126px;
 
 					.td2 {
 						width: 50%;
+						padding-left: $pageNavGap + 10px;
 					}
 
 					.td3 {
 						width: 50%;
+						padding-left: $pageNavGap + 10px;
 					}
 				}
 			}
@@ -624,7 +627,7 @@ $homepage-icon-top3      :   -126px;
 
 					.table {
 						height: $bottom-table-height;
-
+							
 						.thead {
 							height: $bottom-table-row-height;
 
@@ -647,6 +650,18 @@ $homepage-icon-top3      :   -126px;
 						.td {
 							height: $bottom-table-row-height;
 							line-height: $bottom-table-row-height;
+						}
+
+						.td1 {
+							width: 20%;
+						}
+
+						.td2 {
+							padding-left: $pageNavGap + 10px;
+						}
+
+						.td3 {
+							padding-left: $pageNavGap + 10px;
 						}
 					}
 				}

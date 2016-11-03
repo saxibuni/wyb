@@ -349,7 +349,13 @@
 				return;
 			}
 
-			that.zone.find('.message-count').text(json);
+			if (parseInt(json) !== 0) {
+				that.zone.find('.message-count').show();
+				that.zone.find('.message-count').text(json);
+			} else {
+				that.zone.find('.message-count').hide();
+			}
+			
 		};
 
 		Service.get(opt, callback);

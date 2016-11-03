@@ -46,6 +46,11 @@
 											'<span class="icon ie-icon"></span>' +
 											'<span>IE10.0+</span>' +
 										'</li>' +
+
+										'<li data-value="safari">' +
+											'<span class="icon safari-icon"></span>' +
+											'<span>Safari</span>' +
+										'</li>' +
 									'</ul>' +
 								'</div>' +
 
@@ -107,7 +112,7 @@
 			} else if (browserName === 'chrome') {
 				window.open('https://www.google.com/intl/zh-CN/chrome/browser/desktop/index.html');
 			} else if (browserName === 'safari') {
-
+				window.open('http://www.apple.com/cn/safari/');
 			} else if (browserName === 'firefox') {
 				window.open('http://www.firefox.com.cn/download/');
 			}

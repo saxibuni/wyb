@@ -26,6 +26,7 @@
 			.row1 {
 				height: 60px;
 				line-height: 60px;
+				margin-top: 10px;
 
 				.platforms-icon {
 					background-image: url("../img/common.png");
@@ -86,6 +87,7 @@
 			.row1 {
 				height: 60px;
 				line-height: 60px;
+				margin-top: 10px;
 
 				.title {
 					display: inline-block;
@@ -123,6 +125,10 @@
 
 					.ie-icon {
 						background-position: -16px -196px;
+					}
+
+					.safari-icon {
+						background-position: -200px -196px;
 					}
 				}
 			}
