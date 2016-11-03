@@ -11,9 +11,7 @@
 		var temp =	'<div class="page promo-activity">' +
 						'<div class="wrapper">' +
 							'<div class="title">' +
-								'<ul>'  +
-									//'<div class="stick"></div>' +
-								'</ul>' +
+								'<ul></ul>' +
 							'</div>' +
 
 							'<div class="content">' +
@@ -44,7 +42,8 @@
 	};
 
 	PromoActivity.prototype.show = function (mainRouter, subRouter) {
-		this.zone.show();
+		this.zone.fadeIn(500);
+
 		this.mainRouter = mainRouter || 0;  //mainRouter: 标签的index值
 		this.subRouter  = subRouter || -1;  //subRouter: 标签的index值, -1表示子广告不展开
 
@@ -84,11 +83,10 @@
 					'</li>';
 		}
 
-		//temp += '<div class="stick"></div>';
-
 		this.zone.find('.title ul').html(temp);
+		this.zone.find('.title ul li').removeClass('active');
+		this.zone.find('.title ul li:nth-child(' + (parseInt(this.mainRouter) + 1) + ')').addClass('active');
 		this.bindTitleEvents();
-		//this.setStick();
 	};
 
 	PromoActivity.prototype.setPromoList = function (data) {
@@ -194,10 +192,6 @@
 				$(this).children('.activity-content').slideUp();
 			}
 		});	
-
-		pull.click(function () {
-			that.loadImages();
-		});
 
 		this.createLoader();
 	};
