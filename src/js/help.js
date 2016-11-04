@@ -160,17 +160,17 @@
 
         this.zone = $('.help-center');
         treeUl    = this.zone.find('.tree ul');
-        stick     = treeUl.find('.stick');
 
         treeUl.delegate('li','click',function() {
+            stick     = treeUl.find('.stick');
             index = $(this).index();
             stick.css('top',index * 50 + 'px');
             key = $(this).attr('data-key');
             that.getWebPageByKey(key);
         });
 
-		//this.header.bindEvents();
 		this.footer.bindEvents();
+        //this.header.bindEvents();
     };
 
 	window.Help = new Help();
