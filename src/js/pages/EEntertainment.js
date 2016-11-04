@@ -620,7 +620,8 @@
 							'" data-try="' + data[i].IsTry +
 							'" data-gametype="' + data[i].GameTypeText_EN +
 							'" data-platform="' + data[i].Api.GamePlatform + '"' +
-							'" data-collectid="' + '' + '"' + 
+							'" data-collectid="' +
+							'" data-cnname="' + data[i].Title + '"' +
 							'>' +
 						'<img src='+app.imageServer + data[i].ImageUrl+'>' +
 						'<p>' +
@@ -724,6 +725,7 @@
 		var isTry;
 		var li;
 		var cb;
+		var name;
 		var middleModuleUl;
 		var lastScrollTop = 0;
 		var direction;
@@ -780,6 +782,7 @@
 			identify = li.attr('data-identify');
 			platform = li.attr('data-platform');
 			gameType = li.attr('data-gametype');
+			name     = li.attr('data-cnname');
 
 			if (!app.win || app.win.closed) {
 				app.win = window.open("loading.html");

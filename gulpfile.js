@@ -157,7 +157,7 @@ gulp.task('build', function () {
             'src/js/help.js'
         ])
         .pipe(concat('help.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
         //.pipe(gzip())
         .pipe(gulp.dest('build/js'));
 

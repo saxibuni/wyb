@@ -4,241 +4,171 @@ body {
 	background-color: $purple1;	
 }
 
-.app {
+.help-center {
+	@include page-property;
 	background-image: -webkit-radial-gradient(circle at top, #562d60 35%, #070C12);
 	background-image: radial-gradient(circle at top, #562d60 35%, #070C12);
-	display: inline-block;
-	width: 100%;
-	text-align: center;
-	font-size: 14px;
+	display: block;
+	margin-top: 40px;
 
-	.header {
-		position: static;
-		
-		.row1 {
-			.menu {
-				display: none;
-			}
-		}
+	.wrapper {
+		$baseL                   :       1300;
+		$baseWidth               :       1300px;
+		$gap                     :       $baseWidth * 10 / $baseL;
+		$treeWidth               :       $baseWidth * 200 / $baseL;
+		$downloadContentWidth    :       $baseWidth - $gap - $treeWidth;
 
-		.row2 {
-			display: none;
-		}
-	}
+		$contentHeight           :       620px;
+		$treeHeaderHeight        :       110px;
+		$treeItemHeight          :       50px;
 
-	.help-center {
-		@include page-property;
-		display: inline-block;
-		margin-top: 30px;
-		width: 1300px;
-		margin: 0 atuo;
-
-		.wrapper{
-			padding: 10px 17px;
-			width: 100%;
+		.content {
+			margin-top: $gap - 5px;
 
 			.tree {
-				width: 20%;
-				height: 500px;
 				background-color: $purple1;
-				color: $font-color0;
-				float: left;
-				position: relative;
+				display: inline-block;
+				height: 100%;
+				vertical-align: top;
+				width: $treeWidth;
 
-				.title{
-					height: 50px;
-	    			line-height: 50px;
-	    			font-size: 20px;
-	    			font-weight: bold;
+				.tree-title {
+					border-bottom: 1px solid $border-color2;
+					display: inline-block;
+					height: $treeHeaderHeight;
+				    text-align: left;
+				    padding-left: 30px;
+				    width: 100%;
+
+					.cn-title {
+						color: $font-color3;
+						font-size: 20px;
+						margin-top: 25px;
+						height: 30px;
+						line-height: 30px;
+					}
+
+					.en-title {
+						font-size: 12px;
+						color: #ababab;
+						height: 30px;
+						line-height: 30px;
+					}
 				}
 
-				ul{
+				ul {
+					display: inline-block;
+					position: relative;
 					width: 100%;
-					border-top: 1px solid $border-color1;
-					
-					li{
-						border-bottom: 1px solid $border-color1;
+
+					li {
+						border-bottom: 1px solid $border-color2;
 						cursor: pointer;
-						height: 40px;
-						line-height: 40px;
-						display: inline-block;
-						width: 100%;
-						
-						span {
-							margin-left: -50px;
-						}
+						height: $treeItemHeight;
+						line-height: $treeItemHeight;
+						text-align: center;
+						transition: top 0s;
 
-						div {
-							width: 40px;
-							height: 40px;
-						}
-
-						&:hover{
-							color: #FFF;
-						}
-					}
-
-					.selected {
-						color: #FFF;
-						background-color: #2b1f37;
-					}
-				}
-
-				.stick {
-					height: 39px;
-					width: 3px;
-					position: absolute;
-					background-color: #cda654;
-					top: 50px;
-					left: 0px;
-
-					transition: top 0.5s;
-					-moz-transition: top 0.5s; 
-					-webkit-transition: top 0.5s;
-					-o-transition: top 0.5s;
-				}
-
-			}
-
-			.container{
-				width: 75%;
-				min-height: 600px;
-				background-color: $purple1;
-				float: right;
-				color: $font-color0;
-				padding-bottom: 30px;
-
-				.title{
-					height: 50px;
-	    			line-height: 50px;
-	    			font-size: 20px;
-	    			font-weight: bold;
-	    			color: #FFF;
-	    			text-align: center;
-				}
-
-				hr{
-					height: 2px;
-					border: none;
-					border-top: 2px solid $border-color1;
-					width: 100%;
-				}
-
-				.content-item {
-					padding: 20px 40px;
-					display: none;
-					width: 100%;
-					height: 100%;
-					text-align: left;
-				}
-
-				.aboutus {
-					display: block;
-					text-indent: 50px;
-					line-height: 20px;
-
-					p {
-						line-height: 25px;
-						margin-top: 20px;
-					}
-				}
-
-				.contactus{
-					p {
-						margin: 0 auto;
-		    			text-align: left;
-		    			text-indent: 0;
-		    			line-height: 25px;
-					}
-
-					.p1 {
-						text-indent: 28px;
-					}
-					
-					.subtile{
-					    height: 25px;
-					    margin: 20px 10%;
-					    text-align: left;
-					    border-bottom: 1px solid $border-color1;
-						
-						span {
+						.download-icon {
+							background-image: url("../img/download.png");
+							background-repeat: no-repeat;
 							display: inline-block;
-						    background: #48463A;
-						    width: 90px;
-						    height: 25px;
-						    line-height: 25px;
-						    text-indent: 5px;
+							height: 25px;
+							vertical-align: top;
+							margin-top: ($treeItemHeight - 25px) / 2;
+							width: 150px;
+						}
+
+						&:hover {
+							background-color: $border-color2;
 						}
 					}
 
-					p {
-						min-height: 20px;
-						margin-top: 10px;
-					}
-				}
-
-				.deposithelp {
-				}
-
-				.withdrawhelp {
-
-				}
-
-				.partner {
-					table {
-						width: 600px;
-						border:1px solid #CCCCCC;
-						border-bottom: 0;
-						border-right: 0;
-						margin: 10px;
-
-						tr {
-							height: 30px;
-
-							td {
-								border-bottom: 1px solid #CCCCCC;
-								border-right: 1px solid #CCCCCC;
-							}
-						}
+					.active {
+						background-color: $border-color2;
 					}
 
-					ul {
-						margin-top: 20px;
-						
-						li {
-							margin-top: 20px;
-
-							p {
-								text-indent: 20px;
-							}
-						}
-					}
-				}
-
-				.faq {
-					ul {
-						margin-left: 30px;
-
-						li {
-							margin-bottom: 20px;
-						}
+					.stick {
+						background-color: $red;
+						position: absolute;
+						width: 3px;
+						height: $treeItemHeight;
+						left: 0;
+						top: 0;
+						transition: all .3s;
 					}
 				}
 			}
-		}
-	}
 
-	.footer {
-		.footer-left {
-			.row1 {
-				display: none;
-			}
-
-			.row2 {
-			    height: 50px;
-			    line-height: 50px;
+			.help-content {
+				background-color: rgba(0, 0, 0, .3);
+				display: inline-block;
+				height: 100%;
+				margin-left: $gap;
+				text-align: left;
+				vertical-align: top;
+				width: $downloadContentWidth;
 			}
 		}
 	}
 }
 
+.header {
+	position: fixed;
+
+	.row2 {
+		display: none;
+	}	
+}
+
+@media screen and (max-width: 1300px) {
+	.help-center {
+		@include page-property;
+		display: block;
+
+		.wrapper {
+			$baseL                   :       1300;
+			$baseWidth               :       1000px;
+			$gap                     :       $baseWidth * 10 / $baseL;
+			$treeWidth               :       $baseWidth * 200 / $baseL;
+			$downloadContentWidth    :       $baseWidth - $gap - $treeWidth;
+
+			$contentHeight           :       620px;
+			$treeHeaderHeight        :       110px;
+			$treeItemHeight          :       50px;
+
+			.content {
+				margin-top: $gap - 5px;
+
+				.tree {
+					width: $treeWidth;
+
+					.tree-title {
+						height: $treeHeaderHeight;
+					    padding-left: 12px;
+					}
+
+					ul {
+						li {
+							height: $treeItemHeight;
+							line-height: $treeItemHeight;
+
+							.download-icon {
+								width: 133px;
+							}
+						}
+
+						.stick {
+							height: $treeItemHeight;
+						}
+					}
+				}
+
+				.help-content {
+					margin-left: $gap;
+					width: $downloadContentWidth;
+				}
+			}
+		}
+	}
+}

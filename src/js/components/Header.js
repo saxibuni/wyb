@@ -1,15 +1,18 @@
 (function () {
-	function Header () {
+	function Header (opt) {
+		this.opt = opt || {};
 		this.initDom();
 	}
 
 	Header.prototype.initDom = function () {
 		var temp = '';
 
-		this.notice = new Notice2({
-			id: 'app-notice',
-			hasBtn: false
-		});
+		if (!this.opt.helpPage) {
+			this.notice = new Notice2({
+				id: 'app-notice',
+				hasBtn: false
+			});
+		}
 
 		this.switch = new Switch({id: 'money-switch'});
 
@@ -137,7 +140,7 @@
 							'</div>' +
 						'</div>' +
 
-						this.notice.getDom() +
+						(this.opt.helpPage?'': this.notice.getDom()) +
 
 						'<div class="header-float-window">' +
 							this.createHeaderFloatWindow() +
