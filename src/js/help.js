@@ -86,6 +86,7 @@
         temp += '<div class="stick"></div>';
 
         $('.app .tree ul').append(temp);
+        $('.app .help-content').css('height', $('.app .tree').css('height'));
     };
 
     Help.prototype.queryTreeItems = function (key) {
@@ -165,12 +166,16 @@
             stick     = treeUl.find('.stick');
             index = $(this).index();
             stick.css('top',index * 50 + 'px');
+
+            treeUl.find('li').removeClass('active');
+            $(this).addClass('active');
+
             key = $(this).attr('data-key');
             that.getWebPageByKey(key);
         });
 
 		this.footer.bindEvents();
-        //this.header.bindEvents();
+        this.header.bindEvents();
     };
 
 	window.Help = new Help();

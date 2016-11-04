@@ -12,11 +12,13 @@ body {
 	margin-top: 40px;
 
 	.wrapper {
+		margin: 0 auto;
+
 		$baseL                   :       1300;
 		$baseWidth               :       1300px;
 		$gap                     :       $baseWidth * 10 / $baseL;
 		$treeWidth               :       $baseWidth * 200 / $baseL;
-		$downloadContentWidth    :       $baseWidth - $gap - $treeWidth;
+		$downloadContentWidth    :       $baseWidth - $treeWidth;
 
 		$contentHeight           :       620px;
 		$treeHeaderHeight        :       110px;
@@ -27,6 +29,7 @@ body {
 
 			.tree {
 				background-color: $purple1;
+				color: #b2acba;
 				display: inline-block;
 				height: 100%;
 				vertical-align: top;
@@ -64,10 +67,13 @@ body {
 					li {
 						border-bottom: 1px solid $border-color2;
 						cursor: pointer;
+						font-size: 14px;
 						height: $treeItemHeight;
 						line-height: $treeItemHeight;
 						text-align: center;
 						transition: top 0s;
+					    text-align: left;
+					    padding-left: 30px;
 
 						.download-icon {
 							background-image: url("../img/download.png");
@@ -101,10 +107,13 @@ body {
 			}
 
 			.help-content {
-				background-color: rgba(0, 0, 0, .3);
+				background-color: #2b1f37;
+				color: #b2acba;
 				display: inline-block;
+				font-size: 12px;
+				line-height: 30px;
 				height: 100%;
-				margin-left: $gap;
+				padding: 40px 70px;
 				text-align: left;
 				vertical-align: top;
 				width: $downloadContentWidth;
@@ -115,6 +124,18 @@ body {
 
 .header {
 	position: fixed;
+
+	.row1 {
+		.row1-wrapper {
+			.li-logo {
+				display: inline-block !important;
+
+				.menu {
+					display: none;
+				}
+			}
+		}
+	}
 
 	.row2 {
 		display: none;
@@ -131,11 +152,13 @@ body {
 			$baseWidth               :       1000px;
 			$gap                     :       $baseWidth * 10 / $baseL;
 			$treeWidth               :       $baseWidth * 200 / $baseL;
-			$downloadContentWidth    :       $baseWidth - $gap - $treeWidth;
+			$downloadContentWidth    :       $baseWidth - $treeWidth;
 
 			$contentHeight           :       620px;
 			$treeHeaderHeight        :       110px;
 			$treeItemHeight          :       50px;
+
+			width: $baseWidth;
 
 			.content {
 				margin-top: $gap - 5px;
@@ -165,7 +188,6 @@ body {
 				}
 
 				.help-content {
-					margin-left: $gap;
 					width: $downloadContentWidth;
 				}
 			}

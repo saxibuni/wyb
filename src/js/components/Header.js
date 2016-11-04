@@ -468,7 +468,13 @@
 		var collectId;
 		var that = this;
 
-		this.zone         = $('.header');
+		this.zone = $('.header');
+
+		if (this.opt.helpPage) {
+			this.showSignedOutHeader();
+			return;
+		}
+
 		pagesUl           = this.zone.find('.pages');
 		pagesUl2          = this.zone.find('.row1');
 		headRow2          = this.zone.find('.row2');
