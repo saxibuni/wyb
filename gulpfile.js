@@ -25,6 +25,7 @@ var imagemin     = require('gulp-imagemin');
 var pngquant     = require('imagemin-pngquant');
 var jpegtran     = require('imagemin-jpegtran');
 var tinypng      = require('gulp-tinypng');
+var tinyjpg      = require('gulp-tinyimg');
 
 var src_js_lib_path     = 'src/lib/js/';
 var src_css_lib_path    = 'src/lib/css/';
@@ -84,12 +85,8 @@ gulp.task('prepare', ['clean'], function () {
     gulp.src('./bower_components/bootstrap/dist/fonts/*')
         .pipe(gulp.dest('build/fonts/'));
 
-    gulp.src(['src/img/*.jpg', './bower_components/Gallery/img/*.jpg'])
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],//不要移除svg的viewbox属性
-            use: [jpegtran()] //使用pngquant深度压缩png图片的imagemin插件
-        }))
+    gulp.src(['src/img/*.jpg'])
+        .pipe(tinyjpg('ep-DdwBGWdntDVYb7GnqrfkWOAQMBdj2'))
         .pipe(gulp.dest('build/img/'));
 
     gulp.src(['src/img/*.png', './bower_components/Gallery/img/*.png'])
@@ -114,7 +111,7 @@ gulp.task('build', function () {
             'src/js/app.js'
         ])
         .pipe(concat('app.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         //.pipe(gzip())
         .pipe(gulp.dest('build/js'));
 
@@ -157,7 +154,7 @@ gulp.task('build', function () {
             'src/js/help.js'
         ])
         .pipe(concat('help.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         //.pipe(gzip())
         .pipe(gulp.dest('build/js'));
 

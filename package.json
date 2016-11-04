@@ -51,6 +51,7 @@
   "license": "ISC",
   "dependencies": {
     "gulp-image": "^2.7.2",
+    "gulp-tinyimg": "^0.1.0",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-pngquant": "^5.0.0",
     "pngquant": "^1.1.1"
