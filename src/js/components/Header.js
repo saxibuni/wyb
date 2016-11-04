@@ -379,7 +379,7 @@
 				alert(json.Message);
 				return;
 			}
-			debugger
+
 			that.sportsUrl = json;
 		};
 
