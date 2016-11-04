@@ -364,6 +364,28 @@
 		Service.get(opt, callback);
 	};
 
+	Header.prototype.getSportsUrl = function () {
+    	var that  = this;
+    	var opt   =  {
+			url: app.urls.getGameLoginUrl,
+			data: {
+				gamePlatform: 'T188',
+				gameType: 'sport'
+			}
+		};
+		
+		var callback = function (json) {
+			if (json.StatusCode && json.StatusCode != 0) {
+				alert(json.Message);
+				return;
+			}
+			debugger
+			that.sportsUrl = json;
+		};
+
+		Service.get(opt, callback);
+	};
+
 	Header.prototype.showSignedInHeader = function () {
 		this.zone.find('.li-money-actions').show();
 		this.zone.find('.li-balance').show();
@@ -372,6 +394,7 @@
 		this.getUserInfo();
 		this.getCollectList(false);
 		this.getUnreadMessageCount();
+		this.getSportsUrl();
 	};
 
 	Header.prototype.showSignedOutHeader = function () { 
@@ -547,7 +570,12 @@
 			pageName = $(this).attr('data-value');
 			index    = $(this).index();
 			stick.css('left', index * 14.285  + '%');
-			app.router.setRoute('/' + pageName);
+
+			if (pageName === 'sportsCompetition') {
+				window.open(that.sportsUrl);
+			} else {
+				app.router.setRoute('/' + pageName);
+			}
 		});
 
 		grzxNav.click(function(){
