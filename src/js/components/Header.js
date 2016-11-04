@@ -555,6 +555,10 @@
 			app.personCenterRouter(grzxRouterValue[0],grzxRouterValue[1]);
 		});
 
+		this.zone.find('.li-grzx').click(function () {
+			app.personCenterRouter(0, 0);
+		});
+
 		headerFloatItem.mouseover(function () {
 			var parent = $(this).parent('ul');
 			pageName   = $(this).attr('data-value');
