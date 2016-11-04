@@ -86,7 +86,16 @@
         temp += '<div class="stick"></div>';
 
         $('.app .tree ul').append(temp);
-        $('.app .help-content').css('height', $('.app .tree').css('height'));
+        this.resetHeight();
+    };
+
+    Help.prototype.resetHeight = function() {
+        var treeH = $('.app .tree').height();
+        var contH = $('.app .help-content').height();
+
+        if (contH < treeH) {
+            $('.app .help-content').css('min-height', $('.app .tree').css('height'));
+        }
     };
 
     Help.prototype.queryTreeItems = function (key) {
