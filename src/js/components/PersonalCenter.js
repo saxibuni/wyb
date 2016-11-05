@@ -316,7 +316,7 @@ $(function() {
 		};
 
 		callback = function (data) {
-			that.zone.find('.center-wallet').children('.balance').text(data);
+			that.zone.find('.center-wallet .center-balance').children('.balance').text(data);
 		};
 
 		Service.get(opt, callback);

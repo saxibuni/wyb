@@ -471,6 +471,19 @@ $homepage-icon-top3      :   -126px;
 						padding-left: $pageNavGap + 10px;
 					}
 				}
+
+				.signout {
+					background-color: #211b27;
+
+					.thead {
+						display: none;
+					}
+
+					.tbody {
+						height: $bottom-table-height;
+						line-height: $bottom-table-height;
+					}
+				}
 			}
 		}
 	}

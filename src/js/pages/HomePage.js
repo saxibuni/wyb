@@ -281,7 +281,7 @@
 
 	HomePage.prototype.createJackpotsTable = function () {
 		var i;
-		var temp =	'<div class="table jackpots-table">' +
+		var temp =	'<div class="table jackpots-table signout">' +
 						'<div class="thead">' +
 							'<div class="tr even">' +
 								// '<div class="td td1">时间</div>' +
@@ -331,6 +331,7 @@
 		}
 
 		this.zone.find('.jackpots-table .tbody').html(temp);
+		this.zone.find('.jackpots-table').removeClass('signout');
 	};
 
 	// HomePage.prototype.createJackpotsTr = function (data) {
@@ -380,6 +381,7 @@
 
 	HomePage.prototype.reset = function () {
 		this.hideDepositLi();
+		this.zone.find('.jackpots-table').addClass('signout');
 		this.zone.find('.jackpots-table .tbody span').text('登录后可查看中奖记录');
 	};
 

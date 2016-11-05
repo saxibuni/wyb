@@ -233,6 +233,10 @@
 			}
 
 			if (data === true) {
+				app.personCenterDialog.getPlatformBalance(to);
+				app.personCenterDialog.getCenterWalletCash();
+				that.getPlatformBalance(to, 'to');
+				that.getCenterWalletCash('from');
 				alert('转账成功');
 			} else {
 				alert('转账失败');
@@ -264,6 +268,10 @@
 			}
 
 			if (data === true) {
+				app.personCenterDialog.getPlatformBalance(from);
+				app.personCenterDialog.getCenterWalletCash();
+				that.getPlatformBalance(from, 'from');
+				that.getCenterWalletCash('to');
 				alert('转账成功');
 			} else {
 				alert('转账失败');

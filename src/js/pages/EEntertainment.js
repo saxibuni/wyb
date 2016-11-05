@@ -232,7 +232,7 @@
 		this.globalBigInterval = setInterval(function () {
 			that.globalRefreshBaseJackpots();
 			count = that.animateMarqueen(count);
-		}, 5000);
+		}, 10000);
 
 		this.globalSmallInterval = setInterval(function () {
 			that.globalRefreshJackpots();
