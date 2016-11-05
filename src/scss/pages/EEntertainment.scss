@@ -552,6 +552,7 @@
 						width: $gameImageWidth + 2px;
 						margin-left: $gap;
 						margin-top: $gap;
+						overflow: hidden;
 						transition: all .5s;
 
 						&:hover {
@@ -642,6 +643,18 @@
 									transform: scale(1.5);
 								}
 							}
+						}
+
+						.jackpot-value-span {
+							position: absolute;
+							width: 100%;
+							font-size: 14px;
+							height: 30px;
+							background-color: rgba(40, 21, 47, .7);
+							transition: top .3s;
+							top: 0;
+							left: 0;
+							z-index: 101;
 						}
 					}
 

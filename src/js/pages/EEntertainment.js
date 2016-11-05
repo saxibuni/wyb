@@ -1,5 +1,8 @@
 (function () {
 	function EEntertainment () {
+		this.flag1 = false;  //奖金池游戏是否构造完成
+		this.flag2 = false;  //GameList是否构造完成
+
 		this.favoriteGameIds = {};
 		this.initDom();
 	}
@@ -105,33 +108,31 @@
 		return this.el;
 	};
 
-	/*
-	**  获取奖金池游戏
-	*/
-	EEntertainment.prototype.getJackpotsGames = function (platform) {
+	EEntertainment.prototype.show = function (subRouter) {
+		var timeout;
 		var callback;
-		var that =  this;
-		var opt  =  {
-			url: app.urls.getJackpotsGames,
-	        data: {
-	        	platform: platform,
-	        	pageIndex: 0,
-	        	pageSize: 20
-	        }
-		};
+		var that = this;
 
-		if (platform !== 'PT' && platform !== 'MG') {
-			return;
+		this.subRouter = subRouter || '';
+
+		if (this.subRouter) {
+			this.zone.fadeIn(500, function () {
+				$(that.zone.find('.middle-module li')[that.subRouter]).click();
+			});
+		} else {
+			this.zone.fadeIn(500);
 		}
 
-		callback = function (json) {
-        	that.bonusPoolData = json;
-        	that.setMarqueenItems(true);
-        	that.resfreshBaseValues(platform);
-        	that.animateMarqueen();
-		};
+		if (!this.firstTime) {
+			this.getAds();
+			this.getJackpotsGames('PT');  //获取pt奖金池
+			this.getGameCategories();
+			this.firstTime = true;
+		}
+	};
 
-		Service.get(opt, callback);
+	EEntertainment.prototype.hide = function () {
+		this.zone.fadeOut(500);
 	};
 
 	/*
@@ -161,6 +162,327 @@
 		};
 
 		Service.get(opt, callback);
+	};
+
+	/*
+	**  获取奖金池游戏
+	*/
+	EEntertainment.prototype.getJackpotsGames = function (platform) {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpotsGames,
+	        data: {
+	        	platform: platform,
+	        	pageIndex: 0,
+	        	pageSize: 25
+	        }
+		};
+
+		if (platform !== 'PT' && platform !== 'MG') {
+			return;
+		}
+
+		callback = function (json) {
+        	that.bonusPoolData = json;
+        	that.setMarqueenItems(true);
+		};
+
+		Service.get(opt, callback);
+	};
+
+	/*
+	**  获取游戏树
+	*/
+	EEntertainment.prototype.getGameCategories = function () {
+		var that = this;
+
+		this.loader3.play();
+
+        $.ajax({
+            type: 'GET',
+            url: app.urls.getGameCategories + 'code=electron',
+            dataType: 'json',
+            timeout: app.timeout,
+            xhrFields: {
+            	withCredentials: true
+            }
+        }).done(function (json) {
+        	that.setGameTree(json);
+        	that.getFavoriteGameIds();
+        }).fail(function (xhr, testStatus, error) {
+            alert(error);
+        });
+	};
+
+	EEntertainment.prototype.checkDomStatus = function () {
+		if (this.flag1 && this.flag2) {
+			this.startGlobalInterval();
+			this.flag1 = false;  //恢复原始设置，防止切换平台的时候又重新startGlobalInterval
+			this.flag2 = false;  
+		}
+	};
+
+	EEntertainment.prototype.startGlobalInterval = function () {
+		var count = 0;
+		var that  = this;
+
+		that.globalRefreshBaseJackpots();
+
+		this.globalBigInterval = setInterval(function () {
+			that.globalRefreshBaseJackpots();
+			count = that.animateMarqueen(count);
+		}, 5000);
+
+		this.globalSmallInterval = setInterval(function () {
+			that.globalRefreshJackpots();
+		}, 1000);
+	};
+
+	EEntertainment.prototype.getRefreshItemsdict = function () {
+		var i;
+		var url;
+		var item1;
+		var item2;
+		var id1;
+		var id2;
+		var dict            = {};
+		var currentPlatform = this.zone.find('.middle-module li.selected').attr('data-type');
+		var marqueenLis     = this.zone.find('.left-list .marqueen ul li');
+		var gamelis         = this.zone.find('.bottom-right ul li[data-showjackpots="true"]');
+
+		if (currentPlatform === 'PT') {  //都是PT，小游戏区就可能有游戏与奖金池游戏重合
+			for (i = 0; i < marqueenLis.length; i++) {
+				item1     = $(marqueenLis[i]).children('.jackpots-basevalue');
+				id1       = item1.attr('data-id');
+				url       = item1.attr('data-url');
+				dict[id1] = {
+					items: [item1],
+					url: url
+				};
+			}
+
+			for (i = 0; i < gamelis.length; i++) {
+				item2 = $(gamelis[i]);
+				id2   = item2.attr('data-id');
+				url   = item2.attr('data-url');
+
+				if (dict[id2]) {
+					dict[id2].items.push($(item2.children('.jackpot-value-span')));
+				} else {
+					dict[id2] = {
+						items: [$(item2.children('.jackpot-value-span'))],
+						url: url
+					};
+				}
+			}
+		} else {
+			for (i = 0; i < marqueenLis.length; i++) {
+				item1     = $(marqueenLis[i]).children('.jackpots-basevalue');
+				id1       = item1.attr('data-id');
+				url       = item1.attr('data-url');
+				dict[id1] = {
+					items: [item1],
+					url: url
+				};
+			}
+
+			for (i = 0; i < gamelis.length; i++) {
+				item2     = $(gamelis[i]);
+				id2       = item2.attr('data-id');
+				dict[id2] = {
+					items: [$(item2.children('.jackpot-value-span'))],
+					platform: currentPlatform,
+					gameId: id2
+				};
+			}
+		}
+
+		return dict;
+	};
+
+	EEntertainment.prototype.globalRefreshJackpots = function () {
+		var i;
+		var key;
+		var items;
+		var value;
+		var small      = 0.07;
+		var big        = 0.37;
+		var dict       = this.getRefreshItemsdict();
+		var jackpotSum = this.zone.find('.top-right-module .jackpot-value');
+
+		if (jackpotSum.text()) {
+			value =  window.Util.formatCurToNum( jackpotSum.text() );
+			value += big;
+			value =  value.toFixed(2);
+			jackpotSum.text(window.Util.formatNumToCur(value));
+		}
+
+		for (key in dict) {
+			items = dict[key].items;
+
+			for (i = 0; i < items.length; i++) {
+				if (items[i].text()) {
+					value = window.Util.formatCurToNum(items[i].text());
+					value += small;
+					value = value.toFixed(2);
+					items[i].text(window.Util.formatNumToCur(value));
+				}
+			}
+		}
+	};
+
+	EEntertainment.prototype.globalRefreshBaseJackpots = function () {
+		var key;
+		var dict = this.getRefreshItemsdict();
+
+		this.setPtSumBaseValue();
+
+		for (key in dict) {
+			if (dict[key].url) {
+				this.setPtSingleBaseValue(dict[key].url, dict[key].items);
+			} else {
+				this.setMgSingleBaseValue(dict[key].platform, dict[key].gameId, dict[key].items);
+			}
+		}
+	};
+
+	EEntertainment.prototype.animateMarqueen = function (count) {
+		var marqueenUl      =  this.zone.find('.left-list .marqueen ul');
+		var lis             =  marqueenUl.children('li');
+		var len             =  lis.length;
+		var h               =  parseFloat(marqueenUl.children('li').css('height'));
+		var ulFirstLi       =  $(marqueenUl.children('li')[count]);
+		var game            =  ulFirstLi.children('p:first-child').text();
+		var win             =  ulFirstLi.children('p:last-child').text();
+		var marqueenLi1Row2 =  $(this.zone.find('.marqueen-li1 .row')[1]);
+		var top             =  (0 - (count + 1) * h)  + 'px';
+
+		if (count > 15) {
+			count = 0;
+			marqueenUl.stop();
+			marqueenUl.animate({'top': 0}, 0);
+		} else {
+			marqueenUl.animate({'top': top}, 1000);
+			marqueenLi1Row2.children('.marqueen-li1-game').text(game);
+			marqueenLi1Row2.children('.marqueen-li1-win').text(win);
+			this.animateMarqueenLi1();
+			count++;
+		}
+
+		return count;
+	};
+
+	EEntertainment.prototype.animateMarqueenLi1 = function (data) {
+		var wrapper = this.zone.find('.marqueen-li1-wrapper');
+		var rows    = this.zone.find('.marqueen-li1 .row');
+		var row1    = $(rows[0]);
+		var row2    = $(rows[1]);
+		var h       = parseFloat(row1.css('height'));
+		var temp    = 	'<div class="row">' +
+							'<div class="marqueen-li1-game"></div>' +
+							'<div class="marqueen-li1-win"></div>' +
+							'<div class="clear"></div>' +
+						'</div>';
+
+		row1.animate({'top': 0 - h + 'px'});
+		row2.animate({'top': '0'}, 1000, function () {
+			row1.remove();
+			wrapper.append(temp);
+		});
+	};
+
+	EEntertainment.prototype.setPtSingleBaseValue = function (url, items) {
+		var i;
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpotsByUrl,
+	        data: {
+	        	'': url
+	        }
+		};
+
+		callback = function (data) {
+			if (parseInt(data.Data) === 0) {
+				items[0].parent('li').remove();
+
+				if (items.length > 1) { //如果游戏列表和奖金池的游戏的jackpots都是0
+					items[1].text('0.00');
+				}
+			} else {
+				for (i = 0; i < items.length; i++) {
+					items[i].text( window.Util.formatNumToCur(data.Data) );
+				}
+			}
+		};
+
+		Service.post(opt, callback);
+	};
+
+	EEntertainment.prototype.setPtSumBaseValue = function () {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpotsByUrl,
+	        data: {
+	        	'': app.urls.getPtSumJackpotBaseValue
+	        }
+		};
+
+		callback = function (data) {
+			that.zone.find('.top-right-module .jackpot-value').text(window.Util.formatNumToCur(data.Data));
+		};
+
+		Service.post(opt, callback);
+	};
+
+	EEntertainment.prototype.setMgSingleBaseValue = function (platform, gameId, items) {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpots,
+	        data: {
+	        	Game: platform,
+	        	JackpotInfoType: 1,
+	        	GameNameId: gameId
+	        }
+		};
+
+		callback = function (data) {
+			for (i = 0; i < items.length; i++) {
+				items[i].text( window.Util.formatNumToCur(data.Data) );
+			}
+		};
+
+		Service.post(opt, callback);
+	};
+
+	EEntertainment.prototype.setMgSumBaseValue = function (platform) {
+		var callback;
+		var that =  this;
+		var opt  =  {
+			url: app.urls.getJackpots,
+	        data: {
+	        	Game: platform,
+	        	JackpotInfoType: 3
+	        }
+		};
+
+		callback = function (data) {
+			that.zone.find('.top-right-module .jackpot-value').text(data);
+		};
+
+		Service.post(opt, callback);
+	};
+
+	EEntertainment.prototype.stopAnimation = function () {
+		this.zone.find('.marqueen-li1 .row').stop();
+		this.zone.find('.left-list .marqueen ul').stop();
+		clearInterval(this.globalSmallInterval);
+		this.globalSmallInterval = undefined;
+		clearInterval(this.globalBigInterval);
+		this.globalBigInterval = undefined;
 	};
 
 	EEntertainment.prototype.addSliders = function (data) {
@@ -235,6 +557,9 @@
 		} else {
 			this.zone.find('.marqueen ul').append(temp);
 		}
+
+		this.flag1 = true;
+		this.checkDomStatus();
 	};
 
 	EEntertainment.prototype.createMarqueenItem = function (data) {
@@ -247,199 +572,6 @@
 					'</li>';
 
 		return temp;
-	};
-
-	EEntertainment.prototype.animateMarqueenLi1 = function (data) {
-		var wrapper = this.zone.find('.marqueen-li1-wrapper');
-		var rows    = this.zone.find('.marqueen-li1 .row');
-		var row1    = $(rows[0]);
-		var row2    = $(rows[1]);
-		var temp    = 	'<div class="row">' +
-							'<div class="marqueen-li1-game"></div>' +
-							'<div class="marqueen-li1-win"></div>' +
-							'<div class="clear"></div>' +
-						'</div>';
-
-		row1.animate({'top': '-30px'});
-		row2.animate({'top': '0'}, 1000, function () {
-			row1.remove();
-			wrapper.append(temp);
-		});
-	};
-
-	EEntertainment.prototype.animateMarqueen = function (data) {
-		var game;
-		var win;
-		var ulFirstLi;
-		var h;
-		var top = 0;
-		var count = 0;
-		var marqueenLi1Row2;
-		var that            =  this;
-		var marqueenUl      =  this.zone.find('.left-list .marqueen ul');
-		
-		this.marqueenInterval = setInterval(function () {
-			h         =  parseFloat(marqueenUl.children('li').css('height'));
-			ulFirstLi =  $(marqueenUl.children('li')[count]);
-			game      =  ulFirstLi.children('p:first-child').text();
-			win       =  ulFirstLi.children('p:last-child').text();
-			top       -= h;
-			count++;
-
-			if (count === 14) {
-				count = 0;
-				top   = 0;
-				marqueenUl.stop();
-				marqueenUl.animate({'top': top}, 0);
-			} else {
-				marqueenUl.animate({'top': (top + 'px')}, 1000);
-				marqueenLi1Row2 = $(that.zone.find('.marqueen-li1 .row')[1]);
-				marqueenLi1Row2.children('.marqueen-li1-game').text(game);
-				marqueenLi1Row2.children('.marqueen-li1-win').text(win);
-				that.animateMarqueenLi1();
-			}
-		}, 5000);
-	};
-
-	EEntertainment.prototype.stopAnimation = function () {
-		this.zone.find('.marqueen-li1 .row').stop();
-		this.zone.find('.left-list .marqueen ul').stop();
-		clearInterval(this.marqueenInterval); 
-		this.marqueenInterval = undefined;
-	};
-
-	/*
-	** Marqueen Data
-	*/
-	EEntertainment.prototype.resfreshBaseValues = function (parentPlatform) {
-		var i;
-		var item;
-		var items;
-		var platform;
-		var gameId;
-		var url;
-
-		items = this.zone.find('.marqueen ul .jackpots-basevalue');
-
-		for (i = 0; i < items.length; i++) {
-			item     = $(items[i]);
-			platform = item.attr('data-platform');
-			gameId   = item.attr('data-id');
-			url      = item.attr('data-url');
-
-			if (platform === 'MG') {
-				this.setMgSingleBaseValue(platform, gameId, item);
-			} else if (platform === 'PT') {
-				this.setPtSingleBaseValue(item.attr('data-url'), item);
-			} else {
-
-			}
-		}
-
-		if (parentPlatform === 'MG') {
-			this.setMgSumBaseValue('MG');
-		} else if (parentPlatform === 'PT') {
-			this.setPtSumBaseValue();
-		} else {
-			
-		}
-	};
-
-	EEntertainment.prototype.setPtSingleBaseValue = function (url, item) {
-		var callback;
-		var that =  this;
-		var opt  =  {
-			url: app.urls.getJackpotsByUrl,
-	        data: {
-	        	'': url
-	        }
-		};
-
-		callback = function (data) {
-			item.text(data.Data);
-		};
-
-		Service.post(opt, callback);
-	};
-
-	EEntertainment.prototype.setPtSumBaseValue = function () {
-		var callback;
-		var that =  this;
-		var opt  =  {
-			url: app.urls.getJackpotsByUrl,
-	        data: {
-	        	'': app.urls.getPtSumJackpotBaseValue
-	        }
-		};
-
-		callback = function (data) {
-			that.zone.find('.top-right-module .jackpot-value').text(window.Util.formatNumToCur(data.Data));
-			that.startJackpotAnimation();
-		};
-
-		Service.post(opt, callback);
-	};
-
-	EEntertainment.prototype.setMgSingleBaseValue = function (platform, gameId, item) {
-		var callback;
-		var that =  this;
-		var opt  =  {
-			url: app.urls.getJackpots,
-	        data: {
-	        	Game: platform,
-	        	JackpotInfoType: 1,
-	        	GameNameId: gameId
-	        }
-		};
-
-		callback = function (data) {
-			that.zone.find('.top-right-module .jackpot-value').text(data.Data);
-		};
-
-		Service.post(opt, callback);
-	};
-
-	EEntertainment.prototype.setMgSumBaseValue = function (platform) {
-		var callback;
-		var that =  this;
-		var opt  =  {
-			url: app.urls.getJackpots,
-	        data: {
-	        	Game: platform,
-	        	JackpotInfoType: 3
-	        }
-		};
-
-		callback = function (data) {
-			that.zone.find('.top-right-module .jackpot-value').text(data);
-			that.startJackpotAnimation();
-		};
-
-		Service.post(opt, callback);
-	};
-
-	EEntertainment.prototype.startJackpotAnimation = function () {
-		var i;
-		var base;
-		var jackpotSum = this.zone.find('.top-right-module .jackpot-value');
-		var jackpots   = this.zone.find('.jackpots-basevalue');
-		var that       = this;
-		var sumGap     = 1.37;
-		var singleGap  = 1.11;
-
-		this.sumInterval = setInterval(function () {
-			for (i = 0; i < jackpots.length; i++) {
-				base = window.Util.formatCurToNum( $(jackpots[i]).text() );
-				base += singleGap;
-				base = base.toFixed(2);
-				$(jackpots[i]).text(window.Util.formatNumToCur(base));
-			}
-
-			base = window.Util.formatCurToNum( jackpotSum.text() );
-			base += sumGap;
-			base = base.toFixed(2);
-			jackpotSum.text(window.Util.formatNumToCur(base));
-		}, 1000);
 	};
 
 	/*
@@ -461,27 +593,6 @@
     	this.zone.find('.game-tree').html(temp);
     	this.bindTreeEvents();
     };
-
-	EEntertainment.prototype.getGameCategories = function () {
-		var that = this;
-
-		this.loader3.play();
-
-        $.ajax({
-            type: 'GET',
-            url: app.urls.getGameCategories + 'code=electron',
-            dataType: 'json',
-            timeout: app.timeout,
-            xhrFields: {
-            	withCredentials: true
-            }
-        }).done(function (json) {
-        	that.setGameTree(json);
-        	that.getFavoriteGameIds();
-        }).fail(function (xhr, testStatus, error) {
-            alert(error);
-        });
-	};
 
 	/*
 	** game zone
@@ -610,20 +721,27 @@
 
 	EEntertainment.prototype.setGameList = function (data) {
 		var i;
+		var item;
+		var gameId;
+		var ul;
+		var lis;
+		var url;
 		var html      = '';
 		var platform  = this.zone.find('.middle-module li.selected').attr('data-type');
 		var ids       = this.favoriteGameIds[platform] || [];
 
 		for (i = 0; i < data.length; i++) {
-			html +=	'<li data-id="' + data[i].Id + '"' +
-							' data-identify="' + data[i].GameIdentify +
-							'" data-try="' + data[i].IsTry +
-							'" data-gametype="' + data[i].GameTypeText_EN +
-							'" data-platform="' + data[i].Api.GamePlatform + '"' +
-							'" data-collectid="' +
-							'" data-cnname="' + data[i].Title + '"' +
+			html +=	'<li      data-id="' + data[i].Id + '"' +
+							' data-identify="' + data[i].GameIdentify + '"' +
+							' data-try="' + data[i].IsTry + '"' +
+							' data-gametype="' + data[i].GameTypeText_EN + '"' +
+							' data-platform="' + data[i].Api.GamePlatform + '"' +
+							' data-collectid=""' +
+							' data-cnname="' + data[i].Title + '"' +
+							' data-showjackpots="' + data[i].ShowJackpots + '"' +
+							((data[i].Api.GamePlatform === 'PT' && data[i].ShowJackpots)?' data-url="' + app.formatJackpotsUrl(data[i]) + '"': '') + 
 							'>' +
-						'<p class="jackpot-value-span"></p>' +
+						(data[i].ShowJackpots?'<p class="jackpot-value-span"></p>': '') +
 						'<img src='+app.imageServer + data[i].ImageUrl+'>' +
 						'<p>' +
 							'<span class="game-name">' + data[i].Title + '</span>'+
@@ -639,19 +757,18 @@
 							(data[i].IsTry?'<button class="try-game">免费试玩</button>' : '') +
 						'</p>' +
 					'</li>';
-
-			if (data[i].Api.GamePlatform === 'PT') {
-				
-			} else if (data[i].Api.GamePlatform === 'MG') {
-				
-			}
 		}
+
+		ul = this.zone.find('.bottom-right ul');
 
 		if (!this.isScroll) {
-			this.zone.find('.bottom-right ul').html(html);
+			ul.html(html);
 		} else {
-			this.zone.find('.bottom-right ul').append(html);
+			ul.append(html);
 		}
+
+		this.flag2 = true;
+		this.checkDomStatus();
 	};
 
     EEntertainment.prototype.getGameLaunchUrl = function (gameId) {
@@ -674,33 +791,6 @@
 
 		Service.get(opt, callback);
     };
-
-	EEntertainment.prototype.show = function (subRouter) {
-		var timeout;
-		var callback;
-		var that = this;
-
-		this.subRouter = subRouter || '';
-
-		if (this.subRouter) {
-			this.zone.fadeIn(500, function () {
-				$(that.zone.find('.middle-module li')[that.subRouter]).click();
-			});
-		} else {
-			this.zone.fadeIn(500);
-		}
-
-		if (!this.firstTime) {
-			this.getAds();
-			this.getJackpotsGames('PT');  //获取pt奖金池
-			this.getGameCategories();
-			this.firstTime = true;
-		}
-	};
-
-	EEntertainment.prototype.hide = function () {
-		this.zone.fadeOut(500);
-	};
 
 	EEntertainment.prototype.bindTreeEvents = function () {
 		var index;
@@ -740,7 +830,7 @@
 		var item;
 		var that = this;
 
-		this.zone = $('.e-entertainment');
+		this.zone      = $('.e-entertainment');
 		imgUl          =  this.zone.find('.bottom-right ul');
 		marqueeList    =  this.zone.find('.top-left-module');
 		moreGame       =  this.zone.find('.bottom-right .more-game');
@@ -748,17 +838,6 @@
 
 		imgUl.delegate('li','mouseover',function(){
 			$(this).find("#hover-layer").removeClass("hover-layer-none").addClass("hover-layer");
-
-			// gameId   = $(this).attr('data-id');
-			// platform = $(this).attr('data-platform');
-			// item     = $(this).find('.jackpot-value-span');
-			// url      = $(this).attr('data-jackpoturl');
-
-			// if (platform === 'PT') {
-			// 	that.setPtSingleBaseValue(url, item);
-			// } else if (platform === 'MG') {
-			// 	that.setMgSingleBaseValue(platform, gameId, item);
-			// } 	
 		});
 
 		imgUl.delegate('li', 'mouseout', function() {
@@ -770,8 +849,6 @@
 			$(this).addClass('selected');
 			that.isScroll   = false;
 			that.currenPage = 0;
-			that.stopAnimation();
-			//that.getJackpotsGames($(this).attr('data-type'));
 			that.getFavoriteGameIds();
 		});
 

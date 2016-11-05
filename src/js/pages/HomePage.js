@@ -190,6 +190,7 @@
 		var that = this;
 
 		this.tabSlider = this.zone.find('.tab-sliders').unslider({
+			animation: 'fade',
 			speed: 500,
 			delay: 5000,
 			autoplay: true,
