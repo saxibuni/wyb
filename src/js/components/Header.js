@@ -203,15 +203,15 @@
 					name: 'MT'
 				}
 			],
-			sportsCompetition: [
-				{
-					image: 'tyjj-float-img1.png',
-					name: 'BBIN体育'
-				}, {
-					image: 'tyjj-float-img2.png',
-					name: '沙巴体育'
-				}
-			],
+			// sportsCompetition: [
+			// 	{
+			// 		image: 'tyjj-float-img1.png',
+			// 		name: 'BBIN体育'
+			// 	}, {
+			// 		image: 'tyjj-float-img2.png',
+			// 		name: '沙巴体育'
+			// 	}
+			// ],
 			lotteryGame: [
 				{
 					image: 'cpyx-float-img1.png',
@@ -564,18 +564,18 @@
 		});
 
 		pagesUl.delegate('li', 'click', function () {
-			pagesUl.children('li').removeClass('selected');
-			$(this).addClass('selected');
-
 			pageName = $(this).attr('data-value');
-			index    = $(this).index();
-			stick.css('left', index * 14.285  + '%');
 
 			if (pageName === 'sportsCompetition') {
 				window.open(that.sportsUrl);
-			} else {
-				app.router.setRoute('/' + pageName);
+				return;
 			}
+
+			pagesUl.children('li').removeClass('selected');
+			$(this).addClass('selected');
+			index    = $(this).index();
+			stick.css('left', index * 14.285  + '%');
+			app.router.setRoute('/' + pageName);
 		});
 
 		grzxNav.click(function(){

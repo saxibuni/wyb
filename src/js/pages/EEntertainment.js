@@ -615,14 +615,15 @@
 		var ids       = this.favoriteGameIds[platform] || [];
 
 		for (i = 0; i < data.length; i++) {
-			html +=	'<li data-id="' + data[i].Id + '"' + 
-							' data-identify="' + data[i].GameIdentify + 
+			html +=	'<li data-id="' + data[i].Id + '"' +
+							' data-identify="' + data[i].GameIdentify +
 							'" data-try="' + data[i].IsTry +
 							'" data-gametype="' + data[i].GameTypeText_EN +
 							'" data-platform="' + data[i].Api.GamePlatform + '"' +
 							'" data-collectid="' +
 							'" data-cnname="' + data[i].Title + '"' +
 							'>' +
+						'<p class="jackpot-value-span"></p>' +
 						'<img src='+app.imageServer + data[i].ImageUrl+'>' +
 						'<p>' +
 							'<span class="game-name">' + data[i].Title + '</span>'+
@@ -638,6 +639,12 @@
 							(data[i].IsTry?'<button class="try-game">免费试玩</button>' : '') +
 						'</p>' +
 					'</li>';
+
+			if (data[i].Api.GamePlatform === 'PT') {
+				
+			} else if (data[i].Api.GamePlatform === 'MG') {
+				
+			}
 		}
 
 		if (!this.isScroll) {
@@ -730,6 +737,7 @@
 		var lastScrollTop = 0;
 		var direction;
 		var st;
+		var item;
 		var that = this;
 
 		this.zone = $('.e-entertainment');
@@ -739,7 +747,18 @@
 		middleModuleUl = this.zone.find('.middle-module');
 
 		imgUl.delegate('li','mouseover',function(){
-			  $(this).find("#hover-layer").removeClass("hover-layer-none").addClass("hover-layer");
+			$(this).find("#hover-layer").removeClass("hover-layer-none").addClass("hover-layer");
+
+			// gameId   = $(this).attr('data-id');
+			// platform = $(this).attr('data-platform');
+			// item     = $(this).find('.jackpot-value-span');
+			// url      = $(this).attr('data-jackpoturl');
+
+			// if (platform === 'PT') {
+			// 	that.setPtSingleBaseValue(url, item);
+			// } else if (platform === 'MG') {
+			// 	that.setMgSingleBaseValue(platform, gameId, item);
+			// } 	
 		});
 
 		imgUl.delegate('li', 'mouseout', function() {
